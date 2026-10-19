@@ -6,7 +6,7 @@ $$
 \liminf_{T\to\infty}
 \frac{\int_0^T |\zeta(\tfrac12+it)|^6\,dt}
      {(a_3/9!)\,T(\log T)^9}
-> 41.007.
+\mathrel{>} 41.007.
 $$
 
 Here $a_3$ is the [arithmetic Euler product](Sechstmoment/Arithmetic/Factor/Definitions.lean). See [CONTENTS.md](CONTENTS.md) for the source layout.
