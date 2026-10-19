@@ -21,15 +21,15 @@ DivisorProof.Watt41 → Sechstmoment.FullGoal
 
 ## Reusable results
 
+For example:
+
 | Result | Module |
 |---|---|
-| Convergence and positivity of $a_3$ | [Factor/Convergence](Sechstmoment/Arithmetic/Factor/Convergence.lean) |
 | Subpower bounds for divisor counts with a fixed cost per prime | [Divisors/Subpower](Sechstmoment/Arithmetic/Divisors/Subpower.lean) |
-| Exact beta integrals | [Beta/Integral](Sechstmoment/Analysis/Beta/Integral.lean) |
 | Concentration of beta profiles against continuous functions | [Beta/WeakConvergence](Sechstmoment/Analysis/Beta/WeakConvergence.lean) |
 | Complex differentiation under compact interval integrals | [Integration/ComplexParameter](Sechstmoment/Analysis/Integration/ComplexParameter.lean) |
 
-Import individual modules to use these results, for example `import Sechstmoment.Arithmetic.Factor.Convergence`.
+See [CONTENTS.md](CONTENTS.md) for further results and the source layout.
 
 ## Reproducibility
 
