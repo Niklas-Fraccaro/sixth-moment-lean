@@ -1,25 +1,154 @@
 name: Verify
+run-name: Verify (${{ inputs.mode }}, series ${{ inputs.mode == 'new' && github.run_id || inputs.series }})
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Start from source or continue the same commit
+        type: choice
+        options: [new, continue]
+        default: new
+      series:
+        description: First run ID (required for continue)
+        type: string
+        default: ''
 
 permissions:
   contents: read
 
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  LEAN_NUM_THREADS: '1'
+
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 360
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Identify the source and build series
+        id: identity
+        env:
+          MODE: ${{ inputs.mode }}
+          SERIES_INPUT: ${{ inputs.series }}
+        run: |
+          case "$MODE" in
+            new) series="$GITHUB_RUN_ID" ;;
+            continue)
+              [[ "$SERIES_INPUT" =~ ^[0-9]+$ ]] || { echo 'A numeric first run ID is required.'; exit 1; }
+              series="$SERIES_INPUT" ;;
+            *) exit 1 ;;
+          esac
+          fingerprint=$(sha256sum lean-toolchain lake-manifest.json lakefile.lean | sha256sum | cut -d' ' -f1)
+          prefix="lean-v1-ubuntu24-x64-${GITHUB_SHA}-${fingerprint}-${series}-"
+          echo "series=$series" >> "$GITHUB_OUTPUT"
+          echo "prefix=$prefix" >> "$GITHUB_OUTPUT"
+          echo "key=${prefix}${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" >> "$GITHUB_OUTPUT"
+          printf 'Commit: %s\nSeries: %s\n' "$GITHUB_SHA" "$series"
+
       - name: Install the pinned Lean toolchain
+        timeout-minutes: 20
         run: |
           curl --fail --location --retry 3 https://elan.lean-lang.org/elan-init.sh -o /tmp/elan-init.sh
           sh /tmp/elan-init.sh -y --default-toolchain "$(cat lean-toolchain)"
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
       - name: Fetch Mathlib's build cache
-        run: lake exe cache get
-      - name: Build all project modules
-        run: lake build
+        timeout-minutes: 30
+        run: |
+          lean --version
+          lake --version
+          lake exe cache get
+          free -h
+          df -h .
+
+      - name: Restore the previous build checkpoint
+        if: inputs.mode == 'continue'
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ steps.identity.outputs.key }}
+          restore-keys: ${{ steps.identity.outputs.prefix }}
+          fail-on-cache-miss: true
+
+      - name: Build all project modules (up to four hours)
+        id: build
+        timeout-minutes: 245
+        run: |
+          count_modules() {
+            if [[ -d .lake/build/lib/lean ]]; then
+              find .lake/build/lib/lean -name '*.olean' -type f | wc -l
+            else
+              echo 0
+            fi
+          }
+          before=$(count_modules)
+          started=$SECONDS
+          set +e
+          timeout --signal=TERM --kill-after=30s 4h lake build
+          code=$?
+          set -e
+          if [[ "$code" == 137 && "$((SECONDS - started))" -ge 14400 ]]; then code=124; fi
+          after=$(count_modules)
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          echo "before=$before" >> "$GITHUB_OUTPUT"
+          echo "after=$after" >> "$GITHUB_OUTPUT"
+          printf 'Completed module objects: %s -> %s\n' "$before" "$after"
+          if [[ "$code" != 0 && "$code" != 124 ]]; then exit "$code"; fi
+
+      - name: Save the interrupted build checkpoint
+        if: steps.build.outputs.exit_code == '124'
+        timeout-minutes: 20
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ steps.identity.outputs.key }}
+
+      - name: Confirm that the checkpoint is available
+        id: checkpoint
+        if: steps.build.outputs.exit_code == '124'
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ steps.identity.outputs.key }}
+          lookup-only: true
+          fail-on-cache-miss: true
+
       - name: Check the final statement and axioms
+        id: final
+        if: steps.build.outputs.exit_code == '0'
+        timeout-minutes: 20
         run: lake env lean Sechstmoment/Verification/Final.lean
+
+      - name: Report the result
+        if: always()
+        env:
+          SERIES: ${{ steps.identity.outputs.series }}
+          BUILD_EXIT: ${{ steps.build.outputs.exit_code }}
+          BEFORE: ${{ steps.build.outputs.before }}
+          AFTER: ${{ steps.build.outputs.after }}
+          CHECKPOINT_FOUND: ${{ steps.checkpoint.outputs.cache-hit }}
+          FINAL_OUTCOME: ${{ steps.final.outcome }}
+        run: |
+          {
+            printf 'Commit: `%s`\n\nSeries: `%s`\n\n' "$GITHUB_SHA" "$SERIES"
+            printf 'Completed module objects: %s -> %s\n\n' "$BEFORE" "$AFTER"
+            if [[ "$BUILD_EXIT" == 0 && "$FINAL_OUTCOME" == success ]]; then
+              echo '**VERIFIED:** all project modules built; the final statement and axiom guard passed.'
+              echo 'The conclusion is conditional on DivisorProof.Watt41.'
+            elif [[ "$BUILD_EXIT" == 124 && "$CHECKPOINT_FOUND" == true ]]; then
+              echo '**INCOMPLETE:** the time window ended; a build checkpoint was saved.'
+              printf 'Continue this commit with mode `continue` and series `%s`.\n' "$SERIES"
+              if [[ "$AFTER" == "$BEFORE" ]]; then
+                echo 'No additional module completed. Inspect the active module before continuing.'
+              fi
+            else
+              echo '**FAILED:** inspect the failed step. This run does not verify the project.'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+          [[ "$BUILD_EXIT" == 0 && "$FINAL_OUTCOME" == success ]]

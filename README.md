@@ -46,3 +46,5 @@ lake env lean Sechstmoment/Verification/Final.lean
 ```
 
 `lake build` compiles all project modules. The final command checks the exact conclusion and prints its axioms; the check accepts only `propext`, `Classical.choice` and `Quot.sound`. Watt's proposition is an explicit hypothesis.
+
+On GitHub Actions, start **Verify** with mode `new`. If a four-hour build stage ends, resume the same commit with mode `continue` and the series ID from its summary. An interrupted stage is marked **INCOMPLETE** and fails the overall check; verification succeeds only after the full build and final Lean check pass.
