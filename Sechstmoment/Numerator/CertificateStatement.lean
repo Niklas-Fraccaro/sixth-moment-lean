@@ -13,7 +13,6 @@ U moment asymptotic, a reconstruction receipt, a contour receipt or the target.
 
 A witness of this target is necessary for the requested A03--A05 chain, but
 alone does not certify Lemma 2's quantitative A03 estimate or every A04 step.
-The Python gate therefore keeps the entire first row OPEN independently.
 -/
 
 namespace Sechstmoment

@@ -132,10 +132,10 @@ set_option maxHeartbeats 0
 
 theorem nat_succ_le_geometric_majorant {q : ℝ} (hq : 1<q) (ν : ℕ) :
     (ν+1:ℝ)≤(q/(q-1))*q^ν :=
-  @Sechstmoment.nat_succ_le_geometric_majorant
+  @Sechstmoment.nat_succ_le_geometric_majorant q hq ν
 
 theorem nat_succ_le_two_pow (ν : ℕ) : (ν+1:ℝ)≤(2:ℝ)^ν :=
-  @Sechstmoment.nat_succ_le_two_pow
+  @Sechstmoment.nat_succ_le_two_pow ν
 
 /-- For every fixed prime cost `C`, the literal number of divisors times
 `C` to the number of distinct primes is bounded by `D n^ε` uniformly in n.
@@ -143,7 +143,7 @@ No divisor-growth premise is used. -/
 theorem divisor_prime_cost_subpower {ε C : ℝ} (hε : 0<ε) (hC : 1≤C) :
     ∃ D : ℝ,0≤D ∧ ∀ n : ℕ,n≠0 →
       (n.divisors.card:ℝ)*C^n.primeFactors.card≤D*(n:ℝ)^ε :=
-  @Sechstmoment.divisor_prime_cost_subpower
+  @Sechstmoment.divisor_prime_cost_subpower ε C hε hC
 
 end
 end Sechstmoment.Source.NoDPGlobalLFactorization

@@ -33,15 +33,16 @@ See [CONTENTS.md](CONTENTS.md) for further results and the source layout.
 
 ## Reproducibility
 
-Requires Linux x86-64 (including WSL), Git, Python 3.10+, and elan. Lean 4.34.0 and the Mathlib commit are pinned in the repository.
+Requires Git and elan. Lean 4.34.0 and the Mathlib commit are pinned in the repository.
 
-**This experimental snapshot has known build and verifier errors.** Once corrected, reproduce the final theorem with:
+The full build of this experimental reorganization is still pending.
 
 ```sh
 git clone https://github.com/NiklasFrac/sechstmoment-lean-experimental.git
 cd sechstmoment-lean-experimental
 lake exe cache get
-lake env python3 verify_full_goal.py --fresh --workers 1 --memory-mb 0
+lake build
+lake env lean Sechstmoment/Verification/Final.lean
 ```
 
-The last command recompiles the final theorem's project dependencies and checks its literal type and transitive axioms. Logs are written to `verification_logs/`.
+`lake build` compiles all project modules. The final command checks the exact conclusion and prints its axioms; the check accepts only `propext`, `Classical.choice` and `Quot.sound`. Watt's proposition is an explicit hypothesis.

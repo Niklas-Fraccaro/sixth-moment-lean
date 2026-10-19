@@ -77,9 +77,9 @@ The numerator splits into 220 U rows and 30 V rows.
 
 ## Verification and project files
 
-- [Verification/Final.lean](Sechstmoment/Verification/Final.lean): literal theorem-type checks and axiom queries.
+- [Verification/Final.lean](Sechstmoment/Verification/Final.lean): checks the final type, explicit moment bound and standard axioms.
 - [Sechstmoment.lean](Sechstmoment.lean), at the repository root: umbrella imports.
-- Root `verify_*.py` and `compile_full_goal.py`: compilation and axiom-audit runners; `test_*.py` tests their orchestration.
+- [.github/workflows/full-goal.yml](.github/workflows/full-goal.yml): manually runs the same Lake build and final check.
 - Root [certificate_250.tsv](certificate_250.tsv): the exact certificate data.
 - Root [Salt/Weil/](Salt/Weil): third-party Weil and Kloosterman results; provenance and license are recorded in [Salt/UPSTREAM.json](Salt/UPSTREAM.json) and [Salt/LICENSE](Salt/LICENSE).
 - `lakefile.lean`, `lean-toolchain` and `lake-manifest.json`: build configuration and pinned dependencies.
