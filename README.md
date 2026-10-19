@@ -9,7 +9,7 @@ $$
 \mathrel{>} 41.007.
 $$
 
-Here $a_3$ is the [arithmetic Euler product](Sechstmoment/Arithmetic/Factor/Definitions.lean). See [CONTENTS.md](CONTENTS.md) for the source layout.
+Here $a_3$ is the [arithmetic Euler product](Sechstmoment/Arithmetic/Factor/Definitions.lean).
 
 ## Assumption
 
