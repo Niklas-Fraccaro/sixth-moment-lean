@@ -1,12 +1,12 @@
 # Sixth moment
 
-This repository contains my Lean formalization of a lower bound for the sixth moment of the Riemann zeta function, using an exact 250-row certificate:
+This repository contains my Lean formalization of a lower bound for the sixth moment of the Riemann zeta function:
 
 $$
 \liminf_{T\to\infty}
 \frac{\int_0^T |\zeta(\tfrac12+it)|^6\,dt}
      {(a_3/9!)\,T(\log T)^9}
-\ge \frac{1077094746}{26265625}.
+> 41.007.
 $$
 
 Here $a_3$ is the [arithmetic Euler product](Sechstmoment/Arithmetic/Factor/Definitions.lean). See [CONTENTS.md](CONTENTS.md) for the source layout.
