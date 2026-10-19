@@ -71,7 +71,7 @@ retain the original proof's notation without introducing duplicate constants.
 `WeightedWattBound` from the exact external `DivisorProof.Watt41` proposition.
 `Sechstmoment.WattDivisorInput` connects its separated-exponent conclusion
 directly to the existing source consumers. SALT's proved Estermann estimate
-is connected in `EstermannBridge`; provenance is in `SALT-UPSTREAM.json`.
+is connected in `EstermannBridge`; provenance is in `Salt/UPSTREAM.json`.
 -/
 
 namespace DivisorProof
