@@ -1,0 +1,57 @@
+name: Manual FullGoal verification
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: full-goal-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Install the pinned Lean toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 https://elan.lean-lang.org/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain "$(cat lean-toolchain)"
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch pinned Mathlib and its build cache
+        run: lake exe cache get
+      - name: Test the verification tools
+        run: python3 -m unittest test_verify_project test_verify_first_row
+      - name: Rebuild and verify the complete final import closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env python3 verify_full_goal.py --workers 2 --memory-mb 0 --fresh --tag verified_input_1 | tee fullgoal-fresh.log
+      - name: Replay the internal AFE and final theorem with leanchecker
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env python3 - <<'PY' | tee fullgoal-kernel-replay.log
+          import pathlib, subprocess
+          modules = sorted('.'.join(p.with_suffix('').parts) for p in
+              pathlib.Path('Sechstmoment/Zeta/AFE/Four').rglob('*.lean'))
+          modules += ['Sechstmoment.Numerator.CertificateLimit', 'Sechstmoment.Theorem']
+          for module in modules:
+              subprocess.run(['leanchecker', module], check=True)
+          print(f'Official leanchecker replay: PASS ({len(modules)} modules)')
+          PY
+      - name: Save verification evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: fullgoal-input-1-verification
+          path: |
+            verification_logs/full_goal/verified_input_1/
+            fullgoal-fresh.log
+            fullgoal-kernel-replay.log
+          retention-days: 30

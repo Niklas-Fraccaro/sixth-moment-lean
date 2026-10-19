@@ -1,0 +1,157 @@
+{
+  "repository": "https://github.com/jyh/salt",
+  "commit": "49197468a2b903385260ee451509943d1934c6de",
+  "license": "Apache-2.0",
+  "authors": [
+    "Jason Hickey",
+    "Claude"
+  ],
+  "upstream_lean": "v4.32.0-rc1",
+  "ported_lean": "v4.34.0",
+  "modules": [
+    {
+      "module": "Salt.Weil.ArtinSchreier",
+      "path": "Salt/Weil/ArtinSchreier.lean",
+      "upstream_sha256": "7512e679c8f1d54a5a15c9560602709342789ad9b779dace73e99f9a7a302e86",
+      "ported_sha256": "c1191ceeff257da7b2f24b4474ff4bcc6b1587fe1d520159b2937ca4f968c6f8"
+    },
+    {
+      "module": "Salt.Weil.Composite",
+      "path": "Salt/Weil/Composite.lean",
+      "upstream_sha256": "1aca2639a973347a6f6dc6d01ce7dc6e166bbde1de580016587c5606c093fe24",
+      "ported_sha256": "5cef6095ae1b794f7079b749693b6424ad847a69e21ef30ddbcbe32636cbaac7"
+    },
+    {
+      "module": "Salt.Weil.CompositeFull",
+      "path": "Salt/Weil/CompositeFull.lean",
+      "upstream_sha256": "cd0dbe5b5814a397d21b070241c38ecd1966b62aa39549e830e1cf41482bc49f",
+      "ported_sha256": "f63655c6ae579d653175b100044220641868760ce111f12e8c74d7c7615eef51"
+    },
+    {
+      "module": "Salt.Weil.CompositeTail",
+      "path": "Salt/Weil/CompositeTail.lean",
+      "upstream_sha256": "0265c93cc30cc3a317fe87d6ebd2ec4d4239f0f1c0ec6e484ad7fa306b9eb582",
+      "ported_sha256": "2657a00c57b2ea34a86173bf9730c53a7dcdd95f4c0ff392f68abfe33b983fd3"
+    },
+    {
+      "module": "Salt.Weil.CurveBridge",
+      "path": "Salt/Weil/CurveBridge.lean",
+      "upstream_sha256": "0563258e20b3b535b92dec82dc24697febe808ed97c2bcbbb4de7fbe070df66e",
+      "ported_sha256": "ee81f15b0ef67396b342ebe5c6dc9d04232f37330a3172798ead414d2b8c86a9"
+    },
+    {
+      "module": "Salt.Weil.Descent",
+      "path": "Salt/Weil/Descent.lean",
+      "upstream_sha256": "6644a33a6ac58904b669a8d1a59078e9f4286ae5cb24340efd51ff6898f913db",
+      "ported_sha256": "28e3834e7bdb7ea41156b728492e23b82cf9d17d6cdfe546c8d1ae6109a18bb1"
+    },
+    {
+      "module": "Salt.Weil.Estermann",
+      "path": "Salt/Weil/Estermann.lean",
+      "upstream_sha256": "8c8dd642b6f0c3fdcc23c48d654b18f831940f4baaf91ac7875a6873c6300cc0",
+      "ported_sha256": "5cbc61fd574d0c393cc5c3c4f856d0b612d85347a3e0775014a3b765930585c7"
+    },
+    {
+      "module": "Salt.Weil.EstermannGlobal",
+      "path": "Salt/Weil/EstermannGlobal.lean",
+      "upstream_sha256": "e6636a6a4cbf15a9de58bf23724aee64e691aa0f149630140cf176f361855a62",
+      "ported_sha256": "c6a028004e18b569fd78fca9ae028265d760b87761942f1a2ddf49d958120294"
+    },
+    {
+      "module": "Salt.Weil.GcdBranch",
+      "path": "Salt/Weil/GcdBranch.lean",
+      "upstream_sha256": "b1ea5449728a2ff9398c1ff9efe2e5e6972331d17a458966427cd51821fcc8ad",
+      "ported_sha256": "5e4a66761addbfbfa304bcedb8de506885ab60039584c2375f7917da6c7d85a9"
+    },
+    {
+      "module": "Salt.Weil.Kloosterman",
+      "path": "Salt/Weil/Kloosterman.lean",
+      "upstream_sha256": "7ed295f40947491f64d4d15e2b83333de3cb5af766456446c08408764d35c744",
+      "ported_sha256": "76a45ae6781801e77f92bf297274e0bff035d1a912b8d32bd4738805ee44e0d4"
+    },
+    {
+      "module": "Salt.Weil.LFunction",
+      "path": "Salt/Weil/LFunction.lean",
+      "upstream_sha256": "b0eddcbed8b04954cbe8e94f82716c402562e9a10c57b4dbfb68f342b063c4f1",
+      "ported_sha256": "764be41755b64e64fa66428d5acfa31117f0d0692f2a11d01cb259338b201c2f"
+    },
+    {
+      "module": "Salt.Weil.LocalFactor",
+      "path": "Salt/Weil/LocalFactor.lean",
+      "upstream_sha256": "a6dd21371336183c2e7e2c53651c4585d7578a8a83d7cd9467ecd0801a4b46d3",
+      "ported_sha256": "a6dd21371336183c2e7e2c53651c4585d7578a8a83d7cd9467ecd0801a4b46d3"
+    },
+    {
+      "module": "Salt.Weil.MomentEigen",
+      "path": "Salt/Weil/MomentEigen.lean",
+      "upstream_sha256": "bfd5716f040bbebc5120fb4607c333c7e4a169a4d078ceff7824b724c43d4e53",
+      "ported_sha256": "d0810c71ed9b23cedc2f4fee4636c50423762dca36f70929225497657a933a66"
+    },
+    {
+      "module": "Salt.Weil.MomentOrbit",
+      "path": "Salt/Weil/MomentOrbit.lean",
+      "upstream_sha256": "d7f339bebeba0e7716cbdee3c7e2d68a360aa93a38ab893b1a6dbee49f166e06",
+      "ported_sha256": "047e9b11feb0d34654e381ef1513138407635cabcd59b97b57afa64c7093de3a"
+    },
+    {
+      "module": "Salt.Weil.Moments",
+      "path": "Salt/Weil/Moments.lean",
+      "upstream_sha256": "14024980f84cc297e64f717310f572d4f5473565f3339f692c443ecc72fbf8d6",
+      "ported_sha256": "dbbb99791104a7a4cad49c30af9b63b900beaa05d480b51bc8e5e571fe9bdabe"
+    },
+    {
+      "module": "Salt.Weil.MultiExtract",
+      "path": "Salt/Weil/MultiExtract.lean",
+      "upstream_sha256": "0a5e23c6056d1ccecd0964331739fff0b097d0c52e072c1d0b32310e5bc50d14",
+      "ported_sha256": "338631fe13caaeab35de8a22ee5831814b4dd05ae340407a5c39367c4b49cd17"
+    },
+    {
+      "module": "Salt.Weil.NewtonBridge",
+      "path": "Salt/Weil/NewtonBridge.lean",
+      "upstream_sha256": "b4a6720cd206efd813c86bfab8b56f23f468dddbcba8442acbfc1368501359e6",
+      "ported_sha256": "15216e0cc85886ce99fe0de975962b839673224022a4641f553aae8abc55d7ef"
+    },
+    {
+      "module": "Salt.Weil.Orbits",
+      "path": "Salt/Weil/Orbits.lean",
+      "upstream_sha256": "5868b48b55fd17f532d52c3a2257694d9e398ee5e11cab608860996fa0d4f1d4",
+      "ported_sha256": "5868b48b55fd17f532d52c3a2257694d9e398ee5e11cab608860996fa0d4f1d4"
+    },
+    {
+      "module": "Salt.Weil.PointCount",
+      "path": "Salt/Weil/PointCount.lean",
+      "upstream_sha256": "355eb04110fef651171e8088eed3d6b1b256f150a7cef3b82d0d0435c467dd0a",
+      "ported_sha256": "3794db25ac440070582ab26df7642115839072811ada8c2d2a836c0840d2f563"
+    },
+    {
+      "module": "Salt.Weil.PrimePower",
+      "path": "Salt/Weil/PrimePower.lean",
+      "upstream_sha256": "ad0f8095be5a490d499cab428ec2a6d283e82b1e56af50987b89c7c079455c06",
+      "ported_sha256": "be596e4a5598ee1a113f4bbe8da8a90eeb73f468a428c75101206f9ee8ee9261"
+    },
+    {
+      "module": "Salt.Weil.Stepanov",
+      "path": "Salt/Weil/Stepanov.lean",
+      "upstream_sha256": "e75f39d1784d7dd784608e41bde9e6d5b62600f73a5c043613d144d4934c5117",
+      "ported_sha256": "32d02eb3f673d2f94c32ff4ab8cc295cbd44ddefb814cdf2b41bef145d09ae09"
+    },
+    {
+      "module": "Salt.Weil.StepanovCore",
+      "path": "Salt/Weil/StepanovCore.lean",
+      "upstream_sha256": "753fc7c707eb76ed95f7c4306659598e854741d6999f7ee1187a7e7d5e5a82ac",
+      "ported_sha256": "ffef2b80605c5921706039069f0aeb1ab3368caac42a583e961943416c2ad3c5"
+    },
+    {
+      "module": "Salt.Weil.StepanovSolve",
+      "path": "Salt/Weil/StepanovSolve.lean",
+      "upstream_sha256": "433a9f1a25cd33beffd79f14fe503c5f3128a25d073ccb29614ba978a08cfea7",
+      "ported_sha256": "9db79bbbddcb25f16b60140c14c2459f5c3aa09a5226b70f0ae7ff587af8313f"
+    },
+    {
+      "module": "Salt.Weil.WeilStepanov",
+      "path": "Salt/Weil/WeilStepanov.lean",
+      "upstream_sha256": "a39246510ea297f11fd6dfbbba8590fe43dc6fbc3e4e691e1f0185944b1e723c",
+      "ported_sha256": "8b3360ff0e9984023de1c124602a4d30317a64e7b4dd56be72088aac87613ede"
+    }
+  ]
+}

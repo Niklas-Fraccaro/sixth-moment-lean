@@ -1,0 +1,17 @@
+import Sechstmoment.Arithmetic.Euler.Local.Rational.BaseNumerator
+
+/-! The top numerator coefficient is a single boundary coefficient. -/
+
+namespace Sechstmoment.Source.NoDPLocal
+
+open Finset
+open scoped BigOperators
+
+variable {R : Type*} [CommRing R]
+theorem q3_succ (a b c d : R) (h : ℕ) :
+    q3 a b c d (h+1) = -e4 a b c d*coeff4 a b c d h := by
+  unfold q3
+  simp only [Nat.add_assoc]
+  rw [coeff4_recurrence]; ring
+
+end Sechstmoment.Source.NoDPLocal
