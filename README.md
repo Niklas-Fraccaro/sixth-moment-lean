@@ -48,3 +48,9 @@ lake env lean SixthMoment/Verification/Final.lean
 ```
 
 The final command checks the theorem and its axioms.
+
+## License
+
+This project is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
+
+The bundled [Salt](Salt/) code is also licensed under Apache 2.0; its original copyright and attribution notices are retained.
