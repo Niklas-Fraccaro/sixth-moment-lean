@@ -37,9 +37,7 @@ See [CONTENTS.md](CONTENTS.md) for further results and the source layout.
 
 ## Reproducibility
 
-Requires Git and elan. Lean 4.34.0 and the Mathlib commit are pinned in the repository.
-
-The full build is still pending.
+Requires Git and elan. Lean 4.34.0 and Mathlib are pinned.
 
 ```sh
 git clone https://github.com/NiklasFrac/sixth-moment-lean.git
@@ -49,6 +47,4 @@ lake build
 lake env lean SixthMoment/Verification/Final.lean
 ```
 
-`lake build` compiles all project modules. The final command checks the exact conclusion and prints its axioms; the check accepts only `propext`, `Classical.choice` and `Quot.sound`. Watt's proposition is an explicit hypothesis.
-
-On GitHub Actions, start **Verify** with mode `new`. If a four-hour build stage ends, resume the same commit with mode `continue` and the series ID from its summary. An interrupted stage is marked **INCOMPLETE** and fails the overall check; verification succeeds only after the full build and final Lean check pass.
+The final command checks the theorem and its axioms.
