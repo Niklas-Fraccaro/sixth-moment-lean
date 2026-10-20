@@ -2,9 +2,6 @@ import Mathlib.Analysis.Calculus.Deriv.Support
 import Mathlib.Analysis.Fourier.FourierTransformDeriv
 import Sechstmoment.Analysis.Fourier.ProfileDecay
 
-/-! A quantitative integration-by-parts estimate with the actual derivative
-integrals retained. This makes varying Gamma amplitudes eligible for a uniform
-Fourier estimate once their derivative envelopes have been derived. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Set
 open scoped ContDiff FourierTransform

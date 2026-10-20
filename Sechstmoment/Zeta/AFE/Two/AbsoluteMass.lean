@@ -1,9 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Pow.Complex
 import Sechstmoment.Zeta.AFE.Two.Truncation
 
-/-! The entire Gaussian-weighted two-index absolute mass. Choosing the
-positive Mellin power just above one half gives the square-root-height bound
-needed before summing the relative Gamma error. -/
 namespace Sechstmoment
 open Complex Real Filter
 open scoped BigOperators
@@ -20,8 +17,6 @@ theorem d02GaussianPowerConstant_nonneg (A : ℝ) : 0 ≤ d02GaussianPowerConsta
 def d02GaussianPairAbsoluteTerm (a : ℕ × ℕ → ℂ) (Y : ℝ) (n : ℕ × ℕ) : ℝ :=
   ‖a n‖ * d02GaussianV0 (d02PositivePairProduct n / Y)
 
-/-- The Gaussian majorant holds on every positive argument, including the
-whole short range. The coefficient input is pointwise and elementary. -/
 theorem d02GaussianPairAbsoluteTerm_power_bound (a : ℕ × ℕ → ℂ)
     {Y D A b : ℝ} (hY : 0 < Y) (hD : 0 ≤ D) (hA : 0 ≤ A)
     (ha : ∀ n, ‖a n‖ ≤ D * (d02PositivePairProduct n) ^ (-b)) (n : ℕ × ℕ) :
@@ -55,8 +50,6 @@ theorem d02GaussianPairAbsoluteTerm_summable (a : ℕ × ℕ → ℂ)
     exact mul_nonneg (norm_nonneg _) (d02GaussianTail_nonneg _)
   · exact d02GaussianPairAbsoluteTerm_power_bound a hY hD hA ha
 
-/-- Exact absolute-pair budget. With b = 1/2 and A = 1/2+ε it costs
-only Y^(1/2+ε); the remaining convergent double series is independent of Y. -/
 theorem d02GaussianPairAbsoluteMass_bound (a : ℕ × ℕ → ℂ)
     {Y D A b : ℝ} (hY : 0 < Y) (hD : 0 ≤ D) (hA : 0 ≤ A) (hab : 1 < b + A)
     (ha : ∀ n, ‖a n‖ ≤ D * (d02PositivePairProduct n) ^ (-b)) :
@@ -75,8 +68,6 @@ def d02PairDirichletCoefficient (α : Fin 2 → ℂ) (n : ℕ × ℕ) : ℂ :=
   (n.1 + 1 : ℂ) ^ (-(1 / 2 : ℂ) - α 0) *
     (n.2 + 1 : ℂ) ^ (-(1 / 2 : ℂ) - α 1)
 
-/-- The actual two shifted Dirichlet denominators satisfy the required
-product envelope, without a supplied summability or error assertion. -/
 theorem d02PairDirichletCoefficient_norm_le {α : Fin 2 → ℂ} {b : ℝ}
     (hα : ∀ j, b - 1 / 2 ≤ (α j).re) (n : ℕ × ℕ) :
     ‖d02PairDirichletCoefficient α n‖ ≤ (d02PositivePairProduct n) ^ (-b) := by
@@ -93,8 +84,6 @@ theorem d02PairDirichletCoefficient_norm_le {α : Fin 2 → ℂ} {b : ℝ}
   rw [norm_mul, Real.mul_rpow (by positivity) (by positivity)]
   exact mul_le_mul (hpoint n.1 0) (hpoint n.2 1) (norm_nonneg _) (by positivity)
 
-/-- Normalized bounded shifts have the square-root-height absolute Gaussian
-mass, uniformly on their entire compact box. -/
 theorem d02RawShiftedGaussianPairAbsoluteMass_bound {Y T R ε : ℝ}
     (hY : 0 < Y) (hR : 0 ≤ R) (hε : 0 < ε)
     (hL : 0 < Real.log T) (hsmall : R / Real.log T ≤ ε)

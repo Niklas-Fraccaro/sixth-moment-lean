@@ -5,17 +5,6 @@ import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 
-/-!
-# Conditional Cauchy transfer of a uniform disk remainder
-
-These are genuine complex-analytic estimates, followed by generic asymptotic
-transfer lemmas. The input is holomorphy and an undifferentiated uniform bound
-on a disk or its boundary. This file does not assert the shifted zeta moment
-asymptotic: obtaining its uniform disk remainder remains a separate obligation.
-
-Parameters need not form a finite set. The same constants control all parameters,
-including parameters selected as a function of the asymptotic variable.
--/
 
 namespace Sechstmoment
 
@@ -24,12 +13,10 @@ open scoped BigOperators
 
 noncomputable section
 
-/-- A finite polynomial in the ordinary complex differentiation operator. -/
 def finiteDifferentialOperator (N : ℕ) (q : Fin (N + 1) → ℂ)
     (f : ℂ → ℂ) (c : ℂ) : ℂ :=
   ∑ j : Fin (N + 1), q j * iteratedDeriv j.val f c
 
-/-- Holomorphy on a disk makes every derivative linear on a difference at its center. -/
 theorem iteratedDeriv_sub_of_diffContOnCl (n : ℕ) {R : ℝ} {c : ℂ}
     {f g : ℂ → ℂ} (hR : 0 < R)
     (hf : DiffContOnCl ℂ f (ball c R)) (hg : DiffContOnCl ℂ g (ball c R)) :
@@ -39,7 +26,6 @@ theorem iteratedDeriv_sub_of_diffContOnCl (n : ℕ) {R : ℝ} {c : ℂ}
     (hf.differentiableOn.analyticAt (isOpen_ball.mem_nhds (mem_ball_self hR))).contDiffAt
     (hg.differentiableOn.analyticAt (isOpen_ball.mem_nhds (mem_ball_self hR))).contDiffAt
 
-/-- A polynomial differential operator applied to a remainder is the difference of the operators. -/
 theorem finiteDifferentialOperator_sub_of_diffContOnCl (N : ℕ)
     (q : Fin (N + 1) → ℂ) {R : ℝ} {c : ℂ} {f g : ℂ → ℂ} (hR : 0 < R)
     (hf : DiffContOnCl ℂ f (ball c R)) (hg : DiffContOnCl ℂ g (ball c R)) :
@@ -52,7 +38,6 @@ theorem finiteDifferentialOperator_sub_of_diffContOnCl (N : ℕ)
   rw [iteratedDeriv_sub_of_diffContOnCl j.val hR hf hg]
   ring
 
-/-- Cauchy's estimate, with the radius factor separated from the remainder bound. -/
 theorem cauchy_iteratedDeriv_bound (n : ℕ) {R M : ℝ} {c : ℂ} {f : ℂ → ℂ}
     (hR : 0 < R) (hf : DiffContOnCl ℂ f (ball c R))
     (hM : ∀ z ∈ sphere c R, ‖f z‖ ≤ M) :
@@ -60,7 +45,6 @@ theorem cauchy_iteratedDeriv_bound (n : ℕ) {R M : ℝ} {c : ℂ} {f : ℂ → 
   simpa only [div_mul_eq_mul_div, mul_comm M] using
     Complex.norm_iteratedDeriv_le_of_forall_mem_sphere_norm_le n hR hf hM
 
-/-- A disk bound controls derivatives uniformly on every smaller concentric disk. -/
 theorem cauchy_iteratedDeriv_innerDisk_bound (n : ℕ) {R ρ M : ℝ}
     {c : ℂ} {f : ℂ → ℂ} (hρR : ρ < R)
     (hf : DiffContOnCl ℂ f (ball c R))
@@ -75,7 +59,6 @@ theorem cauchy_iteratedDeriv_innerDisk_bound (n : ℕ) {R ρ M : ℝ}
   intro w hw
   exact hM w ((closedBall_subset_closedBall' hs) (sphere_subset_closedBall hw))
 
-/-- Norm estimate for a finite polynomial differential operator. -/
 theorem cauchy_finiteDifferentialOperator_bound (N : ℕ)
     {R M : ℝ} {c : ℂ} {f : ℂ → ℂ} (q : Fin (N + 1) → ℂ)
     (hR : 0 < R) (hf : DiffContOnCl ℂ f (ball c R))
@@ -97,7 +80,6 @@ theorem cauchy_finiteDifferentialOperator_bound (N : ℕ)
 
 variable {α β : Type*}
 
-/-- The explicit Cauchy constant is uniform over an arbitrary parameter type. -/
 theorem uniform_cauchy_iteratedDeriv_bound (n : ℕ) (l : Filter α)
     (f : α → β → ℂ → ℂ) (c : α → β → ℂ) (g : α → ℝ)
     {R C : ℝ} (hR : 0 < R)
@@ -111,7 +93,6 @@ theorem uniform_cauchy_iteratedDeriv_bound (n : ℕ) (l : Filter α)
   intro p
   simpa only [mul_assoc] using cauchy_iteratedDeriv_bound n hR (hx p) (hMx p)
 
-/-- Uniform bounds remain big-O bounds after any parameter selection. -/
 theorem uniform_cauchy_iteratedDeriv_isBigO (n : ℕ) (l : Filter α)
     (f : α → β → ℂ → ℂ) (c : α → β → ℂ) (g : α → ℝ)
     (p : α → β) {R C : ℝ} (hR : 0 < R)
@@ -123,7 +104,6 @@ theorem uniform_cauchy_iteratedDeriv_isBigO (n : ℕ) (l : Filter α)
   exact (uniform_cauchy_iteratedDeriv_bound n l f c g hR hf hM).mono
     (fun x hx => hx (p x))
 
-/-- The same uniform transfer holds throughout any smaller closed disk. -/
 theorem uniform_cauchy_innerDisk_bound (n : ℕ) (l : Filter α)
     (f : α → β → ℂ → ℂ) (c : α → β → ℂ) (g : α → ℝ)
     {R ρ C : ℝ} (hρR : ρ < R)
@@ -138,7 +118,6 @@ theorem uniform_cauchy_innerDisk_bound (n : ℕ) (l : Filter α)
   simpa only [mul_assoc] using
     cauchy_iteratedDeriv_innerDisk_bound n hρR (hx p) (hMx p) z hz
 
-/-- An eventually bounded family of operator coefficients preserves the uniform error scale. -/
 theorem uniform_cauchy_finiteDifferentialOperator_bound (N : ℕ) (l : Filter α)
     (f : α → β → ℂ → ℂ) (c : α → β → ℂ) (g : α → ℝ)
     (q : α → β → Fin (N + 1) → ℂ) (A : Fin (N + 1) → ℝ)
@@ -166,7 +145,6 @@ theorem uniform_cauchy_finiteDifferentialOperator_bound (N : ℕ) (l : Filter α
         (div_nonneg (Nat.cast_nonneg _) (pow_nonneg hR.le _))
     _ = _ := by ring
 
-/-- Polynomial differential operators also preserve big-O after any parameter selection. -/
 theorem uniform_cauchy_finiteDifferentialOperator_isBigO (N : ℕ) (l : Filter α)
     (f : α → β → ℂ → ℂ) (c : α → β → ℂ) (g : α → ℝ)
     (q : α → β → Fin (N + 1) → ℂ) (A : Fin (N + 1) → ℝ)
@@ -182,8 +160,6 @@ theorem uniform_cauchy_finiteDifferentialOperator_isBigO (N : ℕ) (l : Filter �
   exact (uniform_cauchy_finiteDifferentialOperator_bound N l f c g q A hR hC hf hM hq).mono
     (fun x hx => hx (p x))
 
-/-- A boundary remainder bounded by `C / log T` transfers to every fixed derivative order.
-This is a conditional transfer theorem, not the shifted zeta moment asymptotic. -/
 theorem uniform_cauchy_iteratedDeriv_invLog_isBigO (n : ℕ)
     (f : ℝ → β → ℂ → ℂ) (c : ℝ → β → ℂ) (p : ℝ → β)
     {R C : ℝ} (hR : 0 < R)
@@ -199,7 +175,6 @@ theorem uniform_cauchy_iteratedDeriv_invLog_isBigO (n : ℕ)
   rw [Real.norm_of_nonneg (inv_nonneg.mpr (Real.log_pos hT).le)]
   simpa only [div_eq_mul_inv] using hMT b z hz
 
-/-- The inverse-logarithmic remainder also survives any uniformly bounded finite operator. -/
 theorem uniform_cauchy_finiteDifferentialOperator_invLog_isBigO (N : ℕ)
     (f : ℝ → β → ℂ → ℂ) (c : ℝ → β → ℂ)
     (q : ℝ → β → Fin (N + 1) → ℂ) (A : Fin (N + 1) → ℝ) (p : ℝ → β)
@@ -217,7 +192,6 @@ theorem uniform_cauchy_finiteDifferentialOperator_invLog_isBigO (N : ℕ)
   rw [Real.norm_of_nonneg (inv_nonneg.mpr (Real.log_pos hT).le)]
   simpa only [div_eq_mul_inv] using hMT b z hz
 
-/-- Transfer from an undifferentiated uniform `actual - main` remainder to derivative differences. -/
 theorem uniform_cauchy_iteratedDeriv_sub_invLog_isBigO (n : ℕ)
     (f main : ℝ → β → ℂ → ℂ) (c : ℝ → β → ℂ) (p : ℝ → β)
     {R C : ℝ} (hR : 0 < R)
@@ -238,7 +212,6 @@ theorem uniform_cauchy_iteratedDeriv_sub_invLog_isBigO (n : ℕ)
   filter_upwards [hf, hmain] with T hTf hTm
   exact iteratedDeriv_sub_of_diffContOnCl n hR (hTf (p T)) (hTm (p T))
 
-/-- Transfer of the same undifferentiated remainder to differences of finite operators. -/
 theorem uniform_cauchy_finiteDifferentialOperator_sub_invLog_isBigO (N : ℕ)
     (f main : ℝ → β → ℂ → ℂ) (c : ℝ → β → ℂ)
     (q : ℝ → β → Fin (N + 1) → ℂ) (A : Fin (N + 1) → ℝ) (p : ℝ → β)

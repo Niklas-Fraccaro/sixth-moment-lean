@@ -3,9 +3,6 @@ import Sechstmoment.Zeta.AFE.Two.Contour
 import Sechstmoment.Zeta.AFE.Two.DirichletInterchange
 import Sechstmoment.Zeta.Gamma.MellinBounds
 
-/-! The exact second functional equation with its two unrestricted
-Dirichlet indices. The interchange is proved by absolute integration;
-there is no approximate-functional-equation hypothesis. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped BigOperators Topology
@@ -264,8 +261,6 @@ theorem d02SecondAFEIntegral_eq_series {s r : ℂ}
     unfold d02SecondAFEKernel
     field_simp [hgsline, hgrline]
 
-/-- The shifted second AFE for the actual zeta pair, with literal direct
-and dual two-index sums and the original gamma multiplier. -/
 theorem d02ZetaPair_secondAFE_series {s r : ℂ}
     (hs : 0 < s.re) (hs1 : s.re < 1) (hr : 0 < r.re) (hr1 : r.re < 1) :
     riemannZeta s * riemannZeta r =

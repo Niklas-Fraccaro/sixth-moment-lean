@@ -1,11 +1,6 @@
 import Mathlib.MeasureTheory.Integral.Prod
 import Sechstmoment.Denominator.Balanced.GaussianSharpProfiles
 
-/-! The physical-time average of the actual Gaussian arithmetic diagonal.
-The time test is integrated against the literal weight `V₀(2πmn/t)`.
-Uniform moving-cut control proves the error estimate and all outer
-integrability statements; the endpoint is the proved sharp D01 endpoint.
--/
 
 namespace Sechstmoment
 open MeasureTheory Filter Set
@@ -29,7 +24,6 @@ theorem d02GaussianV0_physical_log_identity {T τ : ℝ} (hT : 0 < T)
   simpa only [Real.exp_log hT] using
     d02GaussianV0_logarithmic_identity (Real.log T) q hτ
 
-/-- At every original arithmetic atom, the product is literally `mn`. -/
 theorem d02GaussianV0_physical_logPoint_identity {L τ : ℝ} (hL : 0 < L)
     (hτ : 0 < τ) (x : DiagonalSixIndices) :
     d02GaussianV0 (2*Real.pi*((d01LeftIndices x 0 : ℝ)*(d01RightIndices x 0 : ℝ))/
@@ -52,8 +46,6 @@ def d02PhysicalGaussianDiagonalIntegral (L : ℝ) (ρ : Fin 4 → ℝ → ℂ)
     (d02GaussianV0 (2*Real.pi*Real.exp (L*d02LogCutCoordinate y)/
       (Real.exp L*τ)) : ℂ) ∂d01DiagonalMeasure L
 
-/-- The physical Gaussian integral is the original arithmetic six-index
-diagonal with the literal product `mn` in its cutoff. -/
 theorem d02PhysicalGaussianDiagonalIntegral_tsum {L τ : ℝ} (hL : 0 < L)
     (hτ : 0 < τ) (ρ : Fin 4 → ℝ → ℂ) (ab : PolarShiftSpace) :
     d02PhysicalGaussianDiagonalIntegral L ρ ab τ =
@@ -73,7 +65,6 @@ def d02PhysicalGaussianDiagonalTimeMean (L : ℝ) (ρ : Fin 4 → ℝ → ℂ)
     (ab : PolarShiftSpace) (Φ : ℝ → ℝ) : ℂ :=
   ∫ τ : ℝ, (Φ τ : ℂ)*d02PhysicalGaussianDiagonalIntegral L ρ ab τ
 
-/-- The literal physical height integral divided by its interval scale. -/
 def d02GaussianDiagonalPhysicalHeightMean (T : ℝ) (ρ : Fin 4 → ℝ → ℂ)
     (ab : PolarShiftSpace) (Φ : ℝ → ℝ) : ℂ :=
   (∫ t : ℝ, (Φ (t/T) : ℂ)*
@@ -193,8 +184,6 @@ private theorem d02_physical_time_mean_error_bound
       ∂d01DiagonalMeasure L) Φ (d02PhysicalGaussianDiagonalIntegral_measurable L ρ ab hρc)
     hΦc hΦs hδ hcut
 
-/-- The actual physical Gaussian time mean has a uniformly vanishing error
-on a bounded real-part shift box. Outer integrability is proved here. -/
 theorem d02PhysicalGaussianDiagonalTimeMean_sharp_uniform
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (Φ : ℝ → ℝ)
     {C : ℝ} (hC : 0 ≤ C) (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)
@@ -232,8 +221,6 @@ theorem d02PhysicalGaussianDiagonalTimeMean_sharp_uniform
     exact div_mul_cancel₀ ε (by linarith : M+1 ≠ 0)
   nlinarith
 
-/-- Physical-time averaging gives the mass of `Φ` times the original
-sharp nine-edge D01 endpoint, with no assumed moving-test limit. -/
 theorem d02PhysicalGaussianDiagonalTimeMean_limit
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (ab : PolarShiftSpace) (Φ : ℝ → ℝ)
     {C : ℝ} (hC : 0 ≤ C) (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)
@@ -275,8 +262,6 @@ theorem d02PhysicalGaussianDiagonalTimeMean_height_limit
   (d02PhysicalGaussianDiagonalTimeMean_limit ρ a ab Φ hC hOffset hρc hρcap
     ha hbshift hΦc hΦs).comp Real.tendsto_log_atTop
 
-/-- The averaged literal `V₀(2πmn/t)` diagonal, normalized by `T`, has
-the mass of the height profile times the actual sharp D01 endpoint. -/
 theorem d02GaussianDiagonalPhysicalHeightMean_limit
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (ab : PolarShiftSpace) (Φ : ℝ → ℝ)
     {C : ℝ} (hC : 0 ≤ C) (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)
@@ -294,8 +279,6 @@ theorem d02GaussianDiagonalPhysicalHeightMean_limit
   filter_upwards [eventually_gt_atTop (0:ℝ)] with T hT
   exact (d02GaussianDiagonalPhysicalHeightMean_eq hT ρ ab Φ).symm
 
-/-- No shift-box premise is needed for any fixed pair of original complex
-shifts: its finite real coordinates determine a suitable box. -/
 theorem d02GaussianDiagonalPhysicalHeightMean_limit_fixed_shifts
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (ab : PolarShiftSpace) (Φ : ℝ → ℝ)
     (hρc : ∀ k, Continuous (ρ k))
@@ -332,8 +315,6 @@ theorem d02GaussianDiagonalPhysicalHeightMean_limit_fixed_shifts
   exact d02GaussianDiagonalPhysicalHeightMean_limit ρ a ab Φ hC (le_max_left _ _)
     hρc hρcap ha hb hΦc hΦs
 
-/-- The inner physical Gaussian diagonal is eventually bounded uniformly
-both on the shift box and throughout the actual physical-time interval. -/
 theorem d02PhysicalGaussianDiagonalIntegral_eventually_uniform_norm_bound
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ)
     {C : ℝ} (hC : 0 ≤ C) (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)
@@ -382,8 +363,6 @@ theorem d02PhysicalGaussianDiagonalIntegral_eventually_uniform_norm_bound
     _ ≤ 1+K*(A+1) := add_le_add hE hS
     _ = B := rfl
 
-/-- Bounded real parts give a common norm bound for the physical Gaussian
-time mean. Its size comes from the actual tilted diagonal mass. -/
 theorem d02PhysicalGaussianDiagonalTimeMean_eventually_uniform_norm_bound
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (Φ : ℝ → ℝ)
     {C : ℝ} (hC : 0 ≤ C) (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)
@@ -439,8 +418,6 @@ theorem d02PhysicalGaussianDiagonalTimeMean_eventually_uniform_norm_bound
       exact add_le_add hE (mul_le_mul_of_nonneg_left hS (norm_nonneg m))
     _ = B := by dsimp [B]; ring
 
-/-- Integrability of the literal height integrand follows by rescaling the
-proved normalized-time integrability. -/
 theorem d02GaussianDiagonalPhysicalHeight_integrable {T : ℝ} (hT : 0 < T)
     (ρ : Fin 4 → ℝ → ℂ) (ab : PolarShiftSpace) (Φ : ℝ → ℝ)
     (hi : Integrable (fun τ : ℝ =>
@@ -455,9 +432,6 @@ theorem d02GaussianDiagonalPhysicalHeight_integrable {T : ℝ} (hT : 0 < T)
   apply (hi.comp_div hT.ne').congr
   exact ae_of_all _ (fun t => by simp only [d02PhysicalGaussianDiagonalIntegral,hden])
 
-/-- The normalized literal physical-height diagonal is eventually bounded
-uniformly on every bounded real-part shift box, with outer integrability
-proved from the Gaussian estimates. -/
 theorem d02GaussianDiagonalPhysicalHeightMean_eventually_uniform_norm_bound
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (Φ : ℝ → ℝ)
     {C : ℝ} (hC : 0 ≤ C) (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)
@@ -482,7 +456,6 @@ theorem d02GaussianDiagonalPhysicalHeightMean_eventually_uniform_norm_bound
   rw [d02GaussianDiagonalPhysicalHeightMean_eq hT]
   exact h.2
 
-/-- The actual pair-product truncation in logarithmic coordinates. -/
 def d02GaussianTruncatedFourProfile (δ : ℝ) (ρ : Fin 4 → ℝ → ℂ)
     (y : D01LogSpace) : ℂ :=
   {y : D01LogSpace | d02LogCutCoordinate y ≤ 1+δ}.indicator (d02FourProfileProduct ρ) y
@@ -588,8 +561,6 @@ theorem d02PhysicalGaussianTruncatedDiagonalIntegral_measurable (δ L : ℝ)
       ((d02GaussianTruncatedFourProfile_measurable δ ρ hρc).comp measurable_snd)).mul hV
   exact hf.stronglyMeasurable.integral_prod_right'.measurable
 
-/-- The additional pair-product cutoff retains the same sharp endpoint.
-Only measurable-test domination is used; no diagonal refill rate is assumed. -/
 theorem d02PhysicalGaussianTruncatedDiagonalIntegral_sharp_uniform
     {δ : ℝ} (hδ : 0 ≤ δ) (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ)
     {C : ℝ} (hC : 0 ≤ C) (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)
@@ -652,8 +623,6 @@ theorem d02PhysicalGaussianTruncatedDiagonalIntegral_sharp_uniform
   rw [hsharp,hgauss] at h
   exact h
 
-/-- The physical-time average of the truncated actual Gaussian diagonal
-has the same sharp error, and its outer integrability is derived. -/
 theorem d02PhysicalGaussianTruncatedDiagonalTimeMean_sharp_uniform
     {δ : ℝ} (hδ : 0 ≤ δ) (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (Φ : ℝ → ℝ)
     {C : ℝ} (hC : 0 ≤ C) (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)
@@ -687,8 +656,6 @@ theorem d02PhysicalGaussianTruncatedDiagonalTimeMean_sharp_uniform
     exact div_mul_cancel₀ ε (by linarith : M+1 ≠ 0)
   nlinarith
 
-/-- The masked physical Gaussian mean converges to the original sharp
-nine-edge endpoint. The cutoff `1+δ` is absent from that endpoint. -/
 theorem d02PhysicalGaussianTruncatedDiagonalTimeMean_limit
     {δ : ℝ} (hδ : 0 ≤ δ) (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ)
     (ab : PolarShiftSpace) (Φ : ℝ → ℝ)
@@ -733,8 +700,6 @@ theorem d02GaussianTruncatedDiagonalPhysicalHeightMean_limit
     hρc hρcap ha hbshift hΦc hΦs).comp Real.tendsto_log_atTop).congr'
   filter_upwards [eventually_gt_atTop (0:ℝ)] with T hT
   exact (d02GaussianTruncatedDiagonalPhysicalHeightMean_eq hT δ ρ ab Φ).symm
-/-- No shift-box premise is needed for any fixed pair of original complex
-shifts: its finite real coordinates determine a suitable box. -/
 theorem d02GaussianTruncatedDiagonalPhysicalHeightMean_limit_fixed_shifts
     {δ : ℝ} (hδ : 0 ≤ δ) (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (ab : PolarShiftSpace) (Φ : ℝ → ℝ)
     (hρc : ∀ k, Continuous (ρ k))
@@ -772,8 +737,6 @@ theorem d02GaussianTruncatedDiagonalPhysicalHeightMean_limit_fixed_shifts
     hρc hρcap ha hb hΦc hΦs
 
 
-/-- The truncated physical mean has a common bound on the same shift box.
-The two moving-cut errors compare it to the already bounded unmasked mean. -/
 theorem d02PhysicalGaussianTruncatedDiagonalTimeMean_eventually_uniform_norm_bound
     {δ : ℝ} (hδ : 0 ≤ δ) (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (Φ : ℝ → ℝ)
     {C : ℝ} (hC : 0 ≤ C) (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)
@@ -820,9 +783,6 @@ theorem d02PhysicalGaussianTruncatedDiagonalTimeMean_eventually_uniform_norm_bou
     _ ≤ 2+B := add_le_add hDiff hB'.2
     _ = B+2 := by ring
 
-/-- The literal finite pair-product diagonal is normalized by its physical
-height scale. Its outer integrability and box bound are proved, and its
-limit is the original sharp endpoint. -/
 theorem d02GaussianTruncatedDiagonalPhysicalHeightMean_eventually_uniform_norm_bound
     {δ : ℝ} (hδ : 0 ≤ δ) (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (Φ : ℝ → ℝ)
     {C : ℝ} (hC : 0 ≤ C) (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)
@@ -852,8 +812,6 @@ theorem d02GaussianTruncatedDiagonalPhysicalHeightMean_eventually_uniform_norm_b
     exact ae_of_all _ (fun t => by simp only [d02PhysicalGaussianTruncatedDiagonalIntegral,hden])
   · rw [d02GaussianTruncatedDiagonalPhysicalHeightMean_eq hT]
     exact h.2
-/-- The inner physical Gaussian diagonal is eventually bounded uniformly
-both on the shift box and throughout the actual physical-time interval. -/
 theorem d02PhysicalGaussianTruncatedDiagonalIntegral_eventually_uniform_norm_bound
     {δ : ℝ} (hδ : 0 ≤ δ) (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ)
     {C : ℝ} (hC : 0 ≤ C) (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)

@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.DiagonalExtraction
 
-/-! Extraction of source main terms zero and one, with integrability proved
-for the literal fourfold complementary series from the full Star moment. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology
@@ -117,8 +115,6 @@ theorem rectangularVStarSelectedMoment_diagonal_eq_main_terms {T : ℝ} (hT : 0<
     integral_bblrIndexedMainIntegrand hT a b _ _ hG hα 0 f g Φ hΦ,
     integral_bblrIndexedMainIntegrand hT a b _ _ hG hα 1 f g Φ hΦ]
 
-/-- Full Star moment equals the two literal diagonal source terms and the actual
-complementary fourfold series. All integrability is supplied, not assumed. -/
 theorem rectangularVStarAFEMoment_eventually_eq_diagonal_and_offdiagonal
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0<δ)
     (hroot : ∀ σ∈K, ∀ j : PurePolarIndex, δ≤‖normalizedPurePolarRoot σ j‖)

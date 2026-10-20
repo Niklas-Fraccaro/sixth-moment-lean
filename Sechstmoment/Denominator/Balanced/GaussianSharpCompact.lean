@@ -2,11 +2,6 @@ import Mathlib.Analysis.Normed.Group.Bounded
 import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Sechstmoment.Denominator.Balanced.GaussianCutBand
 
-/-! A moving Gaussian cutoff for the actual D01 measures.  The convergence
-is uniform over bounded height offsets and all measurable tests dominated
-by one continuous compact majorant.  The only discontinuity is the already
-proved null hyperplane, and the majorant masses come from actual D01.
--/
 
 namespace Sechstmoment
 open MeasureTheory Filter Set
@@ -28,8 +23,6 @@ theorem d02DiagonalMeasure_real_compact_tendsto (H : D01LogSpace → ℝ)
   have hr := (Complex.continuous_re.tendsto _).comp h
   simpa only [Function.comp_def, integral_complex_ofReal, Complex.ofReal_re] using hr
 
-/-- The mass of the continuous shrinking band vanishes for the actual
-nine-edge limit. -/
 theorem d02LimitMeasure_compact_band_mass_tendsto_zero
     (H : D01LogSpace → ℝ) (hH : Continuous H) (hK : HasCompactSupport H)
     (hH0 : ∀ y, 0 ≤ H y) :
@@ -111,8 +104,6 @@ private theorem d02Gaussian_integral_difference_bound
       integral_mono (hgi.sub hsi).norm ((hHi.const_mul δ).add hbi) hdom
     _ = _ := by rw [integral_add (hHi.const_mul δ) hbi, integral_const_mul]
 
-/-- Uniform moving-cut convergence for the actual arithmetic D01 measures.
-The test may itself vary: one fixed compact majorant controls all tests. -/
 theorem d02DiagonalMeasure_gaussian_sharp_compact_uniform
     (H : D01LogSpace → ℝ) (hH : Continuous H) (hK : HasCompactSupport H)
     (hH0 : ∀ y, 0 ≤ H y) (C : ℝ) {ε : ℝ} (hε : 0 < ε) :

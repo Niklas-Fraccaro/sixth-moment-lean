@@ -2,20 +2,12 @@ import Mathlib.MeasureTheory.Integral.Bochner.Set
 import Sechstmoment.Zeta.AFE.Four.FourDirichlet
 import Sechstmoment.Zeta.AFE.Four.HorizontalDecay
 
-/-!
-# Quantitative tails of the original BBLR Mellin line
-
-The estimate is obtained from an integrable weighted moment. No limiting
-contour argument or approximate functional equation is assumed.
--/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Filter
 open scoped BigOperators Topology
 noncomputable section
 
-/-- A weighted-moment bound controls the difference between a full integral
-and its truncation to `[-t/2,t/2]`. -/
 theorem integral_sub_truncation_norm_le_of_weighted_moment
     (F : ℝ → ℂ) (W : ℝ → ℝ) (hF : Integrable F) (hW : Integrable W)
     (hW0 : ∀ v, 0 ≤ W v) (A : ℕ) (t : ℝ) (ht : 0 < t)
@@ -42,8 +34,6 @@ theorem integral_sub_truncation_norm_le_of_weighted_moment
     _ = _ := by
       rw [integral_div, Real.rpow_neg ht.le, Real.rpow_natCast, div_eq_mul_inv]
 
-/-- Every natural weighted moment of the fixed auxiliary function on the
-original line is integrable. The decay estimate of order `m+2` suffices. -/
 theorem fixedAFE_entireWeight_line_moment_integrable
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0)) (m : ℕ) :
     Integrable (fun v : ℝ => ‖G (1+(v : ℂ)*I)‖*(1+|v|)^m) := by
@@ -66,8 +56,6 @@ theorem fixedAFE_entireWeight_line_moment_integrable
     rw [← div_eq_mul_inv]
     exact (le_div_iff₀ (by positivity : (0 : ℝ) < 1+v^2)).mpr hm
 
-/-- A uniform constant bounds the actual four zeta factors on the entire
-original AFE line, because all four real parts are at least `5/4`. -/
 theorem bblrZetaProduct_uniform_right_line_bound
     (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ 1/4) (t v : ℝ) :
     ‖∏ j : Fin 4, riemannZeta
@@ -83,8 +71,6 @@ theorem bblrZetaProduct_uniform_right_line_bound
         mul_zero, zero_mul, sub_self, sourceZetaPoints_re, add_zero]
       linarith)
 
-/-- A global polynomial bound for the complete explicit right-line
-integrand; its constant is independent of both height and small shifts. -/
 theorem bblrExplicitAFEIntegrand_polynomial_right_line_bound :
     ∃ D : ℝ, 0 ≤ D ∧ ∀ G : ℂ → ℂ, ∀ t v : ℝ, 0 ≤ t →
       ∀ α : MomentShifts, (∀ j, ‖α j‖ ≤ 1/4) →
@@ -116,7 +102,6 @@ theorem bblrExplicitAFEIntegrand_polynomial_right_line_bound :
     _ ≤ ‖G z‖*((CΓ*(2+t+|v|)^8)*B)*Real.pi^(-2 : ℝ) := by gcongr
     _ = _ := by ring
 
-/-- Actual integrability of the full right-line explicit integrand. -/
 theorem bblrExplicitAFEIntegrand_right_integrable
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0))
     (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ 1/4) (t : ℝ) :
@@ -158,8 +143,6 @@ theorem bblrExplicitAFEIntegrand_right_integrable
     exact mul_le_mul_of_nonneg_left
       (bblrZetaProduct_uniform_right_line_bound α hα t v) (norm_nonneg _)
 
-/-- Arbitrary inverse-polynomial decay of the two omitted right-line tails,
-uniform in height and all four small shifts. -/
 theorem bblrExplicitAFEIntegrand_right_tail
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0)) (A : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t : ℝ, 16 ≤ t →
@@ -190,7 +173,6 @@ theorem bblrExplicitAFEIntegrand_right_tail
         (2*(1+|v|))^A := by gcongr
     _ = W v := by dsimp [W]; rw [mul_pow, mul_pow, pow_add]; ring
 
-/-- The same tail estimate with the actual Mellin normalization. -/
 theorem bblrExplicitAFEIntegral_right_tail
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0)) (A : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t : ℝ, 16 ≤ t →
@@ -207,8 +189,6 @@ theorem bblrExplicitAFEIntegral_right_tail
   exact (mul_le_mul_of_nonneg_left (hbound t ht α hα) (norm_nonneg _)).trans_eq
     (mul_assoc ..).symm
 
-/-- The actual completed kernel equals the explicit Gamma/zeta integrand on
-the whole right line. -/
 theorem fixedAFECompletedKernel_right_eq_explicit
     (G : ℂ → ℂ) (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ 1/4) (t v : ℝ) :
     fixedAFECompletedKernel G α t (1+(v : ℂ)*I)/(1+(v : ℂ)*I) =
@@ -224,8 +204,6 @@ theorem fixedAFECompletedKernel_right_eq_explicit
   unfold bblrExplicitAFEIntegrand
   ring
 
-/-- Quantitative tail estimate for the completed kernel used by the finite
-rectangle argument. -/
 theorem fixedAFECompletedIntegral_right_tail
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0)) (A : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t : ℝ, 16 ≤ t →

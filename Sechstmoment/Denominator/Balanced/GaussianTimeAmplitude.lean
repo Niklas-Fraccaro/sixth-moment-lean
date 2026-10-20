@@ -4,17 +4,12 @@ import Sechstmoment.Analysis.Gaussian.Mellin
 import Sechstmoment.Numerator.U.Separation.Frequency.Composition
 import Sechstmoment.Numerator.U.ZeroModes.RatioGlobalLogDerivatives
 
-/-! Actual Gaussian denominator amplitudes have uniform time derivatives.
-The logarithmic translation is unrestricted, so all positive product indices
-and heights are covered by the same derivative budgets. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
 noncomputable section
 set_option maxHeartbeats 1500000
 
-/-- A smooth function with globally bounded derivatives remains uniformly
-bounded in every time derivative after an arbitrary logarithmic translation. -/
 theorem d02_logarithmic_time_uniform_derivative_bounds {F : ℝ → ℂ}
     (hF : ContDiff ℝ ∞ F) (C : ℕ → ℝ) (hC : ∀ n, 0 ≤ C n)
     (hFd : ∀ n u, ‖iteratedDeriv n F u‖ ≤ C n) :
@@ -116,8 +111,6 @@ theorem d02GaussianMellin_global_derivative_bounds :
   rw [he, a03ZeroModeRatioLogDerivative_iteratedDeriv _ _ (a03ZeroModeRatioWeight_admissible _)]
   exact a03ZeroModeRatioLogDerivative_global_bound _ n u
 
-/-- The actual normalized-time Gaussian weight; the logarithm contains the
-literal product ratio X = 2*pi*mn/T. -/
 def d02GaussianTimeAmplitude (X y : ℝ) : ℂ := d02GaussianMellin (Real.log X - Real.log y)
 
 theorem d02GaussianTimeAmplitude_eq_weight {X y : ℝ} (hX : 0 < X) (hy : 0 < y) :
@@ -126,8 +119,6 @@ theorem d02GaussianTimeAmplitude_eq_weight {X y : ℝ} (hX : 0 < X) (hy : 0 < y)
   unfold d02GaussianV0
   rw [Real.log_div hX.ne' hy.ne']
 
-/-- Localization identifies the entire time amplitude with the literal erfc
-weight, including times outside the profile support. -/
 theorem d02GaussianProfile_eq_physical {Φ : ℝ → ℂ}
     (hs : tsupport Φ ⊆ Icc (1 : ℝ) 2) {X : ℝ} (hX : 0 < X) :
     a03ProfileProduct Φ (d02GaussianTimeAmplitude X) =
@@ -139,7 +130,6 @@ theorem d02GaussianProfile_eq_physical {Φ : ℝ → ℂ}
     unfold a03ProfileProduct
     rw [d02GaussianTimeAmplitude_eq_weight hX hpos]
 
-/-- The bounds are uniform in all positive product indices and all heights. -/
 theorem d02GaussianTimeAmplitude_uniform_derivative_bounds :
     ∃ D : ℕ → ℝ, (∀ n, 0 ≤ D n) ∧ ∀ X : ℝ, ∀ x ∈ Icc (1 : ℝ) 2,
       ContDiffAt ℝ ∞ (d02GaussianTimeAmplitude X) x ∧
@@ -148,8 +138,6 @@ theorem d02GaussianTimeAmplitude_uniform_derivative_bounds :
   obtain ⟨D, hD, hb⟩ := d02_logarithmic_time_uniform_derivative_bounds d02GaussianMellin_contDiff C hC hd
   exact ⟨D, hD, fun X x hx => hb (Real.log X) x hx⟩
 
-/-- The literal Gaussian weight times a fixed dyadic time profile satisfies
-the complete smoothness, support and derivative hypotheses of D02 IBP. -/
 theorem d02GaussianProfile_uniform_derivative_bounds {Φ : ℝ → ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hs : tsupport Φ ⊆ Icc (1 : ℝ) 2) :
     ∃ D : ℕ → ℝ, (∀ n, 0 ≤ D n) ∧ ∀ X : ℝ,
@@ -175,8 +163,6 @@ theorem d02GaussianProfile_uniform_derivative_bounds {Φ : ℝ → ℂ}
   simpa only [mul_one] using a03_profile_product_derivative_bound hΦ hs hA hC hB hCd
     zero_le_one (fun j y hy => by simpa using (hBd X y hy).2 j) n x
 
-/-- Bounded complex power shifts, including the leading dual multiplier,
-preserve uniform derivative envelopes for the actual Gaussian profile. -/
 theorem d02GaussianShiftedProfile_uniform_derivative_bounds {Φ : ℝ → ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hs : tsupport Φ ⊆ Icc (1 : ℝ) 2)
     {R : ℝ} (hR : 0 ≤ R) :

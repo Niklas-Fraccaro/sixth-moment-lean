@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Sources.GlobalMajorant
 
-/-! Actual profile and near support supply the global source's polynomial
-mass and gap budgets. These estimates have no counting or mass receipt. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

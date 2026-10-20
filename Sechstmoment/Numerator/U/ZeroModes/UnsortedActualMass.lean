@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.ActualMass
 
-/-! Genuine mass of the unsorted source-oriented native zero, summed over
-the literal seven-dimensional retained source grid. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology

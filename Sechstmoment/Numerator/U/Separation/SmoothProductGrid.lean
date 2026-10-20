@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Reconstruction.RectangularSmoothAFE
 import Sechstmoment.Numerator.U.Reconstruction.SpatialAFETail
 
-/-! Finite genuine smooth AFE product-scale grids. Integer-one edge blocks
-are retained. The discarded smooth coefficient lies in [0,1], vanishes
-below the actual product cutoff, and has a proved rapidly decreasing tail. -/
 
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Filter Set

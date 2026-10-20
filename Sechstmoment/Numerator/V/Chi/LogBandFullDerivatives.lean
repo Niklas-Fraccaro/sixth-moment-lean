@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Chi.LogBandDerivatives
 import Sechstmoment.Numerator.V.Chi.LogBandMask
 
-/-! Derivative and L1 budgets for the actual positive logarithmic profile.
-These budgets supply the far-frequency integrations by parts. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

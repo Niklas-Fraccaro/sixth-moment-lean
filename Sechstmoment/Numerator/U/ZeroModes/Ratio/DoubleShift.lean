@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SecondaryShift
 
-/-! The genuine coupled two-variable ratio contour decomposition. All
-three residual integrals have the BBLR real-part sum -1/2+ε. The double
-residue is the actual arithmetic numerator at (u,v)=(0,0). -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
@@ -61,8 +58,6 @@ theorem a03ZeroModeRatioArithmeticKernel_joint_integrable_primary
     unfold a03ZeroModeRatioSecondaryLine
     linarith
 
-/-- Actual coupled u/v reconstruction, including both secondary line
-movements. No contour or main-term identity appears among the hypotheses. -/
 theorem a03ZeroModeRatioArithmeticKernel_double_shift
     {ε δ : ℝ} (hε : 0<ε) (hε1 : ε<1/8) (hδ : 0<δ)
     (α : MomentShifts) (hα : ∀ j : Fin 4,‖α j‖≤ε/8)

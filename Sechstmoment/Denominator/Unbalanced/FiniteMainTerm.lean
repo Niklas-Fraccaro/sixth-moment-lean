@@ -3,8 +3,6 @@ import Sechstmoment.Denominator.Balanced.ActualGaussianConnector
 import Sechstmoment.Denominator.Unbalanced.MomentDefinitions
 import Sechstmoment.Denominator.Unbalanced.OffDiagonal
 
-/-! Exact Bochner interchange for the full one-sided series, followed by
-the literal arithmetic diagonal/off-diagonal partition. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

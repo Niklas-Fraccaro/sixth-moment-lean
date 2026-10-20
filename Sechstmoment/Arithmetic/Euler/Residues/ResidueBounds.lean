@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Residues.FourBounds
 
-/-! Quadratic coefficient growth and uniform bounds for the residue weights. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option linter.unusedSectionVars false

@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.Separation.AmplifiedFiniteGaussianGrid
 import Sechstmoment.Numerator.U.Separation.SmallContour.GridRapid
 import Sechstmoment.Numerator.U.Separation.TimeFarContourBudget
 
-/-! The complete amplified original/dual finite AFE moment on a small
-positive Mellin line. The contour change is proved negligible after the
-actual time integration and both actual amplifiers. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter
 open scoped BigOperators Topology

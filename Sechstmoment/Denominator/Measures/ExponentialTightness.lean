@@ -2,10 +2,6 @@ import Mathlib.MeasureTheory.Integral.Bochner.Set
 import Sechstmoment.Denominator.Measures.DiagonalMeasureFinite
 import Sechstmoment.Denominator.Measures.EuclideanLaplace
 
-/-! Explicit uniform exponential tails for the actual diagonal measures.
-The half-strength exponential tilt supplies the majorant, and its actual
-arithmetic Laplace transform converges to `arithmeticFactor`.
--/
 namespace Sechstmoment
 open MeasureTheory Set Filter
 open scoped BigOperators Topology ENNReal
@@ -142,7 +138,6 @@ theorem d01DiagonalMeasure_orthant_sublevel_complement {L : ℝ} (hL : 0 < L) (R
   filter_upwards [ho] with y hy
   simp [d01OrthantSublevel, hy]
 
-/-- One scale threshold works for every requested compact-tail tolerance. -/
 theorem d01DiagonalMeasure_eventual_uniform_tightness :
     ∃ L₀ : ℝ, 0 < L₀ ∧ ∀ ε : ℝ, 0 < ε →
       ∃ K : Set D01LogSpace, IsCompact K ∧ ∀ L : ℝ, L₀ ≤ L →

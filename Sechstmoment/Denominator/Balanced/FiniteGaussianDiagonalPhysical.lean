@@ -2,8 +2,6 @@ import Sechstmoment.Denominator.Balanced.FiniteGaussianMomentDecomposition
 import Sechstmoment.Denominator.Balanced.GaussianDualDiagonal
 import Sechstmoment.Denominator.Balanced.ShiftedEndpoint
 
-/-! The actual finite Gaussian diagonal, including the unchanged dual
-time power, is exactly the physical D01 diagonal height mean. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Filter Set
 open scoped BigOperators Topology ContDiff

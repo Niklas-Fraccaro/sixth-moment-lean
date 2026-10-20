@@ -1,9 +1,6 @@
 import Sechstmoment.Arithmetic.QuadraticDivisor.ComplexWeights
 import Sechstmoment.Numerator.U.Reconstruction.RectangularSmoothAFE
 
-/-! Exact integer embedding of the retained unit-variable smooth blocks into
-the source scale domain. The signed sum is a genuine finite sum throughout.
-No cancellation or estimate of a quadratic zero mode is assumed. -/
 
 namespace Sechstmoment
 open Complex Source Set MeasureTheory
@@ -117,8 +114,6 @@ theorem rectangular_unit_coefficient_bound {c : ℕ} (α : ℕ → ℂ) {L : ℝ
   · exact hα _
   · simpa using hL
 
-/-- The literal coefficient growth hypothesis remains valid at the enlarged
-amplifier length, with its original constant. -/
 theorem rectangular_unit_coefficient_power_bound {c : ℕ} (hc : 0 < c)
     (α : ℕ → ℂ) {K A ε : ℝ} (hK : 0 ≤ K) (hA : 0 < A) (hε : 0 ≤ ε)
     (hα : ∀ n, ‖α n‖ ≤ K*A^ε) (n : ℕ) :
@@ -304,8 +299,6 @@ theorem rectangular_unit_coordinate_weight_argument (q : QuadraticScales) (n : F
   fin_cases j <;> simp [rectangularWeightArguments, rectangularUnitWeightCoordinate,
     rectangularUnitCoordinate, QuadraticScales.size]
 
-/-- The dilated low weight has precisely the single supported integer two.
-This is derived from the actual source support and its finite index range. -/
 theorem rectangular_unit_low_variable_dvd (b : Bool) (x : ℝ) (W : ℝ → ℝ)
     (hW : SmoothDyadicWeight W) (hx : b = true → x = 2/3) (n : ℕ)
     (hn : n ∈ Finset.Icc 1 ⌊2*((rectangularUnitFactor b : ℝ)*x)⌋₊)
@@ -379,9 +372,6 @@ theorem rectangular_unit_gap_divisible (f : Fin 4 → Bool) (positive : Bool) (n
   cases positive <;> simp at hd
   all_goals exact Int.natCast_dvd_natCast.mp hd
 
-/-- Every nonzero term of the transformed literal source sum has an exact
-integer preimage. Weight support supplies the four unit divisibilities and
-the signed quadratic relation supplies the gap divisibility. -/
 theorem rectangular_unit_nonzero_term_divisible (f : Fin 4 → Bool) (positive : Bool)
     (q : QuadraticScales) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ)
     (hW : ∀ i, SmoothDyadicWeight (W i))
@@ -429,9 +419,6 @@ theorem rectangular_unit_nonzero_term_divisible (f : Fin 4 → Bool) (positive :
   · simpa [rectangularUnitCoordinate] using hd 3
   · exact hh
 
-/-- The literal signed quadratic sum of a retained unit block is exactly
-the source-domain dilated signed sum. This is proved by a bijection of
-nonzero finite summands, including the forced divisibility of the gap. -/
 theorem rectangular_unit_signed_quadratic_sum (f : Fin 4 → Bool) (positive : Bool)
     (q : QuadraticScales) (hq : ∀ j, 0 < q.size j)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) (hW : ∀ i, SmoothDyadicWeight (W i))
@@ -467,8 +454,6 @@ theorem rectangular_unit_signed_quadratic_sum (f : Fin 4 → Bool) (positive : B
   · intro n _ _
     exact (rectangular_unit_signed_term_preserved f positive q α β W n).symm
 
-/-- The exact signed embedding also applies to the five genuine complex
-product weights used after Mellin separation. -/
 theorem rectangular_unit_complex_signed_quadratic_sum (f : Fin 4 → Bool) (positive : Bool)
     (q : QuadraticScales) (hq : ∀ j, 0 < q.size j)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℂ) (hW : ∀ i, RectangularComplexWeight (W i))
@@ -502,8 +487,6 @@ theorem rectangular_unit_mass_identity (f : Fin 4 → Bool) (q : QuadraticScales
     rectangularUnitMFactor, rectangularUnitNFactor]
   ring
 
-/-- The exact gcd formula exposes the dependence on the two continuously
-integrated variable flags. It does not erase the possible extra odd modes. -/
 theorem rectangular_unit_gcd_identity (f : Fin 4 → Bool) (a b m n : ℕ) :
     Nat.gcd ((rectangularUnitNFactor f*a)*(rectangularUnitFactor (f 0)*m))
       ((rectangularUnitMFactor f*b)*(rectangularUnitFactor (f 2)*n)) =
@@ -521,8 +504,6 @@ theorem rectangular_unit_gcd_identity (f : Fin 4 → Bool) (a b m n : ℕ) :
     ring
   rw [hL, hR, Nat.gcd_mul_left]
 
-/-- If a pair has a sole unit it is put on its discrete side. The gcd then
-has one common scale factor and the reduced-gap index stays unchanged. -/
 theorem rectangular_unit_discrete_gcd_identity (f : Fin 4 → Bool)
     (hm : f 1 = false) (hn : f 3 = false) (a b m n : ℕ) :
     Nat.gcd ((rectangularUnitNFactor f*a)*(rectangularUnitFactor (f 0)*m))
@@ -535,8 +516,6 @@ def rectangularUnitMainTuple (f : Fin 4 → Bool) (n : Fin 5 → ℕ) : Fin 5 �
   ![rectangularUnitNFactor f*n 0, rectangularUnitMFactor f*n 1,
     rectangularUnitFactor (f 0)*n 2, rectangularUnitFactor (f 2)*n 3, n 4]
 
-/-- For discrete-side unit variables every literal zero-mode argument is
-preserved, including the gcd and the continuous x variable. -/
 theorem rectangular_unit_discrete_zero_arguments (f : Fin 4 → Bool)
     (hm : f 1 = false) (hn : f 3 = false) (q : QuadraticScales)
     (n : Fin 5 → ℕ) (x : ℝ) (i : Fin 5) :
@@ -564,9 +543,6 @@ theorem rectangular_unit_discrete_zero_arguments (f : Fin 4 → Bool)
     rectangularUnitMainTuple, hg, hMeq, hNeq, hmFactor, hnFactor]
   all_goals field_simp
 
-/-- On discrete-side singleton blocks the actual zero-mode summand is
-preserved pointwise; the continuous integral uses the same x variable.
-Summing over the two different finite main-index ranges remains separate. -/
 theorem rectangular_unit_discrete_zero_summand (f : Fin 4 → Bool)
     (hm : f 1 = false) (hn : f 3 = false) (q : QuadraticScales)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) (n : Fin 5 → ℕ) :

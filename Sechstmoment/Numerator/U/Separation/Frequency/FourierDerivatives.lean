@@ -2,7 +2,6 @@ import Mathlib.Analysis.Complex.RealDeriv
 import Sechstmoment.Analysis.Fourier.ProfileProduct
 import Sechstmoment.Numerator.U.Diagonal.ProfileHolomorphy
 
-/-! Frequency derivatives retain quantitative, uniform integration-by-parts bounds. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Set
 open scoped ContDiff BigOperators Topology

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualNearFactorMass
 import Sechstmoment.Numerator.U.Separation.ActualAmplifierCoefficients
 
-/-! Literal smooth amplifier coefficients in the genuine six-index
-near-mass sum. Their reciprocal square-root weights are retained. -/
 
 namespace Sechstmoment
 open Complex Real Source
@@ -30,8 +28,6 @@ theorem phaseActualAmplifierCoefficient_norm_le_reciprocal_sqrt
       · exact hf (Real.log (u:ℝ)/Real.log T)
     _ = _ := by ring
 
-/-- The literal two-amplifier coefficient and four AFE denominators are
-bounded by the exact counted sixfold reciprocal square-root weight. -/
 theorem actualNearAmplifierAFE_weight_le (T A B : ℝ) (f g : ℝ → ℝ)
     {F G : ℝ} (hF : 0≤F) (hG : 0≤G)
     (hf : ∀ x, ‖f x‖≤F) (hg : ∀ x, ‖g x‖≤G)
@@ -55,8 +51,6 @@ theorem actualNearAmplifierAFE_weight_le (T A B : ℝ) (f g : ℝ → ℝ)
       · exact phaseActualAmplifierCoefficient_norm_le_reciprocal_sqrt T B g hG hg hv
     _ = _ := by unfold positiveNearFactorWeight bblrAFEFactorPairs; rw [hden]; ring
 
-/-- Full literal six-index sum with the actual amplifier coefficients.
-The only source assumption is pointwise membership in the integer near set. -/
 theorem actualAmplifiedNearAFE_mass_le_harmonic
     (T A B : ℝ) (f g : ℝ → ℝ) {F G : ℝ} (hF : 0≤F) (hG : 0≤G)
     (hf : ∀ x, ‖f x‖≤F) (hg : ∀ x, ‖g x‖≤G)

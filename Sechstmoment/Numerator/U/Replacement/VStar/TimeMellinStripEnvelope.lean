@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.TimeMellinRepresentation
 import Sechstmoment.Numerator.U.ZeroModes.RatioLeadingBranchSmooth
 
-/-! Compact-real-strip spatial envelopes for the actual VStar time Mellin
-transform and its compact complex-power family. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory Filter
 open scoped BigOperators Topology ContDiff
@@ -75,7 +73,6 @@ theorem a03VStarSmoothedTimeMellin_strip_full_height_envelope {Φ : ℝ→ℂ}
         exact mul_le_mul_of_nonneg_right hh (sq_nonneg _)
 
 
-/-- Exact complex-power time profile shifts the Mellin variable. -/
 theorem a03VStarSmoothedTimeMellin_power_profile_eq {Φ : ℝ→ℂ}
     (hSupp : tsupport Φ⊆Icc (1:ℝ) 2) (T : ℝ) (σ : MomentShifts)
     (Y x : ℝ) (ρ s : ℂ) :
@@ -93,8 +90,6 @@ theorem a03VStarSmoothedTimeMellin_power_profile_eq {Φ : ℝ→ℂ}
       _=(Φ t*bblrVStar (polarPoleKiller T σ) (x^2/(Y^2*t^2)))*((t:ℂ)^ρ*(t:ℂ)^(-s)) := by ring
       _=_ := by rw [←Complex.cpow_add ρ (-s) ht0]; congr 2; ring
 
-/-- Uniform full-height spatial envelope for every compact complex-power
-profile, proved from the original fixed smooth Φ. -/
 theorem a03VStarSmoothedTimeMellin_power_full_height_envelope {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2) (cs : ℝ) (N : ℕ) :
     ∃ C : ℝ,0≤C ∧ ∀ ρ : ℂ,‖ρ‖≤1 → ∀ T : ℝ,∀ σ : MomentShifts,
@@ -125,8 +120,6 @@ theorem a03VStarSmoothedTimeMellin_power_full_height_envelope {Φ : ℝ→ℂ}
       mul_le_mul_of_nonneg_left (hstrip T σ Y x hY hx (s-ρ) hr) (by positivity)
     _=_ := by ring
 
-/-- The literal leading original/dual profile has the same uniform
-spatial and Mellin-height envelope, on any compact normalized shift set. -/
 theorem a03VStarSmoothedTimeMellin_actual_branch_full_height_envelope {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     (K : Set MomentShifts) (hK : IsCompact K) (cs : ℝ) (N : ℕ) :

@@ -2,9 +2,6 @@ import Mathlib.Data.Nat.Choose.Basic
 import Mathlib.Tactic.Linarith
 import Sechstmoment.Arithmetic.Euler.Shifted.Local
 
-/-! A genuine prime-power majorant for the actual diagonal Dirichlet series.
-The square of the triple divisor coefficient is bounded by the ninefold
-divisor coefficient, with no asymptotic divisor estimate assumed. -/
 
 namespace Sechstmoment
 

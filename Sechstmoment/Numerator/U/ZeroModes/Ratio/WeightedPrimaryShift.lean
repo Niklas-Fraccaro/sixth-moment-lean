@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ExponentialWeights
 
-/-! Genuine primary ratio contour movements with the actual positive-real
-power multipliers of BBLR (22). The real logarithms L,M are unrestricted. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

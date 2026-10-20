@@ -1,7 +1,5 @@
 import Sechstmoment.Denominator.Unbalanced.ActualPairNorm
 
-/-! Pointwise comparison keeps the time power and estimates its Gamma error
-against the actual negative zeta pair before the long series replacement. -/
 namespace Sechstmoment
 open Complex Real Filter Set Source
 open scoped Topology BigOperators

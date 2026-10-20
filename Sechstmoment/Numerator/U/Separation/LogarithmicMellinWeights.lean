@@ -1,9 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.MellinWeights
 
-/-! One genuine all-order derivative-bound sequence for logarithmic Mellin
-frequencies. The sequence is chosen before T, the shifts, and the frequency.
-This proves the four variable-weight conditions, not the coupled gap/time
-separation or the structural conditions of QuadraticAdmissible. -/
 
 namespace Sechstmoment
 open Complex Real Set Filter

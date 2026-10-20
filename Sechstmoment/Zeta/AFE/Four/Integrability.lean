@@ -4,7 +4,6 @@ import Mathlib.Analysis.SpecialFunctions.Gamma.Deriv
 import Sechstmoment.Zeta.AFE.Four.Specification
 import Sechstmoment.Zeta.Gamma.MellinBounds
 
-/-! Actual Gamma bounds on the original AFE line. -/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Filter
@@ -93,8 +92,6 @@ theorem bblrVerticalIntegrand_norm_le (G : ℂ → ℂ) (α : MomentShifts)
       exact bblrGammaQuotient_norm_line_le α t v hα
     _ = _ := by ring
 
-/-- Actual vertical integrability follows from integrability of the fixed
-auxiliary function on the AFE line. No asymptotic input is needed. -/
 theorem bblrVerticalIntegrand_integrable (G : ℂ → ℂ) (hG : Continuous G)
     (hGI : Integrable (fun v : ℝ => ‖G (1+(v : ℂ)*I)‖))
     (α : MomentShifts) (x t : ℝ) (hx : 0 < x)
@@ -123,8 +120,6 @@ theorem bblrVerticalIntegrand_integrable (G : ℂ → ℂ) (hG : Continuous G)
     hc.aestronglyMeasurable ?_
   exact Filter.Eventually.of_forall (fun v => bblrVerticalIntegrand_norm_le G α x t v hx hα)
 
-/-- The actual original-line integral decays at least as x^{-1}; the constant
-depends on the fixed auxiliary function, shifts and height, not on x. -/
 theorem bblrV_norm_le_inv (G : ℂ → ℂ) (hG : Continuous G)
     (hGI : Integrable (fun v : ℝ => ‖G (1+(v : ℂ)*I)‖))
     (α : MomentShifts) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re) :
@@ -154,8 +149,6 @@ theorem bblrV_norm_le_inv (G : ℂ → ℂ) (hG : Continuous G)
     _ ≤ (1/(2*Real.pi))*((D/x)*J) := mul_le_mul_of_nonneg_left hb (by positivity)
     _ = _ := by ring
 
-/-- A finite product of genuine summable nonnegative one-variable sequences
-is summable on the actual function-type index of the fourfold AFE. -/
 theorem summable_finitePi_prod_nonneg (n : ℕ) (f : Fin n → ℕ → ℝ)
     (hf0 : ∀ j k, 0 ≤ f j k) (hf : ∀ j, Summable (f j)) :
     Summable (fun k : Fin n → ℕ => ∏ j, f j (k j)) := by
@@ -225,8 +218,6 @@ theorem bblrAFESummand_norm_majorant (G : ℂ → ℂ) (α : MomentShifts)
       rw [Finset.prod_div_distrib, Finset.prod_const_one, he]
       ring
 
-/-- Actual fourfold AFE summability, proved using the original vertical line
-and four genuine convergent p-series. -/
 theorem bblrAFESummand_summable (G : ℂ → ℂ) (hG : Continuous G)
     (hGI : Integrable (fun v : ℝ => ‖G (1+(v : ℂ)*I)‖))
     (α : MomentShifts) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re) :

@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Sources.Weights.Superposition
 
-/-! Exact finite quadratic reconstruction of an integrable tensor kernel.
-No new discrepancy or source bound is postulated. -/
 namespace Sechstmoment
 open Source MeasureTheory Set
 open scoped BigOperators Topology
@@ -40,8 +38,6 @@ theorem phase_tensor_product_integrable {Ω : Type*} [MeasurableSpace Ω]
   simpa only [mul_comm] using mul_le_mul_of_nonneg_left
     (phase_tensor_product_norm_le W hD hW ν x) (norm_nonneg (c ν))
 
-/-- Integrating the literal source sum reconstructs the coupled kernel
-exactly, including every signed integer tuple in its original finite set. -/
 theorem phase_integral_quadratic_tensor_kernel {Ω : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) (c : Ω → ℂ) (hc : Integrable c μ)
     (W : Ω → Fin 5 → ℝ → ℂ)

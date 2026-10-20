@@ -3,9 +3,6 @@ import Sechstmoment.Arithmetic.QuadraticDivisor.Definitions
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.GammaCosPolynomial
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.SmoothedCosineMellinInversionBase
 
-/-! Genuine complete inverse Mellin formula for the actual time-smoothed
-cosine, on every positive real line. All vertical convergence follows
-from the proved complex-Laplace Gamma bound and actual profile decay. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped Topology ContDiff

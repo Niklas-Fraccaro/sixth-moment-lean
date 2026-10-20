@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.HighFrequencyAggregate
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.MaskedReindex
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.FiniteGCDVStarJoin
 
-/-! Exact active retained seven-grid regrouping into the literal collapsed
-native physical sum.  The actual discrete SourceGood mask remains intact. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

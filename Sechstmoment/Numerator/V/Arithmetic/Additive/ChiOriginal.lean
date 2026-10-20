@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.Additive.DirichletReduction
 import Sechstmoment.Numerator.V.Asymptotic.ProfileOriginalMain
 
-/-! The additive series in the actual chi reduction has exactly the
-natural additive phase and the Mellin scale T/(2*pi). -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory

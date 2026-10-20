@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.Separation.SixTensorSource
 import Sechstmoment.Numerator.U.Sources.Weights.MeasurableSuperposition
 import Sechstmoment.Numerator.U.Sources.Weights.SixTensorAdmissibility
 
-/-! Exact transport of the actual sixth Fourier character through every
-unit embedding and the source orientation. The main term retained here is
-the literal transformed zero mode; native zero-mode invariance is not used. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators Topology

@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.ActualSeparatedGap
 
-/-! A uniform finite expansion error for the literal signed AFE kernel.
-Its actual Gamma factor is retained in the proved norm budget. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

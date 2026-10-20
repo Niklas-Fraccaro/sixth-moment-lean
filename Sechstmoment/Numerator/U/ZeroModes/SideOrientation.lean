@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Sources.Weights.NormalizedData
 
-/-! The side orientation exchanges only discrete variables with discrete
-variables, so it preserves the literal complex zero mode. Factor-pair sorting
-is a different operation and is deliberately not covered by this theorem. -/
 
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
@@ -47,9 +44,6 @@ theorem phase_side_swap_zero_weighted_term (q : QuadraticScales)
   simp_rw [hprod]
   ring
 
-/-- The native zero mode is invariant under the sign-reversing side
-orientation. No support or integrability hypothesis is needed: the integrands
-agree pointwise and the finite index permutation is exact. -/
 theorem phase_side_swap_complex_zero_mode (q : QuadraticScales)
     (A B : ℕ → ℂ) (W : Fin 5 → ℝ → ℂ) :
     rectangularComplexZeroMode (phaseSideSwapScales q) B A
@@ -76,8 +70,6 @@ theorem phase_side_swap_complex_discrepancy (positive : Bool) (q : QuadraticScal
   unfold rectangularComplexDiscrepancy
   rw [phase_side_swap_quadratic_sum,phase_side_swap_complex_zero_mode]
 
-/-- The final orientation in the actual source normalization can be removed
-exactly. The factor-sort operation remains visible on the right-hand side. -/
 theorem phase_normalized_complex_zero_mode_eq_sorted (q : QuadraticScales)
     (A B : ℕ → ℂ) (W : Fin 5 → ℝ → ℂ) :
     rectangularComplexZeroMode (phaseNormalizedScales q)

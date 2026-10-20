@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.DiagonalBContinuation
 
-/-! Genuine global subpower bounds and holomorphy of the literal finite
-diagonal B(s) factors on the left contour strip. -/
 
 namespace Sechstmoment
 open Complex Real Nat Set
@@ -55,7 +53,6 @@ theorem bblrBFactorAt_norm_le_divisor_prime_cost (α β γ δ s : ℂ)
       simp only [Nat.cast_add,Nat.cast_one]
       ring
 
-/-- Uniform in all imaginary parts and both endpoint lines. -/
 theorem bblrBFactorAt_uniform_subpower_bound :
     ∃ D : ℝ,0≤D ∧ ∀ α β γ δ s : ℂ,∀ a : ℕ,a≠0 →
       ‖α‖≤1/64 → ‖β‖≤1/64 → ‖γ‖≤1/64 → ‖δ‖≤1/64 →

@@ -7,7 +7,6 @@ open scoped BigOperators ENNReal
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- The nine independent positive half-line exponential integrals. -/
 theorem d01EdgeLaplace_integrable (a b : Fin 3 → ℂ)
     (ha : ∀ i, 0 < (a i).re) (hb : ∀ j, 0 < (b j).re) :
     Integrable (fun x : D01EdgeSpace =>
@@ -83,8 +82,6 @@ theorem d01LimitMeasure_laplace (ab : D01LogSpace)
   simpa only [d01ComplexLaplaceWeight_ofReal, integral_complex_ofReal,
     Complex.ofReal_mul, Complex.ofReal_prod, Complex.ofReal_inv, Complex.ofReal_add] using h
 
-/-- Positivity of an actual continuous integrable exponential proves local
-finiteness. This does not assume properness of the row/column map. -/
 instance d01LimitMeasure_locallyFinite : IsLocallyFiniteMeasure d01LimitMeasure := by
   let ab : D01LogSpace := (fun _ => 1, fun _ => 1)
   have hi := d01LimitMeasure_laplace_integrable ab (by intro i; norm_num [ab])

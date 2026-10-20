@@ -2,16 +2,6 @@ import Mathlib.RingTheory.PowerSeries.Basic
 import Mathlib.Tactic
 import Sechstmoment.Arithmetic.Euler.Shifted.Local
 
-/-!
-# Exact first-degree cancellation by the nine polar pairings
-
-The actual three-variable complete homogeneous coefficients are defined by
-their finite prime-power sum. Their diagonal generating series is a formal
-power series. Multiplication by the nine local polar divisors has constant
-coefficient one and no linear coefficient. This is the algebraic cancellation
-behind the claimed `O(p⁻²)` Euler remainder; convergence in a shifted complex
-neighborhood still requires a separate analytic bound.
--/
 
 namespace Sechstmoment
 
@@ -21,8 +11,6 @@ noncomputable section
 
 variable {R : Type*} [CommRing R]
 
-/-- The actual prime-power coefficient of a product of three geometric
-factors, with its three exponents summing to `m`. -/
 def triplePrimePowerCoefficient (a : Fin 3 → R) (m : ℕ) : R :=
   ∑ i ∈ Finset.range (m+1), ∑ j ∈ Finset.range (m+1-i),
     a 0^i * a 1^j * a 2^(m-i-j)
@@ -36,7 +24,6 @@ theorem triplePrimePowerCoefficient_one (a : Fin 3 → R) :
   simp [triplePrimePowerCoefficient, Finset.sum_range_succ, Fin.sum_univ_succ]
   ring
 
-/-- At zero shifts these actual threefold prime coefficients are `d₃(p^m)`. -/
 theorem triplePrimePowerCoefficient_const_one (m : ℕ) :
     triplePrimePowerCoefficient (fun _ : Fin 3 => (1:R)) m = (d3PrimePowerCoefficient m : R) := by
   simp only [triplePrimePowerCoefficient, one_pow,
@@ -55,7 +42,6 @@ theorem triplePrimePowerCoefficient_const_one (m : ℕ) :
     simpa [d3PrimePowerCoefficient] using Nat.sum_range_add_choose m 1
   simpa only [Nat.cast_sum] using congrArg (fun n : ℕ => (n:R)) hcount
 
-/-- The diagonal local series before extracting the nine zeta factors. -/
 def diagonalLocalPowerSeries (a b : Fin 3 → R) : PowerSeries R :=
   PowerSeries.mk (fun m => triplePrimePowerCoefficient a m * triplePrimePowerCoefficient b m)
 
@@ -104,7 +90,6 @@ theorem nineLocalPolarRemover_coeff_one (a b : Fin 3 → R) :
       -∑ ij : Fin 3 × Fin 3, a ij.1*b ij.2 :=
   polar_remover_coeff_one _ _
 
-/-- Nine pairings cancel exactly the entire degree-one diagonal coefficient. -/
 theorem diagonalPolarRemainderSeries_coeff_one (a b : Fin 3 → R) :
     PowerSeries.coeff 1 (diagonalPolarRemainderSeries a b) = 0 := by
   unfold diagonalPolarRemainderSeries
@@ -117,8 +102,6 @@ theorem diagonalPolarRemainderSeries_coeff_one (a b : Fin 3 → R) :
     PowerSeries.constantCoeff (diagonalPolarRemainderSeries a b) = 1 := by
   simp [diagonalPolarRemainderSeries]
 
-/-- A precise algebraic rest statement: the remainder differs from one by a
-multiple of `X²`. This is not an unproved analytic big-O assertion. -/
 theorem diagonalPolarRemainderSeries_sub_one_dvd_X_sq (a b : Fin 3 → R) :
     (PowerSeries.X : PowerSeries R)^2 ∣ diagonalPolarRemainderSeries a b - 1 := by
   rw [PowerSeries.X_pow_dvd_iff]

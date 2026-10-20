@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.TailQuadraticBoundary
 
-/-! A boundary formula for the linear correction. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

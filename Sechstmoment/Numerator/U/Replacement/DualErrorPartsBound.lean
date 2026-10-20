@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.DualErrorPartsNearBound
 
-/-! Separate full retained dual weight and dual phase errors, with actual
-arithmetic coefficients, time integration and Mellin integration completed. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology ENNReal
@@ -80,8 +78,6 @@ private theorem part_contour_near_add_far (phasePart : Bool) {T : ℝ} (hT : 0<T
   ring
 
 
-/-- Uniform separate full dual weight/phase error. The Boolean selects an
-individual error before every sum and integral is performed. -/
 theorem a03_actual_dual_error_part_finite_contour_uniform_power_bound
     {a b c e κ θ R η ρ d q : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -125,8 +121,6 @@ theorem a03_actual_dual_error_part_finite_contour_uniform_power_bound
     _≤N*T^q+(2*P)*T^q := add_le_add le_rfl hfar
     _=_ := by ring
 
-/-- Concrete auxiliary choices bound each full retained dual error separately
-on the genuine rectangular exponent, with one common uniform constant. -/
 theorem a03_actual_dual_error_part_rectangular_contour_uniform_power_bound
     {a b κ R : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

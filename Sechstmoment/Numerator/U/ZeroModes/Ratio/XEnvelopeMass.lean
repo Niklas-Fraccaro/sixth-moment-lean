@@ -1,7 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalScaleAlgebra
 
-/-! The full positive-x mass of the genuine archimedean envelope. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

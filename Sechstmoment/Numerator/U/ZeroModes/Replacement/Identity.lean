@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.Sources.ActualZeroTermIntegrability
 import Sechstmoment.Numerator.U.ZeroModes.Replacement.Measurability
 import Sechstmoment.Numerator.U.ZeroModes.Replacement.Moment
 
-/-! Exact attachment of the genuine replacement to differences of the
-actual original/dual native physical zero mode and its literal leading
-VStar zero mode. Absolute convergence justifies every subtraction. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -199,8 +196,6 @@ theorem a03_actual_zero_replacement_moment_eventually_integrable
   intro v hv
   exact hbnd σ hσ hroot dual positive v (abs_le.mpr (by simpa only [mem_Icc,neg_mul] using hv)) i hi
 
-/-- Uniform o(T) for the actual Gamma-zero-mode minus the literal leading
-VStar-zero-mode, with genuine convergence of its weighted Mellin moment. -/
 theorem a03_actual_gamma_zero_replacement_uniform_oT
     {a b s : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs0 : 0≤s) (hs : s<1/2)
     (f g : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

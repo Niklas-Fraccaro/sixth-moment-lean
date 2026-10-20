@@ -4,13 +4,6 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.IntegrationByParts
 import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 import Sechstmoment.Zeta.Moments.AnalyticMomentLinearity
 
-/-!
-# Genuine dyadic partial summation
-
-This is the own smoothing step needed to turn a source sharp-endpoint bound
-into a bound uniform in a bounded family of dyadic weights. The primitive is
-an actual integral, not an assumed approximation.
--/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Filter
@@ -137,8 +130,6 @@ theorem dyadic_centered_partial_summation {T : ℝ} (hT : 1 < T)
   have hφstart' : Φ T⁻¹=0 := by simpa only [one_div] using hφstart
   simp [hφend, hφstart']
 
-/-- The actual sharp primitive error transfers uniformly to every smooth
-dyadic weight with the stated first-derivative bound. -/
 theorem dyadic_smoothing_error_bound {T B E : ℝ} (hT : 1 < T)
     (hB : 0 ≤ B) (hE : 0 ≤ E) (H : ℝ → ℂ) (hH : Continuous H) (M : ℂ)
     (hsharp : ∀ x ∈ Icc T (2*T), ‖sharpPrimitive H x-(x : ℂ)*M‖ ≤ E)

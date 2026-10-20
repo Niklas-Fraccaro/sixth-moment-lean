@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.Frequency.ActualDualFarKernel
 import Sechstmoment.Numerator.U.Separation.SmallContour.GridBounds
 
-/-! Literal finite original and dual amplified far contributions have a
-uniform arbitrary-power budget after the true time integration. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter
 open scoped BigOperators Topology

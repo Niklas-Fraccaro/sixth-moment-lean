@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Convolution.FiniteConvolution
 
-/-! Absolutely convergent bivariate Dirichlet convolution, with the zero axes handled explicitly. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalConvolution

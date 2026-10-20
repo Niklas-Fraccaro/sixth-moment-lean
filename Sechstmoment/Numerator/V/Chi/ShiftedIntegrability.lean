@@ -1,8 +1,6 @@
 import Mathlib.MeasureTheory.Function.StronglyMeasurable.Lemmas
 import Sechstmoment.Numerator.V.Chi.ShiftedKernel
 
-/-! Integrability of the actual shifted chi factor against the fixed compact
-physical weight. No convergence premise is required of the chi factor. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

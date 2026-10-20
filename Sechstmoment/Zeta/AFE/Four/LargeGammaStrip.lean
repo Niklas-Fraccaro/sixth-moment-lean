@@ -1,9 +1,6 @@
 import Mathlib.Tactic
 import Sechstmoment.Zeta.Gamma.PositiveStrip
 
-/-! Actual Gamma bounds on arbitrarily wide positive Mellin strips.
-The polynomial degree increases with strip width; no asymptotic Gamma
-hypothesis or spatial AFE tail estimate is assumed. -/
 
 namespace Sechstmoment.Source
 open Complex Filter Set

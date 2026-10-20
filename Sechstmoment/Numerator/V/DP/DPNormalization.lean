@@ -4,13 +4,6 @@ import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Ring
 import Sechstmoment.Numerator.V.DP.Input
 
-/-!
-# Own normalization of the DP four residues
-
-The triple integrals and the four-residue kernel are the actual source
-expressions. Their log-normalization is an exact algebraic conversion before
-any limit is taken. This file does not assume the manuscript's point kernel.
--/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Polynomial Filter
@@ -125,8 +118,6 @@ theorem dpFourResidues_normalized_tendsto (η : ℝ) (P : ℝ[X]) (σ : MomentSh
   simp only [Function.comp_apply]
   field_simp [hL]
 
-/-- Any actual complex remainder with the source's `T log(T)^8` bound
-vanishes after the genuine `T log(T)^9` normalization. -/
 theorem logNormalizedRemainder_tendsto (E : ℝ → ℂ) (C : ℝ)
     (hE : ∀ᶠ T : ℝ in atTop, ‖E T‖ ≤ C*T*(Real.log T)^8) :
     Tendsto (fun T : ℝ => E T/((T : ℂ)*(Real.log T : ℂ)^9)) atTop (𝓝 0) := by
@@ -160,8 +151,6 @@ theorem dpRawMainTerm_normalized {T : ℝ} (hT : 1 < T) (η : ℝ)
   push_cast
   field_simp
 
-/-- The actual source moment, rather than a free approximating function,
-has the normalized limit under exactly the separately typed DP source input. -/
 theorem dpActualMoment_normalized_tendsto (hsource : DPv2Input)
     (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P : ℝ[X])
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (σ : MomentShifts) (hσ : DPSeparated σ) :

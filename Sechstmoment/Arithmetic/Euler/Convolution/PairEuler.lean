@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Convolution.PrimeBoxes
 
-/-! Canonical bivariate Euler coefficients and their finite, ordinary divisor convolution. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option maxHeartbeats 2000000
@@ -94,7 +93,6 @@ theorem double_prod_sum {ι : Type*} [Fintype ι] [DecidableEq ι] (a b : ι →
       exact (Fintype.prod_sum (fun p j => F p (f p) j)).symm
     _ = _ := (Fintype.prod_sum (fun p i => ∑ j, F p i j)).symm
 
-/-- Finite divisor convolution; no infinite series or analytic premise is involved. -/
 theorem pairEuler_convolution (A B : Nat.Primes → ℕ → ℕ → R)
     (hA : ∀ p, A p 0 0 = 1) (hB : ∀ p, B p 0 0 = 1) (m n : ℕ) :
     pairEuler (localConvolution A B) m n =

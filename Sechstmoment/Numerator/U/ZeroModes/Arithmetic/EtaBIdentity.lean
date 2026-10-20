@@ -2,7 +2,6 @@ import Sechstmoment.Arithmetic.Euler.Shifted.Convergence
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.EtaArithmetic
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.PairPrimeSeries
 
-/-! BBLR (9), with `B` defined by its genuine shifted coefficient series. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat Complex
@@ -58,8 +57,6 @@ theorem bblrEtaCorrection_eq_crossedPrimeFactor {p : ℕ} (hp : p.Prime)
   rw [h₁,h₂,h₃]
   rfl
 
-/-- Prime-local equation (9). Its only premises describe the convergent
-four-weight geometric domain; the `B` identity is derived from the series. -/
 theorem bblrEta_eq_B_primePower {p : ℕ} (hp : p.Prime)
     (α β γ δ : ℂ) {M : ℝ} (hM : 0 ≤ M)
     (hα : ‖(p:ℂ)^(-α)‖ ≤ M) (hδ : ‖(p:ℂ)^δ‖ ≤ M)
@@ -85,8 +82,6 @@ theorem bblrPrimePowerNorm_le {p : ℕ} (hp : p.Prime) (z : ℂ) {e : ℝ}
   rw [Complex.norm_natCast_cpow_of_pos hp.pos]
   exact Real.rpow_le_rpow_of_exponent_le (by exact_mod_cast hp.one_lt.le) hz
 
-/-- The original compact small-shift domain supplies every convergence
-premise of the genuine `B` series. -/
 theorem bblrEta_eq_B_primePower_of_small_shifts {p : ℕ} (hp : p.Prime)
     (α β γ δ : ℂ) (hα : ‖α‖ ≤ 1/8) (hβ : ‖β‖ ≤ 1/8)
     (hγ : ‖γ‖ ≤ 1/8) (hδ : ‖δ‖ ≤ 1/8) (ν : ℕ) :
@@ -107,12 +102,9 @@ theorem bblrEta_eq_B_primePower_of_small_shifts {p : ℕ} (hp : p.Prime)
   · rw [primePolarGeometricRadius ⟨p,hp⟩ (1/8)]
     exact Real.rpow_lt_one_of_one_lt_of_neg (by exact_mod_cast hp.one_lt) (by norm_num)
 
-/-- The finite `B` Euler factor over the prime powers exactly dividing `a`. -/
 def bblrBFactor (α β γ δ : ℂ) (a : ℕ) : ℂ :=
   a.factorization.prod fun p ν => bblrBPrimeFactor p α β γ δ ν
 
-/-- Full multiplicative identity (9), proved from the literal divisor and
-shifted coefficient series definitions. -/
 theorem bblrEta_eq_B (α β γ δ : ℂ)
     (hα : ‖α‖ ≤ 1/8) (hβ : ‖β‖ ≤ 1/8)
     (hγ : ‖γ‖ ≤ 1/8) (hδ : ‖δ‖ ≤ 1/8) {a : ℕ} (ha : a ≠ 0) :

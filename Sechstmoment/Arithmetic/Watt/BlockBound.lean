@@ -1,7 +1,5 @@
 import Sechstmoment.Arithmetic.Watt.BlockParameters
 
-/-! A complete application of the exact Watt 4.1 input to every nonempty
-smooth completed block.  No weight-data or large-X adapter remains assumed. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -21,9 +19,6 @@ end Watt41
 
 noncomputable section
 
-/-- Complete pointwise Watt application with a single external assumption.
-The three original size conditions imply all of Watt's numerical conditions;
-the original gamma and inner-weight bounds supply all derivative conditions. -/
 theorem Watt41.completedBlock_bound (hWatt : Watt41) {ε : ℝ} (hε : 0 < ε)
     (b : ℕ → ℝ) (hb : ∀ j, 0 ≤ b j) (g : ℕ → ℕ → ℝ) (hg : ∀ i j, 0 ≤ g i j) :
     ∃ C F : ℝ, 0 ≤ C ∧ 1 ≤ F ∧

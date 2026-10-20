@@ -1,18 +1,11 @@
 import Sechstmoment.Analysis.Complex.SimplePole
 
-/-!
-# A finite rectangle with a simple pole at zero
-
-Only holomorphy on an open neighborhood of the finite rectangle is used.
-The residue coefficient is evaluated exactly, rather than supplied as an input.
--/
 
 namespace Sechstmoment
 open Complex Real Set MeasureTheory
 open scoped Topology
 noncomputable section
 
-/-- Integral along the positively oriented boundary of `[-1,1] × [-h,h]`. -/
 def fixedAFERectangleBoundary (f : ℂ → ℂ) (h : ℝ) : ℂ :=
   (∫ c in (-1 : ℝ)..1, f ((c : ℂ) + ((-h : ℝ) : ℂ) * I)) -
   (∫ c in (-1 : ℝ)..1, f ((c : ℂ) + (h : ℂ) * I)) +
@@ -62,7 +55,6 @@ theorem fixedAFE_inverse_rectangle_boundary {h : ℝ} (hh : 0 < h) :
   push_cast
   ring
 
-/-- Integral of the holomorphic divided difference along one compact side. -/
 theorem fixedAFE_dslope_side (H : ℂ → ℂ) {U : Set ℂ}
     (hH : ContinuousOn H U) (p : ℝ → ℂ) (hp : Continuous p)
     (a b : ℝ) (hmap : ∀ x ∈ uIcc a b, p x ∈ U)
@@ -88,8 +80,6 @@ theorem fixedAFE_dslope_side (H : ℂ → ℂ) {U : Set ℂ}
       rw [intervalIntegral.integral_sub hI (hInv.const_mul (H 0)),
         intervalIntegral.integral_const_mul]
 
-/-- Exact finite residue theorem, proved from Cauchy-Goursat and `dslope`.
-The assumptions only describe a finite rectangle and its open neighborhood. -/
 theorem fixedAFE_finite_rectangle_residue (H : ℂ → ℂ) {U : Set ℂ}
     (hU : IsOpen U) (hH : DifferentiableOn ℂ H U)
     {h : ℝ} (hh : 0 < h)

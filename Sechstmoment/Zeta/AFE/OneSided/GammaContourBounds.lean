@@ -1,7 +1,5 @@
 import Sechstmoment.Zeta.Gamma.PolynomialIntegrability
 
-/-! Uniform polynomial Gamma envelopes on the displaced horizontal edges.
-All compact patches stay at imaginary height at least one, excluding poles. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set

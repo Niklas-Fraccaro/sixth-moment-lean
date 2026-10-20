@@ -2,8 +2,6 @@ import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 import Sechstmoment.Numerator.U.Separation.Frequency.SixComposition
 import Sechstmoment.Numerator.U.ZeroModes.RatioGlobalLogDerivatives
 
-/-! Uniform Euclidean derivatives of the actual two-root ratio multiplier.
-The scale-ratio offsets are arbitrary real numbers. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

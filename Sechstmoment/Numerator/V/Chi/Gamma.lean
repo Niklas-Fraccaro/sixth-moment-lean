@@ -1,8 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Gamma.Beta
 import Sechstmoment.Numerator.V.Chi.PolynomialBound
 
-/-! Exact duplication/reflection formula for the actual chi transform,
-with the full 2*pi normalization retained. -/
 
 namespace Sechstmoment.Source
 open Complex Real

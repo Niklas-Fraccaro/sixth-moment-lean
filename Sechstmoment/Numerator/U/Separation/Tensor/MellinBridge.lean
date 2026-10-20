@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.Frequency.ActualNearKernel
 import Sechstmoment.Numerator.U.Separation.Tensor.Arguments
 
-/-! Literal AFE Mellin weights match the physical six-coordinate tensor factor.
-Nonzero native arithmetic factors force the entire physical dyadic support. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set
 open scoped ContDiff BigOperators Topology

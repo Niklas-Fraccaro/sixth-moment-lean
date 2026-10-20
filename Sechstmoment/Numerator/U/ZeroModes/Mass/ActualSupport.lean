@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Mass.Denominator
 
-/-! Actual native sorted zero-mode masks force all four physical real
-variables to be at least one and supply their genuine product cutoff. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -15,8 +13,6 @@ def a03ZeroModePhysicalQuad (_q : QuadraticScales) (v : Fin 5→ℕ) (x : ℝ) :
 
 def a03ZeroModeQuadScales (q : QuadraticScales) : Fin 4→ℝ := ![q.M₁,q.M₂,q.N₁,q.N₂]
 
-/-- The literal source GCD physical fourfold product gives the exact
-sixfold reciprocal square-root density, including both amplifier variables. -/
 theorem a03ZeroModePhysicalQuad_six_density (q : QuadraticScales)
     (v : Fin 5→ℕ) (hv : ∀ j,1≤v j) {x : ℝ} (hx : 0<x) :
     1/Real.sqrt ((v 0:ℝ)*v 1*(∏ j : Fin 4,a03ZeroModePhysicalQuad q v x j))=

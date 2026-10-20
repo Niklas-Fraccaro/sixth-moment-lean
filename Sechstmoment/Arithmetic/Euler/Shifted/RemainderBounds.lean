@@ -3,13 +3,6 @@ import Mathlib.Analysis.PSeries
 import Mathlib.Tactic
 import Sechstmoment.Arithmetic.Euler.Shifted.Tail
 
-/-!
-# Quantitative cancellation in the actual shifted Euler remainder
-
-The nine local factors cancel the genuine diagonal series' linear term.
-All estimates below concern those actual finite products and convergent
-series, rather than formal coefficients or a proposed asymptotic contract.
--/
 
 namespace Sechstmoment
 

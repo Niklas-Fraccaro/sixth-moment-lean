@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Separation.Tensor.DualKernel
 import Sechstmoment.Numerator.U.Separation.Tensor.MellinBridge
 import Sechstmoment.Numerator.U.Sources.Weights.TensorParameters
 
-/-! Exact finite source reconstruction for the actual normalized main and dual
-tensor kernels. The fixed logarithmic cutoff is removed by the native dyadic support. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set
 open scoped ContDiff BigOperators Topology

@@ -2,9 +2,6 @@ import Sechstmoment.Analysis.Mellin.MultiPoleShift
 import Sechstmoment.Analysis.Mellin.SimplePoleDecay
 import Sechstmoment.Numerator.V.Arithmetic.Principal.MellinBounds
 
-/-! The actual principal-character Mellin contour crosses its four poles.
-All vertical convergence and horizontal limits are proved from the actual
-numerator; no analytic contour condition is an input to this theorem. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory Filter

@@ -3,9 +3,6 @@ import Mathlib.Analysis.MellinTransform
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 import Sechstmoment.Analysis.Fourier.ProfileDecay
 
-/-! The actual time-smoothed cosine transform has an absolutely convergent
-Mellin transform throughout Re(s)>0. Fourier integration by parts supplies
-arbitrary decay before the Abel damping is removed. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology FourierTransform ContDiff
@@ -112,8 +109,6 @@ theorem a03CosineAbelScale_tendsto_zero : Tendsto a03CosineAbelScale atTop (𝓝
   apply tendsto_const_nhds.div_atTop
   exact tendsto_atTop_mono (fun n : ℕ => by linarith) tendsto_natCast_atTop_atTop
 
-/-- Abel damping is removed only after time integration. The dominating
-function is the actual absolutely convergent smoothed Mellin integrand. -/
 theorem a03SmoothedCosine_abel_mellin_tendsto {Φ : ℝ→ℂ}
     (hK : HasCompactSupport Φ) (hΦ : ContDiff ℝ ∞ Φ) {s : ℂ} (hs : 0<s.re) :
     Tendsto (fun n : ℕ => mellin (a03DampedSmoothedCosine Φ n) s) atTop
@@ -152,8 +147,6 @@ theorem a03SmoothedCosine_abel_mellin_tendsto {Φ : ℝ→ℂ}
   exact tendsto_integral_of_dominated_convergence _ hmn hi.norm hb hlim
 
 
-/-- Arbitrary power cutoff control for the actual time-smoothed cosine,
-with its Mellin weight retained. -/
 theorem a03SmoothedCosine_mellin_tail_bound {Φ : ℝ→ℂ}
     (hK : HasCompactSupport Φ) (hΦ : ContDiff ℝ ∞ Φ) {s : ℂ} (hs : 0<s.re)
     (N : ℕ) (hN : s.re<(N:ℝ)) :

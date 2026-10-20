@@ -3,13 +3,6 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
 import Sechstmoment.Zeta.Bounds.MellinZetaNegativeStripGrowth
 import Sechstmoment.Zeta.Gamma.VerticalDecay
 
-/-!
-# Polynomial growth of the actual zeta function on a fixed half-plane
-
-The functional equation and absolute Gamma decay bound the left boundary;
-the Dirichlet series bounds the right boundary. The Phragmen-Lindelöf principle
-then controls the intervening strip after removing the actual pole at one.
--/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set Asymptotics
@@ -32,9 +25,6 @@ private theorem d04Complex_cos_norm_le_exp_abs_im (z : ℂ) :
         (Real.exp_le_exp.mpr (le_abs_self _))
     _ = _ := by ring
 
-/-- The Gamma--cosine factor keeps its exact real polynomial exponent. This
-is the sharper estimate needed on the left remainder line, where replacing
-the exponent by an arbitrary integer would lose the D04 power saving. -/
 theorem d04GammaCos_sharp_positive_strip {s : ℂ}
     (hs : s.re ∈ Icc (1 : ℝ) 2) (him : 128 ≤ |s.im|) :
     ‖Complex.Gamma s*Complex.cos ((Real.pi : ℂ)*s/2)‖ ≤
@@ -102,8 +92,6 @@ theorem d04GammaCos_sharp_positive_strip {s : ℂ}
     _ ≤ (2*(1+|s.im|)^(s.re-1/2))*(2*Real.pi+1) := by gcongr
     _ = _ := by ring
 
-/-- The functional equation gives the sharp left-strip zeta exponent,
-uniformly for real parts separated from zero. -/
 theorem d04RiemannZeta_sharp_left_strip {ε : ℝ} (hε : 0 < ε) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ s : ℂ, -1 ≤ s.re → s.re ≤ -ε →
       128 ≤ |s.im| → ‖riemannZeta s‖ ≤ C*(1+|s.im|)^(1/2-s.re) := by
@@ -236,8 +224,6 @@ private theorem d04Zeta_left_boundary :
       _ ≤ K*(1+|s.im|)^5 := le_mul_of_one_le_right hK
         (one_le_pow₀ (by linarith [abs_nonneg s.im]))
 
-/-- The actual entire continuation of `(s-1)ζ(s)`, written using the proved
-completed-zeta and inverse-Gamma functions. -/
 def d04PoleRemovedZeta (s : ℂ) : ℂ :=
   (Real.pi : ℂ)^(s/2)*(1/Complex.Gamma (s/2+1))*
     (s*(s-1)*completedRiemannZeta₀ s+1)/2
@@ -391,8 +377,6 @@ private theorem d04ZetaStripNormalized_growth :
     _ = (4*K)*((1+|s.im|)*Real.exp (Real.pi*|s.im|/2)) := by ring
     _ ≤ _ := mul_le_mul_of_nonneg_left hexp (by positivity)
 
-/-- A genuine polynomial zeta envelope, uniform on every fixed right-hand
-strip used by D04. No target zeta growth bound is assumed. -/
 theorem d04RiemannZeta_polynomial_halfPlane_high_im :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ s : ℂ, -1 ≤ s.re → 1 ≤ |s.im| →
       ‖riemannZeta s‖ ≤ C*(1+|s.im|)^6 := by

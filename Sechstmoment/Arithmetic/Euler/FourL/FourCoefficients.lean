@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.FourL.FixedEuler
 
-/-! Independent fourfold shifted Dirichlet coefficients, identified with the original local coefficients. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
@@ -28,7 +27,6 @@ theorem fourAF_multiplicative (s : Fin 4 → ℂ) : (fourAF s).IsMultiplicative 
   (powerAF_multiplicative _).mul ((powerAF_multiplicative _).mul
     ((powerAF_multiplicative _).mul (powerAF_multiplicative _)))
 
-/-- The previously defined Euler extension is now identified with an independent fourfold convolution. -/
 theorem fourAF_eq_shiftedCoeff (s : Fin 4 → ℂ) : (fourAF s : ℕ → ℂ) = shiftedCoeff s := by
   apply eulerCoeff_unique
   · exact ArithmeticFunction.map_zero

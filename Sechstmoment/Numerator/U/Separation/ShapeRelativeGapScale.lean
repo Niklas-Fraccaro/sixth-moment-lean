@@ -7,8 +7,6 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- The relative gap scale is supplied by an actual supported signed near
-tuple. It is bounded by sixteen times the actual near width. -/
 theorem phase_supported_near_relative_gap_scale (q : QuadraticScales)
     (hq : ∀ j, 0≤q.size j) (hBN : 0<q.B*q.N) (n : Fin 7 → ℕ)
     (hn : ∀ j, (n j:ℝ)∈Icc (q.size j) (2*q.size j)) (hp : ∀ j, 0<n j)
@@ -51,8 +49,6 @@ theorem phase_actual_near_relative_gap_scale (T A B H η : ℝ) (f g : ℝ → �
   exact phase_supported_near_relative_gap_scale (phaseActualScales A B H k)
     (fun j => (hq j).le) hBN _ htuple htuplepos positive hrel hη0 hη hnear
 
-/-- The actual small-power near block satisfies every fixed small-r
-threshold eventually, uniformly in all retained scales and indices. -/
 theorem phase_actual_near_relative_gap_eventually_small {s δ : ℝ} (hs : s<1) (hδ : 0<δ)
     (f g : ℝ → ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ A B H : ℝ, 0<A → 0<B → 0<H → ∀ k : Fin 4 → ℕ,
@@ -71,7 +67,6 @@ theorem phase_actual_near_relative_gap_eventually_small {s δ : ℝ} (hs : s<1) 
   exact (phase_actual_near_relative_gap_scale T A B H _ f g hA hB hH k hη0 hη hactive).trans
     (by nlinarith)
 
-/-- The exact unit and common dilation preserves the relative gap scale. -/
 theorem phase_boundary_relative_gap_scale (flags : Fin 4 → Bool) (q : QuadraticScales) :
     (boundaryEmbeddedScales flags q).H/
       ((boundaryEmbeddedScales flags q).B*(boundaryEmbeddedScales flags q).N)=

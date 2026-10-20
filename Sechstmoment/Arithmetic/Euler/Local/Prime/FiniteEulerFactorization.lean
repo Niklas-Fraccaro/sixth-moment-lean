@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Prime.PrincipalEulerPositivity
 
-/-! Products of the local identities give the finite Euler correction exactly. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

@@ -2,15 +2,12 @@ import Mathlib.Analysis.Calculus.BumpFunction.InnerProduct
 import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 import Sechstmoment.Analysis.Profiles.Classes
 
-/-! Smooth nonnegative dyadic weights of mass arbitrarily close to one.
-The weights are bounded by one and have literal support in [1,2]. -/
 
 namespace Sechstmoment
 open Set MeasureTheory Metric
 open scoped Topology
 noncomputable section
 
-/-- A plateau bump recovers any prescribed mass strictly below one. -/
 theorem exists_smoothDyadicWeight_mass_gt {q : ℝ} (hq0 : 0 < q) (hq1 : q < 1) :
     ∃ Φ : ℝ → ℝ, SmoothDyadicWeight Φ ∧ (∀ x, 0 ≤ Φ x) ∧
       (∀ x, Φ x ≤ 1) ∧ q < ∫ x : ℝ, Φ x := by

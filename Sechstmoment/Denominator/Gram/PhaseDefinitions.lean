@@ -1,9 +1,6 @@
 import Sechstmoment.Denominator.Unbalanced.Conjugation
 import Sechstmoment.Denominator.Unbalanced.MomentErrorBudget
 
-/-! The two extreme denominator phases, before any vanishing assertion.
-The minus phase has four positive Dirichlet factors and the literal
-`χ⁻² C⁺ C⁻` pair. The plus phase is its exact complex conjugate. -/
 namespace Sechstmoment
 open Complex Real Polynomial MeasureTheory Filter Set
 open scoped BigOperators Topology ComplexConjugate ContDiff

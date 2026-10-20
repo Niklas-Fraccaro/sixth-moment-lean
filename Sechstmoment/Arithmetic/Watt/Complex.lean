@@ -1,8 +1,5 @@
 import Sechstmoment.Arithmetic.Watt.Adapters
 
-/-! Deriving complex p-weights from the real p-weight statement of Watt 4.1.
-The original input is not strengthened: real and imaginary parts are separate
-applications of the same proposition, with a finite factor two. -/
 
 namespace DivisorProof
 namespace Watt41

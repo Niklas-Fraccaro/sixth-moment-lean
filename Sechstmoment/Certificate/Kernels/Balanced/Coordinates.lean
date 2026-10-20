@@ -4,9 +4,6 @@ import Mathlib.Tactic.Ring
 
 namespace Sechstmoment
 
-/-- The coordinate domain in the four-edge denominator polytope.
-This proves the constraints used to obtain the density W; the measure
-change and the evaluation of that density remain separate obligations. -/
 theorem denominator_coordinates_iff (a b c d t r s x : ℝ) :
     (0 ≤ x ∧ 0 ≤ r-x ∧ 0 ≤ s-x ∧ 0 ≤ t-r-s+x ∧
       r ≤ a ∧ t-r ≤ b ∧ s ≤ c ∧ t-s ≤ d) ↔

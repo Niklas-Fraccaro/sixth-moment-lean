@@ -1,10 +1,5 @@
 import Sechstmoment.Numerator.U.Sources.FiniteGammaDiscrepancyReduction
 
-/-! The literal sixth-moment discrepancy reduces to the actual finite Gamma
-offdiagonal discrepancy with an arbitrarily small exponent loss.  The
-positive contour, product cutoff, and contour height are independent inputs.
-The estimates below use the quantitative AFE and Gamma replacement bounds,
-rather than their sublinear corollaries. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.Measurability
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalResidual
 
-/-! Actual product measurability for the physical u/v reconstruction and
-its three-contour residual, rather than a measurable-function receipt. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

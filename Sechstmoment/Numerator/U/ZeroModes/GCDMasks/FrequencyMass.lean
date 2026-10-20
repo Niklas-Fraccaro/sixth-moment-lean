@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.CosineGapMellinSeriesBase
 
-/-! Absolute mass of every actual positive gcd gap, retaining its
-arithmetic gcd coefficient and the actual T*d*h/X frequency. -/
 namespace Sechstmoment.Source
 open Complex Real Set Filter MeasureTheory
 open scoped Topology BigOperators

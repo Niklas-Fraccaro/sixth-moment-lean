@@ -2,7 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Sechstmoment.Analysis.Complex.HorizontalLog
 import Sechstmoment.Numerator.V.Chi.Shift
 
-/-! The explicit elementary logarithm correction in the shifted chi phase. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

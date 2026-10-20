@@ -2,15 +2,12 @@ import Mathlib.Algebra.Polynomial.Eval.Degree
 import Sechstmoment.Denominator.Gram.Algebra
 import Sechstmoment.Zeta.Centering.ShiftDerivatives
 
-/-! The actual polynomial FE discrepancy, expanded in derivatives of the
-proved scalar centering error. The expansion keeps all lower zeta derivatives. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Polynomial Filter Metric
 open scoped Topology BigOperators ComplexConjugate
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- Reflection acts on the actual polynomial coefficients by (-1)^m. -/
 theorem d06_reflectedTestPolynomial_coeff (q : ℝ[X]) (m : ℕ) :
     (reflectedTestPolynomial q).coeff m = q.coeff m * (-1)^m := by
   unfold reflectedTestPolynomial
@@ -38,8 +35,6 @@ private theorem d06_minus_neg_analyticAt_zero (T t : ℝ) :
   exact he.mul (hz'.comp (f := fun z : ℂ =>
     1-criticalLinePoint t + -z/(Real.log T : ℂ)) ha)
 
-/-- The difference of reflected generator derivatives is the derivative of
-an actual product with `centeringError`, including derivative order zero. -/
 theorem d06ReflectionDerivative_eq_error {T : ℝ} (hT : 1<T) (t : ℝ) (m : ℕ) :
     (criticalChi t)⁻¹ * centeredZetaDerivative T m (criticalLinePoint t) -
       (-1 : ℂ)^m * centeredZetaDerivative T m (1-criticalLinePoint t) =
@@ -90,7 +85,6 @@ theorem d06ReflectionDerivative_eq_error {T : ℝ} (hT : 1<T) (t : ℝ) (m : ℕ
   simp_rw [hp,hm] at hd
   simpa only [mul_assoc] using hd
 
-/-- Finite exact expansion of the polynomial reflection discrepancy. -/
 theorem d06PolynomialReflectionError_eq_sum {T : ℝ} (hT : 1<T) (t : ℝ)
     (q : ℝ[X]) (hq : q.natDegree≤4) :
     d06PolynomialReflectionError T t q =
@@ -110,7 +104,6 @@ theorem d06PolynomialReflectionError_eq_sum {T : ℝ} (hT : 1<T) (t : ℝ)
   intro m _
   ring
 
-/-- Fixed finite constant for the actual polynomial centering error. -/
 def d06ReflectionConstant (q : ℝ[X]) : ℝ :=
   ∑ m ∈ Finset.range 5, ‖(q.coeff m : ℂ)‖ *
     (∑ j ∈ Finset.range (m+1), (m.choose j : ℝ)*(j.factorial : ℝ)*
@@ -123,8 +116,6 @@ theorem d06ReflectionConstant_nonneg (q : ℝ[X]) : 0≤d06ReflectionConstant q 
   unfold d06ReflectionConstant
   positivity
 
-/-- The finite FE discrepancy is inverse-logarithmic relative to the sum
-of its five genuine lower-half-plane zeta derivatives. -/
 theorem d06PolynomialReflectionError_eventually_norm_bound
     (q : ℝ[X]) (hq : q.natDegree≤4) :
     ∀ᶠ T : ℝ in atTop,∀ t∈Icc T (2*T),

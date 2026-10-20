@@ -2,9 +2,6 @@ import Sechstmoment.Denominator.Gram.ChiFrequencySymbol
 import Sechstmoment.Denominator.Gram.NonstationaryChiPhase
 import Sechstmoment.Numerator.U.Separation.TimePowerProfileFourier
 
-/-! Uniform arbitrary-order decay of the actual inverse-chi Fourier profile.
-All constants are obtained from profile derivatives and the concrete Cauchy
-bounds for the reciprocal frequency. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped ContDiff BigOperators Topology

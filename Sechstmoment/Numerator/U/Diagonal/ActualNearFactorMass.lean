@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Diagonal.NearFactorMass
 import Sechstmoment.Numerator.U.Reconstruction.RectangularNearUnitExclusion
 
-/-! The unconditional near-mass theorem on the literal zero-based AFE
-indices. The `+1` factors and the unique signed source gap are retained. -/
 
 namespace Sechstmoment
 open Source
@@ -23,8 +21,6 @@ theorem bblrAFEFactorPairs_injective : Function.Injective bblrAFEFactorPairs := 
   funext j
   fin_cases j <;> assumption
 
-/-- The genuine signed gap, bounded by `H`, places the actual AFE tuple in
-the counted near set. There is no independent sum over a new gap variable. -/
 theorem bblrAFEFactorPairs_mem_nearBlock {L P J Q u v h H : ℕ}
     (positive : Bool) (n : Fin 4 → ℕ)
     (hMlo : L≤(n 0+1)*(n 1+1)) (hMhi : (n 0+1)*(n 1+1)≤P)
@@ -57,8 +53,6 @@ theorem bblrAFEFactorPairs_mem_nearBlock {L P J Q u v h H : ℕ}
   · exact Finset.mem_filter.mpr
       ⟨mem_positiveProductFactorPairs.mpr ⟨by omega,by omega,hNhi⟩,hnear1,hnear2⟩
 
-/-- Any retained subset of the literal AFE variables is bounded by the
-proved actual mass, once its product and signed-gap support are verified. -/
 theorem bblrActualNearAFE_mass_le_harmonic {L P J Q u v H K : ℕ}
     (hu : 0<u) (hv : 0<v) (hL : 0<L) (hJ : 0<J) (hQ : Q≤K^2)
     (s : Finset (Fin 4 → ℕ))

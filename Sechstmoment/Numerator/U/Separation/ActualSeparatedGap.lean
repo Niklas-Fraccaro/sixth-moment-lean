@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Separation.ActualGapPhase
 import Sechstmoment.Numerator.U.Separation.ActualSeparatedMellinGrid
 import Sechstmoment.Numerator.U.Separation.SeparatedPhaseRemainder
 
-/-! The literal signed actual AFE Mellin summand, including its actual
-amplifier factors, is connected to the five-product binomial series. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

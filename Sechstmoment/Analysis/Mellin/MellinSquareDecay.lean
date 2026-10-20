@@ -1,7 +1,5 @@
 import Sechstmoment.Analysis.Mellin.SimplePoleDecay
 
-/-! Absolute vertical convergence and vanishing horizontal edges from a
-square-decay estimate on a closed strip. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Filter

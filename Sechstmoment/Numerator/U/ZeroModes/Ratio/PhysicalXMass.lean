@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.XEnvelopeMass
 
-/-! Full positive-x integration of the actual physical prefactors and
-all three contour gains. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

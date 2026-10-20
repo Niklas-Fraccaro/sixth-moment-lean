@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.DiscreteFrontJoin
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourceMomentJoin
 
-/-! The actual ratio tensor at the literal discrete source coordinate is
-exactly the ratio-weighted finite AFE time source. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -50,8 +48,6 @@ theorem a03_actual_kernel_source_time_raw_identity (dual positive : Bool) {T A B
   · simpa only [a03SourceMellinScaleFactor,a03SourceRawKernel,ite_true] using
       a03_actual_kernel_dual_time_raw_tensor_identity positive hT hA hB hH f g Φ σ α c v u w k n hn
 
-/-- Natural ratio offsets restore the actual ratio-weighted source time
-integral, with all finite amplifier and AFE supports retained. -/
 theorem a03_actual_ratio_raw_physical_source_finite_reindex {a b T A B H : ℝ}
     (hT : 1<T) (hA : 0<A) (hB : 0<B) (hH : 0<H) (f g Φ : ℝ→ℝ)
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -92,8 +88,6 @@ theorem a03_actual_ratio_raw_physical_source_finite_reindex {a b T A B H : ℝ}
     ring
   · simp only [hs,ite_false,mul_zero]
 
-/-- Exact attachment of the source-estimate good mask to the finite
-ratio time block. The same actual primary Gaussian weight is retained. -/
 theorem a03ActualRatioSourceBlockValue_eq_time_block {a b T : ℝ} (hT : 1<T)
     (dual positive : Bool) (f g Φ : ℝ→ℝ) (hf : SmoothInteriorProfile a f)
     (hg : SmoothInteriorProfile b g) (σ α : MomentShifts) (c s εsource v : ℝ)

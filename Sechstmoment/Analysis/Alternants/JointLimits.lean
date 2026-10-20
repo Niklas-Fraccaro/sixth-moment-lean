@@ -1,9 +1,6 @@
 import Mathlib.Analysis.Asymptotics.Lemmas
 import Sechstmoment.Analysis.Alternants.Limits
 
-/-! A simultaneous coalescing limit for the three exponential rows at zero.
-The source determinant is restricted to distinct shift variables, as required
-by its Vandermonde denominator. -/
 
 namespace Sechstmoment
 open Filter

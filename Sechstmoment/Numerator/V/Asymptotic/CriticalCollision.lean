@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.V.Asymptotic.RegularMomentLeading
 
-/-! Transfer the proved, uniform separated estimate for the actual moment
-to the whole fixed polydisc, including all coincident zeta shifts. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Filter

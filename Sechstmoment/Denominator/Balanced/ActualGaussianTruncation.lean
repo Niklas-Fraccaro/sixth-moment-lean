@@ -1,7 +1,5 @@
 import Sechstmoment.Denominator.Balanced.ZetaGaussianPair
 
-/-! Truncation of the literal unrestricted Gaussian pair at `mn≤T^(1+δ)`.
-The complementary infinite sum is bounded from the proved Gaussian tail. -/
 namespace Sechstmoment
 open Complex Real Source Filter Set
 open scoped BigOperators Topology
@@ -84,8 +82,6 @@ theorem d02ActualGaussianPair_truncation_norm_bound {s r : ℂ} {t X A b : ℝ}
         · exact le_rfl) htail
     _ ≤ _ := d02GaussianLongTail_tsum_bound a hY hX hAb ha
 
-/-- The full pair tail has an arbitrary negative height power, uniformly
-on every bounded normalized shift box and on the physical window. -/
 theorem d02ActualGaussianPair_truncation_arbitrary_power {R ε δ B : ℝ}
     (hε : 0<ε) (hε1 : ε≤1/4) (hδ : 0<δ) (hB : 0≤B) :
     ∃ C : ℝ,0≤C ∧ ∀ᶠ T : ℝ in atTop,∀ t∈Icc T (2*T),
@@ -162,8 +158,6 @@ theorem d02DualSecondMomentShifts_raw_commute (T : ℝ) (σ : SecondMomentShifts
   funext j
   fin_cases j <;> simp [d02DualSecondMomentShifts,rawSecondMomentShifts,neg_div]
 
-/-- Both actual Gaussian halves can be cut before oscillatory integration,
-with one common arbitrary-power bound on each normalized shift box. -/
 theorem d02CenteredGaussianPair_truncation_arbitrary_power {R ε δ B : ℝ}
     (hR : 0≤R) (hε : 0<ε) (hε1 : ε≤1/4) (hδ : 0<δ) (hB : 0≤B) :
     ∃ C : ℝ,0≤C ∧ ∀ᶠ T : ℝ in atTop,∀ t∈Icc T (2*T),

@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.V.Arithmetic.TimeWeightFamily
 
-/-! Exact reduction of the actual time-weighted residue to the already
-controlled elementary centering phase and the original Mellin mass. -/
 
 namespace Sechstmoment.Source
 open Complex Real

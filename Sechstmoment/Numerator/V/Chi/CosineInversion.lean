@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.SmoothedCosineMellinInversion
 import Sechstmoment.Numerator.V.Chi.Gamma
 
-/-! An exact chi-transform identity on every positive Mellin line.
-This supplies the additive cosine kernel for compact positive profiles;
-no stationary-phase formula is assumed as an input. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

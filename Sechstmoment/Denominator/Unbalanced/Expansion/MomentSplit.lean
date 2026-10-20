@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Unbalanced.ActualOffDiagonal
 import Sechstmoment.Denominator.Unbalanced.Expansion.DiagonalConnector
 
-/-! Exact expansion and Bochner integration of the actual one-sided
-centered series with its four literal profile Dirichlet sums. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

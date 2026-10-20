@@ -2,8 +2,6 @@ import Mathlib.Analysis.Complex.Basic
 import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 import Sechstmoment.Analysis.Harmonic.Distribution
 
-/-! A quantitative quadrature estimate on a nonuniform logarithmic grid.
-The estimate keeps the last atom and the last partial cell. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set
@@ -38,8 +36,6 @@ theorem cell_quadrature_error {F : ℝ → ℂ} {a b w δ B D : ℝ}
       (mul_le_mul_of_nonneg_left hFa (by linarith)) hInt
     _ = _ := by ring
 
-/-- A positive quadrature with total excess mass at most delta and mesh at most
-delta has error at most delta * (3 B + D a). The final atom is retained. -/
 theorem finite_quadrature_error {F : ℝ → ℂ} {grid weight : ℕ → ℝ}
     {N : ℕ} (hN : 1 ≤ N) {a δ B D : ℝ} (hB : 0 ≤ B) (hD : 0 ≤ D)
     (hfirst : grid 1 = 0)

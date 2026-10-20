@@ -4,9 +4,6 @@ import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 
-/-! Exact positive-X tails for arbitrary spatial decay powers.
-The power is chosen before T, so a polynomially enlarged spatial cutoff
-gives every prescribed power saving. -/
 namespace Sechstmoment.Source
 open Real Set MeasureTheory
 noncomputable section
@@ -70,8 +67,6 @@ theorem a03NativeGCDSpatialPower_scaled_tail_integral {Y T δ p r : ℝ}
     rw [←Real.rpow_add hY,show p+(r-p)=r by ring]
   rw [show Y^p*(Y^(r-p)*T^(δ*(r-p)))=(Y^p*Y^(r-p))*T^(δ*(r-p)) by ring,he]
 
-/-- One fixed decay power pays every desired T-power on the actual
-polynomial spatial tail; the bound holds for all positive Y≤T^q. -/
 theorem a03NativeGCDSpatialPower_tail_uniform_rapid {q r δ : ℝ}
     (hq : 0≤q) (hr : 0<r) (hδ : 0<δ) (N : ℝ) :
     ∃ p C : ℝ,r<p ∧ 0≤C ∧ ∀ T Y : ℝ,1≤T → 0<Y → Y≤T^q →
@@ -111,8 +106,6 @@ theorem a03NativeGCDSpatialPower_tail_uniform_rapid {q r δ : ℝ}
         (sub_pos.mpr hrp).le
     _=(1/(p-r))*T^(-N) := by ring
 
-/-- Beyond a polynomial enlargement, the stronger spatial envelope gains
-a T-power while retaining the already integrable weaker envelope. -/
 theorem a03NativeGCDSpatialPower_tail_pointwise_saving {T Y X δ p k M : ℝ}
     (hT : 1≤T) (hY : 0<Y) (hδ : 0≤δ) (hX : Y*T^δ≤X)
     (hk : 0≤k) (hkp : k≤p) (hsave : M≤δ*(p-k)) :

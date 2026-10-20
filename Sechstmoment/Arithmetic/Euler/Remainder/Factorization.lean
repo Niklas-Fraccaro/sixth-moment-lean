@@ -2,10 +2,6 @@ import Sechstmoment.Arithmetic.Euler.Remainder.CoefficientContracts
 import Sechstmoment.Arithmetic.Euler.Remainder.EulerIdentification
 import Sechstmoment.Arithmetic.Euler.Remainder.ShiftLipschitz
 
-/-! Completed global remainder chapter: every residue index, (6.5), (6.6),
-the actual Euler/Dirichlet identification, and the exact zero-shift factor.
-This chapter does not assert the six-zeta convolution for the original global
-residue coefficients or the V-generator asymptotic. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalRest

@@ -4,11 +4,6 @@ import Mathlib.Tactic
 import Mathlib.Topology.Algebra.InfiniteSum.Constructions
 import Sechstmoment.Zeta.AFE.Four.Integrability
 
-/-!
-Actual convergence and dyadic grouping of the fourfold AFE series. The
-auxiliary-weight hypotheses are the concrete BBLR weight class; no moment
-asymptotic or full-block expansion is assumed.
--/
 
 namespace Sechstmoment
 
@@ -18,8 +13,6 @@ open Classical
 
 noncomputable section
 
-/-- The actual rapid strip bound supplies the auxiliary integrability needed
-for the defining vertical integral; its hypothesis is not a new source input. -/
 theorem rectangular_BBLR_weight_vertical_integrable (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) :
     Integrable (fun v : ℝ => ‖G (1+(v : ℂ)*I)‖) := by
@@ -48,7 +41,6 @@ def rectangularAFEDyadicCode (n : Fin 4 → ℕ) : Fin 4 → ℕ :=
 def rectangularAFEDyadicBox (k : Fin 4 → ℕ) : Finset (Fin 4 → ℕ) :=
   Fintype.piFinset fun j => Finset.Ico (2^(k j)-1) (2^(k j+1)-1)
 
-/-- Each positive integer belongs to exactly its genuine dyadic interval. -/
 theorem rectangular_AFE_dyadic_mem (n k : Fin 4 → ℕ) :
     n ∈ rectangularAFEDyadicBox k ↔ rectangularAFEDyadicCode n = k := by
   rw [rectangularAFEDyadicBox, Fintype.mem_piFinset]
@@ -72,7 +64,6 @@ theorem rectangular_AFE_dyadic_mem (n k : Fin 4 → ℕ) :
       (Nat.log_lt_iff_lt_pow (by norm_num) (Nat.succ_ne_zero _)).mp (he.trans_lt (Nat.lt_succ_self _))
     exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
 
-/-- The fibers of the actual dyadic code are finite literal Cartesian boxes. -/
 theorem rectangular_AFE_dyadic_fiber (f : (Fin 4 → ℕ) → ℂ) (k : Fin 4 → ℕ) :
     (∑' n : rectangularAFEDyadicCode ⁻¹' {k}, f n) =
       ∑ n ∈ rectangularAFEDyadicBox k, f n := by
@@ -88,16 +79,12 @@ theorem rectangular_AFE_dyadic_grouping (f : (Fin 4 → ℕ) → ℂ) (hf : Summ
   simp_rw [rectangular_AFE_dyadic_fiber] at h
   exact h.tsum_eq.symm
 
-/-- The literal auxiliary class proves summability of the actual fourfold AFE
-series. There is no series-summability hypothesis left in this theorem. -/
 theorem rectangular_actual_AFE_summable (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re) :
     Summable (bblrAFESummand G α t) := by
   exact bblrAFESummand_summable G (continuousOn_univ.mp hG.1.continuousOn)
     (rectangular_BBLR_weight_vertical_integrable G α hG) α t hα
 
-/-- The actual AFE, including all infinite indices, equals the sum of its
-finite genuine dyadic boxes. This is an own exact reconstruction identity. -/
 theorem rectangular_actual_AFE_dyadic (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re) :
     bblrAFESum G α t = ∑' k : Fin 4 → ℕ, ∑ n ∈ rectangularAFEDyadicBox k,
@@ -128,8 +115,6 @@ private theorem rectangular_filtered_summable (f : (Fin 4 → ℕ) → ℂ)
   · simp [hn]
   · simp [hn]
 
-/-- The actual infinite AFE is partitioned into its literal diagonal and both
-signed off-diagonals. Summability follows from the genuine auxiliary class. -/
 theorem rectangular_actual_AFE_diagonal_offDiagonal (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (a b : ℕ) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re) :
     bblrAFESum G α t = rectangularAFEDiagonal G α a b t+
@@ -149,7 +134,6 @@ theorem rectangular_actual_AFE_diagonal_offDiagonal (G : ℂ → ℂ) (α : Mome
   · simp [diagonalQuadRelation, rectangularPositiveQuadGap, rectangularNegativeQuadGap,
       h, h.ne', not_lt_of_gt h]
 
-/-- Each signed off-diagonal is itself the sum of finite actual dyadic boxes. -/
 theorem rectangular_actual_AFE_signed_dyadic (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (a b : ℕ) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re)
     (positive : Bool) :
@@ -164,8 +148,6 @@ theorem rectangular_actual_AFE_signed_dyadic (G : ℂ → ℂ) (α : MomentShift
   · exact rectangular_AFE_dyadic_grouping _
       (rectangular_filtered_summable _ hs (rectangularPositiveQuadGap a b))
 
-/-- The genuine dual AFE also has the actual dyadic expansion; the strip
-condition on the original tuple excludes all dual Gamma poles as well. -/
 theorem rectangular_actual_dual_AFE_dyadic (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (t : ℝ) (hα : ∀ j, |(α j).re| < 1/2) :
     bblrAFESum G (bblrSixShifts α 1) t =

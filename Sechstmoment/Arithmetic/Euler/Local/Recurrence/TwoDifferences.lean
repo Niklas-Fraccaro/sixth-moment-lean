@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.ElementarySymmetric
 
-/-! Expansion of the second order Euler operator. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.NumeratorNorm
 
-/-! A product norm majorant for the four Euler denominator factors. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

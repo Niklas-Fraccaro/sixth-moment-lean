@@ -8,14 +8,6 @@ import Sechstmoment.Zeta.AFE.Four.Factorization
 import Sechstmoment.Zeta.AFE.Four.Integrability
 import Sechstmoment.Zeta.AFE.Four.Kernel
 
-/-!
-# Exact fourfold Dirichlet expansion and Mellin interchange
-
-The analytic premise of the final interchange is integrability of the explicit
-Gamma-weighted auxiliary function. No approximate functional equation or bound
-on its discrepancy is assumed. The product series and its absolute majorant
-are proved on the actual index `Fin 4 → ℕ` used by `bblrAFESum`.
--/
 
 namespace Sechstmoment.Source
 
@@ -23,7 +15,6 @@ open Complex Real MeasureTheory Filter
 open scoped BigOperators
 noncomputable section
 
-/-- Absolute summability of finite products on a function-type index. -/
 theorem fixedAFE_finitePi_norm_summable (m : ℕ) (f : Fin m → ℕ → ℂ)
     (hf : ∀ j, Summable (fun k => ‖f j k‖)) :
     Summable (fun n : Fin m → ℕ => ‖∏ j, f j (n j)‖) := by
@@ -36,7 +27,6 @@ theorem fixedAFE_finitePi_norm_summable (m : ℕ) (f : Fin m → ℕ → ℂ)
     apply e.summable_iff.mp
     simpa [Function.comp_def, e, Fin.insertNthEquiv, Fin.prod_univ_succ] using hp
 
-/-- An exact product of absolutely convergent series, with all indices retained. -/
 theorem fixedAFE_finitePi_tsum_prod (m : ℕ) (f : Fin m → ℕ → ℂ)
     (hf : ∀ j, Summable (fun k => ‖f j k‖)) :
     (∑' n : Fin m → ℕ, ∏ j, f j (n j)) = ∏ j, ∑' k, f j k := by
@@ -115,7 +105,6 @@ theorem fixedAFEFourDirichletKernel_continuous (s : Fin 4 → ℂ)
     (Continuous.const_cpow (by fun_prop) (Or.inl hn))
     (fun _ => Complex.cpow_ne_zero_iff.mpr (Or.inl hn))
 
-/-- Literal Fubini for four unrestricted positive Dirichlet indices. -/
 theorem fixedAFEFourDirichlet_integral_interchange {s : Fin 4 → ℂ}
     (hs : ∀ j, 1 < (s j).re) (F : ℝ → ℂ) (hF : Integrable F) :
     (∑' n : Fin 4 → ℕ, ∫ v : ℝ, F v*fixedAFEFourDirichletKernel s n v) =
@@ -143,13 +132,10 @@ theorem fixedAFEFourDirichlet_integral_interchange {s : Fin 4 → ℂ}
       F v*∏ j, riemannZeta (s j+(v : ℂ)*I)
     rw [tsum_mul_left, fixedAFEFourDirichletKernel_tsum hs]
 
-/-- The explicit Gamma-weighted auxiliary function on the original AFE line. -/
 def fixedAFEWeightOnLine (G : ℂ → ℂ) (α : MomentShifts) (t v : ℝ) : ℂ :=
   let z : ℂ := 1+(v : ℂ)*I
   G z/z*bblrGammaQuotient t α z*(Real.pi : ℂ)^(-2*z)
 
-/-- Rapid strip decay implies actual integrability on the original line.
-Only the decay estimate of order two is needed. -/
 theorem fixedAFE_entireWeight_line_norm_integrable (G : ℂ → ℂ)
     (hG : BBLREntireWeight G (fun _ => 0)) :
     Integrable (fun v : ℝ => ‖G (1+(v : ℂ)*I)‖) := by
@@ -168,8 +154,6 @@ theorem fixedAFE_entireWeight_line_norm_integrable (G : ℂ → ℂ)
     rw [← div_eq_mul_inv]
     exact (le_div_iff₀ (by positivity : (0 : ℝ) < 1+v^2)).mpr hm
 
-/-- The explicit right-line Gamma weight is integrable for every admissible
-entire auxiliary function and every shift in the convergence half-plane. -/
 theorem fixedAFEWeightOnLine_integrable (G : ℂ → ℂ)
     (hG : BBLREntireWeight G (fun _ => 0))
     (α : MomentShifts) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re) :
@@ -182,8 +166,6 @@ theorem fixedAFEWeightOnLine_integrable (G : ℂ → ℂ)
   rw [he]
   exact hI
 
-/-- Absolute convergence of the actual AFE series, with the auxiliary-line
-integrability discharged from the source's entire-weight definition. -/
 theorem fixedAFE_AFESummand_summable_of_entireWeight
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0))
     (α : MomentShifts) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re) :
@@ -191,7 +173,6 @@ theorem fixedAFE_AFESummand_summable_of_entireWeight
   bblrAFESummand_summable G hG.1.continuous
     (fixedAFE_entireWeight_line_norm_integrable G hG) α t hα
 
-/-- Exact conversion of each original AFE summand to its Dirichlet integral. -/
 theorem fixedAFE_AFESummand_eq_integral (G : ℂ → ℂ) (α : MomentShifts)
     (t : ℝ) (n : Fin 4 → ℕ) :
     bblrAFESummand G α t n = (1/(2*Real.pi) : ℂ)*
@@ -217,9 +198,6 @@ theorem fixedAFE_AFESummand_eq_integral (G : ℂ → ℂ) (α : MomentShifts)
   simp only [bblrVerticalIntegrand, Complex.ofReal_one]
   ring
 
-/-- The original fourfold AFE sum is exactly the right Mellin line integral.
-The sole analytic input is integrability of the explicit Gamma-weighted
-auxiliary function; it contains neither the AFE identity nor its error bound. -/
 theorem fixedAFE_AFESum_eq_right_integral (G : ℂ → ℂ) (α : MomentShifts)
     (t : ℝ) (hα : ∀ j, -1/2 < (α j).re)
     (hF : Integrable (fixedAFEWeightOnLine G α t)) :
@@ -241,8 +219,6 @@ theorem fixedAFE_AFESum_eq_right_integral (G : ℂ → ℂ) (α : MomentShifts)
   exact Eventually.of_forall fun v => by
     simp only [add_assoc, Complex.ofReal_one]
 
-/-- The right Mellin line equals the genuine original AFE series for every
-admissible weight. All convergence premises have been proved explicitly. -/
 theorem fixedAFE_AFESum_eq_right_integral_of_entireWeight
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0))
     (α : MomentShifts) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re) :
@@ -252,8 +228,6 @@ theorem fixedAFE_AFESum_eq_right_integral_of_entireWeight
   fixedAFE_AFESum_eq_right_integral G α t hα
     (fixedAFEWeightOnLine_integrable G hG α t hα)
 
-/-- Identification of the original AFE series with the actual completed
-Mellin kernel on the right line. -/
 theorem fixedAFE_AFESum_eq_completed_right_integral
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0))
     (α : MomentShifts) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re) :

@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Unbalanced.Expansion.DiagonalActual
 import Sechstmoment.Denominator.Unbalanced.FiniteMainTerm
 
-/-! The actual one-sided profile/pair expansion has exactly the original
-D01 diagonal, with an explicit positive-index bijection. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -151,8 +149,6 @@ def d04OneSidedModelDiagonalSum (T : ℝ) (a : Fin 4 → ℝ) (ρ : Fin 4 → �
   ∑ h∈d04ProfileBox T a,∑' n : ℕ × ℕ,
     if d04OneSidedModelDiagonal h n then d04OneSidedModelCoefficient T ρ σ h n else 0
 
-/-- The finite profile cut is merely the exact support of the original
-profiles; after selecting the arithmetic diagonal it is the full D01 sum. -/
 theorem d04OneSidedModel_diagonal_sum_identity {T : ℝ} (hT : 1<T)
     (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ) (σ : Fin 2 → ℂ)
     (hcap : ∀ j t,a j<t → ρ j t=0)
@@ -208,8 +204,6 @@ theorem d04OneSidedModel_diagonal_measure_identity {T R : ℝ}
   rw [d04OneSidedModel_diagonal_sum_identity_actual hT hR hRL a ρ σ hcap hσ]
   exact d04OneSidedLiteralDiagonal_measure_identity hT ρ σ
 
-/-- Closed diagonal convergence for the actual finite profile expansion,
-with absolute summability proved from its literal coefficients. -/
 theorem d04OneSidedModel_diagonal_limit
     (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ) (σ : Fin 2 → ℂ)
     (hρc : ∀ i,Continuous (ρ i))

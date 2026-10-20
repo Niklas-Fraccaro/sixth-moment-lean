@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.TwoDifferences
 
-/-! Expansion of the third order Euler operator. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

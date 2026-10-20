@@ -2,12 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Gaussian.PoissonSummation
 import Mathlib.Tactic
 import Sechstmoment.Analysis.Gaussian.Integrability
 
-/-!
-# Vanishing Gaussian horizontal-contour majorants
-
-Arbitrary finite polynomial growth and a linear exponential rate are absorbed
-by the Gaussian, uniformly along either end of a vertical contour.
--/
 
 namespace Sechstmoment
 

@@ -4,8 +4,6 @@ import Mathlib.MeasureTheory.Constructions.Pi
 import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 import Sechstmoment.Denominator.Unbalanced.Geometry
 
-/-! A determinant-one map carries original nine-edge Lebesgue measure to
-four profile coordinates and five independent slice coordinates. -/
 namespace Sechstmoment
 open MeasureTheory Set
 open scoped BigOperators

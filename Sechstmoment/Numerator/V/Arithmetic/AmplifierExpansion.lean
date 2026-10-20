@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.AmplifiedAdditiveReduction
 import Sechstmoment.Numerator.V.Contour.ShiftedChiFactor
 
-/-! Exact finite expansion of the original pair of profile Dirichlet sums.
-No moment or integrability hypothesis is supplied by the caller. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

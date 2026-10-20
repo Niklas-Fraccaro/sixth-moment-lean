@@ -3,9 +3,6 @@ import Mathlib.Analysis.Calculus.ParametricIntegral
 import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 import Sechstmoment.Numerator.U.ZeroModes.Contour.RatioPartition
 
-/-! The constructive ratio partition is genuinely smooth on the positive
-real axis. Differentiation under its actual vertical integral is justified
-at every order by the proved rapid-strip bounds. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
@@ -145,8 +142,6 @@ theorem a03ZeroModeRatioPartition_eq_logDerivative (G : ℂ → ℂ)
   rw [show (Real.log x:ℂ)*-(1+(v:ℂ)*I)=-(1+(v:ℂ)*I)*(Real.log x:ℂ) by ring]
   ring
 
-/-- C∞ smoothness of the actual inverse Mellin ratio function, with no
-smoothness contract among the hypotheses. -/
 theorem a03ZeroModeRatioPartition_contDiffOn (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) :
     ContDiffOn ℝ ∞ (a03ZeroModeRatioPartition G) (Ioi 0) := by

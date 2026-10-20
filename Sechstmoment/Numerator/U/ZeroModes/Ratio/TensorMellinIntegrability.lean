@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.ActualTensorMellinIntegrability
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourceMellin
 
-/-! Actual Mellin convergence of ratio weighted native sums and unsorted
-GCD zeros, derived from the genuine Schwartz family. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.SmallContour.LogTail
 
-/-! Genuine positive contour movement and Gaussian truncation for the
-literal gamma-free VStar weight. No source divisor input is used. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

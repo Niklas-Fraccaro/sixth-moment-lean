@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.LeadingFubini
 
-/-! Absolute physical term integrability for the actual Gamma tensors,
-derived through their genuine compact time profiles. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

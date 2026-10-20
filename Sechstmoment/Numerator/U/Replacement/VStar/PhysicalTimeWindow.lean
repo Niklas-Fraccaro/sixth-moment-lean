@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.PhysicalTimeFubini
 
-/-! The literal finite spectral window and its actual complementary tail
-are interchanged with time through a proved absolute product majorant. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

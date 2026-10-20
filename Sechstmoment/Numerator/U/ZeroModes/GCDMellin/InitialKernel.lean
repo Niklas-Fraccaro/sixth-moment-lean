@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.Front
 
-/-! The literal initial inverse Mellin kernel before the actual GCD Dirichlet
-series is summed. All positive integer variables remain in the functions. -/
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Filter
 open scoped BigOperators Topology

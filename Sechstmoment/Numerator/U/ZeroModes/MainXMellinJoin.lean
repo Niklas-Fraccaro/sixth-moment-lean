@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.U.ZeroModes.MainTimeFubini
 import Sechstmoment.Numerator.U.ZeroModes.MellinAffineContour
 import Sechstmoment.Numerator.U.ZeroModes.StaticEtaNormalization
 
-/-! The literal double-residue main part of the GCD front is evaluated by
-proved positive-x/time Fubini, preserving both the time phase and factor two. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff
@@ -125,8 +123,6 @@ def a03ZeroModeGCDEtaMainAtS (Φ : ℝ→ℂ) (T : ℝ) (σ α : MomentShifts)
   ∑g∈Finset.Icc 1 (min N₁ N₂),∑a∈Finset.Icc 1 (N₁/g),∑b∈Finset.Icc 1 (N₂/g),
     if a.Coprime b then a03ZeroModeGCDEtaMainX Φ T σ α g a b A B s else 0
 
-/-- The source factor two from the two gap signs cancels exactly the
-Gamma/cosine normalization. This is about the actual integrated main part. -/
 theorem a03ZeroModeGCDEtaMainAtS_eq_AfterXMellin {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {T : ℝ} (hT : 0<T) (σ α : MomentShifts)
@@ -181,8 +177,6 @@ theorem a03ZeroModeGCDEtaMainAtS_eq_AfterXMellin {Φ : ℝ→ℂ}
         a03EtaMainArithmetic N₁ N₂ A B (α 0) (α 1) (α 2) (α 3) ((s-α 1-α 3)/2)) := by ring
     _=_ := by rw [hP]; ring
 
-/-- After actual x/time evaluation, the full s-contour has exactly the
-M-contour Jacobian and imaginary translation already proved separately. -/
 theorem a03ZeroModeGCDEtaMainAtS_vertical_eq_M {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {T : ℝ} (hT : 0<T) (σ α : MomentShifts)

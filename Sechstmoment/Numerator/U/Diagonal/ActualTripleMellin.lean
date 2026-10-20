@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualProfileMellin
 
-/-! The actual source VStar and the genuine three-variable Mellin Euler integral. -/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter

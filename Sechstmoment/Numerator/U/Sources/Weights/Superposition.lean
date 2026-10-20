@@ -2,10 +2,6 @@ import Mathlib.Analysis.Normed.Group.InfiniteSum
 import Mathlib.MeasureTheory.Integral.Bochner.Basic
 import Sechstmoment.Arithmetic.QuadraticDivisor.ComplexWeights
 
-/-! Uniform source control is stable under absolutely integrable or summable
-superposition. The summands retain the literal quadratic zero mode. This is
-an input consequence, not an assertion that an actual kernel has already
-been separated into admissible factors. -/
 
 namespace Sechstmoment
 open Source MeasureTheory Set
@@ -37,8 +33,6 @@ theorem phase_source_majorant_nonneg (ε : ℝ) (q : QuadraticScales)
     QuadraticScales.M, QuadraticScales.N]
   positivity
 
-/-- One fixed source constant controls every integrable superposition in
-the same all-orders class, independently of the frequency parameter. -/
 theorem phase_BBLRv1_integral_superposition
     (hinput : SeparatedQuadraticInput) {ε δ K : ℝ}
     (hε : 0 < ε) (hδ : 0 < δ) (hK : 1 ≤ K)
@@ -69,8 +63,6 @@ theorem phase_BBLRv1_integral_superposition
         simpa only [mul_comm] using mul_le_mul_of_nonneg_left (hb ν) (norm_nonneg _))
     _ = _ := integral_const_mul _ _
 
-/-- Absolute convergence and its quantitative bound follow from the cited
-source itself; convergence of the discrepancy family is not a new input. -/
 theorem phase_BBLRv1_summable_superposition
     (hinput : SeparatedQuadraticInput) {ε δ K : ℝ}
     (hε : 0 < ε) (hδ : 0 < δ) (hK : 1 ≤ K)
@@ -106,8 +98,6 @@ theorem phase_BBLRv1_summable_superposition
       hs.norm.tsum_le_tsum hb (hc.mul_left _)
     _ = _ := tsum_mul_left
 
-/-- The frequency parameter may also change amplifier coefficients. This
-is essential when the sixth Fourier character is placed into beta. -/
 theorem phase_BBLRv1_integral_varying_coefficients
     (hinput : SeparatedQuadraticInput) {ε δ K : ℝ}
     (hε : 0 < ε) (hδ : 0 < δ) (hK : 1 ≤ K)
@@ -135,8 +125,6 @@ theorem phase_BBLRv1_integral_varying_coefficients
           (hsource q (α ν) (β ν) (W ν) (hadm ν) (hW ν) (hd ν) positive) (norm_nonneg (c ν)))
     _ = _ := integral_const_mul _ _
 
-/-- Applying the literal real source to every component suffices even when
-both coefficient sequences vary with the separation frequency. -/
 theorem phase_BBLRv1_integral_admissible_components
     (hinput : SeparatedQuadraticInput) {ε δ K : ℝ}
     (hε : 0 < ε) (hδ : 0 < δ) (hK : 1 ≤ K)

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Asymptotic.LogProfileBound
 import Sechstmoment.Zeta.Bounds.ZetaLogBound
 
-/-! Uniform geometry and bounds on the actual logarithmically displaced
-starting line. Constants are independent of the four small shifts. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

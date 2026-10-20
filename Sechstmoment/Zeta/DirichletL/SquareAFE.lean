@@ -1,9 +1,5 @@
 import Sechstmoment.Zeta.DirichletL.SquareContour
 
-/-! The Gaussian direct/dual identity for the actual, uncompleted L-function.
-The two integrals are defined from the proved completed contour decomposition;
-none of their analytic properties is assumed as an input.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set
@@ -48,8 +44,6 @@ def dirichletSquareDualFactor {N : ℕ} [NeZero N]
     (χ : DirichletCharacter ℂ N) (s : ℂ) : ℂ :=
   χ.rootNumber * conductorGammaFactor χ⁻¹ (1-s) / conductorGammaFactor χ s
 
-/-- Exact smoothed square functional equation, with its direct and dual
-integrals, for an actual primitive nontrivial Dirichlet L-function. -/
 theorem dirichletL_square_smooth_decomposition {N : ℕ} [NeZero N]
     (χ : DirichletCharacter ℂ N) (hχ : χ ≠ 1) (hprim : χ.IsPrimitive)
     {s : ℂ} (hs0 : 0 < s.re) (hs1 : s.re < 1) :

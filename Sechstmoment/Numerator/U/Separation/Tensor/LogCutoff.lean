@@ -2,9 +2,6 @@ import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
 import Mathlib.Analysis.Complex.ExponentialBounds
 import Sechstmoment.Numerator.U.Separation.Tensor.SixFourier
 
-/-! A fixed compact smooth cutoff in the six logarithmic normalized variables.
-It is identically one on the actual dyadic box and is independent of T,
-frequency, shifts, block scales and the sign of the gap. -/
 namespace Sechstmoment
 open Complex Real Set MeasureTheory Metric
 open scoped BigOperators

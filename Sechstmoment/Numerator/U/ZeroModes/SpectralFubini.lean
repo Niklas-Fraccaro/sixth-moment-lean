@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.SourcePhysicalPoint
 import Sechstmoment.Numerator.U.ZeroModes.Replacement.Measurability
 
-/-! Absolute three-variable convergence for the source-scaled native zero.
-The majorant uses the actual smooth physical band and the Gaussian on the
-small positive Mellin line. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

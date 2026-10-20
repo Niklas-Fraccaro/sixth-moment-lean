@@ -1,9 +1,6 @@
 import Mathlib.MeasureTheory.Measure.Portmanteau
 import Mathlib.Topology.ContinuousMap.Bounded.Normed
 
-/-! The measure-theoretic extension needed by D01: weak convergence permits
-bounded measurable complex tests whose discontinuities have limit measure zero.
-The continuity assumption is only almost everywhere for the limit measure. -/
 
 open Filter MeasureTheory Set
 open scoped Topology BoundedContinuousFunction
@@ -23,8 +20,6 @@ theorem closure_preimage_closed_ae_eq
     exact hs.closure_subset (closure_mono (image_preimage_subset f s) hm)
   · exact fun h => subset_closure h
 
-/-- The continuous mapping theorem with continuity required only almost
-everywhere under the limiting probability measure. -/
 theorem probability_tendsto_map_of_ae_continuous
     {X Y ι : Type*} [TopologicalSpace X] [MeasurableSpace X]
     [OpensMeasurableSpace X] [HasOuterApproxClosed X]
@@ -44,8 +39,6 @@ theorem probability_tendsto_map_of_ae_continuous
     measure_mono (subset_closure : f ⁻¹' s ⊆ closure (f ⁻¹' s)))).trans
       (ProbabilityMeasure.limsup_measure_closed_le_of_tendsto hμ isClosed_closure)
 
-/-- A bounded measurable complex test is admissible when it is continuous
-almost everywhere for the limiting probability measure. -/
 theorem probability_tendsto_integral_of_ae_continuous
     {X ι : Type*} [TopologicalSpace X] [MeasurableSpace X]
     [OpensMeasurableSpace X] [HasOuterApproxClosed X]
@@ -79,8 +72,6 @@ theorem finiteMeasure_integral_eq_mass_smul_normalize
   simp only [FiniteMeasure.toMeasure_smul, integral_smul_nnreal_measure]
   rfl
 
-/-- Finite-measure form of the almost-continuous complex test theorem.
-The nonzero limiting measure is the case arising from exponential tilting. -/
 theorem finiteMeasure_tendsto_integral_of_ae_continuous
     {X ι : Type*} [TopologicalSpace X] [MeasurableSpace X] [Nonempty X]
     [OpensMeasurableSpace X] [HasOuterApproxClosed X]

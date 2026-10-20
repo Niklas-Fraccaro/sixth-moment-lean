@@ -2,10 +2,6 @@ import Mathlib.MeasureTheory.Function.LpSpace.Indicator
 import Sechstmoment.Analysis.Integration.CauchySchwarz
 import Sechstmoment.Numerator.U.CertificateMoments
 
-/-! F01: weighted Cauchy--Schwarz for the literal original 250-row test.
-All continuity and square-integrability requirements are proved from the
-actual zeta derivatives, finite amplifiers and compact time weight. No
-numerator or denominator asymptotic is supplied as a hypothesis. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Polynomial
@@ -75,7 +71,6 @@ theorem certificateActualZetaTest_continuous (n : ℕ) (hn : 0<n)
   have hF := certificateActualRawZetaTest_continuous n hn hT
   exact (hF.add ((criticalChi_continuous.pow 3).mul hF.star)).div_const 2
 
-/-- Passing through `L²` uses its actual almost-everywhere representatives. -/
 theorem integral_cauchy_schwarz_of_memLp (F G : ℝ → ℂ)
     (hF : MemLp F 2) (hG : MemLp G 2) :
     ‖∫ t : ℝ, star (G t)*F t‖^2 ≤
@@ -144,7 +139,6 @@ theorem weighted_norm_sq_integrable {T : ℝ} (hT : 0<T)
   have hi := (memLp_two_iff_integrable_sq_norm hm.aestronglyMeasurable).mp hm
   simpa only [dyadicWeightedL2Amplitude_norm_sq T Φ F hΦpos] using hi
 
-/-- Weighted Cauchy--Schwarz with all analytic side conditions discharged. -/
 theorem dyadic_weighted_cauchy_schwarz {T : ℝ} (hT : 0<T)
     (Φ : ℝ → ℝ) (F G : ℝ → ℂ) (hΦ : SmoothDyadicWeight Φ)
     (hΦpos : ∀ x, 0≤Φ x) (hF : Continuous F) (hG : Continuous G) :
@@ -186,8 +180,6 @@ theorem actual250ProjectedGramMoment_integrable (n : ℕ) (hn : 0<n)
   weighted_norm_sq_integrable (zero_lt_one.trans hT) Φ _ hΦ hΦpos
     (certificateActualZetaTest_continuous n hn hT)
 
-/-- The literal full certificate now supplies an actual sixth-moment lower
-bound once its still-open mixed and Gram asymptotics are established. -/
 theorem actual250ProjectedMixedMoment_cauchy_schwarz (n : ℕ) (hn : 0<n)
     {T : ℝ} (hT : 1<T) (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ)
     (hΦpos : ∀ x, 0≤Φ x) :

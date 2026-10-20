@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualTripleMellin
 
-/-! Genuine source indexing: positive amplifier pairs and the four n+1 variables. -/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter

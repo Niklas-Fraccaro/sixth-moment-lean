@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Sources.PassiveNativeSourceGeometry
 
-/-! Genuine passive support supplies the source growth budget independently
-of the existence of a near discrete source term. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology
@@ -70,9 +68,6 @@ theorem a03_actual_passive_source_scale_budget {a b s u : ℝ}
   exact ⟨hAe,hBe,hMN,hmass,hH0,hHend⟩
 
 
-/-- Both polynomial source masses, both independent amplifier endpoints,
-and the literal gap reconstruction bound are derived from actual profile,
-AFE-grid and power-near support. -/
 theorem a03_actual_passive_source_embedded_growth {a b s u : ℝ}
     (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :
     ∀ᶠ T : ℝ in atTop, ∀ A B H : ℝ, 0<A → 0<B → 0<H →
@@ -159,9 +154,6 @@ theorem a03_actual_passive_source_embedded_growth {a b s u : ℝ}
   exact ⟨hqA,hqB,hqX,hqmass,hmassH,hqH0⟩
 
 
-/-- A single fixed fourth-power source-mass envelope is valid on every
-actual supported passive block.  It follows from the original rectangular
-range and the chosen small auxiliary exponents. -/
 theorem a03_actual_passive_source_embedded_growth_four {a b s u : ℝ}
     (_ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs : s≤1/8) (hu : u≤1/8)
     (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :

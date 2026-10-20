@@ -1,8 +1,6 @@
 import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 import Sechstmoment.Numerator.U.ZeroModes.GammaCos
 
-/-! The actual Mellin substitution s=β+δ+2w, including its imaginary
-translation and Jacobian. The integral is over the full vertical line. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter
 noncomputable section

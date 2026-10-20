@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Contour.RatioWeight
 import Sechstmoment.Numerator.U.ZeroModes.PolarChamberInvariance
 
-/-! The same actual ratio weight works in all four integer factor chambers
-and in the original/dual pair. The primary Gaussian weight is already
-invariant under every literal six-term tuple. -/
 namespace Sechstmoment.Source
 open Complex
 open scoped BigOperators

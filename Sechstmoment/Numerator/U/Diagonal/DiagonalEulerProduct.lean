@@ -2,7 +2,6 @@ import Mathlib.NumberTheory.EulerProduct.DirichletLSeries
 import Sechstmoment.Arithmetic.Euler.Shifted.Convergence
 import Sechstmoment.Numerator.U.Diagonal.DiagonalEulerSummability
 
-/-! The genuine global shifted diagonal equals its nine zeta factors and arithmetic remainder. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat

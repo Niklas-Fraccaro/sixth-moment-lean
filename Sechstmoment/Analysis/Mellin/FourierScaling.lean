@@ -1,6 +1,5 @@
 import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
 
-/-! Exact positive real Fourier scaling, retaining the Jacobian. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory

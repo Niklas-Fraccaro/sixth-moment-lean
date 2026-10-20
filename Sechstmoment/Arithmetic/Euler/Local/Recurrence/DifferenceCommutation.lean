@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.DifferenceOperator
 
-/-! The Euler difference operators commute. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

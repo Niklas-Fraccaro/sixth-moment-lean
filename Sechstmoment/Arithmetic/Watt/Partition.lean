@@ -1,7 +1,5 @@
 import Sechstmoment.Arithmetic.Watt.Adapters
 
-/-! A smooth finite partition with exact supports `[A/2,A]`.
-The ratio 3/4 supplies overlap while retaining Watt's literal dyadic supports. -/
 
 namespace DivisorProof
 namespace Watt41

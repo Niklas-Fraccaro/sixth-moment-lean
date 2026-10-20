@@ -1,10 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.GCDVStarCoordinates
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.ZeroReplacementMoment
 
-/-! Exact full-height reconstruction of the actual finite seven-dyadic
-ratio linear zero moment by the literal retained common-X GCD V* sum.
-All signs, good-block selectors, singleton scales and amplifier weights
-are the actual ones used by the source estimate. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -126,9 +122,6 @@ theorem a03ActualPassiveRatioSourceLinearZeroFinite_integrable_full (select : ((
   intro i _
   exact a03ActualPassiveRatioSourceLinearZeroBlock_integrable_full select hΦ hSupp hT hL hc hκ σ α hroot hα dual positive s εsource f g i
 
-/-- Actual full-height finite seven-grid reconstruction. The restored
-source factor T and the four dyadic Mellin powers are consumed exactly by
-the native positive-line V* reconstruction before summation. -/
 theorem a03_actual_passive_ratio_source_linear_full_moment_eq_retained_GCD (select : ((Fin 3→ℕ)×(Fin 4→ℕ))→Prop)
     {Φ : ℝ→ℂ} (hΦ : Continuous Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {T c κ : ℝ} (hT : 1<T) (hL : 1≤Real.log T) (hc : 0<c) (hκ : 0<κ)

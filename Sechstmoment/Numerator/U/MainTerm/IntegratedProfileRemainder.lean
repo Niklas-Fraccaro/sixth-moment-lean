@@ -8,13 +8,6 @@ import Sechstmoment.Numerator.Polar.Mellin.ContourUniform
 import Sechstmoment.Numerator.U.Diagonal.ActualProfileMellin
 import Sechstmoment.Numerator.U.Diagonal.ProfileHolomorphy
 
-/-!
-# The genuine left-contour remainder after both profile integrations
-
-Absolute integrability is a theorem about the actual three-variable kernel.
-The quantitative estimate retains the actual L¹ norms of the two transforms;
-no claimed moment error or limiting main term is used as a hypothesis.
--/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
@@ -72,7 +65,6 @@ private theorem entangled_profile_continuous {α : MomentShifts} {δ c : ℝ}
       (g := riemannZeta) (differentiableAt_riemannZeta hne).continuousAt hi
   exact hA.mul hZ
 
-/-- The actual product of the two profile transforms. -/
 def actualProfileTransformProduct (f g : ℝ → ℂ) (L δ : ℝ) (y : ℝ × ℝ) : ℂ :=
   actualProfileTransformLine f L δ y.1*actualProfileTransformLine g L δ y.2
 
@@ -84,7 +76,6 @@ theorem actualProfileTransformProduct_integrable {f g : ℝ → ℂ}
   (actualProfileTransformLine_integrable hf hfs hL δ).mul_prod
     (actualProfileTransformLine_integrable hg hgs hL δ)
 
-/-- Absolute convergence of the genuine three-variable left-contour kernel. -/
 theorem actualProfileLeftRemainderKernel_integrable
     (T : ℝ) (σ : MomentShifts) (m : Fin 6) {L δ x : ℝ}
     (hL : 0 < L) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hx : 0 < x)
@@ -125,9 +116,6 @@ theorem actualProfileLeftRemainderKernel_integrable
   simp only [div_eq_mul_inv]
   ring
 
-/-- Integrability of the left remainder after the two actual profile transforms
-are inserted. This supplies the separate convergence missing from a bare
-integral of `principal + remainder`. -/
 theorem actualProfileRemainder_integrable
     (T : ℝ) (σ : MomentShifts) (m : Fin 6) {L δ x : ℝ}
     (hL : 0 < L) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hx : 0 < x)
@@ -146,8 +134,6 @@ theorem actualProfileRemainder_integrable
   rw [integral_const_mul]
   ring
 
-/-- The literal principal kernel is separately integrable after the two
-actual profile transforms are inserted. -/
 theorem actualProfilePrincipal_integrable
     (T : ℝ) (σ : MomentShifts) (m : Fin 6) {L δ : ℝ}
     (hL : 0 < L) (hδ : 0 < δ) (hδ1 : δ < 1/4)
@@ -178,8 +164,6 @@ theorem actualProfilePrincipal_integrable
   rw [polarMellinRemovedKernel_zero T σ m _ _ hρ]
   ring
 
-/-- Splitting principal term and left remainder inside the genuine double
-profile integral is valid because both pieces are absolutely integrable. -/
 theorem actualProfilePrincipal_add_remainder_integral
     (T : ℝ) (σ : MomentShifts) (m : Fin 6) {L δ x : ℝ}
     (hL : 0 < L) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hx : 0 < x)
@@ -202,15 +186,12 @@ theorem actualProfilePrincipal_add_remainder_integral
     (actualProfilePrincipal_integrable T σ m hL hδ hδ1 hα hρ hf hfs hg hgs)
     (actualProfileRemainder_integrable T σ m hL hδ hδ1 hx hα hf hfs hg hgs)
 
-/-- The literal remainder including the exact two-profile Mellin prefactor. -/
 def actualIntegratedProfileRemainder (T : ℝ) (σ : MomentShifts) (m : Fin 6)
     (f g : ℝ → ℂ) (L δ x : ℝ) : ℂ :=
   ((L:ℂ)/(2*π))^2 * ∫ y : ℝ × ℝ, actualProfileTransformProduct f g L δ y*
     polarMellinRemainderIntegral T σ m ((δ:ℂ)+(y.1:ℂ)*I)
       ((δ:ℂ)+(y.2:ℂ)*I) x δ ∂(volume.prod volume)
 
-/-- A quantitative bound on the actual integrated remainder. The transform
-norm integrals are finite by `actualProfileTransformLine_integrable`. -/
 theorem actualIntegratedProfileRemainder_uniform_log_bound {δ κ : ℝ}
     (hδ : 0 < δ) (hδ1 : δ < 1/4) (hκ : 0 < κ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (T : ℝ), 1 < T → 1 ≤ Real.log T →
@@ -292,8 +273,6 @@ private theorem fourier_norm_le_L1 (f : ℝ → ℂ) (v : ℝ) :
   simp only [Complex.mul_re,Complex.ofReal_re,Complex.ofReal_im,Complex.I_re,Complex.I_im,
     mul_zero,zero_mul,sub_zero,Real.exp_zero,one_mul]
 
-/-- An explicit Sobolev L¹ estimate on the actual bilateral profile transform.
-The support endpoint enters through its true exponential factor. -/
 theorem profileLaplaceTransform_L1_endpoint_bound {f : ℝ → ℂ} {a : ℝ}
     (hf : HasCompactSupport f) (hfs : ContDiff ℝ ∞ f)
     (hsupp : tsupport f ⊆ Iic a) {c : ℝ} (hc : 0 ≤ c) :
@@ -391,8 +370,6 @@ theorem profileLaplaceTransform_L1_endpoint_bound {f : ℝ → ℂ} {a : ℝ}
   rw [integral_const_mul] at hi
   exact hi.trans_eq (by dsimp [B]; ring)
 
-/-- Scaling the actual transform gives a polynomial times its genuine support
-exponential. The constant depends only on the fixed smooth profile and δ. -/
 theorem actualProfileTransformLine_L1_eventually_endpoint_bound
     {f : ℝ → ℂ} {a δ : ℝ} (hf : HasCompactSupport f) (hfs : ContDiff ℝ ∞ f)
     (hsupp : tsupport f ⊆ Iic a) (hδ : 0 ≤ δ) :
@@ -441,9 +418,6 @@ theorem actualProfileTransformLine_L1_eventually_endpoint_bound
       gcongr
     _ = _ := by rw [hexp]; ring
 
-/-- The actual doubly integrated left remainder decays by a genuine power on
-bounded normalized shifts whenever the two support endpoints satisfy a+b<1.
-All transform growth and kernel bounds are proved from the actual profiles. -/
 theorem actualIntegratedProfileRemainder_uniform_eventually_power_decay
     {R δ κ a b : ℝ} (hR : 0 ≤ R) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hκ : 0 < κ)
     (hab : a+b < 1) {f g : ℝ → ℂ}
@@ -516,8 +490,6 @@ theorem actualIntegratedProfileRemainder_uniform_eventually_power_decay
       gcongr
     _ = C*T^(-ε/2) := by rw [mul_assoc,hlast]
 
-/-- The same genuine remainder estimate for the source's literal real-valued
-smooth interior profiles. -/
 theorem actualSmoothInteriorProfileRemainder_uniform_eventually_power_decay
     {R δ κ a b : ℝ} (hR : 0 ≤ R) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hκ : 0 < κ)
     (hab : a+b < 1) {f g : ℝ → ℝ}
@@ -574,8 +546,6 @@ private theorem actualSixPhase_norm_le {α : MomentShifts} {B : ℝ}
   · simpa [bblrSixPhaseExponents] using (h2 1 2).trans (by linarith : 2*B ≤ 4*B)
   · simpa [bblrSixPhaseExponents] using (h2 1 3).trans (by linarith : 2*B ≤ 4*B)
 
-/-- The actual six outer phases are bounded on the dyadic support, uniformly
-over bounded normalized shifts. -/
 theorem actualSixPhase_uniform_eventually_norm_bound {R : ℝ} (hR : 0 ≤ R) :
     ∀ᶠ T : ℝ in atTop, ∀ σ : MomentShifts, (∀ j : Fin 4, ‖σ j‖ ≤ R) →
       ∀ m : Fin 6, ∀ t ∈ Icc T (2*T),
@@ -635,9 +605,6 @@ private theorem actualPureLeft_continuous (T : ℝ) (σ : MomentShifts) (m : Fin
     1+2*(((-δ/2:ℝ)+(s:ℂ)*I)-purePolarRoot T σ (m,ij))) (g := riemannZeta)
     (differentiableAt_riemannZeta hne).continuousAt (by fun_prop)
 
-/-- Parameter measurability of the actual doubly integrated remainder. The
-positive clamp permits a globally defined measurable extension; on t≥1 it
-is exactly the literal source remainder. -/
 theorem actualIntegratedProfileRemainder_clipped_stronglyMeasurable
     (T : ℝ) (σ : MomentShifts) (m : Fin 6) {L δ : ℝ}
     (hδ : 0 < δ) (hδ1 : δ < 1/4)
@@ -695,16 +662,12 @@ theorem actualIntegratedProfileRemainder_clipped_stronglyMeasurable
   filter_upwards [] with y
   ring
 
-/-- The literal six outer remainder terms, including the source dyadic
-weight, all actual phase powers, and both actual profile integrations. -/
 def actualSixProfileRemainderMoment (T : ℝ) (σ : MomentShifts)
     (f g : ℝ → ℂ) (Φ : ℝ → ℝ) (δ : ℝ) : ℂ :=
   ∫ t : ℝ, ∑ m : Fin 6, (Φ (t/T):ℂ)*
     (t/(2*π):ℂ)^(bblrSixPhaseExponents (rawMomentShifts T σ) m)*
     actualIntegratedProfileRemainder T σ m f g (Real.log T) δ (t/(2*π))
 
-/-- The actual outer six-term remainder is absolutely integrable and has a
-uniform negative power relative to T, including its literal source phases. -/
 theorem actualSixProfileRemainderMoment_uniform_eventually_integrable_power_bound
     {R δ κ a b : ℝ} (hR : 0 ≤ R) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hκ : 0 < κ)
     (hab : a+b < 1) {f g : ℝ → ℂ}
@@ -810,7 +773,6 @@ theorem actualSixProfileRemainderMoment_uniform_eventually_integrable_power_boun
   change ‖∫ t : ℝ, E t‖ ≤ _
   exact hN.trans_eq (by change (A*T^(-(δ*(1-a-b))/2))*(T*J) = _; rw [← hpow]; ring)
 
-/-- Uniform o(T) of the literal six outer remainder terms. -/
 theorem actualSixProfileRemainderMoment_uniform_eventually_negligible
     {R δ κ a b : ℝ} (hR : 0 ≤ R) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hκ : 0 < κ)
     (hab : a+b < 1) {f g : ℝ → ℂ}
@@ -840,7 +802,6 @@ private theorem actualRealProfile_tsupport_eq (f : ℝ → ℝ) :
   change ((f x:ℂ) ≠ (0:ℂ)) ↔ f x ≠ (0:ℝ)
   exact not_congr Complex.ofReal_eq_zero
 
-/-- Source-profile version of the genuine outer six-term power estimate. -/
 theorem actualSmoothSixProfileRemainderMoment_uniform_eventually_integrable_power_bound
     {R δ κ a b : ℝ} (hR : 0 ≤ R) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hκ : 0 < κ)
     (hab : a+b < 1) {f g : ℝ → ℝ}
@@ -864,8 +825,6 @@ theorem actualSmoothSixProfileRemainderMoment_uniform_eventually_integrable_powe
     (Complex.ofRealCLM.contDiff.comp hg.1)
     (by change tsupport (fun x => (g x:ℂ)) ⊆ Iic b; rw [actualRealProfile_tsupport_eq]; exact fun x hx => (hg.2.2 hx).2.le) Φ hΦ
 
-/-- Source-profile version of uniform o(T), retaining every literal phase
-and actual profile integral. -/
 theorem actualSmoothSixProfileRemainderMoment_uniform_eventually_negligible
     {R δ κ a b : ℝ} (hR : 0 ≤ R) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hκ : 0 < κ)
     (hab : a+b < 1) {f g : ℝ → ℝ}

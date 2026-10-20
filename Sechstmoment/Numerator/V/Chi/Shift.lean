@@ -1,7 +1,5 @@
 import Sechstmoment.Zeta.Centering.Stirling
 
-/-! Quantitative error of the actual shifted chi quotient relative to its
-explicit two-power main phase. Uses the proved Euler-limit Gamma estimate. -/
 
 namespace Sechstmoment.Source
 open Complex Real

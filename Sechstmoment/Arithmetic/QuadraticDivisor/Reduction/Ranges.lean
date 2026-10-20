@@ -54,13 +54,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.Shifts
 import Std
 
-/-! ## Range Extension
-
-The range of `n₂` must be enlarged before the weight is shifted.  Keeping the
-old dyadic upper limit after removing the shift would discard boundary terms.
-The following finite extension preserves the original sum exactly and permits
-the same proved factorization estimate on the enlarged arithmetic domain.
--/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical
 open scoped BigOperators ContDiff
@@ -104,7 +97,6 @@ theorem dyadic_weight_argument_bounds {W : ℝ → ℝ} (hW : SmoothDyadicWeight
   exact ⟨by simpa only [one_mul] using (le_div_iff₀ hX).mp hs.1,
     (div_le_iff₀ hX).mp hs.2⟩
 
-/-- Every new term of the original weighted sum vanishes at the boundary. -/
 theorem quadraticSummand_zero_on_extension (q : QuadraticScales)
     (h : ∀ j, 1 ≤ q.size j) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ)
     (h₄ : SmoothDyadicWeight (W 4)) {n : Fin 7 → ℕ}
@@ -125,7 +117,6 @@ theorem quadraticSummand_zero_on_extension (q : QuadraticScales)
     · exact extendedQuadraticIndexSet_upper h hn hj
   simp [quadraticSummand, hz]
 
-/-- Exact range extension of the unchanged source sum, for either sign. -/
 theorem quadraticSum_eq_extended (positive : Bool) (q : QuadraticScales)
     (h : ∀ j, 1 ≤ q.size j) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ)
     (h₄ : SmoothDyadicWeight (W 4)) :
@@ -167,7 +158,6 @@ theorem quadraticSum_eq_extended_active (positive : Bool) (q : QuadraticScales)
       rfl
   · simp only [hrel, false_and, ite_false]
 
-/-- Range extension and weight replacement together: no boundary terms are lost. -/
 theorem actual_extended_weight_shift_error {ρ K b₀ b₁ : ℝ}
     (hρ : 0 < ρ) (hK : 1 ≤ K) (hb₀ : 0 ≤ b₀) (hb₁ : 0 ≤ b₁) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (positive : Bool) (q : QuadraticScales)
@@ -244,11 +234,6 @@ end DivisorProof
 
 
 
-/-! ## Canonical GCD
-
-The unique divisor decomposition in §§5 and 6 is derived from gcds.
-In particular neither coprimality condition is an additional input.
--/
 namespace DivisorProof
 open Finset Classical
 open scoped BigOperators
@@ -278,7 +263,6 @@ theorem split_coprime (a : ℕ) {d : ℕ} (hd : 0 < d) :
     (splitCoefficient a d).Coprime (splitRight a d) :=
   reduced_coefficients_coprime a d hd
 
-/-- The shortened inner variable is forced by divisibility of the product. -/
 theorem splitRight_dvd_inner {a m d : ℕ} (hd : 0 < d) (hdiv : d ∣ a*m) :
     splitRight a d ∣ m := by
   have he : splitLeft a d * splitRight a d ∣
@@ -304,12 +288,10 @@ theorem split_factors_le (a : ℕ) {d : ℕ} (hd : 0 < d) :
     splitLeft a d ≤ d ∧ splitRight a d ≤ d := by
   exact ⟨Nat.le_of_dvd hd (splitLeft_dvd a d), Nat.div_le_self _ _⟩
 
-/-- Any coprime divisor decomposition has the same first divisor. -/
 theorem splitLeft_unique {a d e f r : ℕ} (ha : a = e*r) (hd : d = e*f)
     (hcop : r.Coprime f) : splitLeft a d = e := by
   simp only [splitLeft, ha, hd, Nat.gcd_mul_left, hcop.gcd_eq_one, mul_one]
 
-/-- All four coordinates are unique, including the shortened summation variable. -/
 theorem split_decomposition_unique {a m d e f r v : ℕ} (hd : 0 < d)
     (ha : a = e*r) (hdf : d = e*f) (hm : m = f*v) (hcop : r.Coprime f) :
     splitLeft a d = e ∧ splitRight a d = f ∧
@@ -326,7 +308,6 @@ theorem split_decomposition_unique {a m d e f r v : ℕ} (hd : 0 < d)
   · unfold splitInner
     rw [hright, hm, Nat.mul_div_cancel_left _ hf]
 
-/-- The residual condition in §6.1 is precisely `(rv,sp)=1`. -/
 theorem split_residual_coprime {a m b n : ℕ} (hb : 0 < b*n) :
     let d := Nat.gcd (a*m) (b*n)
     (splitCoefficient a d*splitInner a m d).Coprime
@@ -348,12 +329,6 @@ end DivisorProof
 
 
 
-/-! ## Outer Poisson
-
-The one-tuple Poisson formula is summed over the literal outer index set.
-Its constant is uniform; only normalized weight and scale data are used.
-The main term is exactly `quadraticZeroMode`.
--/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical
 open scoped BigOperators ContDiff
@@ -387,7 +362,6 @@ def outerFourierIntegrand (positive : Bool) (q : QuadraticScales) (ρ : ℝ)
   outerPoissonProfile q W n x * finitePoissonKernel
     (poissonLength q ρ (outerGCD n : ℝ)) (outerPoissonPhase positive n) x
 
-/-- This sum uses the original inner equation, not an unspecified remainder. -/
 def shiftRemovedReducedSum (positive : Bool) (q : QuadraticScales)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) : ℂ :=
   ∑ n ∈ quadraticMainIndexSet q, poissonOuterWeight q α β W n *
@@ -431,7 +405,6 @@ theorem outerPoissonProfile_eq (q : QuadraticScales) (W : Fin 5 → ℝ → ℝ)
   simp only [outerPoissonProfile,poissonProfile,outerLeft,outerRight,Nat.cast_mul,
     div_mul_eq_mul_div]
 
-/-- Identification with the literal zero mode, with no main-term replacement. -/
 theorem zeroModeSummand_eq_outer (q : QuadraticScales) (α β : ℕ → ℂ)
     (W : Fin 5 → ℝ → ℝ) (n : Fin 5 → ℕ) :
     quadraticZeroModeSummand q α β W n =
@@ -494,7 +467,6 @@ theorem poissonRemainderConstant_nonneg {bounds : ℕ → ℝ} {K ρ : ℝ}
     (profileFourierBound_nonneg hb (by positivity) _)) (pow_nonneg hK _))
     inverseSquareMass_nonneg
 
-/-- Uniform summation of the actual one-tuple error over all outer variables. -/
 theorem summed_actual_poisson_error {K ρ : ℝ} (hK : 1 ≤ K) (hρ : 0 < ρ)
     {bounds : ℕ → ℝ} {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (h : ∀ j, 1 ≤ q.size j) (hw : NormalizedWeightData bounds q α β W)
@@ -547,7 +519,6 @@ end DivisorProof
 
 
 
-/-! ## Range Reindex -/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -556,7 +527,6 @@ set_option maxHeartbeats 2000000
 
 def spatialIndexSet (M : ℝ) : Finset ℕ := Icc 1 ⌊2*M⌋₊
 
-/-- Compact support turns the inner spatial series into a positive finite sum. -/
 theorem reducedEquationSum_eq_finite {W₂ W₄ : ℝ → ℝ}
     (h₂ : SmoothDyadicWeight W₂) (A B : ℕ) {M N : ℝ} (hM : 0 < M) (k : ℤ) :
     reducedEquationSum W₂ W₄ A B M N k =
@@ -603,7 +573,6 @@ theorem shiftRemovedReducedSum_eq_pairs (positive : Bool) (q : QuadraticScales)
   rw [reducedEquationSum_eq_finite h₂ _ _ hM, mul_sum]
   rfl
 
-/-- The signed equation determines its second spatial variable uniquely. -/
 theorem equation_partner_unique (A B : ℕ) (hB : 0 < B) (m k n n' : ℤ)
     (hn : (A : ℤ)*m-(B : ℤ)*n = k) (hn' : (A : ℤ)*m-(B : ℤ)*n' = k) : n = n' := by
   have hBz : (B : ℤ) ≠ 0 := by exact_mod_cast hB.ne'
@@ -725,7 +694,6 @@ end DivisorProof
 
 
 
-/-! ## Gcd Normal Form -/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical
 open scoped BigOperators ContDiff
@@ -786,7 +754,6 @@ theorem outerGCD_mem_of_weight_ne_zero {bounds : ℕ → ℝ} {q : QuadraticScal
       le_mul_of_one_le_right (Nat.cast_nonneg _) hk
     _ ≤ 2*q.H := hh
 
-/-- The literal finite integrand `Z_{ς,d}` of (23). -/
 def gcdBlockIntegrand (positive : Bool) (q : QuadraticScales) (ρ : ℝ)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) (d : ℕ) (x : ℝ) : ℂ :=
   ∑ n ∈ (quadraticMainIndexSet q).filter (fun n => outerGCD n = d),
@@ -800,7 +767,6 @@ theorem gcdBlockIntegrand_integrable {q : QuadraticScales}
   intro n hn
   exact (outerFourierIntegrand_integrable h hW (Finset.mem_filter.mp hn).1 positive ρ).const_mul _
 
-/-- The sum is grouped by the actual gcd, only over `1 ≤ d ≤ 2H`. -/
 theorem finitePoissonNormalSum_eq_gcd_integrals {bounds : ℕ → ℝ}
     {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (h : ∀ j, 1 ≤ q.size j) (hw : NormalizedWeightData bounds q α β W)
@@ -826,7 +792,6 @@ theorem finitePoissonNormalSum_eq_gcd_integrals {bounds : ℕ → ℝ}
   · have hd := outerGCD_mem_of_weight_ne_zero h hw hn hz
     simp [hd]
 
-/-- No nonzero frequency survives if the Fourier length is at most one half. -/
 theorem finitePoissonKernel_zero_of_short {L : ℝ} (hL : 0 < L) (hshort : L ≤ 1/2)
     (t x : ℝ) : finitePoissonKernel L t x = 0 := by
   apply Finset.sum_eq_zero
@@ -854,11 +819,6 @@ end DivisorProof
 
 
 
-/-! ## Lift Pairs
-
-All progression solutions that have nonzero weight are recovered inside the
-enlarged finite source range.  Positivity uses the actual small-shift condition.
--/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -915,7 +875,6 @@ theorem pair_left_product_bounds {bounds : ℕ → ℝ} {q : QuadraticScales}
         mul_le_mul hleft hmhi (Nat.cast_nonneg _) (by linarith [h 0])
       _ = _ := by dsimp [QuadraticScales.M]; ring
 
-/-- Pure arithmetic positivity and upper bounds for a signed partner. -/
 theorem positive_partner_bounds (positive : Bool) (A B m h : ℕ) (hB : 0 < B)
     {U H : ℝ} (hsmall : 2*H < U)
     (hlo : U ≤ (A : ℝ)*m) (hhi : (A : ℝ)*m ≤ 8*U)
@@ -1008,7 +967,6 @@ theorem pairLift_mem_extended {q : QuadraticScales} (h : ∀ j, 1 ≤ q.size j)
     apply (Nat.le_floor_iff (by positivity : 0 ≤ 2*q.H)).mpr
     simpa only [Nat.cast_mul] using hshift
 
-/-- Every nonzero progression term comes from an actual positive source tuple. -/
 theorem poissonPair_has_lift {bounds : ℕ → ℝ} {q : QuadraticScales}
     {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ} (h : ∀ j, 1 ≤ q.size j)
     (hw : NormalizedWeightData bounds q α β W) (hsmall : 2*q.H < q.A*q.M)
@@ -1043,7 +1001,6 @@ theorem poissonPair_has_lift {bounds : ℕ → ℝ} {q : QuadraticScales}
   rw [extendedToPair_summand positive q α β W hrel,hmap]
   exact hne
 
-/-- Complete finite reindexing after range extension, for both signs. -/
 theorem shiftRemovedExtendedSum_eq_reduced {bounds : ℕ → ℝ}
     {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (h : ∀ j, 1 ≤ q.size j) (hw : NormalizedWeightData bounds q α β W)
@@ -1071,12 +1028,6 @@ end DivisorProof
 
 
 
-/-! ## Normal Form
-
-Equation (22) for the actual normalized signed divisor discrepancy.
-All replacements, range extensions, reindexings and Fourier truncations have
-been proved.  No Weil or Watt input is used in this normal-form theorem.
--/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -1096,7 +1047,6 @@ theorem normalFormError_identity (positive : Bool) (q : QuadraticScales) (ρ : �
   unfold normalFormError
   ring
 
-/-- The quantitative, literal normal form (22), with a uniform constant. -/
 theorem normalized_finite_poisson_normal_form {K ρ : ℝ} (hK : 1 ≤ K) (hρ : 0 < ρ)
     (bounds : ℕ → ℝ) (hb : ∀ j, 0 ≤ bounds j) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (q : QuadraticScales) (α β : ℕ → ℂ)
@@ -1144,7 +1094,6 @@ theorem normalized_finite_poisson_normal_form {K ρ : ℝ} (hK : 1 ≤ K) (hρ :
       add_le_add hshift' (htail.trans htail')
     _ = _ := by ring
 
-/-- The one real threshold partitions the actual normal form exactly. -/
 theorem actual_normal_form_one_cutoff {q : QuadraticScales} (ρ : ℝ)
     (positive : Bool) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) :
     signedQuadraticDiscrepancy positive q α β W =

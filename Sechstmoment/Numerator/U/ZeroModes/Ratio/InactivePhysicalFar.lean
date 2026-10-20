@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.Ratio.BadSourceFiniteBudget
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.InactiveFarKernel
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.SourceMomentJoin
 
-/-! Selected inactive discrete source blocks consist entirely of genuine
-far tuples after their literal amplifier and dyadic supports are imposed. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

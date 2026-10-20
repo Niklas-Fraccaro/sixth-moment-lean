@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Balanced.ActualGaussianConnector
 import Sechstmoment.Denominator.Balanced.GaussianMomentTruncation
 
-/-! Exact finite arithmetic partition of the actual Gaussian height moment.
-The dual normalized-time power is retained in both Fourier integrals. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Filter Set
 open scoped BigOperators Topology ContDiff

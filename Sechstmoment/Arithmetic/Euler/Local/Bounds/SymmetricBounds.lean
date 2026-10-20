@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.DenominatorNorm
 
-/-! Norm control of the first elementary symmetric coefficient. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -16,7 +15,6 @@ theorem e1_norm_le (a b c d : ℂ) : ‖e1 a b c d‖≤‖a‖+‖b‖+‖c‖+
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Norm control of the six pairwise products. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -35,7 +33,6 @@ theorem e2_norm_le (a b c d : ℂ) :
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Norm control of the four triple products. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -52,7 +49,6 @@ theorem e3_norm_le (a b c d : ℂ) :
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Exact norm of the last elementary symmetric coefficient. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -63,7 +59,6 @@ theorem e4_norm_eq (a b c d : ℂ) : ‖e4 a b c d‖=‖a‖*‖b‖*‖c‖*�
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! The constant correction satisfies the sharp cubic majorant. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -77,7 +72,6 @@ theorem q0_norm_le (a b c d : ℂ) (r : ℝ) (hr : 0≤r)
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! The linear correction has an explicit two-term norm bound. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -90,7 +84,6 @@ theorem q1_norm_le (a b c d : ℂ) (h : ℕ) :
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! The quadratic correction has an explicit three-term norm bound. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -111,7 +104,6 @@ theorem q2_norm_le (a b c d : ℂ) (h : ℕ) :
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! The cubic correction is controlled by its single boundary coefficient. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

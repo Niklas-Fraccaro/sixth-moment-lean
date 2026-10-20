@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.MainTerm.RegularProfileGenerator
 import Sechstmoment.Numerator.U.TwistedMomentHolomorphy
 
-/-! Exact conjugate amplifier orientation of the regular BBLR generator. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set
 open scoped Topology ComplexConjugate
@@ -81,8 +80,6 @@ private theorem alternantConjugateSwapSources_injective (x : Fin 4 → ℂ)
   apply (starRingEnd ℂ).injective
   exact neg_injective h
 
-/-- The conjugate row and column symmetries persist through every source
-collision, by continuity of the proved regularization and density. -/
 theorem exponentialAlternantRegularized_conj_swap (x : Fin 4 → ℂ) (A B : ℝ) :
     conj (exponentialAlternantRegularized x (numeratorRho A B)) =
       exponentialAlternantRegularized (alternantConjugateSwapSources x) (numeratorRho B A) := by
@@ -128,8 +125,6 @@ theorem actualRegularProfileKernel_conj_swap (σ : Fin 4 → ℂ) (A B : ℝ) :
   simp_rw [exponentialAlternantRegularized_conj_swap,
     ← sourceKnots_twistedConjugateSwap, min_comm A B]
 
-/-- Exact orientation for unequal real amplifiers, with conjugation of
-all four source shifts and both profile integrations. -/
 theorem actualRegularProfileGenerator_conj_swap
     (a b : ℝ) (f g Φ : ℝ → ℝ) (hf : Continuous f) (hg : Continuous g)
     (σ : Fin 4 → ℂ) :

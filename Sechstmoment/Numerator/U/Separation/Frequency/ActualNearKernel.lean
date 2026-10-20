@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Separation.ActualSeparatedGap
 import Sechstmoment.Numerator.U.Separation.Frequency.GammaDualFar
 import Sechstmoment.Numerator.U.Separation.Frequency.GammaFar
 
-/-! The native AFE kernel is integrated exactly before any source-weight estimate.
-Both the main and dual terms retain the literal Gaussian and Gamma quotient. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set
 open scoped ContDiff BigOperators Topology

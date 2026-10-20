@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.Frequency.GammaDualProfile
 import Sechstmoment.Numerator.U.Separation.Frequency.SixComposition
 
-/-! The six-variable all-order composition bounds retain the actual dual
-multiplier and the negative time frequency. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators ContDiff Topology

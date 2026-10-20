@@ -1,9 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.AmplifiedSmoothGrid
 
-/-! Joint spatial and Mellin-frequency truncation of the actual AFE.
-The core is a literal finite sum of smooth blocks with bounded Mellin
-frequency. The integer-one edge blocks and exact Gamma quotient remain.
-No quadratic source admissibility or six-main-term estimate is assumed. -/
 
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Filter Set

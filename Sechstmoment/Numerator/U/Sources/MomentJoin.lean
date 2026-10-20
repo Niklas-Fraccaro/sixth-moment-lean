@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Sources.PhysicalAggregate
 
-/-! Separate literal physical Gamma moments and their summed sorted GCD
-zero modes. The physical source error is their exact Mellin difference. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

@@ -2,9 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Complex.Arg
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.ComplexLaplaceGamma
 
-/-! Polynomial vertical growth of the actual Gamma--cosine Mellin factor.
-The exponential saving is obtained from the genuine complex Laplace integral,
-with its parameter approaching the imaginary axis at speed (1+|v|)^-1. -/
 namespace Sechstmoment.Source
 open Complex Real Set Filter MeasureTheory
 open scoped Topology ComplexConjugate
@@ -107,8 +104,6 @@ theorem a03Complex_cos_norm_le_exp_abs_im (z : ℂ) : ‖Complex.cos z‖≤Real
       add_le_add (Real.exp_le_exp.mpr (neg_le_abs _)) (Real.exp_le_exp.mpr (le_abs_self _))
     _=_ := by ring
 
-/-- Fixed positive-real-part Gamma--cosine factors have genuine polynomial
-growth, uniformly over the complete imaginary axis. -/
 theorem a03GammaCos_vertical_polynomial_bound (c : ℝ) (hc : 0<c) :
     ∃ N : ℕ,∃ C : ℝ,0≤C ∧ ∀ v : ℝ,
       ‖Complex.Gamma ((c:ℂ)+(v:ℂ)*I)*

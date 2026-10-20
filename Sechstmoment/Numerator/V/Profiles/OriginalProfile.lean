@@ -2,8 +2,6 @@ import Sechstmoment.Arithmetic.QuadraticDivisor.Definitions
 import Sechstmoment.Numerator.V.Profiles.ConvolutionLimit
 import Sechstmoment.Numerator.V.Profiles.WeightedReindex
 
-/-! The literal finite original-coefficient profile sum and its exact remainder
-convolution. The coefficients on the left are defined independently of gamma. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex Set Polynomial NoDPGlobalConvolution NoDPGlobalRest

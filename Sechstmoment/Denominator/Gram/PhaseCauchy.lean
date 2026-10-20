@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Gram.PhaseDefinitions
 import Sechstmoment.Denominator.Unbalanced.ActualMomentRegularity
 
-/-! Exact Cauchy extraction of all polynomial shift derivatives of the
-literal extreme height moment, with actual compact Bochner hypotheses. -/
 namespace Sechstmoment
 open MeasureTheory Set Complex Polynomial Filter Metric
 open scoped BigOperators Topology ContDiff
@@ -15,8 +13,6 @@ private theorem d06_shifted_zeta_nonpole {T : ℝ} {s z : ℂ}
   d04_shifted_zeta_nonpole_of_norm_le hL hs
     ((mem_sphere_zero_iff_norm.mp hz).le.trans hL)
 
-/-- The actual zeta factors are jointly continuous on the supported t window
-and both unit circles because their arguments cannot meet the zeta pole. -/
 theorem d06ExtremeMinusShiftedIntegrand_continuousOn {T : ℝ}
     (hT : 1 < T) (hL : 1 ≤ Real.log T)
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
@@ -100,7 +96,6 @@ theorem d06ExtremeMinusShiftedMoment_eq_window_integral {T : ℝ} (hT : 0 < T)
     simp
 
 
-/-- The actual supported height integrand is integrable for the Cauchy shifts. -/
 theorem d06ExtremeMinusShiftedMoment_integrable_of_mem_circles {T : ℝ}
     (hT : 1 < T) (hL : 1 ≤ Real.log T) {z w : ℂ}
     (hz : z ∈ sphere (0 : ℂ) 1) (hw : w ∈ sphere (0 : ℂ) 1)
@@ -124,8 +119,6 @@ theorem d06ExtremeMinusShiftedMoment_integrable_of_mem_circles {T : ℝ}
     rw [d06_height_cutoff_zero (zero_lt_one.trans hT) Φ hΦs ht]
     simp
 
-/-- Continuity of the actual height moment in both Cauchy shifts follows from
-joint compact regularity; no convergence hypothesis is needed. -/
 theorem d06ExtremeMinusShiftedMoment_continuousOn_two_circles {T : ℝ}
     (hT : 1 < T) (hL : 1 ≤ Real.log T)
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
@@ -182,8 +175,6 @@ theorem d06ExtremeMinusShiftedMoment_eventually_continuousOn_two_circles
     Real.tendsto_log_atTop.eventually (eventually_ge_atTop (1 : ℝ))] with T hT hL
   exact d06ExtremeMinusShiftedMoment_continuousOn_two_circles hT hL ρ A hρsupport Φ hΦ.continuous hΦs
 
-/-- Literal Cauchy extraction of the actual height moment, with compact
-integrability proved rather than assumed. -/
 theorem d06ExtremeMinusPolynomialMoment_eq_two_circle {T : ℝ}
     (hT : 1 < T) (hL : 1 ≤ Real.log T) (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
@@ -242,7 +233,6 @@ theorem d06ExtremeMinusPolynomialMoment_eq_two_circle {T : ℝ}
   rw [hfactor t, ← d02_zetaCp_eq_circle hT hL ht',
     ← d02_lower_zetaPolynomial_eq_circle hT hL ht']
 
-/-- The preceding exact identity applies eventually to the actual T family. -/
 theorem d06ExtremeMinusPolynomialMoment_eventually_eq_two_circle (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
     (hρsupport : ∀ i, tsupport (ρ i) ⊆ Icc 0 (A i))
@@ -254,8 +244,6 @@ theorem d06ExtremeMinusPolynomialMoment_eventually_eq_two_circle (p q : ℝ[X])
     Real.tendsto_log_atTop.eventually (eventually_ge_atTop (1 : ℝ))] with T hT hL
   exact d06ExtremeMinusPolynomialMoment_eq_two_circle hT hL p q ρ A hρsupport Φ hΦ.continuous hΦs
 
-/-- Pointwise shifted height limits and a bounded shift box imply the actual
-polynomial height limit through the two proved Cauchy contour swaps. -/
 theorem d06ExtremeMinusPolynomialMoment_tendsto_of_pointwise_shifted
     (p q : ℝ[X]) (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
     (hρsupport : ∀ i, tsupport (ρ i) ⊆ Icc 0 (A i))

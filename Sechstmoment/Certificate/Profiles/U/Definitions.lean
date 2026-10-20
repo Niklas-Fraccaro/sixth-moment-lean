@@ -2,7 +2,6 @@ import Sechstmoment.Certificate.Kernels.Balanced.Lengths
 import Sechstmoment.Certificate.Profiles.GeneratorCoefficients
 import Sechstmoment.Certificate.Profiles.U.Normalized
 
-/-! A single concrete normalized U profile family for every original certificate row. -/
 
 namespace Sechstmoment
 open _root_.Sechstmoment.Finite

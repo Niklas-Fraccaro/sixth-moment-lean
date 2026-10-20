@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.StartingLine
 import Sechstmoment.Numerator.V.Chi.StirlingError
 
-/-! Square-root chi bounds on the logarithmic starting line, including
-the actual absolute Stirling error. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

@@ -4,14 +4,6 @@ import Sechstmoment.Analysis.Gaussian.Tails
 import Sechstmoment.Zeta.AFE.Four.GammaComparison
 import Sechstmoment.Zeta.Gamma.PositiveStrip
 
-/-!
-# D02: the actual two-Gamma quotient and its normalized error
-
-The shifted second-moment quotient uses one upper and one lower Gamma
-argument. The principal phases cancel exactly. Its quantitative error is
-proved from the Euler-product ratio estimate, with no AFE or moment source
-assumption.
--/
 namespace Sechstmoment.Source
 open Complex Filter MeasureTheory Set
 open scoped BigOperators Topology
@@ -77,8 +69,6 @@ private theorem secondGammaBase_scaled_ne_zero {t A : ℝ}
   rw [hz, zero_sub, norm_neg, secondGammaPhaseCenter_norm] at hd
   linarith
 
-/-- The actual two principal-log phases cancel. The remaining log error is
-uniform in every bounded complex shift box. -/
 theorem secondGammaPhaseLogError_norm_le {t A : ℝ}
     (hA : 0 ≤ A) (ht : 4*(A+1) ≤ t) (α : SecondMomentShifts)
     (hα : ∀ j, ‖α j‖ ≤ A) :
@@ -118,7 +108,6 @@ theorem secondGammaPhaseLogError_norm_le {t A : ℝ}
     _ ≤ ∑ _j : Fin 2, 2*((1/2+A)/t) := Finset.sum_le_sum (fun j _ => hb j)
     _ = _ := by simp; ring
 
-/-- Exact exponential form of the actual Gamma principal-power phase. -/
 theorem secondGammaMainPhase_eq_exp {t A : ℝ}
     (hA : 0 ≤ A) (ht : 4*(A+1) ≤ t) (α : SecondMomentShifts)
     (hα : ∀ j, ‖α j‖ ≤ A) (z : ℂ) :
@@ -137,8 +126,6 @@ theorem secondGammaMainPhase_eq_exp {t A : ℝ}
   simp [secondGammaPhaseCenter, Complex.log_I, Complex.log_neg_I]
   ring
 
-/-- Quantitative error of the actual two principal powers, including their
-upper/lower imaginary phase cancellation. -/
 theorem secondGammaMainPhase_error_le {t A : ℝ}
     (hA : 0 ≤ A) (ht : 4*(A+1) ≤ t) (α : SecondMomentShifts)
     (hα : ∀ j, ‖α j‖ ≤ A) (z : ℂ)
@@ -161,7 +148,6 @@ theorem secondGammaMainPhase_error_le {t A : ℝ}
     _ = _ := by ring
 
 
-/-- Each factor is normalized by its own actual principal power. -/
 def secondNormalizedGammaFactor (t : ℝ) (α : SecondMomentShifts) (z : ℂ)
     (j : Fin 2) : ℂ :=
   (Gamma (secondGammaBase t α j+z/2)/Gamma (secondGammaBase t α j))/
@@ -185,8 +171,6 @@ private theorem secondGammaBase_re_lower {t A : ℝ} (hA : 0 ≤ A)
   rw [he]
   linarith
 
-/-- Actual individual Gamma factors are uniformly close to their principal
-powers for arbitrary complex contour shifts satisfying the displayed bound. -/
 theorem secondNormalizedGammaFactor_error_le {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
     (z : ℂ) (hz : 48*(‖z‖+‖z‖^2) < t) (j : Fin 2) :
@@ -206,7 +190,6 @@ theorem secondNormalizedGammaFactor_error_le {t A : ℝ} (hA : 0 ≤ A)
   rw [div_le_div_iff₀ hipos htpos]
   nlinarith [sq_nonneg ‖z‖, norm_nonneg z]
 
-/-- Two-factor error, with explicit constant. -/
 theorem twofold_product_error_le (r : Fin 2 → ℂ) {E : ℝ}
     (hE : 0 ≤ E) (hE1 : E ≤ 1) (hr : ∀ j, ‖r j-1‖ ≤ E) :
     ‖(∏ j : Fin 2, r j)-1‖ ≤ 3*E := by
@@ -225,8 +208,6 @@ theorem twofold_product_error_le (r : Fin 2 → ℂ) {E : ℝ}
     _ = _ := by ring
 
 
-/-- Exact separation of the actual twofold quotient into its two normalized
-Gamma errors and the cancelling principal-power phase. -/
 theorem secondGammaQuotient_normalized_eq {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ A) (z : ℂ) :
     secondGammaQuotient t α z/(t/2 : ℂ)^z =
@@ -251,8 +232,6 @@ theorem secondGammaQuotient_normalized_eq {t A : ℝ} (hA : 0 ≤ A)
   intro j _
   congr 2; ring
 
-/-- A quantitative estimate for the actual twofold BBLR Gamma quotient,
-with all phase factors retained and cancelled by proved identities. -/
 theorem secondGammaQuotient_normalized_error_le {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
     (z : ℂ) (hz : 192*(‖z‖+‖z‖^2) < t)
@@ -288,7 +267,6 @@ theorem secondGammaQuotient_normalized_error_le {t A : ℝ} (hA : 0 ≤ A)
     _ = _ := by dsimp [E]; ring
 
 
-/-- The same actual Gamma estimate in unnormalized form. -/
 theorem secondGammaQuotient_error_le {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
     (z : ℂ) (hz : 192*(‖z‖+‖z‖^2) < t)
@@ -323,8 +301,6 @@ private theorem second_eventually_mul_rpow_lt_id (C : ℝ) (hC : 0 < C)
   have hh := mul_lt_mul_of_pos_left ht hC
   simpa [mul_assoc, hC.ne'] using hh
 
-/-- The actual contour-shift estimate is uniform on a growing disk of radius
-`t^ε`, for each fixed positive `ε < 1/2`. -/
 theorem secondGammaQuotient_uniform_growing_disk {A ε : ℝ}
     (hA : 0 ≤ A) (hε : 0 ≤ ε) (hεhalf : ε < 1/2) :
     ∀ᶠ t : ℝ in Filter.atTop, ∀ α : SecondMomentShifts, (∀ j, ‖α j‖ ≤ A) →
@@ -347,11 +323,9 @@ theorem secondGammaQuotient_uniform_growing_disk {A ε : ℝ}
   · linarith
   · exact (mul_le_mul_of_nonneg_left hzn (by linarith : 0 ≤ 2+4*A)).trans hphase.le
 
-/-- The actual Gamma-to-Gaussian replacement on the Mellin line. -/
 def secondGammaGaussianReplacement (t : ℝ) (α : SecondMomentShifts) (z : ℂ) : ℂ :=
   Complex.exp (z^2)/z*(secondGammaQuotient t α z-(t/2 : ℂ)^z)
 
-/-- Gaussian damping retains the explicit reciprocal-height saving. -/
 theorem secondGammaGaussianReplacement_norm_le {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
     (z : ℂ) (hz : 192*(‖z‖+‖z‖^2) < t)
@@ -364,7 +338,6 @@ theorem secondGammaGaussianReplacement_norm_le {t A : ℝ} (hA : 0 ≤ A)
   have hb := secondGammaQuotient_error_le hA ht α hα z hz hphase
   exact (mul_le_mul_of_nonneg_left hb (by positivity)).trans_eq (by ring)
 
-/-- Explicit polynomial-Gaussian control on each central vertical point. -/
 theorem secondGammaGaussianReplacement_vertical_norm_le {t A c : ℝ}
     (hA : 0 ≤ A) (ht : 8*(A+1) ≤ t) (hc : 0 < c) (hc1 : c ≤ 1)
     (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ A) (v : ℝ)
@@ -405,13 +378,11 @@ theorem secondGammaGaussianReplacement_vertical_norm_le {t A c : ℝ}
       · positivity
     _ = _ := by rw [show c^2-v^2 = c^2+(-v^2) by ring, Real.exp_add]; ring
 
-/-- The four normalized factors of the even two-factor pole killer. -/
 def secondPoleCorrectionBases (s r : ℂ) : Fin 4 → ℂ := ![s,1-s,r,1-r]
 
 def secondPoleCorrection (s r z : ℂ) : ℂ :=
   ∏ j : Fin 4, (1-z^2/(secondPoleCorrectionBases s r j)^2)
 
-/-- Algebraic factorization of the actual normalized pole-killer polynomial. -/
 theorem secondPoleCorrection_eq {s r : ℂ} (hs : s ≠ 0) (hs1 : s ≠ 1)
     (hr : r ≠ 0) (hr1 : r ≠ 1) (z : ℂ) :
     secondPoleCorrection s r z =
@@ -424,7 +395,6 @@ theorem secondPoleCorrection_eq {s r : ℂ} (hs : s ≠ 0) (hs1 : s ≠ 1)
   field_simp
   ring
 
-/-- The correction is O(z²/H²) once all four moving roots have size H. -/
 theorem secondPoleCorrection_error_le {H : ℝ} (hH : 0 < H) (s r z : ℂ)
     (hbase : ∀ j, H ≤ ‖secondPoleCorrectionBases s r j‖)
     (hz : ‖z‖^2 ≤ H^2) :
@@ -444,7 +414,6 @@ theorem secondPoleCorrection_error_le {H : ℝ} (hH : 0 < H) (s r z : ℂ)
     exact div_le_div_of_nonneg_left (sq_nonneg _) (sq_pos_of_pos hH) hd
   exact (fourfold_product_error_le _ hE hE1 hrj).trans_eq (by dsimp [E]; ring)
 
-/-- On a bounded shift box every pole-killer root has size at least t/2. -/
 theorem secondPoleCorrectionBases_norm_lower {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
     (j : Fin 4) :
@@ -478,7 +447,6 @@ theorem secondPoleCorrectionBases_norm_lower {t A : ℝ} (hA : 0 ≤ A)
       exact hs1
   exact (hb j).trans (Complex.abs_im_le_norm _)
 
-/-- The actual two-factor Gaussian pole-killer differs by O(z²/t²). -/
 theorem secondPoleCorrection_shifted_error_le {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
     (z : ℂ) (hz : 4*‖z‖^2 ≤ t^2) :
@@ -491,7 +459,6 @@ theorem secondPoleCorrection_shifted_error_le {t A : ℝ} (hA : 0 ≤ A)
     (by nlinarith : ‖z‖^2 ≤ (t/2)^2)
   exact hb.trans_eq (by field_simp; ring)
 
-/-- Duplicate each member of the pair in the already proved four-Gamma bound. -/
 def secondDuplicatedShifts (α : SecondMomentShifts) : MomentShifts :=
   ![α 0, α 0, α 1, α 1]
 
@@ -502,8 +469,6 @@ theorem secondGammaQuotient_sq (t : ℝ) (α : SecondMomentShifts) (z : ℂ) :
     sourceZetaPoints, secondSourceZetaPoints, Fin.prod_univ_succ]
   ring
 
-/-- Global polynomial envelope on the whole positive strip, including the
-exterior of the central Gamma-ratio disk. -/
 theorem secondGammaQuotient_polynomial_positive_strip_bound :
     ∃ C : ℝ, 0 < C ∧ ∀ t v c : ℝ, 0 ≤ t → 0 ≤ c → c ≤ 1 →
       ∀ α : SecondMomentShifts, (∀ j, ‖α j‖ ≤ 1/4) →
@@ -527,7 +492,6 @@ theorem secondGammaQuotient_polynomial_positive_strip_bound :
   rw [←he] at hs
   nlinarith [norm_nonneg (secondGammaQuotient t α ((c:ℂ)+(v:ℂ)*I))]
 
-/-- A fixed finite Gaussian moment used by the concrete central replacement. -/
 def secondGaussianQuadraticMass : ℝ :=
   ∫ v : ℝ, (1+|v|)^2*Real.exp (-v^2)
 
@@ -539,8 +503,6 @@ theorem secondGaussianQuadraticMajorant_integrable :
   simpa only [zero_mul, zero_sub] using
     Sechstmoment.gaussianPolynomialExponential_integrable 2 0
 
-/-- Integrating the actual replacement over any admissible central segment
-preserves the reciprocal-height saving, with a fixed Gaussian constant. -/
 theorem secondGammaGaussianReplacement_central_integral_norm_le {t A c H : ℝ}
     (hA : 0 ≤ A) (ht : 8*(A+1) ≤ t) (hc : 0 < c) (hc1 : c ≤ 1)
     (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
@@ -571,7 +533,6 @@ theorem secondGammaGaussianReplacement_central_integral_norm_le {t A c H : ℝ}
     (secondSourceZetaPoints t j).re = 1/2 := by
   fin_cases j <;> norm_num [secondSourceZetaPoints, criticalLinePoint]
 
-/-- The actual pair quotient is continuous throughout each positive line. -/
 theorem secondGammaQuotient_continuous_positive_line (α : SecondMomentShifts)
     (t c : ℝ) (hc : 0 ≤ c) (hα : ∀ j, -1/2 < (α j).re) :
     Continuous (fun v : ℝ => secondGammaQuotient t α ((c:ℂ)+(v:ℂ)*I)) := by
@@ -590,12 +551,10 @@ theorem secondGammaQuotient_continuous_positive_line (α : SecondMomentShifts)
     simp at hr
     linarith
 
-/-- The two-Gamma Gaussian kernel before the harmless real Mellin powers. -/
 def secondGammaGaussianKernel (t : ℝ) (α : SecondMomentShifts) (c v : ℝ) : ℂ :=
   let z : ℂ := (c:ℂ)+(v:ℂ)*I
   Complex.exp (z^2)/z*secondGammaQuotient t α z
 
-/-- The polynomial envelope and Gaussian dominate the complete vertical line. -/
 theorem secondGammaGaussianKernel_global_majorant :
     ∃ C : ℝ, 0 < C ∧ ∀ t c : ℝ, 0 ≤ t → 0 < c → c ≤ 1 →
       ∀ α : SecondMomentShifts, (∀ j, ‖α j‖ ≤ 1/4) → ∀ v : ℝ,
@@ -632,7 +591,6 @@ theorem secondGammaGaussianKernel_global_majorant :
   rw [norm_mul]
   exact (mul_le_mul hg hq (norm_nonneg _) (by positivity)).trans_eq (by ring)
 
-/-- All actual quotient kernels are integrable; no tail premise is assumed. -/
 theorem secondGammaGaussianKernel_integrable (t c : ℝ) (ht : 0 ≤ t)
     (hc : 0 < c) (hc1 : c ≤ 1) (α : SecondMomentShifts)
     (hα : ∀ j, ‖α j‖ ≤ 1/4) :
@@ -660,7 +618,6 @@ theorem secondGammaGaussianKernel_integrable (t c : ℝ) (ht : 0 ≤ t)
   exact Eventually.of_forall (fun v => by
     simpa only [mul_assoc] using hb t c ht hc hc1 α hα v)
 
-/-- An explicit actual Gamma-kernel tail with Gaussian decay. -/
 theorem secondGammaGaussianKernel_tail_norm_le :
     ∃ C : ℝ, 0 < C ∧ ∀ t c R : ℝ, 0 ≤ t → 0 < c → c ≤ 1 → 0 ≤ R →
       ∀ α : SecondMomentShifts, (∀ j, ‖α j‖ ≤ 1/4) →
@@ -673,13 +630,10 @@ theorem secondGammaGaussianKernel_tail_norm_le :
     (secondGammaGaussianKernel_integrable t c ht hc hc1 α hα) 4
     (by positivity) hR (hb t c ht hc hc1 α hα)
 
-/-- The actual pole-killed quotient relative to the Gaussian leading power. -/
 def secondPoleCorrectedGammaQuotient (t : ℝ) (α : SecondMomentShifts) (z : ℂ) : ℂ :=
   secondPoleCorrection (secondSourceZetaPoints t 0+α 0)
     (secondSourceZetaPoints t 1+α 1) z*secondGammaQuotient t α z
 
-/-- The moving pole-killer correction and Gamma error are both controlled
-from their explicit formulas, without a replacement-error premise. -/
 theorem secondPoleCorrectedGammaQuotient_normalized_error_le {t A : ℝ}
     (hA : 0 ≤ A) (ht : 8*(A+1) ≤ t) (α : SecondMomentShifts)
     (hα : ∀ j, ‖α j‖ ≤ A) (z : ℂ)
@@ -713,8 +667,6 @@ theorem secondPoleCorrectedGammaQuotient_normalized_error_le {t A : ℝ}
       rw [norm_mul]
       exact add_le_add (mul_le_mul hpn hq (norm_nonneg _) (by norm_num)) hp
 
-/-- Global polynomial norm control, including zero moving roots under Lean's
- total division convention. This supplies a genuine full-line majorant. -/
 theorem secondPoleCorrection_polynomial_norm_le (s r z : ℂ) :
     ‖secondPoleCorrection s r z‖ ≤
       (∏ j : Fin 4, (1+‖(secondPoleCorrectionBases s r j)^2‖⁻¹))*(1+‖z‖)^8 := by

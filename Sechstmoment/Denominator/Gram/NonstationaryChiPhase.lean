@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Gram.ChiFrequencyCore
 import Sechstmoment.Denominator.Gram.NonstationaryIntegration
 
-/-! The actual inverse-chi oscillation satisfies the phase interface used by
-the quantitative integration-by-parts theorem. -/
 namespace Sechstmoment
 open Complex Real Set MeasureTheory
 open scoped ContDiff Topology

@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.PhysicalTimeWindow
 
-/-! Pointwise actual source-scale and inverse-factor transport into the
-literal restored V* physical GCD kernel. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -28,8 +26,6 @@ theorem a03ZeroModePermutedPhysicalQuad_positive (m n : Bool) (q : QuadraticScal
     simp [a03ZeroModePermutedPhysicalQuad,a03ZeroModePhysicalQuad] <;>
     first | exact_mod_cast hp2 | exact_mod_cast hp3 | exact hr1 | exact hr2
 
-/-- The spectral source factor really restores the actual real fourfold
-physical denominator before any Mellin contour is interpreted. -/
 theorem a03LeadingLinearTensor_sourceScale_eq_physical_time
     (Φ : ℝ→ℂ) (c : ℝ) (p : A03NearTensorData) (m n : Bool) (q : QuadraticScales)
     (hq : ∀ j,0<q.size j) (v : Fin 5→ℕ) (hv : ∀ j,1≤v j) {x : ℝ} (hx : 0<x) :
@@ -61,8 +57,6 @@ theorem a03LeadingLinearTensor_sourceScale_eq_physical_time
   simp only [Complex.ofReal_neg]
   ring
 
-/-- Actual source-scaled leading zero-mode integrand, on the full small
-positive spectral line, equals the true V* time kernel at each physical x. -/
 theorem a03LeadingLinearTensor_sourceScale_vertical_eq_VStar
     {Φ : ℝ→ℂ} (hΦ : Continuous Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {T c : ℝ} (hT : 0<T) (hc : 0<c) (σ α : MomentShifts) (r s : ℝ)
@@ -109,8 +103,6 @@ theorem a03LeadingLinearTensor_sourceScale_set_eq_physicalFourier
   simpa only [a03LinearZeroGap] using
     a03LeadingLinearTensor_sourceScale_eq_physical_time Φ c ⟨T,σ,α,w,r,s⟩ m n q hq v hv hx
 
-/-- The source's literal finite spectral window differs from the actual V*
-physical/time value by a quantitatively Gaussian frequency tail. -/
 theorem a03LeadingLinearTensor_sourceScale_core_sub_VStar_norm_le
     {Φ : ℝ→ℂ} (hΦ : Continuous Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {T c L : ℝ} (hT : 0<T) (hc : 0<c) (hL : 0≤L)

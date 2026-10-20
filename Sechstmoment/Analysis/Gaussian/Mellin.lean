@@ -5,9 +5,6 @@ import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
 import Mathlib.Tactic.LinearCombination
 import Sechstmoment.Analysis.Gaussian.Weight
 
-/-! The literal Gaussian Mellin contour equals the complementary Gaussian
-weight. Differentiation is justified by an explicit integrable majorant;
-the resulting Gaussian density is evaluated by the exact Fourier integral. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Filter
@@ -18,11 +15,9 @@ def d02GaussianMellinIntegrand (y v : ℝ) : ℂ :=
   let z : ℂ := 1+(v : ℂ)*I
   Complex.exp (z^2-(y : ℂ)*z)/z
 
-/-- The vertical `(1)` contour in the logarithmic variable `y = log x`. -/
 def d02GaussianMellin (y : ℝ) : ℂ :=
   (1/(2*Real.pi) : ℂ)*∫ v : ℝ, d02GaussianMellinIntegrand y v
 
-/-- The literal `exp(z^2) x^(-z)/z` weight on the `(1)` contour. -/
 def d02GaussianMellinV0 (x : ℝ) : ℂ :=
   (1/(2*Real.pi) : ℂ)*∫ v : ℝ,
     let z : ℂ := 1+(v : ℂ)*I
@@ -93,7 +88,6 @@ theorem d02GaussianMellin_norm_le (y : ℝ) :
     _ ≤ (1/(2*Real.pi))*(Real.exp (1-y)*Real.sqrt Real.pi) := by gcongr
     _ = _ := by ring
 
-/-- Exact Gaussian Fourier evaluation of the differentiated contour. -/
 private theorem d02GaussianMellin_density_integral (y : ℝ) :
     (∫ v : ℝ, Complex.exp (((1 : ℂ)+(v : ℂ)*I)^2-(y : ℂ)*(1+(v : ℂ)*I))) =
       (Real.sqrt Real.pi : ℂ)*Complex.exp (-(y : ℂ)^2/4) := by
@@ -115,8 +109,6 @@ private theorem d02GaussianMellin_density_integral (y : ℝ) :
   simp only [neg_neg, div_one]
   rw [hsqrt, hexp]
 
-/-- Differentiation under the actual contour integral; all domination
-and measurability hypotheses are discharged by its explicit Gaussian. -/
 theorem d02GaussianMellin_hasDeriv (y : ℝ) :
     HasDerivAt d02GaussianMellin
       (-(1/(2*Real.sqrt Real.pi) : ℂ)*Complex.exp (-(y : ℂ)^2/4)) y := by
@@ -163,7 +155,6 @@ theorem d02GaussianMellin_tendsto_zero :
   simp only [mul_zero] at hh
   exact squeeze_zero (fun _ => norm_nonneg _) d02GaussianMellin_norm_le hh
 
-/-- Unconditional Mellin--erfc identity in the logarithmic variable. -/
 theorem d02GaussianMellin_eq_tail (y : ℝ) :
     d02GaussianMellin y = (d02GaussianTail (y/2) : ℂ) := by
   let d : ℝ → ℂ := fun u =>
@@ -211,7 +202,6 @@ theorem d02GaussianMellin_eq_tail (y : ℝ) :
   field_simp at hi ⊢
   linear_combination hi
 
-/-- Literal contour identity for every positive physical argument. -/
 theorem d02GaussianMellinV0_eq_gaussianV0 {x : ℝ} (hx : 0 < x) :
     d02GaussianMellinV0 x = (d02GaussianV0 x : ℂ) := by
   have he : d02GaussianMellinV0 x = d02GaussianMellin (Real.log x) := by

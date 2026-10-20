@@ -1,7 +1,5 @@
 import Sechstmoment.Analysis.Harmonic.ExponentialKernel
 
-/-! Quantitative stability of continuous and literal harmonic Volterra operators.
-All constants are uniform in the complex shift on a closed norm ball. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set

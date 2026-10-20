@@ -3,7 +3,6 @@ import Sechstmoment.Certificate.Profiles.GramTests
 import Sechstmoment.Certificate.Profiles.Integrability
 import Sechstmoment.Denominator.Gram.KernelDefinitions
 
-/-! Exact transport to the unchanged P02 certificate Gram denominator. -/
 namespace Sechstmoment
 open Polynomial MeasureTheory Set Filter
 open scoped BigOperators Topology
@@ -105,8 +104,6 @@ theorem d06MinusKernel_permuted_continuousOn (p q : Fin 5 → ℝ)
     (by fun_prop : ContinuousOn (fun a : Fin 4 → ℝ => fun i => a (e i)) {a | ∀ i,0≤a i})
     (fun a ha => ⟨ha (e 0),ha (e 1),ha (e 2)⟩)
 
-/-- Every original upper-triangular feature pair has the exact P02 scalar
-Gram entry, with its original U/V kernel orientations and coefficients. -/
 theorem d06GramKernel_certificate_pair (n : ℕ) (hn : 0<n)
     {x y : Finite.Feature} (hx : x ∈ Finite.features) (hy : y ∈ Finite.features)
     (horder : x.typ = .V → y.typ = .V) :

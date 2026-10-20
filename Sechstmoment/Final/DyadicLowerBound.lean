@@ -1,10 +1,6 @@
 import Sechstmoment.Final.CauchySchwarz
 import Sechstmoment.Zeta.SixthMoment
 
-/-! Removing a bounded nonnegative dyadic weight and summing a finite
-collection of the actual certificate lower bounds. These integral inequalities
-are combined with the proved Gram and numerator limits in F01DyadicAsymptotic;
-FullProof supplies the final original liminf claim. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set
@@ -84,9 +80,6 @@ theorem actualSixthMoment_finite_dyadic_sum_le {T : ℝ} (hT : 0≤T) (J : ℕ) 
   rw [actualSixthMoment_finite_dyadic_sum]
   exact sub_le_self _ (actualSixthMoment_nonneg (div_nonneg hT (by positivity)))
 
-/-- Actual finite dyadic assembly of the original full certificate. The
-positive Gram condition is explicit, and is already implied by a nonzero
-mixed moment. No numerical or asymptotic Gram value is assumed here. -/
 theorem actual250ProjectedMixedMoment_finite_dyadic_lower_bound
     (n : ℕ) (hn : 0<n) (J : ℕ) {T : ℝ} (hT : (2:ℝ)^J<T)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (hΦpos : ∀ x, 0≤Φ x)

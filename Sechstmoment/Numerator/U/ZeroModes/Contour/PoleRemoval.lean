@@ -1,10 +1,6 @@
 import Sechstmoment.Numerator.Polar.PureRemoval
 import Sechstmoment.Numerator.U.ZeroModes.Contour.MainReflection
 
-/-! Genuine removal of the two zeta poles of the source `M(s)` kernel.
-The second factor has slope `-2`, unlike the four diagonal zeta factors.
-The entire extension is explicit, with both prescribed quadratic factors
-and the unused factors of the actual pole killer retained. -/
 
 namespace Sechstmoment
 open Complex Source

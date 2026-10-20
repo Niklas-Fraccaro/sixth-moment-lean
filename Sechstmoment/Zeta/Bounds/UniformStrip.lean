@@ -1,15 +1,11 @@
 import Sechstmoment.Zeta.Bounds.LeftStrip
 
-/-! Extend the proved high-imaginary-part estimates over compact remaining
-segments of the actual Mellin strips. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped Topology ComplexOrder
 noncomputable section
 
-/-- Coarse polynomial growth throughout a fixed real strip, with an explicit
-separation from the actual zeta pole and no imaginary-part restriction. -/
 theorem d04RiemannZeta_polynomial_strip_away_pole {a b r : ℝ}
     (ha : -1 ≤ a) (hr : 0 < r) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ s : ℂ, a ≤ s.re → s.re ≤ b → r ≤ ‖s-1‖ →
@@ -42,9 +38,6 @@ theorem d04RiemannZeta_polynomial_strip_away_pole {a b r : ℝ}
       _ ≤ L*(1+|s.im|)^6 := le_mul_of_one_le_right hL
         (one_le_pow₀ (by linarith [abs_nonneg s.im]))
 
-/-- The exact functional-equation exponent remains valid over the entire
-left remainder line, including the segment where the zeta imaginary part
-passes through zero. -/
 theorem d04RiemannZeta_sharp_left_strip_all_im {ε : ℝ} (hε : 0 < ε) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ s : ℂ, -1 ≤ s.re → s.re ≤ -ε →
       ‖riemannZeta s‖ ≤ C*(1+|s.im|)^(1/2-s.re) := by

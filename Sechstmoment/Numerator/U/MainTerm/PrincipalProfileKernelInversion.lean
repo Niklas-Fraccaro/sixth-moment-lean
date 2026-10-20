@@ -1,12 +1,6 @@
 import Sechstmoment.Numerator.U.MainTerm.PrincipalPolarPointLimit
 import Sechstmoment.Numerator.U.MainTerm.PrincipalRationalInversion
 
-/-!
-# Genuine compact evaluation of each principal profile kernel
-
-The double vertical integral of the actual nine-factor principal limit is
-evaluated by absolute Laplace inversion and compact profile convolution.
--/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Source

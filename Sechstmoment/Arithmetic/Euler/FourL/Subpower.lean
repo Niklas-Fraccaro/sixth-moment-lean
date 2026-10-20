@@ -1,7 +1,6 @@
 import Sechstmoment.Arithmetic.Divisors.Subpower
 import Sechstmoment.Arithmetic.Euler.FourL.CoefficientFactorization
 
-/-! A genuine uniform subpower bound for the existing entire Euler correction. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
@@ -82,7 +81,6 @@ theorem correction_power_bound (n : ℕ) (hn : n ≠ 0) (s : Fin 4 → ℂ) (u :
   apply H.trans_eq
   rw [Finset.prod_mul_distrib,primeScale_product n hn ρ]
 
-/-- Constants are uniform in the Mellin height, every twist bounded by one, and all allowed shifts. -/
 theorem arithmeticCorrection_subpower (κ ε : ℝ) (hκ : 0 < κ) (hε : 0 < ε) :
     ∃ C : ℝ, 0 < C ∧ ∀ n : ℕ, n ≠ 0 → ∀ s : Fin 4 → ℂ,
       (∀ j, ‖s j‖ ≤ min κ (ε/2)) → ∀ u : ℕ → ℂ,

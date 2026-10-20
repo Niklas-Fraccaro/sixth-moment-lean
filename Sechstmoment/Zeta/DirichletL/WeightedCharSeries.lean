@@ -2,10 +2,6 @@ import Mathlib.Analysis.PSeries
 import Mathlib.NumberTheory.DirichletCharacter.Bounds
 import Sechstmoment.Zeta.DirichletL.CharPolynomials
 
-/-! A weighted form of fixed-modulus character orthogonality. The universal
-constant is a convergent p-series. This controls the full rapidly decreasing
-AFE series directly, without a separate truncation hypothesis.
--/
 
 namespace Sechstmoment.Source
 open Complex Real Finset Filter Set

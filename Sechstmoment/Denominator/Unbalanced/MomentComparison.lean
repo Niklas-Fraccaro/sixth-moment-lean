@@ -3,8 +3,6 @@ import Sechstmoment.Denominator.Unbalanced.ActualPairReplacement
 import Sechstmoment.Denominator.Unbalanced.Expansion.Approximation
 import Sechstmoment.Denominator.Unbalanced.MomentErrorBudget
 
-/-! The actual one-sided approximation and actual chi error give a strict
-physical height saving for every original unbalanced cap sum S<1. -/
 namespace Sechstmoment
 open Complex Real Filter Set MeasureTheory
 open scoped Topology BigOperators ContDiff

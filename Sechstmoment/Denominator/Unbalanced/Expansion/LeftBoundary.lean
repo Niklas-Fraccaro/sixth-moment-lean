@@ -2,17 +2,12 @@ import Sechstmoment.Denominator.Unbalanced.Expansion.Parameters
 import Sechstmoment.Zeta.Bounds.LeftStrip
 import Sechstmoment.Zeta.Gamma.PolynomialIntegrability
 
-/-! Absolute control of the actual left Mellin vertical integral. The
-precise left-strip zeta exponent leaves a strict height power saving after
-multiplication by the true X=T^3 Mellin power. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped Topology
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- Both normalized shifts stay within the same small rectangle around
-1/2-it, with their actual opposite signs. -/
 theorem d04NegativeZetaArguments_small_components {T t η : ℝ}
     (σ : Fin 2 → ℂ) (hσ : ∀ j, ‖σ j/(Real.log T : ℂ)‖≤η) (j : Fin 2) :
     |(d04NegativeZetaArguments T t σ j).re-1/2|≤η ∧
@@ -134,8 +129,6 @@ theorem d04OneSidedLeft_integrand_bound {ε T t v C : ℝ}
         (T^(3*(-1+ε/2))*T^(1-3*ε/8)*T^(1-3*ε/8)) := by ring
     _ = _ := by rw [hpow]; ring
 
-/-- The actual left vertical remainder has the stronger exponent
--1+3ε/4; in particular it is O(T^(-1+ε)) uniformly on the shift disk. -/
 theorem d04OneSidedLeft_vertical_bound {ε R : ℝ}
     (hε : 0<ε) (hε4 : ε≤1/4) (hR : 0≤R) :
     ∃ C : ℝ, 0≤C ∧ ∀ᶠ T : ℝ in atTop,

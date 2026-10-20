@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.FourFiniteSum
 
-/-! Monotonicity of convolution with a nonnegative geometric sequence. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

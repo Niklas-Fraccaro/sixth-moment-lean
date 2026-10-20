@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Bivariate.EulerConvergence
 
-/-! Explicit local completion contracts, including the original infinite tail of (6.1). -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPLocalClosure

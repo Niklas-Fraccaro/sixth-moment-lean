@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Bounds.FourRatioGammaDiscrepancyReduction
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SevenGridSpectralTail
 
-/-! Source-only reduction of the literal A03 discrepancy to its actual
-retained four-chamber ratio-GCD V* expression minus the four crossed main
-terms. All Gamma and finite-Mellin completion errors are proved here. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

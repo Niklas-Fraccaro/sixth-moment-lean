@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Bivariate.OriginalTailBridge
 
-/-! Concrete prime/shift parameters, with the full small-shift convergence region. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPLocalClosure

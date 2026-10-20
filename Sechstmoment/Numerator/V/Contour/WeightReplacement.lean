@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.V.Contour.AlmostHolomorphicContour
 
-/-! Integrated replacement of the almost-holomorphic Taylor weight by the
-original smooth weight. The support restricts the sharp factor bound to [T,2T]. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

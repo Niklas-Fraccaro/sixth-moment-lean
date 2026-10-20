@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.Scaling
 
-/-! The four local Euler factors introduce no zero away from their roots. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

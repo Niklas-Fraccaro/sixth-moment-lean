@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.NormRegionNonzero
 
-/-! The shifted local series is an explicit rational function. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

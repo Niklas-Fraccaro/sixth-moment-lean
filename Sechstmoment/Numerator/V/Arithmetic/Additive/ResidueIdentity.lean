@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.Additive.MellinIdentity
 import Sechstmoment.Numerator.V.Arithmetic.CorrectedMellinContour
 
-/-! The literal additive fourfold sum is the displaced divisor integral
-plus the four actual principal-character residues. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory ZMod

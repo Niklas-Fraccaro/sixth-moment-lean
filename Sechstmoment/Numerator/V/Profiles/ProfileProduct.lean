@@ -1,6 +1,5 @@
 import Sechstmoment.Analysis.Harmonic.PolynomialProfile
 
-/-! The bilinear L^6 profile main term and its uniform L^5 divisor error. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set Polynomial

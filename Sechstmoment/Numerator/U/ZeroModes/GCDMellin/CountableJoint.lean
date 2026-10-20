@@ -3,9 +3,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ArchEnvelope
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.InitialKernel
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.FullMeasurability
 
-/-! Absolute joint convergence before summing the original three natural
-indices.  The dominating product is constructed from the genuine initial
-ratio weights, the smoothed cosine Mellin kernel, and three p-series. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

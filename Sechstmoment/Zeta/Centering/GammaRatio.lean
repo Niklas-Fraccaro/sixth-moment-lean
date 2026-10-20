@@ -4,21 +4,12 @@ import Mathlib.Tactic.FieldSimp
 import Sechstmoment.Zeta.Centering.Exact
 import Sechstmoment.Zeta.Gamma.ReciprocalSums
 
-/-!
-# Euler-product route to quantitative complex Gamma ratios
-
-These lemmas concern the actual Gamma quotient, not a postulated Stirling
-expansion. They separate its Euler limit into a reciprocal sum and an explicitly
-bounded Taylor remainder. Quantitative reciprocal-sum estimates then prove
-the vertical and cone Gamma-ratio bounds at large imaginary height.
--/
 
 namespace Sechstmoment
 open Complex Filter
 open scoped BigOperators Topology
 noncomputable section
 
-/-- The finite Euler product for the shifted actual Gamma quotient. -/
 def gammaRatioEuler (s u : ℂ) (n : ℕ) : ℂ :=
   (n : ℂ)^u * ∏ j ∈ Finset.range (n+1), (s+j)/(s+u+j)
 
@@ -30,7 +21,6 @@ private theorem shifted_nat_ne_zero {s : ℂ} (hs : 0 < s.re) (j : ℕ) :
   have hj : (0 : ℝ) ≤ j := Nat.cast_nonneg j
   linarith
 
-/-- Exact finite-product equality behind Euler's limiting Gamma formula. -/
 theorem gammaRatioEuler_eq_GammaSeq_ratio {s u : ℂ}
     (hs : 0 < s.re) (hsu : 0 < (s+u).re) {n : ℕ} (hn : n ≠ 0) :
     gammaRatioEuler s u n = GammaSeq (s+u) n / GammaSeq s n := by
@@ -45,7 +35,6 @@ theorem gammaRatioEuler_eq_GammaSeq_ratio {s u : ℂ}
   have hnp : (n : ℂ)^s ≠ 0 := by simp [hn']
   field_simp
 
-/-- The Euler products converge to the actual Gamma ratio. -/
 theorem gammaRatioEuler_tendsto {s u : ℂ} (hs : 0 < s.re) (hsu : 0 < (s+u).re) :
     Tendsto (gammaRatioEuler s u) atTop (𝓝 (Gamma (s+u)/Gamma s)) := by
   apply Tendsto.congr' _
@@ -54,8 +43,6 @@ theorem gammaRatioEuler_tendsto {s u : ℂ} (hs : 0 < s.re) (hsu : 0 < (s+u).re)
   filter_upwards [eventually_ne_atTop 0] with n hn
   exact (gammaRatioEuler_eq_GammaSeq_ratio hs hsu hn).symm
 
-/-- A finite Gamma quotient has this exact logarithmic-product representation.
-Only logarithms of the near-one factors occur, avoiding a choice of log Gamma. -/
 theorem gammaRatioEuler_exp {s u : ℂ} (hs : 0 < s.re) (hsu : 0 < (s+u).re)
     {n : ℕ} (hn : n ≠ 0) :
     gammaRatioEuler s u n = Complex.exp
@@ -82,7 +69,6 @@ theorem gammaRatioEuler_exp {s u : ℂ} (hs : 0 < s.re) (hsu : 0 < (s+u).re)
   field_simp
   ring
 
-/-- Uniform quadratic bound for a single small logarithmic factor. -/
 theorem norm_log_one_add_sub_self_le_sq {w : ℂ} (hw : ‖w‖ ≤ 1/2) :
     ‖Complex.log (1+w)-w‖ ≤ ‖w‖^2 := by
   have hsmall : ‖w‖ < 1 := by linarith
@@ -94,11 +80,9 @@ theorem norm_log_one_add_sub_self_le_sq {w : ℂ} (hw : ‖w‖ ≤ 1/2) :
   have hm := mul_le_mul_of_nonneg_left hi hn
   linarith
 
-/-- The explicit finite nonlinear remainder from expanding the Euler factors. -/
 def gammaRatioTaylorError (s u : ℂ) (n : ℕ) : ℂ :=
   ∑ j ∈ Finset.range (n+1), (Complex.log (1+u/(s+j))-u/(s+j))
 
-/-- Exact separation into the reciprocal sum and the nonlinear error. -/
 theorem gammaRatioEuler_exp_reciprocal {s u : ℂ}
     (hs : 0 < s.re) (hsu : 0 < (s+u).re) {n : ℕ} (hn : n ≠ 0) :
     gammaRatioEuler s u n = Complex.exp
@@ -111,8 +95,6 @@ theorem gammaRatioEuler_exp_reciprocal {s u : ℂ}
   rw [← Finset.mul_sum]
   ring
 
-/-- The Taylor error has a quantitative bound in terms of a reciprocal-square
-sum, uniformly in the Euler cutoff. No Gamma asymptotic enters this estimate. -/
 theorem gammaRatioTaylorError_norm_le (s u : ℂ) (n : ℕ)
     (hsmall : ∀ j ∈ Finset.range (n+1), ‖u/(s+j)‖ ≤ 1/2) :
     ‖gammaRatioTaylorError s u n‖ ≤
@@ -127,18 +109,13 @@ theorem gammaRatioTaylorError_norm_le (s u : ℂ) (n : ℕ)
     _ = _ := by
       simp only [div_eq_mul_inv, norm_mul, norm_inv, mul_pow, inv_pow, Finset.mul_sum]
 
-/-- The endpoint log term which disappears in Euler's cutoff limit. -/
 def gammaRatioLogTail (s : ℂ) (n : ℕ) : ℂ :=
   Complex.log (n : ℂ)-Complex.log (s+n+1)
 
-/-- Exact reciprocal sum discrepancy; its quantitative estimate is the
-sum–integral stage of the proof. -/
 def gammaRatioReciprocalError (s : ℂ) (n : ℕ) : ℂ :=
   (∑ j ∈ Finset.range (n+1), (s+j)⁻¹) -
     (Complex.log (s+n+1)-Complex.log s)
 
-/-- Normalization by the principal power leaves only the endpoint and the two
-explicit finite errors. -/
 theorem gammaRatioEuler_normalized_exp {s u : ℂ} (hs : 0 < s.re)
     (hsu : 0 < (s+u).re) {n : ℕ} (hn : n ≠ 0) :
     gammaRatioEuler s u n / s^u = Complex.exp
@@ -154,7 +131,6 @@ theorem gammaRatioEuler_normalized_exp {s u : ℂ} (hs : 0 < s.re)
   unfold gammaRatioLogTail gammaRatioReciprocalError
   ring
 
-/-- The normalized finite products tend to the actual normalized Gamma ratio. -/
 theorem gammaRatioEuler_normalized_tendsto {s u : ℂ}
     (hs : 0 < s.re) (hsu : 0 < (s+u).re) :
     Tendsto (fun n => gammaRatioEuler s u n / s^u) atTop
@@ -181,7 +157,6 @@ private theorem gammaRatioLogTail_eq {s : ℂ} (hs : 0 < s.re)
   push_cast
   ring
 
-/-- The cutoff endpoint vanishes, with no uniform-in-height limit exchange. -/
 theorem gammaRatioLogTail_tendsto {s : ℂ} (hs : 0 < s.re) :
     Tendsto (gammaRatioLogTail s) atTop (𝓝 0) := by
   have hratio : Tendsto (fun n : ℕ => (s+n+1)/(n : ℂ)) atTop (𝓝 1) := by
@@ -198,7 +173,6 @@ theorem gammaRatioLogTail_tendsto {s : ℂ} (hs : 0 < s.re) :
   filter_upwards [eventually_ne_atTop 0] with n hn
   exact (gammaRatioLogTail_eq hs hn).symm
 
-/-- The logarithmic factors are uniformly small at large imaginary height. -/
 theorem gammaRatio_log_factor_small (s u : ℂ) (him : 0 < |s.im|)
     (hu : 2*‖u‖ ≤ |s.im|) (j : ℕ) : ‖u/(s+j)‖ ≤ 1/2 := by
   have hnorm : |s.im| ≤ ‖s+j‖ := by
@@ -208,8 +182,6 @@ theorem gammaRatio_log_factor_small (s u : ℂ) (him : 0 < |s.im|)
   rw [norm_div, div_le_iff₀ hnormpos]
   linarith
 
-/-- A quantitative vertical estimate for the actual Euler logarithm remainder,
-with a constant independent of its cutoff. -/
 theorem gammaRatioTaylorError_vertical_le (s u : ℂ) (n : ℕ)
     (hre : 0 ≤ s.re) (him : 1 ≤ |s.im|) (hu : 2*‖u‖ ≤ |s.im|) :
     ‖gammaRatioTaylorError s u n‖ ≤ 4*‖u‖^2/|s.im| := by
@@ -235,8 +207,6 @@ private theorem gamma_ne_zero_of_im_ne {s : ℂ} (hs : s.im ≠ 0) : Gamma s ≠
   apply hs
   simpa only [Complex.neg_im, Complex.natCast_im, neg_zero] using congrArg Complex.im hn
 
-/-- The exact Euler ratio also works outside the right half-plane whenever
-both arguments have nonzero imaginary part. -/
 theorem gammaRatioEuler_eq_GammaSeq_ratio_of_im_ne {s u : ℂ}
     (hs : s.im ≠ 0) (hsu : (s+u).im ≠ 0) {n : ℕ} (hn : n ≠ 0) :
     gammaRatioEuler s u n = GammaSeq (s+u) n / GammaSeq s n := by
@@ -343,8 +313,6 @@ theorem gammaRatioLogTail_tendsto_of_im_ne {s : ℂ} (hs : s.im ≠ 0) :
   filter_upwards [eventually_ne_atTop 0] with n hn
   exact (gammaRatioLogTail_eq_of_im_ne hs hn).symm
 
-/-- Passing explicit finite Euler errors to the actual Gamma quotient. The
-premise is a bound on elementary finite sums, not the desired Gamma estimate. -/
 theorem gammaRatio_normalized_error_of_finite_errors {s u : ℂ}
     (hs : s.im ≠ 0) (hsu : (s+u).im ≠ 0) {E : ℝ} (hE : E < 1)
     (herr : ∀ n : ℕ, ‖u‖*‖gammaRatioReciprocalError s n‖ +
@@ -381,8 +349,6 @@ theorem gammaRatio_normalized_error_of_finite_errors {s u : ℂ}
       (𝓝 (2*E)) := by simpa using (htail.add_const E).const_mul 2
   exact le_of_tendsto_of_tendsto hlim hlim' hbound
 
-/-- A proved vertical Gamma-quotient estimate, uniform over all complex shifts
-satisfying the displayed bound. This is the actual Gamma function. -/
 theorem gammaRatio_normalized_error_vertical (s u : ℂ)
     (hre : 0 ≤ s.re) (him : 1 ≤ |s.im|)
     (hu : 8*(‖u‖+‖u‖^2) < |s.im|) :
@@ -413,8 +379,6 @@ theorem gammaRatio_normalized_error_vertical (s u : ℂ)
       gammaRatio_normalized_error_of_finite_errors hs hsu hE herr
     _ = _ := by ring
 
-/-- The nonlinear Euler error remains quantitative in a sloped cone, allowing
-complex height disks with radius proportional to the asymptotic height. -/
 theorem gammaRatioTaylorError_cone_le (s u : ℂ) (n : ℕ)
     (hre : -|s.im| ≤ s.re) (him : 1 ≤ |s.im|) (hu : 2*‖u‖ ≤ |s.im|) :
     ‖gammaRatioTaylorError s u n‖ ≤ 6*‖u‖^2/|s.im| := by
@@ -427,9 +391,6 @@ theorem gammaRatioTaylorError_cone_le (s u : ℂ) (n : ℕ)
     _ ≤ ‖u‖^2*(6/|s.im|) := mul_le_mul_of_nonneg_left hsum (sq_nonneg _)
     _ = _ := by ring
 
-/-- Quantitative Stirling ratio in a cone, proved from Euler's limit formula.
-Both Gamma arguments may have negative real part, so this estimate genuinely
-supports complex perturbations of the height on a proportional-radius disk. -/
 theorem gammaRatio_normalized_error_cone (s u : ℂ)
     (hre : -|s.im| ≤ s.re) (him : 2 ≤ |s.im|)
     (hu : 24*(‖u‖+‖u‖^2) < |s.im|) :

@@ -7,7 +7,6 @@ open scoped BigOperators Topology
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- Compact interior support has a positive lower endpoint, chosen before T. -/
 theorem phase_profile_positive_lower_endpoint {a : ℝ} (f : ℝ → ℝ)
     (hf : SmoothInteriorProfile a f) :
     ∃ ν : ℝ, 0 < ν ∧ ∀ x : ℝ, f x ≠ 0 → ν ≤ x := by
@@ -18,8 +17,6 @@ theorem phase_profile_positive_lower_endpoint {a : ℝ} (f : ℝ → ℝ)
     intro x hx
     exact (hs ⟨x, subset_tsupport f hx⟩).elim
 
-/-- Every nonzero literal localized coefficient satisfies both genuine
-profile length bounds; no dyadic length receipt is assumed. -/
 theorem phase_actual_nonzero_amplifier_lengths {a : ℝ} (f : ℝ → ℝ)
     (hf : SmoothInteriorProfile a f) :
     ∃ ν : ℝ, 0 < ν ∧ ∀ T A : ℝ, 1 < T → 0 < A → ∀ n : ℕ,
@@ -44,8 +41,6 @@ theorem phase_actual_nonzero_amplifier_lengths {a : ℝ} (f : ℝ → ℝ)
   exact ⟨((Real.rpow_le_iff_le_log (zero_lt_one.trans hT) hnpos).mpr hlower).trans hns.2,
     hns.1.trans (Real.le_rpow_of_log_le (zero_lt_one.trans hT) hupper)⟩
 
-/-- Both genuine profile supports give a uniform positive lower AB
- exponent and the original independent upper exponent a+b. -/
 theorem phase_actual_amplifier_product_lengths {a b : ℝ} (f g : ℝ → ℝ)
      (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :
      ∃ ρ : ℝ, 0 < ρ ∧ ∀ᶠ T : ℝ in atTop, ∀ A B : ℝ, 0 < A → 0 < B →

@@ -1,8 +1,6 @@
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.WattApplication
 import Sechstmoment.Arithmetic.Watt.Reduction
 
-/-! The exact Watt proposition supplies the only divisor estimate consumed
-by the sixth-moment proof. All source definitions are reused directly. -/
 namespace Sechstmoment.Source
 noncomputable section
 

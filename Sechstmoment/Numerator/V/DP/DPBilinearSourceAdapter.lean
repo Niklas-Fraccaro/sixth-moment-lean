@@ -1,7 +1,6 @@
 import Mathlib.Analysis.Normed.Group.Bounded
 import Sechstmoment.Numerator.V.DP.DPPolynomialPolarization
 
-/-! Same quantifiers as the DP source input, extended by own polarization to two profiles. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Filter
@@ -27,7 +26,6 @@ private theorem compact_raw_shifts_eventually_real_small
 namespace Source
 noncomputable section
 
-/-- Exact polarization of the genuine unnormalized DP source main term. -/
 def dpRawBilinearMainTerm (T η : ℝ) (P Q : Polynomial ℝ) (Φ : ℝ → ℝ)
     (α : MomentShifts) : ℂ :=
   (1/4:ℂ)*(dpRawMainTerm T η (P+Q) Φ α-dpRawMainTerm T η (P-Q) Φ α)
@@ -44,8 +42,6 @@ theorem dpRawBilinearMainTerm_normalized {T : ℝ} (hT : 1 < T) (η : ℝ)
     dpRawMainTerm_normalized hT, dpNormalizedBilinearFourResidues_polarization]
   ring
 
-/-- The actual bilinear source error preserves uniformity over the original
-compact separated shift set; it introduces no uniformity in varying weights. -/
 theorem dpActualBilinearMoment_source_error (hsource : DPv2Input)
     (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P Q : Polynomial ℝ)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ)

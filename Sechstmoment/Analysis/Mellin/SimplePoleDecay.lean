@@ -1,8 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 import Sechstmoment.Analysis.Mellin.VerticalShift
 
-/-! The vertical convergence and horizontal limits needed for a simple pole
-follow from a concrete square-decay bound for its entire numerator. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Filter

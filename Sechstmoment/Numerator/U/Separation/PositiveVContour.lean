@@ -3,9 +3,6 @@ import Sechstmoment.Numerator.Polar.PureHorizontal
 import Sechstmoment.Numerator.U.Replacement.CentralContourShift
 import Sechstmoment.Zeta.AFE.Four.LargeGammaStrip
 
-/-! Genuine rightward contour movement of the actual V weight.
-Every holomorphy, vertical-integrability and horizontal-decay condition
-is proved before rectangle Cauchy is applied. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

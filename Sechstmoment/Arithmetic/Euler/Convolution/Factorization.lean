@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Convolution.OriginalEulerProduct
 
-/-! Completed global six-zeta chapter (6.4), for every distinguished residue index. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalConvolution
@@ -27,7 +26,6 @@ def originalDirichletAt (i : Fin 4) (s : Fin 4 → ℂ) (u v : ℂ) : ℂ :=
 def sixZetaAt (i : Fin 4) (s : Fin 4 → ℂ) (u v : ℂ) : ℂ :=
   ∏ j ∈ Finset.univ.erase i, riemannZeta (1+u+s j) * riemannZeta (1+v+s j)
 
-/-- The three independent Dirichlet factors are exactly the three undistinguished shifts. -/
 theorem tripleAF_reindex_product (i : Fin 4) (s : Fin 4 → ℂ) :
     tripleAF (reindexShifts i s) = ∏ j ∈ Finset.univ.erase i, powerAF (1+s j) := by
   exact swap_complement_product i (fun j => powerAF (1+s j))
@@ -69,7 +67,6 @@ theorem originalTermAt_absolute (i : Fin 4) (s : Fin 4 → ℂ) (ρ : ℝ)
     (hu : ρ < u.re) (hv : ρ < v.re) : Summable (fun q => ‖originalTermAt i s u v q‖) :=
   (originalTermAt_hasSum i s ρ hρ0 hρ hs u v hu hv).summable.norm
 
-/-- The summand of (6.4), written directly using the original four-root tail factors. -/
 theorem originalFactorAt_hasSum (i : Fin 4) (s : Fin 4 → ℂ) (ρ : ℝ)
     (hρ0 : 0 ≤ ρ) (hρ : ρ < 1/4) (hs : ∀ j, ‖s j‖ ≤ ρ) (u v : ℂ)
     (hu : ρ < u.re) (hv : ρ < v.re) :
@@ -84,7 +81,6 @@ theorem originalFactorAt_hasSum (i : Fin 4) (s : Fin 4 → ℂ) (ρ : ℝ)
       (originalCoeffAt_factor i s q.1 q.2).symm
   · rfl
 
-/-- Formula (6.4) with exactly the product over j != i appearing in the PDF. -/
 theorem originalDirichletAt_six_zeta (i : Fin 4) (s : Fin 4 → ℂ) (ρ : ℝ)
     (hρ0 : 0 ≤ ρ) (hρ : ρ < 1/4) (hs : ∀ j, ‖s j‖ ≤ ρ) (u v : ℂ)
     (hu : ρ < u.re) (hv : ρ < v.re) :

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualDiagonalTime
 import Sechstmoment.Numerator.U.Replacement.VStar.Definitions
 
-/-! Summability and genuine time measurability of the literal unrestricted
-fourfold VStar AFE. The majorants come from the defining Mellin integral. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology

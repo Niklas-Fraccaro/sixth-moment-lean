@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.DiagonalLeftAnalytic
 
-/-! Actual endpoint and horizontal majorants for the fixed-amplifier
-diagonal.  The finite B factors and the inverse Euler denominator retain
-their original amplifier dependence. -/
 
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
@@ -47,7 +44,6 @@ theorem a03DiagonalFiniteArithmetic_uniform_bound :
       rw [Nat.cast_mul,Real.mul_rpow (Nat.cast_nonneg a) (Nat.cast_nonneg b)]
       ring
 
-/-- Uniform pure-zeta bound on both actual diagonal endpoint lines. -/
 theorem a03DiagonalPureZeta_endpoint_bound :
     ∃ D : ℝ,0≤D ∧ ∀ T : ℝ,∀ σ : MomentShifts,
       (∀ j : Fin 4,‖rawMomentShifts T σ j‖≤1/64) → ∀ m : Fin 6,
@@ -103,8 +99,6 @@ theorem a03DiagonalPureZeta_endpoint_bound :
       congr 2
       ring
 
-/-- The original diagonal kernel on both endpoint lines, with exact
-dependence on time and on the product of the two amplifier integers. -/
 theorem a03DiagonalEulerKernel_endpoint_majorant :
     ∃ C : ℝ,0≤C ∧ ∀ T : ℝ,∀ σ : MomentShifts,
       (∀ j : Fin 4,‖rawMomentShifts T σ j‖≤1/64) → ∀ m : Fin 6,

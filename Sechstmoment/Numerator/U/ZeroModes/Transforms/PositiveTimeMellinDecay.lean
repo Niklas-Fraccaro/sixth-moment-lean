@@ -1,7 +1,6 @@
 import Mathlib.Analysis.MellinInversion
 import Sechstmoment.Analysis.Fourier.UniformDecay
 
-/-! Full-height decay of the actual compact positive-time Mellin integral. -/
 namespace Sechstmoment
 open Complex Real Set MeasureTheory
 open scoped Topology ContDiff FourierTransform
@@ -58,8 +57,6 @@ theorem a03PositiveTimeMellin_eq_laplace (Φ : ℝ→ℂ) (a v : ℝ) :
   rfl
 
 
-/-- Arbitrary powers of the true Mellin height are controlled on every fixed
-real line, including the lines with negative real part needed after reflection. -/
 theorem a03PositiveTimeMellin_full_height_decay {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     (a : ℝ) (N : ℕ) :

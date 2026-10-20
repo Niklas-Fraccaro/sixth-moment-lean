@@ -1,6 +1,5 @@
 import Sechstmoment.Analysis.Harmonic.PolynomialProfile
 
-/-! Exact support identities for the literal finite profile sums. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set Polynomial

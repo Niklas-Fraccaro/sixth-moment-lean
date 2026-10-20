@@ -1,7 +1,6 @@
 import Sechstmoment.Arithmetic.Euler.Convolution.SeriesConvolution
 import Sechstmoment.Arithmetic.Euler.Convolution.TripleSeries
 
-/-! Absolutely convergent global series and the six actual zeta functions. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalConvolution
@@ -34,7 +33,6 @@ theorem triplePair_hasSum (s : Fin 4 → ℂ) (ρ : ℝ) (hs : ∀ j, ‖s j‖ 
   simp only [pairWeight,tripleTerm]
   ring
 
-/-- Global series factorization on the natural common half-plane Re u, Re v > rho. -/
 theorem originalTerm_hasSum (s : Fin 4 → ℂ) (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ : ρ < 1/4)
     (hs : ∀ j, ‖s j‖ ≤ ρ) (u v : ℂ) (hu : ρ < u.re) (hv : ρ < v.re) :
     HasSum (originalTerm s u v)
@@ -48,7 +46,6 @@ theorem originalTerm_hasSum (s : Fin 4 → ℂ) (ρ : ℝ) (hρ0 : 0 ≤ ρ) (h�
   rw [← pairWeight_convolution, ← originalCoeff_pairConv s ρ hρ0 hρ hs] at HT
   exact HT
 
-/-- Absolute convergence is derived, not postulated as a premise. -/
 theorem originalTerm_absolute (s : Fin 4 → ℂ) (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ : ρ < 1/4)
     (hs : ∀ j, ‖s j‖ ≤ ρ) (u v : ℂ) (hu : ρ < u.re) (hv : ρ < v.re) :
     Summable (fun q => ‖originalTerm s u v q‖) :=

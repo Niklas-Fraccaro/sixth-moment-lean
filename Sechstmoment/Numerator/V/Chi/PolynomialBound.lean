@@ -1,9 +1,5 @@
 import Sechstmoment.Zeta.Bounds.ZetaStripGrowth
 
-/-! Actual polynomial bounds for the archimedean factor on the contour
-used in the same-side fourth-zeta reduction. Exponential factors cancel
-using reflection; no Stirling estimate is assumed.
--/
 
 namespace Sechstmoment.Source
 open Complex Real Set

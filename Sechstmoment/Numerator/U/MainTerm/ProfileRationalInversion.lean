@@ -2,12 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Mathlib.MeasureTheory.Integral.Prod
 import Sechstmoment.Numerator.U.Diagonal.ProfileHolomorphy
 
-/-!
-# Actual profile inversion against rational Laplace kernels
-
-The vertical integrals are evaluated by the proved bilateral profile inversion
-and absolute Fubini. In particular, no inverse-transform identity is assumed.
--/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set

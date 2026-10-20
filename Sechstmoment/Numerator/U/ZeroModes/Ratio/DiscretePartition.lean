@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Reconstruction.TensorActualSourceEndpoint
 import Sechstmoment.Numerator.U.ZeroModes.Contour.RatioPartition
 
-/-! The exact fourfold ratio partition is applied to the literal discrete
-source before any variable is replaced by the continuous GCD coordinate. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology
@@ -33,8 +31,6 @@ def a03ZeroModeRatioDiscreteSource (positive m n : Bool) (G : ℂ→ℂ)
   ∑ w∈quadraticIndexSet q, if signedQuadraticRelation positive w then
     α (w 0)*β (w 1)*a03ZeroModeRatioFourWeight G m n (w 2) (w 3) (w 4) (w 5)*F w else 0
 
-/-- The literal discrete source is exactly the sum of the four ratio
-terms, including every singleton boundary tuple. -/
 theorem a03_zero_ratio_discrete_source_partition (positive : Bool)
     (G : ℂ→ℂ) (γ : MomentShifts) (hG : BBLREntireWeight G γ)
     (q : QuadraticScales) (α β : ℕ→ℂ) (F : (Fin 7→ℕ)→ℂ) :
@@ -73,8 +69,6 @@ theorem a03_zero_ratio_four_weight_pair_swap (G : ℂ→ℂ) (m n : Bool) (w : F
       a03ZeroModeRatioFourWeight G m n (w 2) (w 3) (w 4) (w 5) := by
   cases m <;> cases n <;> simp [a03ZeroModeRatioFourWeight,phasePairSwapTuple]
 
-/-- Each ratio chamber is reindexed by an actual permutation of four
-integer factors. This does not permute a discrete factor with a continuous one. -/
 theorem a03_zero_ratio_discrete_source_pair_swap (positive m n : Bool) (G : ℂ→ℂ)
     (q : QuadraticScales) (α β : ℕ→ℂ) (F : (Fin 7→ℕ)→ℂ) :
     a03ZeroModeRatioDiscreteSource positive m n G q α β F=

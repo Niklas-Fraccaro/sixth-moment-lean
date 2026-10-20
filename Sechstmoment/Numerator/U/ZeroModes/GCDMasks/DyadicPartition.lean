@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.DyadicSupport
 
-/-! Genuine scalar dyadic partition and seven-coordinate native mask
-mass. The partition is bounded on every real coordinate, including the
-omitted continuous region below one. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -83,16 +80,12 @@ theorem a03_native_GCD_seven_weight_total (w : Fin 5→ℕ) (X : ℝ) :
   exact (Finset.prod_le_prod₀ (fun j _ => (a03_smooth_scale_weight_tsum_bounds _).1)
     (fun j _ => (a03_smooth_scale_weight_tsum_bounds _).2)).trans_eq Finset.prod_const_one
 
-/-- Every finite collection of seven native weights has total at most
-one. No integer assumption is made on the integrated coordinates. -/
 theorem a03_native_GCD_seven_weight_partial_le_one (w : Fin 5→ℕ) (X : ℝ)
     (S : Finset (Fin 7→ℕ)) : (∑ k∈S,a03NativeGCDSevenWeight w X k)≤1 := by
   obtain ⟨hs,hbound⟩ := a03_native_GCD_seven_weight_total w X
   exact (hs.sum_le_tsum S (fun _ _ => Finset.prod_nonneg
     (fun _ _ => rectangularSmoothBlockWeight_nonneg _))).trans hbound
 
-/-- The seven actual native masks are the independent seven-coordinate
-geometric weights in the common-X coordinate. -/
 theorem a03_native_GCD_all_weight_eq_seven_weight
     (i : (Fin 3→ℕ)×(Fin 4→ℕ)) (w : Fin 5→ℕ) (hw : ∀ j,1≤w j) (X : ℝ) :
     a03NativeGCDAllDyadicWeight
@@ -115,8 +108,6 @@ theorem a03_native_GCD_all_weight_eq_seven_weight
   simp [q,phaseActualScales,a03NativeGCDCoordinateQuad]
   ring
 
-/-- Any actual retained or unretained block selector gives a native
-seven-grid mask between zero and one. -/
 theorem a03_native_GCD_selected_grid_weight_bounds
     (S : Finset ((Fin 3→ℕ)×(Fin 4→ℕ))) (P : ((Fin 3→ℕ)×(Fin 4→ℕ))→Prop)
     (w : Fin 5→ℕ) (hw : ∀ j,1≤w j) (X : ℝ) :

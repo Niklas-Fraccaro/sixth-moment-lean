@@ -2,13 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Mathlib.Analysis.SumIntegralComparisons
 import Sechstmoment.Zeta.Bounds.MellinZetaDirichletBounds
 
-/-!
-# Global scaled Dirichlet bounds for the actual Riemann zeta function
-
-The integral test yields ζ(b) ≤ 1 + 1/(b−1).  Consequently the normalized
-factor ζ(1+w/L)/L is bounded independently of both L ≥ 1 and Im(w), provided
-Re(w) has a fixed positive lower bound.  No zeta growth hypothesis is used.
--/
 
 namespace Sechstmoment
 
@@ -49,7 +42,6 @@ theorem zetaDirichletMajorant_le_one_add_inv {b : ℝ} (hb : 1 < b) :
   rw [← hdecomp]
   linarith
 
-/-- A global bound for an actual zeta factor on a normalized profile contour. -/
 theorem scaled_riemannZeta_norm_le {L r : ℝ} {w : ℂ}
     (hL : 1 ≤ L) (hr : 0 < r) (hw : r ≤ w.re) :
     ‖riemannZeta (1 + w / (L:ℂ)) / (L:ℂ)‖ ≤ 1 + 1/r := by
@@ -73,7 +65,6 @@ theorem scaled_riemannZeta_norm_le {L r : ℝ} {w : ℂ}
       have hdiv : 1/L ≤ 1 := (div_le_iff₀ hLpos).mpr (by simpa using hL)
       exact add_le_add_left hdiv (1/r)
 
-/-- The five principal entangled factors have normalized real part at least one. -/
 theorem scaled_riemannZeta_norm_bound_one {L : ℝ} {w : ℂ}
     (hL : 1 ≤ L) (hw : 1 ≤ w.re) :
     ‖riemannZeta (1 + w / (L:ℂ)) / (L:ℂ)‖ ≤ 2 := by

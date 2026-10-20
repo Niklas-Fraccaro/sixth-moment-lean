@@ -7,8 +7,6 @@ open scoped BigOperators Topology ContDiff
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- One sequence, chosen before T, controls every actual time derivative.
-The positive Mellin abscissa consumes exactly `2*c` of the allowed exponent. -/
 theorem bblrGaussianTimeAmplitude_uniform_subpower_derivatives
     {c ε κ : ℝ} (hc : 0 < c) (hc1 : c ≤ 1) (hε : 2*c < ε) (hκ : 0 < κ) :
     ∃ B : ℕ → ℝ, (∀ n, 0 ≤ B n) ∧

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.FourPolynomialMajorant
 
-/-! The weighted shifted local coefficients retain a polynomial majorant. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

@@ -4,9 +4,6 @@ import Mathlib.MeasureTheory.Integral.CompactlySupported
 import Mathlib.MeasureTheory.Measure.FiniteMeasure
 import Mathlib.Tactic
 
-/-! Removing a strictly positive exponential tilt from compact test functions.
-The measure is arbitrary; the actual diagonal measures are supplied by the
-terminal D01 assembly. -/
 
 namespace Sechstmoment
 open MeasureTheory Filter BoundedContinuousFunction

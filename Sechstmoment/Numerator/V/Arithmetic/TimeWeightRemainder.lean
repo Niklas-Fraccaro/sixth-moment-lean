@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.UniformCorrectedMellin
 import Sechstmoment.Numerator.V.EulerTransfer.PowerSaving
 
-/-! The actual displaced divisor/profile remainder with a common constant
-for every member of the logarithmically shifted time-weight family. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory

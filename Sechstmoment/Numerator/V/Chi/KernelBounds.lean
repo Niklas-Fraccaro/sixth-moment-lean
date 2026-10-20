@@ -2,7 +2,6 @@ import Sechstmoment.Numerator.V.Chi.KernelDecay
 import Sechstmoment.Numerator.V.Chi.KernelMain
 import Sechstmoment.Numerator.V.Chi.KernelTruncation
 
-/-! Main and far-frequency estimates for the actual untruncated chi kernel. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

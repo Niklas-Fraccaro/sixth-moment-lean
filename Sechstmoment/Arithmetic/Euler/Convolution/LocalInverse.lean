@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Convolution.PairEuler
 
-/-! Exact inversion of the six causal Euler operators, on arbitrary coefficient arrays. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalConvolution
@@ -69,7 +68,6 @@ theorem coeff3_inverse_sum (a b c : R) (f : ℕ → R) (n : ℕ) :
   rw [natConv_comm, natConv, ← Fin.sum_univ_eq_sum_range] at H
   exact H.symm
 
-/-- Recover an arbitrary array from its six Euler differences. -/
 theorem regularizedCoeff_inverse (a b c : R) (F : ℕ → ℕ → R) (h k : ℕ) :
     F h k = ∑ i : Fin (h+1), ∑ j : Fin (k+1),
       regularizedCoeff a b c F i.val j.val *

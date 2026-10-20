@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.Front
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.CosineGapMellinSeries
 
-/-! The genuine native gap sum, including its actual x/T scaling,
-is the Archimedean Mellin factor times the zeta Dirichlet series. -/
 namespace Sechstmoment.Source
 open Complex Real Set Filter MeasureTheory
 open scoped Topology ContDiff

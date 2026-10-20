@@ -3,10 +3,6 @@ import Sechstmoment.Numerator.U.Replacement.AmplifiedVStarFiniteGrid
 import Sechstmoment.Numerator.U.Replacement.ReplacementMomentMellin
 import Sechstmoment.Numerator.U.Replacement.WeightReplacementFiniteBound
 
-/-! Complete, source-free replacement of the unrestricted actual Gamma AFE
-and its actual dual branch by the unrestricted VStar AFE with leading dual
-phase. Both literal amplifier sums and the time integration are included.
-This closes the replacement error, not the six-main-term reconstruction. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology

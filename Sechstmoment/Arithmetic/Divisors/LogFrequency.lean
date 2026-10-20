@@ -7,8 +7,6 @@ import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 
-/-! Arithmetic frequency separation for the balanced two-zeta denominator.
-The product cutoff is the only input from the long-sum truncation. -/
 namespace Sechstmoment
 open Real Set Filter
 open scoped Topology
@@ -52,8 +50,6 @@ private theorem d02_nat_log_ratio_ordered {A B : ℕ} (hB : 0 < B) (hBA : B < A)
       one_div_le_one_div_of_le (by norm_num) (by linarith)
     exact hhalf.trans (hlogtwo.trans (Real.log_le_log (by norm_num) hr))
 
-/-- Distinct positive integers cannot have an arbitrarily small logarithmic
-ratio at fixed product. This covers comparable and noncomparable pairs. -/
 theorem d02_nat_log_ratio_separation {A B : ℕ} (hA : 0 < A) (hB : 0 < B)
     (hne : A ≠ B) :
     1 / (2 * Real.sqrt ((A : ℝ) * (B : ℝ))) ≤
@@ -71,7 +67,6 @@ theorem d02_nat_log_ratio_separation {A B : ℕ} (hA : 0 < A) (hB : 0 < B)
     simpa only [mul_comm] using hb.trans ha'
   · exact (d02_nat_log_ratio_ordered hB h).trans (le_abs_self _)
 
-/-- The frequency on a product cutoff has the exact power needed by D02. -/
 theorem d02_product_cutoff_frequency {T p : ℝ} (hT : 0 < T)
     {A B : ℕ} (hA : 0 < A) (hB : 0 < B) (hne : A ≠ B)
     (hprod : (A : ℝ) * (B : ℝ) ≤ T ^ p) :
@@ -98,8 +93,6 @@ theorem d02_product_cutoff_frequency {T p : ℝ} (hT : 0 < T)
   have hn : T ^ (p / 2) ≠ 0 := (Real.rpow_pos_of_pos hT _).ne'
   field_simp; ring_nf; norm_num
 
-/-- For the literal denominator phase, HK ≤ T^S and mn ≤ T^(1+δ)
-give T |log(Hm/(Kn))| ≥ (1/2) T^((1-S-δ)/2). -/
 theorem d02_balanced_offDiagonal_frequency {T S δ : ℝ} (hT : 0 < T)
     {H K m n : ℕ} (hH : 0 < H) (hK : 0 < K) (hm : 0 < m) (hn : 0 < n)
     (hne : H * m ≠ K * n)

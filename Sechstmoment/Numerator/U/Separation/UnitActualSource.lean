@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.ActualAmplifierCoefficients
 import Sechstmoment.Numerator.U.Separation.UnitActualScales
 
-/-! The actual coefficient families and five separated Mellin weights fit
-the exact retained-boundary embedding. The source main term remains the
-literal zero mode of the transformed data. -/
 namespace Sechstmoment
 open Complex Source Set
 open scoped BigOperators Topology

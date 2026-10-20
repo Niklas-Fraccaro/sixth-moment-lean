@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.PhysicalMellinBridge
 
-/-! Genuine absolute v/time interchange for the restored leading kernel,
-with its actual positive real physical quad variables. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -100,8 +98,6 @@ theorem a03PhysicalLeadingTimeKernel_joint_integrable {Φ : ℝ→ℂ} (hΦ : Co
         mul_le_mul_of_nonneg_left hb (norm_nonneg _)
       _=_ := by ring
 
-/-- The literal v-integral of the physical leading Fourier profile is the
-actual V* time integral. The source small c-line is sufficient. -/
 theorem a03PhysicalLeadingTimeKernel_vertical_time_eq_VStar
     {Φ : ℝ→ℂ} (hΦ : Continuous Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {T c : ℝ} (hT : 0<T) (hc : 0<c) (σ α : MomentShifts)

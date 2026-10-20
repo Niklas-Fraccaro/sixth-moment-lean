@@ -1,7 +1,5 @@
 import Sechstmoment.Analysis.Mellin.SmoothMellin
 
-/-! Mellin inversion for the actual smooth dyadic weights. The two convergence
-conditions are consequences of smoothness and support, not new assumptions. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set

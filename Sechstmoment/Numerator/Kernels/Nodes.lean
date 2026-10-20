@@ -15,9 +15,6 @@ import Sechstmoment.Analysis.Alternants.Four
 import Sechstmoment.Numerator.Kernels.Polynomial
 import Std
 
-/-! The actual four-by-four exponential determinant of (3.5).
-Its expansion along the first two columns contains six signed two-by-two
-minor products. The Vandermonde factor is the manuscript's convention. -/
 
 namespace Sechstmoment
 open scoped BigOperators
@@ -27,14 +24,11 @@ set_option maxHeartbeats 0
 noncomputable def numeratorRho (u v : ℝ) : Fin 4 → ℂ :=
   ![-1, (v:ℂ)-1, -(u:ℂ), 0]
 
-/-- The polar-node Vandermonde is precisely twelve times the real kernel. -/
 theorem numeratorRho_vandermonde (u v : ℝ) :
     fourVandermonde (numeratorRho u v) = 12 * (numeratorP u v : ℂ) := by
   norm_num [fourVandermonde, numeratorRho, numeratorP]
   ring
 
-/-- The regular simplex generator is the confluent divided difference from
-the manuscript, with no denominator singularity assumed at zero. -/
 theorem numeratorRho_divided_difference (u v : ℝ) (z : ℂ)
     (hq : Function.Injective (numeratorRho u v)) (hz : z ≠ 0) :
     fourVandermonde (numeratorRho u v) / (2*z^3) *

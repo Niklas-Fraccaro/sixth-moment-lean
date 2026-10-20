@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Sources.GlobalBudget
 import Sechstmoment.Numerator.U.Sources.GlobalMellin
 import Sechstmoment.Numerator.U.ZeroModes.SixTensorZeroMode
 
-/-! Literal restored physical source errors, summed on the genuine finite
-three-plus-four scale grid and over both signs and the Mellin interval. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff
@@ -84,8 +82,6 @@ def a03ActualSourceErrorMoment (dual : Bool) (Φ : ℝ→ℂ)
   ∫ v in Icc (-θ*Real.log T) (θ*Real.log T),
     a03ActualSourceFiniteError dual Φ c εkernel T a b s u v σ f g
 
-/-- The displayed restored block is exactly the raw Gamma physical sum
-minus its raw physical GCD zero mode, with the literal AFE scale factor. -/
 theorem a03ActualSourceBlockError_eq_raw {T : ℝ} (hT : 0<T)
     (dual positive : Bool) (Φ : ℝ→ℂ) (c e s v : ℝ) (σ : MomentShifts)
     (f g : ℝ→ℝ) (i : (Fin 3→ℕ)×(Fin 4→ℕ)) :
@@ -179,8 +175,6 @@ theorem a03_actual_source_restored_block_bound
       _=_ := by dsimp [A,B,H]; simp only [Real.sqrt_eq_rpow]; ring
   · simp
 
-/-- The additional power restoring the actual Gamma tensor is kept in the
-global budget, rather than lost by its normalization. -/
 theorem a03_actual_source_restored_global_majorant_isLittleO {a b s u ε e θ : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs0 : 0≤s) (hs : s≤1/8)
     (hu0 : 0<u) (hu : u≤1/8) (hε : 0≤ε) (hθ : 0≤θ)
@@ -216,9 +210,6 @@ theorem a03_actual_source_restored_global_majorant_isLittleO {a b s u ε e θ : 
       T^rectangularSecondExponent a b (rectangularSlack a b)) := by gcongr
     _=_ := by ring
 
-/-- Pointwise estimates of the actual restored physical blocks sum and
-integrate with the proved literal majorant; this lemma introduces no mass
-or cardinality input. -/
 theorem a03_actual_source_error_moment_bound
     {T a b s u ε e θ C : ℝ} (hT : 1≤T) (hθ : 0≤θ)
     (dual : Bool) (Φ : ℝ→ℂ) (c : ℝ) (σ : MomentShifts) (f g : ℝ→ℝ)

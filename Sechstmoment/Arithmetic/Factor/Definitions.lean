@@ -8,8 +8,6 @@ import Mathlib.Tactic.Ring
 import Mathlib.Topology.Algebra.InfiniteSum.Basic
 import Mathlib.Topology.Instances.EReal.Lemmas
 
-/-! This module STATES the original analytic goal. It contains no proof of
-`MainClaim` or `FullGoal`, and no axiom asserting either proposition. -/
 
 namespace Sechstmoment
 

@@ -1,7 +1,6 @@
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.WattWeights
 import Sechstmoment.Arithmetic.Watt.Partition
 
-/-! Uniform derivative bounds for the smooth block decomposition. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -72,7 +71,6 @@ theorem block_derivative_bound {b : ℕ → ℝ} (hb : ∀ j, 0 ≤ b j)
     have h₂ := scaledTransition_derivative hd (blockScale_pos hA k) j hx
     linarith
 
-/-- Multiplying by an ordinarily smooth cutoff preserves the SAME delta cost. -/
 theorem delta_derivative_product {f g : ℝ → ℂ}
     (hf : ContDiff ℝ ∞ f) (hg : ContDiff ℝ ∞ g)
     {a b : ℕ → ℝ} (ha : ∀ j, 0 ≤ a j) (hb : ∀ j, 0 ≤ b j)
@@ -115,7 +113,6 @@ theorem delta_derivative_product {f g : ℝ → ℂ}
           ((δ*x)^(-(i : ℝ))*(δ*x)^(-((j-i : ℕ) : ℝ))) := by ring
         _ = _ := by rw [hpow]
 
-/-- Fixed derivative data for every block, chosen before scales, delta and u. -/
 theorem weightedBlock_derivative_data (a : ℕ → ℝ) (ha : ∀ j, 0 ≤ a j) :
     ∃ b : ℕ → ℝ, (∀ j, 0 ≤ b j) ∧
       ∀ (u : ℝ → ℂ) (A δ : ℝ), ContDiff ℝ ∞ u → 0 < A → 0 < δ → δ ≤ 1 →

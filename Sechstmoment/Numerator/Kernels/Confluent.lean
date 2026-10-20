@@ -15,10 +15,6 @@ import Sechstmoment.Analysis.Alternants.Confluent
 import Sechstmoment.Numerator.Kernels.Nodes
 import Std
 
-/-! The genuine confluent exponential determinant with derivative rows
-1, rho and rho^2. This identifies the resulting determinant with the simplex
-generator; the limiting operation in the original four shift variables is
-a separate analytic obligation. -/
 
 namespace Sechstmoment
 open scoped BigOperators

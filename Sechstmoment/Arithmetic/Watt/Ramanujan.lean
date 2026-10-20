@@ -1,8 +1,6 @@
 import Sechstmoment.Arithmetic.Watt.Statement
 import Sechstmoment.Arithmetic.Kloosterman.Estermann
 
-/-! The zero frequency in Poisson completion is bounded arithmetically.
-The proof uses prime-power descent and CRT, not an unproved Weil estimate. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -55,7 +53,6 @@ theorem gcd_unit_multiple {n : ℕ} [NeZero n] {l : ZMod n} (hl : IsUnit l) (A :
   have hcop : ((u : ZMod n).val).Coprime n := ZMod.val_coe_unit_coprime u
   rw [Nat.gcd_comm n, Nat.mul_comm, hcop.gcd_mul_right_cancel, Nat.gcd_comm A]
 
-/-- The global Ramanujan bound for arbitrary positive moduli, in SALT's convention. -/
 theorem ramanujan_nat (c : ℕ) [NeZero c] (A : ℕ) :
     ‖Salt.Weil.kloosterman (A : ZMod c) 0‖ ≤ (Nat.gcd c A : ℝ) := by
   have key : ∀ c : ℕ, ∀ [NeZero c], ∀ A : ℕ,
@@ -102,7 +99,6 @@ theorem ramanujan_nat (c : ℕ) [NeZero c] (A : ℕ) :
       exact_mod_cast hle
   exact key c A
 
-/-- The zero-frequency bound in the original integer-parameter convention. -/
 theorem ramanujan_bound {c : ℕ} (hc : 0 < c) (m : ℤ) :
     ‖classicalKloostermanSum m 0 c‖ ≤ (Nat.gcd m.natAbs c : ℝ) := by
   let : NeZero c := ⟨hc.ne'⟩

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Chi.BandPhase
 import Sechstmoment.Numerator.V.Chi.LogBandProfile
 
-/-! The actual positive cosine kernel in logarithmic frequency coordinates.
-The changes of variables follow from the proved Mellin/Fourier identity. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

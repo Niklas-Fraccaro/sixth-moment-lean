@@ -1,10 +1,6 @@
 import Sechstmoment.Zeta.DirichletL.DualBound
 import Sechstmoment.Zeta.DirichletL.SmoothCharMeanSquare
 
-/-! The fixed-modulus fourth moment for the actual primitive nontrivial
-Dirichlet L-functions. Both AFE series and all uniform estimates used here
-have been proved, rather than introduced as analytic inputs.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set
@@ -130,8 +126,6 @@ theorem primitiveDirichlet_fourthMoment_small_exponent {ε : ℝ}
     _ ≤ 4*(K*(N : ℝ)^(1+2*ε)*H^20)+4*(D^2*K*(N : ℝ)^(1+2*ε)*H^20) := by gcongr
     _ = _ := by dsimp [H]; ring
 
-/-- Fixed-modulus fourth moment for primitive nontrivial characters, with
-arbitrarily small conductor loss. No AFE or moment premise occurs. -/
 theorem primitiveDirichlet_fourthMoment {ε : ℝ} (hε : 0 < ε) :
     ∃ C : ℝ, 0 < C ∧ ∀ N : ℕ, ∀ _ : NeZero N,
       ∀ s : ℂ, s.re ∈ Icc (1/2 : ℝ) (3/4) →

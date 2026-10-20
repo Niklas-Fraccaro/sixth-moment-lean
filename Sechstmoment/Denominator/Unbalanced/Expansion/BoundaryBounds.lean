@@ -2,9 +2,6 @@ import Sechstmoment.Denominator.Unbalanced.Expansion.Expansion
 import Sechstmoment.Zeta.AFE.OneSided.GammaContourBounds
 import Sechstmoment.Zeta.Bounds.LeftStrip
 
-/-! Quantitative bounds for the positive-line tail and the two horizontal
-edges of the actual one-sided Mellin rectangle. The resulting error is
-`O(T⁻²)`, uniformly in the physical argument window. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
@@ -54,8 +51,6 @@ private theorem d04_right_integrand_integrable {T : ℝ} (hT : 0 < T)
       (hz r hr).aestronglyMeasurable
   · exact Eventually.of_forall (d04_right_integrand_norm_le hT hs hr)
 
-/-- The exact complement of the truncated right vertical line has a
-uniform `T⁻²` bound. No finite-sum cutoff or tail hypothesis is assumed. -/
 theorem d04OneSidedRightTail_power_bound :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ T : ℝ, 4 ≤ T → ∀ s r : ℂ,
       0 ≤ s.re → 0 ≤ r.re →
@@ -128,8 +123,6 @@ private theorem d04_horizontal_argument_bound {T c v : ℝ}
   rw [hre,him]
   exact ⟨by linarith,by linarith,by linarith⟩
 
-/-- Both displaced horizontal edges obey the same stronger `T⁻²` bound,
-uniformly for the actual physical argument window. -/
 theorem d04OneSidedHorizontal_power_bound :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ T a v : ℝ, 4 ≤ T → -1 ≤ a → a ≤ 0 → |v|=T/4 →
       ∀ s r : ℂ, 1/4 ≤ s.re → 1/4 ≤ r.re →

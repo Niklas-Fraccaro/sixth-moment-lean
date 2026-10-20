@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.AmplifiedSmallContourMoment
 
-/-! The literal unrestricted original and dual AFE moment. Its finite small-line
-approximation uses only proved summability, spatial tails and contour tails;
-no approximate-functional-equation input is needed. -/
 namespace Sechstmoment
 open Complex Source MeasureTheory Filter Set
 open scoped BigOperators Topology

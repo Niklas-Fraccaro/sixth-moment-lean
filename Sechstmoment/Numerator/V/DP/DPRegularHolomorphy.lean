@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.Polar.General.Holomorphy
 import Sechstmoment.Numerator.V.DP.DPRegularBoundary
 
-/-! # Actual DP regular kernel is holomorphic on the coincident-shift polydisc -/
 namespace Sechstmoment.Source
 open Complex Set
 noncomputable section

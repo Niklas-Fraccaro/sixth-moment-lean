@@ -5,13 +5,6 @@ import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Positivity
 import Sechstmoment.Analysis.Complex.CauchyBounds
 
-/-!
-# Quantitative reciprocal sums in the right half-plane
-
-The estimates concern the actual finite reciprocal sums. Their constants do
-not depend on the number of terms. They are elementary ingredients for the
-uniform Gamma-ratio analysis, not assumptions replacing that analysis.
--/
 
 namespace Sechstmoment
 
@@ -20,7 +13,6 @@ open scoped BigOperators
 
 noncomputable section
 
-/-- The actual quadratic reciprocal sum that controls the logarithm Taylor remainder. -/
 def reciprocalSquareSum (s : ℂ) (n : ℕ) : ℝ :=
   ∑ j ∈ Finset.range (n + 1), (‖s + (j : ℂ)‖ ^ 2)⁻¹
 
@@ -48,8 +40,6 @@ private theorem inverse_square_tail_le (m N : ℕ) (hm : 0 < m) :
       simpa only [neg_sub_neg, Nat.add_zero, Nat.add_assoc] using h
     _ ≤ _ := sub_le_self _ (by positivity)
 
-/-- Uniform finite-sum bound with the explicit constant `4`.
-The near range is bounded by `1 / |Im s|^2`; the far range telescopes. -/
 theorem reciprocalSquareSum_range_le (s : ℂ) (N : ℕ)
     (hre : 0 ≤ s.re) (him : 1 ≤ |s.im|) :
     ∑ j ∈ Finset.range N, (‖s + (j : ℂ)‖ ^ 2)⁻¹ ≤ 4 / |s.im| := by
@@ -105,7 +95,6 @@ theorem reciprocalSquareSum_range_le (s : ℂ) (N : ℕ)
       · exact (div_le_div_iff₀ hmR ht0).mpr (by nlinarith)
     _ = 4 / |s.im| := by dsimp [t]; ring
 
-/-- The API with `n+1` terms used by the Gamma-ratio Taylor error. -/
 theorem reciprocalSquareSum_le (s : ℂ) (n : ℕ)
     (hre : 0 ≤ s.re) (him : 1 ≤ |s.im|) :
     reciprocalSquareSum s n ≤ 4 / |s.im| :=
@@ -132,7 +121,6 @@ theorem norm_add_ofReal_mono (s : ℂ) (hre : 0 ≤ s.re)
     mul_nonneg (sub_nonneg.mpr hab) (by linarith)
   nlinarith
 
-/-- The exact reciprocal difference gives a unit-interval error without asymptotic hypotheses. -/
 theorem reciprocal_unitInterval_point_error_le (s : ℂ) (j : ℕ)
     (hre : 0 ≤ s.re) (him : s.im ≠ 0) {x : ℝ}
     (hx : x ∈ Set.Icc (j : ℝ) ((j : ℝ) + 1)) :
@@ -160,7 +148,6 @@ theorem reciprocal_unitInterval_point_error_le (s : ℂ) (j : ℕ)
         (mul_le_mul_of_nonneg_left hmono hjpos.le)
     _ = _ := by rw [pow_two, one_div]
 
-/-- Integrated error on one unit interval. -/
 theorem reciprocal_unitInterval_integral_error_le (s : ℂ) (j : ℕ)
     (hre : 0 ≤ s.re) (him : s.im ≠ 0) :
     ‖(s + (j : ℂ))⁻¹ - (∫ x in (j : ℝ)..((j + 1 : ℕ) : ℝ),
@@ -185,7 +172,6 @@ theorem reciprocal_unitInterval_integral_error_le (s : ℂ) (j : ℕ)
         simpa only [Nat.cast_add, Nat.cast_one] using Set.Ioc_subset_Icc_self hx)
   simpa only [Nat.cast_add, Nat.cast_one, add_sub_cancel_left, abs_one, mul_one] using h
 
-/-- The actual reciprocal sum differs from its integral by at most `4 / |Im s|`. -/
 theorem reciprocalSum_integral_error_le (s : ℂ) (N : ℕ)
     (hre : 0 ≤ s.re) (him : 1 ≤ |s.im|) :
     ‖(∑ j ∈ Finset.range N, (s + (j : ℂ))⁻¹) -
@@ -204,8 +190,6 @@ theorem reciprocalSum_integral_error_le (s : ℂ) (N : ℕ)
       Finset.sum_le_sum (fun j _ => reciprocal_unitInterval_integral_error_le s j hre him0)
     _ ≤ _ := reciprocalSquareSum_range_le s N hre him
 
-/-- The reciprocal integral is exactly the difference of principal complex logarithms.
-The horizontal path stays off the real axis. -/
 theorem integral_reciprocal_eq_log_sub (s : ℂ) (N : ℕ) (him : s.im ≠ 0) :
     (∫ x in (0 : ℝ)..(N : ℝ), (s + (x : ℂ))⁻¹) =
       Complex.log (s + (N : ℂ)) - Complex.log s := by
@@ -223,7 +207,6 @@ theorem integral_reciprocal_eq_log_sub (s : ℂ) (N : ℕ) (him : s.im ≠ 0) :
   simpa only [Complex.ofReal_zero, add_zero, Complex.ofReal_natCast] using
     intervalIntegral.integral_eq_sub_of_hasDerivAt (fun x _ => hderiv x) hi
 
-/-- The uniform finite harmonic/logarithmic error required for the Gamma-ratio limit. -/
 theorem reciprocalSum_log_error_le (s : ℂ) (N : ℕ)
     (hre : 0 ≤ s.re) (him : 1 ≤ |s.im|) :
     ‖(∑ j ∈ Finset.range N, (s + (j : ℂ))⁻¹) -
@@ -232,7 +215,6 @@ theorem reciprocalSum_log_error_le (s : ℂ) (N : ℕ)
   rw [← integral_reciprocal_eq_log_sub s N him0]
   exact reciprocalSum_integral_error_le s N hre him
 
-/-- A wider cone suffices: shifting by `ceil |Im s|` reduces the tail to the right half-plane. -/
 theorem reciprocalSquareSum_range_cone_six_le (s : ℂ) (N : ℕ)
     (hre : -|s.im| ≤ s.re) (him : 1 ≤ |s.im|) :
     ∑ j ∈ Finset.range N, (‖s + (j : ℂ)‖ ^ 2)⁻¹ ≤ 6 / |s.im| := by
@@ -289,20 +271,17 @@ theorem reciprocalSquareSum_range_cone_six_le (s : ℂ) (N : ℕ)
       nlinarith [mul_le_mul_of_nonneg_right hm2 ht0.le]
     _ = 6 / |s.im| := by dsimp [t]; ring
 
-/-- Cone estimate with the stronger constant `6`, in the `n+1`-term format. -/
 theorem reciprocalSquareSum_cone_six_le (s : ℂ) (n : ℕ)
     (hre : -|s.im| ≤ s.re) (him : 1 ≤ |s.im|) :
     reciprocalSquareSum s n ≤ 6 / |s.im| :=
   reciprocalSquareSum_range_cone_six_le s (n + 1) hre him
 
-/-- A relaxed constant `16` for interfaces using a cone with `|Im s| ≥ 2`. -/
 theorem reciprocalSquareSum_cone_le (s : ℂ) (n : ℕ)
     (hre : -|s.im| ≤ s.re) (him : 2 ≤ |s.im|) :
     reciprocalSquareSum s n ≤ 16 / |s.im| := by
   exact (reciprocalSquareSum_cone_six_le s n hre (by linarith)).trans
     (div_le_div_of_nonneg_right (by norm_num) (abs_nonneg _))
 
-/-- On a unit interval the norm may decrease, but for `|Im s| ≥ 2` it decreases by at most a factor two. -/
 theorem reciprocal_unitInterval_point_error_le_of_large_im (s : ℂ) (j : ℕ)
     (him : 2 ≤ |s.im|) {x : ℝ}
     (hx : x ∈ Set.Icc (j : ℝ) ((j : ℝ) + 1)) :
@@ -343,7 +322,6 @@ theorem reciprocal_unitInterval_point_error_le_of_large_im (s : ℂ) (j : ℕ)
       nlinarith [mul_le_mul_of_nonneg_left hratio hjpos.le]
     _ = _ := by rw [div_eq_mul_inv]
 
-/-- The corresponding integrated unit-interval estimate, without a sign restriction on `Re s`. -/
 theorem reciprocal_unitInterval_integral_error_le_of_large_im (s : ℂ) (j : ℕ)
     (him : 2 ≤ |s.im|) :
     ‖(s + (j : ℂ))⁻¹ - (∫ x in (j : ℝ)..((j + 1 : ℕ) : ℝ),
@@ -369,7 +347,6 @@ theorem reciprocal_unitInterval_integral_error_le_of_large_im (s : ℂ) (j : ℕ
         simpa only [Nat.cast_add, Nat.cast_one] using Set.Ioc_subset_Icc_self hx)
   simpa only [Nat.cast_add, Nat.cast_one, add_sub_cancel_left, abs_one, mul_one] using h
 
-/-- Actual sum-integral discrepancy in the larger cone, with constant `12`. -/
 theorem reciprocalSum_integral_error_cone_twelve_le (s : ℂ) (N : ℕ)
     (hre : -|s.im| ≤ s.re) (him : 2 ≤ |s.im|) :
     ‖(∑ j ∈ Finset.range N, (s + (j : ℂ))⁻¹) -
@@ -391,7 +368,6 @@ theorem reciprocalSum_integral_error_cone_twelve_le (s : ℂ) (N : ℕ)
       (reciprocalSquareSum_range_cone_six_le s N hre (by linarith)) (by norm_num)
     _ = _ := by ring
 
-/-- The stronger uniform reciprocal/logarithmic cone error, with constant `12`. -/
 theorem reciprocalSum_log_error_cone_twelve_le (s : ℂ) (N : ℕ)
     (hre : -|s.im| ≤ s.re) (him : 2 ≤ |s.im|) :
     ‖(∑ j ∈ Finset.range N, (s + (j : ℂ))⁻¹) -
@@ -400,7 +376,6 @@ theorem reciprocalSum_log_error_cone_twelve_le (s : ℂ) (N : ℕ)
   rw [← integral_reciprocal_eq_log_sub s N him0]
   exact reciprocalSum_integral_error_cone_twelve_le s N hre him
 
-/-- Relaxed constant `32` for the Gamma-ratio cone interface. -/
 theorem reciprocalSum_log_error_cone_le (s : ℂ) (N : ℕ)
     (hre : -|s.im| ≤ s.re) (him : 2 ≤ |s.im|) :
     ‖(∑ j ∈ Finset.range N, (s + (j : ℂ))⁻¹) -

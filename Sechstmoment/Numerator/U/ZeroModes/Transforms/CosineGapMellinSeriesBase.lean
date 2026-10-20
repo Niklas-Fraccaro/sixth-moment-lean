@@ -3,7 +3,6 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Mathlib.NumberTheory.LSeries.RiemannZeta
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.SmoothedCosineMellinInversion
 
-/-! Absolute gap-series interchange on the genuine starting line. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory Source
 open scoped Topology ContDiff

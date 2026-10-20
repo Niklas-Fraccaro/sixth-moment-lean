@@ -2,10 +2,6 @@ import Sechstmoment.Arithmetic.Divisors.Subpower
 import Sechstmoment.Zeta.DirichletL.WeightedCharSeries
 import Sechstmoment.Zeta.DirichletL.Weights.Bounds
 
-/-! Uniform mean-square bounds for the actual smoothed divisor series.
-The divisor estimate is proved in the repository; the weight estimate and
-the weighted character orthogonality are proved in the new NoDP modules.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

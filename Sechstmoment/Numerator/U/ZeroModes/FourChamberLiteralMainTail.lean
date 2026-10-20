@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.DiscrepancyIdentity
 import Sechstmoment.Numerator.U.ZeroModes.FourChamberMainPair
 
-/-! Complete four-chamber arithmetic-to-literal crossed main-term error.
-The amplifier ranges, the time weight, and the original shift domain are retained. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

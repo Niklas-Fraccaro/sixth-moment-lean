@@ -1,9 +1,6 @@
 import Sechstmoment.Analysis.Mellin.FourierApproximation
 import Sechstmoment.Numerator.V.Chi.LogBandCosine
 
-/-! The main term of the actual truncated chi transform. The error is
-uniform in the positive frequency; all constants come from two absolute
-Schwartz moments. The far-frequency summation is a separate step. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

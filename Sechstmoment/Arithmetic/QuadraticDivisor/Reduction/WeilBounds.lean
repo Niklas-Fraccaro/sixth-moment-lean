@@ -54,12 +54,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.BlockSums
 import Std
 
-/-! ## Fourier Mass
-
-Uniform L1 mass of the sampled Fourier coefficients.  Unlike a bound by a
-fixed inverse-square series alone, the estimate here is uniform for every
-positive sampling scale, including scales tending to zero.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -105,7 +99,6 @@ theorem cauchyEnvelope_tsum_positive_le {r : ℝ} (hr : 0 < r) :
         (integrable_inv_one_add_mul_sq hr.ne')
     _ = Real.pi/r := by simp [cauchyEnvelope,abs_of_pos hr]
 
-/-- The sampled Cauchy envelope has mass at most `1+2π/r`. -/
 theorem cauchyEnvelope_tsum_int_le {r : ℝ} (hr : 0 < r) :
     (∑' n : ℤ, cauchyEnvelope r n) ≤ 1+2*Real.pi/r := by
   rw [tsum_int_eq_zero_add_two_mul_tsum_pnat (by
@@ -132,7 +125,6 @@ theorem decay_square_le_cauchy (r : ℝ) (hr : 0 ≤ r) (l : ℤ) :
   rw [one_div]
   exact inv_anti₀ (by positivity) hsq
 
-/-- The absolute Fourier mass needed in smooth completion (15). -/
 theorem poissonCoefficient_absolute_mass {W₂ W₄ : ℝ → ℝ} {a b r K : ℝ}
     {bounds : ℕ → ℝ} (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (hr : 0 < r) (ha : 1 ≤ a*r) (hb : 0 ≤ b*r) (haK : a*r ≤ K) (hbK : b*r ≤ K)
@@ -168,13 +160,6 @@ end DivisorProof
 
 
 
-/-! ## Weil Completion
-
-Smooth completion for the actual two-weight profiles, derived from the
-proved Estermann estimate with its explicit 2-adic factor.  Poisson, the finite residue sum, the interchange
-with an absolutely convergent Fourier series, and the uniform Fourier L1
-bound are all proved rather than included in the open input.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -202,13 +187,11 @@ theorem profile_lattice_poisson {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
   simp_rw [heq]
   exact poisson_profile_identity h₂ h₄ (mul_ne_zero ha hcp.ne') _
 
-/-- A smooth coprime sum, grouped into its finitely many residue classes. -/
 def completedProfileSum (W₂ W₄ : ℝ → ℝ) (a b : ℝ) (c : ℕ) (k : ℤ) : ℂ :=
   ∑ x ∈ (range c).filter (fun x => x.Coprime c),
     ePhase ((k:ℝ)*(inverseRepresentative x c:ℝ)/(c:ℝ))*
       ∑' j : ℤ, poissonProfile W₂ W₄ a b ((x:ℝ)+(c:ℝ)*j)
 
-/-- Exact completion; no unproved interchange of infinite integrand sums is used. -/
 theorem completedProfileSum_identity {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄) (ha : a ≠ 0)
     {c : ℕ} (hc : 0 < c) (k : ℤ) :
@@ -240,8 +223,6 @@ theorem completedProfileSum_identity {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
       push_cast
       ring
 
-/-- The direct norm consequence of the proved Estermann estimate for any
-absolutely summable coefficient sequence. -/
 theorem Estermann.completed_series_bound
     {c : ℕ} (hc : 0 < c) (k : ℤ) {F : ℤ → ℂ}
     (hF : Summable (fun l => ‖F l‖)) :
@@ -255,9 +236,6 @@ theorem Estermann.completed_series_bound
   calc _ ≤ ∑' l : ℤ, ‖F l‖*B := tsum_of_norm_bounded (hF.mul_right B).hasSum hbound
     _ = B*∑' l : ℤ, ‖F l‖ := by rw [tsum_mul_right,mul_comm]
 
-/-- Smooth completion (15) for the two-weight profiles actually used in
-the large-gcd argument. Its constant depends only on the fixed derivative
-sequence and the normalized slope bound. -/
 theorem Estermann.smooth_profile_completion
     {W₂ W₄ : ℝ → ℝ} {a b V K : ℝ} {bounds : ℕ → ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
@@ -290,12 +268,6 @@ end DivisorProof
 
 
 
-/-! ## Weil Natural Sum
-
-The completed smooth sum is identified with the literal finite positive
-integer sum. In particular neither negative integers nor residue-class
-tails are silently added to the divisor calculation.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -367,7 +339,6 @@ theorem zmod_sum_vals {c : ℕ} [NeZero c] (F : ℕ → ℂ) :
   · intro x _
     rfl
 
-/-- Exact residue-class decomposition of the literal positive coprime sum. -/
 theorem completedProfileSum_eq_natural_tsum {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
     (h₂ : SmoothDyadicWeight W₂) (ha : 0 < a) {c : ℕ} (hc : 0 < c) (k : ℤ) :
     completedProfileSum W₂ W₄ a b c k = ∑' m : ℕ, coprimeProfileTerm W₂ W₄ a b c k m := by
@@ -413,7 +384,6 @@ theorem completedProfileSum_eq_natural_tsum {W₂ W₄ : ℝ → ℝ} {a b : ℝ
         ∑' j : ℤ, poissonProfile W₂ W₄ a b ((x:ℝ)+(c:ℝ)*j) else 0)
     _ = _ := by rw [completedProfileSum,Finset.sum_filter]
 
-/-- Smooth completion directly for a finite sum over positive integers. -/
 theorem Estermann.finite_smooth_profile_completion
     {W₂ W₄ : ℝ → ℝ} {a b V K : ℝ} {bounds : ℕ → ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
@@ -451,11 +421,6 @@ end DivisorProof
 
 
 
-/-! ## Inverse Phases
-
-Exact inverse phases and preservation of the averaged gcd factor in the
-shortened-variable Weil calculation. Modulus one is included throughout.
--/
 namespace DivisorProof
 open Real Classical
 noncomputable section
@@ -504,8 +469,6 @@ theorem inverseRepresentative_product {r v c : ℕ} (hc : 0 < c)
         ((inverseRepresentative r c : ZMod c)*(inverseRepresentative v c : ZMod c)) := by ring
     _ = _ := by rw [hrv,one_mul]
 
-/-- The phase in the actual shortened `v` sum is exactly a standard
-incomplete Kloosterman phase with parameter `k * inverse(r)`. -/
 theorem inverse_product_phase {r v c : ℕ} (hc : 0 < c)
     (hr : r.Coprime c) (hv : v.Coprime c) (k : ℤ) :
     ePhase ((k:ℝ)*(inverseRepresentative (r*v) c:ℝ)/(c:ℝ)) =
@@ -518,8 +481,6 @@ theorem inverse_product_phase {r v c : ℕ} (hc : 0 < c)
     ring
   simpa only [Int.cast_mul,Int.cast_natCast] using ePhase_div_eq_of_modEq hc hcon
 
-/-- Multiplying the frequency-shift parameter by the unit inverse of `r`
-does not enlarge its gcd with the modulus. -/
 theorem inverse_parameter_gcd {r c : ℕ} (hc : 0 < c) (hr : r.Coprime c) (k : ℤ) :
     Nat.gcd (k*(inverseRepresentative r c:ℤ)).natAbs c = Nat.gcd k.natAbs c := by
   rw [Int.natAbs_mul,Int.natAbs_natCast]
@@ -530,12 +491,6 @@ end DivisorProof
 
 
 
-/-! ## Weil Inner
-
-The incomplete Kloosterman estimate for the actual shortened variable:
-the coprimality condition is `(rv,c)=1` and the phase is `inverse(rv)`.
-Both are reduced to the complete Weil input by proved identities.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -563,8 +518,6 @@ theorem shortenedWeilTerm_zero_of_not_coprime {W₂ W₄ : ℝ → ℝ} {a b : �
     shortenedWeilTerm W₂ W₄ a b r c k v = 0 := by
   simp [shortenedWeilTerm,Nat.coprime_mul_iff_left,hr]
 
-/-- The central smooth `v`-sum estimate in §5.1, for either signed
-frequency-shift product `k`, with its original gcd factor intact. -/
 theorem Estermann.shortened_inner_bound
     {W₂ W₄ : ℝ → ℝ} {a b V K : ℝ} {bounds : ℕ → ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)

@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GlobalMeasurability
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalResidual
 
-/-! Joint physical measurability through all actual x, u, v, s integrals. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

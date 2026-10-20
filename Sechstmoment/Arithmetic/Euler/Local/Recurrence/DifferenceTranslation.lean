@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.FourDifferences
 
-/-! Euler differences commute with translations of the index. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

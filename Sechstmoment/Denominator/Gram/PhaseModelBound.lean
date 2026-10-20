@@ -1,9 +1,6 @@
 import Sechstmoment.Denominator.Gram.PhaseExpansion
 import Sechstmoment.Denominator.Unbalanced.CenteringPower
 
-/-! Absolute summation of the unrestricted one-sided pair against a proved
-residual-chi Fourier bound. The only arithmetic loss is an explicit polynomial
-mass; no diagonal or stationary tuple is discarded. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

@@ -2,7 +2,6 @@ import Mathlib.MeasureTheory.Function.StronglyMeasurable.Lemmas
 import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 import Sechstmoment.Analysis.Complex.SimplePole
 
-/-! The proved simple-pole contour displacement at an arbitrary complex pole. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

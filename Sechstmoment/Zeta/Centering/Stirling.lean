@@ -1,30 +1,21 @@
 import Mathlib.Tactic.FieldSimp
 import Sechstmoment.Zeta.Centering.GammaRatio
 
-/-!
-# Quantitative centering from proved complex Gamma ratios
-
-The estimates here retain the actual Gamma factors. No Stirling statement is
-added as an axiom or as a hypothesis standing in for the desired conclusion.
--/
 
 namespace Sechstmoment
 open Complex Filter
 open scoped BigOperators Topology
 noncomputable section
 
-/-- The actual normalized Gamma quotient occurring in the proved estimate. -/
 def normalizedGammaRatio (s u : ℂ) : ℂ :=
   (Gamma (s+u)/Gamma s)/s^u
 
-/-- Extension of the literal centering factor to a complex base point. -/
 def centeringFactorAt (T : ℝ) (s z : ℂ) : ℂ :=
   Complex.exp z * zetaChi (s+z/(Real.log T : ℂ))/zetaChi s
 
 @[simp] theorem centeringFactorAt_criticalLinePoint (T t : ℝ) (z : ℂ) :
     centeringFactorAt T (criticalLinePoint t) z = centeringFactor T t z := rfl
 
-/-- The elementary main phase remaining after the two Gamma ratios. -/
 def gammaChiMainPhase (s u z : ℂ) : ℂ :=
   Complex.exp z * (Real.pi : ℂ)^u *
     ((1-s)/2)^(-u/2) * (s/2)^(-u/2)
@@ -39,8 +30,6 @@ private theorem point_ne_zero_nonreal {s : ℂ} (hs : s.im ≠ 0) : s ≠ 0 := b
   intro h
   exact hs (by simp [h])
 
-/-- Exact reconstruction of the actual centering factor from its two normalized
-Gamma ratios and the elementary main phase. -/
 theorem centeringFactorAt_eq_gamma_ratios (T : ℝ) (s z : ℂ)
     (hs : s.im ≠ 0) (hw : (s+z/(Real.log T : ℂ)).im ≠ 0) :
     centeringFactorAt T s z =
@@ -77,7 +66,6 @@ theorem centeringFactorAt_eq_gamma_ratios (T : ℝ) (s z : ℂ)
   simp only [Complex.cpow_neg]
   field_simp
 
-/-- Stability of a quotient whose two factors are within `δ` of one. -/
 theorem norm_div_sub_one_le_four {a b : ℂ} {δ : ℝ}
     (hδ : 0 ≤ δ) (hsmall : δ ≤ 1/2)
     (ha : ‖a-1‖ ≤ δ) (hb : ‖b-1‖ ≤ δ) :
@@ -96,7 +84,6 @@ theorem norm_div_sub_one_le_four {a b : ℂ} {δ : ℝ}
   have hm := mul_le_mul_of_nonneg_left hbn (by positivity : 0 ≤ 4*δ)
   nlinarith
 
-/-- Quantitative recombination of the two actual Gamma errors. -/
 theorem centeringFactorAt_error_bound (T : ℝ) (s z : ℂ)
     (hs : s.im ≠ 0) (hw : (s+z/(Real.log T : ℂ)).im ≠ 0)
     {δ E : ℝ} (hδ : 0 ≤ δ) (hδsmall : δ ≤ 1/2) (hE : E ≤ 1)

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Convolution.SixZeta
 
-/-! The global identity also agrees with the Euler product of the original local double series. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalConvolution
@@ -40,7 +39,6 @@ theorem prime_original_double_rational (p : Nat.Primes) (s : Fin 4 → ℂ) (ρ 
   exact prime_double_rational p.val p.property s ρ hρ0 hρ hs _ _
     (prime_cpow_bound p u ρ hu) (prime_cpow_bound p v ρ hv)
 
-/-- Genuine original Euler factors, not a definition of the global Dirichlet series. -/
 theorem originalDirichlet_euler_hasProd (s : Fin 4 → ℂ) (ρ : ℝ)
     (hρ0 : 0 ≤ ρ) (hρ : ρ < 1/4) (hs : ∀ j, ‖s j‖ ≤ ρ) (u v : ℂ)
     (hu : ρ < u.re) (hv : ρ < v.re) :

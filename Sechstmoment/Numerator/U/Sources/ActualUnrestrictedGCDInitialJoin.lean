@@ -4,9 +4,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.InitialEtaJoin
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.InitialProductFront
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.PhysicalInverse
 
-/-! The literal native unrestricted GCD expression is linked to the actual
-initial triple Mellin front.  Both gap signs and all positive integers remain
-in the identities. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

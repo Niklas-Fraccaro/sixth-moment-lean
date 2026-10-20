@@ -1,8 +1,6 @@
 import Mathlib.MeasureTheory.Integral.Prod
 import Sechstmoment.Numerator.U.Diagonal.ActualSixPowers
 
-/-! Genuine two-profile Mellin inversion and sum/integral interchange for the
-actual convergent six-index Euler series in the initial half-plane. -/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter

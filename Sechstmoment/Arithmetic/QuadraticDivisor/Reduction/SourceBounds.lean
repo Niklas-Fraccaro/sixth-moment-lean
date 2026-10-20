@@ -54,20 +54,12 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.BlockSums
 import Std
 
-/-! ## Endgame
-
-Proof of the entire endgame from the explicitly displayed intermediate
-analytic application estimates (24) and (31).  The implication from SALT and the Watt input is proved in the later
-MainFromPrimitives section. This section isolates the numerical endgame.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
 noncomputable section
 set_option maxHeartbeats 2200000
 
-/-- The precise two application estimates. They are specifications here;
-MainFromPrimitives proves them from SALT and Watt, uniformly. -/
 def NormalizedAnalyticApplicationEstimates (ρ δ K : ℝ) (bounds : ℕ → ℝ) : Prop :=
   ∃ Q₀ CWeil CWatt : ℝ, 1 ≤ Q₀ ∧ 0 ≤ CWeil ∧ 0 ≤ CWatt ∧
     ∀ (q : QuadraticScales) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ),
@@ -81,8 +73,6 @@ def NormalizedAnalyticApplicationEstimates (ρ δ K : ℝ) (bounds : ℕ → ℝ
         (∀ d ∈ smallGcdSet q ρ, gcdBlockMass positive q ρ α β W d ≤
           CWatt*q.mass^(200*ρ)*wattSummationCoefficient q/(d:ℝ))
 
-/-- Uniform version of the intermediate application specifications, with all
-fixed parameters quantified before the varying scales and functions. -/
 def AnalyticApplicationEstimates : Prop :=
   ∀ δ : ℝ, 0 < δ → ∀ ρ : ℝ, 0 < ρ → ρ ≤ δ/(1000*(1+δ)) →
   ∀ K : ℝ, 1 ≤ K → ∀ bounds : ℕ → ℝ, (∀ j, 0 ≤ bounds j) →
@@ -146,8 +136,6 @@ theorem normalized_endgame_from_blocks {ρ K CWeil CWatt CError : ℝ}
   exact (actual_discrepancy_le_block_masses positive q ρ α β W).trans
     ((add_le_add (add_le_add hs hl) he).trans_eq (by ring))
 
-/-- Large mass, including the actual normalization factor. The result uses
-the explicit intermediate estimates, not just their primitive input names. -/
 theorem admissible_large_mass_from_analytic_applications {ρ δ K : ℝ}
     (hρ : 0 < ρ) (hδ : 0 < δ) (hbound : ρ ≤ δ/(1000*(1+δ)))
     (hK : 1 ≤ K) (bounds : ℕ → ℝ) (hb : ∀ j, 0 ≤ bounds j)
@@ -185,7 +173,6 @@ theorem admissible_large_mass_from_analytic_applications {ρ δ K : ℝ}
     _ = (K^2*C)*((q.mass^ρ)^6*q.mass^(220*ρ))*(orientedQuadraticMajorant q+q.H^2) := by ring
     _ = _ := by rw [final_loss_identity hQ]
 
-/-- Both the large and bounded mass ranges, with one uniform constant. -/
 theorem admissible_full_bound_from_analytic_applications {ρ δ K : ℝ}
     (hρ : 0 < ρ) (hδ : 0 < δ) (hbound : ρ ≤ δ/(1000*(1+δ)))
     (hK : 1 ≤ K) (bounds : ℕ → ℝ) (hb : ∀ j, 0 ≤ bounds j)
@@ -221,8 +208,6 @@ theorem quantifiedDivisorBound_of_analytic_applications
   exact admissible_full_bound_from_analytic_applications hρ hδ hbound hK bounds hb
     (happ δ hδ ρ hρ hbound K hK bounds hb)
 
-/-- Corollary 1.3 follows with the exact advertised input exponent.
-The same-exponent repository contract is neither used nor asserted. -/
 theorem separatedDivisorBound_of_quantified (hquantified : QuantifiedDivisorBound) :
     SeparatedDivisorBound := by
   intro ε hε δ hδ K hK bounds hb
@@ -247,13 +232,6 @@ end DivisorProof
 
 
 
-/-! ## Source Closure
-
-Transfer to the literal reconstructed signed divisor error and to its
-integrable superpositions.  The input exponent remains `inputExponent ε δ`;
-the output loss is `ε`.  This does not use the obsolete same-exponent
-repository contract and it retains the Poisson `H²` term throughout.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical Filter Asymptotics
 open scoped BigOperators Topology
@@ -270,9 +248,6 @@ def sourceReconstructionMajorant (q : QuadraticScales) (X T K : ℝ) : ℝ :=
       (max q.A q.B)^(1/4:ℝ)*X^(1/2:ℝ))+
     K^2*(q.A*q.B)^(1/2:ℝ)*X/T
 
-/-- The actual discrepancy is bounded, rather than an arbitrary scalar
-error supplied separately as a hypothesis. Constants are fixed before
-all varying scales, source heights, and polynomial-growth parameters. -/
 theorem actual_source_bound_of_separated (hseparated : SeparatedDivisorBound)
     {ε δ K : ℝ} (hε : 0 < ε) (hδ : 0 < δ) (hK : 1 ≤ K)
     (bounds : ℕ → ℝ) (hb : ∀ j, 0 ≤ bounds j) :
@@ -312,8 +287,6 @@ theorem actual_source_bound_of_separated (hseparated : SeparatedDivisorBound)
     _ ≤ _ := mul_le_mul_of_nonneg_left
       (reconstructed_majorant_le q hA hB hX hH hT hK₀ hmass hH₀) (by positivity)
 
-/-- The same concrete source transfer, with the precise intermediate
-analytic application obligations displayed at its dependency boundary. -/
 theorem actual_source_bound_of_analytic_applications (happ : AnalyticApplicationEstimates)
     {ε δ K : ℝ} (hε : 0 < ε) (hδ : 0 < δ) (hK : 1 ≤ K)
     (bounds : ℕ → ℝ) (hb : ∀ j, 0 ≤ bounds j) :
@@ -329,8 +302,6 @@ theorem actual_source_bound_of_analytic_applications (happ : AnalyticApplication
   actual_source_bound_of_separated (separatedDivisorBound_of_analytic_applications happ)
     hε hδ hK bounds hb
 
-/-- Integrability and the norm bound for a literal superposition follow
-from a uniform bound and L1 coefficients. -/
 theorem integral_superposition_bound {Ω : Type*} [MeasurableSpace Ω]
     {μ : Measure Ω} {c F : Ω → ℂ} {B L : ℝ}
     (hc : Integrable c μ) (hF : AEStronglyMeasurable (fun ω => c ω*F ω) μ)
@@ -347,8 +318,6 @@ theorem integral_superposition_bound {Ω : Type*} [MeasurableSpace Ω]
     _ = (∫ ω, ‖c ω‖ ∂μ)*B := integral_mul_const _ _
     _ ≤ _ := mul_le_mul_of_nonneg_right hL hB
 
-/-- The concrete reconstructed divisor error may be integrated against
-uniform L1 tensor coefficients without changing its admissibility exponent. -/
 theorem tensor_actual_source_bound_of_separated (hseparated : SeparatedDivisorBound)
     {ε δ K : ℝ} (hε : 0 < ε) (hδ : 0 < δ) (hK : 1 ≤ K)
     (bounds : ℕ → ℝ) (hb : ∀ j, 0 ≤ bounds j) :
@@ -381,12 +350,6 @@ end DivisorProof
 
 
 
-/-! ## Source Powers
-
-The source exponent calculation is connected to the actual reconstructed
-divisor error, including fixed logarithmic factors.  The only analytic
-premise of the final implication is the separated divisor theorem.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical Filter Asymptotics
 open scoped BigOperators Topology
@@ -474,9 +437,6 @@ theorem source_exponent_majorant_le {a b s u T : ℝ}
     linarith
   nlinarith
 
-/-- The source conclusion now concerns the actual signed discrepancy,
-not just a scalar power. The scale/admissibility hypotheses are numerical
-and regularity data that the source construction must supply. -/
 theorem actual_source_error_isLittleO_of_separated
     (hseparated : SeparatedDivisorBound) {a b s u K D Dmass : ℝ}
     (ha : 0 ≤ a) (hab : a ≤ b) (hrange : 3*a+5*b < 2)
@@ -551,11 +511,6 @@ end DivisorProof
 
 
 
-/-! ## Finite Slices
-
-Exact finite slicing of the actual gcd block. This exposes the shortened
-inner variable and the finite frequency sum for the remaining applications.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -611,14 +566,12 @@ theorem quadraticMainIndexSet_sum {E : Type*} [AddCommMonoid E]
   rw [quadraticMainIndexSet,hsets]
   exact sum_piFinset_five _ _ _ _ _ f
 
-/-- The precise finite frequency block, before taking its absolute value. -/
 def fixedGcdFourierSum (positive : Bool) (q : QuadraticScales)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) (d : ℕ) (l : ℤ) (x : ℝ) : ℂ :=
   ∑ n ∈ (quadraticMainIndexSet q).filter (fun n => outerGCD n = d),
     poissonOuterWeight q α β W n*outerPoissonProfile q W n x*
       ePhase (-(l:ℝ)*outerPoissonPhase positive n)
 
-/-- All frequency and outer-variable exchanges are finite. -/
 theorem gcdBlockIntegrand_eq_frequency_sum (positive : Bool) (q : QuadraticScales)
     (ρ : ℝ) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) (d : ℕ) (x : ℝ) :
     gcdBlockIntegrand positive q ρ α β W d x =

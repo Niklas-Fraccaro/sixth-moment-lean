@@ -2,7 +2,6 @@ import Sechstmoment.Denominator.Gram.MomentRegularity
 import Sechstmoment.Denominator.Gram.PhaseDefinitions
 import Sechstmoment.Denominator.Gram.ReflectionMoments
 
-/-! Exact weighted integration of the actual Gram identities. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Polynomial Filter
 open scoped BigOperators Topology ComplexConjugate

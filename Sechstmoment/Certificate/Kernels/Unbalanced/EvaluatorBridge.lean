@@ -3,13 +3,6 @@ import Sechstmoment.Certificate.Kernels.Unbalanced.InclusionExclusion
 import Sechstmoment.Certificate.Kernels.Unbalanced.IntegerMoments
 import Sechstmoment.Certificate.Kernels.Unbalanced.PolynomialBridge
 
-/-!
-# The actual integer minus evaluator as a real mask sum
-
-All branches of `Finite.dminus` are preserved, including its zero-length
-branches. The coefficients and moments are connected through the proved
-homogeneous scale bridges. The analytic integral is connected separately.
--/
 
 namespace Sechstmoment
 
@@ -55,8 +48,6 @@ private theorem integer_skip_zero (sign coeff moment : ℤ) :
     (if coeff = 0 then 0 else sign * coeff * moment) = sign * coeff * moment := by
   by_cases h : coeff = 0 <;> simp [h]
 
-/-- Exact rewriting of the existing evaluator; the skipped zero coefficients
-are an optimization and have no effect on its value. -/
 theorem dminus_eq_integerMinusMaskEvaluator (A B C D : ℕ) (p q : List ℤ) :
     Finite.dminus A B C D p q =
       if A + B + C ≤ D then 0 else
@@ -105,8 +96,6 @@ private theorem integerMinusDegree_normalized (p q : List ℤ) (t0 a b c HH : �
   rw [hp]
   field_simp
 
-/-- The masked integer sum, before its outer empty-slice branch, is exactly the
-homogeneously normalized real coefficient/moment sum. -/
 theorem integerMinusMaskEvaluator_normalized (p q : List ℤ) (t0 a b c H : ℤ) :
     (integerMinusMaskEvaluator p q t0 a b c H : ℝ) /
         ((Finite.dminusDenominator : ℝ) * (Finite.scale : ℝ)^13) =
@@ -152,8 +141,6 @@ theorem integerMinusMaskEvaluator_normalized (p q : List ℤ) (t0 a b c H : ℤ)
     rw [mul_assoc, mul_div_assoc, hdegree, hshift]
     simp only [simplexMaskSign, Int.cast_pow, Int.cast_neg, Int.cast_one]
 
-/-- All branches of the original `Finite.dminus`, normalized by its exact
-integer denominator and the thirteenth power of the coordinate scale. -/
 theorem dminus_normalized_eq_realMinusMaskEvaluator (A B C D : ℕ) (p q : List ℤ) :
     (Finite.dminus A B C D p q : ℝ) /
         ((Finite.dminusDenominator : ℝ) * (Finite.scale : ℝ)^13) =

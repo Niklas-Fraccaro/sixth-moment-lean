@@ -1,7 +1,6 @@
 import Sechstmoment.Arithmetic.Euler.FourL.GlobalIdentity
 import Sechstmoment.Arithmetic.Euler.FourL.Subpower
 
-/-! No new poles, and height-uniform correction bounds for genuinely logarithmically small shifts. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
@@ -51,7 +50,6 @@ theorem eulerCorrection_subpower (κ ε : ℝ) (hκ : 0 < κ) (hε : 0 < ε) :
   let : NeZero q := hq
   exact H d hd s hs (characterHom χ) (fun p _ => χ.norm_le_one (p : ZMod q)) z hz
 
-/-- The precise uniformity needed for shifts bounded by R / log T in the PDF. -/
 theorem eulerCorrection_log_shifts (κ ε R : ℝ) (hκ : 0 < κ) (hε : 0 < ε) :
     ∃ C : ℝ, 0 < C ∧ ∃ T₀ : ℝ, 1 < T₀ ∧ ∀ T : ℝ, T₀ ≤ T →
       ∀ q : ℕ, ∀ _ : NeZero q, ∀ χ : DirichletCharacter ℂ q, ∀ d : ℕ, d ≠ 0 →

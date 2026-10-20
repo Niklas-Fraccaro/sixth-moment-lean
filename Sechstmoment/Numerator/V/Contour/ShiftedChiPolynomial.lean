@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.V.Contour.PolynomialSmoothShift
 import Sechstmoment.Numerator.V.Contour.ShiftedChiContour
 
-/-! Polynomial specialization of the actual shifted-chi contour displacement. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Polynomial

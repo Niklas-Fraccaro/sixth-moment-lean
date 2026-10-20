@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.Polar.PureHorizontal
 import Sechstmoment.Numerator.U.ZeroModes.Contour.PoleRemoval
 
-/-! Bounds for the two zeta factors of the genuine source `M(s)` contour.
-The negative slope of its second argument is retained. -/
 
 namespace Sechstmoment
 open Complex Real Source Set

@@ -1,10 +1,6 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualNearAmplifierMass
 import Sechstmoment.Numerator.U.Reconstruction.TensorActualSourceEndpoint
 
-/-! Recover the genuine reciprocal square-root amplifier factors before
-using the quadratic source.  The literal endpoint coefficients already
-contain these factors; the source class used here extracts them rather
-than discarding them in a coefficient bound. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -108,9 +104,6 @@ def phaseActualScaledSixFourierSourceClasses (ε K : ℝ) (bounds : ℕ → ℝ)
       (phaseNormalizedBeta q (a03EndpointScaledAlpha T A f k) (a03EndpointScaledBeta T B g k ν))
       (rectangularRealComponent (phaseNormalizedWeights q (a03SixTensorWeight normalizer ν)) component)
 
-/-- A source-admissible physical block retains its source class after the
-two actual amplifier square-root factors are extracted.  The enlarged
-constant depends only on the original class and the two profile bounds. -/
 theorem phaseActualScaledSixFourierSourceClasses_of_actual
     {ε K F G : ℝ} (hε : 0≤ε) (hK : 1≤K) (hF : 0≤F) (hG : 0≤G)
     (T A B H : ℝ) (f g : ℝ → ℝ) (k : Fin 4 → ℕ)
@@ -165,9 +158,6 @@ theorem phaseActualScaledSixFourierSourceClasses_of_actual
     hcs.1,hcs.2,hcb.1,hcb.2,hW,hd⟩
 
 
-/-- The uniform literal source superposition estimate includes the actual
-reciprocal amplifier square roots.  Neither an amplifier mass nor an error
-budget is supplied as a hypothesis. -/
 theorem a03_actual_source_sqrt_superposition
     (hinput : SeparatedQuadraticInput) {ε K F G : ℝ} (hε : 0<ε) (hK : 1≤K)
     (hF : 0≤F) (hG : 0≤G) (f g : ℝ → ℝ)
@@ -239,8 +229,6 @@ def a03EndpointZeroIntegral (kernel : SchwartzMap A03SixTensorSpace ℂ)
   ∫ ν, a03SixTensorCoefficient kernel normalizer ν*
     a03EndpointNormalizedZeroMode T A B H f g k normalizer ν
 
-/-- Exact endpoint difference and quantitative square-root budget, usable
-for either genuine original or dual physical tensor family. -/
 theorem a03_actual_tensor_endpoint_difference_sqrt
     (kernel : SchwartzMap A03SixTensorSpace ℂ) (normalizer : A03SixTensorSpace → ℝ)
     (hm : Measurable normalizer) (hc : Integrable (a03SixTensorCoefficient kernel normalizer))
@@ -289,8 +277,6 @@ theorem a03_actual_tensor_endpoint_difference_sqrt
   ring
 
 
-/-- Genuine main source endpoint, preserving the reciprocal amplifier
-square roots and deriving every source field from the physical factory. -/
 theorem a03_actual_main_tensor_source_endpoint_sqrt
     (hinput : SeparatedQuadraticInput) {a b εsource εkernel c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)
@@ -370,8 +356,6 @@ theorem a03_actual_main_tensor_source_endpoint_sqrt
     _ = _ := by ring
 
 
-/-- Genuine dual source endpoint, preserving the reciprocal amplifier
-square roots and deriving every source field from the physical factory. -/
 theorem a03_actual_dual_tensor_source_endpoint_sqrt
     (hinput : SeparatedQuadraticInput) {a b εsource εkernel c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)

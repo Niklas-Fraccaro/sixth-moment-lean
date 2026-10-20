@@ -1,8 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Gamma.Deriv
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.Measurability
 
-/-! Actual global Borel measurability for every factor of the physical
-Mellin integrand. Countable meromorphic singular sets introduce no receipt. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

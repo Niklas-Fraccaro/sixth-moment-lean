@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.Additive.ResidueIdentity
 import Sechstmoment.Numerator.V.Arithmetic.Residues.Scale
 
-/-! The complete principal residue sum is identified with the original
-arithmetic coefficient, including the exact modulus and Mellin scale. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory NoDPGlobalRest NoDPGlobalConvolution

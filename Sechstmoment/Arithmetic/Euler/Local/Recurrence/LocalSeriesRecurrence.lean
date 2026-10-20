@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.LocalSeriesShift
 
-/-! Summing the exact fourth order recurrence is justified by absolute convergence. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

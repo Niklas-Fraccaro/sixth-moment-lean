@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.SourcePhysicalPoint
 import Sechstmoment.Numerator.U.Separation.DualLeadingRegularity
 
-/-! Uniform rapid spectral tails in the literal physical GCD density,
-including the actual original and dual leading time profiles. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -39,8 +37,6 @@ private theorem tail_scalar_bound {d D g G p m M k W e c : ℝ}
   have hG0 := hg.trans hG
   gcongr
 
-/-- A literal tail in the source's real physical quad variables has
-arbitrary negative powers of T, before its GCD/arithmetic sums are taken. -/
 theorem a03VStarPhysicalTimeTail_uniform_rapid {Φ : ℝ→ℂ} (hΦ : Continuous Φ)
     (hSupp : tsupport Φ⊆Icc (1:ℝ) 2) {c θ κ R η : ℝ}
     (hc : 0<c) (hθ : 0<θ) (hκ : 0<κ) (hR : 0≤R) (N : ℝ) :

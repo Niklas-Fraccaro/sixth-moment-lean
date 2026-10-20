@@ -2,8 +2,6 @@ import Sechstmoment.Denominator.Unbalanced.ActualMomentRegularity
 import Sechstmoment.Denominator.Unbalanced.Expansion.Regularity
 import Sechstmoment.Denominator.Unbalanced.MomentComparison
 
-/-! Actual integrability discharges the subtraction of the physical moments;
-no formal integral algebra is used without its Bochner hypotheses. -/
 namespace Sechstmoment
 open Complex Real Filter Set MeasureTheory
 open scoped Topology BigOperators ContDiff

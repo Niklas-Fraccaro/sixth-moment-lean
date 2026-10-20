@@ -2,14 +2,6 @@ import Mathlib.Tactic
 import Sechstmoment.Numerator.Polar.PureIntegrability
 import Sechstmoment.Numerator.U.Replacement.GaussianCoefficientGrowth
 
-/-!
-# The literal pure-zeta remainder contour
-
-The actual raw pole roots are `O(1/log T)` on bounded normalized shifts.
-Consequently the prescribed line `Re z = -δ/2` has all four pure arguments
-strictly between zero and one and stays a fixed distance from their poles.
-Absolute integrability follows from the proved actual Gaussian/zeta bounds.
--/
 
 namespace Sechstmoment
 
@@ -81,8 +73,6 @@ theorem polarPureLeftContour_integrable (T : ℝ) (σ : MomentShifts) (m : Fin 6
     rw [sub_re, one_re, he] at hn
     linarith
 
-/-- Uniform eventual absolute convergence on the actual prescribed left
-contour, for every bounded normalized shift tuple and every literal term. -/
 theorem polarPureLeftContour_uniform_eventually_integrable {R δ : ℝ}
     (hR : 0 ≤ R) (hδ : 0 < δ) (hδ1 : δ < 1/2) :
     ∀ᶠ T : ℝ in atTop, ∀ σ : MomentShifts, (∀ i : Fin 4, ‖σ i‖ ≤ R) →

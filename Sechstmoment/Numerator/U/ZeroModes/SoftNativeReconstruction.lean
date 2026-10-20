@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.SixTensorZeroMode
 import Sechstmoment.Numerator.U.ZeroModes.SoftSourceOrientation
 
-/-! Exact native GCD reconstruction for the soft pair-oriented source.
-Only the side orientation is removed. Singleton factors are back-transported
-in the discrete slots, without an invariance claim about factor sorting. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology FourierTransform
@@ -66,8 +63,6 @@ theorem a03_soft_source_zero_eq_native_discrete_units
     (fun hf => by simpa [phaseActualScales,boundaryActualFlags,QuadraticScales.size,rectangularUnitCoordinate] using
       (boundaryActual_flags_low A B H k) 2 hf)).symm
 
-/-- The genuine cutoff tensor reconstructs the uncut unsorted native zero
-mode on precisely the discrete-unit range used by the ratio front end. -/
 theorem a03_soft_endpoint_zero_integral_eq_uncut_unsorted_physical
     (kernel : SchwartzMap A03SixTensorSpace ℂ) (F : A03SixTensorSpace→ℂ)
     (hgraph : ∀ y,kernel y=a03TensorLogCutoff y*F y)

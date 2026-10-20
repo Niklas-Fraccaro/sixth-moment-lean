@@ -2,8 +2,6 @@ import Mathlib.Analysis.PSeries
 import Mathlib.Analysis.SpecialFunctions.Log.Summable
 import Sechstmoment.Arithmetic.Euler.Bivariate.PrimeClosure
 
-/-! Summable prime majorants and convergence of the actual remainder Euler product.
-This proves convergence; it does not identify its global Dirichlet coefficients. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPLocalClosure

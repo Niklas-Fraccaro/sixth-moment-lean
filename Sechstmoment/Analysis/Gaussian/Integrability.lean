@@ -1,13 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral
 import Mathlib.Tactic
 
-/-!
-# Gaussian absorption of the actual crude exponential contour bounds
-
-The majorant is integrable for every finite polynomial degree and every
-linear exponential rate. This supplies a genuine dominating function for
-Gaussian pole killers multiplied by the actual zeta strip bounds.
--/
 
 namespace Sechstmoment
 

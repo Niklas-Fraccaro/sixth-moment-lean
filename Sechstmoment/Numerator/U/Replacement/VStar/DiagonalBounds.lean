@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.DiagonalFiniteGrid
 
-/-! Uniform spatial and frequency bounds for both literal VStar selections.
-The constants are independent of the amplifier indices and the selected side. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology

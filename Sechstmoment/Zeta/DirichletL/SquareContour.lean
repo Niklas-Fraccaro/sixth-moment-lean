@@ -3,11 +3,6 @@ import Sechstmoment.Analysis.Gaussian.Decay
 import Sechstmoment.Arithmetic.QuadraticDivisor.Definitions
 import Sechstmoment.Zeta.DirichletL.CompletedFunction
 
-/-! Gaussian contour decomposition of the square of an actual primitive
-Dirichlet-L completion. All integrability and horizontal boundary conditions
-are proved from the Mellin strip bounds; there is no AFE assumption.
-The auxiliary Gaussian is the canonical `exp (z^2)` and the right contour
-is the line of real part two, as in the smooth square functional equation. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set
@@ -156,7 +151,6 @@ def dirichletSquareCompletedIntegral {N : ℕ} [NeZero N]
     (χ : DirichletCharacter ℂ N) (s : ℂ) : ℂ :=
   (∫ v : ℝ, dirichletSquareContour χ s (2+(v : ℂ)*I)/(2+(v : ℂ)*I))/(2*Real.pi : ℂ)
 
-/-- Exact direct/dual Gaussian decomposition of the completed L-square. -/
 theorem dirichletCompletedL_square_smooth_decomposition {N : ℕ} [NeZero N]
     (χ : DirichletCharacter ℂ N) (hχ : χ ≠ 1) (hprim : χ.IsPrimitive) (s : ℂ) :
     (conductorCompletedL χ s)^2 =

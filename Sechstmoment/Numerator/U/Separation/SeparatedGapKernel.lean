@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.BinomialPhase
 import Sechstmoment.Numerator.U.Separation.FiveProductWeights
 
-/-! Literal five-product weights of the exact signed binomial phase.
-The source coefficient support is preserved by the beta power. This is
-an exact summand identity, not a receipt asserting the desired moment bound. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

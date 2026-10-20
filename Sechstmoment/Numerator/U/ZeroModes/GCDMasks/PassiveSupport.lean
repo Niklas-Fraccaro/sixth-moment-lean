@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.PassiveNativeSourceWitness
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.ActualGridPartition
 
-/-! A genuinely supported common-X point in the low-gap region supplies the
-passive source witness. No discrete quadratic relation is inferred. -/
 namespace Sechstmoment
 open Complex Real Source Set
 open scoped BigOperators Topology

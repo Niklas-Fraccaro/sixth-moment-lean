@@ -1,19 +1,11 @@
 import Sechstmoment.Numerator.U.Replacement.GaussianTruncation
 
-/-!
-Logarithmic Mellin cutoffs for the actual Gaussian AFE. A cutoff proportional
-to log T, unlike T^epsilon, can subsequently be used with one bound sequence
-for all source derivative orders. This file proves the genuine tail estimate;
-it does not assert source admissibility or the rectangular moment theorem.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology
 noncomputable section
 
-/-- Gaussian decay at a positive logarithmic cutoff beats every prescribed
-polynomial, with no assumed tail estimate. -/
 theorem polynomial_gaussian_logarithmic_eventually_le {θ : ℝ} (hθ : 0 < θ)
     (q A : ℝ) :
     ∀ᶠ T : ℝ in atTop,
@@ -31,8 +23,6 @@ theorem polynomial_gaussian_logarithmic_eventually_le {θ : ℝ} (hθ : 0 < θ)
   apply Real.exp_le_exp.mpr
   nlinarith [mul_le_mul_of_nonneg_right hlarge hLpos.le]
 
-/-- The actual V-tail has arbitrary power decay with cutoff theta log T.
-The normalized pure-root separation is retained explicitly. -/
 theorem bblrGaussianVTail_uniform_logarithmic_power_bound (K : Set MomentShifts)
     (δ : ℝ) (hδ : 0 < δ)
     (hρ : ∀ σ ∈ K, ∀ k : PurePolarIndex, δ ≤ ‖normalizedPurePolarRoot σ k‖)
@@ -74,7 +64,6 @@ theorem bblrGaussianVTail_uniform_logarithmic_power_bound (K : Set MomentShifts)
       convert hdec using 1; norm_num
     _ = _ := by ring
 
-/-- The real fourfold AFE tail is controlled, not a free error function. -/
 theorem bblrGaussianAFETail_uniform_logarithmic_power_bound (K : Set MomentShifts)
     (δ : ℝ) (hδ : 0 < δ)
     (hρ : ∀ σ ∈ K, ∀ k : PurePolarIndex, δ ≤ ‖normalizedPurePolarRoot σ k‖)
@@ -95,7 +84,6 @@ theorem bblrGaussianAFETail_uniform_logarithmic_power_bound (K : Set MomentShift
         (fun x hx => hb σ hσ α hα t ht x hx)
     _ = _ := by ring
 
-/-- One bound works for all six actual shift tuples, including the dual one. -/
 theorem bblrGaussianAFETail_uniform_logarithmic_six_shifts_bound
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0 < δ)
     (hρ : ∀ σ ∈ K, ∀ k : PurePolarIndex, δ ≤ ‖normalizedPurePolarRoot σ k‖)
@@ -116,7 +104,6 @@ theorem bblrGaussianAFETail_uniform_logarithmic_six_shifts_bound
   fin_cases k <;> fin_cases j <;> simp [bblrSixShifts] <;>
     first | simpa using h 0 | simpa using h 1 | simpa using h 2 | simpa using h 3
 
-/-- Exact core-plus-tail reconstruction with the logarithmic cutoff. -/
 theorem bblrGaussianAFE_logarithmic_truncation_six_shifts_error
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0 < δ)
     (hρ : ∀ σ ∈ K, ∀ k : PurePolarIndex, δ ≤ ‖normalizedPurePolarRoot σ k‖)

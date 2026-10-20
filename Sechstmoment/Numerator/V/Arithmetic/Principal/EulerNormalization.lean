@@ -1,8 +1,6 @@
 import Mathlib.NumberTheory.ArithmeticFunction.Moebius
 import Sechstmoment.Arithmetic.Euler.FourL.Continuation
 
-/-! Exact totient normalization of the actual principal L-residue.
-The modulus-one Euler product is included. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Finset

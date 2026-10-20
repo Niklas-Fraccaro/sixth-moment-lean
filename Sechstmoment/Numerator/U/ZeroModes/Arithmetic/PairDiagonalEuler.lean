@@ -3,7 +3,6 @@ import Mathlib.NumberTheory.LSeries.Nonvanishing
 import Sechstmoment.Numerator.U.Diagonal.DiagonalEulerSummability
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.EtaResidueArithmetic
 
-/-! The genuine untwisted two-shift diagonal and its four-zeta Euler product. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat Complex
@@ -171,8 +170,6 @@ theorem shiftedPairDiagonalPrimeSeries_zeta_hasProd {e : ℝ} (he : 0 < e)
   simp only [div_eq_mul_inv, mul_inv_rev]
   ring
 
-/-- Genuine global four-zeta identity; convergence was proved separately
-from the actual arithmetic coefficients. -/
 theorem shiftedPairDiagonalArithmetic_eq_fourZeta {e : ℝ} (he : 0 < e)
     (a b c d : ℂ) (ha : e ≤ a.re) (hb : e ≤ b.re) (hc : e ≤ c.re) (hd : e ≤ d.re) :
     (∑' n, shiftedPairDiagonalArithmetic a b c d 1 n)=bblrAArithmetic a b c d :=

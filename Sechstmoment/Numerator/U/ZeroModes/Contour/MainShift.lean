@@ -4,11 +4,6 @@ import Sechstmoment.Numerator.U.Replacement.GaussianTailUniform
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.EtaMainAnalytic
 import Sechstmoment.Numerator.U.ZeroModes.Contour.ZetaBounds
 
-/-! The genuine symmetric contour movement for the source `M(s)` function
-on a small positive strip. This is the contour of the η main function, not
-the diagonal `z` contour. Holomorphy, line integrability, and horizontal
-limits are derived below from the concrete finite arithmetic factor and the
-actual Gaussian pole killer. -/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
@@ -164,7 +159,6 @@ theorem a03ZeroModeMainRemovedNumerator_horizontal_tendsto_zero {T δ : ℝ}
     (a := -δ) (b := δ) hnorm
   exact hb.trans_eq (by ring)
 
-/-- Exact source-M line displacement, with the genuine value at `s=0`. -/
 theorem a03ZeroModeMainContour_symmetric_shift {T δ : ℝ} (σ : MomentShifts)
     (N₁ N₂ : ℕ) (a b : ℕ → ℂ) (hδ : 0<δ) (hδ1 : δ<1/4)
     (hρ : ∀ j : Fin 2, a03ZeroModeMainPoleRoot T σ j≠0)
@@ -203,8 +197,6 @@ theorem a03ZeroModeMainContour_symmetric_shift {T δ : ℝ} (σ : MomentShifts)
   have hπ : (2*Real.pi:ℂ)≠0 := by exact_mod_cast (show 2*Real.pi≠0 by positivity)
   rw [←mul_assoc,one_div,inv_mul_cancel₀ hπ,one_mul]
 
-/-- The original and reverse-negative dual source M-contours cancel on
-the two boundary lines, leaving their actual principal value at zero. -/
 theorem a03ZeroModeMainContour_symmetric_pair {T δ : ℝ} (σ : MomentShifts)
     (N₁ N₂ : ℕ) (a b : ℕ → ℂ) (hδ : 0<δ) (hδ1 : δ<1/4)
     (hα : ∀ j : Fin 4, ‖rawMomentShifts T σ j‖≤δ/4)
@@ -222,8 +214,6 @@ theorem a03ZeroModeMainContour_symmetric_pair {T δ : ℝ} (σ : MomentShifts)
     hsmall δ,a03ZeroModeMainContour_symmetric_shift σ N₁ N₂ a b hδ hδ1 hρ hρb]
   ring
 
-/-- Genuine source-contour residue reconstruction to the concrete
-finite-amplifier crossed arithmetic sum, using proved Eq. (9). -/
 theorem a03ZeroModeMainContour_pair_eq_crossedArithmetic {T δ : ℝ} (σ : MomentShifts)
     (N₁ N₂ : ℕ) (a b : ℕ → ℂ) (hδ : 0<δ) (hδ1 : δ<1/4)
     (hα : ∀ j : Fin 4, ‖rawMomentShifts T σ j‖≤δ/4)
@@ -238,9 +228,6 @@ theorem a03ZeroModeMainContour_pair_eq_crossedArithmetic {T δ : ℝ} (σ : Mome
   exact a03EtaMainFunction_zero_eq_crossedArithmetic N₁ N₂ a b
     (fun j => (hα j).trans (by linarith))
 
-/-- All geometric conditions of the actual source contour are consequences
-of the original compact separated normalized-shift set. No new main-term
-identity or contour hypothesis appears. -/
 theorem a03ZeroModeMainContour_pair_eventually_eq_crossedArithmetic
     (K : Set MomentShifts) (hK : IsCompact K) {κ δ : ℝ}
     (hκ : 0<κ) (hδ : 0<δ) (hδ1 : δ<1/4)

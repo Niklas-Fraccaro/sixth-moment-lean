@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.FrontFubini
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.InitialKernel
 
-/-! Exact identification of the original GCD Mellin density with the literal
-eta front.  The common amplifier gcd, all powers, and the original coefficient
-arguments are preserved. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

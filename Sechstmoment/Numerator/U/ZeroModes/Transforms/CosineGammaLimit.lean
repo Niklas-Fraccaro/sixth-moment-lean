@@ -2,9 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Complex.Log
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.ComplexLaplaceGamma
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.SmoothedCosineMellin
 
-/-! Removal of the actual Abel parameter after compact positive time
-integration.  The two complex Laplace kernels converge to the cosine-Gamma
-factor, with a common integrable compact-time majorant. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set Filter MeasureTheory
@@ -49,8 +46,6 @@ theorem a03CosineGammaKernel_continuous_time (s : ℂ) {ε : ℝ} (hε : 0<ε) :
     (show (ε:ℂ)+(t:ℂ)*I∈Complex.slitPlane from Or.inl (by simpa using hε)))
   exact ((hm.add hp).div_const 2).mul_const (Complex.Gamma s)
 
-/-- Both Abel kernels are uniformly bounded on the actual compact time
-box.  The bound follows from continuity away from the logarithm cut. -/
 theorem a03CosineGammaKernel_compact_bound (s : ℂ) :
     ∃ C : ℝ,0≤C ∧ ∀ ε∈Icc (0:ℝ) 1,∀ t∈Icc (1:ℝ) 2,
       ‖a03CosineGammaKernel s ε t‖≤C := by
@@ -96,8 +91,6 @@ theorem a03CosineGammaKernel_abel_tendsto (s : ℂ) {t : ℝ} (ht : 0<t) :
   rw [a03CosineGammaKernel_zero s ht] at h
   exact h
 
-/-- Exact dominated removal of Abel damping in the genuine compact-time
-Gamma kernel.  No cosine Mellin identity is supplied as a premise. -/
 theorem a03CosineGamma_time_integral_tendsto (s : ℂ) {Φ : ℝ→ℂ}
     (hΦ : Continuous Φ) (hK : HasCompactSupport Φ)
     (hSupp : ∀ t : ℝ,t∉Icc (1:ℝ) 2 → Φ t=0) :

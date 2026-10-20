@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.PrincipalCorrectionRecurrence
 
-/-! The arithmetic Euler factor has no linear term. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

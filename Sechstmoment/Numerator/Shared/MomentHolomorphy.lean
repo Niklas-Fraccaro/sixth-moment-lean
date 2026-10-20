@@ -3,7 +3,6 @@ import Sechstmoment.Analysis.Complex.Polydisc
 import Sechstmoment.Analysis.Integration.ComplexParameter
 import Sechstmoment.Zeta.Moments.AnalyticMomentLinearity
 
-/-! Actual complex differentiability of the literal source moment. -/
 
 namespace Sechstmoment
 open Complex Metric MeasureTheory Set
@@ -131,8 +130,6 @@ theorem chiMomentFamily_value {T : ℝ} (hT : 1 < T)
 
 attribute [irreducible] chiMomentFamily
 
-/-- The literal source moment is jointly complex differentiable in its four
-raw shifts throughout their actual critical strip. Profiles may differ. -/
 theorem chiTwistedFourthMoment_differentiableOn_raw {T : ℝ} (hT : 1 < T)
     (a b : ℝ) (f g Φ : ℝ → ℝ)
     (hf : ∀ x, a < x → f x=0) (hg : ∀ x, b < x → g x=0) (hΦ : SmoothDyadicWeight Φ) :
@@ -152,8 +149,6 @@ theorem rawMomentShifts_differentiable (T : ℝ) : Differentiable ℂ (rawMoment
   unfold rawMomentShifts
   fun_prop
 
-/-- The actual normalized source moment has genuine complex derivatives;
-normalization is the literal linear map σ↦σ/log(T). -/
 theorem chiTwistedFourthMoment_differentiableOn_normalized {T : ℝ} (hT : 1 < T)
     (a b : ℝ) (f g Φ : ℝ → ℝ)
     (hf : ∀ x, a < x → f x=0) (hg : ∀ x, b < x → g x=0) (hΦ : SmoothDyadicWeight Φ) :
@@ -175,8 +170,6 @@ theorem closedPolydisc_subset_momentNormalizedShiftDomain {T : ℝ} (hT : 1 < T)
   have hr := hR j
   linarith
 
-/-- Own holomorphy supplies the actual hypothesis needed by the iterated
-maximum principle on a fixed complex shift polydisc. -/
 theorem chiTwistedFourthMoment_differentiableOn_polydisc {T : ℝ} (hT : 1 < T)
     (R : Fin 4 → ℝ) (hR : ∀ j, 2*R j < Real.log T)
     (a b : ℝ) (f g Φ : ℝ → ℝ)

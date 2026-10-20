@@ -1,13 +1,6 @@
 import Mathlib.Tactic
 import Sechstmoment.Arithmetic.Euler.Shifted.Uniform
 
-/-!
-# Holomorphy of the actual shifted Euler remainder on contour parameters
-
-The hypotheses here concern only the analytic shift maps and their real
-parts. Holomorphy of the actual infinite arithmetic product is proved by
-normal convergence of its genuine local factors.
--/
 
 namespace Sechstmoment
 

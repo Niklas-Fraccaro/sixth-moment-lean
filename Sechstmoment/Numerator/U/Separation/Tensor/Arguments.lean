@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.U.Separation.Frequency.SixComposition
 import Sechstmoment.Numerator.U.Separation.SixTensorSource
 import Sechstmoment.Numerator.U.Separation.Tensor.MellinFactor
 
-/-! Literal physical source coordinates, their exact logarithmic gap
-frequency, and their actual four-variable Mellin factor. -/
 namespace Sechstmoment
 open Complex Real Source Set
 open scoped BigOperators Topology

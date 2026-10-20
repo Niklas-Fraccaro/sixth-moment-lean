@@ -39,7 +39,6 @@ import Sechstmoment.Analysis.Profiles.Polynomial
 import Sechstmoment.Zeta.Moments.AnalyticMomentLinearity
 import Std
 
-/-! Own extension of the same-polynomial DP input to two actual polynomial amplifiers. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Filter

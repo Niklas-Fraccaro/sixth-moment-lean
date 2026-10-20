@@ -3,9 +3,6 @@ import Sechstmoment.Numerator.V.Arithmetic.TimeWeightFamily
 import Sechstmoment.Numerator.V.Chi.GlobalTime
 import Sechstmoment.Numerator.V.Chi.WideWindow
 
-/-! Exact transport of a complex chi shift. The Fourier kernel can keep
-the fixed physical weight; the varying power weight is introduced only
-after the additive main term has been obtained. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

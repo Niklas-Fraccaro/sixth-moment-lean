@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.V.EulerTransfer.ProfileError
 
-/-! PDF (5.6) for the actual displaced Mellin remainder, with explicit small parameters and log shifts. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option maxHeartbeats 2000000
@@ -37,7 +36,6 @@ theorem power_saving_shift_region (ε : ℝ) (hε : 0 < ε) (hε' : ε < 1/2)
     simp only [neg_re] at hl
     constructor <;> linarith
 
-/-- The crucial power count, with Y <= T^(2 eta) and eta <= 1/4. -/
 theorem length_power_saving (T : ℝ) (hT : 1 ≤ T) (Y : ℕ)
     (η ε : ℝ) (hη : η ≤ 1/4) (hε : 0 < ε) (hYlen : (Y:ℝ) ≤ T^(2*η)) :
     T^(1/2+ε/16) * (Y:ℝ)^((1/2+ε/16)+1/2+ε/16+ε/16) ≤ T^(1/2+2*η+ε) := by
@@ -51,7 +49,6 @@ theorem length_power_saving (T : ℝ) (hT : 1 ≤ T) (Y : ℕ)
       rw [← Real.rpow_mul hTp.le,← Real.rpow_add hTp]
     _ ≤ _ := Real.rpow_le_rpow_of_exponent_le hT (by nlinarith)
 
-/-- Actual profile-weighted displaced integrals, including all d and N sums; no new moment input. -/
 theorem profile_displaced_power_saving {w : ℝ → ℂ} (hw : ContDiff ℝ ∞ w)
     (hws : tsupport w ⊆ Icc (1:ℝ) 2) (ε η R : ℝ)
     (hε : 0 < ε) (hε' : ε < 1/2) (hη : η ≤ 1/4) :

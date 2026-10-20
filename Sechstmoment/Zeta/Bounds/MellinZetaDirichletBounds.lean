@@ -2,13 +2,6 @@ import Mathlib.Analysis.PSeries
 import Mathlib.Tactic
 import Sechstmoment.Zeta.Regularized
 
-/-!
-# Uniform actual zeta bounds to the right of the pole
-
-The five entangled zeta factors on the remainder contour lie in a closed
-half-plane to the right of one. Their bound follows directly from the actual
-Dirichlet series and is independent of the imaginary part.
--/
 
 namespace Sechstmoment
 

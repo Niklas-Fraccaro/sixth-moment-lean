@@ -1,9 +1,6 @@
 import Sechstmoment.Analysis.Complex.SimplePole
 import Sechstmoment.Analysis.Gaussian.Decay
 
-/-! A vertical contour displacement with no poles in the intervening strip.
-This uses the actual finite rectangle theorem and improper-integral limits.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

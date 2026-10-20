@@ -40,7 +40,6 @@ import Sechstmoment.Numerator.V.DP.DPWeightedSimplex
 import Sechstmoment.Zeta.Moments.AnalyticMomentLinearity
 import Std
 
-/-! Own extension of the same-polynomial DP input to two actual polynomial amplifiers. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Filter
@@ -94,8 +93,6 @@ theorem dpNormalizedBilinearFourResidues_polarization (q η : ℝ)
   simp only [dpNormalizedTriple_add, dpNormalizedTriple_sub]
   ring
 
-/-- Two independent polynomial amplifiers are obtained from the same-polynomial
-source theorem by actual moment polarization, with no extra source assumption. -/
 theorem dpActualBilinearMoment_normalized_tendsto (hsource : DPv2Input)
     (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P Q : Polynomial ℝ)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (σ : MomentShifts) (hσ : DPSeparated σ) :

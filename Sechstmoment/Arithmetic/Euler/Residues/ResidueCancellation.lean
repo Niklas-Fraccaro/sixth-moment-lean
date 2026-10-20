@@ -1,10 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Residues.ThreeSeries
 
-/-!
-# Exact local cancellation at a residue pole (PDF §6.1)
-The correction is defined from the actual four-root infinite tail. Its evaluation
-loses the distinguished root and has no denominator in that root.
--/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 

@@ -1,10 +1,5 @@
 import Sechstmoment.Numerator.V.Contour.SameSideContour
 
-/-! The interior contour displacement for the actual polynomial profiles.
-Order 16 makes the Cauchy-Green error at most C/T^3 for every fixed
-profile exponent at most 1/4. Replacing the weight on the right line and
-the subsequent stationary-phase transformation are separate steps.
--/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Polynomial

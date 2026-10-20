@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.V.DP.CenteringRemainder
 import Sechstmoment.Numerator.V.DP.DPCoincidentTransfer
 
-/-! The actual all-positive DP moment against its genuine regular circle kernel. -/
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Polynomial Filter
 open scoped Topology

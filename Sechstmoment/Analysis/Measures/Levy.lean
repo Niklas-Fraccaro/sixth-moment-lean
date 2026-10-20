@@ -1,10 +1,6 @@
 import Mathlib.MeasureTheory.Measure.LevyConvergence
 import Mathlib.Order.Filter.AtTopBot.CountablyGenerated
 
-/-! The finite-measure form of Lévy's continuity theorem, for the continuously
-indexed exponentially weighted diagonal measures.  Normalization is explicit;
-the source filter can be any countably generated filter, including `atTop` on
-the real scale parameter. -/
 
 open Filter MeasureTheory
 open scoped Topology

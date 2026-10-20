@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.V.EulerTransfer.CorrectedGauss
 
-/-! Absolute convergence and uniform bounds for the actual corrected displaced Mellin integral. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option maxHeartbeats 2000000

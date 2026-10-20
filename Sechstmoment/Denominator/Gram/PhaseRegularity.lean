@@ -2,8 +2,6 @@ import Sechstmoment.Denominator.Gram.PhaseError
 import Sechstmoment.Denominator.Gram.PhaseModelBound
 import Sechstmoment.Denominator.Unbalanced.ActualMomentRegularity
 
-/-! Actual Bochner integrability justifies the subtraction between the
-extreme shifted zeta moment and its complete one-sided model. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

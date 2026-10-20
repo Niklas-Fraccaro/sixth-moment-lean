@@ -2,7 +2,6 @@ import Mathlib.NumberTheory.LSeries.Dirichlet
 import Sechstmoment.Numerator.U.Diagonal.DiagonalEulerCoefficients
 import Sechstmoment.Numerator.U.Diagonal.DiagonalEulerMajorant
 
-/-! Absolute convergence of the genuine global diagonal, using the ninth divisor function. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat

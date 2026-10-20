@@ -1,7 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Tactic
 
-/-! Elementary uniform power budgets on logarithmically displaced lines. -/
 
 namespace Sechstmoment.Source
 open Real

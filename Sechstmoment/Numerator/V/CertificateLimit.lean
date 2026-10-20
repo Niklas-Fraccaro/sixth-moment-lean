@@ -1,8 +1,6 @@
 import Sechstmoment.Certificate.Profiles.V.Numerator
 import Sechstmoment.Numerator.V.PolynomialMoment
 
-/-! The original thirty V rows, with their actual beta profiles and fixed
-stage limits, derived from the independent moment evaluation. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial

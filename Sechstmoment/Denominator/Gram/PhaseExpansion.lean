@@ -1,9 +1,6 @@
 import Sechstmoment.Denominator.Gram.PhaseDefinitions
 import Sechstmoment.Denominator.Unbalanced.Expansion.MomentSplit
 
-/-! The actual extreme-phase model has four positive amplifier indices.
-Their product is at most `T^S`; every resulting pair frequency is at least
-`-S log T`. The Dirichlet series remains unrestricted. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

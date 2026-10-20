@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Balanced.ShiftedDiagonalIntegrability
 import Sechstmoment.Denominator.Unbalanced.ProfileDisintegration
 
-/-! The original unbalanced shift integral has a compact edge support and
-an integrable envelope uniform on bounded complex shift contours. -/
 namespace Sechstmoment
 open MeasureTheory Set Complex
 open scoped BigOperators

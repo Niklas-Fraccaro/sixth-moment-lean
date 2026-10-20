@@ -1,8 +1,6 @@
 import Sechstmoment.Arithmetic.Watt.FiniteSums
 import Sechstmoment.Arithmetic.Watt.GammaProfiles
 
-/-! Exact completion of the finite positive-variable sum.  The support,
-residue-class decomposition and coprimality filters are all retained. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -61,7 +59,6 @@ theorem lattice_nonnegative {g : ℝ → ℂ} {V : ℝ}
   rw [← hinj.tsum_eq hsupport]
   simp only [Int.cast_natCast]
 
-/-- The general completed sum equals the literal sum over natural numbers. -/
 theorem completedSum_eq_natural_tsum {g : ℝ → ℂ} {V : ℝ}
     (hs : tsupport g ⊆ Icc (V/2) V) (hV : 0 < V)
     {c : ℕ} (hc : 0 < c) (k : ℤ) :
@@ -118,7 +115,6 @@ theorem completedSum_eq_finite_sum {g : ℝ → ℂ} {V : ℝ}
   by_contra hn
   exact hm (coprimeTerm_support hs hV c k hn)
 
-/-- Poisson completion directly for a finite positive coprime sum. -/
 theorem finite_sum_eq_fourier {g : ℝ → ℂ} {V : ℝ}
     (hg : ContDiff ℝ ∞ g) (hs : tsupport g ⊆ Icc (V/2) V) (hV : 0 < V)
     {c : ℕ} (hc : 0 < c) (k : ℤ) :
@@ -128,7 +124,6 @@ theorem finite_sum_eq_fourier {g : ℝ → ℂ} {V : ℝ}
   exact completedSum_eq_classical hg
     (isCompact_Icc.of_isClosed_subset (isClosed_tsupport g) hs) hc k
 
-/-- The original product inverse is reduced without changing its filter. -/
 theorem finite_product_inverse_eq_fourier {g : ℝ → ℂ} {V : ℝ}
     (hg : ContDiff ℝ ∞ g) (hs : tsupport g ⊆ Icc (V/2) V) (hV : 0 < V)
     {r c : ℕ} (hc : 0 < c) (k : ℤ) :
@@ -175,7 +170,6 @@ theorem gamma_finite_completion {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
   simpa only [completedTerm,phaseSign,Int.cast_mul,Int.cast_natCast,
     Int.cast_ite,Int.cast_one,Int.cast_neg,mul_assoc] using heq
 
-/-- Exact Fourier expansion of the original six-variable finite sum. -/
 theorem weightedWattSum_eq_fourier_sums {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)

@@ -1,18 +1,14 @@
 import Sechstmoment.Numerator.Kernels.GeneratorDerivatives
 import Sechstmoment.Numerator.V.ReflectedKernel
 
-/-! Genuine weighted polar generators and their numerical numerator kernels.
-All differentiation and finite-sum interchanges concern actual compact integrals. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial
 open scoped Topology BigOperators
 noncomputable section
 set_option maxHeartbeats 1600000
 
-/-- The actual polynomial source-profile value on its compact interval. -/
 def polynomialIntervalProfile (η : ℝ) (P : ℝ[X]) (a : ℝ) : ℝ := P.eval (1-a/η)
 
-/-- The literal double compact profile integral of the actual polar J. -/
 def weightedPolarJ (η : ℝ) (P Q : ℝ[X]) (z : ℂ) : ℂ :=
   ∫ a in (0:ℝ)..η, ∫ b in (0:ℝ)..η,
     (polynomialIntervalProfile η P a:ℂ)*(polynomialIntervalProfile η Q b:ℂ)*polarJ a b z
@@ -33,8 +29,6 @@ private theorem weightedPolarTerm_continuous (η : ℝ) (P Q : ℝ[X]) (z : ℂ)
     Continuous (fun p : ℝ×ℝ => weightedPolarTerm η P Q z j p.1 p.2) := by
   fin_cases j <;> unfold weightedPolarTerm polynomialIntervalProfile polarB polarC polarH <;> fun_prop
 
-/-- The genuine cross-profile generator is exactly the actual double weighted
-polar integral. The proof uses actual continuous integrands for every finite-sum interchange. -/
 theorem polarPolynomialBilinearJ_eq_weightedPolarJ (η : ℝ) (P Q : ℝ[X]) (z : ℂ) :
     polarPolynomialBilinearJ η P Q z = weightedPolarJ η P Q z := by
   have he (a b : ℝ) : (polynomialIntervalProfile η P a:ℂ)*
@@ -60,8 +54,6 @@ theorem polarPolynomialBilinearJ_eq_weightedPolarJ (η : ℝ) (P Q : ℝ[X]) (z 
   unfold polarPolynomialBilinearJ polarPolynomialB polarPolynomialC polynomialIntervalProfile
   ring
 
-/-- Joint continuity of every actual numerator-generator derivative,
-including coincident endpoints and the removable parameter z=0. -/
 theorem numeratorExpMomentDerivative_joint_continuous (n : ℕ) :
     Continuous (fun p : ℂ×(ℝ×ℝ) => numeratorExpMomentDerivative n p.2.1 p.2.2 p.1) := by
   unfold numeratorExpMomentDerivative simplexExpMomentDerivative simplexExpPowerKernel
@@ -70,8 +62,6 @@ theorem numeratorExpMomentDerivative_joint_continuous (n : ℕ) :
 
 attribute [local irreducible] numeratorExpMomentDerivative
 
-/-- The actual real numerical point kernel is jointly continuous at every
-endpoint, directly from its proved finite polynomial/min-interval expansion. -/
 theorem numeratorPointKernel_joint_continuous (p : Fin 5→ℝ) :
     Continuous (fun q : ℝ×ℝ => numeratorPointKernel p q.1 q.2) := by
   simp_rw [numeratorPointKernel_polynomial_min]
@@ -80,7 +70,6 @@ theorem numeratorPointKernel_joint_continuous (p : Fin 5→ℝ) :
 
 attribute [local irreducible] numeratorPointKernel
 
-/-- Every weighted numerator derivative is an actual double compact integral. -/
 def weightedNumeratorExpMomentDerivative (n : ℕ) (η : ℝ) (P Q : ℝ[X]) (z : ℂ) : ℂ :=
   ∫ a in (0:ℝ)..η, ∫ b in (0:ℝ)..η,
     (polynomialIntervalProfile η P a:ℂ)*(polynomialIntervalProfile η Q b:ℂ)*
@@ -91,8 +80,6 @@ def weightedNumeratorExpGenerator (η : ℝ) (P Q : ℝ[X]) (z : ℂ) : ℂ :=
     (polynomialIntervalProfile η P a:ℂ)*(polynomialIntervalProfile η Q b:ℂ)*
       numeratorExpGenerator a (1-b) z
 
-/-- Compact integration of the actual derivative is justified twice by joint
-continuity, not by a derivative assumption on the resulting integral. -/
 theorem weightedNumeratorExpMomentDerivative_hasDerivAt (n : ℕ) (η : ℝ) (P Q : ℝ[X]) (z : ℂ) :
     HasDerivAt (weightedNumeratorExpMomentDerivative n η P Q)
       (weightedNumeratorExpMomentDerivative (n+1) η P Q z) z := by
@@ -141,8 +128,6 @@ theorem weightedNumeratorExpGenerator_iteratedDeriv (n : ℕ) (η : ℝ) (P Q : 
     rw [iteratedDeriv_succ,he]
     exact (weightedNumeratorExpMomentDerivative_hasDerivAt n η P Q z).deriv
 
-/-- The reflected polynomial polar generator is the genuine double integral
-of the reflected endpoint polar generator. -/
 theorem vReflectedPolynomialJ_eq_weighted_reflection (η : ℝ) (P Q : ℝ[X]) (z : ℂ) :
     vReflectedPolynomialJ η P Q z =
       ∫ a in (0:ℝ)..η, ∫ b in (0:ℝ)..η,
@@ -160,8 +145,6 @@ theorem vReflectedPolynomialJ_eq_weighted_reflection (η : ℝ) (P Q : ℝ[X]) (
   intro b _
   ring
 
-/-- Positive compact source endpoints lie in the actual reflection geometry.
-The endpoints a=0 or b=0 have measure zero in these real interval integrals. -/
 theorem vReflectedPolynomialJ_eq_weightedNumeratorExpGenerator
     (η : ℝ) (hη : 0<η) (hηu : η<1/4) (P Q : ℝ[X]) :
     vReflectedPolynomialJ η P Q = weightedNumeratorExpGenerator η P Q := by
@@ -175,8 +158,6 @@ theorem vReflectedPolynomialJ_eq_weightedNumeratorExpGenerator
   dsimp only
   rw [numeratorExpGenerator_reflection a b ha.1 hb.1 (by linarith [ha.2,hb.2])]
 
-/-- The actual reflected weighted generator inherits the genuine integrated
-all-order numerator derivatives, including z=0. -/
 theorem vReflectedPolynomialJ_iteratedDeriv_eq_weightedNumerator
     (n : ℕ) (η : ℝ) (hη : 0<η) (hηu : η<1/4) (P Q : ℝ[X]) (z : ℂ) :
     iteratedDeriv n (vReflectedPolynomialJ η P Q) z =
@@ -184,14 +165,11 @@ theorem vReflectedPolynomialJ_iteratedDeriv_eq_weightedNumerator
   rw [vReflectedPolynomialJ_eq_weightedNumeratorExpGenerator η hη hηu P Q,
     weightedNumeratorExpGenerator_iteratedDeriv]
 
-/-- The literal real double weighted numerical numerator kernel. -/
 def weightedNumeratorPointKernel (p : Fin 5→ℝ) (η : ℝ) (P Q : ℝ[X]) : ℝ :=
   ∫ a in (0:ℝ)..η, ∫ b in (0:ℝ)..η,
     polynomialIntervalProfile η P a*polynomialIntervalProfile η Q b*
       numeratorPointKernel p a (1-b)
 
-/-- Every term needed by the actual finite operator under the double compact
-integral is jointly continuous. -/
 theorem weightedNumeratorDerivativeIntegrand_continuous (n : ℕ) (η : ℝ) (P Q : ℝ[X]) (z : ℂ) :
     Continuous (fun q:ℝ×ℝ=>(polynomialIntervalProfile η P q.1:ℂ)*
       (polynomialIntervalProfile η Q q.2:ℂ)*numeratorExpMomentDerivative n q.1 (1-q.2) z) := by
@@ -201,7 +179,6 @@ theorem weightedNumeratorDerivativeIntegrand_continuous (n : ℕ) (η : ℝ) (P 
     ((numeratorExpMomentDerivative_joint_continuous n).comp (by fun_prop : Continuous
       (fun q:ℝ×ℝ=>(z,(q.1,1-q.2)))))
 
-/-- The actual double weighted kernel is integrable in both interval variables. -/
 theorem weightedNumeratorPointKernel_integrable (p : Fin 5→ℝ) (η : ℝ) (P Q : ℝ[X]) :
     (∀ a:ℝ, IntervalIntegrable (fun b:ℝ=>polynomialIntervalProfile η P a*
         polynomialIntervalProfile η Q b*numeratorPointKernel p a (1-b)) volume 0 η) ∧
@@ -218,7 +195,6 @@ theorem weightedNumeratorPointKernel_integrable (p : Fin 5→ℝ) (η : ℝ) (P 
       (μ := volume) (f := fun a b => polynomialIntervalProfile η P a*
         polynomialIntervalProfile η Q b*numeratorPointKernel p a (1-b)) hc 0 η).intervalIntegrable 0 η⟩
 
-/-- Scalar extension commutes with both actual real interval integrals. -/
 theorem weightedNumeratorPointKernel_ofReal (p : Fin 5→ℝ) (η : ℝ) (P Q : ℝ[X]) :
     Complex.ofReal (weightedNumeratorPointKernel p η P Q) =
       ∫ a in (0:ℝ)..η, ∫ b in (0:ℝ)..η,
@@ -227,9 +203,6 @@ theorem weightedNumeratorPointKernel_ofReal (p : Fin 5→ℝ) (η : ℝ) (P Q : 
   unfold weightedNumeratorPointKernel
   simp only [←intervalIntegral.integral_ofReal,Complex.ofReal_mul]
 
-/-- The genuine degree-four operator of the actual double numerator generator
-is exactly the real double weighted numerical kernel. All finite-sum
-interchanges use the actual continuous integrands. -/
 theorem weightedNumeratorExpGenerator_operator_eq_weightedPointKernel
     (p : Fin 5→ℝ) (η : ℝ) (P Q : ℝ[X]) :
     finiteDifferentialOperator 4 (fun r=>(p r:ℂ)) (weightedNumeratorExpGenerator η P Q) 0 =
@@ -271,8 +244,6 @@ theorem weightedNumeratorExpGenerator_operator_eq_weightedPointKernel
   rw [←intervalIntegral.integral_finsetSum (fun r _ => hib r)]
   simp_rw [he]
 
-/-- The exact reflected polynomial polar operator is the actual weighted
-numerical numerator kernel, under the same source endpoint geometry. -/
 theorem vReflectedPolynomialJ_operator_eq_weightedNumerator (p : Fin 5→ℝ)
     (η : ℝ) (hη : 0<η) (hηu : η<1/4) (P Q : ℝ[X]) :
     finiteDifferentialOperator 4 (fun r=>(p r:ℂ)) (vReflectedPolynomialJ η P Q) 0 =
@@ -280,16 +251,12 @@ theorem vReflectedPolynomialJ_operator_eq_weightedNumerator (p : Fin 5→ℝ)
   rw [vReflectedPolynomialJ_eq_weightedNumeratorExpGenerator η hη hηu P Q]
   exact weightedNumeratorExpGenerator_operator_eq_weightedPointKernel p η P Q
 
-/-- On the open integration interval the literal strict zero-extended source
-profile is exactly its polynomial representative. -/
 theorem polynomialIntervalProfile_eq_zeroExtended {η a : ℝ} (P : ℝ[X])
     (ha : a∈Ioo 0 η) :
     polynomialIntervalProfile η P a = zeroExtendedPolynomialProfile η P a := by
   have hm : a∈Ico 0 η := ⟨ha.1.le,ha.2⟩
   simp only [zeroExtendedPolynomialProfile,Set.indicator_of_mem hm,polynomialIntervalProfile]
 
-/-- The actual Jcross also equals the double integral with the literal
-strict Ico source profiles; excluded endpoints cause no added condition. -/
 theorem polarPolynomialBilinearJ_eq_double_profileIntegral
     (η : ℝ) (hη : 0<η) (P Q : ℝ[X]) (z : ℂ) :
     polarPolynomialBilinearJ η P Q z =
@@ -305,8 +272,6 @@ theorem polarPolynomialBilinearJ_eq_double_profileIntegral
   dsimp only
   rw [polynomialIntervalProfile_eq_zeroExtended P ha,polynomialIntervalProfile_eq_zeroExtended Q hb]
 
-/-- The real weighted numerical kernel uses the literal two strict source
-profiles as well as their continuous polynomial representatives. -/
 theorem weightedNumeratorPointKernel_eq_double_profileIntegral
     (p : Fin 5→ℝ) (η : ℝ) (hη : 0<η) (P Q : ℝ[X]) :
     weightedNumeratorPointKernel p η P Q =

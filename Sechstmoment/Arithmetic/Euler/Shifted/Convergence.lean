@@ -2,14 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 import Mathlib.Tactic
 import Sechstmoment.Arithmetic.Euler.Shifted.RemainderBounds
 
-/-!
-# Convergence of the genuine shifted arithmetic product
-
-The shifted diagonal local series and its nine actual zeta divisors have a
-uniform quadratic remainder. Its prime majorant is a convergent p-series
-throughout the six-dimensional half-space with shifts' real parts at least
-`-δ`, `δ < 1/4`. No shifted Euler-product hypothesis is used.
--/
 
 namespace Sechstmoment
 
@@ -68,8 +60,6 @@ theorem shiftedPolarPrimeMajorant_summable {δ : ℝ} (hδ : δ < 1/4) :
     Summable (fun p : {n : ℕ // Nat.Prime n} => 2000000*(p.val:ℝ)^(4*δ-2)) := by
   exact ((Real.summable_nat_rpow.mpr (by linarith : 4*δ-2 < -1)).subtype Nat.Prime).mul_left _
 
-/-- The actual local deviations are absolutely summable in a complex
-neighborhood of zero shifts, uniformly over their imaginary parts. -/
 theorem shiftedPolarPrimeRemainder_sub_one_norm_summable
     (a b : Fin 3 → ℂ) {δ : ℝ} (hδ : δ < 1/4)
     (ha : ∀ i : Fin 3, -δ ≤ (a i).re) (hb : ∀ i : Fin 3, -δ ≤ (b i).re) :
@@ -79,7 +69,6 @@ theorem shiftedPolarPrimeRemainder_sub_one_norm_summable
   rw [Real.norm_of_nonneg (norm_nonneg _)]
   exact shiftedPolarPrimeRemainder_sub_one_bound p a b ha hb hp
 
-/-- Convergence of the genuine shifted arithmetic Euler product. -/
 theorem shiftedPolarEulerRest_multipliable
     (a b : Fin 3 → ℂ) {δ : ℝ} (hδ : δ < 1/4)
     (ha : ∀ i : Fin 3, -δ ≤ (a i).re) (hb : ∀ i : Fin 3, -δ ≤ (b i).re) :

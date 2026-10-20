@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.TimeGamma.Subpower
 import Sechstmoment.Numerator.U.Replacement.TimeGammaError
 
-/-! The actual Gamma replacement-error amplitude has all normalized-time
-seminorms O(T^(epsilon-1)), uniformly on separated normalized shift sets. -/
 namespace Sechstmoment.Source
 open Complex Set Filter
 open scoped BigOperators Topology ContDiff

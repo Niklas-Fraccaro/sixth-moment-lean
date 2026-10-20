@@ -15,35 +15,23 @@ import Sechstmoment.Analysis.Integration.FiniteFubini
 import Sechstmoment.Analysis.Simplex.Moments
 import Sechstmoment.Arithmetic.Exact.Polynomials
 
-/-!
-# The eight masks in the unbalanced denominator
-
-This module supplies the set-theoretic inclusion–exclusion step needed for D05.
-Its masks use exactly `Finite.bit`, in the order used by `Finite.dminus`.
-All upper-bound violations are strict, so the identity includes the boundary
-points of the closed box without an exceptional-set convention.
--/
 
 namespace Sechstmoment
 open MeasureTheory
 open scoped BigOperators
 
-/-- The affine two-dimensional slice `r₁+r₂+r₃=H`, with `r₃=H-r₁-r₂`. -/
 def simplexSlice (H : ℝ) : Set (Fin 2 → ℝ) :=
   {r | 0 ≤ r 0 ∧ 0 ≤ r 1 ∧ 0 ≤ H-r 0-r 1}
 
-/-- The slice truncated by the three upper bounds. -/
 def boundedSimplexSlice (a b c H : ℝ) : Set (Fin 2 → ℝ) :=
   {r | r ∈ simplexSlice H ∧ r 0 ≤ a ∧ r 1 ≤ b ∧ H-r 0-r 1 ≤ c}
 
-/-- An intersection of upper-bound violations, selected by the evaluator's bits. -/
 def simplexUpperMask (a b c H : ℝ) (mask : Fin 8) : Set (Fin 2 → ℝ) :=
   {r | r ∈ simplexSlice H ∧
     (if Finite.bit mask.val 0 then a < r 0 else True) ∧
     (if Finite.bit mask.val 1 then b < r 1 else True) ∧
     (if Finite.bit mask.val 2 then c < H-r 0-r 1 else True)}
 
-/-- The same alternating sign as in the integer evaluator. -/
 def simplexMaskSign (mask : Fin 8) : ℝ :=
   (-1)^((List.range 3).filter (Finite.bit mask.val)).length
 
@@ -89,12 +77,10 @@ theorem simplexUpperMask_indicator_integrable (a b c H : ℝ) (mask : Fin 8)
   exact (hbase.mono_set (fun _ hr => hr.1)).integrable_indicator
     (simplexUpperMask_measurable a b c H mask)
 
-/-- Explicit verification of the eight evaluator signs. -/
 theorem simplexMaskSign_eq (mask : Fin 8) :
     simplexMaskSign mask = ![(1 : ℝ), -1, -1, 1, -1, 1, 1, -1] mask := by
   fin_cases mask <;> norm_num [simplexMaskSign, Finite.bit, List.range_succ]
 
-/-- Inclusion–exclusion is pointwise, including all upper and lower faces. -/
 theorem boundedSimplexSlice_indicator (a b c H : ℝ)
     (f : (Fin 2 → ℝ) → ℝ) (r : Fin 2 → ℝ) :
     (boundedSimplexSlice a b c H).indicator f r =
@@ -114,8 +100,6 @@ theorem boundedSimplexSlice_indicator (a b c H : ℝ)
     hbase, ha, hb, hc]
   all_goals norm_num
 
-/-- The integrated inclusion–exclusion identity.
-Integrability is explicit; it is not an analytic assumption about zeta moments. -/
 theorem boundedSimplexSlice_integral (a b c H : ℝ)
     (f : (Fin 2 → ℝ) → ℝ)
     (hf : ∀ mask : Fin 8, Integrable
@@ -129,7 +113,6 @@ theorem boundedSimplexSlice_integral (a b c H : ℝ)
   · intro mask _
     exact (hf mask).const_mul (simplexMaskSign mask)
 
-/-- For continuous polynomial integrands, no extra integrability premise remains. -/
 theorem boundedSimplexSlice_integral_of_continuous (a b c H : ℝ)
     (f : (Fin 2 → ℝ) → ℝ) (hf : Continuous f) :
     (∫ r, (boundedSimplexSlice a b c H).indicator f r) =
@@ -138,24 +121,20 @@ theorem boundedSimplexSlice_integral_of_continuous (a b c H : ℝ)
   exact boundedSimplexSlice_integral a b c H f
     (fun mask => simplexUpperMask_indicator_integrable a b c H mask f hf)
 
-/-- The amount subtracted from the total length by a selected upper face. -/
 def simplexMaskShift (a b c : ℝ) (mask : Fin 8) : ℝ :=
   (if Finite.bit mask.val 0 then a else 0) +
   (if Finite.bit mask.val 1 then b else 0) +
   (if Finite.bit mask.val 2 then c else 0)
 
-/-- Translation in the two coordinates carrying the slice measure `dr₁ dr₂`. -/
 def simplexMaskTranslate (a b : ℝ) (mask : Fin 8) (r : Fin 2 → ℝ) : Fin 2 → ℝ :=
   ![r 0 + (if Finite.bit mask.val 0 then a else 0),
     r 1 + (if Finite.bit mask.val 1 then b else 0)]
 
-/-- After translation, selected lower faces are open and the other faces closed. -/
 def simplexFaceMask (H : ℝ) (mask : Fin 8) : Set (Fin 2 → ℝ) :=
   {r | (if Finite.bit mask.val 0 then 0 < r 0 else 0 ≤ r 0) ∧
     (if Finite.bit mask.val 1 then 0 < r 1 else 0 ≤ r 1) ∧
     (if Finite.bit mask.val 2 then 0 < H-r 0-r 1 else 0 ≤ H-r 0-r 1)}
 
-/-- The slack coordinate transforms by exactly the sum of the selected caps. -/
 theorem simplexMaskTranslate_slack (a b c H : ℝ) (mask : Fin 8)
     (r : Fin 2 → ℝ) :
     H-(simplexMaskTranslate a b mask r) 0-(simplexMaskTranslate a b mask r) 1 -
@@ -165,7 +144,6 @@ theorem simplexMaskTranslate_slack (a b c H : ℝ) (mask : Fin 8)
     Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one]
   ring
 
-/-- Exact translation of every mask, retaining its strict boundary convention. -/
 theorem simplexUpperMask_translate {a b c : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (H : ℝ)
     (mask : Fin 8) (r : Fin 2 → ℝ) :
@@ -186,7 +164,6 @@ theorem simplexUpperMask_translate {a b c : ℝ}
       repeat' constructor
       all_goals linarith
 
-/-- Translation preserves exactly the two-dimensional slice measure. -/
 theorem simplexUpperMask_integral_translate {a b c : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (H : ℝ)
     (mask : Fin 8) (f : (Fin 2 → ℝ) → ℝ) :
@@ -216,7 +193,6 @@ theorem simplexUpperMask_integral_translate {a b c : ℝ}
         then f (simplexMaskTranslate a b mask r) else 0)
       rw [simplexUpperMask_translate ha hb hc H mask r]
 
-/-- The linear functional defining the third boundary face. -/
 noncomputable def simplexCoordinateSum : (Fin 2 → ℝ) →ₗ[ℝ] ℝ :=
   LinearMap.proj (R := ℝ) (φ := fun _ : Fin 2 => ℝ) 0 +
     LinearMap.proj (R := ℝ) (φ := fun _ : Fin 2 => ℝ) 1
@@ -224,7 +200,6 @@ noncomputable def simplexCoordinateSum : (Fin 2 → ℝ) →ₗ[ℝ] ℝ :=
 theorem simplexCoordinateSum_apply (r : Fin 2 → ℝ) :
     simplexCoordinateSum r = r 0+r 1 := rfl
 
-/-- The sloping face, as well as both coordinate faces, has zero slice measure. -/
 theorem simplex_slack_face_null (H : ℝ) :
     volume {r : Fin 2 → ℝ | H-r 0-r 1 = 0} = 0 := by
   have hproper : simplexCoordinateSum.ker ≠ ⊤ := by
@@ -245,7 +220,6 @@ theorem simplex_slack_face_null (H : ℝ) :
     constructor <;> intro h <;> linarith
   rw [hs, measure_preimage_add_right, hnull]
 
-/-- Opening any subset of the three lower faces does not change its Lebesgue integral. -/
 theorem simplexFaceMask_ae_eq (H : ℝ) (mask : Fin 8) :
     simplexFaceMask H mask =ᵐ[volume] simplexSlice H := by
   have h0 : ∀ᵐ r : Fin 2 → ℝ, r 0 ≠ 0 :=
@@ -273,7 +247,6 @@ theorem simplexFaceMask_indicator_ae_eq (H : ℝ) (mask : Fin 8)
     (if r ∈ simplexSlice H then f r else 0)
   rw [hr]
 
-/-- Each mask integral is a translated ordinary closed-simplex integral. -/
 theorem simplexUpperMask_integral_simplex {a b c : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (H : ℝ)
     (mask : Fin 8) (f : (Fin 2 → ℝ) → ℝ) :
@@ -283,7 +256,6 @@ theorem simplexUpperMask_integral_simplex {a b c : ℝ}
   rw [simplexUpperMask_integral_translate ha hb hc]
   exact integral_congr_ae (simplexFaceMask_indicator_ae_eq _ _ _)
 
-/-- In the zero-length boundary case the closed slice is a single point. -/
 theorem simplexSlice_zero : simplexSlice 0 = {0} := by
   ext r
   constructor
@@ -297,7 +269,6 @@ theorem simplexSlice_zero : simplexSlice 0 = {0} := by
     subst r
     simp [simplexSlice]
 
-/-- Negative total length gives an empty slice, with no positivity convention. -/
 theorem simplexSlice_empty_of_neg {H : ℝ} (hH : H < 0) : simplexSlice H = ∅ := by
   apply Set.eq_empty_iff_forall_notMem.mpr
   intro r hr
@@ -314,7 +285,6 @@ theorem simplexUpperMask_empty_of_neg (a b c : ℝ) {H : ℝ} (hH : H < 0)
   ext r
   simp [simplexUpperMask, simplexSlice_empty_of_neg hH]
 
-/-- Both the empty case and the singleton boundary case integrate to zero. -/
 theorem simplexSlice_integral_zero_of_nonpos {H : ℝ} (hH : H ≤ 0)
     (f : (Fin 2 → ℝ) → ℝ) :
     (∫ r, (simplexSlice H).indicator f r) = 0 := by
@@ -326,7 +296,6 @@ theorem simplexSlice_integral_zero_of_nonpos {H : ℝ} (hH : H ≤ 0)
   filter_upwards [compl_mem_ae_iff.mpr hn] with r hr
   exact Set.indicator_of_notMem hr f
 
-/-- Geometric eight-mask formula, in the exact evaluator order. -/
 theorem boundedSimplexSlice_integral_simplex {a b c : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (H : ℝ)
     (f : (Fin 2 → ℝ) → ℝ) (hf : Continuous f) :
@@ -337,7 +306,6 @@ theorem boundedSimplexSlice_integral_simplex {a b c : ℝ}
   rw [boundedSimplexSlice_integral_of_continuous a b c H f hf]
   simp_rw [simplexUpperMask_integral_simplex ha hb hc]
 
-/-- Nonpositive translated lengths give exactly the zero branch used by `dminus`. -/
 theorem boundedSimplexSlice_integral_simplex_cutoff {a b c : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (H : ℝ)
     (f : (Fin 2 → ℝ) → ℝ) (hf : Continuous f) :
@@ -359,7 +327,6 @@ theorem simplexSlice_indicator_integrable (H : ℝ)
   exact (hf.continuousOn.integrableOn_compact (simplexSlice_compact H)).integrable_indicator
     (simplexSlice_closed H).measurableSet
 
-/-- Fubini with precisely the `dr₁ dr₂` convention in equation (5.7). -/
 theorem simplexSlice_integral_fubini (H : ℝ)
     (f : (Fin 2 → ℝ) → ℝ) (hf : Continuous f) :
     (∫ r, (simplexSlice H).indicator f r) =
@@ -398,7 +365,6 @@ theorem simplex_interval_indicator_integral (a b : ℝ) (f : ℝ → ℝ) (hab :
   rw [integral_indicator measurableSet_Icc, integral_Icc_eq_integral_Ioc,
     intervalIntegral.integral_of_le hab]
 
-/-- The slice Lebesgue integral equals the iterated triangle integral. -/
 theorem simplexSlice_integral_iterated {H : ℝ} (hH : 0 ≤ H)
     (f : (Fin 2 → ℝ) → ℝ) (hf : Continuous f) :
     (∫ r, (simplexSlice H).indicator f r) =
@@ -412,7 +378,6 @@ theorem simplexSlice_integral_iterated {H : ℝ} (hH : 0 ≤ H)
   rw [Set.uIcc_of_le hH] at hx
   exact simplex_interval_indicator_integral 0 (H-x) _ (sub_nonneg.mpr hx.2)
 
-/-- Equation (5.7), now for the actual two-dimensional Lebesgue slice measure. -/
 theorem simplexSlice_monomial_integral {H : ℝ} (hH : 0 ≤ H) (i j k : ℕ) :
     (∫ r, (simplexSlice H).indicator
       (fun r => r 0^i*r 1^j*(H-r 0-r 1)^k) r) =
@@ -422,7 +387,6 @@ theorem simplexSlice_monomial_integral {H : ℝ} (hH : 0 ≤ H) (i j k : ℕ) :
   simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.cons_val_fin_one]
   exact simplex_monomial_two H i j k
 
-/-- The monomial evaluator, including its exact nonpositive-length cutoff. -/
 theorem simplexSlice_monomial_integral_cutoff (H : ℝ) (i j k : ℕ) :
     (∫ r, (simplexSlice H).indicator
       (fun r => r 0^i*r 1^j*(H-r 0-r 1)^k) r) =

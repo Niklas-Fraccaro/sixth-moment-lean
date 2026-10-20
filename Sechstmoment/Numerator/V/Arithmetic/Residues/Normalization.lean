@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.V.Arithmetic.Principal.EulerNormalization
 import Sechstmoment.Numerator.V.Arithmetic.Principal.Gauss
 import Sechstmoment.Numerator.V.Arithmetic.Principal.MellinResidue
 
-/-! Exact normalization of each actual principal residue. The Gauss sum
-and the L-residue combine to mu(q)/q before any asymptotic estimate. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory ZMod

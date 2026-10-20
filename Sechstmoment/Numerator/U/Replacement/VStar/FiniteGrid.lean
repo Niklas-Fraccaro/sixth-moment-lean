@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.SpatialTail
 import Sechstmoment.Numerator.U.Separation.SmallContour.GridBounds
 
-/-! Concrete spatial and logarithmic-frequency remainder of the full VStar
-AFE against its finite small-positive-contour smooth grid. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology

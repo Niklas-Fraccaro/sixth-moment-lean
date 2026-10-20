@@ -1,9 +1,6 @@
 import Sechstmoment.Analysis.Fourier.UniformDecay
 import Sechstmoment.Arithmetic.QuadraticDivisor.Definitions
 
-/-! Fixed dyadic profiles localize a varying analytic amplitude. Genuine
-derivative envelopes imply uniform integration by parts; no Fourier estimate
-is assumed. Smoothness outside the profile support is not required. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set
 open scoped ContDiff BigOperators Topology

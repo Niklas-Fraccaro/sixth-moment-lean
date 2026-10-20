@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.DualErrorParts
 import Sechstmoment.Numerator.U.Replacement.WeightReplacementFarFinite
 
-/-! Genuine global finite far sum for the actual dual Gamma/phase error. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter
 open scoped BigOperators Topology
@@ -75,8 +74,6 @@ def a03ActualDualErrorPartFarFiniteMellinGrid (phasePart : Bool) (positive : Boo
           rectangularDualErrorPartMellinKernel phasePart T σ (polarPoleKiller T σ) α t n ((c:ℂ)+(v:ℂ)*I))
       else 0
 
-/-- Every prescribed negative power holds after summing all actual finite
-far blocks and both actual amplifier ranges. -/
 theorem a03_actual_dual_error_part_far_finite_grid_uniform_rapid
     {a b c η κ θ R ρ : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

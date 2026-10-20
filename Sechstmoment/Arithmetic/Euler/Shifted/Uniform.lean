@@ -4,13 +4,6 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
 import Mathlib.Tactic
 import Sechstmoment.Arithmetic.Euler.Shifted.Convergence
 
-/-!
-# Local uniform convergence of the actual shifted Euler product
-
-This module proves continuity of the actual six-variable arithmetic factor
-and genuine holomorphy after substitution of analytic contour parameters.
-The prime majorant is the already proved uniform quadratic cancellation.
--/
 
 namespace Sechstmoment
 
@@ -98,7 +91,6 @@ theorem shiftedPolarPrimeRemainder_continuousOn (p : {n : ℕ // Nat.Prime n})
   (shiftedPolarPrimeDivisors_continuous p).continuousOn.mul
     (shiftedDiagonalPrimeSeries_continuousOn p hδ)
 
-/-- Uniform convergence on every compact set of actual shifts in the domain. -/
 theorem shiftedPolarEulerRest_hasProdUniformlyOn {δ : ℝ} (hδ : δ < 1/4)
     {K : Set PolarShiftSpace} (hK : IsCompact K) (hKD : K ⊆ polarShiftDomain δ) :
     HasProdUniformlyOn
@@ -137,9 +129,6 @@ theorem shiftedPolarEulerRest_continuousOn {δ : ℝ} (hδ : δ < 1/4) :
   intro p _
   exact shiftedPolarPrimeRemainder_continuousOn p (by linarith)
 
-/-- The actual arithmetic factor tends to `a₃` when its six shifts tend to
-zero. This supplies a genuine limit for the arithmetic part of the polar
-contour; it does not assume an asymptotic arithmetic-factor hypothesis. -/
 theorem shiftedPolarEulerRest_continuousAt_zero :
     ContinuousAt (fun ab : PolarShiftSpace => shiftedPolarEulerRest ab.1 ab.2)
       ((fun _ => 0), (fun _ => 0)) := by

@@ -3,14 +3,6 @@ import Mathlib.MeasureTheory.Function.LocallyIntegrable
 import Sechstmoment.Analysis.Profiles.Classes
 import Sechstmoment.Zeta.Moments.Definitions
 
-/-!
-# Actual source-moment linearity and integrability
-
-The Dirichlet polynomials are finite for the supported profiles. Their
-continuity and the compact dyadic weight give actual Lebesgue integrability;
-the moment polarization below consequently does not assume integrability as
-an additional analytic black box.
--/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set

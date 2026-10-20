@@ -1,8 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Complex.LogBounds
 import Sechstmoment.Zeta.Gamma.ReciprocalSums
 
-/-! The summable midpoint-logarithm error in the complex Stirling recurrence.
-This is a finite quantitative estimate, not an assumed Gamma asymptotic. -/
 
 namespace Sechstmoment.Source
 open Complex Real

@@ -55,14 +55,6 @@ import Sechstmoment.Analysis.Complex.SimplePole
 import Sechstmoment.Numerator.Polar.Mellin.ContourBounds
 import Std
 
-/-!
-# Rectangle contour movement with the literal simple pole at zero
-
-The rectangle calculation uses the holomorphic divided difference `dslope`.
-The simple-pole contribution is computed from the actual truncated inverse
-vertical integral, using the explicit rational primitives and arctangent
-limits. No contour-displacement identity is supplied as an assumption.
--/
 
 namespace Sechstmoment
 
@@ -71,9 +63,6 @@ open scoped BigOperators Topology
 
 noncomputable section
 
-/-- The actual weighted nine-zeta Euler contour moves from `Re z=1` to
-`Re z=-δ/2`, with precisely its genuine simple-pole value at zero. All
-analytic boundary hypotheses of the rectangle theorem are discharged. -/
 theorem polarMellinWeightedKernel_contour_shift
     (T : ℝ) (σ : MomentShifts) (m : Fin 6) {δ x : ℝ} {u v : ℂ}
     (hδ : 0 < δ) (hδ1 : δ < 1/4) (hx : 0 < x)

@@ -10,7 +10,6 @@ import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 
 
-/-! Recursive multiplication by a geometric generating series. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

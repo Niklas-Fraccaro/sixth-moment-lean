@@ -6,15 +6,12 @@ namespace Sechstmoment
 
 open Filter
 
-/-- Polynomial density on `[0, η]`, before extending it by zero. -/
 noncomputable def betaScaledProfile (η : ℝ) (n k : ℕ) (x : ℝ) : ℝ :=
   η⁻¹ * betaUnitProfile n k (x / η)
 
-/-- The exact index in (5.2), using the natural-number floor. -/
 noncomputable def betaProfileIndex (η a : ℝ) (n : ℕ) : ℕ :=
   ⌊(n : ℝ) * a / η⌋₊
 
-/-- Mass at distance at least `δ` from the target point `a`. -/
 noncomputable def betaScaledTailMass (η : ℝ) (n k : ℕ) (a δ : ℝ) : ℝ :=
   ∫ x in (0 : ℝ)..η,
     {x : ℝ | δ ≤ |x - a|}.indicator (betaScaledProfile η n k) x
@@ -51,7 +48,6 @@ theorem betaScaled_zero_right {η : ℝ} (hη : η ≠ 0) {n k : ℕ} (hk : k < 
     betaScaledProfile η n k η = 0 := by
   simp [betaScaledProfile, hη, betaUnit_zero_right hk]
 
-/-- Change of variables, including the normalization factor `1 / η`. -/
 theorem betaScaled_integral {η : ℝ} (hη : η ≠ 0) (n k : ℕ) (g : ℝ → ℝ) :
     (∫ x in (0 : ℝ)..η, g x * betaScaledProfile η n k x) =
       ∫ u in (0 : ℝ)..1, g (η * u) * betaUnitProfile n k u := by
@@ -152,7 +148,6 @@ theorem betaProfileIndex_le {η a : ℝ} (hη : 0 < η) (ha : 0 ≤ a) (haη : a
     nlinarith [mul_le_mul_of_nonneg_left haη (Nat.cast_nonneg n : (0 : ℝ) ≤ n)]
   exact_mod_cast hfloor.trans hbound
 
-/-- Explicit interior criterion; in particular the right endpoint always vanishes for `n > 0`. -/
 theorem betaProfileIndex_lt {η a : ℝ} (hη : 0 < η) (ha : 0 ≤ a) (haη : a < η)
     {n : ℕ} (hn : 0 < n) : betaProfileIndex η a n < n := by
   have hfloor := Nat.floor_le (show 0 ≤ (n : ℝ) * a / η by positivity)
@@ -166,7 +161,6 @@ theorem betaProfileIndex_pos {η a : ℝ} (hη : 0 < η) {n : ℕ}
   have hone : (1 : ℝ) ≤ (n : ℝ) * a / η := (le_div_iff₀ hη).mpr (by simpa using hn)
   exact Nat.floor_pos.mpr hone
 
-/-- Both polynomial endpoint values vanish under an explicit finite threshold. -/
 theorem betaProfile_endpoints {η a : ℝ} (hη : 0 < η) (ha : 0 ≤ a) (haη : a < η)
     {n : ℕ} (hn : 0 < n) (hthreshold : η ≤ (n : ℝ) * a) :
     betaScaledProfile η n (betaProfileIndex η a n) 0 = 0 ∧
@@ -174,7 +168,6 @@ theorem betaProfile_endpoints {η a : ℝ} (hη : 0 < η) (ha : 0 ≤ a) (haη :
   exact ⟨betaScaled_zero_left (betaProfileIndex_pos hη hthreshold),
     betaScaled_zero_right hη.ne' (betaProfileIndex_lt hη ha haη hn)⟩
 
-/-- A quantitative substitute for the mean-convergence step in §5.1. -/
 theorem betaProfile_mean_error {η a : ℝ} (hη : 0 < η) (ha : 0 ≤ a) (haη : a ≤ η)
     (n : ℕ) :
     |η * ((betaProfileIndex η a n + 1 : ℝ) / (n + 2)) - a| ≤
@@ -286,7 +279,6 @@ theorem betaScaled_tail_nonneg {η : ℝ} (hη : 0 < η) (n k : ℕ) (a δ : ℝ
     exact betaScaled_nonneg hη n k hx
   · rw [Set.indicator_of_notMem h]
 
-/-- Chebyshev's inequality for the actual scaled polynomial density. -/
 theorem betaScaled_tail_le_second_moment {η : ℝ} (hη : 0 < η) (n k : ℕ)
     (a : ℝ) {δ : ℝ} (hδ : 0 < δ) :
     betaScaledTailMass η n k a δ ≤

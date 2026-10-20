@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.Polar.General.Source
 import Sechstmoment.Numerator.U.MainTerm.UniformSixMainLimit
 import Sechstmoment.Numerator.V.DP.DPPolydiscBoundary
 
-/-! The twenty-four pure BBLR roots are explicit differences of the four
-source knots. This supplies a concrete compact separated Cauchy boundary,
-and the uniform literal six-main-term limit on that boundary. -/
 
 namespace Sechstmoment
 open Complex Source Set
@@ -25,7 +22,6 @@ theorem normalizedPurePolarEndpoints_ne (k : PurePolarIndex) :
   rcases k with ⟨m,i,j⟩
   fin_cases m <;> fin_cases i <;> fin_cases j <;> norm_num [normalizedPurePolarEndpoints]
 
-/-- Exact root identities, including all six main-term permutations. -/
 theorem normalizedPurePolarRoot_eq_sourceKnots_difference
     (σ : MomentShifts) (k : PurePolarIndex) :
     normalizedPurePolarRoot σ k =
@@ -50,8 +46,6 @@ theorem polarSourceKnots_norm (σ : MomentShifts) (j : Fin 4) :
     ‖polarSourceKnots σ j‖ = ‖σ j‖ := by
   fin_cases j <;> simp [polarSourceKnots]
 
-/-- One fixed positive gap controls all twenty-four pure roots on the
-actual product of circles of radii 1, 2, 4 and 8. -/
 theorem dpCauchyBoundary_pure_root_gap (σ : MomentShifts)
     (hσ : σ ∈ rectangularDistinguishedBoundary dpCauchyRadii) (k : PurePolarIndex) :
     (1/2:ℝ) ≤ ‖normalizedPurePolarRoot σ k‖ := by
@@ -77,9 +71,6 @@ theorem dpCauchyBoundary_subset_boundedSeparatedPolarShifts :
     exact norm_pos_iff.mp (lt_of_lt_of_le (by norm_num : (0:ℝ)<1/2)
       (dpCauchyBoundary_pure_root_gap σ hσ k))
 
-/-- A concrete compact uniform source-main-term limit on the Cauchy
-boundary enclosing the coincident shifts. This does not yet continue the
-source-main-term expression through collisions. -/
 theorem bblrSixMainTerms_polar_uniform_on_dpCauchyBoundary
     {a b : ℝ} (hab : a+b < 1) (f g Φ : ℝ → ℝ)
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

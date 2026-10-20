@@ -3,8 +3,6 @@ import Sechstmoment.Analysis.Asymptotics.PowerLog
 import Sechstmoment.Numerator.U.Replacement.GaussianCoefficientGrowth
 import Sechstmoment.Numerator.U.Replacement.GaussianTail
 
-/-! Uniform power-decaying genuine V tails for the moving Gaussian pole
-killer, with its normalized pure-root gap kept explicit. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

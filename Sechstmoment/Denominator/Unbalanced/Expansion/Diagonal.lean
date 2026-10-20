@@ -1,9 +1,6 @@
 import Mathlib.Analysis.Normed.Group.Bounded
 import Sechstmoment.Denominator.Balanced.GaussianSharpTilt
 
-/-! The original D01 arithmetic diagonal with three row profiles and one
-column profile. The three compact row profiles bound the entire diagonal;
-no product-length cutoff or dual Gaussian half is needed. -/
 namespace Sechstmoment
 open MeasureTheory Filter Set
 open scoped BigOperators Topology
@@ -183,7 +180,6 @@ theorem d04LocalizedOneSidedProfile_eq
   simp [d04LocalizedOneSidedProfile,d04ColumnLocalization_eq_one (hb.1 0),
     d04ColumnLocalization_eq_one (hb.1 1)]
 
-/-- Actual arithmetic D01 convergence for the unbalanced four profiles. -/
 theorem d04DiagonalMeasure_one_sided_profile_limit
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (w : D01LogSpace → ℂ)
     (hρc : ∀ k, Continuous (ρ k))
@@ -446,8 +442,6 @@ theorem d04OneSidedDiagonal_norm_bound
       simpa using (integral_const_mul (μ:=d02TiltedDiagonalMeasure L)
         (d04OneSidedDiagonalBound b R) (fun _y : D01LogSpace => (1:ℝ)))
 
-/-- Uniform removal of the actual exponential smoothing on every bounded
-complex shift box. The majorant is the actual convergent D01 tilted mass. -/
 theorem d04OneSidedDiagonal_smoothing_uniform
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ)
     (hρc : ∀ k,Continuous (ρ k))
@@ -486,8 +480,6 @@ theorem d04OneSidedDiagonal_smoothing_uniform
     (mul_nonneg (d04OneSidedDiagonalBound_nonneg b R hb0) (Real.exp_pos (-2*L)).le)
   exact hbound.trans_lt (hmassbound.trans_lt hsmall)
 
-/-- The smoothed arithmetic diagonal converges to the same original
-nine-edge integral. Smoothing and measure convergence are proved separately. -/
 theorem d04DiagonalMeasure_one_sided_smoothed_shifted_limit
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (σ : Fin 2 → ℂ)
     (hρc : ∀ k,Continuous (ρ k))

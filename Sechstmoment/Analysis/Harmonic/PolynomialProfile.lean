@@ -3,8 +3,6 @@ import Mathlib.Analysis.Normed.Group.Bounded
 import Mathlib.Topology.Algebra.Polynomial
 import Sechstmoment.Analysis.Harmonic.Simplex
 
-/-! The simplex estimate for arbitrary actual polynomial profiles. Their
-regularity and the uniform constants are proved here, not assumed. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set Polynomial
@@ -50,8 +48,6 @@ theorem polynomialSimplexIntegral_eq (η : ℝ) (P : ℝ[X]) (ν₁ ν₂ ν₃ 
         expKernel ν₂ y)*expKernel ν₁ x) = _
   simp_rw [← intervalIntegral.integral_mul_const]
 
-/-- Uniform in L, in the divisor d, and in all three bounded shifts. The
-constant depends only on the fixed support, polynomial, and shift radius. -/
 theorem polynomial_simplex_asymptotic {η R : ℝ} (hη : 0 ≤ η) (hR : 0 ≤ R)
     (P : ℝ[X]) :
     ∃ C : ℝ, 0 < C ∧ ∀ L : ℝ, 1 ≤ L → ∀ ν₁ ν₂ ν₃ : ℂ,

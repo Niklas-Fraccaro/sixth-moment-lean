@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.DualErrorPartsContour
 import Sechstmoment.Numerator.U.Replacement.WeightReplacementNearBound
 
-/-! Each separate literal dual error inherits the proved complete raw near mass. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology ENNReal
@@ -9,8 +8,6 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- The dual weight and phase errors separately satisfy the genuine full
-near-grid mass bound, with common constants before either part is selected. -/
 theorem a03_actual_dual_error_part_near_finite_grid_uniform_mass_bound
     {a b c e κ θ R η ρ : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -42,8 +39,6 @@ theorem a03_actual_dual_error_part_near_finite_grid_uniform_mass_bound
   exact a03_replacement_near_grid_norm_le_raw_mass (a := a) (b := b) (η := η) (ρ := ρ)
     hT hlog hR hc.le (hC₀ 0) hF hG f g hfb hgb σ hσ m v _ hq
 
-/-- Each actual near Mellin contour is integrable and inherits the proved
-full arithmetic mass with the actual contour-length logarithm. -/
 theorem a03_actual_dual_error_part_near_finite_contour_uniform_mass_bound
     {a b c e κ θ R η ρ : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

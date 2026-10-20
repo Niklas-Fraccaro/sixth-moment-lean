@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.SourceEndpoint
 
-/-! The literal restored ratio source error on the actual seven-scale grid.
-The good mask retains precisely the soft source geometry and native
-discrete-unit range; the tensor and native zero are genuine values. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology

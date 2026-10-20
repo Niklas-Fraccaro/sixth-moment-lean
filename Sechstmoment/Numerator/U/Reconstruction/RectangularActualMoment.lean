@@ -2,12 +2,6 @@ import Mathlib.Tactic
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEError
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEInterchange
 
-/-!
-Exact reconstruction of the actual unequal-amplifier moment through all
-original and dual AFE boxes, with the literal primitive AFE discrepancy kept
-as an integral. The reconstruction does not assume the desired six-main-term
-asymptotic or the smooth quadratic-divisor block estimates.
--/
 
 namespace Sechstmoment
 
@@ -66,8 +60,6 @@ theorem rectangular_dual_shifts_strip (α : MomentShifts)
   all_goals linarith [(abs_lt.mp (hα 0)).2, (abs_lt.mp (hα 1)).2,
     (abs_lt.mp (hα 2)).2, (abs_lt.mp (hα 3)).2]
 
-/-- The original and genuine Gamma-based dual AFE integrands are integrable
-with the actual two unequal amplifier coefficients. -/
 theorem rectangular_pair_AFE_integrable {T : ℝ} (hT : 1 < T) (f g Φ : ℝ → ℝ)
     (hΦ : SmoothDyadicWeight Φ) (u v : ℕ) (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (hα : ∀ j, |(α j).re| < 1/2) :
@@ -83,8 +75,6 @@ theorem rectangular_pair_AFE_integrable {T : ℝ} (hT : 1 < T) (f g Φ : ℝ →
       (rectangular_dual_shifts_strip α hα) _
       (hw.mul (rectangular_dual_multiplier_continuous α hα)) hs.mul_right
 
-/-- The literal AFE discrepancy is integrable after multiplication by the
-actual amplifier pair. This follows by subtraction of genuine integrable terms. -/
 theorem rectangular_pair_AFE_error_integrable {T : ℝ} (hT : 1 < T) (f g Φ : ℝ → ℝ)
     (hΦ : SmoothDyadicWeight Φ) (u v : ℕ) (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (hα : ∀ j, ‖α j‖ < 1/4) :
@@ -99,8 +89,6 @@ theorem rectangular_pair_AFE_error_integrable {T : ℝ} (hT : 1 < T) (f g Φ : �
   dsimp [rectangularAmplifierPairIntegrand, rectangularMomentPairWeight, bblrAFEDiscrepancy]
   ring
 
-/-- The complete actual amplifier-pair integral equals its original boxes,
-its genuine dual boxes and the literal AFE discrepancy integral. -/
 theorem rectangular_pair_moment_AFE_dyadic {T : ℝ} (hT : 1 < T) (f g Φ : ℝ → ℝ)
     (hΦ : SmoothDyadicWeight Φ) (u v : ℕ) (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (hα : ∀ j, ‖α j‖ < 1/4) :
@@ -167,7 +155,6 @@ theorem rectangular_AFE_error_integrand_finite {T : ℝ} (hT : 1 < T) (a b : ℝ
   rw [Finset.sum_comm]
   rfl
 
-/-- Both finite amplifier sums commute with the literal AFE error integral. -/
 theorem rectangular_AFE_error_integral_finite {T : ℝ} (hT : 1 < T) (a b : ℝ)
     (f g Φ : ℝ → ℝ) (hf : ∀ x, a < x → f x = 0) (hg : ∀ x, b < x → g x = 0)
     (hΦ : SmoothDyadicWeight Φ) (α : MomentShifts) (G : ℂ → ℂ)
@@ -184,8 +171,6 @@ theorem rectangular_AFE_error_integral_finite {T : ℝ} (hT : 1 < T) (a b : ℝ)
   · intro u hu
     exact integrable_finsetSum _ (fun v _ => rectangular_pair_AFE_error_integrable hT f g Φ hΦ u v G α hG hα)
 
-/-- The literal unequal-amplifier moment is fully reconstructed through all
-original and dual finite dyadic AFE boxes, plus the genuine primitive error. -/
 theorem rectangular_actual_moment_AFE_reconstruction {T : ℝ} (hT : 1 < T) (a b : ℝ)
     (f g Φ : ℝ → ℝ) (hf : ∀ x, a < x → f x = 0) (hg : ∀ x, b < x → g x = 0)
     (hΦ : SmoothDyadicWeight Φ) (α : MomentShifts) (G : ℂ → ℂ)
@@ -198,9 +183,6 @@ theorem rectangular_actual_moment_AFE_reconstruction {T : ℝ} (hT : 1 < T) (a b
   simp only [rectangularActualAFEBlocks, rectangularOriginalAFEBlocks, rectangularDualAFEBlocks,
     Finset.sum_add_distrib]
 
-/-- The actual six-main-term discrepancy is now reduced to the literal
-original/dual block reconstruction and the proved primitive AFE error. The
-remaining quadratic zero-mode cancellation is an explicit own obligation. -/
 theorem rectangular_actual_moment_discrepancy_AFE {T : ℝ} (hT : 1 < T) (a b : ℝ)
     (f g Φ : ℝ → ℝ) (hf : ∀ x, a < x → f x = 0) (hg : ∀ x, b < x → g x = 0)
     (hΦ : SmoothDyadicWeight Φ) (α : MomentShifts) (G : ℂ → ℂ)

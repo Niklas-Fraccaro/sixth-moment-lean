@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ContourBounds
 
-/-! Exact u/v side interchange of the genuine ratio arithmetic kernel,
-including the arithmetically required eta variable interchange. -/
 
 namespace Sechstmoment.Source
 open Complex

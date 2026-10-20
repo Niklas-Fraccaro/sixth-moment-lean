@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.GaussianAFETail
 
-/-! Exact truncation of the actual Gaussian-weighted BBLR V integrals and
-both fourfold AFE series, with the proved power-decaying tail retained. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.Additive.OriginalMain
 import Sechstmoment.Numerator.V.Arithmetic.TimeWeightRemainder
 
-/-! The actual finite profile sum and its original-coefficient main term
-have precisely the already bounded displaced remainder. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory

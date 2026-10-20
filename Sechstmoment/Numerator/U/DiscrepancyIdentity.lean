@@ -1,21 +1,17 @@
 import Sechstmoment.Numerator.U.Replacement.ErrorBound
 import Sechstmoment.Numerator.U.Replacement.VStar.DiagonalMoment
 
-/-! Exact reduction of the literal six-term discrepancy. This does not assert
-an estimate for the remaining crossed off-diagonal discrepancy. -/
 namespace Sechstmoment
 open Complex Source MeasureTheory Filter Set
 open scoped BigOperators Topology
 noncomputable section
 
-/-- Literal off-diagonal moment minus the four literal crossed main terms. -/
 def a03LiteralCrossedDiscrepancy (T a b : ℝ) (σ : MomentShifts)
     (f g Φ : ℝ → ℝ) : ℂ :=
   rectangularVStarSelectedMoment false T a b σ f g Φ -
     ∑ j : Fin 4, bblrIndexedMainTerm ⟨j.val+2,by omega⟩ T a b
       (rawMomentShifts T σ) (polarPoleKiller T σ) f g Φ
 
-/-- The six-term sum splits into its two diagonal and four crossed terms. -/
 theorem a03SixMainTerms_split (T a b : ℝ) (α : MomentShifts) (G : ℂ → ℂ)
     (f g Φ : ℝ → ℝ) :
     bblrSixMainTerms T a b α G f g Φ =
@@ -27,8 +23,6 @@ theorem a03SixMainTerms_split (T a b : ℝ) (α : MomentShifts) (G : ℂ → ℂ
   norm_num
   ring
 
-/-- Exact assembled discrepancy identity with automatic eventual integrability.
-The remaining crossed discrepancy is explicit, and no bound on it is assumed. -/
 theorem a03FinalDiscrepancy_eventual_identity
     {a b : ℝ} (ha : 0<a) (hab : a≤b) (hrect : 3*a+5*b<2)
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0<δ)
@@ -68,8 +62,6 @@ theorem a03FinalDiscrepancy_eventual_identity
   rw [a03SixMainTerms_split]
   linear_combination -he
 
-/-- Every already resolved term in the final identity is uniformly o(T).
-Only the literal crossed discrepancy remains to be estimated. -/
 theorem a03FinalDiscrepancy_minus_crossed_uniform_oT
     (hsource : BBLRv1FixedApproximateFEInput)
     {a b : ℝ} (ha : 0<a) (hab : a≤b) (hrect : 3*a+5*b<2)
@@ -114,8 +106,6 @@ theorem a03FinalDiscrepancy_minus_crossed_uniform_oT
     (rectangularOriginalWeightReplacementError T σ f g Φ)
   linarith [ha σ hσ,hw σ hσ]
 
-/-- Precise remaining obligation: the actual A03 uniform little-o statement is
- equivalent to the uniform little-o statement for the explicit crossed term. -/
 theorem a03Final_uniform_oT_iff_crossed
     (hsource : BBLRv1FixedApproximateFEInput)
     {a b : ℝ} (ha : 0<a) (hab : a≤b) (hrect : 3*a+5*b<2)

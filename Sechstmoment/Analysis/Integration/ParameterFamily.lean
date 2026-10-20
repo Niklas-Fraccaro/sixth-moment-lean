@@ -30,8 +30,6 @@ import Sechstmoment.Analysis.Complex.PartialDerivative
 import Sechstmoment.Analysis.Integration.ComplexParameter
 import Std
 
-/-! Holomorphic continuation of the exponential alternant through all source
-collisions.  Its derivatives are obtained from the defining compact integrals. -/
 
 namespace Sechstmoment
 open Filter MeasureTheory Set
@@ -44,9 +42,6 @@ namespace ComplexIntegralFamily
 variable {H : Type*} [NormedAddCommGroup H] [NormedSpace ℂ H] [ProperSpace H]
   {X : Type*} [TopologicalSpace X]
 
-/-- Integrating with auxiliary-dependent endpoints is an actual affine
-reparametrization of a fixed compact interval.  The endpoints are independent
-of the holomorphic parameter. -/
 def variableIntervalIntegral (F : ComplexIntegralFamily (univ : Set H) (X × ℝ))
     (a b : X → ℝ) (ha : Continuous a) (hb : Continuous b) :
     ComplexIntegralFamily (univ : Set H) X :=

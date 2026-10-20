@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ResidualBudget
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalMeasurability
 
-/-! Actual absolute x/u/v convergence on the initial positive ratio lines.
-This supplies the literal GCD-front interchange, rather than assuming it. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

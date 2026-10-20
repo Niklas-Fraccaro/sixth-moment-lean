@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Contour.LargeShift
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.DiagonalNativeSummation
 
-/-! Exact finite original amplifier gcd decomposition, including the
-actual two independent native upper bounds. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

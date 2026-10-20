@@ -1,8 +1,5 @@
 import Sechstmoment.Analysis.Mellin.FourierApproximation
 
-/-! Full-time control of the actual Fourier truncation. The small uniform
-approximation error handles |t|<=T^2; uniform Schwartz decay handles the
-remaining times. A single integrable rational majorant covers both regions. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

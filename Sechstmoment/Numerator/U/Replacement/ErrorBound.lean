@@ -3,10 +3,6 @@ import Sechstmoment.Numerator.U.Replacement.DualErrorPartsBound
 import Sechstmoment.Numerator.U.Replacement.ReplacementErrorMellin
 import Sechstmoment.Numerator.U.Replacement.ReplacementErrorTruncation
 
-/-! The fully weighted, summed and time-integrated original weight error,
-dual weight error and dual phase error are separately sublinear, uniformly
-on the original compact separated normalized-shift sets. No replacement-error
-hypothesis or analytic source input is used. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology

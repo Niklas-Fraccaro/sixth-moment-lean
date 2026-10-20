@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.V.EulerTransfer.DivisorRemainder
 
-/-! The outer finite profile/divisor sum, with every length cost retained. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option maxHeartbeats 2000000
@@ -57,7 +56,6 @@ def profileRemainderSum (f g : ℝ → ℂ) (L : ℝ) (Y : ℕ) (w : ℝ → ℂ
   ∑ N : Finset.Icc 1 Y, profileCoefficient f g L N.val *
     displacedRemainder N.val (positiveIndexNeZero Y N) w κ s ((N.val:ℝ)*T)
 
-/-- All N-costs: no logarithmic or divisor factor is discarded. -/
 theorem profileRemainderSum_bound {w : ℝ → ℂ} (hw : ContDiff ℝ ∞ w)
     (hws : tsupport w ⊆ Icc (1:ℝ) 2) (κ ε θ : ℝ)
     (hκ : 1/2 < κ) (hε : 0 < ε) (hθ : 0 < θ) :

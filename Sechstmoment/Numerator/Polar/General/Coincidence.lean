@@ -1,11 +1,6 @@
 import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Sechstmoment.Numerator.Polar.General.Source
 
-/-!
-Continuity of the actual fixed-circle formula, including coincident shifts.
-The circles surround the knots uniformly; no residue expression is used to
-assert continuity across its apparent denominators.
--/
 
 namespace Sechstmoment
 open Complex Metric MeasureTheory Set Filter
@@ -101,8 +96,6 @@ theorem polarGeneralGeneratorContour_continuousOn (η : ℝ) (P : Polynomial ℝ
     (fun q : polarCircleDomain innerR outerR => q.1) innerR outerR
     continuous_subtype_val (fun q j => (q.2 j).1) (fun q j => (q.2 j).2)
 
-/-- The actual circle formula has a joint limit at every collection of knots,
-including repeated knots. Injectivity is not a hypothesis. -/
 theorem polarGeneralGeneratorContour_continuousAt (η : ℝ) (P : Polynomial ℝ)
     (q : Fin 4 → ℂ) (innerR outerR : ℝ)
     (hinner : ∀ j, ‖q j‖ < innerR) (houter : ∀ j, ‖q j‖ < outerR) :
@@ -111,8 +104,6 @@ theorem polarGeneralGeneratorContour_continuousAt (η : ℝ) (P : Polynomial ℝ
   exact (polarCircleDomain_isOpen innerR outerR).mem_nhds
     (fun j => ⟨hinner j,houter j⟩)
 
-/-- The residue expression approaches the regular circle value as the knots
-coalesce along their genuine injective domain. -/
 theorem polarGeneralResidues_joint_limit (η : ℝ) (P : Polynomial ℝ)
     (q : Fin 4 → ℂ) (innerR outerR : ℝ)
     (hinner : ∀ j, ‖q j‖ < innerR) (houter : ∀ j, ‖q j‖ < outerR) :

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.ActualAmplifierCoefficients
 import Sechstmoment.Numerator.U.Separation.SeparatedBlock
 
-/-! The expansion error of actual localized amplifier coefficients is
-bounded by the literal finite cardinality, uniformly in shifts and weights. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

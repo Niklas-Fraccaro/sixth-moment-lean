@@ -1,7 +1,6 @@
 import Mathlib.Analysis.Complex.Basic
 import Sechstmoment.Arithmetic.Euler.Local.Geometric.StepOrder
 
-/-! Norm comparison with a nonnegative real geometric convolution. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

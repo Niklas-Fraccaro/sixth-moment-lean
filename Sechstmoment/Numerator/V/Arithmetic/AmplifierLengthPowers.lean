@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.V.Arithmetic.StartingLine
 
-/-! Exact length costs when the kernel error is summed over both amplifiers. -/
 
 namespace Sechstmoment.Source
 open Real Set

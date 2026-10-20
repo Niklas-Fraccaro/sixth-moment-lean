@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Bivariate.UniformRegion
 
-/-! Bridge to the unscaled prime-power tail appearing in PDF (6.1). -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPLocalClosure

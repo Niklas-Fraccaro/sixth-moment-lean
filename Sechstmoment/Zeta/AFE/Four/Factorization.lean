@@ -1,11 +1,5 @@
 import Sechstmoment.Zeta.AFE.Four.Definitions
 
-/-!
-# Exact factorization of the four Dirichlet coefficients in BBLR's AFE
-
-This is a finite algebraic identity. In particular, it requires no summability,
-asymptotic estimate, or hypothesis about a moment theorem.
--/
 
 namespace Sechstmoment.Source
 open Complex
@@ -20,8 +14,6 @@ private theorem fourNat_cpow (a b c d : ℕ) (q : ℂ) :
     Nat.cast_mul, Complex.natCast_mul_natCast_cpow,
     Nat.cast_mul, Complex.natCast_mul_natCast_cpow]
 
-/-- The four absolute Dirichlet coefficients split into BBLR's oscillatory
-ratio, the Mellin power of the product, and the shifted square-root factors. -/
 theorem fixedAFEFourDirichlet_factorization
     (n : Fin 4 → ℕ) (t : ℝ) (α : MomentShifts) (z : ℂ) :
     (∏ j : Fin 4, 1/(n j+1 : ℂ)^(sourceZetaPoints t j+α j+z)) =

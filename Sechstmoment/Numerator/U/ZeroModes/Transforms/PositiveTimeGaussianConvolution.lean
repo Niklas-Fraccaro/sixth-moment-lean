@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.Contours
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.PositiveTimeMellinStripDecay
 
-/-! Full-height Gaussian convolution bounds for the actual compact time profile.
-These are the vertical VStar kernels before their spatial envelope is integrated. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory Filter
 open scoped BigOperators Topology ContDiff FourierTransform

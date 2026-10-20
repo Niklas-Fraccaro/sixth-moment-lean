@@ -63,15 +63,12 @@ import Sechstmoment.Analysis.Integration.ComplexParameter
 import Sechstmoment.Zeta.Centering.Exact
 import Std
 
-/-! Genuine polynomial V tests and compact differentiation of their actual
-mixed zeta generator. No moment asymptotic is assumed in this module. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial
 open scoped Topology BigOperators ComplexConjugate
 noncomputable section
 set_option maxHeartbeats 1600000
 
-/-- All derivatives of zeta are analytic away from its single pole. -/
 theorem riemannZeta_iteratedDeriv_analyticAt (n : ℕ) (s : ℂ) (hs : s ≠ 1) :
     AnalyticAt ℂ (iteratedDeriv n riemannZeta) s := by
   induction n with
@@ -79,8 +76,6 @@ theorem riemannZeta_iteratedDeriv_analyticAt (n : ℕ) (s : ℂ) (hs : s ≠ 1) 
       (analyticOn_riemannZeta s (by simpa using hs))
   | succ n hn => simpa only [iteratedDeriv_succ] using hn.deriv
 
-/-- Conjugation commutes with every zeta derivative, including the assigned
-values at points where differentiability fails. -/
 theorem riemannZeta_iteratedDeriv_conj (n : ℕ) (s : ℂ) :
     iteratedDeriv n riemannZeta (conj s) = conj (iteratedDeriv n riemannZeta s) := by
   induction n generalizing s with
@@ -99,13 +94,11 @@ theorem riemannZeta_iteratedDeriv_conj (n : ℕ) (s : ℂ) :
     have hh := congrArg conj hd
     simpa only [conj_conj] using hh.symm
 
-/-- The actual centered finite polynomial operator respects conjugation. -/
 theorem centeredZetaDerivative_conj (T : ℝ) (n : ℕ) (s : ℂ) :
     centeredZetaDerivative T n (conj s) = conj (centeredZetaDerivative T n s) := by
   simp only [centeredZetaDerivative, map_sum, map_mul, map_div₀, map_pow,
     conj_natCast, conj_ofReal, map_one, map_ofNat, riemannZeta_iteratedDeriv_conj]
 
-/-- Exact conjugation of the manuscript's actual `C_p`, for every polynomial. -/
 theorem zetaCp_conj (T t : ℝ) (p : ℝ[X]) :
     star (zetaCp T t p) = zetaPolynomialDerivative T p (1-criticalLinePoint t) := by
   rw [criticalLinePoint_one_sub]
@@ -117,7 +110,6 @@ theorem zetaCp_conj (T t : ℝ) (p : ℝ[X]) :
   rw [map_mul,conj_ofReal,← centeredZetaDerivative_conj]
   rfl
 
-/-- The binomial derivative identity at every pole-free shifted argument. -/
 theorem iteratedDeriv_shiftedZetaGenerator_at {T : ℝ} (hT : 1<T)
     (s z : ℂ) (n : ℕ) (hs : s+z/(Real.log T:ℂ) ≠ 1) :
     iteratedDeriv n (shiftedZetaGenerator T s) z =
@@ -135,7 +127,6 @@ theorem iteratedDeriv_shiftedZetaGenerator_at {T : ℝ} (hT : 1<T)
     iteratedDeriv_shiftedZetaGenerator_of_one_lt T _ n hT hs] at hd
   simpa only [add_zero] using hd
 
-/-- The literal centered finite derivative polynomial is analytic off the pole. -/
 theorem centeredZetaDerivative_analyticAt (T : ℝ) (n : ℕ) (s : ℂ) (hs : s≠1) :
     AnalyticAt ℂ (centeredZetaDerivative T n) s := by
   unfold centeredZetaDerivative
@@ -155,7 +146,6 @@ private theorem minus_shift_ne_one {T : ℝ} (hT : 1<T) (t : ℝ) (z : ℂ)
   rw [h] at hh
   norm_num at hh
 
-/-- Genuine analyticity of every derivative of the lower zeta generator. -/
 theorem zetaCMinus_iteratedDeriv_analyticAt (n : ℕ) {T : ℝ} (hT : 1<T)
     (t : ℝ) (z : ℂ) (hz : 2*‖z‖<Real.log T) :
     AnalyticAt ℂ (iteratedDeriv n (zetaCMinus T t)) z := by
@@ -168,8 +158,6 @@ theorem zetaCMinus_iteratedDeriv_analyticAt (n : ℕ) {T : ℝ} (hT : 1<T)
         (f := fun w:ℂ=>1-criticalLinePoint t+w/(Real.log T:ℂ)) (by fun_prop))
   | succ n hn => simpa only [iteratedDeriv_succ] using hn.deriv
 
-/-- Joint continuity of actual generator derivatives on a genuine shift disk,
-proved from the finite binomial expansion and analytic zeta derivatives. -/
 theorem zetaCMinus_iteratedDeriv_joint_continuous (n : ℕ) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) :
     Continuous (fun p : ball (0:ℂ) 4 × ℝ =>

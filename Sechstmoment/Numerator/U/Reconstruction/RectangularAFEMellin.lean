@@ -2,11 +2,6 @@ import Mathlib.Tactic
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEGrouping
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEReconstruction
 
-/-!
-The finite genuine dyadic boxes are inserted into the actual Gamma-based
-Mellin integral. Integrability is proved from the original BBLR weight class.
-All original and dual boxes remain present in the exact moment identity.
--/
 
 namespace Sechstmoment
 
@@ -26,8 +21,6 @@ def rectangularAFEMellinKernel (G : ℂ → ℂ) (α : MomentShifts)
     rectangularAFEOscillation t n/
       ∏ j : Fin 4, (n j+1 : ℂ)^(1/2+α j+z)
 
-/-- The actual Mellin factor separates over the four positive integer
-variables, using the principal power only on positive real bases. -/
 theorem rectangular_AFE_Mellin_powers (α : MomentShifts) (n : Fin 4 → ℕ) (z : ℂ) :
     ((positiveQuadProduct n : ℂ)^(-z))/
       (∏ j : Fin 4, (n j+1 : ℂ)^(1/2+α j)) =
@@ -61,7 +54,6 @@ theorem rectangular_AFE_Mellin_kernel_line (G : ℂ → ℂ) (α : MomentShifts)
       (Real.pi : ℂ)^(-2*(1+(v : ℂ)*I))*rectangularAFEOscillation t n)*w) hpow
   convert hpow'.symm using 1 <;> ring
 
-/-- Each actual separated dyadic Mellin summand is integrable. -/
 theorem rectangular_AFE_Mellin_kernel_integrable (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re)
     (n : Fin 4 → ℕ) : Integrable (fun v : ℝ =>
@@ -83,8 +75,6 @@ theorem rectangular_actual_AFE_summand_Mellin (G : ℂ → ℂ) (α : MomentShif
   rw [integral_const_mul]
   ring
 
-/-- The actual finite dyadic box is moved through its defining vertical
-integral, including an arbitrary exact diagonal or signed-gap selection. -/
 theorem rectangular_actual_AFE_box_Mellin (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re)
     (k : Fin 4 → ℕ) (P : (Fin 4 → ℕ) → Prop) :

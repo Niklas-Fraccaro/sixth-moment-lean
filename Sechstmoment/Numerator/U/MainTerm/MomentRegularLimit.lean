@@ -3,9 +3,6 @@ import Sechstmoment.Numerator.U.MainTerm.MainTermGeneratorIdentity
 import Sechstmoment.Numerator.U.MainTerm.MomentBoundaryLimit
 import Sechstmoment.Numerator.U.TwistedMomentHolomorphy
 
-/-! The actual BBLR moment converges to its independently defined regular
-compact generator throughout the closed polydisc, including pole collisions.
-All fixed coordinate derivatives then converge by Cauchy's estimate. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Filter Source Metric

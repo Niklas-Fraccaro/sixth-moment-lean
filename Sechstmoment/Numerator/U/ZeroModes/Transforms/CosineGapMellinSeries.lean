@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.CosineGapMellinSeriesBase
 
-/-! Genuine positive gap sum and its inverse Mellin reconstruction. No
-summability or interchange hypothesis is imposed on the actual profile. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory Source
 open scoped Topology ContDiff

@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.Tensor.SixFourier
 
-/-! Uniform Fourier rapid decay follows from a bounded family of Schwartz
-seminorms by continuity of the genuine Fourier transform. -/
 
 namespace Sechstmoment
 open Complex Real Set MeasureTheory Bornology

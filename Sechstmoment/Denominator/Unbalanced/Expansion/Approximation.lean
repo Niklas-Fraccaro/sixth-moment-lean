@@ -1,9 +1,6 @@
 import Sechstmoment.Denominator.Unbalanced.Expansion.BoundaryBounds
 import Sechstmoment.Denominator.Unbalanced.Expansion.LeftBoundary
 
-/-! The unconditional, uniformly shifted one-sided approximate functional
-equation. All three displaced boundaries and the original positive-line
-tail are bounded independently before recombination. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped Topology

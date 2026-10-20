@@ -1,12 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.AmplifiedGaussianTruncation
 
-/-!
-Exact reduction of the real twisted fourth moment to its logarithmically
-truncated original and dual Gaussian AFE integrals. The difference is proved
-smaller than every prescribed negative power of T, using only the existing
-fixed-G source boundary. The core-minus-six-main-terms estimate remains an
-independent analytic obligation and is not made a hypothesis of completion.
--/
 
 namespace Sechstmoment
 open Complex Source MeasureTheory Set Filter Asymptotics
@@ -61,7 +54,6 @@ theorem rectangular_weighted_shifted_product_integrable {T : ℝ} (hT : 1 < T)
     (rectangular_shifted_product_continuous α hα)).integrable_of_hasCompactSupport
       ((rectangular_moment_weight_compact (zero_lt_one.trans hT).ne' f g Φ hΦ).mul_right)
 
-/-- Exact pointwise splitting on the real supported time interval. -/
 theorem rectangularGaussianCoreIntegrand_eq {T : ℝ} (hT : 0 < T)
     (σ : MomentShifts) (hα : ∀ j, ‖rawMomentShifts T σ j‖ ≤ 1/4)
     (f g Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (R : ℝ) (hR : 0 ≤ R) (t : ℝ) :
@@ -83,8 +75,6 @@ theorem rectangularGaussianCoreIntegrand_eq {T : ℝ} (hT : 0 < T)
   · simp [rectangularGaussianCoreIntegrand,
       rectangular_moment_weight_zero_outside hT f g Φ hΦ t ht]
 
-/-- Genuine integrability and exact integral reconstruction. Only the fixed-G
-approximate-functional-equation paper boundary is assumed. -/
 theorem rectangularGaussianCoreMoment_actual_reconstruction
     (hsource : BBLRv1FixedApproximateFEInput)
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0 < δ)
@@ -151,8 +141,6 @@ theorem rectangularGaussianCoreMoment_actual_reconstruction
   rw [hi]
   ring
 
-/-- Quantitative comparison of the literal moment with the actual truncated
-core, on the full amplified moment scale. -/
 theorem rectangularGaussianCoreMoment_uniform_actual_error
     (hsource : BBLRv1FixedApproximateFEInput)
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0 < δ)
@@ -191,9 +179,6 @@ theorem rectangularGaussianCoreMoment_uniform_actual_error
       exact Real.rpow_le_rpow_of_exponent_le hT (by linarith)
     _ = _ := by ring
 
-/-- The real six-main-term discrepancy differs from the explicit
-core-minus-six-main-terms by the proved rapidly decreasing moment error.
-This does not claim a bound on the remaining core discrepancy. -/
 theorem rectangularGaussianCoreMoment_discrepancy_reduction
     (hsource : BBLRv1FixedApproximateFEInput)
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0 < δ)

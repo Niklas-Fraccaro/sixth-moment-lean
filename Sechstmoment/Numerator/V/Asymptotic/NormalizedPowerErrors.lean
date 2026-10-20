@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.V.Contour.PolynomialAdditiveReduction
 
-/-! Exact normalization budgets for the proven power-saving errors and
-global bounds for the actual zero-extended polynomial profiles. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set Polynomial

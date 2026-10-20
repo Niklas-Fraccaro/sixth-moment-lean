@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.V.Profiles.GammaMoment
 
-/-! Summing the profile errors against the actual global remainder. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set Polynomial NoDPGlobalRest

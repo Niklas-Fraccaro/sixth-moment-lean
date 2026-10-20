@@ -33,14 +33,6 @@ import Sechstmoment.Zeta.Moments.Definitions
 import Sechstmoment.Zeta.Moments.SixTerms
 import Std
 
-/-!
-# The actual six source main terms
-
-`bblrVStar` is the vertical integral in BBLR (8), parametrized with
-`ds = i dv`. `bblrDiagonalTerm` is the actual constrained fourfold Dirichlet
-sum in Theorem 1.2. No free function stands in for a main term.
-This file defines the target of the still-open AFE/dyadic reconstruction.
--/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Filter
@@ -70,7 +62,6 @@ def bblrDiagonalTerm (G : ℂ → ℂ) (α : MomentShifts)
   ∑' n : Fin 4 → ℕ,
     if diagonalQuadRelation a b n then bblrDiagonalSummand G α a b t n else 0
 
-/-- Literal six-term expression for two different amplifier support lengths. -/
 def bblrSixMainTerms (T a b : ℝ) (α : MomentShifts) (G : ℂ → ℂ)
     (f g Φ : ℝ → ℝ) : ℂ :=
   ∑ j : Fin 6, ∑ m ∈ Finset.Icc 1 ⌊T^a⌋₊, ∑ n ∈ Finset.Icc 1 ⌊T^b⌋₊,
@@ -79,20 +70,15 @@ def bblrSixMainTerms (T a b : ℝ) (α : MomentShifts) (G : ℂ → ℂ)
         (t/(2*Real.pi) : ℂ)^(bblrSixPhaseExponents α j)*
         bblrDiagonalTerm G (bblrSixShifts α j) m n t
 
-/-- The actual reconstruction discrepancy that A03 must control. -/
 def bblrMomentDiscrepancy (T a b : ℝ) (α : MomentShifts) (G : ℂ → ℂ)
     (f g Φ : ℝ → ℝ) : ℂ :=
   twistedFourthMoment T α f g Φ-bblrSixMainTerms T a b α G f g Φ
 
-/-- Source requirements on the auxiliary entire function, independently of
-the manuscript's eventual concrete Gaussian zero-cancelling polynomial. -/
 def BBLREntireWeight (G : ℂ → ℂ) (_α : MomentShifts) : Prop :=
   AnalyticOnNhd ℂ G univ ∧ (∀ z, G (-z)=G z) ∧ G 0=1 ∧
     ∀ R : ℝ, 0 < R → ∀ N : ℕ, ∃ C : ℝ, 0 ≤ C ∧
       ∀ z : ℂ, |z.re| ≤ R → ‖G z‖*(1+|z.im|)^N ≤ C
 
-/-- Nonzero pure poles are cancelled separately from the basic AFE weight
-requirements. At a zero pole `G(0)=1` is retained for the principal residue. -/
 def BBLRPoleCancellingWeight (G : ℂ → ℂ) (α : MomentShifts) : Prop :=
   BBLREntireWeight G α ∧ ∀ k : Fin 6, ∀ i : Fin 2, ∀ j : Fin 2,
     let ρ := -((bblrSixShifts α k) i.castSucc.castSucc+

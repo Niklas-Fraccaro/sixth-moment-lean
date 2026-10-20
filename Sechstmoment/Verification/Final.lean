@@ -7,7 +7,6 @@ open MeasureTheory
 example : DivisorProof.Watt41 → Sechstmoment.FullGoal :=
   Sechstmoment.fullProof
 
--- State the conclusion explicitly, independently of the named goal.
 example : DivisorProof.Watt41 →
     (Multipliable (fun p : {n : ℕ // Nat.Prime n} =>
       Sechstmoment.eulerFactor (p.val : ℝ)) ∧ 0 < Sechstmoment.arithmeticFactor) ∧
@@ -21,9 +20,6 @@ example : DivisorProof.Watt41 →
 example : (41007 : ℚ) / 1000 < Sechstmoment.declaredBound :=
   Sechstmoment.declaredBound_gt_41007
 
-/--
-info: 'Sechstmoment.fullProof' depends on axioms: [propext, Classical.choice, Quot.sound]
--/
 #guard_msgs in
 #print axioms Sechstmoment.fullProof
 

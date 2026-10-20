@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Separation.NearPairProductLower
 import Sechstmoment.Numerator.U.Sources.FiniteReindex
 import Sechstmoment.Numerator.U.Sources.GlobalSupport
 
-/-! Actual active-near witnesses force polynomial ratio thresholds on
-every supported integer term in an excluded soft-order or unit block. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology
@@ -64,8 +62,6 @@ theorem a03_actual_near_embedded_mass_lower {T A B H η : ℝ}
   have hl := a03_actual_near_native_mass_lower hA hB hH hη f g k hn
   exact hl.trans (boundaryEmbedded_mass_le _ _ (le_trans (by positivity) hl))
 
-/-- Any supported integer ratio in a block that fails the embedded soft
-M-order exceeds the embedded mass power divided by a fixed constant. -/
 theorem a03_actual_bad_soft_M_ratio {A B H ε : ℝ}
     (hA : 0<A) (hB : 0<B) (hH : 0<H) (k v : Fin 4→ℕ)
     (hw : rectangularAFESmoothWeight k v≠0)
@@ -120,9 +116,6 @@ theorem a03_actual_bad_soft_N_ratio {A B H ε : ℝ}
   have hm := mul_le_mul_of_nonneg_left hv2.2 hp
   nlinarith [hv1.1]
 
-/-- Integrated unit blocks are negligible because every supported first
-integer factor has the same large-ratio threshold forced by an actual
-near witness in that block. -/
 theorem a03_actual_near_integrated_unit_ratio_lower {a b T A B H η : ℝ}
     (hT : 1<T) (hA : 0<A) (hB : 0<B) (hH : 0<H) (hη : 0<η) (hηsmall : η≤1/2)
     (f g : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -167,8 +160,6 @@ theorem a03_actual_near_integrated_unit_ratio_lower {a b T A B H η : ℝ}
     rw [he]
     nlinarith
 
-/-- The near-block mass grows at least as a fixed positive multiple of
-T^(2-2s), including every embedded unit scale. -/
 theorem a03_actual_near_embedded_mass_power_lower {T A B H s : ℝ}
     (hT : 0<T) (hA : 0<A) (hB : 0<B) (hH : 2/3≤H)
     (f g : ℝ→ℝ) (k : Fin 4→ℕ)

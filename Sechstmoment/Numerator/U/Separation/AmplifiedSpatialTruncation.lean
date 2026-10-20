@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Reconstruction.ActualCoreReduction
 import Sechstmoment.Numerator.U.Reconstruction.SpatialAFETail
 
-/-! The actual amplified original/dual moment after finite product truncation.
-The literal dual multiplier is retained, and integrability is proved before
-the exact moment identity. No quadratic source admissibility is assumed. -/
 
 namespace Sechstmoment
 open Complex Source MeasureTheory Filter Set

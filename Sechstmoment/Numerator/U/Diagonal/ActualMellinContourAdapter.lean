@@ -2,7 +2,6 @@ import Sechstmoment.Numerator.Polar.ContourShift
 import Sechstmoment.Numerator.U.Diagonal.ActualSixMainMellin
 import Sechstmoment.Numerator.U.Replacement.CentralContourShift
 
-/-! Genuine Fubini orientation of the actual source Euler Mellin integral. -/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter

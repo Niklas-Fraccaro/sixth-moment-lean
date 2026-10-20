@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Prime.PrincipalEulerErrorBound
 
-/-! Positivity of the real arithmetic Euler factor on the prime range. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

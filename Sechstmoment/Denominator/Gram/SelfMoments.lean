@@ -1,14 +1,12 @@
 import Sechstmoment.Denominator.Balanced.Asymptotic
 import Sechstmoment.Denominator.Gram.Bounds
 
-/-! Actual D02 self L2 bounds for two-profile test amplitudes. -/
 namespace Sechstmoment
 open Complex MeasureTheory Filter Set Polynomial
 open scoped Topology BigOperators ComplexConjugate
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- The self L2 integral is exactly the actual D02 polynomial moment. -/
 theorem d06PolynomialAmplitude_self_moment (negative : Bool) (τ : TestType) (T : ℝ)
     (p : ℝ[X]) (f g Φ : ℝ → ℝ) :
     ((∫ t : ℝ,Φ (t/T)*‖d06PolynomialAmplitude negative τ T t p f g‖^2 : ℝ):ℂ) =
@@ -34,8 +32,6 @@ theorem d06PolynomialAmplitude_self_moment (negative : Bool) (τ : TestType) (T 
   simp
   ring
 
-/-- Every supported test of total amplifier cap below one half has an
-actual eventually bounded normalized L2 mass, on either zeta side. -/
 theorem d06PolynomialAmplitude_self_eventually_bound
     (a b : ℝ) (ha : 0<a) (hb : 0<b) (hab : a+b<1/2)
     (f g : ℝ → ℝ) (hf : Continuous f) (hg : Continuous g)

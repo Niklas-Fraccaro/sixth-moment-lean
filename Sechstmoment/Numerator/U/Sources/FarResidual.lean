@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.TimeFarContourBudget
 import Sechstmoment.Numerator.U.Sources.NearPartition
 
-/-! The omitted weight of the actual active-block partition is supported
-on genuine far tuples and has a proved complete finite contour budget. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

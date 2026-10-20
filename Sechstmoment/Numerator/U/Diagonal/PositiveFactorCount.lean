@@ -1,18 +1,9 @@
 import Mathlib.NumberTheory.Harmonic.Bounds
 import Mathlib.Tactic
 
-/-!
-# Actual averaged positive factor-pair counts
-
-These are unconditional finite counting bounds. They supply the averaged
-factor counts needed by the central near-resonant error strategy; they do
-not assume or conclude an analytic moment estimate.
--/
 namespace Sechstmoment
 open scoped BigOperators
 
-/-- The actual positive pairs whose product is at most P, enumerated by the
-first factor and the exact integer quotient for the second factor. -/
 def positiveProductFactorPairs (P : ℕ) : Finset (ℕ × ℕ) :=
   (Finset.Icc 1 P).biUnion fun n => (Finset.Icc 1 (P/n)).image fun m => (n,m)
 
@@ -39,7 +30,6 @@ theorem mem_positiveProductFactorPairs {P n m : ℕ} :
     refine ⟨m,Finset.mem_Icc.mpr ⟨by omega,?_⟩,rfl⟩
     exact (Nat.le_div_iff_mul_le hn).mpr (by simpa [Nat.mul_comm] using hprod)
 
-/-- Disjoint first-factor fibers give the exact finite quotient count. -/
 theorem positiveProductFactorPairs_card_eq_quotient_sum (P : ℕ) :
     (positiveProductFactorPairs P).card = ∑ n ∈ Finset.Icc 1 P, P/n := by
   have hd : (↑(Finset.Icc 1 P) : Set ℕ).PairwiseDisjoint
@@ -58,7 +48,6 @@ theorem positiveProductFactorPairs_card_eq_quotient_sum (P : ℕ) :
   rw [Finset.card_image_of_injective _ (by intro x y he; exact (Prod.mk.inj he).2)]
   simp [Nat.card_Icc]
 
-/-- The exact integer-quotient sum bounds the actual enumeration. -/
 theorem positiveProductFactorPairs_card_le_quotient_sum (P : ℕ) :
     (positiveProductFactorPairs P).card ≤ ∑ n ∈ Finset.Icc 1 P, P/n := by
   calc
@@ -70,7 +59,6 @@ theorem positiveProductFactorPairs_card_le_quotient_sum (P : ℕ) :
       rw [Finset.card_image_of_injective _ (by intro x y he; exact (Prod.mk.inj he).2)]
       simp [Nat.card_Icc]
 
-/-- Real-valued harmonic majorant for the exact quotient sum. -/
 theorem positiveProductFactorPairs_card_le_harmonic (P : ℕ) :
     ((positiveProductFactorPairs P).card : ℝ) ≤ (P:ℝ)*(harmonic P : ℝ) := by
   have hcard := positiveProductFactorPairs_card_le_quotient_sum P
@@ -92,14 +80,11 @@ theorem positiveProductFactorPairs_card_le_harmonic (P : ℕ) :
       intro n hn
       exact div_eq_mul_inv _ _
 
-/-- A true averaged divisor count, with no divisor-growth assumption. -/
 theorem positiveProductFactorPairs_card_le_log (P : ℕ) :
     ((positiveProductFactorPairs P).card : ℝ) ≤ (P:ℝ)*(1+Real.log (P:ℝ)) := by
   exact (positiveProductFactorPairs_card_le_harmonic P).trans
     (mul_le_mul_of_nonneg_left (harmonic_le_one_add_log P) (Nat.cast_nonneg P))
 
-/-- The genuine reciprocal-product average is bounded by the square of the
-harmonic sum, using the actual finite pairs rather than a divisor estimate. -/
 theorem positiveProductFactorPairs_reciprocal_sum_le_harmonic_sq (P : ℕ) :
     (∑ p ∈ positiveProductFactorPairs P, 1/((p.1*p.2 : ℕ):ℝ)) ≤ (harmonic P : ℝ)^2 := by
   have hsub : positiveProductFactorPairs P ⊆ (Finset.Icc 1 P) ×ˢ (Finset.Icc 1 P) := by

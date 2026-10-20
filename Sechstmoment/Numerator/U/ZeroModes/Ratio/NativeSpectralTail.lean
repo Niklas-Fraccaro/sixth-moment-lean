@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.U.ZeroModes.NativeFamilyMass
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.FullVStarNative
 import Sechstmoment.Numerator.U.ZeroModes.UnsortedActualMass
 
-/-! Gaussian completion of the genuine native ratio zero on the source's
-small positive Mellin line, with its full arithmetic density retained. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

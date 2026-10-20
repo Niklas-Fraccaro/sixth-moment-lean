@@ -1,8 +1,6 @@
 import Mathlib.NumberTheory.LSeries.Dirichlet
 import Sechstmoment.Zeta.Bounds.MellinZetaDirichletBounds
 
-/-! Uniform inverse-zeta bounds in a closed half-plane right of one.
-The bound comes from the genuine absolutely convergent Möbius series. -/
 
 namespace Sechstmoment
 open Real Complex ArithmeticFunction

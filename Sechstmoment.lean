@@ -18,6 +18,3 @@ import Sechstmoment.Numerator.V.DP.DPSharpAdapter
 import Sechstmoment.Theorem
 import Sechstmoment.Zeta.AmplifierProfiles
 import Sechstmoment.Zeta.Moments.MixedCauchy
-
-/- The integrated FullGoal assembly uses only literature input 1.
-The independent V replacement is checked locally; final assembly replay is deferred. -/

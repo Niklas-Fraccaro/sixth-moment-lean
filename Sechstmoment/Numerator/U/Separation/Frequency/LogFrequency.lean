@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.ActualGapPhase
 
-/-! Uniform comparison of the exact signed logarithmic frequency and
-the literal natural AFE gap, without linearizing the phase. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

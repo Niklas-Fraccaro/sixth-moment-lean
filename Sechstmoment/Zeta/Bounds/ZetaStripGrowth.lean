@@ -1,9 +1,5 @@
 import Sechstmoment.Zeta.Bounds.ZetaLeftBoundary
 
-/-! A genuine exponential growth bound on a strip crossing the critical
-strip. It is used only to discharge Phragmen-Lindelof's growth condition.
-Reflection applies at nonreal points without a positive real-part condition.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

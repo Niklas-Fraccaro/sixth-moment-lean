@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.GeometricTails
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourceErrorAggregate
 
-/-! A single genuine polynomial ratio threshold covers every excluded
-soft-order or integrated-unit block in the actual seven-dyadic source. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

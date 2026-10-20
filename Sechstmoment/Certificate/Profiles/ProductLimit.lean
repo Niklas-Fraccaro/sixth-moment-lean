@@ -2,10 +2,6 @@ import Mathlib.Analysis.Normed.Group.Bounded
 import Mathlib.MeasureTheory.Integral.Prod
 import Mathlib.Topology.Order.DenselyOrdered
 
-/-! Four independent compactly supported probability profiles concentrate jointly.
-The proof uses only the one-coordinate continuous-test limits: the expected sum
-of four absolute coordinate errors tends to zero, and controls every continuous
-test on the compact box. In particular no joint convergence is postulated. -/
 
 namespace Sechstmoment
 open MeasureTheory Set Filter
@@ -235,8 +231,6 @@ private theorem p02ProfileDensity_support (L : ℝ) (ρ : Fin 4 → ℝ → ℝ)
   rcases mul_ne_zero_iff.mp h23 with ⟨h2,h3⟩
   exact ⟨⟨hs 0 h0,hs 1 h1⟩,⟨hs 2 h2,hs 3 h3⟩⟩
 
-/-- Multiplication by any continuous test on the common compact interval
-preserves integrability of a supported scalar profile. -/
 theorem p02_supported_test_integrable {L : ℝ} (hL : 0 ≤ L)
     (f g : ℝ → ℝ) (hf : Integrable f)
     (hs : Function.support f ⊆ Icc 0 L) (hg : ContinuousOn g (Icc 0 L)) :
@@ -255,8 +249,6 @@ theorem p02_supported_test_integrable {L : ℝ} (hL : 0 ≤ L)
   · have hm := hs hx
     simp [G,max_eq_left hm.1,min_eq_left hm.2]
 
-/-- The actual four-profile weighted kernel is globally Lebesgue integrable,
-even if its test function is only continuous on the common compact box. -/
 theorem profileProductAverage4_integrable {L : ℝ} (hL : 0 ≤ L)
     (ρ : Fin 4 → ℝ → ℝ) (hi : ∀ i, Integrable (ρ i))
     (hs : ∀ i, Function.support (ρ i) ⊆ Icc 0 L)
@@ -275,9 +267,6 @@ theorem profileProductAverage4_integrable {L : ℝ} (hL : 0 ≤ L)
   · simp [hz]
   · simp only [G,p02Clamp_eq (p02ProfileDensity_support L ρ hs hz)]
 
-/-- Four independent compactly supported unit-mass profiles converge jointly
-against every continuous test on their common compact box. The hypotheses
-require only the four one-dimensional weak-convergence statements. -/
 theorem profileProductAverage4_tendsto (L : ℝ)
     (ρ : ℕ → Fin 4 → ℝ → ℝ) (a : Fin 4 → ℝ)
     (ha : ∀ i, a i ∈ Icc 0 L)
@@ -316,8 +305,6 @@ theorem profileProductAverage4_tendsto (L : ℝ)
   simpa only [he,hea] using p02_global_bounded_test_tendsto ρ a hi hn hm hd ht
     G hG (max C 0) (le_max_right _ _) hb
 
-/-- Fubini expands the genuinely integrable four-profile product-space
-integral into its four ordinary one-dimensional Lebesgue integrals. -/
 theorem profileProductAverage4_fubini {L : ℝ} (hL : 0 ≤ L)
     (ρ : ℕ → Fin 4 → ℝ → ℝ) (n : ℕ)
     (hi : ∀ i, Integrable (ρ n i))
@@ -343,7 +330,6 @@ theorem profileProductAverage4_fubini {L : ℝ} (hL : 0 ≤ L)
     _ = ∫ x : ℝ, ∫ y : ℝ, G (x,y) := integral_prod G hG
     _ = _ := rfl
 
-/-- The same joint limit for the literal four iterated scalar integrals. -/
 theorem profileProductIntegral4_tendsto (L : ℝ)
     (ρ : ℕ → Fin 4 → ℝ → ℝ) (a : Fin 4 → ℝ)
     (ha : ∀ i, a i ∈ Icc 0 L)

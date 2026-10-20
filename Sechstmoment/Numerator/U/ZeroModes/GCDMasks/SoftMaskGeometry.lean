@@ -2,7 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.PassiveSupport
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.GeometricTails
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.SourceErrorAggregate
 
-/-! Literal continuous common-X soft-order and unit-mask geometry. -/
 namespace Sechstmoment
 open Complex Real Source Set
 open scoped BigOperators Topology
@@ -70,8 +69,6 @@ theorem A03PassiveNativeZeroWitness.bad_soft_N_ratio
   have hm := mul_le_mul_of_nonneg_left hv2.2 hp
   nlinarith [hv1.1]
 
-/-- A supported real integrated coordinate in the unit dyadic block
-is at most 4/3; this is the actual continuous boundary interval. -/
 theorem A03PassiveNativeZeroWitness.integrated_unit_bounds
     {T A B H η : ℝ} {f g : ℝ→ℝ} {k : Fin 4→ℕ}
     (p : A03PassiveNativeZeroWitness T A B H η f g k) :

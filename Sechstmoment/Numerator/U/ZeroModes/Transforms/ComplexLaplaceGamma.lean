@@ -5,9 +5,6 @@ import Mathlib.Analysis.Convex.PathConnected
 import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
 
-/-! The actual complex Laplace primitive for the damped cosine Mellin
-calculation.  Its continuation in the Laplace parameter follows from genuine
-dominated differentiation and the analytic identity principle. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set Filter MeasureTheory
@@ -15,8 +12,6 @@ open scoped Topology
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- Positive real Laplace majorants, including those used for the parameter
-derivative, are integrable on the whole positive half-line. -/
 theorem a03LaplaceRealMajorant_integrable {σ c : ℝ} (hσ : 0<σ) (hc : 0<c) :
     IntegrableOn (fun u : ℝ => u^(σ-1)*Real.exp (-c*u)) (Ioi 0) := by
   have hbase := Real.GammaIntegral_convergent hσ
@@ -138,9 +133,6 @@ theorem a03ComplexLaplaceGamma_analyticOn {s : ℂ} (hs : 0<s.re) :
   intro r hr
   exact (a03ComplexLaplaceGamma_differentiableAt hs hr).differentiableWithinAt
 
-/-- Complex Laplace evaluation on its genuine domain `Re(r)>0`.  Equality
-on the positive real axis is continued only after holomorphy of the actual
-integral has been established by a locally integrable derivative majorant. -/
 theorem a03ComplexLaplaceGamma_eq {s r : ℂ} (hs : 0<s.re) (hr : 0<r.re) :
     (∫ u : ℝ in Ioi 0, (u:ℂ)^(s-1)*Complex.exp (-r*(u:ℂ)))=
       r^(-s)*Complex.Gamma s := by

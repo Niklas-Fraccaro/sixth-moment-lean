@@ -1,22 +1,16 @@
 import Sechstmoment.Certificate.Profiles.BetaSupport
 import Sechstmoment.Numerator.V.DP.VPolynomialAsymptotic
 
-/-! Exact realization of the actual beta endpoint profiles as the polynomial
-profiles in the sharp-DP V moment theorem. Endpoint equality is literal,
-including the differing closed and half-open source support conventions. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial
 open scoped Topology BigOperators
 noncomputable section
 set_option maxHeartbeats 1600000
 
-/-- The polynomial whose reflected evaluation is the actual scaled beta
-profile. Its normalization is the manuscript's literal beta normalization. -/
 def betaProfilePolynomial (η : ℝ) (n k : ℕ) : ℝ[X] :=
   Polynomial.C (η⁻¹*(n+1:ℝ)*(Nat.choose n k:ℝ))*
     (1-Polynomial.X)^k*Polynomial.X^(n-k)
 
-/-- Exact polynomial realization before extension by zero, at every real x. -/
 theorem betaScaledProfile_eq_polynomial_eval (η : ℝ) (n k : ℕ) (x : ℝ) :
     betaScaledProfile η n k x=(betaProfilePolynomial η n k).eval (1-x/η) := by
   simp only [betaProfilePolynomial,Polynomial.eval_mul,Polynomial.eval_pow,
@@ -24,8 +18,6 @@ theorem betaScaledProfile_eq_polynomial_eval (η : ℝ) (n k : ℕ) (x : ℝ) :
     sub_sub_cancel,betaScaledProfile,betaUnitProfile]
   ring
 
-/-- The actual closed beta extension equals the half-open source polynomial
-profile: the omitted right endpoint has its proved zero value. -/
 theorem betaIccProfile_eq_zeroExtendedPolynomialProfile {η : ℝ} (hη : η≠0)
     {n k : ℕ} (hk : k<n) :
     (Icc (0:ℝ) η).indicator (betaScaledProfile η n k)=
@@ -45,19 +37,15 @@ theorem betaIccProfile_eq_zeroExtendedPolynomialProfile {η : ℝ} (hη : η≠0
       exact betaScaled_zero_right hη hk
     · exact Set.indicator_of_notMem hx' _
 
-/-- Every positive interior beta stage has the required strict index bound. -/
 theorem betaProfileIndex_lt_stage {η a : ℝ} (hη : 0<η) (ha : 0≤a)
     (haη : a<η) {n : ℕ} (hn : 0<n) : betaProfileIndex η a n<n :=
   betaProfileIndex_lt hη ha haη hn
 
-/-- The actual beta approximation has strict index below the stage eventually. -/
 theorem betaProfileIndex_lt_eventually {η a : ℝ} (hη : 0<η)
     (ha : 0<a) (haη : a<η) : ∀ᶠ n : ℕ in atTop, betaProfileIndex η a n<n := by
   filter_upwards [eventually_gt_atTop (0:ℕ)] with n hn
   exact betaProfileIndex_lt hη ha.le haη hn
 
-/-- Literal equality of the manuscript's actual V endpoint profile with
-its sharp-DP source polynomial profile, at each positive fixed stage. -/
 theorem vEndpointProfile_eq_polynomialProfile {η a : ℝ} (hη : 0<η)
     (ha : 0≤a) (haη : a<η) {n : ℕ} (hn : 0<n) :
     vEndpointProfile η a n=zeroExtendedPolynomialProfile η
@@ -65,7 +53,6 @@ theorem vEndpointProfile_eq_polynomialProfile {η a : ℝ} (hη : 0<η)
   exact betaIccProfile_eq_zeroExtendedPolynomialProfile hη.ne'
     (betaProfileIndex_lt hη ha haη hn)
 
-/-- Eventual literal profile identification for the actual beta approximants. -/
 theorem vEndpointProfile_eq_polynomialProfile_eventually {η a : ℝ}
     (hη : 0<η) (ha : 0<a) (haη : a<η) :
     ∀ᶠ n : ℕ in atTop, vEndpointProfile η a n=zeroExtendedPolynomialProfile η
@@ -75,8 +62,6 @@ theorem vEndpointProfile_eq_polynomialProfile_eventually {η a : ℝ}
 
 namespace Source
 
-/-- Actual fixed-stage beta V raw moments: no beta-test moment asymptotic is
-assumed. The actual profile equality specializes the proved polynomial DP result. -/
 theorem vBetaRawMixedMoment_tendsto (N : ℕ) (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0<η) (hηu : η<1/4) (a b : ℝ)
     (ha : 0≤a) (haη : a<η) (hb : 0≤b) (hbη : b<η)
@@ -94,7 +79,6 @@ theorem vBetaRawMixedMoment_tendsto (N : ℕ) (hsource : DPv2SharpInput)
     vEndpointProfile_eq_polynomialProfile hη hb hbη hm]
   exact vPolynomialRawMixedMoment_tendsto N hsource η hη hηu _ _ p hp Φ hΦ
 
-/-- Actual fixed-stage phase-projected beta V numerator limit. -/
 theorem vBetaProjectedMixedMoment_tendsto (N : ℕ) (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0<η) (hηu : η<1/4) (a b : ℝ)
     (ha : 0≤a) (haη : a<η) (hb : 0≤b) (hbη : b<η)
@@ -112,8 +96,6 @@ theorem vBetaProjectedMixedMoment_tendsto (N : ℕ) (hsource : DPv2SharpInput)
     vEndpointProfile_eq_polynomialProfile hη hb hbη hm]
   exact vPolynomialProjectedMixedMoment_tendsto N hsource η hη hηu _ _ p hp Φ hΦ
 
-/-- At every sufficiently large beta stage, the genuine raw V beta-test
-moment has its fixed-stage sharp-DP limit. The stage and height limits are distinct. -/
 theorem vBetaRawMixedMoment_tendsto_eventually (N : ℕ) (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0<η) (hηu : η<1/4) (a b : ℝ)
     (ha : 0<a) (haη : a<η) (hb : 0<b) (hbη : b<η)
@@ -130,7 +112,6 @@ theorem vBetaRawMixedMoment_tendsto_eventually (N : ℕ) (hsource : DPv2SharpInp
   exact vBetaRawMixedMoment_tendsto N hsource η hη hηu a b ha.le haη hb.le hbη
     n n hn hn p hp Φ hΦ
 
-/-- The same actual fixed-stage statement for the phase-projected beta tests. -/
 theorem vBetaProjectedMixedMoment_tendsto_eventually (N : ℕ) (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0<η) (hηu : η<1/4) (a b : ℝ)
     (ha : 0<a) (haη : a<η) (hb : 0<b) (hbη : b<η)

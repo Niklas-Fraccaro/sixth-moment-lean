@@ -1,10 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.Additive.Characters
 import Sechstmoment.Zeta.DirichletL.CharacterFourthMoment
 
-/-! The actual Gauss-weighted four-L transform on the shifted line.
-The totient loss is proved to be subpower. All Dirichlet characters are
-included, including the principal and imprimitive ones.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set ZMod Finset
@@ -87,9 +83,6 @@ theorem gaussFourLTransform_norm_le (q : ℕ) [NeZero q] (s : Fin 4 → ℂ) :
   rw [norm_mul,norm_inv,Complex.norm_natCast]
   exact (mul_le_mul_of_nonneg_left hsum (by positivity)).trans_eq (by ring)
 
-/-- The full character sum on the displaced line has the required square-root
-modulus cost. The fourth-moment estimate is proved in the imported modules,
-and is not an additional parameter of this theorem. -/
 theorem allDirichlet_gauss_fourL_bound {ε : ℝ} (hε : 0 < ε) :
     ∃ C : ℝ, 0 < C ∧ ∀ q : ℕ, ∀ _ : NeZero q,
       ∀ s : Fin 4 → ℂ, (∀ j, (s j).re ∈ Icc (1/2 : ℝ) (3/4)) →

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Convolution.PairEuler
 
-/-! Identify the previously constructed global remainder with its canonical Euler coefficients. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option maxHeartbeats 2000000
@@ -62,7 +61,6 @@ theorem pairEuler_config (s : Fin 4 → ℂ) (c : Configuration) :
     (config_factorization_mem c p.val p.property).2]
   rfl
 
-/-- The old configuration-extension definition and the ordinary prime-factor definition agree. -/
 theorem gamma_eq_pairEuler (s : Fin 4 → ℂ) (m n : ℕ) :
     gamma s (m,n) = pairEuler (restLocal s) m n := by
   by_cases hm : m = 0

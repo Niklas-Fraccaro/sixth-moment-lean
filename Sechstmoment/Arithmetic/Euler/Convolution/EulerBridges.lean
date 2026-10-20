@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Convolution.PairEuler
 
-/-! Scalar, separable and diagonal Euler coefficients over ordinary positive integers. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalConvolution

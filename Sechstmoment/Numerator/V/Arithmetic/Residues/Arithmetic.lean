@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.Residues.Trace
 import Sechstmoment.Numerator.V.Arithmetic.ShiftPermutation
 
-/-! Identification of the finite residue trace with the actual principal
-character correction. The modulus in the character varies with the divisor. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open NoDPLocal NoDPResidues NoDPLocalClosure NoDPGlobalRest NoDPGlobalConvolution

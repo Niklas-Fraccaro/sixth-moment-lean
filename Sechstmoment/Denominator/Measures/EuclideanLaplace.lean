@@ -4,9 +4,6 @@ import Mathlib.Topology.Homeomorph.Lemmas
 import Sechstmoment.Analysis.Measures.ExponentialTilt
 import Sechstmoment.Denominator.Measures.DiagonalMeasureDefinitions
 
-/-! Coordinate identification and Fourier transforms of the actual exponential
-tilts. The six coordinates and their original left/right orientation are kept
-literal. -/
 namespace Sechstmoment
 open MeasureTheory Complex
 open scoped BigOperators RealInnerProductSpace

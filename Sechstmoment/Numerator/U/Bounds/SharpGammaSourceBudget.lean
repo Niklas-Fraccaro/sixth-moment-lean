@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SevenGridSpectralTail
 
-/-! Quantitative source/Gamma bounds with freely chosen losses.  The true
-source factory is chosen before T and remains valid at all smaller near
-and AFE exponents. No little-o estimate is used as a power estimate. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

@@ -1,10 +1,6 @@
 import Sechstmoment.Zeta.DirichletL.RootNumber
 import Sechstmoment.Zeta.DirichletL.Weights.Bounds
 
-/-! The actual dual factor in the square AFE has the conductor power
-`N^(1-2*re s)` and only a polynomial height loss. The bound follows from
-Gamma conjugation and the proved compact-strip envelopes.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set ComplexConjugate

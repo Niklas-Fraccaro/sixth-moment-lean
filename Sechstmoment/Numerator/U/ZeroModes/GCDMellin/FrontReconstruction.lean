@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.FrontFubini
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalResidualGrowth
 
-/-! Exact initial physical GCD front = literal double residue + the
-three actual residual contours, after genuine full positive-x Fubini. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff
@@ -129,9 +127,6 @@ theorem a03ZeroModeGCDEtaFrontBlock_initial_reconstruction
   apply setIntegral_congr_fun measurableSet_Ioi
   exact hPoint
 
-/-- The remaining outer contour is additive once its two actual absolute
-convergence facts have been established.  In particular the main contour's
-integrability is a conclusion, obtained from front minus residual. -/
 theorem a03ZeroModeGCDEtaFrontBlock_outer_reconstruction
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {T η : ℝ} (hT : 0<T) (hη : 0<η) (hη1 : η≤1/16)

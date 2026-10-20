@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Sources.BlockReindex
 import Sechstmoment.Numerator.U.ZeroModes.DiscreteChamberSymmetry
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ChamberWeight
 
-/-! The four ratio partitions and four factor chambers are exact operations
-on the actual finite integer source, retaining all seven dyadic weights. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -29,8 +27,6 @@ def a03ActualRatioTimeBlock (m n dual positive : Bool) (G : ℂ→ℂ)
                     ((c:ℂ)+(v:ℂ)*I) else 0
   else 0
 
-/-- The genuine source block is partitioned before the continuous GCD
-coordinate is introduced. No singleton integer term is discarded. -/
 theorem a03_actual_source_block_four_ratio_partition {a b T : ℝ} (hT : 1<T)
     (dual positive : Bool) (f g Φ : ℝ→ℝ) (hf : SmoothInteriorProfile a f)
     (hg : SmoothInteriorProfile b g) (σ : MomentShifts) (c s v : ℝ)
@@ -85,8 +81,6 @@ theorem a03_zero_ratio_four_weight_discrete_pair_swap (G : ℂ→ℂ)
   cases m <;> cases n <;>
     simp [a03ZeroModeRatioFourWeight,a03ZeroModeDiscretePairSwap,a03ZeroModePairPermutation]
 
-/-- Each chamber is a literal finite permutation of the four integer
-factors, their AFE weights and their shifts. -/
 theorem a03ActualRatioTimeBlock_discrete_chamber
     (m n dual positive : Bool) (G : ℂ→ℂ) (c T a b s v : ℝ)
     (σ α : MomentShifts) (f g Φ : ℝ→ℝ) (j : Fin 3→ℕ) (k : Fin 4→ℕ) :
@@ -167,8 +161,6 @@ theorem a03_actual_source_finite_four_ratio_partition {a b T : ℝ} (hT : 1<T)
   simp_rw [Finset.sum_add_distrib]
   ring
 
-/-- Literal four-chamber source formula, with the same primary weight in
-all four actual Mellin kernels. -/
 theorem a03_actual_source_finite_four_chambers {a b T : ℝ} (hT : 1<T)
     (dual : Bool) (f g Φ : ℝ→ℝ) (hf : SmoothInteriorProfile a f)
     (hg : SmoothInteriorProfile b g) (σ : MomentShifts) (c s u v : ℝ) :

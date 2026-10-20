@@ -5,8 +5,6 @@ import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Ring
 import Sechstmoment.Certificate.Kernels.Balanced.IntegerNormalization
 
-/-! Real casts and homogeneous normalization of the existing D⁻¹ moment terms.
-The connection to a simplex integral is a separate statement. -/
 
 namespace Sechstmoment
 open _root_.Sechstmoment.Finite

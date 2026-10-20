@@ -1,8 +1,6 @@
 import Mathlib.Tactic
 import Sechstmoment.Zeta.Amplifiers
 
-/-! Sharp elementary amplifier bound on Re(s)=1+O(1/log T). The actual
-Dirichlet sum is used, with its existing finite-support identity. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

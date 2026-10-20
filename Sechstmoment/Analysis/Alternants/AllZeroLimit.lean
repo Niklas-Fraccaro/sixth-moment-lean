@@ -18,7 +18,6 @@ import Mathlib.Topology.Instances.Matrix
 import Sechstmoment.Analysis.Alternants.ShiftLimit
 import Std
 
-/-! Actual divided-difference integrals regularize all four colliding source shifts. -/
 
 namespace Sechstmoment
 open Filter MeasureTheory
@@ -209,8 +208,6 @@ theorem expNewtonMatrix_zero_det (q : Fin 4 → ℂ) :
   norm_num [matrixMinorTwo, fourVandermonde]
   ring
 
-/-- Genuine simultaneous limit when all four source shifts coalesce at zero.
-The polynomial determinant normalization is proved from actual simplex integrals. -/
 theorem exponentialAlternant_all_zero_limit (q : Fin 4 → ℂ) :
     Tendsto (fun x : Fin 4 → ℂ => exponentialAlternant x q)
       (𝓝[{x : Fin 4 → ℂ | Function.Injective x}] (0:Fin 4 → ℂ))
@@ -225,7 +222,6 @@ theorem exponentialAlternant_all_zero_limit (q : Fin 4 → ℂ) :
   filter_upwards [self_mem_nhdsWithin] with x hx
   exact (exponentialAlternant_newton x q hx).symm
 
-/-- The full genuine four-shift collision limit, including the previously singular z=0. -/
 theorem exponentialAlternant_joint_shift_limit_all (q : Fin 4 → ℂ) (z : ℂ)
     (hq : Function.Injective q) :
     Tendsto (fun x : Fin 4 → ℂ => exponentialAlternant x q)
@@ -258,7 +254,6 @@ theorem exponentialAlternant_zero_of_not_injective (x q : Fin 4 → ℂ)
     simp [expAlternantMatrix, hij]
   simp [exponentialAlternant, hd]
 
-/-- Neither source-shift collisions nor coincident polar nodes exclude this limit. -/
 theorem exponentialAlternant_joint_shift_limit_unrestricted (q : Fin 4 → ℂ) (z : ℂ) :
     Tendsto (fun x : Fin 4 → ℂ => exponentialAlternant x q)
       (𝓝[{x : Fin 4 → ℂ | Function.Injective x}] (![0,0,z,0]))

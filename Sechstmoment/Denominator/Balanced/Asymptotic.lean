@@ -1,7 +1,5 @@
 import Sechstmoment.Denominator.Balanced.ShiftedHeightAsymptotic
 
-/-! The literal D02 balanced denominator asymptotic. Every analytic
-replacement and the actual polynomial extraction are proved upstream. -/
 namespace Sechstmoment
 open Complex Real Polynomial MeasureTheory Filter Set
 open scoped BigOperators Topology ContDiff

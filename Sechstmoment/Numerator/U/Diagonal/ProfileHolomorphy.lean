@@ -2,7 +2,6 @@ import Mathlib.Analysis.Calculus.ParametricIntegral
 import Mathlib.MeasureTheory.Integral.CompactlySupported
 import Sechstmoment.Analysis.Mellin.ProfileInversion
 
-/-! Genuine entire continuation of the actual compactly supported profile transform. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Filter Metric

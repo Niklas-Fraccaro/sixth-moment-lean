@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.LocalSeries
 
-/-! Splitting the first term of the convergent local tail. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

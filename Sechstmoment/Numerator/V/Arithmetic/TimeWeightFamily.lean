@@ -2,8 +2,6 @@ import Sechstmoment.Denominator.Gram.NonstationaryChiDecay
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.PositiveTimeMellinStripDecay
 import Sechstmoment.Numerator.V.Chi.Phase
 
-/-! The actual logarithmically shifted time-weight family. Its support,
-smoothness, derivative bounds and Mellin decay have common constants. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

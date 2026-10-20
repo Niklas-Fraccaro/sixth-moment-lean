@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.CentralContourShift
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.DiagonalLeftBounds
 
-/-! Actual movement of the fixed-amplifier diagonal from Re(z)=1 to
-Re(z)=-1/8, with the residue computed from the literal Euler arithmetic. -/
 
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
@@ -148,8 +146,6 @@ theorem a03DiagonalRemoved_horizontal_tendsto_zero {T : ℝ} (σ : MomentShifts)
   simp only [mul_zero] at hlim
   exact squeeze_zero' (Eventually.of_forall (fun _ => norm_nonneg _)) hnorm hlim
 
-/-- Literal diagonal = arithmetic residue + actual left-contour remainder.
-All rectangle hypotheses and the residue value are proved above. -/
 theorem bblrDiagonalTerm_eq_residue_add_leftIntegral {T : ℝ} (σ : MomentShifts)
     (hα : ∀ j : Fin 4,‖rawMomentShifts T σ j‖≤1/64) (m : Fin 6)
     {a b : ℕ} (ha : a≠0) (hb : b≠0) (hab : a.Coprime b) {t : ℝ} (ht : 0<t)

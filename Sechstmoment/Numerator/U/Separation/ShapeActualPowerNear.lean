@@ -48,9 +48,6 @@ theorem phase_normalized_geometry {ε K : ℝ} (hε : 0≤ε)
   · simpa [mul_assoc] using hc.1
   · simpa [mul_assoc] using hc.2
 
-/-- All structural source hypotheses hold on the full small-power near
-range. The genuine profile support and retained grid provide every bound;
-the result does not restrict the relative gap to log(T)/T. -/
 theorem phase_actual_power_near_source_geometry {a b ε : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hε : 0<ε)
     (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :
@@ -104,7 +101,6 @@ theorem phase_actual_power_near_source_geometry {a b ε : ℝ}
   exact phase_normalized_geometry hε.le q' hq' hH' hn'
     (by simpa [mul_assoc] using hcomp'.1) (by simpa [mul_assoc] using hcomp'.2)
 
-/-- The source constant may be enlarged uniformly. -/
 theorem phase_source_geometry_mono {ε K L : ℝ} (q : QuadraticScales)
     (h : phaseSourceGeometry ε K q) (hKL : K≤L) : phaseSourceGeometry ε L q := by
   rcases h with ⟨hs,hm,hn,hh,hδ,hl,hr,ho⟩

@@ -7,7 +7,6 @@ import Mathlib.Tactic
 import Sechstmoment.Analysis.Complex.RealDerivatives
 import Sechstmoment.Numerator.U.Separation.Frequency.LogFrequency
 
-/-! Actual all-order logarithmic-gap symbol bounds, derived on a fixed complex disk. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Metric
 open scoped ContDiff Topology

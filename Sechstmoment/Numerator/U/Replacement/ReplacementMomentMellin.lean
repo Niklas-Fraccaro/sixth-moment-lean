@@ -4,7 +4,6 @@ import Sechstmoment.Numerator.U.Replacement.DualWeightReplacementContour
 import Sechstmoment.Numerator.U.Replacement.VStar.KernelReplacement
 import Sechstmoment.Numerator.U.Separation.DualLeadingRegularity
 
-/-! Genuine compact time/Mellin Fubini for original and dual replacements. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter
 open scoped BigOperators Topology
@@ -22,8 +21,6 @@ theorem a03_pair_weight_zero_outside {T : ℝ} (hT : 0<T)
     exact ht ⟨by simpa using (le_div_iff₀ hT).mp hh.1,(div_le_iff₀ hT).mp hh.2⟩
   simp [rectangularMomentPairWeight,hz]
 
-/-- Joint integrability is proved from compact continuity and the literal
-support of the dyadic time weight. -/
 theorem a03_pair_compact_time_contour_integrable {T : ℝ} (hT : 0<T)
     (f g Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) (u w : ℕ) (R : ℝ)
     (K : ℝ×ℝ→ℂ) (hK : ContinuousOn K (Icc (-R) R ×ˢ Icc T (2*T))) :
@@ -44,8 +41,6 @@ theorem a03_pair_compact_time_contour_integrable {T : ℝ} (hT : 0<T)
     have ht : p.2∉Icc T (2*T) := by simpa using hp
     simp [F,a03_pair_weight_zero_outside hT f g Φ hΦ u w p.2 ht])
 
-/-- The literal pair-weighted time integral and bounded Mellin integral may
-be interchanged; the preceding theorem supplies actual joint integrability. -/
 theorem a03_pair_compact_time_contour_fubini {T : ℝ} (hT : 0<T)
     (f g Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) (u w : ℕ) (R : ℝ)
     (K : ℝ×ℝ→ℂ) (hK : ContinuousOn K (Icc (-R) R ×ˢ Icc T (2*T))) :
@@ -101,8 +96,6 @@ private theorem main_Gamma_power_continuousOn {T : ℝ} (hT : 0<T) (c R : ℝ) :
   have hpt : 0<p.2 := hT.trans_le hp.2.1
   positivity
 
-/-- Actual original replacement kernel is jointly continuous on the literal
-positive-time compact rectangle. -/
 theorem rectangular_weight_replacement_Mellin_kernel_continuousOn
     {c T : ℝ} (hc : 0<c) (hT : 0<T) (σ α : MomentShifts)
     (hα : ∀ j, ‖α j‖≤1/4) (n : Fin 4→ℕ) (R : ℝ) :
@@ -117,8 +110,6 @@ theorem rectangular_weight_replacement_Mellin_kernel_continuousOn
   unfold rectangularWeightReplacementMellinKernel a03SmallMellinCommonFactor
   ring
 
-/-- Actual dual replacement kernel, including the literal four-chi factor,
-is jointly continuous on the same compact rectangle. -/
 theorem rectangular_dual_replacement_Mellin_kernel_continuousOn
     {c T : ℝ} (hc : 0<c) (hT : 0<T) (σ τ α : MomentShifts)
     (hσ : ∀ j, ‖rawMomentShifts T σ j‖≤1/4) (hα : ∀ j, ‖α j‖≤1/4)
@@ -167,7 +158,6 @@ theorem rectangular_dual_replacement_time_contour_fubini
   a03_pair_compact_time_contour_fubini hT f g Φ hΦ u w R _
     (rectangular_dual_replacement_Mellin_kernel_continuousOn hc hT σ τ α hσ hα n R)
 
-/-- The same compact argument for a literal complete amplifier weight. -/
 theorem a03_compact_time_contour_integrable {T : ℝ} (W : ℝ→ℂ)
     (hW : Continuous W) (hWs : ∀ t, t∉Icc T (2*T) → W t=0) (R : ℝ)
     (K : ℝ×ℝ→ℂ) (hK : ContinuousOn K (Icc (-R) R ×ˢ Icc T (2*T))) :
@@ -202,7 +192,6 @@ theorem a03_compact_time_contour_fubini {T : ℝ} (W : ℝ→ℂ)
   simpa only [Function.uncurry,integral_const_mul] using
     (integral_integral_swap (f := fun v t => W t*K (v,t)) hi).symm
 
-/-- The literal finite VStar summand is the integral of its actual kernel. -/
 theorem rectangular_actual_small_VStar_core_summand_Mellin (c T : ℝ)
     (σ α : MomentShifts) (t R : ℝ) (n : Fin 4→ℕ) :
     bblrGaussianVStarCoreSummand c T σ α t R n=(1/(2*Real.pi):ℂ)*
@@ -236,8 +225,6 @@ private theorem lead_time_continuousOn {T : ℝ} (hT : 0<T) (σ : MomentShifts) 
   have hpt : 0<p.2 := hT.trans_le hp.2.1
   positivity
 
-/-- Actual Gamma and VStar finite cores are integrable against both actual
-amplifiers. This uses compact joint kernel continuity independently for each. -/
 theorem rectangularFiniteSmallVStarIntegrand_integrable
     {c T : ℝ} (hc : 0<c) (hT : 1<T) (a b : ℝ) (f g Φ : ℝ→ℝ)
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -324,8 +311,6 @@ private theorem moment_weight_eq_pair_sum {T : ℝ} (hT : 1<T) (a b : ℝ)
   simp only [Finset.mul_sum,Finset.sum_mul,rectangularMomentPairWeight]
   rw [Finset.sum_comm]
 
-/-- Fubini for all the literal finite arithmetic boxes and both amplifier
-sums, with every integrability obligation supplied by compact continuity. -/
 theorem a03_actual_finite_time_contour_fubini {T : ℝ} (hT : 1<T) (a b X R : ℝ)
     (f g Φ : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
     (hΦ : SmoothDyadicWeight Φ) (K : (Fin 4→ℕ)→(ℝ×ℝ)→ℂ)
@@ -473,9 +458,6 @@ private theorem finite_dual_small_replacement_eq {c T : ℝ} (hc : 0<c) (hT : 0<
     rectangular_actual_small_VStar_core_summand_Mellin,bblrDualLeadingMultiplier_time_eq hT.ne']
   ring
 
-/-- Exact difference of the actual amplified finite small Gamma and VStar
-moments. Both complete arithmetic sums and both complete amplifier sums are
-included, with the literal original and dual replacement contours. -/
 theorem rectangularFiniteSmallGaussianGridMoment_sub_VStar_eq_contours
     {c T : ℝ} (hc : 0<c) (hT : 1<T) (a b : ℝ) (f g Φ : ℝ→ℝ)
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

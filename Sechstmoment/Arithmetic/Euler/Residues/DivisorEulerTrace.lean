@@ -1,7 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.FourL.FixedEuler
 
-/-! A divisor sum of bivariate Euler coefficients factors into finite local
-diagonal sums. This is the finite arithmetic step used for the residues. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open NoDPResidues NoDPGlobalConvolution

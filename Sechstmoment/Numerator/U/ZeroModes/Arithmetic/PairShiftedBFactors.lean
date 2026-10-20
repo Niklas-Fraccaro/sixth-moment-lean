@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.PairCoefficientBounds
 
-/-! The actual `s`-dependent finite `B` factors in BBLR (11), defined using
-the unshifted coefficients and the literal power `p^{-j(1+2s)}`. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat Complex
@@ -56,7 +54,6 @@ theorem bblrBPrimeFactor_add_shifts {p : ℕ} (hp : p.Prime)
   simp_rw [hterm₀]
   ring
 
-/-- Global finite normalization of the literal `B(s)` series. -/
 theorem bblrBFactor_add_shifts (α β γ δ s : ℂ) {a : ℕ} (ha : a ≠ 0) :
     bblrBFactor (α+s) (β+s) (γ+s) (δ+s) a =
       (a:ℂ)^(-s)*bblrBFactorAt α β γ δ s a := by

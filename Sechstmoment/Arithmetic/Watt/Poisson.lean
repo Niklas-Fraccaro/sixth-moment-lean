@@ -1,7 +1,5 @@
 import Sechstmoment.Arithmetic.Watt.FiniteCompletion
 
-/-! The literal finite Watt sum is identified with its absolutely convergent
-frequency expansion, retaining the arithmetic restrictions. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -75,7 +73,6 @@ theorem weightedWattSum_eq_pair_sums {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     have hrt : ¬ r.Coprime (s*t) := fun h => hrs h.symm.coprime_mul_right.symm
     rw [ite_eq_right hrt,mul_zero]
 
-/-- The outer coefficients enforce exactly the dyadic pair ranges of Watt. -/
 theorem weightedWattSum_eq_dyadic_pair_sums {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)
@@ -174,7 +171,6 @@ theorem frequencySum_summable {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     (Finset.mem_Icc.mp (mem_filter.mp (mem_product.mp (mem_filter.mp hrs).1).2).1).1
   exact (pairFrequencySum_summable hw positive rs.1 hs).mul_left _
 
-/-- Every finite/infinite interchange in the completed six-variable sum. -/
 theorem weightedWattSum_eq_tsum {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)
@@ -193,7 +189,6 @@ theorem weightedWattSum_eq_tsum {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     (Finset.mem_Icc.mp (mem_filter.mp (mem_product.mp (mem_filter.mp hrs).1).2).1).1
   rw [pairFourierSum_eq_tsum hw positive rs.1 hs,tsum_mul_left]
 
-/-- The zero mode and the two signed positive-frequency series, exactly. -/
 theorem weightedWattSum_eq_zero_add_signed_series {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)
@@ -205,7 +200,6 @@ theorem weightedWattSum_eq_zero_add_signed_series {b : ℕ → ℝ} {g : ℕ →
   rw [weightedWattSum_eq_tsum hw hV]
   exact tsum_int_eq_zero_add_tsum_pnat (frequencySum_summable hw positive)
 
-/-- The exact finite-frequency truncation error for the original Watt sum. -/
 theorem weightedWattSum_fourier_truncation {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)

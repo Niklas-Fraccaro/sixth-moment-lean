@@ -4,8 +4,6 @@ import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEGrouping
 import Sechstmoment.Numerator.U.Replacement.GaussianAdmissible
 import Sechstmoment.Numerator.U.Replacement.GaussianCoefficientGrowth
 
-/-! Instantiation of the fixed-G source input for the actual pole killer.
-All finite-basis, convergence and coefficient-growth steps are own proofs. -/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Filter
@@ -56,9 +54,6 @@ theorem fixedGaussianBasis_analytic_receipt (K : Set MomentShifts) (hK : IsCompa
   · exact fun i => bblrAFESummand_summable _ (hc i) (hGI i) α t hα
   · exact fun i => bblrAFESummand_summable _ (hc i) (hGI i) _ t hαd
 
-/-- Every requested power-decaying AFE remainder for the concrete G_T
-follows from only the literal fixed-G source boundary. The normalized pure
-root gap is stated explicitly, so uniformity near collisions is not assumed. -/
 theorem polarPoleKiller_AFE_uniform_remainder (hsource : BBLRv1FixedApproximateFEInput)
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0 < δ)
     (hρ : ∀ σ ∈ K, ∀ k : PurePolarIndex, δ ≤ ‖normalizedPurePolarRoot σ k‖)

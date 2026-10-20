@@ -1,8 +1,6 @@
 import Mathlib.MeasureTheory.Integral.Prod
 import Sechstmoment.Numerator.U.Sources.Weights.Superposition
 
-/-! Measurability and absolute convergence of the literal source discrepancy.
-The unchanged BBLR input supplies its bound; convergence is a consequence. -/
 namespace Sechstmoment
 open Source MeasureTheory Set
 open scoped BigOperators Topology

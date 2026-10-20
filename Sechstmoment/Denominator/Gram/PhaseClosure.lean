@@ -2,9 +2,6 @@ import Sechstmoment.Denominator.Gram.NonstationaryChiDecay
 import Sechstmoment.Denominator.Gram.PhaseCauchy
 import Sechstmoment.Denominator.Gram.PhaseRegularity
 
-/-! The two literal extreme denominator phases vanish. The proof retains
-every amplifier and one-sided series index, derives a uniform residual-chi
-Fourier saving, and then extracts every finite polynomial shift derivative. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory Polynomial Metric
 open scoped BigOperators Topology ContDiff

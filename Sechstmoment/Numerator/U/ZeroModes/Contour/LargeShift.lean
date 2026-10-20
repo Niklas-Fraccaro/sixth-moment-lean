@@ -3,16 +3,12 @@ import Sechstmoment.Numerator.U.ZeroModes.Contour.MainShift
 import Sechstmoment.Numerator.U.ZeroModes.PolarChamberInvariance
 import Sechstmoment.Zeta.Bounds.MellinZetaNegativeStripGrowth
 
-/-! Move the actual source M contour from Re(s)=1 to the small positive
-line; both zeta factors are controlled even when one argument has negative
-real part. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- Two source zeta factors on the full large strip at high imaginary height. -/
 theorem a03ZeroModeMainRootZetaProduct_large_strip_high_bound {T δ : ℝ}
     (σ : MomentShifts) (hδ : 0<δ) (hδ1 : δ<1/4)
     (hρ : ∀ j : Fin 2,‖a03ZeroModeMainPoleRoot T σ j‖≤δ/4) :
@@ -56,7 +52,6 @@ theorem a03ZeroModeMainRootZetaProduct_large_strip_high_bound {T δ : ℝ}
       congr 2
       ring
 
-/-- The actual M kernel on the full initial-to-small contour strip. -/
 theorem a03ZeroModeMainKernel_large_strip_high_majorant {T δ : ℝ}
     (σ : MomentShifts) (N₁ N₂ : ℕ) (a b : ℕ→ℂ)
     (hδ : 0<δ) (hδ1 : δ<1/4)
@@ -89,7 +84,6 @@ theorem a03ZeroModeMainKernel_large_strip_high_majorant {T δ : ℝ}
     _=C*‖z‖⁻¹*(1+|v|)^48*(Real.exp (-v^2)*Real.exp (2*Real.pi*|v|)) := by dsimp [C]; ring
     _=_ := by rw [←Real.exp_add]; congr 1; ring
 
-/-- Positive initial-to-small strip has no pole of the actual M kernel. -/
 theorem a03ZeroModeMainRemovedNumerator_positive_strip_eq {T δ : ℝ}
     (σ : MomentShifts) (N₁ N₂ : ℕ) (a b : ℕ→ℂ) (hδ : 0<δ)
     (hρ : ∀ j : Fin 2,a03ZeroModeMainPoleRoot T σ j≠0)
@@ -103,8 +97,6 @@ theorem a03ZeroModeMainRemovedNumerator_positive_strip_eq {T δ : ℝ}
   rw [he] at hz
   linarith
 
-/-- The pole-removed source numerator divided by s is continuous on every
-positive vertical line. -/
 theorem a03ZeroModeMainRemovedNumerator_positive_line_continuous {T c : ℝ}
     (σ : MomentShifts) (N₁ N₂ : ℕ) (a b : ℕ→ℂ) (hc : 0<c) :
     Continuous (fun v : ℝ => a03ZeroModeMainRemovedNumerator T σ N₁ N₂ a b
@@ -116,7 +108,6 @@ theorem a03ZeroModeMainRemovedNumerator_positive_line_continuous {T c : ℝ}
   simp at hr
   linarith
 
-/-- Absolute convergence of the actual large source-M vertical line. -/
 theorem a03ZeroModeMainRemovedNumerator_large_line_integrable {T δ c : ℝ}
     (σ : MomentShifts) (N₁ N₂ : ℕ) (a b : ℕ→ℂ)
     (hδ : 0<δ) (hδ1 : δ<1/4) (hc : c∈Icc δ 1)
@@ -166,7 +157,6 @@ theorem a03ZeroModeMainRemovedNumerator_large_line_integrable {T δ c : ℝ}
     apply hD.trans
     nlinarith [mul_nonneg (mul_nonneg hC (inv_nonneg.mpr hδ.le)) hgp]
 
-/-- Vanishing horizontal edges across the whole initial-to-small strip. -/
 theorem a03ZeroModeMainRemovedNumerator_large_horizontal_tendsto_zero {T δ : ℝ}
     (σ : MomentShifts) (N₁ N₂ : ℕ) (a b : ℕ→ℂ)
     (hδ : 0<δ) (hδ1 : δ<1/4)
@@ -199,8 +189,6 @@ theorem a03ZeroModeMainRemovedNumerator_large_horizontal_tendsto_zero {T δ : �
       _=_ := by ring
   exact (intervalIntegral.norm_integral_le_of_norm_le_const hn).trans_eq (by ring)
 
-/-- The genuine large source M contour reaches the small line; no contour
-identity or edge-bound hypothesis is supplied by the caller. -/
 theorem a03ZeroModeMainContour_initial_to_small {T δ : ℝ}
     (σ : MomentShifts) (N₁ N₂ : ℕ) (a b : ℕ→ℂ)
     (hδ : 0<δ) (hδ1 : δ<1/4)
@@ -232,8 +220,6 @@ theorem a03ZeroModeMainContour_initial_to_small {T δ : ℝ}
   rw [he 1 (by linarith),he δ le_rfl] at hs
   exact hs
 
-/-- The initial original and reverse-negative source-M lines have exactly
- the same small-line pairing, with the concrete G retained. -/
 theorem a03ZeroModeMainContour_initial_pair {T δ : ℝ}
     (σ : MomentShifts) (N₁ N₂ : ℕ) (a b : ℕ→ℂ)
     (hδ : 0<δ) (hδ1 : δ<1/4)
@@ -274,8 +260,6 @@ theorem a03ZeroModeMainContour_initial_pair {T δ : ℝ}
   rw [a03ZeroModeMainContour_initial_to_small σ N₁ N₂ a b hδ hδ1 hρ hρb,hR]
   exact a03ZeroModeMainContour_symmetric_pair σ N₁ N₂ a b hδ hδ1 hα hρ
 
-/-- The large original/dual source contours give the actual arithmetic
- crossed term uniformly in the original compact separated domain. -/
 theorem a03ZeroModeMainContour_initial_pair_eventually_eq_crossedArithmetic
     (K : Set MomentShifts) (hK : IsCompact K) {κ δ : ℝ}
     (hκ : 0<κ) (hδ : 0<δ) (hδ1 : δ<1/4)

@@ -5,11 +5,6 @@ import Mathlib.MeasureTheory.Integral.Prod
 import Mathlib.Tactic
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEMellin
 
-/-!
-The fourfold actual AFE series is interchanged with a compactly supported
-time integral. The dominating function retains the actual height-dependent
-Gamma quotient; no large-height Gamma asymptotic is needed for this exact step.
--/
 
 namespace Sechstmoment
 
@@ -112,8 +107,6 @@ theorem rectangular_vertical_joint_continuous (G : ℂ → ℂ) (hG : Continuous
     · fun_prop
     · exact Or.inl (Complex.ofReal_ne_zero.mpr hx.ne')
 
-/-- Measurability of the actual parameter integral follows from its genuine
-joint integrand, rather than from an assumed continuity of V. -/
 theorem rectangular_actual_V_stronglyMeasurable (G : ℂ → ℂ) (hG : Continuous G)
     (α : MomentShifts) (hα : ∀ j, -1/2 < (α j).re) (x : ℝ) (hx : 0 < x) :
     StronglyMeasurable (fun t : ℝ => bblrV G α x t) := by
@@ -149,7 +142,6 @@ theorem rectangular_AFE_Mellin_mass_nonneg (G : ℂ → ℂ) :
     integral_nonneg (fun v : ℝ => norm_nonneg (G (1+(v : ℂ)*I)))
   positivity
 
-/-- This retains the explicit genuine Gamma majorant at the actual height. -/
 theorem rectangular_actual_V_height_majorant (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (t x : ℝ) (hx : 0 < x)
     (hα : ∀ j, -1/2 < (α j).re) :
@@ -169,8 +161,6 @@ theorem rectangular_actual_V_height_majorant (G : ℂ → ℂ) (α : MomentShift
       mul_le_mul_of_nonneg_left hb (by positivity)
     _ = _ := by rw [integral_const_mul]; unfold rectangularAFEMellinMass; ring
 
-/-- The complete genuine fourfold AFE is interchanged with an actual compact
-time weight. Both summability and dominating integrability are proved here. -/
 theorem rectangular_actual_AFE_weighted_hasSum (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (hα : ∀ j, -1/2 < (α j).re)
     (w : ℝ → ℂ) (hw : Continuous w) (hws : HasCompactSupport w) :
@@ -226,8 +216,6 @@ theorem rectangular_actual_AFE_weighted_integral (G : ℂ → ℂ) (α : MomentS
       ∑' n : Fin 4 → ℕ, ∫ t : ℝ, w t*bblrAFESummand G α t n :=
   (rectangular_actual_AFE_weighted_hasSum G α hG hα w hw hws).tsum_eq.symm
 
-/-- After the exact Bochner interchange, the actual time integral becomes
-the sum of finite genuine dyadic blocks. No block reconstruction is assumed. -/
 theorem rectangular_actual_AFE_dyadic_integral (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (hα : ∀ j, -1/2 < (α j).re)
     (w : ℝ → ℂ) (hw : Continuous w) (hws : HasCompactSupport w) :
@@ -264,7 +252,6 @@ theorem rectangular_actual_AFE_height_majorant (G : ℂ → ℂ) (α : MomentShi
       (bblrGammaLineMajorant α t*rectangularAFEMellinMass G)
       (fun x hx => rectangular_actual_V_height_majorant G α hG t x hx hα) n)
 
-/-- The complete weighted AFE is genuinely Bochner-integrable. -/
 theorem rectangular_actual_AFE_weighted_integrable (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (hα : ∀ j, -1/2 < (α j).re)
     (w : ℝ → ℂ) (hw : Continuous w) (hws : HasCompactSupport w) :

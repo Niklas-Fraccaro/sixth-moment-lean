@@ -2,8 +2,6 @@ import Sechstmoment.Analysis.Mellin.FourierCutoffDecay
 import Sechstmoment.Numerator.V.Chi.LogBandCosine
 import Sechstmoment.Numerator.V.Chi.LogBandFullDerivatives
 
-/-! Arbitrary-order far-frequency decay for the actual chi-band transform.
-The constants are obtained from the concrete profile derivative masses. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

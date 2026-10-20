@@ -1,8 +1,6 @@
 import Mathlib.Analysis.PSeries
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.DiagonalNativeSummation
 
-/-! Genuine absolute convergence of the selected diagonal at an arbitrarily
-small positive Mellin line. The constant is uniform in both amplifier integers. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology

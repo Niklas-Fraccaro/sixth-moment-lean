@@ -1,9 +1,5 @@
 import Sechstmoment.Denominator.Balanced.GaussianCutBand
 
-/-! Moving-cut estimates in the finite exponential D01 tilt.  Working with
-the literal finite measures permits global bounded continuous band tests;
-the convergence and mass bounds are the proved arithmetic D01 results.
--/
 
 namespace Sechstmoment
 open MeasureTheory Filter Set BoundedContinuousFunction
@@ -138,8 +134,6 @@ private theorem d02TiltedGaussian_integral_difference_bound
       simp only [integral_const_mul, integral_const, smul_eq_mul, mul_one]
       ring
 
-/-- Uniform over all bounded measurable tests and all bounded physical
-height offsets, for the finite actual D01 tilt. -/
 theorem d02TiltedDiagonalMeasure_gaussian_sharp_uniform
     {B : ℝ} (hB : 0 < B) (C : ℝ) {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ L : ℝ in atTop, ∀ (f : D01LogSpace → ℂ) (c : ℝ),

@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Sources.FiniteReindex
 import Sechstmoment.Numerator.U.Sources.MomentJoin
 import Sechstmoment.Numerator.U.Sources.NearPartition
 
-/-! Physical source blocks are literal finite amplifier/AFE time integrals
-with the genuine three-coordinate smooth amplifier/gap weight. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology FourierTransform
@@ -57,8 +55,6 @@ theorem a03_actual_localized_time_integral_eq_amp_gap_weight
   unfold phaseActualKernelSummand
   ring
 
-/-- Each active source block equals the genuine finite original or dual
-AFE sum with its literal amplifier/gap localization. -/
 theorem a03ActualSourceBlockValue_finite_reindex {a b T : ℝ} (hT : 1<T)
     (dual positive : Bool) (f g Φ : ℝ→ℝ) (hf : SmoothInteriorProfile a f)
     (hg : SmoothInteriorProfile b g) (σ : MomentShifts) (c s v : ℝ)

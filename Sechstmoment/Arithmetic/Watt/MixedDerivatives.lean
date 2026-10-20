@@ -1,8 +1,6 @@
 import Mathlib.Analysis.Calculus.FDeriv.Symmetric
 import Sechstmoment.Arithmetic.Watt.GammaProfiles
 
-/-! Mixed derivatives along a linear ray.  Constants are constructed solely
-from the fixed mixed derivative sequence, independently of the ray slope. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -134,7 +132,6 @@ theorem normalizedMixedRay_deriv {F : (ℝ × ℝ) → ℂ} (hF : ContDiff ℝ �
   simp only [pow_succ]
   ring
 
-/-- Recursively summed mixed derivative constants.  No slope or scale occurs. -/
 def rayDerivativeBound (g : ℕ → ℕ → ℝ) : ℕ → ℕ → ℕ → ℝ
   | 0, i, j => g i j
   | n+1, i, j => rayDerivativeBound g n (i+1) j+rayDerivativeBound g n i (j+1)
@@ -179,8 +176,6 @@ theorem normalizedMixedRay_derivative_bound {F : (ℝ × ℝ) → ℂ}
     have he₂ : i+(j+1)+n = i+j+(n+1) := by omega
     simpa only [he₁,he₂,rayDerivativeBound,add_mul] using add_le_add h₁ h₂
 
-/-- Uniform multiplicative derivative bounds for the new p-weight.
-The bound is independent of the positive ray slope. -/
 theorem gamma_ray_derivative_bound {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)

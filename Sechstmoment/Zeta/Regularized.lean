@@ -3,15 +3,6 @@ import Mathlib.NumberTheory.LSeries.RiemannZeta
 import Mathlib.Tactic
 import Mathlib.Topology.UniformSpace.UniformConvergence
 
-/-!
-# Actual zeta pole removal and the scaled polar limit
-
-The value at the pole is supplied by the proved residue of the actual Riemann
-zeta function. Riemann's removable-singularity theorem proves that the
-regularized function is entire. This yields the scaled polar limit without
-assuming an asymptotic formula. Global vertical-strip bounds and a dominated
-contour integral are separate obligations.
--/
 
 namespace Sechstmoment
 
@@ -20,7 +11,6 @@ open scoped Topology
 
 noncomputable section
 
-/-- The entire extension of `(s-1) ζ(s)`, with its actual residue value. -/
 def polarRegularizedZeta : ℂ → ℂ :=
   Function.update (fun s : ℂ => (s-1)*riemannZeta s) 1 1
 
@@ -43,7 +33,6 @@ theorem polarRegularizedZeta_differentiableAt_of_ne_one {s : ℂ} (hs : s ≠ 1)
   exact (((differentiableAt_id.sub_const 1).mul
     (differentiableAt_riemannZeta hs)).congr_of_eventuallyEq heq)
 
-/-- Genuine holomorphic removal of the zeta pole, including its value. -/
 theorem polarRegularizedZeta_differentiable : Differentiable ℂ polarRegularizedZeta := by
   intro s
   by_cases hs : s = 1
@@ -57,7 +46,6 @@ theorem polarRegularizedZeta_differentiable : Differentiable ℂ polarRegularize
 theorem polarRegularizedZeta_continuous : Continuous polarRegularizedZeta :=
   polarRegularizedZeta_differentiable.continuous
 
-/-- An exact factorization of the actual scaled zeta factor. -/
 theorem scaled_riemannZeta_eq_regularized {L : ℝ} (hL : L ≠ 0)
     {w : ℂ} (hw : w ≠ 0) :
     riemannZeta (1+w/(L:ℂ))/(L:ℂ) = polarRegularizedZeta (1+w/(L:ℂ))/w := by
@@ -68,8 +56,6 @@ theorem scaled_riemannZeta_eq_regularized {L : ℝ} (hL : L ≠ 0)
   field_simp
   ring
 
-/-- Uniform convergence of the regularized factor on every bounded set of
-normalized arguments. No separated-shift assumption is needed here. -/
 theorem polarRegularizedZeta_scaled_uniform {K : Set ℂ} (hK : Bornology.IsBounded K) :
     TendstoUniformlyOn (fun L : ℝ => fun w : ℂ => polarRegularizedZeta (1+w/(L:ℂ)))
       (fun _ => 1) atTop K := by
@@ -89,7 +75,6 @@ theorem polarRegularizedZeta_scaled_uniform {K : Set ℂ} (hK : Bornology.IsBoun
     simpa only [mul_comm] using (div_lt_iff₀ hδ).mp hLC
   simpa only [polarRegularizedZeta_one, dist_comm] using hcont hsmall
 
-/-- The actual individual polar limit used after contour rescaling. -/
 theorem scaled_riemannZeta_tendsto {w : ℂ} (hw : w ≠ 0) :
     Tendsto (fun L : ℝ => riemannZeta (1+w/(L:ℂ))/(L:ℂ)) atTop (𝓝 (1/w)) := by
   have hreg := (polarRegularizedZeta_scaled_uniform
@@ -99,9 +84,6 @@ theorem scaled_riemannZeta_tendsto {w : ℂ} (hw : w ≠ 0) :
   filter_upwards [eventually_gt_atTop (0:ℝ)] with L hL
   exact (scaled_riemannZeta_eq_regularized hL.ne' hw).symm
 
-/-- Local uniformity of the polar approximation on every bounded set a
-positive distance from zero. These are geometric conditions on the actual
-contour arguments, not an assumed zeta asymptotic. -/
 theorem scaled_riemannZeta_uniform {K : Set ℂ} (hK : Bornology.IsBounded K)
     {r : ℝ} (hr : 0 < r) (hsep : ∀ w ∈ K, r ≤ ‖w‖) :
     TendstoUniformlyOn (fun L : ℝ => fun w : ℂ => riemannZeta (1+w/(L:ℂ))/(L:ℂ))
@@ -119,7 +101,6 @@ theorem scaled_riemannZeta_uniform {K : Set ℂ} (hK : Bornology.IsBounded K)
     simpa only [dist_eq_norm] using hreg w hw
   exact hnum.trans_le (mul_le_mul_of_nonneg_left (hsep w hw) hε.le)
 
-/-- The left and right triples which produce the nine displayed pairings. -/
 def polarLeftArguments (u z : ℂ) (σ : Fin 4 → ℂ) : Fin 3 → ℂ :=
   ![u, z+σ 0, z+σ 1]
 
@@ -129,14 +110,12 @@ def polarRightArguments (v z : ℂ) (σ : Fin 4 → ℂ) : Fin 3 → ℂ :=
 def ninePolarArgument (u v z : ℂ) (σ : Fin 4 → ℂ) (ij : Fin 3 × Fin 3) : ℂ :=
   polarLeftArguments u z σ ij.1 + polarRightArguments v z σ ij.2
 
-/-- The actual nine scaled zeta factors of the first diagonal main term. -/
 def ninePolarZetaFactor (L : ℝ) (u v z : ℂ) (σ : Fin 4 → ℂ) : ℂ :=
   ∏ ij : Fin 3 × Fin 3, riemannZeta (1+ninePolarArgument u v z σ ij/(L:ℂ))/(L:ℂ)
 
 def ninePolarRationalFactor (u v z : ℂ) (σ : Fin 4 → ℂ) : ℂ :=
   ∏ ij : Fin 3 × Fin 3, 1/ninePolarArgument u v z σ ij
 
-/-- The exact nine-factor polar limit, for the actual zeta functions. -/
 theorem ninePolarZetaFactor_tendsto (u v z : ℂ) (σ : Fin 4 → ℂ)
     (hsep : ∀ ij : Fin 3 × Fin 3, ninePolarArgument u v z σ ij ≠ 0) :
     Tendsto (fun L : ℝ => ninePolarZetaFactor L u v z σ) atTop

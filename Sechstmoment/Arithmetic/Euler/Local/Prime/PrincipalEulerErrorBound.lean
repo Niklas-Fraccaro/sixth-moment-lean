@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Prime.PrincipalEulerExpansion
 
-/-! A uniform quadratic bound for the local arithmetic-factor error. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

@@ -1,7 +1,5 @@
 import Sechstmoment.Denominator.Balanced.FiniteGaussianDiagonalPhysical
 
-/-! The actual balanced shifted zeta height moment: the proved Gamma,
-long-sum and off-diagonal errors leave precisely the original D01 endpoint. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Filter Set Metric
 open scoped BigOperators Topology ContDiff

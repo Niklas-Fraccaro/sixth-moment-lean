@@ -2,15 +2,12 @@ import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 import Sechstmoment.Numerator.U.Diagonal.ActualNearAmplifierMass
 import Sechstmoment.Numerator.U.Separation.Frequency.ActualFarKernel
 
-/-! Literal AFE denominators with normalized raw shifts retain the reciprocal
-square-root mass, with a fixed constant on a product cutoff. -/
 
 namespace Sechstmoment.Source
 open Complex Real Filter
 open scoped BigOperators Topology
 noncomputable section
 
-/-- Exact denominator norm; all literal `n j + 1` factors are retained. -/
 theorem bblrAFEDenominatorInv_norm_eq (α : MomentShifts) (n : Fin 4 → ℕ) :
     ‖(∏ j : Fin 4, (n j+1 : ℂ)^(1/2+α j))⁻¹‖ =
       ∏ j : Fin 4, (n j+1 : ℝ)^(-(1/2+(α j).re)) := by
@@ -23,8 +20,6 @@ theorem bblrAFEDenominatorInv_norm_eq (α : MomentShifts) (n : Fin 4 → ℕ) :
   have he : (1/2+α j : ℂ).re = 1/2+(α j).re := by simp
   rw [he,Real.rpow_neg hn.le]
 
-/-- A uniform lower bound on the real shifts gives a product-power bound,
-without separately losing a power at each of the four indices. -/
 theorem bblrAFEDenominatorInv_norm_le_product_rpow (α : MomentShifts)
     (n : Fin 4 → ℕ) {r : ℝ} (hα : ∀ j, -r ≤ (α j).re) :
     ‖(∏ j : Fin 4, (n j+1 : ℂ)^(1/2+α j))⁻¹‖ ≤
@@ -48,7 +43,6 @@ theorem bblrAFEDenominatorInv_norm_le_product_rpow (α : MomentShifts)
         (fun j _ => (hn j).le) (r-1/2),hprod]
     _ = _ := by rw [Real.rpow_sub hx,← Real.sqrt_eq_rpow]
 
-/-- Norm control on arbitrary raw shifts is sufficient for the same estimate. -/
 theorem bblrAFEDenominatorInv_norm_le_of_norm (α : MomentShifts)
     (n : Fin 4 → ℕ) {r : ℝ} (hα : ∀ j, ‖α j‖ ≤ r) :
     ‖(∏ j : Fin 4, (n j+1 : ℂ)^(1/2+α j))⁻¹‖ ≤
@@ -58,8 +52,6 @@ theorem bblrAFEDenominatorInv_norm_le_of_norm (α : MomentShifts)
   have hj := (abs_le.mp ((Complex.abs_re_le_norm (α j)).trans (hα j))).1
   exact hj
 
-/-- On `x ≤ C T^κ`, a raw normalized shift contributes a fixed constant.
-The requirement `log T ≥ 1` makes the multiplicative cutoff harmless. -/
 theorem bblrRawShift_product_rpow_le {T C κ R x : ℝ}
     (hT : 0 < T) (hlog : 1 ≤ Real.log T) (hC : 1 ≤ C) (hR : 0 ≤ R)
     (hx : 0 < x) (hcut : x ≤ C*T^κ) :
@@ -81,8 +73,6 @@ theorem bblrRawShift_product_rpow_le {T C κ R x : ℝ}
       apply mul_le_mul_of_nonneg_left _ hR
       exact add_le_add (div_le_self hlogC hlog) le_rfl
 
-/-- The actual AFE denominator with normalized raw shifts has a uniform
-reciprocal square-root majorant on the literal product cutoff. -/
 theorem bblrAFEDenominatorInv_raw_norm_le_of_product_cutoff
     {T C κ R : ℝ} (hT : 0 < T) (hlog : 1 ≤ Real.log T)
     (hC : 1 ≤ C) (hR : 0 ≤ R) (σ : MomentShifts)
@@ -102,7 +92,6 @@ theorem bblrAFEDenominatorInv_raw_norm_le_of_product_cutoff
     _ ≤ _ := div_le_div_of_nonneg_right
       (bblrRawShift_product_rpow_le hT hlog hC hR hx hcut) (Real.sqrt_nonneg _)
 
-/-- All six source orientations have the same raw-shift denominator bound. -/
 theorem bblrAFEDenominatorInv_six_raw_norm_le_of_product_cutoff
     {T C κ R : ℝ} (hT : 0 < T) (hlog : 1 ≤ Real.log T)
     (hC : 1 ≤ C) (hR : 0 ≤ R) (σ : MomentShifts)
@@ -118,8 +107,6 @@ theorem bblrAFEDenominatorInv_six_raw_norm_le_of_product_cutoff
     bblrAFEDenominatorInv_raw_norm_le_of_product_cutoff hT hlog hC hR
       (bblrSixShifts σ k) hs n hcut
 
-/-- A Mellin line with nonnegative real part only improves the actual
-inverse denominator norm. -/
 theorem bblrAFEDenominatorInv_vertical_norm_le (α : MomentShifts)
     (n : Fin 4 → ℕ) (z : ℂ) (hz : 0≤z.re) :
     ‖(∏ j : Fin 4, (n j+1 : ℂ)^(1/2+α j+z))⁻¹‖ ≤
@@ -142,8 +129,6 @@ open Source Real Complex
 open scoped BigOperators
 noncomputable section
 
-/-- Pointwise transfer from the proved six-index square-root mass to the
-literal denominator in every source orientation. -/
 theorem actualNearAmplifierAFE_raw_weight_le
     {T C κ R : ℝ} (hT : 0 < T) (hlog : 1 ≤ Real.log T)
     (hC : 1 ≤ C) (hR : 0 ≤ R) (A B : ℝ) (f g : ℝ → ℝ)
@@ -174,8 +159,6 @@ theorem actualNearAmplifierAFE_raw_weight_le
         (Real.exp_pos (R*(Real.log C+κ))).le using 1
       ring
 
-/-- The complete six-index sum of literal raw denominators is bounded by
-the proved harmonic near mass, uniformly in all six source orientations. -/
 theorem actualAmplifiedNearAFE_raw_mass_le_harmonic
     {T C κ R : ℝ} (hT : 0 < T) (hlog : 1 ≤ Real.log T)
     (hC : 1 ≤ C) (hR : 0 ≤ R) (A B : ℝ) (f g : ℝ → ℝ)
@@ -229,8 +212,6 @@ theorem actualAmplifiedNearAFE_raw_mass_le_harmonic
       (actualAmplifiedNearAFE_mass_le_harmonic T A B f g hF hG hf hg
         hU hV hL hJ hQ s hs) (Real.exp_pos (R*(Real.log C+κ))).le
 
-/-- The literal smooth product grid supplies the cutoff with `C = 16`.
-This includes the integer-one edge blocks. -/
 theorem bblrAFEDenominatorInv_raw_grid_norm_le
     {T R ε : ℝ} (hT : 0 < T) (hlog : 1 ≤ Real.log T) (hR : 0 ≤ R)
     (σ : MomentShifts) (hσ : ∀ j, ‖σ j‖ ≤ R) (m : Fin 6)
@@ -241,8 +222,6 @@ theorem bblrAFEDenominatorInv_raw_grid_norm_le
   bblrAFEDenominatorInv_six_raw_norm_le_of_product_cutoff hT hlog (by norm_num) hR
     σ hσ m n (rectangular_AFE_smooth_grid_integer_product_le k n hk hw)
 
-/-- Uniformity over the entire retained actual grid and normalized shift
-ball uses a fixed constant, with no `T^ε` factor from the shifts. -/
 theorem bblrAFEDenominatorInv_raw_grid_uniform_norm_le
     {R : ℝ} (hR : 0 ≤ R) (ε : ℝ) :
     ∀ᶠ T : ℝ in Filter.atTop, ∀ σ : MomentShifts,
@@ -255,8 +234,6 @@ theorem bblrAFEDenominatorInv_raw_grid_uniform_norm_le
   intro σ hσ m k n hk hw
   exact bblrAFEDenominatorInv_raw_grid_norm_le hT hlog hR σ hσ m k n hk hw
 
-/-- The complete unlocalized actual amplifier pair retains both
-reciprocal square roots. Its indices are zero based. -/
 theorem phaseActualAmplifierPairConstant_norm_le_reciprocal_sqrt
     (T : ℝ) (f g : ℝ → ℝ) {F G : ℝ} (hF : 0≤F) (_hG : 0≤G)
     (hf : ∀ x, ‖f x‖≤F) (hg : ∀ x, ‖g x‖≤G) (u w : ℕ) :
@@ -276,8 +253,6 @@ theorem phaseActualAmplifierPairConstant_norm_le_reciprocal_sqrt
       · exact hg _
     _ = _ := by ring
 
-/-- The literal arithmetic factor in the actual integrated Mellin kernel
-is bounded by the proved six-index reciprocal square-root mass. -/
 theorem a03ActualMellinStaticFactor_raw_grid_norm_le
     {T R η c : ℝ} (hT : 0<T) (hlog : 1≤Real.log T) (hR : 0≤R) (hc : 0≤c)
     (f g : ℝ → ℝ) {F G : ℝ} (hF : 0≤F) (hG : 0≤G)

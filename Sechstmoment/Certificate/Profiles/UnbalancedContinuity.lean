@@ -1,14 +1,5 @@
 import Sechstmoment.Certificate.Kernels.Unbalanced.DenominatorMinusLink
 
-/-!
-# Joint continuity of the actual unbalanced denominator
-
-Replacing every simplex length by its positive part removes all cutoff
-branches. The translated simplex moments have a factor of length at least
-two, so this replacement is exact even at degenerate slices. The resulting
-finite expression is globally continuous and agrees with the original
-weighted-uniform integral on nonnegative endpoint caps.
--/
 
 namespace Sechstmoment
 
@@ -82,7 +73,6 @@ theorem minusMaskEvenMomentValue_cutoff_eq_positivePart
   · simp [hH, minusMaskEvenMomentValue_zero]
   · simp [hH, max_eq_left (le_of_lt (lt_of_not_ge hH))]
 
-/-- A continuous finite expression, with no endpoint or slice assumptions. -/
 noncomputable def denominatorMinusContinuousEvaluator (p q : Fin 5 → ℝ)
     (a b c d : ℝ) : ℝ :=
   ∑ m : Fin 5,
@@ -122,8 +112,6 @@ theorem denominatorMinusContinuousEvaluator_continuous_comp {α : Type*}
     · exact hb
     · exact hc
 
-/-- Joint endpoint continuity includes all mask knots, empty slices and caps
-of length zero. The fourth endpoint is unrestricted. -/
 theorem denominatorMinusKernel_continuousOn (p q : Fin 5 → ℝ) :
     ContinuousOn (fun v : Fin 4 → ℝ =>
       denominatorMinusKernel p q (v 0) (v 1) (v 2) (v 3))
@@ -136,7 +124,6 @@ theorem denominatorMinusKernel_continuousOn (p q : Fin 5 → ℝ) :
   intro v hv
   exact denominatorMinusKernel_eq_continuousEvaluator p q hv.1 hv.2.1 hv.2.2 (v 3)
 
-/-- A form for continuous families of endpoints, including degenerate limits. -/
 theorem denominatorMinusKernel_continuous_comp {α : Type*} [TopologicalSpace α]
     (p q : Fin 5 → ℝ) {a b c d : α → ℝ}
     (ha : Continuous a) (hb : Continuous b) (hc : Continuous c) (hd : Continuous d)
@@ -148,8 +135,6 @@ theorem denominatorMinusKernel_continuous_comp {α : Type*} [TopologicalSpace α
   exact (denominatorMinusKernel_eq_continuousEvaluator p q
     (ha₀ x) (hb₀ x) (hc₀ x) (d x)).symm
 
-/-- Joint convergence for endpoint families. Nonnegativity is needed only
-eventually, and the limit may lie on any degenerate face or mask knot. -/
 theorem denominatorMinusKernel_tendsto_of_nonnegative {α : Type*}
     {l : Filter α} (p q : Fin 5 → ℝ) {a b c d : α → ℝ} {A B C D : ℝ}
     (ha : Filter.Tendsto a l (nhds A)) (hb : Filter.Tendsto b l (nhds B))

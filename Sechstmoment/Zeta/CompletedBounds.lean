@@ -2,14 +2,6 @@ import Mathlib.Analysis.MellinTransform
 import Mathlib.NumberTheory.LSeries.RiemannZeta
 import Mathlib.Tactic
 
-/-!
-# Genuine vertical-strip bounds from the completed-zeta Mellin integral
-
-The theta Mellin transform converges at every complex argument by its proved
-strong functional-equation pair. Taking absolute values at two real
-endpoints proves an imaginary-part-independent bound for the entire
-completed zeta function on every closed vertical strip.
--/
 
 namespace Sechstmoment
 

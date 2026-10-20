@@ -51,9 +51,6 @@ import Mathlib.Topology.Algebra.InfiniteSum.Ring
 import Mathlib.Topology.Instances.EReal.Lemmas
 import Std
 
-/-! Genuine smooth complex Mellin weights for the four positive AFE variables.
-All derivative orders have proved polynomial frequency bounds. The coupled
-time/gap weight and the structural quadratic-source hypotheses are separate. -/
 
 namespace Sechstmoment
 open Complex Real Set Filter

@@ -29,23 +29,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Definitions
 import Std
 
-/-!
-# Typed source boundaries
-
-These are specifications, not axioms or proofs of the cited analytic inputs.
-In particular the rectangular moment theorem and the manuscript's normalized
-polar generator do not appear as hypotheses. All source integrands and source
-main terms below are concrete functions.
-
-BBLR: arXiv:1609.02539v1, Proposition 3.1 and the oriented calculation on p.17.
-DP: arXiv:2606.27323v2, §5.2, k=1, the reversed-conjugation calculation and
-its four displayed residues. It has the literal `χ(s) A(1-s)^2` orientation,
-not the preceding theorem's orientation with an unchanged complex shift tuple.
-The raw shifts,
-the factor T/(2π), log(y)^6, and the two conjugated polynomial amplifiers are
-retained. Own normalization, polarization and holomorphic pole removal remain
-separate proof obligations.
--/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Polynomial Filter Asymptotics
@@ -54,9 +37,6 @@ open scoped BigOperators Topology
 
 noncomputable section
 
-/-- Oriented source input, restricted to precisely the nontrivial range in
-the proof of Proposition 3.1. A swapped block is handled by swapping its data.
-No rectangular twisted-moment conclusion occurs in this specification. -/
 def BBLRv1OrientedInput : Prop :=
   ∀ ε : ℝ, 0 < ε → ∀ δ : ℝ, 0 < δ → ∀ K : ℝ, 1 ≤ K →
   ∀ bounds : ℕ → ℝ, (∀ j, 0 ≤ bounds j) →

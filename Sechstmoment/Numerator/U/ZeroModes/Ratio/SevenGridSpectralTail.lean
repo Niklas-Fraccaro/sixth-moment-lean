@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.ActualFourRatioGammaLinearJoin
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.FiniteGCDVStarJoin
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.NativeSpectralTail
 
-/-! Genuine finite-window to full-height completion of the actual ratio
-zero on the entire retained seven-grid. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

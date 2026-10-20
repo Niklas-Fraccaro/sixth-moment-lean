@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Bivariate.SeriesOperators
 
-/-! Complete weighted absolute coefficient norm, with the explicit constant 35. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option linter.unusedSectionVars false

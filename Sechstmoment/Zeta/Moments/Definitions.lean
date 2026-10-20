@@ -24,15 +24,6 @@ import Sechstmoment.Zeta.Centering.Exact
 import Sechstmoment.Zeta.Moments.Shifts
 import Std
 
-/-!
-# Literal integrands at the two external-source interfaces
-
-All four shifts here are raw complex shifts, rather than shifts silently divided
-by `log T`. The BBLR integrand has one conjugated amplifier. The DP §5.2
-integrand has two conjugated amplifiers and one factor `χ(s)`.
-The exact functional-equation conversion retains its actual Gamma quotient.
-No moment asymptotic or external theorem is asserted by this file.
--/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set
@@ -41,28 +32,24 @@ open Polynomial
 
 noncomputable section
 
-/-- The actual four zeta factors in both source moments. -/
 def shiftedFourthProduct (t : ℝ) (α : MomentShifts) : ℂ :=
   riemannZeta (criticalLinePoint t + α 0) *
     riemannZeta (criticalLinePoint t + α 1) *
     riemannZeta (1-criticalLinePoint t + α 2) *
     riemannZeta (1-criticalLinePoint t + α 3)
 
-/-- The actual all-positive zeta product after the DP functional equations. -/
 def allPositiveFourthProduct (t : ℝ) (α : MomentShifts) : ℂ :=
   riemannZeta (criticalLinePoint t + α 0) *
     riemannZeta (criticalLinePoint t + α 1) *
     riemannZeta (criticalLinePoint t - α 2) *
     riemannZeta (criticalLinePoint t - α 3)
 
-/-- BBLR: the second Dirichlet polynomial is conjugated. -/
 def twistedFourthIntegrand (T t : ℝ) (α : MomentShifts)
     (f g Φ : ℝ → ℝ) : ℂ :=
   (Φ (t/T) : ℂ) * shiftedFourthProduct t α *
     profileDirichletSum T f (criticalLinePoint t) *
     profileDirichletSum T g (1-criticalLinePoint t)
 
-/-- DP §5.2, with the orientation of the integrand actually computed there. -/
 def chiTwistedFourthIntegrand (T t : ℝ) (α : MomentShifts)
     (f g Φ : ℝ → ℝ) : ℂ :=
   (Φ (t/T) : ℂ) * shiftedFourthProduct t α * criticalChi t *
@@ -77,7 +64,6 @@ def chiTwistedFourthMoment (T : ℝ) (α : MomentShifts)
     (f g Φ : ℝ → ℝ) : ℂ :=
   ∫ t : ℝ, chiTwistedFourthIntegrand T t α f g Φ
 
-/-- The exact correction which the DP calculation later estimates by Stirling. -/
 def dpArchimedeanCorrection (t : ℝ) (α : MomentShifts) : ℂ :=
   zetaChi (1-criticalLinePoint t + α 2) / zetaChi (1-criticalLinePoint t) *
     (zetaChi (1-criticalLinePoint t + α 3) / zetaChi (1-criticalLinePoint t))
@@ -88,7 +74,6 @@ theorem profileDirichletSum_one_sub (T t : ℝ) (f : ℝ → ℝ) :
   rw [criticalLinePoint_one_sub]
   exact profileDirichletSum_conj T f (criticalLinePoint t)
 
-/-- The bar on the BBLR amplifier is present literally. -/
 theorem twistedFourthIntegrand_conjugate_form (T t : ℝ) (α : MomentShifts)
     (f g Φ : ℝ → ℝ) :
     twistedFourthIntegrand T t α f g Φ =
@@ -97,7 +82,6 @@ theorem twistedFourthIntegrand_conjugate_form (T t : ℝ) (α : MomentShifts)
         conj (profileDirichletSum T g (criticalLinePoint t)) := by
   simp only [twistedFourthIntegrand, profileDirichletSum_one_sub]
 
-/-- Both bars in the DP §5.2 orientation are present literally. -/
 theorem chiTwistedFourthIntegrand_conjugate_form (T t : ℝ) (α : MomentShifts)
     (f g Φ : ℝ → ℝ) :
     chiTwistedFourthIntegrand T t α f g Φ =
@@ -122,7 +106,6 @@ theorem shiftedFourthProduct_functional_equations (t : ℝ) (α : MomentShifts)
     from fun z => by ring]
   ring
 
-/-- Exact source-orientation conversion; no shifted Gamma quotient is erased. -/
 theorem chiTwistedFourthIntegrand_functional_equation (T t : ℝ)
     (α : MomentShifts) (f g Φ : ℝ → ℝ)
     (h₂ : 0 < (1-criticalLinePoint t + α 2).re ∧

@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.CorrelationEuler
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.FixedDiagonalCorrelation
 
-/-! Literal BBLR (11): the source `V*`-weighted fixed-amplifier diagonal
-has its genuine four-zeta and finite `B(s)` Mellin representation.  The
-left-line contour shift and its tail estimate are separate remaining work. -/
 
 namespace Sechstmoment
 open Complex Source
@@ -13,8 +10,6 @@ open Classical
 set_option maxHeartbeats 0
 noncomputable section
 
-/-- Exact initial-line arithmetic representation of the actual source diagonal.
-All interchanges and the fixed-amplifier Euler identity are proved imports. -/
 theorem bblrDiagonalTerm_eq_fixedEulerMellin {a b : ℕ}
     (ha : a ≠ 0) (hb : b ≠ 0) (hab : a.Coprime b) {t : ℝ} (ht : 0 < t)
     (G : ℂ → ℂ) (α : MomentShifts) (hG : BBLREntireWeight G α)

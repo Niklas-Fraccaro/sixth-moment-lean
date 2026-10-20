@@ -3,10 +3,6 @@ import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.EtaArithmetic
 import Sechstmoment.Numerator.U.ZeroModes.Contour.RatioPoleRemoval
 import Sechstmoment.Zeta.Bounds.MellinZetaInverseDirichletBounds
 
-/-! Holomorphy of the actual coupled ratio-u/v arithmetic integrand.
-The same Euler denominator controls both eta divisor sums and the inverse
-zeta factor. The second eta factor carries the arithmetically correct
-interchange of u and v. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set
@@ -38,8 +34,6 @@ def a03ZeroModeRatioEtaPair (α : MomentShifts) (a b : ℕ) (u v s : ℂ) : ℂ 
   bblrEtaArithmetic (α 0) (α 1) (α 2) (α 3) u v s a*
     bblrEtaArithmetic (α 2) (α 3) (α 0) (α 1) v u s b
 
-/-- This is the actual zeta quotient and eta product in (22)--(23),
-after removing just the same-side difference poles. -/
 def a03ZeroModeRatioArithmeticNumerator (α : MomentShifts) (a b : ℕ)
     (u v s : ℂ) : ℂ :=
   a03ZeroModeRatioRemovedPair α u v*riemannZeta s*

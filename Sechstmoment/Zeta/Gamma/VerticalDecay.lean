@@ -2,13 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 import Sechstmoment.Zeta.AFE.Four.LargeGammaStrip
 
-/-!
-# Absolute vertical Gamma decay for the one-sided Mellin contour
-
-The existing Euler-product Gamma comparison and the reflection formula give
-exponential decay on a positive strip. Two actual Gamma recurrences extend
-that estimate across the D04 strip. Nonzero imaginary part excludes all poles.
--/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
@@ -23,8 +16,6 @@ private theorem d04Gamma_add_one_ne_zero {z : ℂ} (hz : 1 ≤ |z.im|) : z+1 ≠
   apply d04Gamma_point_ne_zero
   simpa using hz
 
-/-- A fixed polynomial envelope, uniform across the entire one-sided strip.
-The bound includes both horizontal sides of every Mellin rectangle. -/
 theorem d04Gamma_vertical_strip_norm_le :
     ∃ C : ℝ, 0 < C ∧ ∀ z : ℂ, -1 ≤ z.re → z.re ≤ 2 → 1 ≤ |z.im| →
       ‖Complex.Gamma z‖ ≤
@@ -55,8 +46,6 @@ theorem d04Gamma_vertical_strip_norm_le :
     constructor <;> norm_num <;> linarith
   simpa using hΓ (z+2) hs
 
-/-- The strip estimate in explicit real coordinates, retaining the full
-exponential factor. -/
 theorem d04Gamma_vertical_strip_coordinates :
     ∃ C : ℝ, 0 < C ∧ ∀ c v : ℝ, -1 ≤ c → c ≤ 2 → 1 ≤ |v| →
       ‖Complex.Gamma ((c : ℂ)+(v : ℂ)*I)‖ ≤
@@ -67,8 +56,6 @@ theorem d04Gamma_vertical_strip_coordinates :
   simpa using hΓ ((c : ℂ)+(v : ℂ)*I) (by simpa using hc0)
     (by simpa using hc2) (by simpa using hv)
 
-/-- Multiplication by an arbitrary fixed polynomial preserves uniform
-horizontal decay of Gamma across the whole Mellin strip. -/
 theorem d04Gamma_horizontal_polynomial_decay (k : ℕ) :
     ∀ η : ℝ, 0 < η → ∃ V : ℝ, 0 < V ∧ ∀ c v : ℝ,
       -1 ≤ c → c ≤ 2 → V ≤ |v| →

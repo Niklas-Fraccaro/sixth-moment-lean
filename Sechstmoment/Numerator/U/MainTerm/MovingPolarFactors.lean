@@ -1,13 +1,6 @@
 import Sechstmoment.Arithmetic.Euler.Shifted.ScaledLimit
 import Sechstmoment.Numerator.U.Replacement.GaussianCoefficientGrowth
 
-/-!
-# Polar limits with moving normalized shifts
-
-The normalized arguments may converge while the height tends to infinity.
-The actual zeta function and shifted Euler product are retained. These joint
-limits are used for compact uniformity away from the pure polar hyperplanes.
--/
 
 namespace Sechstmoment
 open Complex Filter Set Source
@@ -20,8 +13,6 @@ theorem complex_inverse_height_tendsto {ι : Type*} {l : Filter ι}
   simpa only [Function.comp_apply, Complex.ofReal_inv, Complex.ofReal_zero] using
     (tendsto_inv_atTop_zero.comp hL).ofReal
 
-/-- The actual scaled zeta factor has a joint limit at every nonzero
-limiting normalized argument. No asymptotic is assumed as a premise. -/
 theorem scaled_riemannZeta_moving_tendsto {ι : Type*} {l : Filter ι}
     {L : ι → ℝ} {w : ι → ℂ} {w₀ : ℂ}
     (hL : Tendsto L l atTop) (hw : Tendsto w l (𝓝 w₀)) (hw₀ : w₀ ≠ 0) :
@@ -37,8 +28,6 @@ theorem scaled_riemannZeta_moving_tendsto {ι : Type*} {l : Filter ι}
     hw.eventually (eventually_ne_nhds hw₀)] with i hLi hwi
   exact (scaled_riemannZeta_eq_regularized hLi.ne' hwi).symm
 
-/-- Continuity of the genuine shifted Euler product at its origin gives
-the same arithmetic factor for moving, convergent normalized triples. -/
 theorem shiftedPolarEulerRest_moving_scaled_tendsto {ι : Type*} {l : Filter ι}
     {L : ι → ℝ} {ab : ι → PolarShiftSpace} {ab₀ : PolarShiftSpace}
     (hL : Tendsto L l atTop) (hab : Tendsto ab l (𝓝 ab₀)) :
@@ -72,7 +61,6 @@ theorem ninePolarArgument_continuous_shifts (u v z : ℂ) (ij : Fin 3 × Fin 3) 
   fin_cases i <;> fin_cases j <;>
     simp only [ninePolarArgument, polarLeftArguments, polarRightArguments] <;> fun_prop
 
-/-- Joint limit of all nine actual scaled zeta factors. -/
 theorem ninePolarZetaFactor_moving_tendsto {ι : Type*} {l : Filter ι}
     {L : ι → ℝ} {σ : ι → MomentShifts} {σ₀ : MomentShifts}
     (hL : Tendsto L l atTop) (hσ : Tendsto σ l (𝓝 σ₀)) (u v z : ℂ)

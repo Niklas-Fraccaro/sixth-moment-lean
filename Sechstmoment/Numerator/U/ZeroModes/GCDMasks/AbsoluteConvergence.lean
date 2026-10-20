@@ -5,9 +5,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.SpatialBroadBudget
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.TripleAbsoluteMass
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.Measurability
 
-/-! Absolute convergence of the literal unrestricted native gcd expression.
-The genuine arithmetic-frequency and positive-X envelopes dominate all
-three countable indices simultaneously. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -288,9 +285,6 @@ theorem a03UnrestrictedRatioGCDVStarIntegrand_norm_le_majorant
         positivity
       convert mul_le_mul_of_nonneg_left hD hZ using 1 <;> dsimp [Z] <;> ring
 
-/-- The unrestricted three native series and the full positive common-X
-integral converge absolutely; their exchange is a theorem about the
-literal integrand, with the actual leading original/dual time profiles. -/
 theorem a03UnrestrictedRatioGCDVStar_absolute_convergence {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     (K : Set MomentShifts) (hK : IsCompact K) {κ : ℝ} (hκ : 0<κ)
@@ -385,8 +379,6 @@ theorem a03UnrestrictedRatioGCDVStar_absolute_convergence {Φ : ℝ→ℂ}
   have hComplexSum := hasSum_integral_of_summable_integral_norm hFI hNormSum
   exact ⟨hFI,hNormSum,hComplexSum.summable,hNS,hNMI,hSI,hComplexSum.tsum_eq⟩
 
-/-- Every measurable native mask bounded by one preserves the proved
-absolute spatial series, including its exact Bochner interchange. -/
 theorem a03NativeGCD_bounded_mask_absolute_convergence
     {F : ((ℕ×ℕ)×ℕ)→ℝ→ℂ}
     (hFI : ∀ p,IntegrableOn (F p) (Ioi 0))

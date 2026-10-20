@@ -1,8 +1,5 @@
 import Sechstmoment.Analysis.Complex.SimplePole
 
-/-! Actual rectangle movement between two vertical lines without a pole.
-The hypotheses are holomorphy, integrability, and horizontal edge decay;
-the displaced integral identity is proved from rectangle Cauchy. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Filter Set

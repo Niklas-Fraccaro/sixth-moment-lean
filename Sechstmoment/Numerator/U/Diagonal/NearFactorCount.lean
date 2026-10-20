@@ -1,20 +1,11 @@
 import Sechstmoment.Numerator.U.Diagonal.PositiveFactorCount
 import Sechstmoment.Numerator.U.Diagonal.ShortFactorAverage
 
-/-!
-# Genuine near-product fibers and their averaged count
-
-The four AFE indices are enumerated without introducing a free gap index.
-For each first factor pair the second product lies in a short interval.
-The harmonic small-factor estimate proves its count, including the endpoint
-cost. No divisor-growth or near-mass hypothesis is used.
--/
 
 namespace Sechstmoment
 open scoped BigOperators
 open Classical
 
-/-- The actual second factor pairs near the fixed first product `M`. -/
 def positiveNearFactorFiber (Q u v M H : ℕ) : Finset (ℕ × ℕ) :=
   (positiveProductFactorPairs Q).filter fun p =>
     u*M ≤ v*(p.1*p.2)+H ∧ v*(p.1*p.2) ≤ u*M+H
@@ -41,7 +32,6 @@ theorem positiveNearFactorFiber_subset_short {Q u v M H : ℕ} (hv : 0<v) :
       split_ifs <;> omega
     exact hupper.trans (hdivision.trans hadd)
 
-/-- Each genuine near fiber has the harmonic short-interval count. -/
 theorem positiveNearFactorFiber_card_le_harmonic {Q u v M H K : ℕ}
     (hv : 0<v) (hQ : Q≤K^2) :
     ((positiveNearFactorFiber Q u v M H).card : ℝ) ≤
@@ -52,7 +42,6 @@ theorem positiveNearFactorFiber_card_le_harmonic {Q u v M H K : ℕ}
       (positiveNearFactorFiber_subset_short (Q:=Q) (u:=u) (M:=M) (H:=H) hv))
   exact hc.trans (positiveShortFactorPairs_card_le_harmonic hQ)
 
-/-- The exact quotient is at most its real counterpart. -/
 theorem positiveNearFactorFiber_card_le_real_harmonic {Q u v M H K : ℕ}
     (hv : 0<v) (hQ : Q≤K^2) :
     ((positiveNearFactorFiber Q u v M H).card : ℝ) ≤
@@ -68,7 +57,6 @@ theorem positiveNearFactorFiber_card_le_real_harmonic {Q u v M H K : ℕ}
     push_cast
     nlinarith [mul_le_mul_of_nonneg_right hq hH])
 
-/-- Four genuine AFE variables, restricted by the actual near relation. -/
 def positiveNearFactorRectangle (P Q u v H : ℕ) :
     Finset ((ℕ × ℕ) × (ℕ × ℕ)) :=
   (positiveProductFactorPairs P).biUnion fun p =>
@@ -88,7 +76,6 @@ theorem mem_positiveNearFactorRectangle {P Q u v H : ℕ}
   · rintro ⟨hp,hq⟩
     exact Finset.mem_biUnion.mpr ⟨p,hp,Finset.mem_image.mpr ⟨q,hq,rfl⟩⟩
 
-/-- Unconditional count of the full four-variable near set. -/
 theorem positiveNearFactorRectangle_card_le_harmonic {P Q u v H K : ℕ}
     (hv : 0<v) (hQ : Q≤K^2) :
     ((positiveNearFactorRectangle P Q u v H).card : ℝ) ≤

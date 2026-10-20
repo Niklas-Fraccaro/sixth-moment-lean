@@ -1,16 +1,12 @@
 import Sechstmoment.Numerator.U.TwistedMomentHolomorphy
 import Sechstmoment.Numerator.V.PolynomialDefinitions
 
-/-! A05: the actual U test from manuscript (1.1), including its conjugated
-second amplifier. Its genuine mixed generator is differentiated under its
-compact time integral in every order. No asymptotic moment is assumed. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial
 open scoped Topology BigOperators ComplexConjugate
 noncomputable section
 set_option maxHeartbeats 1600000
 
-/-- Actual U amplitude before the lower zeta generator is differentiated. -/
 def uPolynomialMixedAmplitude (T : ℝ) (f g Φ : ℝ→ℝ) (t : ℝ) : ℂ :=
   (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*star (criticalChi t)*
     profileDirichletSum T f (1-criticalLinePoint t)*
@@ -64,8 +60,6 @@ private def uMinusDerivativeFamily (n : ℕ) {T : ℝ} (hT : 1<T)
     rw [← iteratedDeriv_succ] at hd
     exact hd.hasFDerivAt
 
-/-- Every next derivative of the actual compact mixed integral is obtained
-by differentiating its actual zeta integrand. -/
 theorem uPolynomialMixedDerivative_hasDerivAt (n : ℕ) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ)
@@ -99,8 +93,6 @@ theorem uPolynomialMixedDerivative_hasDerivAt (n : ℕ) {T : ℝ} (hT : 1<T)
   simpa only [ContinuousLinearMap.toSpanSingleton_apply,smul_apply,
     one_smul,smul_eq_mul,one_mul,uPolynomialMixedDerivative,A] using h
 
-/-- The full integral is exactly the actual compact integral, because the
-source weight has its proved dyadic support. -/
 theorem uPolynomialMixedGenerator_eq_interval {T : ℝ} (hT : 0<T)
     (f g Φ : ℝ→ℝ) (hΦ : tsupport Φ⊆Icc 1 2) (z : ℂ) :
     uPolynomialMixedGenerator T f g Φ z = uPolynomialMixedDerivative 0 T f g Φ z := by
@@ -121,7 +113,6 @@ theorem uPolynomialMixedGenerator_eq_interval {T : ℝ} (hT : 0<T)
   have hf0 : Φ (t/T)=0 := image_eq_zero_of_notMem_tsupport (fun h=>hx (hΦ h))
   simp only [uPolynomialMixedAmplitude,hf0,Complex.ofReal_zero,zero_mul]
 
-/-- Genuine all-order differentiation of the literal U mixed moment. -/
 theorem uPolynomialMixedGenerator_iteratedDeriv (n : ℕ) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ)
@@ -140,8 +131,6 @@ theorem uPolynomialMixedGenerator_iteratedDeriv (n : ℕ) {T : ℝ} (hT : 1<T)
     rw [iteratedDeriv_succ,he.deriv_eq]
     exact (uPolynomialMixedDerivative_hasDerivAt n hT hL a b f g Φ hf hg hΦ z hz).deriv
 
-/-- Dyadic support turns any actual U-amplitude integral into its compact
-interval integral, without assuming integrability of the multiplier. -/
 theorem uPolynomialMixedAmplitude_integral_eq_interval {T : ℝ} (hT : 0<T)
     (f g Φ : ℝ→ℝ) (hΦ : tsupport Φ⊆Icc 1 2) (K : ℝ→ℂ) :
     (∫ t:ℝ, uPolynomialMixedAmplitude T f g Φ t*K t) =
@@ -160,8 +149,6 @@ theorem uPolynomialMixedAmplitude_integral_eq_interval {T : ℝ} (hT : 0<T)
   have hf0 : Φ (t/T)=0 := image_eq_zero_of_notMem_tsupport (fun h=>hx (hΦ h))
   simp only [uPolynomialMixedAmplitude,hf0,Complex.ofReal_zero,zero_mul]
 
-/-- Actual U derivative integrands are integrable: continuity and the actual
-compact weight support prove the required domination. -/
 theorem uPolynomialMixedDerivative_integrable (n : ℕ) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ)
@@ -191,13 +178,10 @@ theorem uPolynomialMixedDerivative_integrable (n : ℕ) {T : ℝ} (hT : 1<T)
     iteratedDeriv n (zetaCMinus T t) z ≠ 0 at ht
   simp only [uPolynomialMixedAmplitude,hf0,Complex.ofReal_zero,zero_mul,ne_eq,not_true_eq_false] at ht
 
-/-- The literal complex U numerator moment, with the actual test from §1.1. -/
 def uPolynomialRawMixedMoment (T : ℝ) (p : ℝ[X]) (f g Φ : ℝ→ℝ) : ℂ :=
   ∫ t:ℝ, (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
     star (rawZetaTest .U T t p f g)
 
-/-- Exact pointwise realization of the actual U integrand by lower-generator
-polynomial derivatives. -/
 theorem uPolynomialRawMixedIntegrand_eq {T : ℝ} (hT : 1<T) (t : ℝ)
     (p : ℝ[X]) (f g Φ : ℝ→ℝ) :
     (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
@@ -221,8 +205,6 @@ theorem uPolynomialRawMixedIntegrand_eq {T : ℝ} (hT : 1<T) (t : ℝ)
   intro n _
   ring
 
-/-- The actual U numerator is exactly the same finite polynomial operator
-applied to the genuine mixed integral, with proved integrability. -/
 theorem uPolynomialRawMixedMoment_eq_polynomialOperator {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (p : ℝ[X]) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ) :
@@ -238,7 +220,6 @@ theorem uPolynomialRawMixedMoment_eq_polynomialOperator {T : ℝ} (hT : 1<T)
   rw [uPolynomialMixedAmplitude_integral_eq_interval (zero_lt_one.trans hT) f g Φ hΦ.2]
   rfl
 
-/-- Literal Fin(N+1) operator form, for every degree bound. -/
 theorem uPolynomialRawMixedMoment_eq_finiteDifferentialOperator (N : ℕ)
     {T : ℝ} (hT : 1<T) (hL : 16<Real.log T) (a b : ℝ) (p : ℝ[X])
     (hp : p.natDegree≤N) (f g Φ : ℝ→ℝ)
@@ -252,7 +233,6 @@ theorem uPolynomialRawMixedMoment_eq_finiteDifferentialOperator (N : ℕ)
   exact (Fin.sum_univ_eq_sum_range (fun n =>
     (p.coeff n:ℂ)*iteratedDeriv n (uPolynomialMixedGenerator T f g Φ) 0) (N+1)).symm
 
-/-- The actual U mixed generator is holomorphic on the fixed genuine disk. -/
 theorem uPolynomialMixedGenerator_differentiableOn {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ) :
@@ -272,8 +252,6 @@ theorem uPolynomialMixedGenerator_analyticAt {T : ℝ} (hT : 1<T)
   (uPolynomialMixedGenerator_differentiableOn hT hL a b f g Φ hf hg hΦ).analyticAt
     (isOpen_ball.mem_nhds (by simpa only [mem_ball,dist_zero_right] using hz))
 
-/-- Actual raw U numerator integrability, derived from the proved compact
-zeta derivative integrands. -/
 theorem uPolynomialRawMixedIntegrand_integrable {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (p : ℝ[X]) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ) :
@@ -285,13 +263,10 @@ theorem uPolynomialRawMixedIntegrand_integrable {T : ℝ} (hT : 1<T)
   exact hi.congr (Eventually.of_forall (fun t =>
     (uPolynomialRawMixedIntegrand_eq hT t p f g Φ).symm))
 
-/-- The exact phase-projected U numerator integral from §1.1. -/
 def uPolynomialProjectedMixedMoment (T : ℝ) (p : ℝ[X]) (f g Φ : ℝ→ℝ) : ℂ :=
   ∫ t:ℝ, (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
     star (projectedZetaTest .U T t p f g)
 
-/-- Projection takes exactly the real part of the actual complex U moment;
-all Bochner integrability requirements are proved from the actual profiles. -/
 theorem uPolynomialProjectedMixedMoment_eq_real {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (p : ℝ[X]) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ) :
@@ -314,11 +289,8 @@ theorem uPolynomialProjectedMixedMoment_eq_real {T : ℝ} (hT : 1<T)
   exact (integral_ofReal (𝕜 := ℂ)).trans
     (congrArg Complex.ofReal (integral_re hi))
 
-/-- The actual BBLR line needed by the U mixed generator. The shift is on
-one lower zeta factor; the amplifier order is necessarily swapped. -/
 def uBBLRShifts (z : ℂ) : MomentShifts := ![0,0,z,0]
 
-/-- Exact, unshifted functional equation cancels the U chi multiplier. -/
 theorem riemannZeta_mul_star_criticalChi (t : ℝ) :
     riemannZeta (criticalLinePoint t)*star (criticalChi t) =
       riemannZeta (1-criticalLinePoint t) := by
@@ -327,8 +299,6 @@ theorem riemannZeta_mul_star_criticalChi (t : ℝ) :
     _ = (criticalChi t*star (criticalChi t))*riemannZeta (1-criticalLinePoint t) := by ring
     _ = _ := by rw [criticalChi_mul_star,one_mul]
 
-/-- The U generator is exactly a BBLR twisted fourth moment, multiplied by
-its literal exp(z/2) centering factor. No Stirling replacement is needed. -/
 theorem uPolynomialMixedIntegrand_eq_twistedFourthIntegrand (T t : ℝ)
     (f g Φ : ℝ→ℝ) (z : ℂ) :
     uPolynomialMixedAmplitude T f g Φ t*zetaCMinus T t z =
@@ -345,7 +315,6 @@ theorem uPolynomialMixedIntegrand_eq_twistedFourthIntegrand (T t : ℝ)
       profileDirichletSum T g (criticalLinePoint t)*Complex.exp (z/2)*
       riemannZeta (1-criticalLinePoint t+z/(Real.log T:ℂ)))*hχ
 
-/-- Exact bridge from the corrected manuscript U test to the source object. -/
 theorem uPolynomialMixedGenerator_eq_twistedFourthMoment (T : ℝ)
     (f g Φ : ℝ→ℝ) (z : ℂ) :
     uPolynomialMixedGenerator T f g Φ z =
@@ -355,8 +324,6 @@ theorem uPolynomialMixedGenerator_eq_twistedFourthMoment (T : ℝ)
   rw [integral_const_mul]
   rfl
 
-/-- The actual U polynomial moment is precisely its finite differential
-operator on the actual centered BBLR moment, with swapped amplifier roles. -/
 theorem uPolynomialRawMixedMoment_eq_BBLRDifferentialOperator (N : ℕ)
     {T : ℝ} (hT : 1<T) (hL : 16<Real.log T) (a b : ℝ) (p : ℝ[X])
     (hp : p.natDegree≤N) (f g Φ : ℝ→ℝ)

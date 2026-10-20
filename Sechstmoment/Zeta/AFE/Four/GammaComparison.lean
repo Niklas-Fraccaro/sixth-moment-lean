@@ -3,20 +3,12 @@ import Mathlib.Tactic.GCongr
 import Sechstmoment.Zeta.AFE.Four.PhaseComparison
 import Sechstmoment.Zeta.Centering.GammaRatio
 
-/-!
-# Actual BBLR fourfold Gamma quotient
-
-The estimate below combines the independently proved Euler-product Gamma
-ratio estimate with cancellation of the two upper and two lower principal
-powers. No Stirling expansion or moment bound is assumed.
--/
 
 namespace Sechstmoment.Source
 open Complex Filter
 open scoped BigOperators Topology
 noncomputable section
 
-/-- Each factor is normalized by its own actual principal power. -/
 def bblrNormalizedGammaFactor (t : ℝ) (α : MomentShifts) (z : ℂ)
     (j : Fin 4) : ℂ :=
   (Gamma (bblrGammaBase t α j+z/2)/Gamma (bblrGammaBase t α j))/
@@ -41,8 +33,6 @@ private theorem bblrGammaBase_re_lower {t A : ℝ} (hA : 0 ≤ A)
   rw [he]
   linarith
 
-/-- Actual individual Gamma factors are uniformly close to their principal
-powers for arbitrary complex contour shifts satisfying the displayed bound. -/
 theorem bblrNormalizedGammaFactor_error_le {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
     (z : ℂ) (hz : 48*(‖z‖+‖z‖^2) < t) (j : Fin 4) :
@@ -62,7 +52,6 @@ theorem bblrNormalizedGammaFactor_error_le {t A : ℝ} (hA : 0 ≤ A)
   rw [div_le_div_iff₀ hipos htpos]
   nlinarith [sq_nonneg ‖z‖, norm_nonneg z]
 
-/-- A fourfold product error bound with explicit constant. -/
 theorem fourfold_product_error_le (r : Fin 4 → ℂ) {E : ℝ}
     (hE : 0 ≤ E) (hE1 : E ≤ 1) (hr : ∀ j, ‖r j-1‖ ≤ E) :
     ‖(∏ j : Fin 4, r j)-1‖ ≤ 15*E := by
@@ -92,8 +81,6 @@ theorem fourfold_product_error_le (r : Fin 4 → ℂ) {E : ℝ}
   linarith [hr 3]
 
 
-/-- Exact separation of the actual fourfold quotient into its four normalized
-Gamma errors and the cancelling principal-power phase. -/
 theorem bblrGammaQuotient_normalized_eq {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ A) (z : ℂ) :
     bblrGammaQuotient t α z/(t/2 : ℂ)^(2*z) =
@@ -118,8 +105,6 @@ theorem bblrGammaQuotient_normalized_eq {t A : ℝ} (hA : 0 ≤ A)
   intro j _
   congr 2; ring
 
-/-- A quantitative estimate for the actual fourfold BBLR Gamma quotient,
-with all phase factors retained and cancelled by proved identities. -/
 theorem bblrGammaQuotient_normalized_error_le {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
     (z : ℂ) (hz : 192*(‖z‖+‖z‖^2) < t)
@@ -155,7 +140,6 @@ theorem bblrGammaQuotient_normalized_error_le {t A : ℝ} (hA : 0 ≤ A)
     _ = _ := by dsimp [E]; ring
 
 
-/-- The same actual Gamma estimate in unnormalized form. -/
 theorem bblrGammaQuotient_error_le {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
     (z : ℂ) (hz : 192*(‖z‖+‖z‖^2) < t)
@@ -190,8 +174,6 @@ private theorem eventually_mul_rpow_lt_id (C : ℝ) (hC : 0 < C)
   have hh := mul_lt_mul_of_pos_left ht hC
   simpa [mul_assoc, hC.ne'] using hh
 
-/-- The actual contour-shift estimate is uniform on a growing disk of radius
-`t^ε`, for each fixed positive `ε < 1/2`. -/
 theorem bblrGammaQuotient_uniform_growing_disk {A ε : ℝ}
     (hA : 0 ≤ A) (hε : 0 ≤ ε) (hεhalf : ε < 1/2) :
     ∀ᶠ t : ℝ in Filter.atTop, ∀ α : MomentShifts, (∀ j, ‖α j‖ ≤ A) →

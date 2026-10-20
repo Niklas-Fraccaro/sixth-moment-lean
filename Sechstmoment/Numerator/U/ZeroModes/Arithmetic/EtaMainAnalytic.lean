@@ -1,8 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.EtaMainFunction
 
-/-! Entire dependence and vertical-strip bounds for the actual finite eta
-arithmetic main-term sum. The bounds come from its divisor expansion. -/
 
 namespace Sechstmoment.Source
 open Complex
@@ -11,7 +9,6 @@ open scoped BigOperators
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- Uniform boundedness on every finite closed vertical strip. -/
 def A03VerticalStripBounded (f : ℂ → ℂ) : Prop :=
   ∀ R : ℝ, 0 ≤ R → ∃ C : ℝ, 0 ≤ C ∧ ∀ s : ℂ, |s.re| ≤ R → ‖f s‖ ≤ C
 
@@ -77,8 +74,6 @@ private theorem A03VerticalStripBounded.prod {ι : Type*} (t : Finset ι)
         (hf i (Finset.mem_insert_self i t)).mul
           (ih (fun j hj => hf j (Finset.mem_insert_of_mem hj)))
 
-/-- A positive integer raised to a real-slope complex affine exponent is
-uniformly bounded on finite vertical strips. -/
 theorem a03NatCpowAffine_verticalStripBounded {n : ℕ} (hn : 0 < n)
     (c : ℂ) (k : ℝ) :
     A03VerticalStripBounded (fun s : ℂ => (n:ℂ)^(c+(k:ℂ)*s)) := by
@@ -128,8 +123,6 @@ private theorem a03EtaCorrection_differentiable {p : ℕ} (hp : p.Prime)
   unfold bblrEtaCorrection
   exact (((differentiable_const (1:ℂ)).sub hpow).mul_const _).div_const _
 
-/-- The normalized eta coefficient is an explicit finite exponential
-polynomial in the contour variable. -/
 theorem a03NormalizedEtaArithmetic_divisor_sum (α β γ δ s : ℂ)
     {n : ℕ} (hn : n ≠ 0) :
     bblrNormalizedEtaArithmetic α β γ δ s n =
@@ -143,7 +136,6 @@ theorem a03NormalizedEtaArithmetic_divisor_sum (α β γ δ s : ℂ)
   have h₂ : α-β+γ-δ+(β+δ+2*s)=α+γ+2*s := by ring
   rw [h₁,h₂]
 
-/-- Entire dependence is proved directly from the actual divisor sum. -/
 theorem bblrNormalizedEtaArithmetic_differentiable (α β γ δ : ℂ)
     {n : ℕ} (hn : n ≠ 0) :
     Differentiable ℂ (fun s : ℂ => bblrNormalizedEtaArithmetic α β γ δ s n) := by
@@ -163,8 +155,6 @@ theorem bblrNormalizedEtaArithmetic_differentiable (α β γ δ : ℂ)
       exact a03EtaCorrection_differentiable (Nat.prime_of_mem_primeFactors hp) (α+γ) 2 (γ-δ)
         (α-β+γ-δ)
 
-/-- Uniform strip bounds are proved from finitely many positive-integer
-powers; the correction denominator is independent of the contour variable. -/
 theorem bblrNormalizedEtaArithmetic_verticalStripBounded (α β γ δ : ℂ)
     {n : ℕ} (hn : n ≠ 0) :
     A03VerticalStripBounded (fun s : ℂ => bblrNormalizedEtaArithmetic α β γ δ s n) := by
@@ -186,7 +176,6 @@ theorem bblrNormalizedEtaArithmetic_verticalStripBounded (α β γ δ : ℂ)
         a03EtaCorrection_verticalStripBounded (Nat.prime_of_mem_primeFactors hp)
           (α+γ) 2 (γ-δ) (α-β+γ-δ)
 
-/-- The finite amplifier arithmetic factor is entire in `s`. -/
 theorem a03EtaMainArithmetic_differentiable (N₁ N₂ : ℕ) (a b : ℕ → ℂ)
     (α β γ δ : ℂ) :
     Differentiable ℂ (fun s : ℂ => a03EtaMainArithmetic N₁ N₂ a b α β γ δ s) := by
@@ -211,7 +200,6 @@ theorem a03EtaMainArithmetic_differentiable (N₁ N₂ : ℕ) (a b : ℕ → ℂ
   · simpa only [ite_eq_right hmn] using
       (differentiable_const (0:ℂ) : Differentiable ℂ (fun _ : ℂ => (0:ℂ)))
 
-/-- The finite amplifier factor is uniformly bounded on any finite strip. -/
 theorem a03EtaMainArithmetic_verticalStripBounded (N₁ N₂ : ℕ) (a b : ℕ → ℂ)
     (α β γ δ : ℂ) :
     A03VerticalStripBounded (fun s : ℂ => a03EtaMainArithmetic N₁ N₂ a b α β γ δ s) := by

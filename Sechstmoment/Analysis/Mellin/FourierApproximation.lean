@@ -1,7 +1,5 @@
 import Sechstmoment.Analysis.Mellin.FourierCutoffDecay
 
-/-! Arbitrary-power uniform approximation by the actual smooth frequency
-cutoff. No Fourier approximation theorem is assumed. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory

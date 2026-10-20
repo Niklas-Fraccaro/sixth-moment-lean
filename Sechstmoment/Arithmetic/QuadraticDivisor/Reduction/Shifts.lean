@@ -54,15 +54,12 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.Poisson
 import Std
 
-/-! ## Outer Cardinality -/
 
-/-! Explicit outer-tuple counting for the finite Poisson truncation. -/
 namespace DivisorProof
 open MeasureTheory Set Finset
 open scoped BigOperators
 noncomputable section
 
-/-- The actual five-variable outer index set contains at most `32 ABM₁N₁H` tuples. -/
 theorem quadraticMainIndexSet_card_le (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j) :
     ((quadraticMainIndexSet q).card : ℝ) ≤ 32*q.A*q.B*q.M₁*q.N₁*q.H := by
   let sizes : Fin 5 → ℝ := ![q.A, q.B, q.M₁, q.N₁, q.H]
@@ -84,7 +81,6 @@ theorem quadraticMainIndexSet_card_le (q : QuadraticScales) (h : ∀ j, 1 ≤ q.
         (fun j _ => Nat.floor_le (mul_nonneg (by norm_num) (hs j)))
     _ = 32*q.A*q.B*q.M₁*q.N₁*q.H := by simp [sizes, Fin.prod_univ_succ]; ring
 
-/-- The source hypotheses with `ρ ≤ 1/2` give the crude bound `H ≤ KQ`. -/
 theorem shiftScale_le_mass (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)
     {K ρ : ℝ} (hK : 0 ≤ K) (hρ : ρ ≤ 1/2)
     (hH : q.H ≤ K*(q.A*q.B)^(1/2+ρ)) : q.H ≤ K*q.mass := by
@@ -94,7 +90,6 @@ theorem shiftScale_le_mass (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)
       _ = _ := Real.rpow_one _
   exact hH.trans ((mul_le_mul_of_nonneg_left hp hK).trans (mul_le_mul_of_nonneg_left hABQ hK))
 
-/-- The precise `O_K(Q²)` counting bound used in §4.3. -/
 theorem quadraticMainIndexSet_card_le_mass_sq (q : QuadraticScales)
     (h : ∀ j, 1 ≤ q.size j) {K : ℝ} (hH : q.H ≤ K*q.mass) :
     ((quadraticMainIndexSet q).card : ℝ) ≤ (32*K)*q.mass^2 := by
@@ -111,16 +106,13 @@ end
 end DivisorProof
 
 
-/-! ## Weight Shift -/
 
-/-! Mean-value and factorization estimates underlying the shift removal (18). -/
 namespace DivisorProof
 open Set Finset
 open scoped BigOperators ContDiff
 noncomputable section
 set_option maxHeartbeats 800000
 
-/-- The mean-value estimate uses the actual first derivative of the weight. -/
 theorem weight_lipschitz_bound {W : ℝ → ℝ} (hW : SmoothDyadicWeight W)
     {b : ℝ} (hder : ∀ x, ‖iteratedDeriv 1 W x‖ ≤ b) (x y : ℝ) :
     ‖W y-W x‖ ≤ b*‖y-x‖ := by
@@ -128,7 +120,6 @@ theorem weight_lipschitz_bound {W : ℝ → ℝ} (hW : SmoothDyadicWeight W)
     (fun z _ => (hW.1.differentiable (by simp)).differentiableAt)
     (fun z _ => by simpa only [iteratedDeriv_one] using hder z) (mem_univ x) (mem_univ y)
 
-/-- The pointwise shift-removal estimate, valid for either sign of the shift. -/
 theorem weight_shift_bound {W : ℝ → ℝ} (hW : SmoothDyadicWeight W)
     {b : ℝ} (hder : ∀ x, ‖iteratedDeriv 1 W x‖ ≤ b)
     (u s : ℝ) {v : ℝ} (hv : 0 < v) :
@@ -137,7 +128,6 @@ theorem weight_shift_bound {W : ℝ → ℝ} (hW : SmoothDyadicWeight W)
   have heq : (u-s)/v-u/v = -s/v := by ring
   simpa only [heq, norm_div, norm_neg, Real.norm_eq_abs, abs_of_pos hv, mul_div_assoc] using h
 
-/-- The normalized dyadic pointwise error is `O_K(H/(AM))`. -/
 theorem dyadic_weight_shift_bound {W : ℝ → ℝ} (hW : SmoothDyadicWeight W)
     {b : ℝ} (hder : ∀ x, ‖iteratedDeriv 1 W x‖ ≤ b)
     {U V H K s : ℝ} (hU : 0 < U) (hV : 0 < V) (hH : 0 ≤ H) (_hK : 0 ≤ K)
@@ -150,7 +140,6 @@ theorem dyadic_weight_shift_bound {W : ℝ → ℝ} (hW : SmoothDyadicWeight W)
       mul_le_mul (mul_le_mul_of_nonneg_left hshift hb) hbalance hU.le (by positivity)
     _ = (2*b*K*H)*V := by ring
 
-/-- Positive ordered ternary factorizations, as a literal finite set. -/
 def tripleFactorizations (n : ℕ) : Finset (ℕ × ℕ × ℕ) :=
   ((Finset.Icc 1 n) ×ˢ ((Finset.Icc 1 n) ×ˢ (Finset.Icc 1 n))).filter
     (fun t => t.1*t.2.1*t.2.2 = n)
@@ -174,7 +163,6 @@ theorem mem_tripleFactorizations {a b c n : ℕ} :
         (le_mul_of_one_le_right (Nat.zero_le (a*b)) hc)
     · exact le_mul_of_one_le_left (Nat.zero_le c) (Nat.mul_pos ha hb)
 
-/-- A ternary factorization is determined by two divisors of `n`. -/
 theorem tripleFactorizations_card_le_divisor_sq (n : ℕ) (hn : n ≠ 0) :
     (tripleFactorizations n).card ≤ n.divisors.card^2 := by
   classical
@@ -204,7 +192,6 @@ theorem tripleFactorizations_card_le_divisor_sq (n : ℕ) (hn : n ≠ 0) :
         exact Prod.ext ha (Prod.ext hb (mul_left_cancel₀ hprod0 (htprod.trans ht'prod.symm)))
     _ = n.divisors.card^2 := by simp [pow_two]
 
-/-- The source's `τ₃(n) ≪ρ n^ρ` estimate is proved, rather than assumed. -/
 theorem tripleFactorizations_subpower {ρ : ℝ} (hρ : 0 < ρ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ n : ℕ, n ≠ 0 →
       ((tripleFactorizations n).card : ℝ) ≤ C*(n : ℝ)^ρ := by
@@ -217,7 +204,6 @@ theorem tripleFactorizations_subpower {ρ : ℝ} (hρ : 0 < ρ) :
 theorem tripleFactorizations_zero : tripleFactorizations 0 = ∅ := by
   simp [tripleFactorizations]
 
-/-- The bound extends to zero because there are no positive factorizations of zero. -/
 theorem tripleFactorizations_subpower_all {ρ : ℝ} (hρ : 0 < ρ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ n : ℕ,
       ((tripleFactorizations n).card : ℝ) ≤ C*(n : ℝ)^ρ := by
@@ -233,9 +219,7 @@ end
 end DivisorProof
 
 
-/-! ## Shift Counting -/
 
-/-! Counting the actual seven-variable relation by two ternary factorizations. -/
 namespace DivisorProof
 open Finset Set Classical
 open scoped BigOperators
@@ -254,7 +238,6 @@ theorem signed_relation_right_product (positive : Bool) {n : Fin 7 → ℕ}
   cases positive <;> simp only [shiftedProduct, Bool.false_eq_true, ite_false, ite_true] at hcast ⊢
   all_goals omega
 
-/-- Each `(u,h)` fiber embeds into the two actual ternary factorization sets. -/
 theorem signed_tuple_fiber_card_le (s : Finset (Fin 7 → ℕ))
     (positive : Bool) (hpos : ∀ n ∈ s, ∀ j, 0 < n j)
     (hrel : ∀ n ∈ s, signedQuadraticRelation positive n) (u h : ℕ) :
@@ -290,8 +273,6 @@ theorem signed_tuple_fiber_card_le (s : Finset (Fin 7 → ℕ))
         · exact hh.trans hh'.symm
     _ = _ := card_product _ _
 
-/-- Uniform counting of all tuples satisfying the signed relation.
-The constant is obtained from a proved divisor bound, for either sign. -/
 theorem signed_tuple_count_subpower {ρ : ℝ} (hρ : 0 < ρ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (s : Finset (Fin 7 → ℕ)) (positive : Bool) (U H : ℕ),
       (∀ n ∈ s, ∀ j, 0 < n j) →
@@ -337,17 +318,13 @@ end
 end DivisorProof
 
 
-/-! ## Shift Error -/
 
-/-! Quantitative summation of the weight-shift error over the actual signed relation. -/
 namespace DivisorProof
 open Finset Set Classical
 open scoped BigOperators
 noncomputable section
 set_option maxHeartbeats 800000
 
-/-- Real-scale version of the full tuple count; the two factorization costs
-are kept uniform over the complete finite sum. -/
 theorem signed_tuple_count_real {ρ : ℝ} (hρ : 0 < ρ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (s : Finset (Fin 7 → ℕ)) (positive : Bool) (U H Q K : ℝ),
       0 ≤ U → 0 ≤ H → 0 ≤ Q → 0 ≤ K → U ≤ Q → H ≤ K*Q →
@@ -379,12 +356,10 @@ theorem signed_tuple_count_real {ρ : ℝ} (hρ : 0 < ρ) :
         (pow_le_pow_left₀ (by positivity) hpow 2) (sq_nonneg _) (by positivity)
     _ = _ := by ring
 
-/-- A signed shift has the literal nonnegative shift as its absolute value. -/
 theorem abs_signed_shift (positive : Bool) (h : ℕ) :
     |(if positive then (h : ℝ) else -(h : ℝ))| = (h : ℝ) := by
   cases positive <;> simp
 
-/-- The Diophantine relation identifies the original final weight argument. -/
 theorem original_weight_argument (positive : Bool) {n : Fin 7 → ℕ}
     (hrel : signedQuadraticRelation positive n) (N : ℝ)
     (hn₁ : n 1 ≠ 0) (hn₄ : n 4 ≠ 0) :
@@ -405,8 +380,6 @@ theorem original_weight_argument (positive : Bool) {n : Fin 7 → ℕ}
   · simp [hN]
   · field_simp
 
-/-- Pointwise shift removal on a true arithmetic solution, with the original
-weight argument `n₂/N₂` on the left. -/
 theorem relation_weight_shift_bound {W : ℝ → ℝ} (hW : SmoothDyadicWeight W)
     {b : ℝ} (hder : ∀ x, ‖iteratedDeriv 1 W x‖ ≤ b)
     (positive : Bool) {n : Fin 7 → ℕ} (hpos : ∀ j, 0 < n j)
@@ -427,8 +400,6 @@ theorem relation_weight_shift_bound {W : ℝ → ℝ} (hW : SmoothDyadicWeight W
       (mul_nonneg hb ((Nat.cast_nonneg (n 6)).trans hH)) hV hden
     _ = _ := by ring
 
-/-- The summed replacement error is `O(Q^(2ρ) H²)`.  All tuple counting and
-mean-value premises are discharged by the preceding proved lemmas. -/
 theorem summed_weight_shift_error {ρ K P b : ℝ} (hρ : 0 < ρ)
     (hK : 0 ≤ K) (hP : 0 ≤ P) (hb : 0 ≤ b) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (s : Finset (Fin 7 → ℕ)) (positive : Bool)
@@ -477,12 +448,7 @@ end
 end DivisorProof
 
 
-/-! ## Actual Shift -/
 
-/-! Application of the proved replacement estimate to the literal finite divisor sum.
-This module keeps its finite index range.  The later RangeExtension and LiftPairs
-sections prove the extension to arithmetic progressions and the full normal form.
--/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -547,9 +513,6 @@ theorem quadraticPreWeight_norm_le (q : QuadraticScales) (α β : ℕ → ℂ)
       · exact hW _ _
     _ = _ := by ring
 
-/-- The unchanged finite sum satisfies the claimed `Λ²H²` replacement bound.
-This local theorem keeps the old range; the following RangeExtension section
-proves the stronger estimate on the enlarged range. -/
 theorem actual_finite_weight_shift_error {ρ K b₀ b₁ : ℝ}
     (hρ : 0 < ρ) (hK : 1 ≤ K) (hb₀ : 0 ≤ b₀) (hb₁ : 0 ≤ b₁) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (positive : Bool) (q : QuadraticScales)
@@ -623,10 +586,7 @@ end
 end DivisorProof
 
 
-/-! ## Normalized Data -/
 
-/-! The normalized coefficient and derivative bounds are proved from the original
-admissibility hypotheses, without a separate normalization premise. -/
 namespace DivisorProof
 open MeasureTheory Set
 open scoped BigOperators ContDiff
@@ -702,8 +662,6 @@ theorem NormalizedWeightData.weight_norm {bounds : ℕ → ℝ} {q : QuadraticSc
     (i : Fin 5) (x : ℝ) : ‖W i x‖ ≤ bounds 0 := by
   simpa only [iteratedDeriv_zero] using h.derivatives 0 i x
 
-/-- The finite-range replacement error now follows from exactly the original
-admissibility data, after the proved normalization. -/
 theorem admissible_normalized_shift_error {ρ δ K : ℝ}
     (hρ : 0 < ρ) (hρhalf : ρ ≤ 1/2) (hK : 1 ≤ K) (bounds : ℕ → ℝ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ (positive : Bool) (q : QuadraticScales)
@@ -734,10 +692,7 @@ end
 end DivisorProof
 
 
-/-! ## Actual Poisson -/
 
-/-! The arithmetic and analytic Poisson lemmas combined for the literal inner
-equation, with the gcd derived from its original two coefficients. -/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -751,7 +706,6 @@ def reducedEquationTerm (W₂ W₄ : ℝ → ℝ) (A B : ℕ) (M N : ℝ) (k m :
 def reducedEquationSum (W₂ W₄ : ℝ → ℝ) (A B : ℕ) (M N : ℝ) (k : ℤ) : ℂ :=
   ∑' m : ℤ, reducedEquationTerm W₂ W₄ A B M N k m
 
-/-- The spatial series is a genuine finite sum as a consequence of support. -/
 theorem reducedEquationTerm_hasFiniteSupport {W₂ W₄ : ℝ → ℝ}
     (h₂ : SmoothDyadicWeight W₂) (A B : ℕ) {M N : ℝ} (hM : 0 < M) (k : ℤ) :
     Function.HasFiniteSupport (reducedEquationTerm W₂ W₄ A B M N k) := by
@@ -785,7 +739,6 @@ theorem gcd_reduced_real_ratio (A B : ℕ) (hB : 0 < B) {N : ℝ} (hN : 0 < N) (
     Nat.cast_div_charZero (Nat.gcd_dvd_right A B)]
   field_simp
 
-/-- Exact passage from the original integer equation to the profile lattice. -/
 theorem reducedEquationSum_eq_profile_lattice {W₂ W₄ : ℝ → ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (A B : ℕ) (hB : 0 < B) {M N : ℝ} (hM : 0 < M) (hN : 0 < N) (k : ℤ) :
@@ -804,9 +757,6 @@ theorem reducedEquationSum_eq_profile_lattice {W₂ W₄ : ℝ → ℝ}
   have hdp : (0 : ℝ) < Nat.gcd A B := by exact_mod_cast Nat.gcd_pos_of_pos_right A hB
   exact poisson_profile_identity h₂ h₄ (div_pos hBp (mul_pos hdp hM)).ne' _
 
-/-- The fully combined one-tuple form of (19)–(23), with the original arithmetic
-equation and a uniform power-saving remainder.  The signed shift is `d*k`,
-where `k` may have either sign. -/
 theorem finite_poisson_actual_inner {W₂ W₄ : ℝ → ℝ} {bounds : ℕ → ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)

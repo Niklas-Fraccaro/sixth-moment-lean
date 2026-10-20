@@ -1,8 +1,6 @@
 import Mathlib.MeasureTheory.Function.SpecialFunctions.Basic
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.Front
 
-/-! Genuine measurability of the physical archimedean factors, including
-the values outside the positive-time support. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

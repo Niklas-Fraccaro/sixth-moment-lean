@@ -1,7 +1,6 @@
 import Mathlib.Algebra.BigOperators.Ring.Finset
 import Sechstmoment.Arithmetic.Euler.Local.Rational.DenominatorNonzero
 
-/-! A finite formula for the geometric convolution. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

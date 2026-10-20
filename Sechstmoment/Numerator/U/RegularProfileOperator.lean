@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.Kernels.WeightedIntegral
 import Sechstmoment.Numerator.U.MainTerm.RegularProfileGenerator
 
-/-! Differentiation of the actual compact U profile generator.  Every derivative
-is proved under both profile integrals, before its degree-four operator is
-identified with the literal numerical numerator point kernel. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set
@@ -13,7 +10,6 @@ set_option maxHeartbeats 2000000
 
 attribute [local irreducible] numeratorExpMomentDerivative
 
-/-- The actual derivative family, with both genuine profile integrations. -/
 def actualCenteredNumeratorProfileDerivative (n : ℕ) (a b : ℝ)
     (f g : ℝ → ℂ) (Φ : ℝ → ℝ) (z : ℂ) : ℂ :=
   (arithmeticFactor:ℂ)*(∫ x, (Φ x:ℂ))*
@@ -49,8 +45,6 @@ theorem actualCenteredNumeratorProfileDerivative_hasDerivAt
     (fun z A => ∫ B in (0:ℝ)..b, f A*g B*numeratorExpMomentDerivative (n+1) A B z)
     z 0 a (ho n) (ho (n+1)) (fun z A => hinner A z)).const_mul _
 
-/-- Ordinary derivatives commute with both actual profile integrals at every
-order, including all node and endpoint coincidences. -/
 theorem actualCenteredNumeratorProfileGenerator_iteratedDeriv
     (n : ℕ) (a b : ℝ) (f g : ℝ → ℂ) (Φ : ℝ → ℝ)
     (hf : Continuous f) (hg : Continuous g) (z : ℂ) :
@@ -67,8 +61,6 @@ theorem actualCenteredNumeratorProfileGenerator_iteratedDeriv
     rw [iteratedDeriv_succ, he]
     exact (actualCenteredNumeratorProfileDerivative_hasDerivAt n a b f g Φ hf hg z).deriv
 
-/-- The genuine degree-four operator is the compact double point-kernel
-integral.  All finite-sum interchanges have proved continuous integrands. -/
 theorem actualCenteredNumeratorProfileGenerator_operator_eq_compactPointKernel
     (p : Fin 5 → ℝ) (a b : ℝ) (f g : ℝ → ℂ) (Φ : ℝ → ℝ)
     (hf : Continuous f) (hg : Continuous g) :
@@ -127,8 +119,6 @@ theorem actualCenteredNumeratorProfileGenerator_operator_eq_compactPointKernel
       rw [← intervalIntegral.integral_finsetSum (fun r _ => hib r)]
       simp_rw [he]
 
-/-- The actual interior supports justify replacing both oriented compact
-profile integrals by their literal global real integrals. -/
 theorem smoothInteriorProfile_two_integral_eq_global
     {a b : ℝ} {f g : ℝ → ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -151,8 +141,6 @@ theorem smoothInteriorProfile_two_integral_eq_global
   have hAs := hf.2.2 (subset_tsupport f hfA)
   exact ⟨hAs.1,hAs.2.le⟩
 
-/-- The actual smooth U profile operator recovers exactly the real scalar
-profile kernel used in the original certificate. -/
 theorem actualCenteredNumeratorProfileGenerator_operator_eq_globalPointKernel
     (p : Fin 5 → ℝ) (a b : ℝ) (f g Φ : ℝ → ℝ)
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :

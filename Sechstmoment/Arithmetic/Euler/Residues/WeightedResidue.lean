@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Residues.ResiduePolynomial
 
-/-! The local weights W_(i,p,h) and their linear-term cancellation, PDF (6.3). -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 

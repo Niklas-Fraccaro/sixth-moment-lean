@@ -3,7 +3,6 @@ import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 import Mathlib.Topology.MetricSpace.Lipschitz
 import Sechstmoment.Analysis.Harmonic.LogQuadrature
 
-/-! Compact-interval bounds for the actual shifted exponential kernels. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set

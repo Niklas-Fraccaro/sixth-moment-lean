@@ -3,9 +3,6 @@ import Sechstmoment.Numerator.V.Arithmetic.Principal.Gauss
 import Sechstmoment.Numerator.V.Arithmetic.Principal.MellinContour
 import Sechstmoment.Numerator.V.EulerTransfer.CorrectedMellin
 
-/-! The complete Gauss-weighted contour identity. Every nonprincipal
-character is moved without residues; the four actual principal residues
-carry the exact Mobius and totient factors, including modulus one. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory Filter ZMod

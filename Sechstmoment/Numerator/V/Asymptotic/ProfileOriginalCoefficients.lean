@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.EulerTransfer.ProfileError
 import Sechstmoment.Numerator.V.Profiles.OriginalProfile
 
-/-! The grouped arithmetic main term is exactly the original finite
-two-amplifier profile sum used by the verified harmonic asymptotic. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open NoDPHarmonic NoDPGlobalConvolution Real Complex Polynomial

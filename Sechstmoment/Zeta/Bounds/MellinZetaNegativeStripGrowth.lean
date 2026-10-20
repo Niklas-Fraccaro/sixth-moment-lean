@@ -1,13 +1,10 @@
 import Sechstmoment.Zeta.Bounds.MellinZetaHalfPlaneGrowth
 
-/-! Exponential bounds on arbitrary finite left strips, away from the real
-axis. Euler reflection extends the existing Gaussian contour bounds. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Set
 open scoped Topology
 noncomputable section
 
-/-- In the left half strip reflection only needs Gamma nonvanishing. -/
 theorem gamma_inv_reflection_left {s : ℂ} (hs1 : s.re<1)
     (hΓ : Complex.Gamma s≠0) :
     (Complex.Gamma s)⁻¹=Complex.Gamma (1-s)*Complex.sin ((Real.pi:ℂ)*s)/Real.pi := by
@@ -29,7 +26,6 @@ theorem gamma_ne_zero_of_im_ne_zero {s : ℂ} (hs : s.im≠0) : Complex.Gamma s�
   simp only [neg_im,natCast_im] at hi
   exact hs (by simpa using hi)
 
-/-- Unlike the positive-strip bound, the lower endpoint may be negative. -/
 theorem riemannZeta_norm_le_exp_strip_high_im {a b : ℝ} (hb : b<2) :
     ∃ C : ℝ,0≤C ∧ ∀ s : ℂ,a≤s.re → s.re≤b → 1≤|s.im| →
       ‖riemannZeta s‖≤C*Real.exp (Real.pi*|s.im|/2) := by
@@ -85,7 +81,6 @@ theorem riemannZeta_norm_le_exp_strip_high_im {a b : ℝ} (hb : b<2) :
     _≤(K+2)*(J*Real.exp (Real.pi*|s.im|/2)/Real.pi*Real.pi^(b/2)) := by gcongr
     _=C*Real.exp (Real.pi*|s.im|/2) := by dsimp [C]; ring
 
-/-- Sufficient for the horizontal boundaries and large positive M-lines. -/
 theorem riemannZeta_norm_le_exp_halfPlane_high_im (a : ℝ) :
     ∃ C : ℝ,0≤C ∧ ∀ s : ℂ,a≤s.re → 1≤|s.im| →
       ‖riemannZeta s‖≤C*Real.exp (Real.pi*|s.im|/2) := by

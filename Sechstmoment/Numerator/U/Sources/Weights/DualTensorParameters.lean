@@ -7,9 +7,6 @@ open scoped BigOperators Topology
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- Actual dual parameters are valid on the bounded normalized shift domain;
-the raw dual shift and the physical relative gap meet the tensor constraints
-as consequences of the retained active block. -/
 theorem phase_actual_near_dual_tensor_parameters_valid {s R : ℝ} (hs : s<1)
     (hR : 0≤R) (T0 θ κ : ℝ) (f g : ℝ → ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ A B H : ℝ, 0<A → 0<B → 0<H →
@@ -25,8 +22,6 @@ theorem phase_actual_near_dual_tensor_parameters_valid {s R : ℝ} (hs : s<1)
   intro A B H hA hB hH k hactive σ hσ hκ v hv positive
   exact ⟨hvalid A B H hA hB hH k hactive σ hσ hκ v hv positive 1,hσ⟩
 
-/-- The main physical raw-shift parameter is the first member of the
-uniformly valid six-shift family. -/
 theorem phase_actual_near_main_tensor_parameters_valid {s R : ℝ} (hs : s<1)
     (hR : 0≤R) (T0 θ κ : ℝ) (f g : ℝ → ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ A B H : ℝ, 0<A → 0<B → 0<H →

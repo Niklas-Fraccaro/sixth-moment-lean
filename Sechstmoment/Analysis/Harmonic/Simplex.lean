@@ -1,8 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Pow.Complex
 import Sechstmoment.Analysis.Harmonic.Iteration
 
-/-! The unnormalised shifted harmonic simplex sum, with its actual complex
-powers and strict support. No asymptotic estimate is assumed. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set
@@ -98,8 +96,6 @@ theorem shifted_discreteIter_error {η R B D L : ℝ} {f : ℝ → ℂ}
   rw [sub_add_sub_cancel] at htri
   exact htri.trans ((add_le_add he hs').trans_eq (by ring))
 
-/-- The quantitative L^3 simplex asymptotic, uniform for all d >= 1 and all
-three complex shifts in the same fixed closed norm ball. -/
 theorem triple_simplex_error {η R B D L : ℝ} {f : ℝ → ℂ}
     (hf : RegularProfile η f B D) (hη : 0 ≤ η) (hR : 0 ≤ R) (hL : 1 ≤ L)
     (ν₁ ν₂ ν₃ : ℂ) (hν₁ : ‖ν₁‖ ≤ R) (hν₂ : ‖ν₂‖ ≤ R) (hν₃ : ‖ν₃‖ ≤ R)

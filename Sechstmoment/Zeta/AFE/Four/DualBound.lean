@@ -1,15 +1,12 @@
 import Sechstmoment.Zeta.AFE.Four.Definitions
 import Sechstmoment.Zeta.Moments.CenteringRemainder
 
-/-! A uniform bound for the literal four-chi dual multiplier on compact
-normalized shift sets. No phase replacement or moment bound is assumed. -/
 
 namespace Sechstmoment
 open Complex Source Set Filter
 open scoped BigOperators Topology ComplexConjugate
 noncomputable section
 
-/-- Solve the actual centering identity for the shifted chi factor. -/
 theorem zetaChi_shift_eq_centeringFactor (T t : ℝ) (z : ℂ) :
     zetaChi (criticalLinePoint t+z/(Real.log T : ℂ)) =
       Complex.exp (-z)*criticalChi t*centeringFactor T t z := by
@@ -21,7 +18,6 @@ theorem zetaChi_shift_eq_centeringFactor (T t : ℝ) (z : ℂ) :
   rw [mul_assoc,he,← mul_assoc,← Complex.exp_add]
   simp
 
-/-- All four actual upper/lower chi factors have one common bound. -/
 theorem sourceZetaPoints_shifted_chi_uniform_bound {R : ℝ} (_hR : 0 ≤ R) :
     ∀ᶠ T : ℝ in atTop, ∀ x ∈ Icc (1 : ℝ) 2, ∀ z : ℂ, ‖z‖ ≤ R →
       ∀ j : Fin 4,
@@ -65,8 +61,6 @@ theorem sourceZetaPoints_shifted_chi_uniform_bound {R : ℝ} (_hR : 0 ≤ R) :
   fin_cases j <;> simp [sourceZetaPoints] <;>
     first | exact hu x hx z hz | exact hl x hx z hz
 
-/-- The original dual multiplier is uniformly bounded on the actual dyadic
-height interval. No separation of shift poles is needed for this step. -/
 theorem bblrDualMultiplier_uniform_normalized_bound
     (K : Set MomentShifts) (hK : IsCompact K) :
     ∃ D : ℝ, 0 < D ∧ ∀ᶠ T : ℝ in atTop, ∀ σ ∈ K, ∀ t ∈ Icc T (2*T),

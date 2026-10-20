@@ -62,8 +62,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Numerator.V.Projection
 import Std
 
-/-! Actual raw and phase-projected polynomial V numerator asymptotics.
-The sole external source hypothesis is the literal DP sharp-endpoint theorem. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial
 open scoped Topology BigOperators
@@ -72,8 +70,6 @@ set_option maxHeartbeats 1600000
 
 namespace Source
 
-/-- The actual complex V test numerator has the reflected bilinear polar
-polynomial main term. No target test-moment limit is assumed. -/
 theorem vPolynomialRawMixedMoment_tendsto (N : ℕ) (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0<η) (hηu : η<1/4) (P Q p : ℝ[X]) (hp : p.natDegree≤N)
     (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -92,8 +88,6 @@ theorem vPolynomialRawMixedMoment_tendsto (N : ℕ) (hsource : DPv2SharpInput)
     _ _ Φ (zeroExtendedPolynomialProfile_zero_above η P)
       (zeroExtendedPolynomialProfile_zero_above η Q) hΦ]
 
-/-- The actual phase-projected V test numerator converges to the real part
-of the genuine reflected polynomial polar operator. -/
 theorem vPolynomialProjectedMixedMoment_tendsto (N : ℕ) (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0<η) (hηu : η<1/4) (P Q p : ℝ[X]) (hp : p.natDegree≤N)
     (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :

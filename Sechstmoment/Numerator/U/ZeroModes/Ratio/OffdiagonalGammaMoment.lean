@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.OffdiagonalMoment
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.FourGammaZeroJoin
 
-/-! Uniform actual offdiagonal Gamma reconstruction against the four
-native ratio GCD zero moments, with the true finite far contribution. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

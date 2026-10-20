@@ -4,14 +4,6 @@ import Mathlib.Topology.Order.Compact
 import Sechstmoment.Zeta.CompletedBounds
 import Sechstmoment.Zeta.Gamma.MellinBounds
 
-/-!
-# A genuine exponential zeta majorant for Gaussian contour domination
-
-The actual completed-zeta Mellin integral is bounded on a fixed strip.
-Reflection bounds the inverse Gamma factor. Together these give a crude
-exponential bound for the actual zeta function away from its pole, sufficient
-for the Gaussian pole killer. No polynomial zeta-growth hypothesis is used.
--/
 
 namespace Sechstmoment
 

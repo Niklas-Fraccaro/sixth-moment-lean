@@ -1,7 +1,6 @@
 import Sechstmoment.Analysis.Simplex.RadialIntegral
 import Sechstmoment.Numerator.V.DP.DPNormalization
 
-/-! Exact radial slicing and scaling of the genuine DP source profile. -/
 
 namespace Sechstmoment
 open MeasureTheory Set
@@ -16,7 +15,6 @@ theorem complex_interval_scale (η H : ℝ) (f : ℝ → ℂ) :
     (a := (0:ℝ)) (b := H) f η
   simpa only [mul_zero, Complex.real_smul] using h.symm
 
-/-- Scaling of the actual three nested simplex integrations, including its Jacobian. -/
 theorem complex_simplex_scale (η : ℝ) (f : ℝ → ℝ → ℝ → ℂ) :
     (∫ x in (0:ℝ)..η, ∫ y in (0:ℝ)..η-x,
       ∫ w in (0:ℝ)..η-x-y, f x y w) =
@@ -40,8 +38,6 @@ theorem complex_simplex_scale (η : ℝ) (f : ℝ → ℝ → ℝ → ℂ) :
   simp_rw [him, intervalIntegral.integral_const_mul]
   ring
 
-/-- The actual polynomial-weighted inverse triangle is the actual DP triple integral.
-This formula remains valid when its three complex shifts coincide. -/
 theorem weighted_triangle_eq_dpNormalizedTriple {η : ℝ} (hη : 0 < η)
     (P : Polynomial ℝ) (β γ δ : ℂ) :
     (∫ a in (0:ℝ)..η,

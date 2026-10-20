@@ -1,10 +1,6 @@
 import Mathlib.Analysis.Complex.CauchyIntegral
 import Sechstmoment.Numerator.V.Contour.AlmostHolomorphicWeight
 
-/-! Real differentiability and the genuine Cauchy-Green integrand for the
-almost-holomorphic weight. The holomorphic factor's derivative cancels;
-only the explicitly controlled final Taylor term remains.
--/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

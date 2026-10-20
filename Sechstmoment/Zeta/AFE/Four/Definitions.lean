@@ -1,14 +1,5 @@
 import Sechstmoment.Zeta.AFE.Four.Terms
 
-/-!
-# Actual functions in BBLR's approximate functional equation
-
-The Gamma quotients, both fourfold sums, and the dual multiplier are explicit.
-BBLR's literal fixed-weight source boundary is separately typed in
-`BBLRApproximateFEFixedSource`. `BBLRConcreteAFE` proves the quantitative
-remainder for the concrete moving Gaussian-polynomial weight from that
-fixed-weight boundary by genuine finite-span linearity.
--/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Filter Asymptotics

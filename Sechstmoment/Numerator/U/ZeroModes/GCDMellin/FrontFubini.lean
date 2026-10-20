@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.InitialJoint
 
-/-! The actual initial ratio front has its positive x integral moved
-outside both u/v lines by proved absolute convergence. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

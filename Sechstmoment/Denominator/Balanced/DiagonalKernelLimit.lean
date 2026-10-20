@@ -1,10 +1,6 @@
 import Sechstmoment.Denominator.Balanced.FourProfileCutoff
 import Sechstmoment.Denominator.Balanced.ProfileDisintegration
 
-/-! The completed D01 diagonal measure, the actual four profiles, the sharp
-product cut and both original zeta center coordinates give the original
-balanced polynomial kernel.  This is a diagonal limit, not yet the height
-asymptotic for the full shifted zeta moment. -/
 
 namespace Sechstmoment
 open MeasureTheory Filter Set
@@ -56,8 +52,6 @@ theorem d02BalancedSharpIntegral_eq_profileKernel (p q : Fin 5 → ℝ)
   rw [d02BalancedSharpIntegral_eq_edgeIntegral,
     d02BalancedEdgeIntegral_eq_profileKernel p q ρ A hA hρc hρcap]
 
-/-- Closed convergence to the actual four-profile balanced denominator
-kernel, using D01 rather than a freely specified limiting measure. -/
 theorem d02BalancedDiagonal_profileKernel_limit (p q : Fin 5 → ℝ)
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
     (hA : (∑ i, A i)<1) (hρc : ∀ i, Continuous (ρ i))

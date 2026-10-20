@@ -5,21 +5,12 @@ import Mathlib.Tactic.FinCases
 import Mathlib.Tactic.Ring
 import Sechstmoment.Zeta.AFE.Four.Definitions
 
-/-!
-# Principal powers in the actual fourfold BBLR Gamma quotient
-
-The two upper and two lower imaginary Gamma arguments have cancelling
-principal-log phases. Their normalized principal powers therefore differ
-quantitatively from the positive-real main power.
--/
 
 namespace Sechstmoment.Source
 open Complex
 open scoped BigOperators
 noncomputable section
 
-/-- Lipschitz control of the principal logarithm near a unit point whose
-argument lies between minus and plus pi over two. -/
 theorem principalLog_unit_near_bound {a w : ℂ} (ha : ‖a‖ = 1)
     (harg : |(Complex.log a).im| ≤ Real.pi/2)
     (hw : ‖w-a‖ ≤ 1/2) :
@@ -115,8 +106,6 @@ private theorem bblrGammaBase_scaled_ne_zero {t A : ℝ}
   rw [hz, zero_sub, norm_neg, bblrGammaPhaseCenter_norm] at hd
   linarith
 
-/-- The actual four principal-log phases cancel. The remaining log error is
-uniform in every bounded complex shift box. -/
 theorem bblrGammaPhaseLogError_norm_le {t A : ℝ}
     (hA : 0 ≤ A) (ht : 4*(A+1) ≤ t) (α : MomentShifts)
     (hα : ∀ j, ‖α j‖ ≤ A) :
@@ -156,7 +145,6 @@ theorem bblrGammaPhaseLogError_norm_le {t A : ℝ}
     _ ≤ ∑ _j : Fin 4, 2*((1/2+A)/t) := Finset.sum_le_sum (fun j _ => hb j)
     _ = _ := by simp; ring
 
-/-- Exact exponential form of the actual Gamma principal-power phase. -/
 theorem bblrGammaMainPhase_eq_exp {t A : ℝ}
     (hA : 0 ≤ A) (ht : 4*(A+1) ≤ t) (α : MomentShifts)
     (hα : ∀ j, ‖α j‖ ≤ A) (z : ℂ) :
@@ -175,8 +163,6 @@ theorem bblrGammaMainPhase_eq_exp {t A : ℝ}
   simp [bblrGammaPhaseCenter, Complex.log_I, Complex.log_neg_I]
   ring
 
-/-- Quantitative error of the actual four principal powers, including their
-upper/lower imaginary phase cancellation. -/
 theorem bblrGammaMainPhase_error_le {t A : ℝ}
     (hA : 0 ≤ A) (ht : 4*(A+1) ≤ t) (α : MomentShifts)
     (hα : ∀ j, ‖α j‖ ≤ A) (z : ℂ)

@@ -19,9 +19,6 @@ import Sechstmoment.Analysis.Alternants.ShiftLimit
 import Sechstmoment.Numerator.Kernels.Confluent
 import Std
 
-/-! The joint limit in all four source shift variables at (0,0,z,0), z != 0.
-Only distinct shifts are admitted before the limit, because the raw source
-formula has a Vandermonde denominator. -/
 
 namespace Sechstmoment
 open Filter

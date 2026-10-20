@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.FourL.LocalPolynomial
 
-/-! A finite Dirichlet polynomial convolves with the independent fourfold coefficients to give tau(d*n)u(n). -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
@@ -85,7 +84,6 @@ theorem shiftedAF_fixedEuler (d : ℕ) (hd : d ≠ 0) (s : Fin 4 → ℂ)
   rw [Nat.factorization_mul hd hn,Finsupp.add_apply]
   rfl
 
-/-- Coefficient identity for the independently defined shifted fourfold Dirichlet series. -/
 theorem shiftedAF_factorization (d : ℕ) (hd : d ≠ 0) (s : Fin 4 → ℂ) (u : ℕ →* ℂ) :
     shiftedAF d s u = correctionAF d s u * twistedAF u (fourAF s) := by
   ext n

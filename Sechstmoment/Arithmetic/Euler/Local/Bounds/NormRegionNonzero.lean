@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.ConvergentLocalFactorization
 
-/-! The natural absolute convergence region excludes all Euler poles. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

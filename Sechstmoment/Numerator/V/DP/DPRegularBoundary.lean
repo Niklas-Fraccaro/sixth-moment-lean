@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.Polar.General.DP
 import Sechstmoment.Numerator.V.DP.DPPolydiscBoundary
 
-/-! # Actual DP circle main term on the separated Cauchy boundary -/
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Polynomial Filter
 open scoped Topology

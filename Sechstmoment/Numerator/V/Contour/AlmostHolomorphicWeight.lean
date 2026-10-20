@@ -3,10 +3,6 @@ import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 import Mathlib.Analysis.Complex.RealDeriv
 import Sechstmoment.Zeta.Bounds.ZetaPolynomialBound
 
-/-! The finite almost-holomorphic extension of a smooth real-axis weight.
-Its Cauchy-Riemann defect is an explicit final Taylor term. In particular,
-the smooth weight is never treated as a holomorphic function.
--/
 
 namespace Sechstmoment.Source
 open Complex Real Set

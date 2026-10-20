@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.GaussianTailUniform
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.DiagonalLeftContour
 
-/-! The literal left-contour error, including the common amplifier gcd. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology

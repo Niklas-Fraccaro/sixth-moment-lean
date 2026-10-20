@@ -1,8 +1,5 @@
 import Sechstmoment.Analysis.Alternants.LimitExp
 
-/-! Actual iterated coalescing-shift limits of the four-variable determinant.
-The first collision is epsilon -> 0 in (0,epsilon,z,w), followed by w -> 0.
-This is an iterated limit, not a claim of a joint multivariate extension. -/
 
 namespace Sechstmoment
 open Filter

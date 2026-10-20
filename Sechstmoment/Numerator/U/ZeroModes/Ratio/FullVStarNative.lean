@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.FullVStarNative
 
-/-! Literal original/dual ratio-weighted native zero reconstruction.
-The actual ratio multiplier is retained throughout the continuous integrals. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

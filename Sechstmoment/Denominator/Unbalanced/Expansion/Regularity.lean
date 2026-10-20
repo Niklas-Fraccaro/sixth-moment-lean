@@ -1,7 +1,5 @@
 import Sechstmoment.Denominator.Unbalanced.Expansion.PhysicalSplit
 
-/-! Time integrability of the actual one-sided moment follows from the
-proved exponential absolute mass and the literal finite profile expansion. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

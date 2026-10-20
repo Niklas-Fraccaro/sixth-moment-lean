@@ -1,6 +1,5 @@
 import Sechstmoment.Denominator.Gram.ChiFrequency
 
-/-! Uniform reciprocal-frequency symbols obtained by genuine complex Cauchy bounds. -/
 namespace Sechstmoment
 open Complex Filter Metric Set
 open scoped Topology ContDiff
@@ -73,8 +72,6 @@ theorem d06ChiReciprocalSymbol_analyticAt {T ℓ : ℝ} {x : ℂ}
     ((d06ComplexChiFrequency_analyticAt_nonreal hs).comp hh))).inv
       (mul_ne_zero I_ne_zero hn)
 
-/-- Every fixed derivative of the actual reciprocal phase frequency has one
-uniform constant, independent of the height and of its Fourier shift. -/
 theorem d06ChiReciprocalSymbol_uniform_all_real_derivative_bounds
     {S : ℝ} (hS : S < 1) :
     ∀ᶠ T : ℝ in atTop, ∀ ℓ : ℝ, -S*Real.log T ≤ ℓ →

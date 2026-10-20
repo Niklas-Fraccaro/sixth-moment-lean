@@ -2,10 +2,6 @@ import Sechstmoment.Certificate.Profiles.NumeratorLimit
 import Sechstmoment.Certificate.Tests
 import Sechstmoment.Numerator.U.PolynomialMoment
 
-/-! A05: actual mixed zeta moments of every original certificate row, with
-the corrected U amplifier orientation. Finite sum, integral, projection and
-normalization bridges are proved here. The missing U asymptotic is not an
-antecedent to any claimed closure theorem. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial
 open scoped Topology BigOperators ComplexConjugate
@@ -13,14 +9,12 @@ noncomputable section
 set_option maxHeartbeats 2000000
 set_option maxRecDepth 10000
 
-/-- Literal common U profile; its upper support is genuinely proved. -/
 theorem uCertificateProfile_zero_above {n : ℕ} (hn : 0<n)
     (a : ℝ) {x : ℝ} (hx : a<x) :
     uEndpointProfile uNormalizedBump uCertificateHstar a n x = 0 :=
   uEndpointProfile_zero_above uNormalizedBump (fun _ hx => uNormalizedBump_zero_nonpos hx)
     uCertificateHstar_pos a hn hx
 
-/-- Actual U certificate geometry in the rectangular source range. -/
 theorem uCertificate_endpoint_geometry {d : TestDatum} (hd : d∈uCertificateRows) :
     0<(d.A:ℝ)/base ∧ (d.A:ℝ)/base≤(d.B:ℝ)/base ∧
       3*((d.A:ℝ)/base)+5*((d.B:ℝ)/base)<2 ∧ d.degree≤4 := by
@@ -36,8 +30,6 @@ theorem uCertificate_endpoint_geometry {d : TestDatum} (hd : d∈uCertificateRow
     (3*(d.A:ℝ)+5*(d.B:ℝ))/base by ring]
   exact (div_lt_iff₀ hbase).mpr hr
 
-/-- The actual U operator retains the original independently computed
-integer coefficient vector on every one of the 220 supplied U rows. -/
 theorem uCertificatePolynomialCoefficients_eq_original {d : TestDatum}
     (hd : d∈uCertificateRows) :
     (fun r : Fin 5 => (manuscriptTestPolynomial d.degree).coeff r.val) =
@@ -46,14 +38,12 @@ theorem uCertificatePolynomialCoefficients_eq_original {d : TestDatum}
   exact manuscriptTestPolynomial_coeff_eq_cheb d.degree
     (uCertificate_endpoint_geometry hd).2.2.2 r
 
-/-- The literal raw partial certificate test, retaining its original coefficients. -/
 def uCertificateRawZetaTest (n : ℕ) (T t : ℝ) : ℂ :=
   (uCertificateRows.map fun d => (d.coefficient:ℂ)*
     rawZetaTest .U T t (manuscriptTestPolynomial d.degree)
       (uEndpointProfile uNormalizedBump uCertificateHstar ((d.A:ℝ)/base) n)
       (uEndpointProfile uNormalizedBump uCertificateHstar ((d.B:ℝ)/base) n)).sum
 
-/-- Actual phase projection of the U-only partial certificate. -/
 def uCertificateZetaTest (n : ℕ) (T t : ℝ) : ℂ :=
   phaseProjection (criticalChi t) (uCertificateRawZetaTest n T t)
 
@@ -63,7 +53,6 @@ private theorem u_phaseProjection_list_sum (χ : ℂ) (l : List ℂ) :
   | nil => simp [phaseProjection]
   | cons x xs ih => simp only [List.sum_cons,List.map_cons,phaseProjection_add,ih]
 
-/-- The actual partial test is exactly the original-row sum of projected U tests. -/
 theorem uCertificateZetaTest_eq_sum (n : ℕ) (T t : ℝ) :
     uCertificateZetaTest n T t=(uCertificateRows.map fun d => (d.coefficient:ℂ)*
       projectedZetaTest .U T t (manuscriptTestPolynomial d.degree)
@@ -107,17 +96,14 @@ private theorem u_integral_list_sum (l : List TestDatum) (f : TestDatum→ℝ→
       (u_list_integrable ds f (fun e he => hi e (List.mem_cons_of_mem _ he)))]
     rw [ih (fun e he => hi e (List.mem_cons_of_mem _ he))]
 
-/-- Literal actual mixed integral of the U-only raw partial certificate. -/
 def uCertificateRawMixedMoment (n : ℕ) (T : ℝ) (Φ : ℝ→ℝ) : ℂ :=
   ∫ t : ℝ, (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
     star (uCertificateRawZetaTest n T t)
 
-/-- Literal actual mixed integral of the U-only projected partial certificate. -/
 def uCertificateProjectedMixedMoment (n : ℕ) (T : ℝ) (Φ : ℝ→ℝ) : ℂ :=
   ∫ t : ℝ, (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
     star (uCertificateZetaTest n T t)
 
-/-- The actual finite raw test integrand is integrable, proved row by row. -/
 theorem uCertificateRawMixedIntegrand_integrable (n : ℕ) (hn : 0<n) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     Integrable (fun t : ℝ => (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
@@ -133,7 +119,6 @@ theorem uCertificateRawMixedIntegrand_integrable (n : ℕ) (hn : 0<n) {T : ℝ} 
   exact (u_list_integrable uCertificateRows _ (fun d _ => hi d)).congr
     (Eventually.of_forall (fun t => (u_mixed_list_sum uCertificateRows _ _).symm))
 
-/-- Exact finite-sum/integral interchange for the literal original U test. -/
 theorem uCertificateRawMixedMoment_eq_sum (n : ℕ) (hn : 0<n) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     uCertificateRawMixedMoment n T Φ=(uCertificateRows.map fun d => (d.coefficient:ℂ)*
@@ -164,7 +149,6 @@ private theorem uCertificateProjectedMixedIntegrand_eq_real (n : ℕ) (T t : ℝ
     ring
   · simp [Complex.mul_re,Complex.mul_im]
 
-/-- Integrability of the actual projected partial certificate integrand. -/
 theorem uCertificateProjectedMixedIntegrand_integrable (n : ℕ) (hn : 0<n) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     Integrable (fun t : ℝ => (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
@@ -172,7 +156,6 @@ theorem uCertificateProjectedMixedIntegrand_integrable (n : ℕ) (hn : 0<n) {T :
   ((uCertificateRawMixedIntegrand_integrable n hn hT hL Φ hΦ).re.ofReal).congr
     (Eventually.of_forall (fun t => (uCertificateProjectedMixedIntegrand_eq_real n T t Φ).symm))
 
-/-- Exact real-part relation for the actual phase-projected U-only moment. -/
 theorem uCertificateProjectedMixedMoment_eq_real (n : ℕ) (hn : 0<n) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     uCertificateProjectedMixedMoment n T Φ=Complex.ofReal ((uCertificateRawMixedMoment n T Φ).re) := by
@@ -183,8 +166,6 @@ theorem uCertificateProjectedMixedMoment_eq_real (n : ℕ) (hn : 0<n) {T : ℝ} 
     (congrArg Complex.ofReal (integral_re (uCertificateRawMixedIntegrand_integrable n hn hT hL Φ hΦ)))
 
 
-/-- Every actual U mixed moment is exactly its original degree-four
-operator applied to its genuine compact BBLR generator. -/
 theorem uCertificateRawMixedMoment_eq_finiteDifferentialOperators
     (n : ℕ) (hn : 0<n) {T : ℝ} (hT : 1<T) (hL : 16<Real.log T)
     (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -203,17 +184,14 @@ theorem uCertificateRawMixedMoment_eq_finiteDifferentialOperators
     _ _ Φ (fun _ hx => uCertificateProfile_zero_above hn _ hx)
     (fun _ hx => uCertificateProfile_zero_above hn _ hx) hΦ]
 
-/-- Actual common family from manuscript §5: smooth U and beta V. -/
 def certificateActualProfiles (n : ℕ) : TestType → ℝ → ℝ → ℝ
   | .U,a => uEndpointProfile uNormalizedBump uCertificateHstar a n
   | .V,a => vEndpointProfile eta a n
 
-/-- The full raw mixed zeta moment of the original 250 rows. -/
 def actual250RawMixedMoment (n : ℕ) (T : ℝ) (Φ : ℝ→ℝ) : ℂ :=
   ∫ t : ℝ, (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
     star (certificateRawZetaTest (certificateActualProfiles n) T t)
 
-/-- The full projected mixed zeta moment of the original 250 rows. -/
 def actual250ProjectedMixedMoment (n : ℕ) (T : ℝ) (Φ : ℝ→ℝ) : ℂ :=
   ∫ t : ℝ, (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
     star (certificateZetaTest (certificateActualProfiles n) T t)
@@ -228,7 +206,6 @@ theorem a05_certificate_complex_filter_sum_partition (f : TestDatum→ℂ) :
     | cons d ds ih => cases ht : d.typ <;> simp [ht,ih,add_assoc,add_left_comm]
   exact h certificate
 
-/-- Exact partition of the actual original raw test into 220 U and 30 V rows. -/
 theorem certificateActualRawZetaTest_eq_U_add_V (n : ℕ) (T t : ℝ) :
     certificateRawZetaTest (certificateActualProfiles n) T t =
       uCertificateRawZetaTest n T t+vCertificateRawZetaTest n T t := by
@@ -236,15 +213,12 @@ theorem certificateActualRawZetaTest_eq_U_add_V (n : ℕ) (T t : ℝ) :
   rw [←a05_certificate_complex_filter_sum_partition]
   congr 1
 
-/-- The exact projected 250-row test has the same original-row partition. -/
 theorem certificateActualZetaTest_eq_U_add_V (n : ℕ) (T t : ℝ) :
     certificateZetaTest (certificateActualProfiles n) T t =
       uCertificateZetaTest n T t+vCertificateZetaTest n T t := by
   unfold certificateZetaTest uCertificateZetaTest vCertificateZetaTest
   rw [certificateActualRawZetaTest_eq_U_add_V,phaseProjection_add]
 
-/-- Actual integrability of the complete raw mixed moment, with every
-polynomial derivative and every common-stage profile accounted for. -/
 theorem actual250RawMixedIntegrand_integrable (n : ℕ) (hn : 0<n)
     {T : ℝ} (hT : 1<T) (hL : 16<Real.log T)
     (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -254,7 +228,6 @@ theorem actual250RawMixedIntegrand_integrable (n : ℕ) (hn : 0<n)
   exact (uCertificateRawMixedIntegrand_integrable n hn hT hL Φ hΦ).add
     (vCertificateRawMixedIntegrand_integrable n hT hL Φ hΦ)
 
-/-- All original coefficients survive the actual finite-sum time integration. -/
 theorem actual250RawMixedMoment_eq_U_add_V (n : ℕ) (hn : 0<n)
     {T : ℝ} (hT : 1<T) (hL : 16<Real.log T)
     (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -265,7 +238,6 @@ theorem actual250RawMixedMoment_eq_U_add_V (n : ℕ) (hn : 0<n)
   rw [integral_add (uCertificateRawMixedIntegrand_integrable n hn hT hL Φ hΦ)
     (vCertificateRawMixedIntegrand_integrable n hT hL Φ hΦ)]
 
-/-- Actual integrability of the complete projected mixed zeta integrand. -/
 theorem actual250ProjectedMixedIntegrand_integrable (n : ℕ) (hn : 0<n)
     {T : ℝ} (hT : 1<T) (hL : 16<Real.log T)
     (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -275,7 +247,6 @@ theorem actual250ProjectedMixedIntegrand_integrable (n : ℕ) (hn : 0<n)
   exact (uCertificateProjectedMixedIntegrand_integrable n hn hT hL Φ hΦ).add
     (vCertificateProjectedMixedIntegrand_integrable n hT hL Φ hΦ)
 
-/-- Exact projected 250-row time moment, partitioned into all original U/V rows. -/
 theorem actual250ProjectedMixedMoment_eq_U_add_V (n : ℕ) (hn : 0<n)
     {T : ℝ} (hT : 1<T) (hL : 16<Real.log T)
     (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -286,7 +257,6 @@ theorem actual250ProjectedMixedMoment_eq_U_add_V (n : ℕ) (hn : 0<n)
   rw [integral_add (uCertificateProjectedMixedIntegrand_integrable n hn hT hL Φ hΦ)
     (vCertificateProjectedMixedIntegrand_integrable n hT hL Φ hΦ)]
 
-/-- Exact projection/time-integral interchange for the complete actual test. -/
 theorem actual250ProjectedMixedMoment_eq_real (n : ℕ) (hn : 0<n)
     {T : ℝ} (hT : 1<T) (hL : 16<Real.log T)
     (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -306,7 +276,6 @@ theorem actual250ProjectedMixedMoment_eq_real (n : ℕ) (hn : 0<n)
   rw [integral_congr_ae (Eventually.of_forall he)]
   exact (integral_ofReal (𝕜 := ℂ)).trans (congrArg Complex.ofReal (integral_re hi))
 
-/-- Exact real normalized projection identity; no asymptotic is assumed. -/
 theorem actual250ProjectedMixedMoment_normalized_eq_real (n : ℕ) (hn : 0<n)
     {T : ℝ} (hT : 1<T) (hL : 16<Real.log T)
     (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -318,8 +287,6 @@ theorem actual250ProjectedMixedMoment_normalized_eq_real (n : ℕ) (hn : 0<n)
     rfl
   rw [hden,Complex.div_ofReal_re,Complex.ofReal_div]
 
-/-- The profile stage of the full actual target is already proved, independently
-of all source contracts. The height-asymptotic leg remains a separate obligation. -/
 theorem actual250MainTerm_profile_tendsto (Φ : ℝ→ℝ) :
     Tendsto (fun n : ℕ => (arithmeticFactor:ℂ)*(∫ x : ℝ,(Φ x:ℂ))*
       Complex.ofReal (certificateProfileNumerator n)) atTop

@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.CoordinateDensity
 
-/-! The retained actual GCD V* expression with all seven dyadic masks
-and the finite amplifier profiles displayed separately from the exact
-complex shifted arithmetic density. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators Topology
@@ -28,8 +25,6 @@ def a03RetainedRatioGCDVStarExpandedZeroMode (dual : Bool) (Φ : ℝ→ℂ) (T :
                     a03RatioLeadingBranchProfile dual Φ T σ t*
                       bblrVStar (polarPoleKiller T σ) (X^2/((w 0:ℝ)*w 1*(T*t)^2))
 
-/-- Every actual amplifier square root is consumed in the proved positive
-complex-power density, while every actual dyadic mask remains. -/
 theorem a03_actual_retained_ratio_GCD_VStar_eq_expanded (dual : Bool) (Φ : ℝ→ℂ)
     (T : ℝ) (σ α : MomentShifts) (sg : ℝ) (q : QuadraticScales) (f g : ℝ→ℝ) :
     a03RetainedRatioGCDVStarZeroMode dual Φ T σ α sg q

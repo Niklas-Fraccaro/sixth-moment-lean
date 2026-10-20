@@ -5,11 +5,6 @@ import Mathlib.Topology.Algebra.ConstMulAction
 import Sechstmoment.Arithmetic.QuadraticDivisor.Estimates.Exponents
 import Sechstmoment.Zeta.AFE.Four.Definitions
 
-/-!
-The actual finitely supported amplifiers are inserted into the approximate
-functional equation before any unequal-length block estimate is used. The
-source discrepancy is retained exactly, and no moment asymptotic is assumed.
--/
 
 namespace Sechstmoment
 
@@ -22,7 +17,6 @@ noncomputable def rectangularAmplifierPairIntegrand (T : ℝ) (α : MomentShifts
     ((f (Real.log (u+1:ℝ)/Real.log T) : ℂ)/(u+1:ℂ)^criticalLinePoint t)*
     ((g (Real.log (v+1:ℝ)/Real.log T) : ℂ)/(v+1:ℂ)^(1-criticalLinePoint t))
 
-/-- Unequal support lengths remain independent in the exact amplifier expansion. -/
 theorem rectangular_twisted_integrand_finite {T : ℝ} (hT : 1 < T) (a b : ℝ)
     (f g Φ : ℝ → ℝ) (hf : ∀ x, a < x → f x = 0) (hg : ∀ x, b < x → g x = 0)
     (α : MomentShifts) (t : ℝ) :
@@ -35,8 +29,6 @@ theorem rectangular_twisted_integrand_finite {T : ℝ} (hT : 1 < T) (a b : ℝ)
   rw [Finset.sum_comm]
   rfl
 
-/-- The actual four zeta factors are continuous when the shifts remain in the
-critical strip; their pole at one is excluded explicitly. -/
 theorem rectangular_shifted_product_continuous (α : MomentShifts)
     (hα : ∀ j, ‖α j‖ < 1/4) : Continuous (fun t => shiftedFourthProduct t α) := by
   have hc : ∀ j : Fin 4, Continuous (fun t : ℝ => riemannZeta (sourceZetaPoints t j+α j)) := by
@@ -60,7 +52,6 @@ theorem rectangular_shifted_product_continuous (α : MomentShifts)
   ext t
   simp [shiftedFourthProduct, sourceZetaPoints]
 
-/-- Compactness of the dyadic weight is preserved under the actual scaling. -/
 theorem rectangular_scaled_weight_hasCompactSupport {T : ℝ} (hT : T ≠ 0)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :
     HasCompactSupport (fun t : ℝ => (Φ (t/T) : ℂ)) := by
@@ -71,7 +62,6 @@ theorem rectangular_scaled_weight_hasCompactSupport {T : ℝ} (hT : T ≠ 0)
     simpa only [smul_eq_mul, div_eq_mul_inv, mul_comm] using hs
   simpa only [Function.comp_def] using hs'.comp_left (show Complex.ofReal 0 = 0 from rfl)
 
-/-- Every term in the finite amplifier expansion is genuinely integrable. -/
 theorem rectangular_amplifier_pair_integrable {T : ℝ} (hT : 1 < T)
     (α : MomentShifts) (hα : ∀ j, ‖α j‖ < 1/4) (f g Φ : ℝ → ℝ)
     (hΦ : SmoothDyadicWeight Φ) (u v : ℕ) :
@@ -99,7 +89,6 @@ theorem rectangular_amplifier_pair_integrable {T : ℝ} (hT : 1 < T)
       Φ hΦ).mul_right).mul_right).mul_right
   exact hc.integrable_of_hasCompactSupport hs
 
-/-- Finite amplifier summation commutes with the actual moment integral. -/
 theorem rectangular_twisted_moment_finite {T : ℝ} (hT : 1 < T) (a b : ℝ)
     (f g Φ : ℝ → ℝ) (hf : ∀ x, a < x → f x = 0) (hg : ∀ x, b < x → g x = 0)
     (hΦ : SmoothDyadicWeight Φ) (α : MomentShifts) (hα : ∀ j, ‖α j‖ < 1/4) :
@@ -115,8 +104,6 @@ theorem rectangular_twisted_moment_finite {T : ℝ} (hT : 1 < T) (a b : ℝ)
   · intro u hu
     exact integrable_finsetSum _ (fun v _ => rectangular_amplifier_pair_integrable hT α hα f g Φ hΦ u v)
 
-/-- Exact AFE insertion retains both fourfold sums, the genuine Gamma-based dual
-factor and the literal source discrepancy. No uniform estimate is smuggled in. -/
 theorem rectangular_twisted_moment_AFE_exact {T : ℝ} (hT : 1 < T) (a b : ℝ)
     (f g Φ : ℝ → ℝ) (hf : ∀ x, a < x → f x = 0) (hg : ∀ x, b < x → g x = 0)
     (hΦ : SmoothDyadicWeight Φ) (α : MomentShifts) (hα : ∀ j, ‖α j‖ < 1/4)

@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Replacement.VStar.TimeMellinStripEnvelope
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.Front
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.GammaCosStripGrowth
 
-/-! Uniform full-height and spatial envelopes of the literal original/dual
-time-smoothed cosine Mellin factors, on a compact normalized shift set. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

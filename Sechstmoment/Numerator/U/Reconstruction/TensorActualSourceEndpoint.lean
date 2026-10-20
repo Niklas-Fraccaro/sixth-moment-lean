@@ -2,10 +2,6 @@ import Sechstmoment.Numerator.U.Separation.SixTensorBoundaryTransport
 import Sechstmoment.Numerator.U.Separation.Tensor.FiniteSource
 import Sechstmoment.Numerator.U.Sources.Weights.TensorFactory
 
-/-! The actual main and dual tensor families consume the unchanged oriented
-source input. The same fixed normalizer and derivative sequence provide exact
-physical finite-source reconstruction and the literal transformed-zero-mode
-source discrepancy bound. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology FourierTransform

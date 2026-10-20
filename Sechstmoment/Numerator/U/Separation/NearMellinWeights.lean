@@ -2,10 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 import Sechstmoment.Numerator.U.Reconstruction.RectangularNearUnitExclusion
 import Sechstmoment.Numerator.U.Separation.LogarithmicMellinWeights
 
-/-! The source mass lower bound is derived from a literal nonzero natural
-near gap and the actual source support. It is not supplied as a free mass
-hypothesis. This proves four variable-weight conditions on active near
-blocks; it does not prove the fifth weight or all source shape conditions. -/
 
 namespace Sechstmoment
 open Source Real Set Filter

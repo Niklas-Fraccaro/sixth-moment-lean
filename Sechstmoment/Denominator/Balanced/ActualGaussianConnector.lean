@@ -2,8 +2,6 @@ import Sechstmoment.Denominator.Balanced.ActualGaussianTruncation
 import Sechstmoment.Denominator.Balanced.GaussianMainTermIdentity
 import Sechstmoment.Denominator.Balanced.GaussianPhysicalTimeMean
 
-/-! Exact connection from the proved two-factor AFE Gaussian summand to the
-literal six-index phase model. This module carries no replacement assumption. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set
 open scoped BigOperators Topology ContDiff
@@ -28,8 +26,6 @@ theorem d02_positive_shifted_dirichlet_phase_split {x : ℝ} (hx : 0 < x)
       ring
     _ = _ := by rw [Complex.cpow_def_of_ne_zero hn, ← Complex.ofReal_log hx.le]
 
-/-- The actual Gaussian summand already proved for the second AFE is exactly
-the pair coefficient and oscillatory phase used in the denominator model. -/
 theorem d02ActualGaussianSummand_eq_pairTerm (α : Fin 2 → ℂ) (t : ℝ) (n : ℕ × ℕ) :
     d02ActualGaussianSummand (criticalLinePoint t + α 0)
       (1 - criticalLinePoint t + α 1) t n = d02GaussianPairTerm α t n := by
@@ -81,8 +77,6 @@ theorem d02_actual_four_profiles_gaussian_finite_identity {T : ℝ} (hT : 1 < T)
   rw [hs]
   exact d02_four_profiles_gaussian_pair_finite_identity hT t a ρ hcap α P
 
-/-- The actual unrestricted second-AFE Gaussian series, with the four
-literal finite profiles, is the full absolutely summable six-index series. -/
 theorem d02_actual_four_profiles_gaussian_full_identity {T : ℝ} (hT : 1 < T)
     {t : ℝ} (ht : 0 < t) (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)
     (hcap : ∀ j x, a j < x → ρ j x = 0) (α : Fin 2 → ℂ) :
@@ -108,9 +102,6 @@ theorem d02_actual_gaussian_full_diagonal_time_identity {T : ℝ} (hT : 1 < T)
   rw [d02ActualGaussianSeries_eq_pairSeries]
   exact d02SixMain_full_diagonal_add_offDiagonal_time_identity hT hΦs t a ρ hcap α τ
 
-/-- The finite four-profile product of the actual second-AFE Gaussian
-summands has exactly the six-index Fourier time integral, including arbitrary
-complex normalized-time powers. -/
 theorem d02_actual_four_profiles_gaussian_finite_time_integral {T : ℝ} (hT : 1 < T)
     {Φ : ℝ → ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hs : tsupport Φ ⊆ Icc (1 : ℝ) 2)
     (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)
@@ -170,9 +161,6 @@ theorem d02ActualPairCut_fromD01_iff {T : ℝ} (hT : 1 < T)
       exact_mod_cast hn]
   rw [he, Real.rpow_def_of_pos hTp]
 
-/-- The exact finite arithmetic diagonal for the literal pair product cut
-is the D01 Gaussian measure with the original q0≤1+δ mask. The four profile
-caps remove precisely the extra finite profile-box restriction. -/
 theorem d02_actual_finite_gaussian_diagonal_measure_identity {T : ℝ} (hT : 1 < T)
     (δ t : ℝ) (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)
     (hcap : ∀ j x, a j < x → ρ j x = 0) (σ : Fin 2 → ℂ) :
@@ -224,8 +212,6 @@ theorem d02_actual_finite_gaussian_diagonal_measure_identity {T : ℝ} (hT : 1 <
   · rw [ite_eq_right (hcut.not.2 h)]
     simp [M, h]
 
-/-- The finite physical arithmetic diagonal has exactly the truncated D01
-Gaussian height mean used in the proved moving-cutoff limit. -/
 theorem d02_actual_finite_gaussian_diagonal_time_mean_identity {T : ℝ} (hT : 1 < T)
     (δ : ℝ) (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)
     (hcap : ∀ j x, a j < x → ρ j x = 0) (σ : Fin 2 → ℂ) (Φ : ℝ → ℝ) :

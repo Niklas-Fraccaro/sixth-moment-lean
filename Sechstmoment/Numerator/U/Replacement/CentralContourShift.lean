@@ -6,13 +6,6 @@ import Sechstmoment.Numerator.U.Replacement.GaussianAdmissible
 import Sechstmoment.Zeta.AFE.Four.GammaRemainder
 import Sechstmoment.Zeta.Gamma.PositiveStrip
 
-/-!
-# The genuine positive contour movement for the Gamma weight difference
-
-The global Gamma strip estimate and the actual rapid strip decay of the
-auxiliary weight prove all boundary hypotheses of rectangle Cauchy. The
-literal source weights are identified by positive-real complex-power laws.
--/
 
 namespace Sechstmoment.Source
 open Real Complex MeasureTheory Filter Set
@@ -271,8 +264,6 @@ theorem bblrV_sub_bblrVStar_eq_centralWeightDifference {t x : ℝ}
   simpa only [bblrVerticalIntegrand,S,Complex.ofReal_div,Complex.ofReal_pow,mul_sub] using
     congrArg (fun q : ℂ => (1/(2*Real.pi):ℂ)*q) hsub
 
-/-- The genuine source V-minus-VStar difference is the actual Gamma
-difference on every prescribed positive contour at most one unit wide. -/
 theorem bblrV_sub_bblrVStar_eq_shifted_centralWeightDifference {t x c : ℝ}
     (ht : 0 < t) (hx : 0 < x) (hc : 0 < c) (hc1 : c ≤ 1)
     (G : ℂ → ℂ) (α : MomentShifts) (hG : BBLREntireWeight G α)

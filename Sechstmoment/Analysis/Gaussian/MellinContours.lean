@@ -1,9 +1,6 @@
 import Mathlib.Analysis.Calculus.MeanValue
 import Sechstmoment.Analysis.Gaussian.Mellin
 
-/-! The Gaussian erfc identity on every positive vertical contour. The
-Fourier evaluation of the differentiated integral is independent of the
-line. Vanishing at positive infinity fixes the integration constant. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Filter
@@ -17,7 +14,6 @@ def d02GaussianMellinIntegrandOnLine (c y v : ℝ) : ℂ :=
 def d02GaussianMellinOnLine (c y : ℝ) : ℂ :=
   (1/(2*Real.pi) : ℂ)*∫ v : ℝ, d02GaussianMellinIntegrandOnLine c y v
 
-/-- The literal Gaussian `exp(z^2) x^(-z)/z` integral on `(c)`. -/
 def d02GaussianMellinV0OnLine (c x : ℝ) : ℂ :=
   (1/(2*Real.pi) : ℂ)*∫ v : ℝ,
     let z : ℂ := (c : ℂ)+(v : ℂ)*I
@@ -95,7 +91,6 @@ private theorem d02GaussianMellinOnLine_density_integral (c y : ℝ) :
   simp only [neg_neg, div_one]
   rw [hsqrt, hexp]
 
-/-- The exact differentiated density does not depend on the positive line. -/
 theorem d02GaussianMellinOnLine_hasDeriv {c : ℝ} (hc : 0 < c) (y : ℝ) :
     HasDerivAt (d02GaussianMellinOnLine c)
       (-(1/(2*Real.sqrt Real.pi) : ℂ)*Complex.exp (-(y : ℂ)^2/4)) y := by
@@ -162,7 +157,6 @@ theorem d02GaussianMellinOnLine_tendsto_zero {c : ℝ} (hc : 0 < c) :
   simp only [mul_zero] at hh
   exact squeeze_zero (fun _ => norm_nonneg _) (d02GaussianMellinOnLine_norm_le hc) hh
 
-/-- Unconditional positive-line contour invariance. -/
 theorem d02GaussianMellinOnLine_eq_line_one {c : ℝ} (hc : 0 < c) (y : ℝ) :
     d02GaussianMellinOnLine c y = d02GaussianMellin y := by
   let f : ℝ → ℂ := fun u => d02GaussianMellinOnLine c u-d02GaussianMellin u
@@ -183,7 +177,6 @@ theorem d02GaussianMellinOnLine_eq_tail {c : ℝ} (hc : 0 < c) (y : ℝ) :
     d02GaussianMellinOnLine c y = (d02GaussianTail (y/2) : ℂ) := by
   rw [d02GaussianMellinOnLine_eq_line_one hc, d02GaussianMellin_eq_tail]
 
-/-- The exact erfc weight on the contour required by absolute pair summation. -/
 theorem d02GaussianMellinV0OnLine_eq_gaussianV0 {c x : ℝ} (hc : 0 < c) (hx : 0 < x) :
     d02GaussianMellinV0OnLine c x = (d02GaussianV0 x : ℂ) := by
   have he : d02GaussianMellinV0OnLine c x = d02GaussianMellinOnLine c (Real.log x) := by

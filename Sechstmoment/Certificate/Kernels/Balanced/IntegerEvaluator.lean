@@ -3,8 +3,6 @@ import Sechstmoment.Analysis.Quadrature.IntegerWeights
 import Sechstmoment.Certificate.Exact.KernelEvaluators
 import Std
 
-/-! Exact integer evaluator. No integral or moment asymptotic is assumed here.
-The link to the mathematical denominator is a separate theorem obligation. -/
 
 namespace Sechstmoment.Finite
 

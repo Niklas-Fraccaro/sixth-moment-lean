@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.V.Arithmetic.Additive.Series
 import Sechstmoment.Numerator.V.Arithmetic.ShiftedMellinInsertion
 import Sechstmoment.Numerator.V.EulerTransfer.DivisorRemainder
 
-/-! The actual smoothed additive fourfold sum equals the full divisor and
-Gauss-weighted Mellin expression on the absolute starting line. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory ZMod

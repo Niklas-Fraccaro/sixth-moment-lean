@@ -1,10 +1,6 @@
 import Sechstmoment.Analysis.Gaussian.Decay
 import Sechstmoment.Zeta.Gamma.CompactStripEnvelope
 
-/-! Gamma quotient estimates retaining the cancellation in the height.
-These bounds depend on a fixed compact real strip, not on a character or a
-conductor. They supply the estimates for the smooth-square AFE weights.
--/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory
@@ -97,8 +93,6 @@ theorem gamma_compact_strip_shifted_quotient_bound (a b : ℝ) (ha : 0 < a) (hb 
       ring
     _ ≤ _ := by gcongr
 
-/-- Polynomial height loss, with the exponential depending only on the
-vertical displacement, rather than on the height of either Gamma factor. -/
 theorem gamma_compact_strip_vertical_ratio_bound (a b : ℝ) (ha : 0 < a) (hb : b < 1)
     (m : ℕ) :
     ∃ C : ℝ, 0 < C ∧ ∀ z : ℂ, z.re ∈ Icc a b → ∀ y : ℝ,

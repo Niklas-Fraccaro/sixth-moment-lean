@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.ActivePassiveComparison
 
-/-! Quantitative passive source transport with freely chosen contour,
-source and kernel losses. No fixed rectangular-slack loss is substituted
-for the arbitrarily small loss required by the rectangular A03 rate. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

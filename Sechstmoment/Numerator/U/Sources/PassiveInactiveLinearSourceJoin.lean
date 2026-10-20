@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.Ratio.InactivePhysicalFar
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.SevenGridSpectralTail
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.SourceLinearJoin
 
-/-! The whole actual inactive passive linear zero is small: its genuine
-source discrepancy is sublinear and its discrete source is a far sum. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

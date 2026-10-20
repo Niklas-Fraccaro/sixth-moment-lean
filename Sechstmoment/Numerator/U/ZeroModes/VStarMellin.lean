@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.ForwardMellin
 import Sechstmoment.Numerator.U.ZeroModes.PolarChamberInvariance
 
-/-! Exact x-Mellin evaluation of the actual gamma-free V* factor used in
-BBLR §2.4. Absolute convergence is a conclusion on the positive Mellin strip. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology
@@ -51,8 +49,6 @@ theorem bblrVStar_square_scaled_mellinConvergent {q : ℂ} (hq : 0<q.re)
   congr 2
   ring
 
-/-- The literal x integral from BBLR §2.4, before the arithmetic and
-functional-equation substitutions. -/
 theorem bblrVStar_square_scaled_xMellin {q : ℂ} (hq : 0<q.re)
     {Y : ℝ} (hY : 0<Y) (G : ℂ→ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) :
@@ -62,7 +58,6 @@ theorem bblrVStar_square_scaled_xMellin {q : ℂ} (hq : 0<q.re)
   ⟨bblrVStar_square_scaled_mellinConvergent hq hY G α hG,
     bblrVStar_square_scaled_forwardMellin hq hY G α hG⟩
 
-/-- The actual polar weight supplies every Mellin regularity hypothesis. -/
 theorem a03GaussianVStar_square_scaled_xMellin {q : ℂ} (hq : 0<q.re)
     {Y : ℝ} (hY : 0<Y) (T : ℝ) (σ : MomentShifts) :
     IntegrableOn (fun x : ℝ => (x:ℂ)^(q-1)*bblrVStar (polarPoleKiller T σ) (x^2/Y^2)) (Ioi 0) ∧

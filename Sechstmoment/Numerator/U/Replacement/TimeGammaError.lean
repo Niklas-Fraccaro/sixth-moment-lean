@@ -1,12 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.TimeGamma.Derivatives
 
-/-!
-# Actual Gamma replacement error on a complex time window
-
-The complex time estimate preserves the factor T⁻¹ before Cauchy is applied.
-This supplies the missing time-symbol saving, independently of any amplified
-moment estimate or zero-mode reconstruction.
--/
 namespace Sechstmoment.Source
 open Complex Set Metric
 open scoped BigOperators Topology ContDiff
@@ -82,7 +75,6 @@ theorem bblrTimeGammaBase_log_error {T A : ℝ} (hA : 0≤A) (hT : 8*(A+1)≤T)
     fin_cases j <;> simp [bblrGammaPhaseCenter,Complex.log_I,Complex.log_neg_I,
       abs_of_nonneg (by positivity : 0≤Real.pi/2)]
   have hlog := principalLog_unit_near_bound (bblrGammaPhaseCenter_norm j) harg hdhalf
-  -- The sharper half-unit q error leaves a full margin to the logarithm cut.
   have hlogq : ‖Complex.log q-Complex.log (bblrGammaPhaseCenter j)‖≤1/2 := by
     apply hlog.trans
     apply (le_trans (mul_le_mul_of_nonneg_left hdist (by norm_num)))
@@ -237,8 +229,6 @@ theorem bblrTimeGammaQuotient_normalized_eq {T A : ℝ} (hA : 0≤A)
   congr 2
   ring
 
-/-- The genuine complex-time normalized quotient error. Its T⁻¹ saving is
-uniform on the full Cauchy circle, unlike a pointwise real-time estimate. -/
 theorem bblrTimeGammaQuotient_normalized_error_le {T A : ℝ} (hA : 0≤A)
     (hT : 8*(A+1)≤T) (α : MomentShifts) (hα : ∀ j, ‖α j‖≤A)
     {x : ℝ} (hx : x∈Icc (1:ℝ) 2) {y : ℂ}
@@ -308,7 +298,6 @@ private theorem time_main_power_norm_le {T : ℝ} (hT : 0<T)
   · positivity
   · positivity
 
-/-- The actual complex-time Gamma difference retains the T⁻¹ saving. -/
 theorem bblrTimeGammaReplacementError_complex_norm_le {T A : ℝ} (hA : 0≤A)
     (hT : 8*(A+1)≤T) (α : MomentShifts) (hα : ∀ j, ‖α j‖≤A)
     {x : ℝ} (hx : x∈Icc (1:ℝ) 2) {y : ℂ}
@@ -334,7 +323,6 @@ theorem bblrTimeGammaReplacementError_complex_norm_le {T A : ℝ} (hA : 0≤A)
   · exact norm_nonneg _
   · positivity
 
-/-- Cauchy now yields all real time derivatives with the same saving. -/
 theorem bblrGammaReplacementError_normalizedTime_derivative_bound (n : ℕ)
     {T A : ℝ} (hA : 0≤A) (hT : 8*(A+1)≤T) (α : MomentShifts)
     (hα : ∀ j, ‖α j‖≤A) {z : ℂ} (hzre : 0≤z.re)

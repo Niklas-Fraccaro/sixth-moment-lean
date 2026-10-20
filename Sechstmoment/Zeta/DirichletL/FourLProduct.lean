@@ -1,8 +1,5 @@
 import Sechstmoment.Zeta.DirichletL.ImprimitiveFourthMoment
 
-/-! The uniform four-L-product estimate for nonprincipal characters, ready
-for the shifted nonprincipal contour in Section 5 of the supplied plan.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

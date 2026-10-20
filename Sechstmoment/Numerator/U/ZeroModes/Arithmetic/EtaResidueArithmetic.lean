@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.EtaBIdentity
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.EtaMainFunction
 
-/-! Exact arithmetic identification of the crossed `s=0` residue in §2.4.
-This does not assert the analytic contour shift or the `V*` tail estimate. -/
 
 namespace Sechstmoment
 open scoped BigOperators
@@ -40,8 +38,6 @@ theorem bblrCrossedAArithmetic_eq (α β γ δ : ℂ) :
   rw [h₁,h₂,h₃,h₄]
   ring
 
-/-- The complete finite amplifier residue identification, proved using (9)
-with all original coefficient ranges retained. -/
 theorem a03EtaMainFunction_zero_eq_crossedArithmetic (N₁ N₂ : ℕ) (a b : ℕ → ℂ)
     {α : MomentShifts} (hα : ∀ j : Fin 4, ‖α j‖ ≤ 1/8) :
     riemannZeta (1+α 0-α 1)*riemannZeta (1+α 2-α 3)/

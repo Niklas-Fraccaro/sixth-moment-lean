@@ -62,8 +62,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Numerator.V.DP.CenteringPolynomialMoment
 import Std
 
-/-! Actual raw and phase-projected polynomial V numerator asymptotics.
-The sole external source hypothesis is the literal DP sharp-endpoint theorem. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial
 open scoped Topology BigOperators
@@ -72,7 +70,6 @@ set_option maxHeartbeats 1600000
 
 namespace Source
 
-/-- Exact normalization/projection identity for the literal actual V test. -/
 theorem vPolynomialProjectedMixedMoment_normalized_eq_real {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (η : ℝ) (P Q p : ℝ[X])
     (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :

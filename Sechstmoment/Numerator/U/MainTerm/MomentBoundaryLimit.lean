@@ -1,18 +1,6 @@
 import Sechstmoment.Numerator.U.MainTerm.CauchyBoundary
 import Sechstmoment.Numerator.U.OffDiagonal
 
-/-!
-# The actual normalized fourth moment on the separated Cauchy boundary
-
-The source-only A03 discrepancy is divided by the actual normalization
-`T * log(T)^9`. Combining this uniform zero limit with the existing A04
-six-main-term boundary limit proves the boundary limit of the literal
-`twistedFourthMoment`, under only the two unchanged BBLR paper inputs.
-
-The profiles and dyadic time weight are fixed before `T`. This module does
-not identify the boundary limit with a regular manuscript generator and
-does not claim collision continuation or derivative convergence.
--/
 
 namespace Sechstmoment
 open Complex Real Source Set Filter
@@ -45,9 +33,6 @@ private theorem uniform_oT_div_time_log_pow_tendsto_zero
       exact hn.trans (mul_le_mul_of_nonneg_left hd (by positivity)))
     _ < ε := by linarith
 
-/-- The actual A03 discrepancy is negligible after the literal moment
-normalization, uniformly on every compact shift set with a fixed root gap.
-There is no additional asymptotic or reconstruction hypothesis. -/
 theorem a03SourceOnly_normalized_discrepancy_uniform_zero
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput)
     {a b : ℝ} (ha : 0 ≤ a) (hab : a ≤ b) (hlen : 3*a+5*b < 2)
@@ -65,10 +50,6 @@ theorem a03SourceOnly_normalized_discrepancy_uniform_zero
       (polarPoleKiller T σ) f g Φ) K 9
     (a03SourceOnly_uniform_oT hAFE hSource ha hab hlen K hK hκ hroot f g Φ hf hg hΦ)
 
-/-- The literal normalized twisted fourth moment converges uniformly on
-the fixed distinguished boundary of radii `1,2,4,8`. Its limit is the actual
-six-term polar-profile limit, with the existing contour parameter `33`.
-Only the original fixed-AFE and oriented BBLR paper inputs are assumed. -/
 theorem twistedFourthMoment_normalized_uniform_on_dpCauchyBoundary
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput)
     {a b : ℝ} (ha : 0 ≤ a) (hab : a ≤ b) (hlen : 3*a+5*b < 2)

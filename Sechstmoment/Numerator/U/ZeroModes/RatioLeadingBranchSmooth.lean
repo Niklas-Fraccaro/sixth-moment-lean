@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.FullVStarNative
 
-/-! Smoothness and exact scalar separation of the literal original/dual
-leading time profile. Every factor is evaluated at the actual raw shifts. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology ContDiff

@@ -1,9 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.HorizontalMajorants
 
-/-! The genuine positive-real powers of the physical ratio Mellin
-integrand. Their logarithms are real, so their norms are independent of
-the imaginary contour heights. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
@@ -152,8 +149,6 @@ theorem a03RatioExponentialPair_joint_integrable (L M c d : ℝ) (F : ℂ→ℂ�
     rw [norm_mul,a03ZeroModeRatioExponential_norm]
     simp)
 
-/-- Multiplication by the actual real-logarithm exponential preserves the
-proved horizontal Gaussian majorant. -/
 theorem a03RatioExponential_horizontal_tendsto_zero (L l r : ℝ) (F : ℂ→ℂ)
     (hlr : l≤r) (habs : ∀ c∈Icc l r,|c|≤1)
     (hb : ∃ Q : ℝ,0≤Q ∧ ∀ y : ℝ,1≤|y| → ∀ c∈Icc l r,

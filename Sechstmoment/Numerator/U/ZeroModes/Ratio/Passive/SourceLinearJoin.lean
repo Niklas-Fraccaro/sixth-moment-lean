@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.ActualFourRatioGammaLinearJoin
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.SourceUniformMoment
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.ZeroReplacementMoment
 
-/-! One common genuine original/dual source factory controls every literal
-selected passive physical source against its leading linear zero. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

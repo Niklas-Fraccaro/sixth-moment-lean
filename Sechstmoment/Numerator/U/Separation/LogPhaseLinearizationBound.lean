@@ -1,7 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Log.Deriv
 import Mathlib.Tactic
 
-/-! The actual quadratic logarithmic error on the supported near range. -/
 namespace Sechstmoment
 open Real
 

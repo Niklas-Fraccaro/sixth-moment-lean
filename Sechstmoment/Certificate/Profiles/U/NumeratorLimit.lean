@@ -2,9 +2,6 @@ import Mathlib.MeasureTheory.Integral.Prod
 import Sechstmoment.Certificate.Profiles.U.Definitions
 import Sechstmoment.Numerator.Kernels.WeightedIntegral
 
-/-! Actual two-profile weak concentration for the normalized U family and
-its actual numerical numerator kernel. The affine Jacobians and compact
-integrability are proved before the dominated-convergence step. -/
 
 namespace Sechstmoment
 open MeasureTheory Set Filter
@@ -28,7 +25,6 @@ private theorem u_compact_product_integrable
       subset_tsupport g (mul_ne_zero_iff.mp hfg).2⟩
   · exact (isClosed_tsupport f).prod (isClosed_tsupport g)
 
-/-- Genuine global integrability of the actual two-profile kernel. -/
 theorem uEndpointProfile_normalized_two_test_integrable {hstar : ℝ}
     (hh : 0 < hstar) (a b : ℝ) {n : ℕ} (hn : 0 < n)
     (F : ℝ × ℝ → ℝ) (hF : Continuous F) :
@@ -40,7 +36,6 @@ theorem uEndpointProfile_normalized_two_test_integrable {hstar : ℝ}
     (uEndpointProfile_normalized_hasCompactSupport hh a hn)
     (uEndpointProfile_normalized_hasCompactSupport hh b hn)
 
-/-- The product integral and the actual iterated integral agree by Fubini. -/
 theorem uEndpointProfile_normalized_two_test_fubini {hstar : ℝ}
     (hh : 0 < hstar) (a b : ℝ) {n : ℕ} (hn : 0 < n)
     (F : ℝ × ℝ → ℝ) (hF : Continuous F) :
@@ -50,8 +45,6 @@ theorem uEndpointProfile_normalized_two_test_fubini {hstar : ℝ}
         uEndpointProfile uNormalizedBump hstar b n y*F (x,y) :=
   integral_prod _ (uEndpointProfile_normalized_two_test_integrable hh a b hn F hF)
 
-/-- The actual affine substitutions have their exact Jacobians on both
-coordinates. No identity or integrability of the resulting kernel is assumed. -/
 theorem uEndpointProfile_normalized_two_test_affine {hstar : ℝ}
     (hh : 0 < hstar) (a b : ℝ) {n : ℕ} (hn : 0 < n) (F : ℝ × ℝ → ℝ) :
     (∫ x : ℝ, ∫ y : ℝ, uEndpointProfile uNormalizedBump hstar a n x*
@@ -90,8 +83,6 @@ private theorem u_two_affine_integrable (hstar a b : ℝ) (n : ℕ)
     uNormalizedBump_contDiff.continuous (hF.comp (by fun_prop))
     uNormalizedBump_hasCompactSupport uNormalizedBump_hasCompactSupport
 
-/-- A common fixed normalized product bump expresses the actual iterated
-profile integral as a single product-measure integral. -/
 theorem uEndpointProfile_normalized_two_test_affine_prod {hstar : ℝ}
     (hh : 0 < hstar) (a b : ℝ) {n : ℕ} (hn : 0 < n)
     (F : ℝ × ℝ → ℝ) (hF : Continuous F) :
@@ -102,8 +93,6 @@ theorem uEndpointProfile_normalized_two_test_affine_prod {hstar : ℝ}
   rw [uEndpointProfile_normalized_two_test_affine hh a b hn]
   exact (integral_prod _ (u_two_affine_integrable hstar a b n F hF)).symm
 
-/-- Genuine two-profile concentration follows from the exact affine
-substitution and a fixed compact normalized product bump. -/
 theorem uEndpointProfile_normalized_two_test_tendsto {hstar : ℝ}
     (hh : 0 < hstar) (a b : ℝ) (F : ℝ × ℝ → ℝ) (hF : Continuous F) :
     Tendsto (fun n : ℕ => ∫ x : ℝ, ∫ y : ℝ,
@@ -169,8 +158,6 @@ theorem uEndpointProfile_normalized_two_test_tendsto {hstar : ℝ}
   filter_upwards [eventually_gt_atTop (0:ℕ)] with n hn
   exact (uEndpointProfile_normalized_two_test_affine_prod hh a b hn F hF).symm
 
-/-- Integrability of the actual numerical numerator kernel with both
-literal normalized U profiles, including coincident endpoints. -/
 theorem u_numerator_profile_integrable (p : Fin 5 → ℝ) {hstar : ℝ}
     (hh : 0 < hstar) (a b : ℝ) {n : ℕ} (hn : 0 < n) :
     Integrable (fun z : ℝ × ℝ => uEndpointProfile uNormalizedBump hstar a n z.1*
@@ -179,8 +166,6 @@ theorem u_numerator_profile_integrable (p : Fin 5 → ℝ) {hstar : ℝ}
   uEndpointProfile_normalized_two_test_integrable hh a b hn _
     (numeratorPointKernel_joint_continuous p)
 
-/-- The actual U two-profile numerator integral has a justified interchange
-of its two ordinary Lebesgue integrals. -/
 theorem u_numerator_profile_integral_swap (p : Fin 5 → ℝ) {hstar : ℝ}
     (hh : 0 < hstar) (a b : ℝ) {n : ℕ} (hn : 0 < n) :
     (∫ x : ℝ, ∫ y : ℝ, uEndpointProfile uNormalizedBump hstar a n x*
@@ -189,9 +174,6 @@ theorem u_numerator_profile_integral_swap (p : Fin 5 → ℝ) {hstar : ℝ}
         uEndpointProfile uNormalizedBump hstar b n y*numeratorPointKernel p x y :=
   integral_integral_swap (u_numerator_profile_integrable p hh a b hn)
 
-/-- The literal normalized U pair weakly recovers the actual simplex
-numerator. Global joint continuity also covers coincident endpoints; for
-admissible manuscript profiles one additionally chooses hstar < min a b. -/
 theorem u_numerator_profile_tendsto (p : Fin 5 → ℝ) {hstar : ℝ}
     (hh : 0 < hstar) (a b : ℝ) :
     Tendsto (fun n : ℕ => ∫ x : ℝ, ∫ y : ℝ,
@@ -200,18 +182,14 @@ theorem u_numerator_profile_tendsto (p : Fin 5 → ℝ) {hstar : ℝ}
       atTop (𝓝 (numeratorPointKernel p a b)) :=
   uEndpointProfile_normalized_two_test_tendsto hh a b _ (numeratorPointKernel_joint_continuous p)
 
-/-- The original certificate rows of U type, with their original weights. -/
 def uCertificateRows : List TestDatum :=
   certificate.filter (fun d => decide (d.typ = .U))
 
 theorem mem_uCertificateRows (d : TestDatum) :
     d ∈ uCertificateRows ↔ d ∈ certificate ∧ d.typ = .U := by simp [uCertificateRows]
 
-/-- The actual U numerator subset contains 220 of the 250 original rows. -/
 theorem uCertificateRows_length : uCertificateRows.length = 220 := by decide +kernel
 
-/-- The scalar numerator obtained from the actual common normalized profile
-family on every original U row. -/
 def uCertificateProfileNumerator (n : ℕ) : ℝ :=
   (uCertificateRows.map (fun d => (d.coefficient:ℝ)*
     ∫ x : ℝ, ∫ y : ℝ,
@@ -219,14 +197,11 @@ def uCertificateProfileNumerator (n : ℕ) : ℝ :=
       uEndpointProfile uNormalizedBump uCertificateHstar ((d.B:ℝ)/(Finite.base:ℝ)) n y*
       numeratorPointKernel (fun r => (Finite.coef (Finite.cheb d.degree) r.val:ℝ)) x y)).sum
 
-/-- The actual endpoint numerator sum for the original U certificate subset. -/
 def uCertificatePointNumerator : ℝ :=
   (uCertificateRows.map (fun d => (d.coefficient:ℝ)*
     numeratorPointKernel (fun r => (Finite.coef (Finite.cheb d.degree) r.val:ℝ))
       ((d.A:ℝ)/(Finite.base:ℝ)) ((d.B:ℝ)/(Finite.base:ℝ)))).sum
 
-/-- Every one of the original U rows has its actual two-profile limit; no
-asymptotic zeta-moment reconstruction is postulated here. -/
 theorem certificate_uProfile_numerator_tendsto (d : TestDatum) :
     Tendsto (fun n : ℕ => ∫ x : ℝ, ∫ y : ℝ,
       uEndpointProfile uNormalizedBump uCertificateHstar ((d.A:ℝ)/(Finite.base:ℝ)) n x*
@@ -236,8 +211,6 @@ theorem certificate_uProfile_numerator_tendsto (d : TestDatum) :
         ((d.A:ℝ)/(Finite.base:ℝ)) ((d.B:ℝ)/(Finite.base:ℝ)))) :=
   u_numerator_profile_tendsto _ uCertificateHstar_pos _ _
 
-/-- Finite summation closes the actual common-profile numerator limit for
-all 220 original U rows, retaining every original coefficient. -/
 theorem uCertificateProfileNumerator_tendsto :
     Tendsto uCertificateProfileNumerator atTop (𝓝 uCertificatePointNumerator) := by
   unfold uCertificateProfileNumerator uCertificatePointNumerator
@@ -245,8 +218,6 @@ theorem uCertificateProfileNumerator_tendsto :
   intro d _
   exact (certificate_uProfile_numerator_tendsto d).const_mul (d.coefficient:ℝ)
 
-/-- The endpoint sum is exactly the U part of the original certified
-feature kernel, with the actual datumFeature conversion. -/
 theorem uCertificatePointNumerator_eq_original_subset :
     uCertificatePointNumerator =
       (uCertificateRows.map (fun d => numeratorFeatureKernel (datumFeature d))).sum := by

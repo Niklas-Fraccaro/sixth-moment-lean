@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualDiagonalTime
 import Sechstmoment.Numerator.U.Diagonal.ActualFiniteAmplifiers
 
-/-! A direct identity for the literal six source main terms, with actual finite
-amplifier supports, dyadic time integrability, profile inversion, and Euler sums. -/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter

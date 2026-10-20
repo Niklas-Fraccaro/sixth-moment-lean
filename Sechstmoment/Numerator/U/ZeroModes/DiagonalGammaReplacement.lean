@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.FiniteGammaDiagonalSplit
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.DiagonalSmallLineMass
 
-/-! Literal original and dual Gamma-minus-Star diagonal replacement.
-The dual kernel includes the actual Gamma phase replacement. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology

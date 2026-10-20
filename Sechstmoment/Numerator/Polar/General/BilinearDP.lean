@@ -2,7 +2,6 @@ import Sechstmoment.Numerator.Polar.General.DP
 import Sechstmoment.Numerator.Polar.General.Holomorphy
 import Sechstmoment.Numerator.V.DP.DPPolynomialPolarization
 
-/-! Actual two-profile polar circle and its exact literal DP-residue collision limit. -/
 
 namespace Sechstmoment
 open Complex Metric Filter Set MeasureTheory

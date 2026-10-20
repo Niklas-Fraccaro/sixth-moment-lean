@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Reconstruction.RectangularUnitZeroMode
 import Sechstmoment.Numerator.U.Separation.BoundaryDilation
 
-/-! Exact null-mode back-transport through the common amplifier/gap dilation.
-The unused enlarged reduced-gap indices vanish by the actual W₀ support. -/
 
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory

@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ActualBranchResidualVertical
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.EtaFrontConvergence
 import Sechstmoment.Numerator.U.ZeroModes.MainXMellinJoin
 
-/-! The complete eta front is its literal main contour plus the three
-actual residual contours, with all original finite amplifier ranges. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff
@@ -117,8 +115,6 @@ private theorem etaChamberRatioRoot_ne_zero {T κ : ℝ} (hT : 1<T) (hκ : 0<κ)
     rw [a03ZeroModeRatioRoot_one_eq_pure]
     exact neg_ne_zero.mpr (hpure _)
 
-/-- The full reconstruction uses only the original compact normalized-root
-domain.  Every needed absolute convergence condition is proved internally. -/
 theorem a03ZeroModeGCDEtaFront_actual_branch_chambers_eventually_reconstruction
     (K : Set MomentShifts) (hK : IsCompact K) {κ η : ℝ}
     (hκ : 0<κ) (hη : 0<η) (hη1 : η≤1/16)

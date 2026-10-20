@@ -2,9 +2,6 @@ import Mathlib.Data.Nat.GCD.Basic
 import Mathlib.NumberTheory.LSeries.Dirichlet
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.EtaArithmetic
 
-/-! The actual two-variable GCD Dirichlet kernel obtained from the physical
-zero mode after the ratio Mellin inversions in BBLR §4.  Zero natural indices
-are set to zero by the two ordinary Dirichlet factors. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat Complex
@@ -44,8 +41,6 @@ theorem shiftedPowerArithmetic_norm_summable {t : ℂ} (ht : 1<t.re) :
   · simp only [hn,ite_false,ArithmeticFunction.zeta_apply_ne hn,
       shiftedPowerArithmetic_apply _ hn,Nat.cast_one,one_div,Complex.cpow_neg]
 
-/-- Absolute convergence on the genuine starting lines.  In particular no
-summability premise is imposed on the original GCD series. -/
 theorem a03GCDDirichlet_norm_summable {a b : ℕ} (ha : a≠0) (_hb : b≠0)
     {w z s : ℂ} (hw : 0<w.re) (hz : 0<z.re) (hs : 1<s.re) :
     Summable (fun x : ℕ × ℕ => ‖a03GCDDirichletTerm a b w z s x‖) := by

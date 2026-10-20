@@ -1,7 +1,5 @@
 import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
 
-/-! A common compact support and common smooth derivative bounds give the
-bounded Schwartz family needed for exact uniform Fourier separation. -/
 namespace Sechstmoment
 open Complex Real Set MeasureTheory
 noncomputable section

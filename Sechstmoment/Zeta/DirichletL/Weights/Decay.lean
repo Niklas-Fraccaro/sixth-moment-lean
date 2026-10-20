@@ -1,9 +1,5 @@
 import Sechstmoment.Zeta.DirichletL.Weights.Shift
 
-/-! Arbitrary power decay of the actual, character-independent AFE weights,
-with only polynomial loss in the height. The exponential Gamma factors are
-cancelled before the Gaussian is integrated.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

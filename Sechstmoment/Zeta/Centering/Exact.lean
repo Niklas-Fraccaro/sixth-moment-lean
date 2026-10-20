@@ -21,14 +21,6 @@ import Sechstmoment.Zeta.Chi.Basic
 import Sechstmoment.Zeta.Generators
 import Std
 
-/-!
-# Exact shifted functional equation before asymptotic centering
-
-`centeringFactor` is the literal ratio in (1.4), built from the actual
-archimedean Gamma factors. The functional equation below is exact on the
-critical strip and on every fixed shift disk once its radius is smaller than
-`log T / 2`. No Stirling estimate or moment estimate is assumed or asserted.
--/
 
 namespace Sechstmoment
 open Complex Filter Set
@@ -36,19 +28,14 @@ open scoped Topology
 
 noncomputable section
 
-/-- The shifted complex argument used by the two normalized generators. -/
 def centeringShift (T t : ℝ) (z : ℂ) : ℂ :=
   criticalLinePoint t + z / (Real.log T : ℂ)
 
-/-- The exact factor `exp z · χ(s+z/log T)/χ(s)` in §1.1. -/
 def centeringFactor (T t : ℝ) (z : ℂ) : ℂ :=
   Complex.exp z * zetaChi (centeringShift T t z) / criticalChi t
 
-/-- The error to be estimated uniformly by Stirling; it is an actual function,
-not an asymptotic hypothesis. -/
 def centeringError (T t : ℝ) (z : ℂ) : ℂ := centeringFactor T t z - 1
 
-/-- The exact generator identity preceding equation (1.4). -/
 theorem centering_generator_functional_equation (T t : ℝ) (z : ℂ)
     (hlo : 0 < (centeringShift T t z).re)
     (hhi : (centeringShift T t z).re < 1) :
@@ -73,8 +60,6 @@ theorem centering_generator_functional_equation (T t : ℝ) (z : ℂ)
 @[simp] theorem centeringError_zero (T t : ℝ) : centeringError T t 0 = 0 := by
   simp [centeringError]
 
-/-- Every bounded shift remains in the critical strip once `log T` dominates
-its radius. This domain control does not depend on the height `t`. -/
 theorem centeringShift_mem_strip {T : ℝ} (hT : 0 < Real.log T) (t : ℝ)
     (z : ℂ) (hz : 2*‖z‖ < Real.log T) :
     0 < (centeringShift T t z).re ∧ (centeringShift T t z).re < 1 := by
@@ -113,8 +98,6 @@ theorem centeringError_analyticAt {T t : ℝ} {z : ℂ}
     AnalyticAt ℂ (centeringError T t) z :=
   (centeringFactor_analyticAt hz).sub analyticAt_const
 
-/-- Every fixed closed shift disk is a genuine holomorphy domain once the
-logarithm dominates twice the radius. -/
 theorem centeringFactor_analyticOnNhd_disk {T : ℝ} (hT : 0 < Real.log T)
     (t R : ℝ) (hR : 2*R < Real.log T) :
     AnalyticOnNhd ℂ (centeringFactor T t) (Metric.closedBall 0 R) := by
@@ -158,8 +141,6 @@ private theorem centering_generator_eventually (T t : ℝ) :
   filter_upwards [ho.mem_nhds hzero] with z hz
   exact centering_generator_functional_equation T t z hz.1 hz.2
 
-/-- Exact all-order Leibniz formula. The phase-factor derivatives remain
-visible, so this does not make the false exact parity assertion (1.5). -/
 theorem centering_generator_derivatives (T t : ℝ) (m : ℕ) :
     (criticalChi t)⁻¹ * iteratedDeriv m (zetaCPlus T t) 0 =
       ∑ j ∈ Finset.range (m+1), (m.choose j : ℂ) *
@@ -174,8 +155,6 @@ theorem centering_generator_derivatives (T t : ℝ) (m : ℕ) :
     iteratedDeriv_fun_mul hf hg]
   simp only [iteratedDeriv_comp_neg, neg_zero, smul_eq_mul, mul_assoc]
 
-/-- The actual generator discrepancy is exactly the actual scalar error
-multiplied by the reflected negative generator. -/
 theorem centering_generator_error (T t : ℝ) (z : ℂ)
     (hz : 0 < (centeringShift T t z).re ∧ (centeringShift T t z).re < 1) :
     (criticalChi t)⁻¹*zetaCPlus T t z - zetaCMinus T t (-z) =
@@ -184,7 +163,6 @@ theorem centering_generator_error (T t : ℝ) (z : ℂ)
   unfold centeringError
   ring
 
-/-- The normalized factor with the actual critical-line Gamma ratios exposed. -/
 theorem centeringFactor_gamma_ratios (T t : ℝ) (z : ℂ) :
     centeringFactor T t z = Complex.exp z *
       (Real.pi : ℂ)^(z/(Real.log T : ℂ)) *
@@ -196,8 +174,6 @@ theorem centeringFactor_gamma_ratios (T t : ℝ) (z : ℂ) :
   rw [← zetaChi_criticalLinePoint t, mul_div_assoc, zetaChi_shift_ratio]
   ring
 
-/-- Fixed shift disks eventually satisfy all of the exact domain and
-holomorphy statements above; no restriction on the height is needed. -/
 theorem eventually_centering_disk (R : ℝ) :
     ∀ᶠ T : ℝ in atTop, 0 < Real.log T ∧ 2*R < Real.log T := by
   filter_upwards [Real.tendsto_log_atTop.eventually (eventually_gt_atTop (max 0 (2*R)))]

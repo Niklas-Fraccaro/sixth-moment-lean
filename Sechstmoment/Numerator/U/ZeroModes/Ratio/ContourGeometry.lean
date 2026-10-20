@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.EtaBounds
 
-/-! The actual u/v line locations of BBLR §4. Their admissible region
-keeps both same-side zeta arguments in the positive half-plane and the
-coupled Euler denominator strictly to the right of one. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

@@ -5,13 +5,6 @@ import Mathlib.Tactic.Ring
 import Sechstmoment.Certificate.Kernels.Unbalanced.BoxPolynomial
 import Sechstmoment.Certificate.Kernels.Unbalanced.InclusionExclusion
 
-/-!
-# Binomial expansion of the eight unbalanced-denominator masks
-
-All integrals use the genuine two-dimensional slice measure of (5.7).
-The masks, their signs, and the nonpositive-length cutoff are inherited from
-`BoxInclusionExclusion`, hence use exactly the integer evaluator's convention.
--/
 
 namespace Sechstmoment
 open MeasureTheory
@@ -44,7 +37,6 @@ private theorem sliceIntegral_const_mul (H c : ℝ) (f : (Fin 2 → ℝ) → ℝ
   simp_rw [he]
   rw [integral_const_mul]
 
-/-- The index `d` is the power of the selected cap. -/
 theorem shift_power_binomial (x a : ℝ) (e : ℕ) :
     (x+a)^e = ∑ d ∈ Finset.range (e+1),
       (Nat.choose e d : ℝ)*a^d*x^(e-d) := by
@@ -73,7 +65,6 @@ theorem translatedSimplexMonomial_expand (H a b c : ℝ) (e₁ e₂ e₃ : ℕ)
   intro d₃ _
   ring
 
-/-- The translated exponent includes the two-dimensional slice measure. -/
 def translatedSimplexExponent (e₁ e₂ e₃ d₁ d₂ d₃ : ℕ) : ℕ :=
   e₁+e₂+e₃+2-d₁-d₂-d₃
 
@@ -84,7 +75,6 @@ theorem translatedSimplexExponent_eq {e₁ e₂ e₃ d₁ d₂ d₃ : ℕ}
   unfold translatedSimplexExponent
   omega
 
-/-- The exact result of translating a single simplex monomial. -/
 noncomputable def translatedSimplexMonomialValue (H a b c : ℝ) (e₁ e₂ e₃ : ℕ) : ℝ :=
   ∑ d₁ ∈ Finset.range (e₁+1), ∑ d₂ ∈ Finset.range (e₂+1),
     ∑ d₃ ∈ Finset.range (e₃+1),
@@ -137,7 +127,6 @@ theorem translatedSimplexMonomial_integral_nonneg {H : ℝ} (hH : 0 ≤ H)
     (Nat.le_of_lt_succ (Finset.mem_range.mp hd₂))
     (Nat.le_of_lt_succ (Finset.mem_range.mp hd₃))
 
-/-- The general translated moment with the exact empty/singleton cutoff. -/
 theorem translatedSimplexMonomial_integral (H a b c : ℝ) (e₁ e₂ e₃ : ℕ) :
     (∫ r, (simplexSlice H).indicator
       (fun r => (r 0+a)^e₁*(r 1+b)^e₂*(H-r 0-r 1+c)^e₃) r) =
@@ -147,11 +136,9 @@ theorem translatedSimplexMonomial_integral (H a b c : ℝ) (e₁ e₂ e₃ : ℕ
   · rw [ite_eq_right hH]
     exact translatedSimplexMonomial_integral_nonneg (le_of_lt (lt_of_not_ge hH)) a b c e₁ e₂ e₃
 
-/-- The scalar shift for a selected mask coordinate. -/
 def minusMaskCap (a : ℝ) (mask : Fin 8) (i : ℕ) : ℝ :=
   if Finite.bit mask.val i then a else 0
 
-/-- A nonselected coordinate contributes only `d=0`, exactly as in `momentTerms`. -/
 theorem minusMaskCap_sum (a : ℝ) (mask : Fin 8) (i e : ℕ) (f : ℕ → ℝ) :
     (∑ d ∈ Finset.range (e+1), (minusMaskCap a mask i)^d*f d) =
       ∑ d ∈ Finset.range (if Finite.bit mask.val i then e+1 else 1), a^d*f d := by
@@ -215,7 +202,6 @@ theorem simplexUpperMask_monomial_integral {a b c : ℝ}
   simp_rw [he]
   exact translatedSimplexMonomial_integral _ _ _ _ _ _ _
 
-/-- Eight-mask monomial evaluator on the truncated slice. -/
 theorem boundedSimplexSlice_monomial_integral {a b c : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (H : ℝ)
     (e₁ e₂ e₃ : ℕ) :
@@ -229,7 +215,6 @@ theorem boundedSimplexSlice_monomial_integral {a b c : ℝ}
   rw [boundedSimplexSlice_integral_of_continuous a b c H _ (by fun_prop)]
   simp_rw [simplexUpperMask_monomial_integral ha hb hc]
 
-/-- Cancellation of the factorials from the box-moment multinomial coefficient. -/
 theorem translatedSimplexMonomialValue_weighted (H a b c : ℝ)
     (k e₁ e₂ e₃ : ℕ) :
     ((Nat.factorial k : ℝ) /
@@ -260,7 +245,6 @@ theorem translatedSimplexExponent_even {k l₁ l₂ l₃ : ℕ}
   unfold translatedSimplexExponent
   omega
 
-/-- The three exponent ranges in precisely the evaluator's bit convention. -/
 noncomputable def minusMaskMonomialSum (H a b c : ℝ) (mask : Fin 8)
     (e₁ e₂ e₃ : ℕ) : ℝ :=
   ∑ d₁ ∈ Finset.range (if Finite.bit mask.val 0 then e₁+1 else 1),
@@ -304,7 +288,6 @@ theorem simplexUpperMask_weighted_monomial_integral {a b c : ℝ}
   · simp only [ite_eq_right hh]
     rw [translatedSimplexMonomialValue_weighted_mask]
 
-/-- The exact factorial coefficient for an even box moment, in `momentTerms` ranges. -/
 theorem simplexUpperMask_evenMonomial_integral {a b c : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (H : ℝ) (mask : Fin 8)
     (m l₁ l₂ l₃ : ℕ) (hl : l₁+l₂+l₃ = m) :
@@ -368,7 +351,6 @@ private theorem upperMaskIntegral_div_const (a b c H : ℝ) (mask : Fin 8)
   simp only [div_eq_mul_inv, mul_comm _ coef⁻¹]
   exact upperMaskIntegral_const_mul a b c H mask coef⁻¹ f
 
-/-- The full translated even moment, retaining the three `Fin (m+1)` indices. -/
 noncomputable def minusMaskEvenMomentValue (m : ℕ) (mask : Fin 8) (a b c HH : ℝ) : ℝ :=
   (Nat.factorial (2*m) : ℝ)/(2 : ℝ)^(2*m) *
     ∑ l₁ : Fin (m+1), ∑ l₂ : Fin (m+1), ∑ l₃ : Fin (m+1),
@@ -379,7 +361,6 @@ noncomputable def minusMaskEvenMomentValue (m : ℕ) (mask : Fin 8) (a b c HH : 
           ((Nat.factorial (2*l₁.val+1) : ℝ)*Nat.factorial (2*l₂.val+1)*
             Nat.factorial (2*l₃.val+1)) else 0
 
-/-- The actual box even moment on one inclusion–exclusion mask. -/
 theorem simplexUpperMask_minusBoxEvenMoment_integral {a b c : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (H : ℝ) (mask : Fin 8) (m : ℕ) :
     (∫ r, (simplexUpperMask a b c H mask).indicator

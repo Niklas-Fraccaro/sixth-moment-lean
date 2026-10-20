@@ -1,8 +1,6 @@
 import Mathlib.Analysis.Calculus.ContDiff.Basic
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.PositiveTimeMellinDecay
 
-/-! Uniform full-height Mellin decay on a compact real strip. The parameter
-dependence of every time derivative is proved from the actual smooth profile. -/
 namespace Sechstmoment
 open Complex Real Set MeasureTheory
 open scoped Topology ContDiff FourierTransform
@@ -86,8 +84,6 @@ theorem a03PositiveTimeLogProfile_uniform_frequency_power_bound {Φ : ℝ→ℂ}
     _≤∫_u:ℝ in Icc (-Real.log 2) 0,D := integral_mono hi (integrableOn_const (measure_Icc_lt_top.ne)) (hbound a ha)
     _=D*Real.log 2 := by simp [Real.volume_real_Icc,max_eq_left hlog.le,mul_comm]
 
-/-- Uniform in a complete compact real-part interval and in all imaginary
-heights, with constants derived from the original fixed smooth profile. -/
 theorem a03PositiveTimeMellin_strip_full_height_decay {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     (A B : ℝ) (N : ℕ) :

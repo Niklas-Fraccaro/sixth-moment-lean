@@ -1,16 +1,12 @@
 import Mathlib.Analysis.Calculus.Deriv.Star
 import Sechstmoment.Denominator.Unbalanced.ActualCircleFubini
 
-/-! The opposite unbalanced phase is the exact conjugate of the minus
-phase after swapping the two real polynomials and the amplifier sides. -/
 namespace Sechstmoment
 open MeasureTheory Set Complex Polynomial Filter
 open scoped BigOperators Topology ComplexConjugate ContDiff
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- The actual zeta derivatives have the real conjugation structure even
-at assigned derivative values where differentiability fails. -/
 theorem d04_riemannZeta_iteratedDeriv_conj (n : ℕ) (s : ℂ) :
     iteratedDeriv n riemannZeta (conj s) = conj (iteratedDeriv n riemannZeta s) := by
   induction n generalizing s with
@@ -34,7 +30,6 @@ theorem d04_centeredZetaDerivative_conj (T : ℝ) (n : ℕ) (s : ℂ) :
   simp only [centeredZetaDerivative,map_sum,map_mul,map_div₀,map_pow,
     conj_natCast,conj_ofReal,map_one,map_ofNat,d04_riemannZeta_iteratedDeriv_conj]
 
-/-- Conjugation of the literal centered finite polynomial operator. -/
 theorem d04_zetaCp_conj (T t : ℝ) (p : ℝ[X]) :
     star (zetaCp T t p) = zetaPolynomialDerivative T p (1-criticalLinePoint t) := by
   rw [criticalLinePoint_one_sub]
@@ -46,7 +41,6 @@ theorem d04_zetaCp_conj (T t : ℝ) (p : ℝ[X]) :
   rw [map_mul,conj_ofReal,← d04_centeredZetaDerivative_conj]
   rfl
 
-/-- Move the three negative-side profiles to the three positive-side slots. -/
 def d04UnbalancedConjugateProfiles (ρ : Fin 4 → ℝ → ℝ) : Fin 4 → ℝ → ℝ :=
   ![ρ 1,ρ 2,ρ 3,ρ 0]
 
@@ -56,19 +50,16 @@ def d04UnbalancedPlusAmplifier (T t : ℝ) (ρ : Fin 4 → ℝ → ℝ) : ℂ :=
     profileDirichletSum T (ρ 2) (1-criticalLinePoint t) *
     profileDirichletSum T (ρ 3) (1-criticalLinePoint t)
 
-/-- The literal χ-phase +1 moment with one positive and three negative profiles. -/
 def d04UnbalancedPlusPolynomialMoment (T : ℝ) (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) (Φ : ℝ → ℝ) : ℂ :=
   ∫ t : ℝ, (Φ (t/T) : ℂ) * criticalChi t * zetaCp T t p *
     zetaPolynomialDerivative T q (1-criticalLinePoint t) *
       d04UnbalancedPlusAmplifier T t ρ
 
-/-- The reflected profile arrangement uses the same original minus kernel. -/
 def d04UnbalancedPlusProfileKernel (p q : Fin 5 → ℝ)
     (ρ : Fin 4 → ℝ → ℝ) : ℝ :=
   d04UnbalancedProfileKernel q p (d04UnbalancedConjugateProfiles ρ)
 
-/-- The cap permutation is exactly the same four-slot permutation. -/
 def d04UnbalancedConjugateCaps (A : Fin 4 → ℝ) : Fin 4 → ℝ :=
   ![A 1,A 2,A 3,A 0]
 
@@ -126,7 +117,6 @@ theorem d04UnbalancedAmplifier_conj (T t : ℝ) (ρ : Fin 4 → ℝ → ℝ) :
   simp only [map_mul,hplus,hminus]
   ring
 
-/-- This is an equality of actual zeta moments, with no asymptotic premise. -/
 theorem d04UnbalancedPlusPolynomialMoment_eq_conj (T : ℝ) (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) (Φ : ℝ → ℝ) :
     d04UnbalancedPlusPolynomialMoment T p q ρ Φ =
@@ -143,7 +133,6 @@ theorem d04UnbalancedPlusPolynomialMoment_eq_conj (T : ℝ) (p q : ℝ[X])
       from d04_zetaCp_conj T t q,hlow,d04UnbalancedAmplifier_conj]
   ring
 
-/-- Real normalization commutes with the exact conjugation identity. -/
 theorem d04UnbalancedPlusPolynomialMoment_normalized_eq_conj (T : ℝ) (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) (Φ : ℝ → ℝ) :
     d04UnbalancedPlusPolynomialMoment T p q ρ Φ / (T*(Real.log T)^9 : ℂ) =
@@ -152,7 +141,6 @@ theorem d04UnbalancedPlusPolynomialMoment_normalized_eq_conj (T : ℝ) (p q : �
   rw [map_div₀,d04UnbalancedPlusPolynomialMoment_eq_conj]
   simp
 
-/-- Transport a proved minus-phase asymptotic to the literal plus-phase family. -/
 theorem d04UnbalancedPlusPolynomialMoment_tendsto_of_minus (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) (Φ : ℝ → ℝ) (L : ℝ)
     (h : Tendsto (fun T : ℝ =>
@@ -164,7 +152,6 @@ theorem d04UnbalancedPlusPolynomialMoment_tendsto_of_minus (p q : ℝ[X])
     Function.comp_def,conj_ofReal]
     using Complex.continuous_conj.continuousAt.tendsto.comp h
 
-/-- The literal +1 unbalanced moment asymptotic with one positive profile. -/
 def D04UnbalancedPlusAsymptotic : Prop :=
   ∀ (a : Fin 4 → ℝ), (∀ i, 0 < a i) → (∑ i, a i) < 1 →
   ∀ (ρ : Fin 4 → ℝ → ℝ), (∀ i, Continuous (ρ i)) →
@@ -177,8 +164,6 @@ def D04UnbalancedPlusAsymptotic : Prop :=
         d04UnbalancedPlusProfileKernel (fun i => p.coeff i.val)
           (fun i => q.coeff i.val) ρ : ℝ) : ℂ))
 
-/-- All admissibility hypotheses are transported by the exact four-slot
-permutation, so a closed minus theorem immediately closes the plus phase. -/
 theorem d04UnbalancedPlusAsymptotic_of_minus
     (hminus : D04UnbalancedMinusAsymptotic) : D04UnbalancedPlusAsymptotic := by
   intro a ha hsum ρ hρ hρs Φ hΦ hΦs p q hp hq

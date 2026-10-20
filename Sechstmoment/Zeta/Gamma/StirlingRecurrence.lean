@@ -1,7 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Sechstmoment.Zeta.Gamma.StirlingStep
 
-/-! Exact finite Gamma/Stirling recurrence in the right half-plane. -/
 
 namespace Sechstmoment.Source
 open Complex Real

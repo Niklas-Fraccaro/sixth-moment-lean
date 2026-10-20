@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.NativeGCDCoordinate
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourceTimeBridge
 
-/-! Exact native ratio-g GCD coordinates, with the actual positive-real
-Jacobian and all five native masks still present. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -63,9 +61,6 @@ def a03NativeRatioGCDCoordinateZeroMode (F : A03SixTensorSpace→ℂ)
           a03ZeroModeRatioPartition (a03ZeroModeRatioWeight ratioα) ((w 1:ℝ)*(w 3:ℝ)^2/X))*
             F (a03SixTensorLogPoint (a03NativeGCDCoordinateArguments false false q w X))
 
-/-- The actual unsorted weighted physical zero mode has the literal BBLR
-ratios a*m²/X and b*n²/X. This is a real-variable substitution and a
-pointwise identity, not an identification of sorted and unsorted zeros. -/
 theorem a03_native_ratio_physical_zero_eq_GCD (F : A03SixTensorSpace→ℂ)
     (ratioα : MomentShifts) (q : QuadraticScales) (hq : ∀ j,0<q.size j) (a b : ℕ→ℂ) :
     a03SixTensorPhysicalZeroMode (fun y => a03RatioEuclideanMultiplier ratioα

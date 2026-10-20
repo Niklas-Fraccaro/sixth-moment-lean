@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.Polar.General.DP
 
-/-! Exact coincident-shift specialization of the genuine source-profile contour. -/
 
 namespace Sechstmoment
 open Complex Metric MeasureTheory
@@ -62,10 +61,6 @@ theorem polar_quadratic_contour_all (A B C z : ℂ) (R : ℝ) (hR : ‖z‖ < R)
     exact polar_quadratic_contour_zero A B C R (by simpa using hR)
   · exact polar_quadratic_contour A B C z R hz hR
 
-/-- The genuine outer source contour at the three coincident zero knots and
-the remaining knot −z is the actual polynomial-weighted polar generator.
-The equality includes z=0; both circles and both profile integrations remain
-part of its proved derivation. -/
 theorem polarGeneralGeneratorContour_coincident (η : ℝ) (P : Polynomial ℝ)
     (z : ℂ) (innerR outerR : ℝ) (hinner : ‖z‖ < innerR) (houter : ‖z‖ < outerR) :
     polarGeneralGeneratorContour η P ![0,0,-z,0] innerR outerR =

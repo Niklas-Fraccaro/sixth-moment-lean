@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Separation.ActualDoubleUnitExclusion
 import Sechstmoment.Numerator.U.ZeroModes.CommonDilationZeroMode
 import Sechstmoment.Numerator.U.ZeroModes.SideOrientation
 
-/-! Actual unit and side-orientation back-transport. The right-hand side is
-the native factor-sorted null mode; it is not the unsorted native null mode. -/
 
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
@@ -71,8 +69,6 @@ theorem boundaryActual_sorted_larger_unit_flag_false (k l : ℕ)
       simp [hlt,hk₀]
     · simp [hk₀,hl₀]
 
-/-- On every actual nonzero block without a double-unit pair, the source
-sort puts all retained units into the discrete positions. -/
 theorem boundaryActual_sorted_unit_flags_discrete (A B H : ℝ) (k : Fin 4 → ℕ)
     (hidx : ∀ j, k j≠1) (hm : ¬ (k 0=0 ∧ k 1=0))
     (hn : ¬ (k 2=0 ∧ k 3=0)) :
@@ -89,9 +85,6 @@ theorem boundaryActual_sorted_unit_flags_discrete (A B H : ℝ) (k : Fin 4 → �
       then decide (k 2=0) else decide (k 3=0))=false
     exact boundaryActual_sorted_larger_unit_flag_false (k 2) (k 3) (hidx 2) (hidx 3) hn
 
-/-- Exact back-transport of the source endpoint null mode to its native
-factor-sorted version. This retains the four factor chambers needed for the
-remaining arithmetic/main-term identification. -/
 theorem boundaryActual_normalized_zero_mode_eq_native_sorted
     (A B H : ℝ) (k : Fin 4 → ℕ) (hA : 0 < A) (hB : 0 < B) (hH : 0 < H)
     (hidx : ∀ j, k j≠1) (hm : ¬ (k 0=0 ∧ k 1=0)) (hn : ¬ (k 2=0 ∧ k 3=0))
@@ -177,9 +170,6 @@ theorem boundaryActual_normalized_zero_mode_eq_native_sorted
   rw [hsc]
   simpa only [boundaryEmbeddedAlpha,boundaryEmbeddedBeta,hprod.1,hprod.2] using he.symm
 
-/-- Every literal active A03 power-near block eventually satisfies the
-exact back-transport identity. The auxiliary index conditions are proved
-from nonzero actual weights and the actual profile exponent range. -/
 theorem phase_actual_active_near_zero_mode_back_transport
     {a b s : ℝ} (ha : 0 ≤ a) (hab : a ≤ b) (hlen : 3*a+5*b < 2) (hs : s < 1/2)
     (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :

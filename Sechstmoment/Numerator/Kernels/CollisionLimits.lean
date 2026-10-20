@@ -19,7 +19,6 @@ import Sechstmoment.Analysis.Alternants.AllZeroLimit
 import Sechstmoment.Numerator.Kernels.ShiftLimit
 import Std
 
-/-! Actual divided-difference integrals regularize all four colliding source shifts. -/
 
 namespace Sechstmoment
 open Filter MeasureTheory

@@ -1,8 +1,6 @@
 import Sechstmoment.Arithmetic.Euler.Convolution.Factorization
 import Sechstmoment.Zeta.Bounds.ZetaTripleLaurent
 
-/-! The three actual residue zeta factors have a uniform quadratic-log
-error at every distinguished index, on a separated bounded shift set. -/
 
 namespace Sechstmoment.Source
 open Complex Real NoDPGlobalConvolution

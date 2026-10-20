@@ -2,14 +2,12 @@ import Sechstmoment.Numerator.U.Separation.LogarithmicMellinWeights
 import Sechstmoment.Numerator.U.ZeroModes.ForwardMellin
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ContourBounds
 
-/-! Uniform genuine power tails of the actual ratio partition. -/
 namespace Sechstmoment.Source
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- The same inverse-root budget applies on every fixed positive contour. -/
 theorem a03ZeroModeRatioGaussianConstant_log_growth_radius {T κ : ℝ}
     (hT : 1<T) (hL : 1≤Real.log T) (hκ : 0<κ) (σ : MomentShifts)
     (hρ : ∀ k : Sechstmoment.PurePolarIndex,κ≤‖normalizedPurePolarRoot σ k‖) (R : ℝ) :
@@ -37,7 +35,6 @@ theorem a03ZeroModeRatioGaussianConstant_log_growth_radius {T κ : ℝ}
       ((1+1/κ^2)*(Real.log T)^2) := by gcongr; exact hcost 0; exact hcost 1
     _=_ := by ring
 
-/-- An explicit contour constant, rather than a pointwise unspecified tail. -/
 theorem a03ZeroModeRatioPartition_explicit_power_bound {c : ℝ} (hc : 0<c)
     (α : MomentShifts) {x : ℝ} (hx : 0<x) :
     ‖a03ZeroModeRatioPartition (a03ZeroModeRatioWeight α) x‖≤
@@ -95,7 +92,6 @@ theorem a03ZeroModeRatioPartition_explicit_power_bound {c : ℝ} (hc : 0<c)
     (show 0≤1/(2*Real.pi) by positivity)
   simpa only [P,mul_assoc] using hh
 
-/-- Uniform normalized-shift power tail on every genuine polynomial ratio. -/
 theorem a03ActualRatioPartition_uniform_polynomial_tail {κ γ A : ℝ}
     (hκ : 0<κ) (hγ : 0<γ) (hA : 0<A) (M : ℕ) :
     ∃ C : ℝ,0≤C ∧ ∀ᶠ T : ℝ in atTop,∀ σ : MomentShifts,

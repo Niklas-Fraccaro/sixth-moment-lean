@@ -4,8 +4,6 @@ import Sechstmoment.Numerator.V.Asymptotic.ResidueProfileLeading
 import Sechstmoment.Numerator.V.Asymptotic.ResidueZetaLeading
 import Sechstmoment.Numerator.V.Asymptotic.TimeResidueLeading
 
-/-! A common inverse-log error for the complete normalized arithmetic
-main term on a bounded separated set of the four original shifts. -/
 
 namespace Sechstmoment.Source
 open NoDPGlobalLFactorization NoDPHarmonic Complex Real Set MeasureTheory Polynomial

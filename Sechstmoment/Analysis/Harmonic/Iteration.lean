@@ -1,7 +1,5 @@
 import Sechstmoment.Analysis.Harmonic.Volterra
 
-/-! Iterating the harmonic quadrature on a simplex. The constants depend only
-on the support, the shift bound, and the initial profile bounds. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set

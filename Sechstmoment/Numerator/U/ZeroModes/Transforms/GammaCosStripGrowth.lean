@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.GammaCosPolynomial
 import Sechstmoment.Zeta.AFE.Four.LargeGammaStrip
 
-/-! Uniform Gamma--cosine polynomial growth on the actual archimedean strip. -/
 namespace Sechstmoment.Source
 open Complex Real Set
 noncomputable section

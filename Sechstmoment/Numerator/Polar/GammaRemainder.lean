@@ -56,16 +56,12 @@ import Sechstmoment.Numerator.Polar.GaussianControl
 import Sechstmoment.Zeta.AFE.Four.GammaRemainder
 import Std
 
-/-! Working central-remainder estimates. These statements concern the
-actual Gamma quotient; no V-error or moment estimate is assumed. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology
 noncomputable section
 
-/-- On any positive central line at most one unit from the origin, the
-actual Gaussian difference has degree 49 and the shifted power scale. -/
 theorem bblrCentralWeightDifference_vertical_norm_le {t A x c R : ℝ}
     (hA : 0 ≤ A) (ht : 8*(A+1) ≤ t) (hx : 0 < x)
     (hc : 0 < c) (hc1 : c ≤ 1) (hR : 0 ≤ R)
@@ -108,10 +104,6 @@ def bblrCentralGaussianDifferenceCore (T : ℝ) (σ α : MomentShifts)
   (1/(2*Real.pi) : ℂ)*∫ v in Icc (-R) R,
     bblrCentralWeightDifference (polarPoleKiller T σ) t α x ((c:ℂ)+(v:ℂ)*I)
 
-/-- A genuinely integrated central estimate on the shifted positive line.
-All integrability is derived from the actual Gamma holomorphy and Gaussian.
-Identifying this core with the original line still requires the contour move
-and quantitative shifted tails. -/
 theorem bblrCentralGaussianDifferenceCore_norm_le {t x c R : ℝ}
     (ht : 10 ≤ t) (hx : 0 < x) (hc : 0 < c) (hc1 : c ≤ 1) (hR : 0 ≤ R)
     (hcentral : 192*((1+R)+(1+R)^2) < t) (hphase : 6*(1+R) ≤ t)

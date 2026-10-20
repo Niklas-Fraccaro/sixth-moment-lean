@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.Separation.Tensor.DualSource
 import Sechstmoment.Numerator.U.Separation.Tensor.Source
 import Sechstmoment.Numerator.U.Sources.Weights.DualTensorParameters
 
-/-! Actual main and dual source factories. A single choice of tensor
-normalization and derivative bounds works for all physical parameters
-and all retained active power-near blocks, including the boundary scales. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology FourierTransform
@@ -21,9 +18,6 @@ def phaseActualSixFourierSourceClasses (ε K : ℝ) (bounds : ℕ → ℝ)
       (phaseNormalizedBeta q (boundaryActualAlpha T A f k) (a03SixActualBoundaryBeta T B g k ν))
       (rectangularRealComponent (phaseNormalizedWeights q (a03SixTensorWeight normalizer ν)) component)
 
-/-- The actual main family supplies its exact separation, uniform coefficient
-mass, every source field, and physical parameter membership with constants
-chosen before T, the block, the shift, and the Fourier frequency. -/
 theorem phase_actual_main_tensor_source_factory
     {a b εsource εkernel c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)
@@ -72,9 +66,6 @@ theorem phase_actual_main_tensor_source_factory
   exact ⟨hvalid A B H hAp hBp hHp k hactive σ hσ hroot v hv positive,
     hsource A B H hA hB hH k hk hactive⟩
 
-/-- The actual dual family supplies its exact separation, uniform coefficient
-mass, every source field, and physical parameter membership with constants
-chosen before T, the block, the shift, and the Fourier frequency. -/
 theorem phase_actual_dual_tensor_source_factory
     {a b εsource εkernel c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)

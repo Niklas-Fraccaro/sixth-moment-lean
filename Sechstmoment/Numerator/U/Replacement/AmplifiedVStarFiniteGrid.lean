@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.FiniteGrid
 import Sechstmoment.Numerator.U.Separation.DualLeadingRegularity
 
-/-! Actual untruncated VStar moment and its finite small-line grid.
-All spatial and frequency tails remain negligible after both amplifiers,
-the leading dual multiplier and the time integral. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology

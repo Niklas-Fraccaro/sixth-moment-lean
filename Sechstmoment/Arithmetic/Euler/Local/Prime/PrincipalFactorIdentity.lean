@@ -1,7 +1,6 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.FiniteEulerNorm
 import Sechstmoment.Arithmetic.Euler.Local.PrincipalFactor
 
-/-! The new correction is exactly the existing convergent principalLocalFactor. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

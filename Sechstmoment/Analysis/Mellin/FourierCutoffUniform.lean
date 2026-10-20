@@ -1,9 +1,6 @@
 import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 import Sechstmoment.Analysis.Mellin.FourierCutoff
 
-/-! Uniform derivative masses for the concrete frequency truncations.
-Together with the unweighted tail estimate these control the full-time
-truncation error by splitting at a large polynomial time cutoff. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

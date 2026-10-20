@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.SmallContour.GridBounds
 
-/-! A genuine uniform power budget for changing the retained finite Gaussian
-AFE grid from Re z = 1 to any fixed positive small contour. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter
 open scoped BigOperators Topology
@@ -43,8 +41,6 @@ theorem rectangular_actual_finite_small_contour_uniform_rapid_error
       apply mul_le_mul_of_nonneg_left _ (mul_nonneg hC₀ hD)
       exact Real.rpow_le_rpow_of_exponent_le hT (by linarith)
 
-/-- The already retained actual AFE is unchanged: the contour difference is
-an explicitly identified rapidly decreasing addition to its actual remainder. -/
 theorem rectangular_actual_AFE_finite_small_gaussian_grid
     (c T : ℝ) (σ α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ 1/4) (t X R : ℝ) :
     bblrAFESum (polarPoleKiller T σ) α t =

@@ -2,7 +2,6 @@ import Mathlib.NumberTheory.EulerProduct.DirichletLSeries
 import Mathlib.NumberTheory.LSeries.Convolution
 import Sechstmoment.Arithmetic.Euler.Convolution.EulerBridges
 
-/-! The three coefficients are independently defined by ordinary Dirichlet convolution. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalConvolution

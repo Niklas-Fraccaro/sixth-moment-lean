@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.V.Chi.CosineInversion
 
-/-! Positive dilation of the exact chi/cosine identity. This permits the
-logarithmic profile supported around 1, with every Jacobian retained. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

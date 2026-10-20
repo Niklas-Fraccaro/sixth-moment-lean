@@ -28,8 +28,6 @@ private theorem a03DiagonalSixPhase_norm_le {α : MomentShifts} {B : ℝ}
   · simpa [bblrSixPhaseExponents] using (h2 1 2).trans (by linarith : 2*B ≤ 4*B)
   · simpa [bblrSixPhaseExponents] using (h2 1 3).trans (by linarith : 2*B ≤ 4*B)
 
-/-- The actual six outer phases are bounded on the dyadic support, uniformly
-over bounded normalized shifts. -/
 theorem a03DiagonalSixPhase_uniform_eventually_norm_bound {R : ℝ} (hR : 0 ≤ R) :
     ∀ᶠ T : ℝ in atTop, ∀ σ : MomentShifts, (∀ j : Fin 4, ‖σ j‖ ≤ R) →
       ∀ m : Fin 6, ∀ t ∈ Icc T (2*T),

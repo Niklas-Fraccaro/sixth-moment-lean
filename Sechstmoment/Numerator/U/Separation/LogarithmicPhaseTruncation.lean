@@ -1,8 +1,6 @@
 import Mathlib.Algebra.Order.Floor.Semiring
 import Sechstmoment.Numerator.U.Separation.BinomialPhase
 
-/-! A logarithmic number of actual binomial terms gives an arbitrary
-negative-power phase remainder, with a uniform cutoff chosen in advance. -/
 namespace Sechstmoment
 open Complex Real Set Filter
 open scoped BigOperators Topology

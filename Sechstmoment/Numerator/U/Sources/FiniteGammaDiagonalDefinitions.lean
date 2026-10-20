@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Sources.OffdiagonalMoment
 
-/-! Literal Gamma diagonal on the same finite AFE grid, time integral,
-and Mellin window as the complete offdiagonal moment. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

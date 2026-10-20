@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.FourGeometricProduct
 
-/-! Geometric convolution is compatible with ring homomorphisms. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

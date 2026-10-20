@@ -1,9 +1,6 @@
 import Sechstmoment.Denominator.Gram.PhaseDefinitions
 import Sechstmoment.Denominator.Unbalanced.MomentComparison
 
-/-! The exact extreme-phase pair inherits the proved one-sided zeta
-approximation. Its physical error has a strict height saving whenever the
-four original amplifier caps have sum less than one. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped BigOperators Topology ContDiff

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.FourAnnihilator
 
-/-! The exact order four shifted divisor recurrence. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

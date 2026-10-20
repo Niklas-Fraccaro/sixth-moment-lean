@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.Replacement.DualErrorPartsContour
 import Sechstmoment.Numerator.U.Replacement.ReplacementErrorDefinitions
 import Sechstmoment.Numerator.U.Replacement.ReplacementMomentMellin
 
-/-! Exact literal finite original-weight, dual-weight, and dual-phase errors
-are the actual fully summed Mellin contours. All interchanges are supported
-by genuine compact joint continuity; no integrability receipt is assumed. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter
 open scoped BigOperators Topology
@@ -122,8 +119,6 @@ private theorem finite_dual_part_eq (phasePart : Bool) {c T : ℝ} (hc : 0<c) (h
     simp only [dual_phase_kernel_eq hT.ne' (hT.trans_le ht.1),integral_const_mul]
     ring
 
-/-- The literal original-weight finite replacement error is its complete
-finite Mellin contour with both unequal amplifiers. -/
 theorem rectangularFiniteOriginalWeightReplacementError_eq_contour
     {c T : ℝ} (hc : 0<c) (hT : 1<T) (a b : ℝ) (f g Φ : ℝ→ℝ)
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

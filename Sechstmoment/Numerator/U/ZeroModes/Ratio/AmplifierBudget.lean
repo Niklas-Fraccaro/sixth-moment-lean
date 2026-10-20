@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.AmplifierMass
 
-/-! Sublinear budget for the complete original amplifier sums of all
-three ratio-contour residuals. Every logarithmic contour cost is allowed. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology

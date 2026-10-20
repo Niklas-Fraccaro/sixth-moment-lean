@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.Tensor.DualKernel
 import Sechstmoment.Numerator.U.Sources.Weights.SixTensorAdmissibility
 
-/-! The full power-near source class is attained by the actual localized
-dual Gaussian Gamma/time kernel. No abstract Schwartz-family bound remains a
-hypothesis of the actual admissibility result. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology FourierTransform

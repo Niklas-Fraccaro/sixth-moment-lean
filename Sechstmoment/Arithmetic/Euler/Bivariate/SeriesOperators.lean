@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Bivariate.RestAlgebra
 
-/-! Multiplication of actual, summable double series by the six Euler factors. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPLocalClosure

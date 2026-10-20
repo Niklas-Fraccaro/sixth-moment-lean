@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.PassiveZeroModeUnsortedActualMass
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.SourceMomentJoin
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.ZeroReplacementBound
 
-/-! The complete genuine ratio-weighted source Gamma zero is replaced by
-the leading linear zero on the literal seven-grid and Mellin interval. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

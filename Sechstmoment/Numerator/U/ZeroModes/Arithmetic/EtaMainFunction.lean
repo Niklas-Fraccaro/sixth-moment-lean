@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.EtaArithmetic
 import Sechstmoment.Numerator.U.ZeroModes.Contour.Chambers
 
-/-! The actual finite-amplifier main-term function of BBLR §2.4, before the
-`s`-contour is moved.  The arithmetic reflection is a theorem about the divisor
-sum, with no main-term equality supplied as an input. -/
 
 namespace Sechstmoment.Source
 open Complex
@@ -20,7 +17,6 @@ noncomputable def a03EtaMainArithmetic (N₁ N₂ : ℕ) (a b : ℕ → ℂ)
         bblrNormalizedEtaArithmetic α β γ δ s m*
         bblrNormalizedEtaArithmetic γ δ α β s n else 0
 
-/-- Literal `M(s)` from BBLR §2.4 with the two finite amplifier supports retained. -/
 noncomputable def a03EtaMainFunction (N₁ N₂ : ℕ) (a b : ℕ → ℂ)
     (α : MomentShifts) (s : ℂ) : ℂ :=
   riemannZeta (1+α 0+α 2+2*s)*riemannZeta (1-α 1-α 3-2*s)*
@@ -40,7 +36,6 @@ theorem a03EtaMainArithmetic_reflection (N₁ N₂ : ℕ) (a b : ℕ → ℂ)
   simp_rw [bblrNormalizedEtaArithmetic_reflection α β γ δ s hden,
     bblrNormalizedEtaArithmetic_reflection γ δ α β s hden']
 
-/-- The §2.4 involution follows from the proved arithmetic reflection. -/
 theorem a03EtaMainFunction_reflection (N₁ N₂ : ℕ) (a b : ℕ → ℂ)
     (α : MomentShifts) (s : ℂ)
     (hden : ∀ p : ℕ, p.Prime →

@@ -57,22 +57,6 @@ import Sechstmoment.Arithmetic.QuadraticDivisor.Estimates.SourceAdapter
 import Std
 
 
-/-!
-# Divisor estimates used by the Watt reduction
-
-New arithmetic and analytic proofs from the supplied divisor-sum project
-(Leanfreundlicher_Divisorsummenbeweis.pdf, 15 October 2026).
-The borrowed source definitions, divisor subpower lemma and scalar transfer
-lemmas are imported from the existing Sechstmoment modules, not copied.
-`DivisorParameters` provides the shared exponent budget. Namespace exports
-retain the original proof's notation without introducing duplicate constants.
-
-`DivisorProof.weightedWattBound_of_watt41` derives the intermediate
-`WeightedWattBound` from the exact external `DivisorProof.Watt41` proposition.
-`Sechstmoment.WattDivisorInput` connects its separated-exponent conclusion
-directly to the existing source consumers. SALT's proved Estermann estimate
-is connected in `EstermannBridge`; provenance is in `Salt/UPSTREAM.json`.
--/
 
 namespace DivisorProof
 export Sechstmoment (SmoothDyadicWeight)
@@ -84,15 +68,12 @@ export Sechstmoment.Source.QuadraticScales (M N mass size)
 end QuadraticScales
 end DivisorProof
 
-/-! ## Normalization -/
 
-/-! Exact multilinearity in equation (16); the zero mode is retained literally. -/
 namespace DivisorProof
 open MeasureTheory Set
 open scoped BigOperators
 noncomputable section
 
-/-- Scaling the two coefficient sequences and all five weights. -/
 theorem quadraticSummand_scale (q : QuadraticScales) (α β : ℕ → ℂ)
     (W : Fin 5 → ℝ → ℝ) (cα cβ : ℂ) (cW : ℝ) (n : Fin 7 → ℕ) :
     quadraticSummand q (fun n => cα * α n) (fun n => cβ * β n)
@@ -147,7 +128,6 @@ theorem quadraticZeroMode_scale (q : QuadraticScales)
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl (fun n _ => quadraticZeroModeSummand_scale q α β W cα cβ cW n)
 
-/-- Exact, unconditional algebraic identity for the actual discrepancy. -/
 theorem signedQuadraticDiscrepancy_scale (positive : Bool) (q : QuadraticScales)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) (cα cβ : ℂ) (cW : ℝ) :
     signedQuadraticDiscrepancy positive q (fun n => cα * α n) (fun n => cβ * β n)
@@ -156,8 +136,6 @@ theorem signedQuadraticDiscrepancy_scale (positive : Bool) (q : QuadraticScales)
   unfold signedQuadraticDiscrepancy
   rw [signedQuadraticSum_scale, quadraticZeroMode_scale, mul_sub]
 
-/-- Recovery of the original discrepancy from divided coefficients and weights.
-This is the exact multilinear equality underlying (16), for both signs. -/
 theorem discrepancy_normalize (positive : Bool) (q : QuadraticScales)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) {cα cβ : ℂ} {cW : ℝ}
     (hα : cα ≠ 0) (hβ : cβ ≠ 0) (hW : cW ≠ 0) :
@@ -176,14 +154,11 @@ theorem discrepancy_normalize (positive : Bool) (q : QuadraticScales)
     field_simp
   rw [hα', hβ', hW']
 
-/-- Scalar multiplication commutes with every iterated derivative, so the
-normalization preserves the derivative order in (8). -/
 theorem iteratedDeriv_normalized_weight (W : ℝ → ℝ) (c : ℝ) (j : ℕ) :
     iteratedDeriv j (fun x => c*W x) = fun x => c*iteratedDeriv j W x := by
   funext x
   exact iteratedDeriv_const_mul_field c W
 
-/-- With scales at least one, `AB ≤ Q`. -/
 theorem product_AB_le_mass (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j) :
     1 ≤ q.A*q.B ∧ q.A*q.B ≤ q.mass := by
   have hA : 1 ≤ q.A := h 0
@@ -200,7 +175,6 @@ theorem product_AB_le_mass (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j) :
   calc q.A*q.B ≤ q.A*q.B*q.M := le_mul_of_one_le_right (by linarith) hM
     _ ≤ _ := le_mul_of_one_le_right (by positivity) hN
 
-/-- The exact real scalar multiplying the normalized discrepancy in (16). -/
 theorem normalization_scalar_identity {A B Q K ρ : ℝ}
     (hA : 0 ≤ A) (hB : 0 ≤ B) (hQ : 0 ≤ Q) :
     (K*A^ρ)*(K*B^ρ)*(Q^ρ)^5 = K^2*(A*B)^ρ*Q^(5*ρ) := by
@@ -209,7 +183,6 @@ theorem normalization_scalar_identity {A B Q K ρ : ℝ}
   rw [show ρ*5 = 5*ρ by ring]
   ring
 
-/-- Equation (16), literally for the PDF's coefficients and weights. -/
 theorem pdf_normalization_identity (positive : Bool) (q : QuadraticScales)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) {K ρ : ℝ}
     (h : ∀ j, 1 ≤ q.size j) (hK : 1 ≤ K) :
@@ -240,7 +213,6 @@ theorem pdf_normalization_identity (positive : Bool) (q : QuadraticScales)
   rw [hw, hf] at he
   exact he
 
-/-- The renormalization in (16) costs at most `K² Λ⁶`. -/
 theorem normalization_factor_le (q : QuadraticScales) {K ρ : ℝ}
     (h : ∀ j, 1 ≤ q.size j) (hρ : 0 ≤ ρ) :
     K^2 * (q.A*q.B)^ρ * q.mass^(5*ρ) ≤ K^2 * (q.mass^ρ)^6 := by
@@ -258,22 +230,18 @@ end
 end DivisorProof
 
 
-/-! ## Arithmetic -/
 
-/-! Genuine elementary arithmetic lemmas from §3. No Weil/Watt input is assumed. -/
 namespace DivisorProof
 open Finset
 open scoped BigOperators
 noncomputable section
 
-/-- Lemma 3.1 for the ordinary divisor count, with a uniform nonnegative constant. -/
 theorem divisor_count_subpower {ρ : ℝ} (hρ : 0 < ρ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ n : ℕ, n ≠ 0 →
       (n.divisors.card : ℝ) ≤ C * (n : ℝ)^ρ := by
   obtain ⟨C, hC, hc⟩ := Sechstmoment.divisor_prime_cost_subpower hρ (C := 1) le_rfl
   exact ⟨C, hC, fun n hn => by simpa using hc n hn⟩
 
-/-- Two divisor decompositions cost only one prescribed subpower. -/
 theorem divisor_count_sq_subpower {ρ : ℝ} (hρ : 0 < ρ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ n : ℕ, n ≠ 0 →
       (n.divisors.card : ℝ)^2 ≤ C * (n : ℝ)^ρ := by
@@ -285,7 +253,6 @@ theorem divisor_count_sq_subpower {ρ : ℝ} (hρ : 0 < ρ) :
       congr 2
       norm_num
 
-/-- Counting positive multiples without an additive error term. -/
 theorem card_positive_multiples_le (L d : ℕ) (hd : 0 < d) :
     #{l ∈ Icc 1 L | d ∣ l} ≤ L/d := by
   calc
@@ -305,7 +272,6 @@ theorem card_positive_multiples_le (L d : ℕ) (hd : 0 < d) :
           _ = l' := Nat.mul_div_cancel' hdl'
     _ = L/d := by simp
 
-/-- An integer version of the single-variable gcd average, stronger than needed. -/
 theorem sum_gcd_le (L c : ℕ) (hc : c ≠ 0) :
     ∑ l ∈ Icc 1 L, Nat.gcd l c ≤ L*c.divisors.card := by
   calc
@@ -331,7 +297,6 @@ theorem sum_gcd_le (L c : ℕ) (hc : c ≠ 0) :
         _ ≤ L := Nat.mul_div_le L d
     _ = L*c.divisors.card := by simp [mul_comm]
 
-/-- Double gcd average; the square root in (12) can be bounded by the gcd itself. -/
 theorem sum_sum_gcd_le (L U c : ℕ) (hc : c ≠ 0) :
     ∑ l ∈ Icc 1 L, ∑ k ∈ Icc 1 U, Nat.gcd (l*k) c ≤
       L*U*c.divisors.card^2 := by
@@ -351,7 +316,6 @@ theorem sum_sum_gcd_le (L U c : ℕ) (hc : c ≠ 0) :
       Nat.mul_le_mul (sum_gcd_le L c hc) (sum_gcd_le U c hc)
     _ = _ := by ring
 
-/-- Lemma 3.2 for integer upper bounds. -/
 theorem sum_sum_sqrt_gcd_le (L U c : ℕ) (hc : c ≠ 0) :
     ∑ l ∈ Icc 1 L, ∑ k ∈ Icc 1 U, Real.sqrt (Nat.gcd (l*k) c) ≤
       (L : ℝ)*U*(c.divisors.card : ℝ)^2 := by
@@ -366,7 +330,6 @@ theorem sum_sum_sqrt_gcd_le (L U c : ℕ) (hc : c ≠ 0) :
       exact_mod_cast Nat.gcd_pos_of_pos_right (l*k) (Nat.pos_of_ne_zero hc)
     _ ≤ _ := by exact_mod_cast sum_sum_gcd_le L U c hc
 
-/-- Harmonic sum bound (14), valid also when the index set is empty. -/
 theorem harmonic_sum_le_subpower {ρ Q : ℝ} (hρ : 0 < ρ) (hQ : 1 ≤ Q)
     (D : ℝ) (hD : D ≤ Q) :
     ∑ d ∈ Icc 1 ⌊D⌋₊, (1 : ℝ)/d ≤ (1 + 1/ρ)*Q^ρ := by
@@ -391,9 +354,7 @@ end
 end DivisorProof
 
 
-/-! ## Divisor Simplification -/
 
-/-! The divisor removal in equation (30), including both max branches. -/
 namespace DivisorProof
 noncomputable section
 
@@ -414,8 +375,6 @@ theorem one_add_product_fourth_root_le {t z : ℝ} (ht : 0 ≤ t) (hz : 0 ≤ z)
           · have h1 : 1 ≤ t := (lt_of_not_ge h).le
             rw [max_eq_right h1, max_eq_right (Real.one_le_rpow h1 (by norm_num))]
 
-/-- Equation (30), with `d₁ d₂ = d` and the divisor inequalities explicit.
-The numerical hypotheses follow from the positive-integer divisor decomposition. -/
 theorem divisor_simplification {d d₁ d₂ d₃ M BY : ℝ}
     (hd₁ : 1 ≤ d₁) (hd₂ : 1 ≤ d₂) (hd₃ : 1 ≤ d₃)
     (hd : d₁*d₂ = d) (hd₃d : d₃ ≤ d) (hM : 0 ≤ M) (hBY : 0 ≤ BY) :
@@ -466,15 +425,12 @@ end
 end DivisorProof
 
 
-/-! ## Cutoff -/
 
-/-! The single real gcd cutoff and its exact finite partition. -/
 namespace DivisorProof
 open Finset
 open scoped BigOperators
 noncomputable section
 
-/-- The sole cutoff in equation (20). -/
 def gcdCutoff (q : QuadraticScales) (ρ : ℝ) : ℝ :=
   (q.A*q.B)^(1/2 : ℝ) * q.mass^(-100*ρ)
 
@@ -499,7 +455,6 @@ theorem gcdCutoff_le_sqrt_mass (q : QuadraticScales) {ρ : ℝ}
       (Real.rpow_nonneg (by linarith : 0 ≤ q.A*q.B) (1/2 : ℝ))
   exact ⟨hcut, hcut.trans (Real.rpow_le_rpow (by linarith) hABQ (by norm_num))⟩
 
-/-- Exhaustive disjoint splitting at a real cutoff, including empty ranges. -/
 theorem one_cutoff_partition {V : Type*} [AddCommMonoid V]
     (s : Finset ℕ) (D : ℝ) (f : ℕ → V) :
     ∑ d ∈ s, f d =
@@ -508,7 +463,6 @@ theorem one_cutoff_partition {V : Type*} [AddCommMonoid V]
   classical
   simpa only [not_le] using (sum_filter_add_sum_filter_not s (fun d : ℕ => (d : ℝ) ≤ D) f).symm
 
-/-- The two cutoff sets have no common index. -/
 theorem one_cutoff_disjoint (s : Finset ℕ) (D : ℝ) :
     Disjoint (s.filter (fun d : ℕ => (d : ℝ) ≤ D))
       (s.filter (fun d : ℕ => D < (d : ℝ))) := by
@@ -520,13 +474,10 @@ end
 end DivisorProof
 
 
-/-! ## Majorant -/
 
-/-! The unchanged oriented majorant and its separated exponent losses. -/
 namespace DivisorProof
 noncomputable section
 
-/-- The three literal terms in equation (4). -/
 def E₀ (q : QuadraticScales) : ℝ := (q.mass*q.H^2)^(1/4 : ℝ)*q.A*q.B
 def E₁ (q : QuadraticScales) : ℝ :=
   q.mass^(3/8 : ℝ)*q.H^(3/4 : ℝ)*q.A^(3/8 : ℝ)*q.B^(1/8 : ℝ)
@@ -561,8 +512,6 @@ theorem orientedMajorant_nonneg (q : QuadraticScales)
   unfold orientedQuadraticMajorant
   positivity
 
-/-- The scalar implication needed to pass from (9) to (10).
-This is a comparison of numerical majorants, not a divisor-sum premise. -/
 theorem separated_majorant_le {Q H E ε ρ : ℝ}
     (hQ : 1 ≤ Q) (hH : 1 ≤ H) (hE : 0 ≤ E) (hε : 0 ≤ ε)
     (hρε : 1000*ρ ≤ ε) :
@@ -578,7 +527,6 @@ theorem exponent_226_le_1000 {Q ρ : ℝ} (hQ : 1 ≤ Q) (hρ : 0 ≤ ρ) :
     Q^(226*ρ) ≤ Q^(1000*ρ) :=
   Real.rpow_le_rpow_of_exponent_le hQ (by linarith)
 
-/-- Exact multiplication of the final normalized loss by the norming cost. -/
 theorem final_loss_identity {Q ρ : ℝ} (hQ : 0 < Q) :
     (Q^ρ)^6 * Q^(220*ρ) = Q^(226*ρ) := by
   rw [← Real.rpow_mul_natCast hQ.le, ← Real.rpow_add hQ]
@@ -590,15 +538,12 @@ end
 end DivisorProof
 
 
-/-! ## Summation -/
 
-/-! Elementary finite summation bounds used at the single gcd cutoff. -/
 namespace DivisorProof
 open Finset MeasureTheory Set
 open scoped BigOperators
 noncomputable section
 
-/-- Equation (12) with arbitrary nonnegative real upper scales. -/
 theorem averaged_sqrt_gcd_le {L U : ℝ} (hL : 0 ≤ L) (hU : 0 ≤ U)
     (c : ℕ) (hc : c ≠ 0) :
     ∑ l ∈ Finset.Icc 1 ⌊L⌋₊, ∑ k ∈ Finset.Icc 1 ⌊U⌋₊,
@@ -629,7 +574,6 @@ private theorem sum_Ioc_rpow_eq (j N : ℕ) (p : ℝ) :
   · intro n hn
     rfl
 
-/-- Integral comparison with the sharp constant used in (13). -/
 theorem tail_rpow_bound_nat (j N : ℕ) (hj : 1 ≤ j) :
     ∑ n ∈ Finset.Icc j N, (n : ℝ)^(-5/2 : ℝ) ≤
       (5/3 : ℝ)*(j : ℝ)^(-3/2 : ℝ) := by
@@ -654,8 +598,6 @@ theorem tail_rpow_bound_nat (j N : ℕ) (hj : 1 ≤ j) :
   · rw [Finset.Icc_eq_empty_of_lt (lt_of_not_ge hjN), Finset.sum_empty]
     positivity
 
-/-- Lemma 3.3 (13), in the finite form actually used in §5.2.
-The real cutoff may lie below one, and the large-gcd range may be empty. -/
 theorem tail_rpow_bound {D : ℝ} (hD : 0 < D) (N : ℕ) :
     ∑ n ∈ (Finset.Icc 1 N).filter (fun n : ℕ => D < (n : ℝ)),
       (n : ℝ)^(-5/2 : ℝ) ≤ (5/3 : ℝ)*D^(-3/2 : ℝ) := by
@@ -693,8 +635,6 @@ private theorem tail_rpow_bound_finset {D : ℝ} (hD : 0 < D) (s : Finset ℕ) :
     (fun n _ _ => Real.rpow_nonneg (Nat.cast_nonneg n) (-5/2 : ℝ))).trans
       (tail_rpow_bound hD (s.sup id))
 
-/-- The infinite tail in (13) is summable; it is not interpreted via an
-undefined or divergent sum. -/
 theorem tail_rpow_summable {D : ℝ} (hD : 0 < D) :
     Summable (fun n : ℕ => if D < (n : ℝ) then (n : ℝ)^(-5/2 : ℝ) else 0) := by
   apply summable_of_sum_le (c := (5/3 : ℝ)*D^(-3/2 : ℝ))
@@ -703,7 +643,6 @@ theorem tail_rpow_summable {D : ℝ} (hD : 0 < D) :
     split_ifs <;> positivity
   · exact tail_rpow_bound_finset hD
 
-/-- The full infinite version of Lemma 3.3 (13), for every positive real cutoff. -/
 theorem tail_rpow_tsum_le {D : ℝ} (hD : 0 < D) :
     (∑' n : ℕ, if D < (n : ℝ) then (n : ℝ)^(-5/2 : ℝ) else 0) ≤
       (5/3 : ℝ)*D^(-3/2 : ℝ) :=
@@ -713,22 +652,17 @@ end
 end DivisorProof
 
 
-/-! ## Asymptotics -/
 
-/-! The unconditional scalar asymptotic statements used at the end of §8.
-They do not assert a bound on the analytic source error. -/
 namespace DivisorProof
 open Filter Asymptotics
 open scoped Topology
 noncomputable section
 
-/-- Every fixed logarithmic power is negligible relative to any positive power. -/
 theorem log_pow_isLittleO {ℓ : ℝ} (hℓ : 0 < ℓ) (k : ℕ) :
     (fun T : ℝ => (Real.log T)^k) =o[atTop] (fun T : ℝ => T^ℓ) := by
   simpa only [Real.rpow_natCast] using
     isLittleO_log_rpow_rpow_atTop (k : ℝ) hℓ
 
-/-- The last displayed scalar power in §8 is `o(T)`. -/
 theorem saved_power_isLittleO {γ : ℝ} (hγ : 0 < γ) :
     (fun T : ℝ => T^(1-γ/2)) =o[atTop] (fun T : ℝ => T) := by
   apply Asymptotics.isLittleO_of_tendsto'
@@ -741,7 +675,6 @@ theorem saved_power_isLittleO {γ : ℝ} (hγ : 0 < γ) :
   congr 1
   ring
 
-/-- A positive source gap follows on the full triangular range in the PDF. -/
 theorem source_saved_power_isLittleO {a b : ℝ}
     (ha : 0 ≤ a) (hab : a ≤ b) (hrange : 3*a+5*b < 2) :
     (fun T : ℝ => T^(1-sourceGap a b/2)) =o[atTop] (fun T : ℝ => T) :=
@@ -751,12 +684,7 @@ end
 end DivisorProof
 
 
-/-! ## Scalar Transfer -/
 
-/-!
-Algebraic transfer of the finer, unsymmetrised BBLR block errors.
-No analytic bound for a divisor sum or for a moment is asserted here.
--/
 
 namespace DivisorProof
 
@@ -766,8 +694,6 @@ export Sechstmoment (rectangularQuadraticMajorant rectangularExpandedMajorant
   rectangular_endpoint_coefficient_le rectangular_poisson_back_transfer
   rectangular_source_majorant_le)
 
-/-- The complete scalar majorant transfer from §8.2, retaining the `H²` term.
-All hypotheses are numerical scale relations; no divisor estimate is a premise. -/
 theorem reconstructed_majorant_le (q : QuadraticScales) {X T K : ℝ}
     (hA : 0 < q.A) (hB : 0 < q.B) (hX : 0 < X) (hH : 0 < q.H)
     (hT : 0 < T) (hK : 0 < K)
@@ -790,7 +716,6 @@ theorem reconstructed_majorant_le (q : QuadraticScales) {X T K : ℝ}
         T/((q.A*q.B)^(1/2 : ℝ)*X)*q.H^2 := by ring
     _ ≤ _ := add_le_add (mul_le_mul_of_nonneg_left hblock (by norm_num)) hpois
 
-/-- A polynomial scale bound gives exactly the `T^(r ε)` loss in (34). -/
 theorem polynomial_mass_loss {mass D T r ε : ℝ}
     (hmass : 0 ≤ mass) (hD : 0 ≤ D) (hT : 0 ≤ T) (hε : 0 ≤ ε)
     (hgrowth : mass ≤ D*T^r) : mass^ε ≤ D^ε*T^(r*ε) :=
@@ -799,18 +724,10 @@ theorem polynomial_mass_loss {mass D T r ε : ℝ}
 end DivisorProof
 
 
-/-! ## Specification -/
 
-/-!
-The requested final statement, kept separate from the proved lemmas.
-`QuantifiedDivisorBound` and `SeparatedDivisorBound` specify the PDF's goals.
-Their proofs from the proved Estermann estimate and the Watt input are supplied in
-MainFromPrimitives near the end of this file.
--/
 namespace DivisorProof
 noncomputable section
 
-/-- The literal conclusion of Theorem 1.2, with all quantifiers in the stated order. -/
 def QuantifiedDivisorBound : Prop :=
   ∀ δ : ℝ, 0 < δ → ∀ ρ : ℝ, 0 < ρ → ρ ≤ δ/(1000*(1+δ)) →
   ∀ K : ℝ, 1 ≤ K → ∀ bounds : ℕ → ℝ, (∀ j, 0 ≤ bounds j) →
@@ -819,9 +736,6 @@ def QuantifiedDivisorBound : Prop :=
       ∀ positive : Bool, ‖signedQuadraticDiscrepancy positive q α β W‖ ≤
         C*q.mass^(1000*ρ)*(orientedQuadraticMajorant q+q.H^2)
 
-/-- The literal separated-exponent contract of Corollary 1.3.
-This intentionally differs from `BBLRv1OrientedInput` in the original repository:
-the admissibility exponent here is `inputExponent ε δ`, not `ε`. -/
 abbrev SeparatedDivisorBound : Prop := Sechstmoment.Source.SeparatedQuadraticInput
 
 end

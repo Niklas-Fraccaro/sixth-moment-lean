@@ -1,15 +1,12 @@
 import Sechstmoment.Analysis.Gaussian.Weight
 import Sechstmoment.Denominator.Balanced.SharpLogCutoff
 
-/-! Continuous shrinking band majorants and uniform bounded-offset estimates
-for the moving Gaussian cutoff. -/
 namespace Sechstmoment
 open MeasureTheory Filter Set
 open scoped Topology
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- Continuous majorant of the band of width `1/(n+1)` around the cut. -/
 def d02CutBandMajorant (n : ℕ) (q : ℝ) : ℝ :=
   max 0 (min 1 (2-((n:ℝ)+1)*|q-1|))
 

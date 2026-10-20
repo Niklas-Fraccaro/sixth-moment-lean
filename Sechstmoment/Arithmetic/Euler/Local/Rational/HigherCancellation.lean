@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.TailPolynomial
 
-/-! Every coefficient of degree at least four cancels. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

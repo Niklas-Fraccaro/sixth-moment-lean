@@ -1,8 +1,6 @@
 import Sechstmoment.Analysis.Mellin.ComplexPoleShift
 import Sechstmoment.Analysis.Mellin.PolePartialFractions
 
-/-! Finite simple-pole contour movement, derived from the proved
-one-pole rectangle formula and exact partial fractions. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

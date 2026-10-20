@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.FiniteGaussianGrid
 import Sechstmoment.Numerator.U.Separation.LogarithmicMellinWeights
 
-/-! The proved four Mellin block weights occur in the literal actual AFE
-kernel and bounded-frequency finite grid. The time oscillation is retained;
-its coupled gap/time separation is not assumed to have been carried out. -/
 
 namespace Sechstmoment
 open Complex Source Real Set Filter MeasureTheory

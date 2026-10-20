@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.NativeRatioGCD
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.FullVStarNative
 
-/-! Literal retained BBLR ratio-GCD V* expression with real product
-coordinate X, true gap d*h/X and all native dyadic masks. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -47,8 +45,6 @@ def a03RetainedRatioGCDVStarZeroMode (dual : Bool) (Φ : ℝ→ℂ) (T : ℝ)
                 a03RatioLeadingBranchProfile dual Φ T σ t*
                   bblrVStar (polarPoleKiller T σ) (X^2/((w 0:ℝ)*w 1*(T*t)^2))
 
-/-- Exact positive-real BBLR product substitution in the literal actual
-V* zero mode. Every native finite range and mask remains visible. -/
 theorem a03_actual_ratio_VStar_zero_eq_retained_GCD (dual : Bool) (Φ : ℝ→ℂ) (T : ℝ)
     (σ α : MomentShifts) (sg : ℝ) (q : QuadraticScales) (hq : ∀ j,0<q.size j) (a b : ℕ→ℂ) :
     a03PhysicalActualRatioLinearVStarZeroMode dual Φ T σ α
@@ -103,8 +99,6 @@ theorem a03_actual_ratio_VStar_zero_eq_retained_GCD (dual : Bool) (Φ : ℝ→�
     erw [hegap]
     simp only [div_div]
 
-/-- Genuine full-Mellin reconstruction in the retained ratio-GCD
-coordinate, with the actual ratio multiplier and the actual primary G. -/
 theorem a03_actual_ratio_native_full_eq_retained_GCD_VStar
     {Φ : ℝ→ℂ} (hΦ : Continuous Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {T c κ : ℝ} (hT : 1<T) (hL : 1≤Real.log T) (hc : 0<c) (hκ : 0<κ)

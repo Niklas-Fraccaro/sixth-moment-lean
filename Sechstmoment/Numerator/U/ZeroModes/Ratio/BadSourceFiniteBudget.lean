@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.BadSourceKernel
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourceTimeBridge
 
-/-! Actual finite counting for the complement of the soft source mask. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

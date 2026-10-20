@@ -1,8 +1,6 @@
 import Sechstmoment.Certificate.Exact.RowIntegral
 import Sechstmoment.Numerator.Kernels.GeneratorDerivatives
 
-/-! The actual centered/polar generator operators for the 250 original
-certificate rows agree with the independently computed exact numerator. -/
 
 namespace Sechstmoment
 open _root_.Sechstmoment.Finite
@@ -12,7 +10,6 @@ noncomputable section
 set_option maxHeartbeats 1000000
 set_option maxRecDepth 10000
 
-/-- Concrete endpoint geometry of the supplied original certificate. -/
 theorem certificate_numerator_generator_geometry : ∀ d ∈ certificate,
     0 < d.A ∧ 0 < d.B ∧ d.A+d.B < Finite.base := by decide +kernel
 
@@ -62,9 +59,6 @@ theorem datumNumeratorDifferentialValue_eq_pointKernel {d : TestDatum}
 def certificateNumeratorDifferentialValue : ℂ :=
   (certificate.map datumNumeratorDifferentialValue).sum
 
-/-- The full original 250-row numerical numerator is obtained from actual
-generator differential operators; the integer evaluator is not assumed to
-describe these generators. -/
 theorem certificateNumeratorDifferentialValue_eq_finite :
     certificateNumeratorDifferentialValue = (finiteNumerator:ℂ) := by
   let F : TestDatum → ℝ := fun d => (d.coefficient:ℝ)*

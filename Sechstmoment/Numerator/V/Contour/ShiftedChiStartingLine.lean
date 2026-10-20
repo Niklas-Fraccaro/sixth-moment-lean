@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.V.Contour.ShiftedChiFactor
 import Sechstmoment.Numerator.V.Contour.ShiftedLineGeometry
 
-/-! Sharp right-line growth of the actual single-shift chi moment factor. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

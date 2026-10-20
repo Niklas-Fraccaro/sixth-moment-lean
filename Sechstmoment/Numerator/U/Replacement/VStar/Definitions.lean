@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Replacement.DualErrorGaussian
 import Sechstmoment.Numerator.U.Replacement.VStar.Contours
 import Sechstmoment.Numerator.U.Separation.SmallContour.Grid
 
-/-! Literal untruncated VStar AFE and its actual finite small-contour grid.
-These are definitions of concrete functions, not approximation hypotheses. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory
 open scoped BigOperators

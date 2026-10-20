@@ -2,8 +2,6 @@ import Mathlib.Analysis.MellinInversion
 import Sechstmoment.Numerator.U.Replacement.VStar.Contours
 import Sechstmoment.Numerator.U.ZeroModes.Contour.RatioSmooth
 
-/-! Forward Mellin transform of the genuine inverse-Mellin ratio and V* weights.
-The proof recovers the actual frequency function by Fourier inversion. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology FourierTransform

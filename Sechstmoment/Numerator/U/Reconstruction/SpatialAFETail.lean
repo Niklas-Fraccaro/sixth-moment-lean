@@ -3,9 +3,6 @@ import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEInterchange
 import Sechstmoment.Numerator.U.Separation.LogarithmicGaussianTail
 import Sechstmoment.Numerator.U.Separation.PositiveVContour
 
-/-! Actual product truncation of the fourfold AFE at T^(2+epsilon).
-Rightward Mellin movement supplies arbitrary negative-power decay; the
-retained index set is a finite genuine product cutoff, not a proxy mass. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

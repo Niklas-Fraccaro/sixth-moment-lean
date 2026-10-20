@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Gram.Analytic
 import Sechstmoment.Zeta.TestTypes
 
-/-! Weighted Cauchy--Schwarz with a coefficient bounded only on the
-actual dyadic support; this is used for the literal centering errors. -/
 namespace Sechstmoment
 open Complex MeasureTheory Filter Set Polynomial
 open scoped Topology ComplexConjugate
@@ -48,8 +46,6 @@ theorem d06_weighted_product_coefficient_bound {T c : ℝ} (hT : 0<T) (hc : 0≤
   rw [he] at hcs
   exact hcs.trans (mul_le_mul_of_nonneg_right hb hGnonneg)
 
-/-- Bounded normalized L2 masses and an inverse-logarithmic coefficient
-make the actual normalized product integral tend to zero. -/
 theorem d06_weighted_product_inverseLog_tendsto
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (hΦpos : ∀ x,0≤Φ x)
     (F G E : ℝ → ℝ → ℂ) (B C K : ℝ) (hB : 0≤B) (hC : 0≤C) (hK : 0≤K)
@@ -101,7 +97,6 @@ theorem d06_weighted_product_inverseLog_tendsto
   convert hn using 1
   ring
 
-/-- A vanishing normalized L2 error can be multiplied by a bounded L2 test. -/
 theorem d06_weighted_product_smallL2_tendsto
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (hΦpos : ∀ x,0≤Φ x)
     (F G : ℝ → ℝ → ℂ) (B C : ℝ) (hB : 0≤B) (hC : 0≤C)
@@ -144,7 +139,6 @@ theorem d06_weighted_product_smallL2_tendsto
   rw [norm_div,← Complex.ofReal_pow,← Complex.ofReal_mul,Complex.norm_real,Real.norm_eq_abs,abs_of_pos hS]
   exact (div_le_iff₀ hS).mpr hn
 
-/-- A two-profile amplitude, with either zeta side and either test arrangement. -/
 def d06PolynomialAmplitude (negative : Bool) (τ : TestType) (T t : ℝ)
     (p : ℝ[X]) (f g : ℝ → ℝ) : ℂ :=
   (if negative then zetaPolynomialDerivative T p (1-criticalLinePoint t) else zetaCp T t p) *
@@ -156,7 +150,6 @@ def d06PolynomialAmplitude (negative : Bool) (τ : TestType) (T t : ℝ)
 def d06SelfProfiles (f g : ℝ → ℝ) : Fin 4 → ℝ → ℝ := ![f,g,f,g]
 def d06SelfCaps (a b : ℝ) : Fin 4 → ℝ := ![a,b,a,b]
 
-/-- Conjugation shows that these four arrangements have the same norm. -/
 theorem d06PolynomialAmplitude_norm (negative : Bool) (τ : TestType) (T t : ℝ)
     (p : ℝ[X]) (f g : ℝ → ℝ) :
     ‖d06PolynomialAmplitude negative τ T t p f g‖ =

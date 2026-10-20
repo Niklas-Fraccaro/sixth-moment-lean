@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Sources.MomentIntegrability
 
-/-! The genuine hard sorted source moment estimate remains uniform at
-every smaller positive near/AFE exponent. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

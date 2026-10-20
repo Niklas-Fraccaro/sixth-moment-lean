@@ -3,9 +3,6 @@ import Sechstmoment.Analysis.Beta.WeakConvergence
 import Sechstmoment.Certificate.Exact.Numerator
 import Sechstmoment.Numerator.Kernels.Integral
 
-/-! Actual two-beta convergence for the reflected numerical numerator
-kernel. The finite source coefficient list gives a verified separable
-polynomial, so no product weak convergence or kernel regularity is assumed. -/
 
 namespace Sechstmoment
 open Filter MeasureTheory
@@ -14,7 +11,6 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- The exact coefficient list already used by the numerator certificate. -/
 def rectangularNumeratorTerm (tr : Finite.NumeratorTerm) (x y : ℝ) : ℝ :=
   ((tr.coefficient : ℝ)/201600)*x^tr.i*y^tr.j
 
@@ -24,8 +20,6 @@ def rectangularNumeratorTerms (ts : List Finite.NumeratorTerm) (x y : ℝ) : ℝ
 def rectangularNumeratorFinite (p : Fin 5 → ℝ) (x y : ℝ) : ℝ :=
   ∑ r : Fin 5, p r*rectangularNumeratorTerms (Finite.numeratorTerms r.val) x y
 
-/-- The original simplex numerator is exactly the finite separable source
-coefficient expansion on its ordered branch. -/
 theorem rectangular_numerator_finite_eq_kernel (p : Fin 5 → ℝ) {x y : ℝ} (hxy : x ≤ y) :
     rectangularNumeratorFinite p x y = numeratorPointKernel p x y := by
   rw [numeratorPointKernel_polynomial p hxy]
@@ -175,8 +169,6 @@ private theorem rectangular_numerator_finite_inner_integral
     exact ((betaScaled_continuous η n k).mul (continuous_const.mul
       (rectangular_numerator_terms_reflected_continuous _ x))).intervalIntegrable _ _
 
-/-- Exact factorization into the finitely many actual one-dimensional beta
-moments; the two beta stages may be different at this algebraic step. -/
 theorem rectangular_numerator_finite_two_beta_integral
     (η : ℝ) (n k m ℓ : ℕ) (p : Fin 5 → ℝ) :
     (∫ x in (0:ℝ)..η, ∫ y in (0:ℝ)..η,
@@ -201,8 +193,6 @@ theorem rectangular_numerator_finite_two_beta_integral
     exact ((betaScaled_continuous η n k).mul (continuous_const.mul
       (rectangular_numerator_inner_expansion_continuous η m ℓ _))).intervalIntegrable _ _
 
-/-- The actual weighted kernel is integrable for the product of the two
-restricted Lebesgue measures. No analytic regularity of the min branch is assumed. -/
 theorem rectangular_two_beta_numerator_integrable (p : Fin 5 → ℝ)
     {η : ℝ} (hη : η < 1/4) (n k m ℓ : ℕ) :
     Integrable (fun z : ℝ × ℝ => betaScaledProfile η n k z.1*
@@ -220,8 +210,6 @@ theorem rectangular_two_beta_numerator_integrable (p : Fin 5 → ℝ)
     rw [rectangular_numerator_reflected_eq p hη hz.1 hz.2]
   · exact measurableSet_Icc.prod measurableSet_Icc
 
-/-- The actual inner interval integral has an explicit finite continuous
-polynomial expression on the outer interval. -/
 theorem rectangular_two_beta_numerator_inner (p : Fin 5 → ℝ)
     {η x : ℝ} (hη0 : 0 < η) (hη : η < 1/4)
     (hx : x ∈ Set.Icc (0:ℝ) η) (n k m ℓ : ℕ) :
@@ -275,8 +263,6 @@ theorem rectangular_two_beta_numerator_outer_integrable (p : Fin 5 → ℝ)
   intro x hx
   exact rectangular_two_beta_numerator_inner p hη0 hη hx n k m ℓ
 
-/-- The actual simplex kernel under both beta densities has the same exact
-finite moment expansion. This is an equality of actual double integrals. -/
 theorem rectangular_two_beta_numerator_eq_expansion (p : Fin 5 → ℝ)
     {η : ℝ} (hη0 : 0 < η) (hη : η < 1/4) (n k m ℓ : ℕ) :
     (∫ x in (0:ℝ)..η, ∫ y in (0:ℝ)..η,
@@ -322,8 +308,6 @@ private theorem rectangular_numerator_moment_expansion_tendsto
       ((tr.coefficient : ℝ)/201600)).mul (rectangular_beta_reflected_moment_tendsto hη hb hbη tr.j)
     exact hc.add ih
 
-/-- Two actual beta densities weakly recover the reflected simplex
-numerator point, including both endpoints of the concentration interval. -/
 theorem rectangular_two_beta_numerator_tendsto (p : Fin 5 → ℝ)
     {η a b : ℝ} (hη0 : 0 < η) (hη : η < 1/4)
     (ha : 0 ≤ a) (haη : a ≤ η) (hb : 0 ≤ b) (hbη : b ≤ η) :

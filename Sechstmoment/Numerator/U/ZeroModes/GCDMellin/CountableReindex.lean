@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.CountableJoint
 
-/-! Reindexing the actual Dirichlet zero-index convention by the three
-positive natural indices used by the unrestricted native expression. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

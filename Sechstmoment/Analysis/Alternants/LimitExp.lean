@@ -3,8 +3,6 @@ import Mathlib.Analysis.SpecialFunctions.Exponential
 import Mathlib.Topology.Instances.Matrix
 import Sechstmoment.Analysis.Alternants.Confluent
 
-/-! The first two regular exponential divided differences used to take
-actual coalescing-shift limits of the exponential determinant. -/
 
 namespace Sechstmoment
 open scoped Topology

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.ThreeCoefficients
 
-/-! The shifted fourfold local divisor coefficients. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

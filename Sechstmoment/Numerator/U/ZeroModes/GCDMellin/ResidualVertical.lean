@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ResidualAggregate
 
-/-! The complete outer s-line of each literal physical three-contour
-remainder is integrable and has a uniform integrated budget. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

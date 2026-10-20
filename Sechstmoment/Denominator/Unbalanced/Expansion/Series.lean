@@ -1,9 +1,6 @@
 import Sechstmoment.Denominator.Unbalanced.MomentDefinitions
 import Sechstmoment.Zeta.AFE.OneSided.Mellin
 
-/-! Exact positive-line representation of the unrestricted exponentially
-smoothed twofold Dirichlet sum. All summation and integral interchanges use
-the actual Gamma envelope and positive Dirichlet real parts. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped Topology BigOperators

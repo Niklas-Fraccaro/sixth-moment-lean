@@ -2,14 +2,6 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Sechstmoment.Numerator.U.MainTerm.PrincipalPolarPointLimit
 import Sechstmoment.Numerator.U.MainTerm.ScaledZetaDirichletBound
 
-/-!
-# A04: dominated convergence under the two actual principal profile integrals
-
-This closes the separated-shift principal-profile integral limit at fixed
-normalized shifts. It retains the actual nine shifted zeta factors and Euler
-rest. Combining the six rational limits and extending across shift collisions
-remain distinct obligations.
--/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
@@ -134,9 +126,6 @@ private theorem actualPrincipalPolar_all_pairings_sep {R c : ℝ}
   · simpa [principalNormalizedPureArgument,purePolarLeft,purePolarRight] using hpair (1,0)
   · simpa [principalNormalizedPureArgument,purePolarLeft,purePolarRight] using hpair (1,1)
 
-/-- A genuine integrable majorant on the complete normalized profile plane.
-The constant depends on the fixed separated tuple, and never on its two
-unbounded imaginary profile coordinates. -/
 theorem actualPrincipalProfileRescaledKernel_eventually_dominated
     {R c : ℝ} (hR : 0 ≤ R) (hc : 4*R+1 ≤ c) (σ : MomentShifts)
     (hσ : ∀ j : Fin 4, ‖σ j‖ ≤ R) (m : Fin 6)
@@ -216,9 +205,6 @@ theorem actualPrincipalProfileRescaledKernel_eventually_dominated
         (by positivity) hA.le
     _ = _ := by dsimp [u,v]; ring
 
-/-- Dominated convergence for both actual principal profile integrals, at
-fixed separated normalized shifts. This is not a combined six-term collision
-limit and makes no uniform assertion in a moving profile-stage parameter. -/
 theorem actualPrincipalProfileRescaledIntegral_polar_limit
     {R c : ℝ} (hR : 0 ≤ R) (hc : 4*R+1 ≤ c) (σ : MomentShifts)
     (hσ : ∀ j : Fin 4, ‖σ j‖ ≤ R) (m : Fin 6)

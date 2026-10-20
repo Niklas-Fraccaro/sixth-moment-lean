@@ -1,8 +1,6 @@
 import Mathlib.NumberTheory.ArithmeticFunction.Moebius
 import Sechstmoment.Numerator.V.Arithmetic.Additive.GCD
 
-/-! Finite evaluation of the actual principal Gauss sum, including modulus
-one. The proof uses complete additive sums, gcd grouping and Mobius inversion. -/
 
 namespace Sechstmoment.Source
 open Complex Real ZMod Finset ArithmeticFunction

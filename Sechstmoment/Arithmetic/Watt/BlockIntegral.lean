@@ -1,8 +1,6 @@
 import Sechstmoment.Arithmetic.Watt.BlockBound
 import Sechstmoment.Arithmetic.Watt.PoissonIntegral
 
-/-! The completed block is integrated over a common compact y-interval.
-Both the pointwise Watt application and the integration loss are proved. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -89,8 +87,6 @@ end Watt41
 
 noncomputable section
 
-/-- Integrated Watt bound for one completed block.  The only external
-assumption is precisely Watt 4.1, and the full integration cost is explicit. -/
 theorem Watt41.completedBlock_integral_bound (hWatt : Watt41) {ε : ℝ} (hε : 0 < ε)
     (b : ℕ → ℝ) (hb : ∀ j, 0 ≤ b j) (g : ℕ → ℕ → ℝ) (hg : ∀ i j, 0 ≤ g i j) :
     ∃ C F : ℝ, 0 ≤ C ∧ 1 ≤ F ∧

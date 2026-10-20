@@ -1,23 +1,15 @@
 import Sechstmoment.Zeta.AFE.Four.Integrability
 import Sechstmoment.Zeta.AFE.Four.Kernel
 
-/-!
-# Pole-free geometry for the finite four-factor AFE contour
-
-The contour has height `t/2`.  Only a finite, explicitly open neighborhood
-is used: no holomorphy on an infinite vertical strip is asserted.
--/
 
 namespace Sechstmoment.Source
 open Complex Set
 open scoped BigOperators Topology
 noncomputable section
 
-/-- The closed rectangle used in the contour shift. -/
 def fixedAFERectangle (t : ℝ) : Set ℂ :=
   {z | |z.re| ≤ 1 ∧ |z.im| ≤ t / 2}
 
-/-- An open neighborhood of the rectangle which still avoids all moving poles. -/
 def fixedAFERectangleNeighborhood (t : ℝ) : Set ℂ :=
   {z | |z.im| < t / 2 + 1}
 
@@ -71,7 +63,6 @@ theorem fixedAFEShiftedPoint_dual_Gammaℝ_ne_zero (t : ℝ) (α : MomentShifts)
   simp only [sub_re, one_re, fixedAFEShiftedPoint_re]
   linarith
 
-/-- Reverse triangle inequality, uniform in all four small shifts. -/
 theorem fixedAFEArgument_im_abs_lower (t : ℝ) (ht : 0 ≤ t)
     (α : MomentShifts) (hα : ∀ j : Fin 4, ‖α j‖ ≤ (1 / 4 : ℝ))
     (j : Fin 4) (z : ℂ) :
@@ -176,8 +167,6 @@ theorem fixedAFEArgument_one_le_norm_sub_one (t : ℝ) (ht : 16 ≤ t)
   simp only [sub_im, one_im, sub_zero] at hn
   linarith
 
-/-- The entire kernel is holomorphic on an actual open neighborhood of the
-finite contour.  The division in the completion is justified pointwise. -/
 theorem fixedAFECompletedKernel_differentiableOn_neighborhood
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0))
     (t : ℝ) (ht : 16 ≤ t) (α : MomentShifts)

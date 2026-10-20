@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Prime.FiniteEulerFactorization
 
-/-! Pointwise local estimates multiply to a finite global norm estimate. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

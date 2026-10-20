@@ -1,7 +1,5 @@
 import Sechstmoment.Arithmetic.Watt.PoissonCompletion
 
-/-! Uniform Fourier decay for general smooth profiles, with all constants
-depending only on fixed derivative bounds. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -106,7 +104,6 @@ theorem NormalizedProfileData.fourier_decay {bounds : ℕ → ℝ} {g : ℝ → 
         exact mul_le_mul_of_nonneg_left
           (le_add_of_nonneg_left (by positivity)) (by positivity)
 
-/-- Change of scale in the literal integral, including the normalising factor. -/
 theorem fourierCoefficient_rescale (g : ℝ → ℂ) (c : ℕ) {r : ℝ}
     (hr : 0 < r) (l : ℤ) :
     fourierCoefficient g c l =

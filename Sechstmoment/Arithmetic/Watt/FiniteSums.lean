@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Watt.Adapters
 
-/-! Exact expansion of the six-variable finite box, before any estimate. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -54,7 +53,6 @@ theorem sum_piFinset_six (s : Fin 6 → Finset ℕ) (F : (Fin 6 → ℕ) → ℂ
   intro p _
   congr 1
 
-/-- Unfolding the project's box is exact, including its coprimality filter. -/
 theorem weightedWattSum_eq_six_sums (positive : Bool) (p : WattScales)
     (a b : ℕ → ℂ) (u₀ u₁ : ℝ → ℂ) (γ : ℕ → ℕ → ℝ → ℝ → ℂ) :
     weightedWattSum positive p a b u₀ u₁ γ =

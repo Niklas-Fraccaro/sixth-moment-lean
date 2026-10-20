@@ -10,14 +10,12 @@ open scoped BigOperators
 noncomputable def numeratorExpNodes (a b t : ℝ) : Fin 4 → ℂ :=
   ![-1/2, ((a-t:ℝ):ℂ)-1/2, 1/2-((b-t:ℝ):ℂ), 1/2]
 
-/-- The actual centered exponential numerator generator in (3.1). -/
 noncomputable def numeratorExpGenerator (a b : ℝ) (z : ℂ) : ℂ :=
   ∫ t in (0:ℝ)..min a b,
     (numeratorP (b-t) (a-t):ℂ) * simplexExpGenerator (numeratorExpNodes a b t) z
 
 noncomputable def reflectionRawNodes (A B : ℂ) : Fin 4 → ℂ := ![0,A,B,1]
 
-/-- Translation of all four nodes multiplies the actual integral by `exp(z*c)`. -/
 theorem simplexExpGenerator_translate (q : Fin 4 → ℂ) (z c : ℂ) :
     simplexExpGenerator (fun j => q j+c) z = Complex.exp (z*c) * simplexExpGenerator q z := by
   have he (x y w : ℝ) : complexSimplexDot (fun j => q j+c) x y w =
@@ -30,8 +28,6 @@ theorem simplexExpGenerator_translate (q : Fin 4 → ℂ) (z c : ℂ) :
   simp_rw [intervalIntegral.integral_mul_const]
   ring
 
-/-- The cancellation of all divided-difference denominators, retaining the actual exponential
-    simplex integral. -/
 theorem reflection_simplex_algebra (A B z : ℂ)
     (hq : Function.Injective (reflectionRawNodes A B)) (hz : z ≠ 0) :
     2*z^3 * (A*B*(B-A)*(1-A)*(1-B)/12) *
@@ -81,7 +77,6 @@ theorem numeratorExpGenerator_continuous (a b : ℝ) : Continuous (numeratorExpG
     complexSimplexExpectation complexSimplexDot
   fun_prop
 
-/-- Equation (3.11) from the genuine four-simplex integral, without assuming `a≤b`. -/
 theorem numeratorExpGenerator_reflected_divided (a b : ℝ) (z : ℂ)
     (ha : 0 < a) (hb : 0 < b) (hab : a+b < 1) (hz : z ≠ 0) :
     2*z^3*Complex.exp (z/2)*numeratorExpGenerator a (1-b) z =
@@ -127,8 +122,6 @@ theorem numeratorExpGenerator_reflected_divided (a b : ℝ) (z : ℂ)
       push_cast
       ring
 
-/-- The exact reflected generator identity, including the removable point `z=0`, for all
-    positive `a,b` with `a+b<1` and with no ordering hypothesis. -/
 theorem numeratorExpGenerator_reflection (a b : ℝ)
     (ha : 0 < a) (hb : 0 < b) (hab : a+b < 1) :
     numeratorExpGenerator a (1-b) = reflectedPolarGenerator a b := by
@@ -144,7 +137,6 @@ theorem numeratorExpGenerator_reflection (a b : ℝ)
   apply mul_left_cancel₀ hnonzero
   linear_combination (z^4/2)*hdiv + hint/2 - hp
 
-/-- The reflection identity with the actual polar contour on the right, including `z=0`. -/
 theorem numeratorExpGenerator_reflection_contour (a b : ℝ) (z : ℂ) (R : ℝ)
     (ha : 0 < a) (hb : 0 < b) (hab : a+b < 1) (hR : ‖z‖ < R) :
     numeratorExpGenerator a (1-b) z = Complex.exp (-z/2)*polarContourJ a b (-z) R := by
@@ -152,14 +144,12 @@ theorem numeratorExpGenerator_reflection_contour (a b : ℝ) (z : ℂ) (R : ℝ)
   unfold reflectedPolarGenerator
   rw [polarContourJ_eq_polarJ_all a b (-z) R (by simpa using hR)]
 
-/-- The reflected numerator generator is entire, as a consequence of the actual generator identity. -/
 theorem numeratorExpGenerator_reflected_analyticAt (a b : ℝ) (z : ℂ)
     (ha : 0 < a) (hb : 0 < b) (hab : a+b < 1) :
     AnalyticAt ℂ (numeratorExpGenerator a (1-b)) z := by
   rw [numeratorExpGenerator_reflection a b ha hb hab]
   exact reflectedPolarGenerator_analyticAt a b z
 
-/-- Every derivative of the two genuine generators agrees. -/
 theorem numeratorExpGenerator_reflection_iteratedDeriv (a b : ℝ) (n : ℕ) (z : ℂ)
     (ha : 0 < a) (hb : 0 < b) (hab : a+b < 1) :
     iteratedDeriv n (numeratorExpGenerator a (1-b)) z =

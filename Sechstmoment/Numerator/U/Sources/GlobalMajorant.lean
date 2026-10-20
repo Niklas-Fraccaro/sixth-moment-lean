@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.Weights.Superposition
 import Sechstmoment.Numerator.U.Sources.Weights.TensorFactory
 
-/-! Numerical source bookkeeping for the literal normalized actual
-scales.  The source retains its Poisson term throughout. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -68,8 +66,6 @@ theorem phaseSourceMajorant_rectangular_bound {ε D T r X : ℝ}
       · exact mul_le_mul_of_nonneg_right hp₂ (sq_nonneg _)
     _ = _ := by ring
 
-/-- Both source power losses and the Poisson error are explicitly
-back-transferred.  The lemma is numerical; no new source contract occurs. -/
 theorem phaseSourceMajorant_back_transfer {ε D T r X K : ℝ}
     (q : QuadraticScales) (hq : ∀ j, 0<q.size j)
     (hD : 0≤D) (hT : 0<T) (hε : 0≤ε) (hX : 0<X) (hK : 0<K)

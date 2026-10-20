@@ -3,9 +3,6 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.MeasureTheory.Constructions.BorelSpace.Order
 import Mathlib.MeasureTheory.Integral.Bochner.Basic
 
-/-! A common rapidly decreasing positive normalization for any uniformly
-rapidly decreasing family. The normalization is constructed from the scalar
-decay constants, rather than supplied as an extra hypothesis. -/
 namespace Sechstmoment
 open Real MeasureTheory Set
 noncomputable section

@@ -3,7 +3,6 @@ import Mathlib.NumberTheory.EulerProduct.Basic
 import Mathlib.NumberTheory.LSeries.Convolution
 import Sechstmoment.Arithmetic.Euler.Shifted.Rest
 
-/-! The actual shifted triple Dirichlet coefficients, as multiplicative arithmetic functions. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat
@@ -37,7 +36,6 @@ theorem shiftedTripleArithmetic_multiplicative (a : Fin 3 → ℂ) :
     ((shiftedPowerArithmetic_multiplicative (a 1)).mul
       (shiftedPowerArithmetic_multiplicative (a 2)))
 
-/-- The actual triple coefficient is precisely a finite sum over positive factorizations. -/
 theorem shiftedTripleArithmetic_apply (a : Fin 3 → ℂ) (n : ℕ) :
     shiftedTripleArithmetic a n =
       ∑ d ∈ n.divisorsAntidiagonal, ∑ e ∈ d.2.divisorsAntidiagonal,

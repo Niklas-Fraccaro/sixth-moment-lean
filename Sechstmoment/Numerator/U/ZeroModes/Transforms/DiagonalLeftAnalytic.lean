@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.Polar.ContourShift
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.DiagonalBGlobalBounds
 
-/-! Holomorphic pole-removed numerator for the actual fixed-amplifier
-diagonal, on an open strip containing Re(z)=-1/8 through Re(z)=1. -/
 
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory

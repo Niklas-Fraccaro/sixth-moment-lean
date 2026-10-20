@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.Linearization.Measurability
 import Sechstmoment.Numerator.U.ZeroModes.Linearization.Moment
 import Sechstmoment.Numerator.U.ZeroModes.SourceReplacementJoin
 
-/-! Exact logarithmic-to-linear zero-mode replacement in the actual weighted
-source moment. Every time, x and Mellin integral is genuinely convergent. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -219,8 +217,6 @@ theorem a03_actual_finite_log_zero_sub_linear_uniform_oT
   exact (mul_le_mul hconst hb (norm_nonneg _) (by norm_num : (0:ℝ)≤1)).trans_eq (one_mul _)
 
 
-/-- The complete genuine Gamma-zero-mode to literal leading linear-phase
-VStar-zero-mode replacement, with the actual weighted source contour factor. -/
 theorem a03_actual_finite_Gamma_zero_sub_linear_uniform_oT
     {a b s : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs0 : 0≤s) (hs : s<1/2)
     (f g Φ : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -281,8 +277,6 @@ theorem a03_actual_zero_replacement_slack_numerics {a b s η : ℝ}
   · linarith
   · linarith
 
-/-- The fixed abscissa of the actual A03 source factory already supplies
-all replacement losses; no additional exponent hypothesis is needed. -/
 theorem a03_actual_finite_Gamma_zero_sub_linear_compact_uniform_oT_slack
     (K : Set MomentShifts) (hK : IsCompact K) {κ : ℝ} (hκ : 0<κ)
     (hroot : ∀ σ∈K,∀ j : PurePolarIndex,κ≤‖normalizedPurePolarRoot σ j‖)

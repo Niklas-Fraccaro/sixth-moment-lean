@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.PowerTimeFourier
 import Sechstmoment.Numerator.U.ZeroModes.RatioTimeFourierDecay
 
-/-! Joint arbitrary spatial and arithmetic-frequency envelopes for the genuine
-compact-time VStar Fourier transform. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -44,8 +42,6 @@ theorem a03VStarSpatialLog_positive_exp_bound {c Y x : ℝ}
     ring
   exact (Real.exp_le_exp.mpr (mul_le_mul_of_nonpos_left hlog (by linarith))).trans_eq he
 
-/-- The reflected contour controls small x, and an arbitrary positive contour
-controls large x. Both retain arbitrary decay in the genuine arithmetic frequency. -/
 theorem a03VStarPowerTimeFourier_uniform_envelope {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {c R : ℝ} (hc : 0<c) (hR : 0≤R) (N : ℕ) :
@@ -112,8 +108,6 @@ theorem a03VStarPowerTimeFourier_uniform_envelope {Φ : ℝ→ℂ}
         exact (mul_le_mul_of_nonneg_right hcoef hCGc).trans
           (mul_le_mul_of_nonneg_left (by linarith only [hCG₁] : polarGaussianConstant T σ c≤1+polarGaussianConstant T σ 1+polarGaussianConstant T σ c) hC)
 
-/-- All six original normalized root separations supply one logarithmic budget
-for the actual VStar Fourier envelope on every fixed positive spatial line. -/
 theorem a03VStarPowerTimeFourier_uniform_log_envelope {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {c R κ : ℝ} (hc : 0<c) (hR : 0≤R) (hκ : 0<κ) (N : ℕ) :

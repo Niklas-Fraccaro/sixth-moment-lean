@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Replacement.GaussianCoefficientGrowth
 import Sechstmoment.Numerator.U.ZeroModes.Contour.RatioWeight
 import Sechstmoment.Numerator.U.ZeroModes.PolarChamberInvariance
 
-/-! The original normalized pure-polar gap protects every actual
-original/dual factor chamber; no transformed-domain gap is assumed. -/
 namespace Sechstmoment
 open Complex Real Source
 open Classical

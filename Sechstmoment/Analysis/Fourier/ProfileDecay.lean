@@ -1,8 +1,6 @@
 import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 import Sechstmoment.Analysis.Mellin.ProfileInversion
 
-/-! Arbitrary-order decay of the fixed smooth time profile at its actual frequency.
-The constants are derived from the fixed compactly supported profile. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set
@@ -10,7 +8,6 @@ open scoped ContDiff
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- The actual time-profile Fourier integral, before any varying arithmetic amplitude. -/
 def a03ProfileTimeFourier (Φ : ℝ → ℂ) (T ℓ : ℝ) : ℂ :=
   ∫ t : ℝ, Φ (t / T) * Complex.exp (((ℓ * t : ℝ) : ℂ) * I)
 

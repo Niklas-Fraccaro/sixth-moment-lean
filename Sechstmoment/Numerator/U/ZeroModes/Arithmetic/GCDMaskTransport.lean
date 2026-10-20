@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.GCDVStarCoordinates
 import Sechstmoment.Numerator.U.ZeroModes.RatioUnitTail
 
-/-! Literal common-X transport of omitted near/gap, spatial-product,
-and integrated-unit cutoffs. All bounds concern positive real physical
-coordinates; no continuous coordinate is treated as an integer factor. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

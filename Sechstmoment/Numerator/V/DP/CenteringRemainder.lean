@@ -2,14 +2,6 @@ import Sechstmoment.Arithmetic.QuadraticDivisor.Definitions
 import Sechstmoment.Numerator.V.DP.DPSmoothUniform
 import Sechstmoment.Zeta.Moments.CenteringRemainder
 
-/-!
-# Actual DP moment remainder from proved centering weights
-
-The sole external hypothesis is the literal DP sharp-endpoint input. The
-uniform weight bound used here has already been derived from that input by
-own partial summation. This is an actual centering-error integral, not a
-postulated moment-operator bound.
--/
 namespace Sechstmoment
 open Complex Filter MeasureTheory Set Polynomial
 open scoped BigOperators Topology Interval ComplexConjugate
@@ -25,23 +17,18 @@ private theorem imCLM_norm_le_one : ‖Complex.imCLM‖ ≤ 1 := by
   intro v
   simpa using Complex.abs_im_le_norm v
 
-/-- The literal real and imaginary source weights reconstruct the scaled
-complex error weight exactly. -/
 theorem dpCenteringErrorWeight_complex_split (T : ℝ) (Φ : ℝ → ℝ) (z w : ℂ) (x : ℝ) :
     (dpCenteringErrorWeight T Φ z w Complex.reCLM x : ℂ)+
       Complex.I*(dpCenteringErrorWeight T Φ z w Complex.imCLM x : ℂ) =
       (Real.log T : ℂ)*(Φ x : ℂ)*dpCenteringPairError T (x : ℂ) z w := by
   apply Complex.ext <;> simp [dpCenteringErrorWeight, Complex.mul_re, Complex.mul_im] <;> ring
 
-/-- Actual integral of the centering pair error against the literal DP
-integrand with the source polynomial profile. -/
 def dpCenteringRemainderMoment (T η : ℝ) (P : ℝ[X]) (σ : MomentShifts)
     (Φ : ℝ → ℝ) : ℂ :=
   ∫ t : ℝ, dpCenteringPairError T ((t/T : ℝ) : ℂ) (σ 2) (σ 3)*
     chiTwistedFourthIntegrand T t (rawMomentShifts T σ)
       (zeroExtendedPolynomialProfile η P) (zeroExtendedPolynomialProfile η P) Φ
 
-/-- Exact integral split into two actual, integrable real-weight DP moments. -/
 theorem dpCenteringRemainderMoment_eq_real_weights {T : ℝ} (hT : 1 < T)
     (η : ℝ) (P : ℝ[X]) (σ : MomentShifts) (Φ : ℝ → ℝ)
     (hΦ : SmoothDyadicWeight Φ)
@@ -110,9 +97,6 @@ private theorem smoothDyadicWeight_integral_norm_le (Φ : ℝ → ℝ)
   simpa [mul_comm] using hh
 
 
-/-- The actual DP centering-error moment is `O(T log^8 T)`, uniformly in
-compact separated shift sets and bounded smooth dyadic weight families.
-Only the explicitly identified sharp DP paper input is assumed. -/
 theorem dpCenteringRemainderMoment_uniform_bound (hsource : Source.DPv2SharpInput)
     (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P : ℝ[X])
     (K : Set MomentShifts) (hK : IsCompact K)
@@ -207,8 +191,6 @@ theorem dpCenteringRemainderMoment_uniform_bound (hsource : Source.DPv2SharpInpu
     _ = _ := by field_simp; ring
 
 
-/-- Exact inverse of the lower factor, obtained from the literal reciprocal
-functional-equation multiplier. -/
 theorem lowerCenteringFactor_inv_real {T : ℝ} (hL : 0 < Real.log T)
     (x : ℝ) (z : ℂ) (hz : 2*‖z‖ < Real.log T) :
     (lowerCenteringFactor T (x : ℂ) z)⁻¹ =
@@ -239,12 +221,9 @@ theorem lowerCenteringFactor_inv_real {T : ℝ} (hL : 0 < Real.log T)
     field_simp
   exact inv_eq_of_mul_eq_one_right he
 
-/-- The inverse pair error in the actual DP-to-all-positive conversion. -/
 def dpCenteringPairInverseError (T : ℝ) (x z w : ℂ) : ℂ :=
   (lowerCenteringFactor T x z*lowerCenteringFactor T x w)⁻¹-1
 
-/-- No inverse asymptotic is assumed: the inverse error is exactly a
-conjugated direct error at the reflected shifts. -/
 theorem dpCenteringPairInverseError_eq_conj {T : ℝ} (hL : 0 < Real.log T)
     (x : ℝ) (z w : ℂ) (hz : 2*‖z‖ < Real.log T) (hw : 2*‖w‖ < Real.log T) :
     dpCenteringPairInverseError T (x : ℂ) z w =
@@ -263,16 +242,12 @@ theorem dpCenteringPairInverseError_eq_conj {T : ℝ} (hL : 0 < Real.log T)
     lowerCenteringFactor_inv_real hL x z hz,hz'',hw'',map_sub,map_mul,map_one]
   ring
 
-/-- The literal inverse-error integral needed to pass from the DP source
-orientation to the all-positive fourth product. -/
 def dpCenteringInverseRemainderMoment (T η : ℝ) (P : ℝ[X]) (σ : MomentShifts)
     (Φ : ℝ → ℝ) : ℂ :=
   ∫ t : ℝ, dpCenteringPairInverseError T ((t/T : ℝ) : ℂ) (σ 2) (σ 3)*
     chiTwistedFourthIntegrand T t (rawMomentShifts T σ)
       (zeroExtendedPolynomialProfile η P) (zeroExtendedPolynomialProfile η P) Φ
 
-/-- Exact decomposition of the actual inverse-error moment into source real
-weights, including the conjugation sign on the imaginary weight. -/
 theorem dpCenteringInverseRemainderMoment_eq_real_weights {T : ℝ} (hT : 1 < T)
     (η : ℝ) (P : ℝ[X]) (σ : MomentShifts) (Φ : ℝ → ℝ)
     (hΦ : SmoothDyadicWeight Φ)
@@ -333,9 +308,6 @@ theorem dpCenteringInverseRemainderMoment_eq_real_weights {T : ℝ} (hT : 1 < T)
   ring
 
 
-/-- The actual inverse-pair remainder needed by DP's functional-equation
-orientation is uniformly `O(T log^8 T)`. This follows from the same proved
-real-weight family through the exact reflected-shift conjugation identity. -/
 theorem dpCenteringInverseRemainderMoment_uniform_bound (hsource : Source.DPv2SharpInput)
     (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P : ℝ[X])
     (K : Set MomentShifts) (hK : IsCompact K)
@@ -432,8 +404,6 @@ theorem dpCenteringInverseRemainderMoment_uniform_bound (hsource : Source.DPv2Sh
     _ = _ := by field_simp; ring
 
 
-/-- The actual lower normalized ratio has no zeros on real heights when the
-shift lies in the critical strip. -/
 theorem lowerCenteringFactor_ne_zero_real {T : ℝ} (hL : 0 < Real.log T)
     (x : ℝ) (z : ℂ) (hz : 2*‖z‖ < Real.log T) :
     lowerCenteringFactor T (x : ℂ) z ≠ 0 := by
@@ -448,15 +418,12 @@ theorem lowerCenteringFactor_ne_zero_real {T : ℝ} (hL : 0 < Real.log T)
     (zetaChi_ne_zero_strip hw.1 hw.2))
     (zetaChi_ne_zero_strip (by norm_num) (by norm_num))
 
-/-- Literal all-positive DP integrand after the two functional equations. -/
 def dpAllPositiveIntegrand (T t : ℝ) (σ : MomentShifts) (f g Φ : ℝ → ℝ) : ℂ :=
   (Φ (t/T) : ℂ)*zetaChi (1-criticalLinePoint t)*
     allPositiveFourthProduct t (rawMomentShifts T σ)*
     profileDirichletSum T f (1-criticalLinePoint t)*
     profileDirichletSum T g (1-criticalLinePoint t)
 
-/-- Exact source-to-all-positive conversion. The actual inverse centering
-error is retained explicitly. -/
 theorem dpAllPositiveIntegrand_eq_source_and_error {T : ℝ} (hT : 1 < T)
     (t : ℝ) (σ : MomentShifts) (f g Φ : ℝ → ℝ)
     (hσ : ∀ j, 2*‖σ j‖ < Real.log T) :
@@ -529,8 +496,6 @@ private theorem dpCenteringInverseRemainderIntegrand_eq_real_weights {T : ℝ}
   linear_combination -(shiftedFourthProduct t (rawMomentShifts T σ)*criticalChi t*
     profileDirichletSum T f (1-criticalLinePoint t)*profileDirichletSum T g (1-criticalLinePoint t))*hh
 
-/-- Integrability of the literal inverse correction, established using the
-actual compactly supported Re/Im source weights. -/
 theorem dpCenteringInverseRemainderIntegrand_integrable {T : ℝ} (hT : 1 < T)
     (a : ℝ) (σ : MomentShifts) (f g Φ : ℝ → ℝ)
     (hf : ∀ x, a < x → f x=0) (hg : ∀ x, a < x → g x=0)
@@ -556,13 +521,11 @@ theorem dpCenteringInverseRemainderIntegrand_integrable {T : ℝ} (hT : 1 < T)
   exact hh.congr (Filter.Eventually.of_forall (fun t =>
     (dpCenteringInverseRemainderIntegrand_eq_real_weights hL t σ f g Φ (hσ 2) (hσ 3)).symm))
 
-/-- The actual all-positive fourth moment with the source polynomial profile. -/
 def dpAllPositiveMoment (T η : ℝ) (P : ℝ[X]) (σ : MomentShifts)
     (Φ : ℝ → ℝ) : ℂ :=
   ∫ t : ℝ, dpAllPositiveIntegrand T t σ
     (zeroExtendedPolynomialProfile η P) (zeroExtendedPolynomialProfile η P) Φ
 
-/-- Exact moment conversion with every correction retained. -/
 theorem dpAllPositiveMoment_eq_source_and_error {T : ℝ} (hT : 1 < T)
     (η : ℝ) (P : ℝ[X]) (σ : MomentShifts) (Φ : ℝ → ℝ)
     (hΦ : SmoothDyadicWeight Φ) (hσ : ∀ j, 2*‖σ j‖ < Real.log T) :
@@ -587,8 +550,6 @@ theorem dpAllPositiveMoment_eq_source_and_error {T : ℝ} (hT : 1 < T)
   exact Filter.Eventually.of_forall (fun t => dpAllPositiveIntegrand_eq_source_and_error hT t σ _ _ Φ hσ)
 
 
-/-- The actual all-positive moment has the DP leading term with its exact
-fixed exponential phase, and a uniformly controlled `T log^8 T` error. -/
 theorem dpAllPositiveMoment_uniform_smoothing (hsource : Source.DPv2SharpInput)
     (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P : ℝ[X])
     (K : Set MomentShifts) (hK : IsCompact K)

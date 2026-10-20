@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.Reconstruction.FullAFEMoment
 import Sechstmoment.Numerator.U.Replacement.VStar.Definitions
 import Sechstmoment.Numerator.U.Separation.DualLeadingRegularity
 
-/-! Literal separate unrestricted original-weight, dual-weight and dual-phase
-replacement errors, and their finite small-contour counterparts. All four
-AFE sums and both actual amplifier sums remain in these concrete functions. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology

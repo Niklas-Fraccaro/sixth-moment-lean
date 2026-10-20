@@ -1,20 +1,11 @@
 import Sechstmoment.Zeta.Centering.Uniform
 
-/-!
-# Cauchy derivatives of the actual centering error
-
-The input estimate here has already been proved for the literal Gamma quotient
-in `CenteringUniform`. Enlarging the shift disk by one gives uniform bounds
-for all fixed complex shift derivatives on the original disk.
--/
 
 namespace Sechstmoment
 open Complex Filter Metric Asymptotics
 open scoped Topology
 noncomputable section
 
-/-- The actual error stays inverse-logarithmic after every fixed complex shift
-derivative, uniformly in both the shift and the dyadic height. -/
 theorem centeringError_uniform_shift_derivative_bound (n : ℕ) (R : ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ x : ℝ, x ∈ Set.Icc (1 : ℝ) 2 →
       ∀ z : ℂ, ‖z‖ ≤ R →
@@ -33,8 +24,6 @@ theorem centeringError_uniform_shift_derivative_bound (n : ℕ) (R : ℝ) :
     z (by simpa using hz)
   simpa only [add_sub_cancel_left, one_pow, div_one] using hb
 
-/-- Arbitrary height and shift selections in the prescribed compact sets have
-the same inverse-logarithmic derivative estimate. -/
 theorem centeringError_shift_derivative_invLog_isBigO (n : ℕ) (R : ℝ)
     (x : ℝ → ℝ) (z : ℝ → ℂ)
     (hx : ∀ᶠ T in atTop, x T ∈ Set.Icc (1 : ℝ) 2)
@@ -47,8 +36,6 @@ theorem centeringError_shift_derivative_invLog_isBigO (n : ℕ) (R : ℝ)
   rw [Real.norm_of_nonneg (inv_nonneg.mpr (Real.log_pos hT).le)]
   simpa only [div_eq_mul_inv, mul_assoc] using hbound (x T) hTx (z T) hTz
 
-/-- A fixed polynomial differential operator costs a fixed constant, rather
-than a power of `log T`, when applied to the actual normalized error. -/
 theorem centeringError_uniform_differentialOperator_bound (N : ℕ)
     (q : Fin (N+1) → ℂ) (R : ℝ) (hR : 0 < R) :
     ∀ᶠ T : ℝ in atTop, ∀ x : ℝ, x ∈ Set.Icc (1 : ℝ) 2 →

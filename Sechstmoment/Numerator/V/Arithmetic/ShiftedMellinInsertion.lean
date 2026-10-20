@@ -2,8 +2,6 @@ import Mathlib.Topology.Algebra.InfiniteSum.NatInt
 import Sechstmoment.Analysis.Mellin.SmoothMellinSeries
 import Sechstmoment.Arithmetic.Euler.FourL.Continuation
 
-/-! Actual character-dependent Mellin insertion on the absolute starting
-line, including convergence of the resulting Mellin integral. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory

@@ -1,7 +1,6 @@
 import Mathlib.Analysis.SpecificLimits.Normed
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.WeightedTailMajorant
 
-/-! All fixed cubic polynomial geometric majorants are summable. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

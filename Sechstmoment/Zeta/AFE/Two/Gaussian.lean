@@ -2,9 +2,6 @@ import Sechstmoment.Zeta.AFE.Two.AbsoluteMass
 import Sechstmoment.Zeta.AFE.Two.GammaWeight
 import Sechstmoment.Zeta.AFE.Two.Identity
 
-/-! The full proved Gamma-weight error is summed over the actual two
-Dirichlet indices. The coefficient and summability receipts are derived
-here, so no replacement-error assumption enters the resulting estimate. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Filter
 open scoped BigOperators
@@ -60,8 +57,6 @@ theorem d02ActualGaussianSummand_summable {s r : ℂ} {t b A : ℝ}
   congr 2
   field_simp
 
-/-- Absolute norm budget for the literal Gaussian pair.  The height exponent
-is obtained from the Gaussian Mellin majorant and a convergent double series. -/
 theorem d02ActualGaussianSeries_norm_le {s r : ℂ} {t b c : ℝ}
     (ht : 0<t) (hs : b≤s.re) (hr : b≤r.re) (hc : 0≤c) (hbc : 1<b+c) :
     ‖∑' n : ℕ × ℕ,d02ActualGaussianSummand s r t n‖ ≤
@@ -101,9 +96,6 @@ theorem d02SecondAFEWeight_eq_correctedWeight (t : ℝ) (α : SecondMomentShifts
   rw [d02SecondAFEWeight_eq_gammaWeight t α h0 h1 h2 h3]
   rfl
 
-/-- Actual two-index Gamma replacement.  The power `-1/2+2ε` follows
-from the full weight estimate at `c=1/2+2ε` and the convergent pair mass
-with exponent `1+ε`. -/
 theorem d02SecondAFE_series_gaussian_error {ε : ℝ} (hε : 0<ε) (hε1 : ε≤1/4) :
     ∃ C : ℝ, 0≤C ∧ ∀ t : ℝ, 10000≤t → ∀ α : SecondMomentShifts,
       (∀ j, ‖α j‖≤ε) →
@@ -183,9 +175,6 @@ theorem d02SecondAFE_series_gaussian_error {ε : ℝ} (hε : 0<ε) (hε1 : ε≤
       dsimp [M]
       ring
 
-/-- The pointwise Gamma replacement on the actual height window, uniform
-on every fixed normalized shift box. This is a consequence of the proved
-series estimate, rather than an error-budget input. -/
 theorem d02SecondAFE_normalized_series_gaussian_error {R ε : ℝ}
     (_hR : 0≤R) (hε : 0<ε) (hε1 : ε≤1/4) :
     ∃ C : ℝ, 0≤C ∧ ∀ᶠ T : ℝ in atTop,

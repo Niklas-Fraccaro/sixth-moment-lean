@@ -1,8 +1,6 @@
 import Sechstmoment.Analysis.Measures.AlmostContinuousTests
 import Sechstmoment.Analysis.Measures.ExponentialTilt
 
-/-! Compact bounded almost-continuous tests can be untilted. These include the
-endpoint-cutoff polynomial tests from D01, and allow complex weights. -/
 
 open Filter MeasureTheory Set
 open scoped Topology
@@ -32,9 +30,6 @@ theorem d01_bounded_untilted_compact_test
   d01_bounded_continuous_mul_compact_test
     (Complex.continuous_ofReal.comp (Real.continuous_exp.comp hq)) hf hfC
 
-/-- The full compact-test transfer theorem. The weak convergence premise
-concerns finite exponentially tilted measures; no convergence of the requested
-test integral is assumed. -/
 theorem d01_tendsto_bounded_ae_continuous_compact_test_of_tilt
     {X ι : Type*} [TopologicalSpace X] [MeasurableSpace X] [BorelSpace X]
     [HasOuterApproxClosed X] [Nonempty X]
@@ -58,8 +53,6 @@ theorem d01_tendsto_bounded_ae_continuous_compact_test_of_tilt
   have h := D01.finiteMeasure_tendsto_integral_of_ae_continuous hweak hνtiltne hgm hgc hB
   simpa only [hκ, hνtilt, g, d01_integral_remove_exponential_tilt _ _ hq.measurable] using h
 
-/-- Continuous complex weights preserve admissibility. In particular, fixed
-complex exponential shift weights are covered on every compact test support. -/
 theorem d01_tendsto_complex_weighted_compact_test_of_tilt
     {X ι : Type*} [TopologicalSpace X] [MeasurableSpace X] [BorelSpace X]
     [HasOuterApproxClosed X] [Nonempty X]

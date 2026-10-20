@@ -54,19 +54,12 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.WattParameters
 import Std
 
-/-! ## Monomial Bounds
-
-Scale comparisons after the analytic estimates, proved from the original
-admissibility conditions.  Logarithms are only used to verify positive
-monomial inequalities; no analytic estimate is assumed here.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- The numerical information from admissibility used in the last summations. -/
 structure ScaleGeometry (ρ K : ℝ) (q : QuadraticScales) : Prop where
   scales : ∀ j, 1 ≤ q.size j
   orderM : q.M₁ ≤ q.M₂*q.mass^ρ
@@ -97,7 +90,6 @@ theorem ScaleGeometry.pos {ρ K : ℝ} {q : QuadraticScales}
     | exact lt_of_lt_of_le (by norm_num) (h.scales 6)
     | exact lt_of_lt_of_le (by norm_num) (poisson_scale_bounds q h.scales).1
 
-/-- Additive form of exactly the scale inequalities used below. -/
 theorem ScaleGeometry.log_bounds {ρ K : ℝ} {q : QuadraticScales}
     (h : ScaleGeometry ρ K q) (hK : 1 ≤ K) :
     Real.log q.mass = Real.log q.A+Real.log q.B+Real.log q.M₁+
@@ -131,7 +123,6 @@ theorem ScaleGeometry.log_nonneg {ρ K : ℝ} {q : QuadraticScales}
   exact ⟨Real.log_nonneg (h.scales 0),Real.log_nonneg (h.scales 1),
     Real.log_nonneg (poisson_scale_bounds q h.scales).1,Real.log_nonneg hK⟩
 
-/-- The first monomial of the large-gcd tail is at most `K² Λ² E₁`. -/
 theorem weil_tail_first_monomial {ρ K : ℝ} {q : QuadraticScales}
     (h : ScaleGeometry ρ K q) (hK : 1 ≤ K) (hρ : 0 ≤ ρ) :
     q.A^(1/4:ℝ)*q.B^(3/4:ℝ)*q.N₁^(3/2:ℝ)*q.H ≤
@@ -149,7 +140,6 @@ theorem weil_tail_first_monomial {ρ K : ℝ} {q : QuadraticScales}
   simp (disch := positivity) only [E₁,Real.log_mul,Real.log_pow,Real.log_rpow]
   nlinarith
 
-/-- The second monomial retains the helpful negative powers of `A` and `B`. -/
 theorem weil_tail_second_monomial {ρ K : ℝ} {q : QuadraticScales}
     (h : ScaleGeometry ρ K q) (hK : 1 ≤ K) (hρ : 0 ≤ ρ) :
     q.A^(1/4:ℝ)*q.B^(-1/4:ℝ)*q.M₁*q.N₁^(1/2:ℝ)*q.H ≤
@@ -200,7 +190,6 @@ theorem watt_extra_monomial {ρ K : ℝ} {q : QuadraticScales}
     Real.log_mul,Real.log_div,Real.log_pow,Real.log_rpow]
   nlinarith
 
-/-- The complete numerical comparison in §6.5, including the last bracket. -/
 theorem watt_summation_coefficient_le {ρ K : ℝ} {q : QuadraticScales}
     (h : ScaleGeometry ρ K q) (hK : 1 ≤ K) (hρ : 0 ≤ ρ) :
     wattSummationCoefficient q ≤ K^2*q.mass^ρ*(E₀ q+E₂ q) := by
@@ -257,7 +246,6 @@ theorem weil_cutoff_second_identity {ρ K : ℝ} {q : QuadraticScales}
   · simp (disch := positivity) only [gcdCutoff,Real.log_mul,Real.log_rpow]
     ring
 
-/-- The tail coefficient costs only `152ρ`; the earlier analytic loss is separate. -/
 theorem weil_summation_coefficient_le {ρ K : ℝ} {q : QuadraticScales}
     (h : ScaleGeometry ρ K q) (hK : 1 ≤ K) (hρ : 0 ≤ ρ) :
     weilSummationCoefficient q ρ ≤ 2*K^2*q.mass^(152*ρ)*E₁ q := by
@@ -281,11 +269,6 @@ end DivisorProof
 
 
 
-/-! ## Block Support
-
-The actual finite integrand has the common spatial support used in (24)--(31).
-The conversion of a pointwise estimate into an L1 estimate is proved here.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -347,7 +330,6 @@ theorem outerProfile_nonzero_spatial_bounds {bounds : ℕ → ℝ}
     have ht := mul_le_mul_of_nonneg_right hYlo hx.le
     nlinarith
 
-/-- The actual integrand vanishes outside `[r_d/4,2r_d]`. -/
 theorem gcdBlockIntegrand_eq_zero_off_support {bounds : ℕ → ℝ}
     {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (h : ∀ j, 1 ≤ q.size j) (hw : NormalizedWeightData bounds q α β W)
@@ -365,7 +347,6 @@ theorem gcdBlockIntegrand_eq_zero_off_support {bounds : ℕ → ℝ}
   rw [hgd] at hs
   exact (hx hs).elim
 
-/-- Integrating a uniform pointwise bound costs exactly at most `2 r_d`. -/
 theorem gcdBlockMass_le_of_pointwise {bounds : ℕ → ℝ}
     {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (h : ∀ j, 1 ≤ q.size j) (hw : NormalizedWeightData bounds q α β W)
@@ -422,12 +403,6 @@ end DivisorProof
 
 
 
-/-! ## Branch Summation
-
-All finite summation and scale comparisons following (24) and (31).
-The analytic estimates passed as arguments below are intermediate proof
-obligations, not declared axioms and not replacements for (W) or (Wa).
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -490,8 +465,6 @@ theorem smallGcdSet_harmonic_le {ρ K : ℝ} {q : QuadraticScales}
   exact (sum_le_sum_of_subset_of_nonneg hsub (fun d _ _ => by positivity)).trans
     (harmonic_sum_le_subpower hρ hQ _ hDQ)
 
-/-- Summation of the literal per-block estimate (31) gives (32), uniformly
-also when the small-gcd range is empty. -/
 theorem smallGcdMass_bound_of_integral_estimate {ρ K C : ℝ}
     {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (h : ScaleGeometry ρ K q) (hK : 1 ≤ K) (hρ : 0 < ρ) (hC : 0 ≤ C)
@@ -528,7 +501,6 @@ theorem smallGcdMass_bound_of_integral_estimate {ρ K C : ℝ}
       (mul_le_mul_of_nonneg_left (Real.rpow_le_rpow_of_exponent_le hQ₁ (by linarith))
         (by positivity)) hE
 
-/-- The complete tail summation (25), given its per-block integral bound. -/
 theorem largeGcdMass_bound_of_integral_estimate {ρ K C : ℝ}
     {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (h : ScaleGeometry ρ K q) (hK : 1 ≤ K) (hρ : 0 < ρ) (hC : 0 ≤ C)
@@ -567,7 +539,6 @@ theorem largeGcdMass_bound_of_integral_estimate {ρ K C : ℝ}
       (mul_le_mul_of_nonneg_left (Real.rpow_le_rpow_of_exponent_le hQ₁ (by linarith))
         (by positivity)) hE
 
-/-- The literal pointwise bound (24) implies the integral estimate used in (25). -/
 theorem weil_pointwise_to_block_integral {ρ K C : ℝ}
     {bounds : ℕ → ℝ} {q : QuadraticScales} {α β : ℕ → ℂ}
     {W : Fin 5 → ℝ → ℝ} (h : ScaleGeometry ρ K q) (hK : 1 ≤ K)
@@ -602,19 +573,12 @@ end DivisorProof
 
 
 
-/-! ## Deep Inputs
-
-The proved Estermann input and the literal open Watt input (Wa), with complete sums,
-supports, derivative seminorms and uniform constants.
-The Kloosterman bound is proved through SALT; only Watt remains an explicit input.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators ContDiff
 noncomputable section
 set_option maxHeartbeats 1600000
 
-/- `kloostermanSum` is imported, unchanged, from `EstermannBridge`. -/
 theorem kloostermanSum_one (u v : ℤ) : kloostermanSum 1 u v = 1 := by
   have hinv : inverseRepresentative 0 1 = 0 := by
     unfold inverseRepresentative
@@ -636,7 +600,6 @@ theorem Estermann.fixed_second_parameter
   apply (kloostermanSum_estermann hc u v).trans
   gcongr
 
-/-- All derivative constants in (Wa) are fixed before its varying scales. -/
 structure WattWeightData (b : ℕ → ℝ) (g : ℕ → ℕ → ℝ)
     (p : WattScales) (Δ : ℝ) (a bcoeff : ℕ → ℂ)
     (u₀ u₁ : ℝ → ℂ) (γ : ℕ → ℕ → ℝ → ℝ → ℂ) : Prop where
@@ -663,7 +626,6 @@ def WattScales.size (p : WattScales) : Fin 6 → ℝ := ![p.H,p.C,p.R,p.S,p.V,p.
 def wattIndexSet (p : WattScales) : Finset (Fin 6 → ℕ) :=
   Fintype.piFinset (fun i => Icc 1 ⌊p.size i⌋₊)
 
-/-- The actual finite six-variable sum in (Wa), for either sign. -/
 def weightedWattSum (positive : Bool) (p : WattScales)
     (a b : ℕ → ℂ) (u₀ u₁ : ℝ → ℂ) (γ : ℕ → ℕ → ℝ → ℝ → ℂ) : ℂ :=
   ∑ n ∈ (wattIndexSet p).filter (fun n => (n 2*n 4).Coprime (n 3*n 5)),
@@ -671,7 +633,6 @@ def weightedWattSum (positive : Bool) (p : WattScales)
       ePhase ((if positive then (1:ℝ) else -1)*(n 0:ℝ)*n 1*
         (inverseRepresentative (n 2*n 4) (n 3*n 5):ℝ)/(n 3*n 5:ℕ))
 
-/-- The complete right side of (Wa), retaining its `20η` loss. -/
 def wattMajorant (p : WattScales) (Δ η : ℝ) : ℝ :=
   Δ^(-7/2:ℝ)*p.H*p.C*p.R*(p.V+p.S*p.X)*
     (1+p.H*p.C/(p.R*p.S))^(1/2:ℝ)*
@@ -679,9 +640,6 @@ def wattMajorant (p : WattScales) (Δ η : ℝ) : ℝ :=
     (1+p.H^2*p.C*p.P*p.X^2/(p.R^4*p.S^3*p.V))^(1/4:ℝ)*
     (p.H*p.C*p.R*p.S*p.V*p.P)^(20*η)
 
-/-- The weighted Watt theorem (Wa) as a uniform, explicit open proposition.
-The fixed threshold `F` expresses the first `≫` in (11).
-The other two size conditions retain exponent `η`, as printed in the PDF. -/
 def WeightedWattBound : Prop :=
   ∀ η : ℝ, 0 < η → ∀ b : ℕ → ℝ, (∀ j, 0 ≤ b j) →
   ∀ g : ℕ → ℕ → ℝ, (∀ i j, 0 ≤ g i j) →

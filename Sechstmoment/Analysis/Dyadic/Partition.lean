@@ -6,7 +6,6 @@ import Mathlib.Analysis.SpecificLimits.Basic
 import Mathlib.Topology.Algebra.InfiniteSum.Basic
 import Sechstmoment.Analysis.Profiles.Classes
 
-/-! An actual smooth partition on overlapping geometric scales. -/
 
 namespace Sechstmoment
 open Real Set Filter
@@ -94,7 +93,6 @@ theorem rectangularSmoothBlockWeight_iteratedDeriv_hasCompactSupport (j : ℕ) :
   | zero => simpa using rectangularSmoothBlockWeight_hasCompactSupport
   | succ j hj => rw [iteratedDeriv_succ]; exact hj.deriv
 
-/-- Every derivative of the fixed source weight has an actual global bound. -/
 theorem rectangularSmoothBlockWeight_derivative_bounds :
     ∃ B : ℕ → ℝ, (∀ j, 0 ≤ B j) ∧
       ∀ j x, ‖iteratedDeriv j rectangularSmoothBlockWeight x‖ ≤ B j := by
@@ -114,7 +112,6 @@ theorem rectangularSmoothBlockWeight_weightSeminormBound (J : ℕ) :
   exact (hbounds j x).trans
     (Finset.single_le_sum (fun i _ => hC i) (Finset.mem_range.mpr (Nat.lt_succ_of_le hj)))
 
-/-- Finite telescoping is exact, with no analytically assumed partition. -/
 theorem rectangularSmoothBlockWeight_sum (x : ℝ) (n : ℕ) :
     ∑ k ∈ Finset.range (n+1), rectangularSmoothBlockWeight ((3/2)*x/(3/2)^k) =
       rectangularSmoothCutoff ((3/2)*x/(3/2)^n)-rectangularSmoothCutoff ((3/2)^2*x) := by
@@ -129,8 +126,6 @@ theorem rectangularSmoothBlockWeight_sum (x : ℝ) (n : ℕ) :
     rw [he]
     ring
 
-/-- For each positive source variable, the smooth geometric partition is
-already finite and its finite sums stabilize exactly to one. -/
 theorem rectangularSmoothBlockWeight_partition {x : ℝ} (hx : 1 ≤ x) :
     ∃ N : ℕ, ∀ n ≥ N,
       ∑ k ∈ Finset.range (n+1), rectangularSmoothBlockWeight ((3/2)*x/(3/2)^k) = 1 := by
@@ -145,7 +140,6 @@ theorem rectangularSmoothBlockWeight_partition {x : ℝ} (hx : 1 ≤ x) :
     rectangularSmoothCutoff_zero (by nlinarith)]
   ring
 
-/-- Local finiteness holds for the actual numerical geometric weights. -/
 theorem rectangularSmoothBlockWeight_eventually_zero (x : ℝ) :
     ∃ N : ℕ, ∀ n ≥ N, rectangularSmoothBlockWeight ((3/2)*x/(3/2)^n) = 0 := by
   have ht : Tendsto (fun n : ℕ => (3/2)*x/(3/2)^n) atTop (𝓝 0) :=
@@ -180,8 +174,6 @@ theorem rectangularSmoothBlockWeight_tsum {x : ℝ} (hx : 1 ≤ x) :
   rw [tsum_eq_sum hz]
   exact hM _ (le_max_right _ _)
 
-/-- One finite cutoff works simultaneously for an actual finite set of
-source variables; thus finite block sums can be inserted before rearranging. -/
 theorem rectangularSmoothBlockWeight_finite_partition {ι : Type*} (s : Finset ι)
     (x : ι → ℝ) (hx : ∀ i ∈ s, 1 ≤ x i) :
     ∃ N : ℕ, ∀ n ≥ N, ∀ i ∈ s,
@@ -197,8 +189,6 @@ theorem rectangularSmoothBlockWeight_finite_partition {ι : Type*} (s : Finset �
   refine ⟨s.sup N,fun n hn i hi => hN i n ?_ hi⟩
   exact (Finset.le_sup hi).trans hn
 
-/-- The actual product partition used for simultaneous BBLR block variables.
-The dimensions may include both amplifiers and all four AFE indices. -/
 theorem rectangularSmoothBlockWeight_product_partition {ι : Type*} [Fintype ι] [DecidableEq ι]
     (x : ι → ℝ) (hx : ∀ i, 1 ≤ x i) :
     ∃ N : ℕ, ∀ n ≥ N,
@@ -212,8 +202,6 @@ theorem rectangularSmoothBlockWeight_product_partition {ι : Type*} [Fintype ι]
     (fun i k => rectangularSmoothBlockWeight ((3/2)*x i/(3/2)^k))]
   simp only [hN n hn _ (Finset.mem_univ _),Finset.prod_const_one]
 
-/-- Exact insertion of the genuine smooth partition into any finite complex
-source sum, with a common finite index range. -/
 theorem rectangularSmoothBlockWeight_finite_sum_reconstruction {ι : Type*}
     (s : Finset ι) (x : ι → ℝ) (a : ι → ℂ) (hx : ∀ i ∈ s, 1 ≤ x i) :
     ∃ N : ℕ, ∀ n ≥ N,

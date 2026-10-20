@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Separation.Tensor.DualKernel
 import Sechstmoment.Numerator.U.Separation.Tensor.MellinBridge
 import Sechstmoment.Numerator.U.Sources.Weights.TensorParameters
 
-/-! The actual original and dual physical time integrals are the literal
-six-coordinate raw tensors. The power normalization is restored exactly. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators Topology

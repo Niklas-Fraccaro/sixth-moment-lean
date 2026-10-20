@@ -2,9 +2,6 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Mathlib.NumberTheory.LSeries.Convolution
 import Sechstmoment.Zeta.DirichletL.SquareAFE
 
-/-! Absolute divisor-series expansion of the actual Dirichlet L-square and
-the dominated-convergence step for a vertically integrated L-series.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set
@@ -55,8 +52,6 @@ theorem lSeriesTerm_vertical_norm (f : ℕ → ℂ) (s : ℂ) (n : ℕ) (v : ℝ
     ‖LSeries.term f (s+(v : ℂ)*I) n‖ = ‖LSeries.term f s n‖ := by
   simp [LSeries.norm_term_eq]
 
-/-- Exchange of an absolutely convergent L-series with any integrable vertical
-kernel. All summability and domination conditions are derived here. -/
 theorem lSeries_vertical_integral_hasSum (f : ℕ → ℂ) (s : ℂ)
     (hf : LSeriesSummable f s) (K : ℝ → ℂ) (hK : Integrable K) :
     HasSum (fun n : ℕ => ∫ v : ℝ, K v*LSeries.term f (s+(v : ℂ)*I) n)

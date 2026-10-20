@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.PositiveVContour
 
-/-! Exact leftward movement of the actual AFE V kernel through the positive
-Mellin strip. Holomorphy, every vertical integrability condition, and the
-horizontal vanishing estimates are derived from actual Gamma and G bounds. -/
 namespace Sechstmoment.Source
 open Real Complex MeasureTheory Filter Set
 open scoped BigOperators Topology

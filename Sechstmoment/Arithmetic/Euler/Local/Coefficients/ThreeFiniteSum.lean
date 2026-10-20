@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.TwoFiniteSum
 
-/-! The threefold divisor coefficient as an iterated finite sum. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

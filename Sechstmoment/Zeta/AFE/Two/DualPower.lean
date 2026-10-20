@@ -1,8 +1,5 @@
 import Sechstmoment.Zeta.AFE.Two.Dual
 
-/-! Relative reciprocal-height error for the actual two-factor chi multiplier.
-The leading term is the literal positive real power, rather than its
-inverse-logarithmic normalized-shift limit. -/
 namespace Sechstmoment.Source
 open Complex Real Filter Set
 open scoped BigOperators Topology ComplexConjugate
@@ -35,7 +32,6 @@ theorem secondDual_realPower_eq {t : ℝ} (ht : 0 < t) (u : ℂ) :
   congr 1
   ring
 
-/-- Exact reconstruction from the two independently normalized Gamma ratios. -/
 theorem secondSingleChiNormalized_eq_gamma {t : ℝ} (ht : 0 < t) (u : ℂ)
     (hshift : (criticalLinePoint t+u).im ≠ 0) :
     secondSingleChiNormalized t u = secondGammaMainPhase t (fun _ => 0) (-u)*
@@ -79,8 +75,6 @@ theorem secondSingleChiNormalized_eq_gamma {t : ℝ} (ht : 0 < t) (u : ℂ)
   rw [div_mul_eq_div_div, hchi]
   field_simp
 
-/-- Each actual chi ratio has a relative O(t⁻¹) error uniformly on every
-bounded raw-shift disk, with all Gamma errors and phases accounted for. -/
 theorem secondSingleChiNormalized_error_le {R t : ℝ} (hR : 0 ≤ R)
     (ht : 4096*(1+R+R^2) ≤ t) (u : ℂ) (hu : ‖u‖ ≤ R) :
     ‖secondSingleChiNormalized t u-1‖ ≤ (384*(R+R^2)+2*R)/t := by
@@ -144,7 +138,6 @@ theorem secondSingleChiNormalized_error_le {R t : ℝ} (hR : 0 ≤ R)
     _ ≤ 8*δ+2*R/t := add_le_add hprod hphase
     _ = (384*(R+R^2)+2*R)/t := by dsimp [δ]; ring
 
-/-- Upper/lower critical-line phases cancel before the dual-power comparison. -/
 theorem secondDualMultiplier_div_power_eq {t : ℝ} (ht : 0 < t)
     (α : SecondMomentShifts) :
     secondDualMultiplier t α/secondDualPower t α =
@@ -180,8 +173,6 @@ theorem secondDualMultiplier_div_power_eq {t : ℝ} (ht : 0 < t)
     (criticalChi t*P^(-conj (α 1)))))
   rw [map_div₀, map_mul, hconj, ←mul_div_mul_comm, hd, ←hlow]
 
-/-- The actual pair chi multiplier differs relatively from its exact main
-positive power by O(t⁻¹), uniformly on bounded raw complex shifts. -/
 theorem secondDualMultiplier_relative_power_error_le {R t : ℝ} (hR : 0 ≤ R)
     (ht : 4096*(1+R+R^2) ≤ t) (α : SecondMomentShifts)
     (hα : ∀ j, ‖α j‖ ≤ R) :
@@ -206,7 +197,6 @@ theorem secondDualMultiplier_relative_power_error_le {R t : ℝ} (hR : 0 ≤ R)
   simp [r, Fin.prod_univ_succ] at hp
   exact hp.trans_eq (by dsimp [δ]; ring)
 
-/-- Absolute form retaining the unavoidable norm of the leading raw-shift power. -/
 theorem secondDualMultiplier_power_error_le {R t : ℝ} (hR : 0 ≤ R)
     (ht : 4096*(1+R+R^2) ≤ t) (α : SecondMomentShifts)
     (hα : ∀ j, ‖α j‖ ≤ R) :
@@ -229,7 +219,6 @@ theorem secondDualMultiplier_power_error_le {R t : ℝ} (hR : 0 ≤ R)
 def secondDualBoxConstant (R : ℝ) : ℝ :=
   Real.exp (2*R*(1+Sechstmoment.elementaryPhaseLogBound))
 
-/-- The literal main t-power stays bounded on every normalized shift box. -/
 theorem secondDualPower_normalized_box_norm_le {T R : ℝ}
     (hT : 0 < T) (hR : 0 ≤ R) (hL : 1 ≤ Real.log T)
     {τ : ℝ} (hτ : τ ∈ Icc (1:ℝ) 2) (σ : SecondMomentShifts)
@@ -268,7 +257,6 @@ theorem secondDualPower_normalized_box_norm_le {T R : ℝ}
     congr 1
     ring)
 
-/-- The exact normalized-box exponent in elementary logarithms. -/
 theorem secondDualBoxConstant_eq (R : ℝ) :
     secondDualBoxConstant R =
       Real.exp (2*R*(1+Real.log 2+|Real.log (2*Real.pi)|)) := by
@@ -276,8 +264,6 @@ theorem secondDualBoxConstant_eq (R : ℝ) :
   congr 1
   ring
 
-/-- Actual absolute reciprocal-height error and chi-norm bound on every
-bounded normalized complex shift box, uniformly over the dyadic time window. -/
 theorem secondDualMultiplier_normalized_box_error_and_norm {R : ℝ} (hR : 0 ≤ R) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ᶠ T : ℝ in atTop, ∀ τ ∈ Icc (1:ℝ) 2,
       ∀ σ : SecondMomentShifts, (∀ j, ‖σ j‖ ≤ R) →
@@ -329,7 +315,6 @@ theorem secondDualMultiplier_normalized_box_error_and_norm {R : ℝ} (hR : 0 ≤
     have hdiv : B*D/T ≤ B*D := div_le_self (by positivity) hT1
     exact htri.trans ((add_le_add (herr.trans hdiv) hmain).trans_eq (by ring))
 
-/-- Explicit exponential form of the actual normalized-box main-power bound. -/
 theorem secondDualPower_normalized_box_exp_norm_le {R T τ : ℝ} (hR : 0 ≤ R)
     (hT : 0 < T) (hlog : 1 ≤ Real.log T) (hτ : τ ∈ Icc (1:ℝ) 2)
     (σ : SecondMomentShifts) (hσ : ∀ j, ‖σ j‖ ≤ R) :
@@ -338,8 +323,6 @@ theorem secondDualPower_normalized_box_exp_norm_le {R T τ : ℝ} (hR : 0 ≤ R)
   simpa only [secondDualBoxConstant] using
     secondDualPower_normalized_box_norm_le hT hR hlog hτ σ hσ
 
-/-- The absolute reciprocal-height chi error and actual dual multiplier
-bound are both uniform on the real dyadic window and normalized shift box. -/
 theorem secondDualMultiplier_normalized_box_power_error_and_bound {R : ℝ} (hR : 0 ≤ R) :
     ∃ C : ℝ, 0 < C ∧ ∀ T : ℝ, 4096*(1+R+R^2) ≤ T → 1 ≤ Real.log T →
       ∀ τ ∈ Icc (1:ℝ) 2, ∀ σ : SecondMomentShifts, (∀ j, ‖σ j‖ ≤ R) →
@@ -392,8 +375,6 @@ theorem secondDualMultiplier_normalized_box_power_error_and_bound {R : ℝ} (hR 
     have hc : B*K/T ≤ B*K := div_le_self (by dsimp [B]; positivity) hT1
     exact hh.trans ((add_le_add (herr'.trans hc) hmain).trans_eq (by ring))
 
-/-- The compact-box absolute chi error is genuinely O(1/T), including every
-allowed dyadic height and normalized complex shift. -/
 theorem secondDualMultiplier_uniform_normalized_power_error {R : ℝ} (hR : 0 ≤ R) :
     ∃ C : ℝ, 0 < C ∧ ∀ᶠ T : ℝ in atTop,
       ∀ τ ∈ Icc (1:ℝ) 2, ∀ σ : SecondMomentShifts, (∀ j, ‖σ j‖ ≤ R) →
@@ -406,8 +387,6 @@ theorem secondDualMultiplier_uniform_normalized_power_error {R : ℝ} (hR : 0 �
     Real.tendsto_log_atTop.eventually (eventually_ge_atTop (1:ℝ))] with T hT hL
   exact hb T hT hL
 
-/-- Exact time separation retains the dyadic power before oscillatory
-integration. The normalized shifts use the same `log T` in both factors. -/
 theorem secondDualPower_dyadic_factorization {T τ : ℝ}
     (hT : 0 < T) (hτ : 0 < τ) (σ : SecondMomentShifts) :
     secondDualPower (T*τ) (rawSecondMomentShifts T σ) =
@@ -419,8 +398,6 @@ theorem secondDualPower_dyadic_factorization {T τ : ℝ}
     Complex.ofReal_mul]
   exact Complex.mul_cpow_ofReal_nonneg (by positivity) hτ.le _
 
-/-- The exact exponent of the dyadic time factor is uniformly bounded on
-every normalized complex shift box. -/
 theorem secondDualTimeExponent_normalized_box_norm_le {T R : ℝ}
     (hL : 1 ≤ Real.log T) (σ : SecondMomentShifts)
     (hσ : ∀ j, ‖σ j‖ ≤ R) :
@@ -430,8 +407,6 @@ theorem secondDualTimeExponent_normalized_box_norm_le {T R : ℝ}
   exact (div_le_self (norm_nonneg _) hL).trans
     ((norm_add_le _ _).trans (by linarith [hσ 0, hσ 1]))
 
-/-- The separated dyadic power has a fixed norm bound on the full time
-window, with no Gamma or chi remainder in this factor. -/
 theorem secondDualTimePower_normalized_window_norm_le {T R τ : ℝ}
     (hR : 0 ≤ R) (hL : 1 ≤ Real.log T) (hτ : τ ∈ Icc (1:ℝ) 2)
     (σ : SecondMomentShifts) (hσ : ∀ j, ‖σ j‖ ≤ R) :
@@ -448,8 +423,6 @@ theorem secondDualTimePower_normalized_window_norm_le {T R τ : ℝ}
       (Real.log_le_log hτp hτ.2) (by positivity)
     _ = _ := by ring
 
-/-- The literal main power converges uniformly on the entire dyadic time
-window and normalized shift box, by the chi limit and reciprocal-height error. -/
 theorem secondDualPower_uniform_normalized_window_tendsto {R : ℝ} (hR : 0 ≤ R)
     {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ T : ℝ in atTop, ∀ τ ∈ Icc (1:ℝ) 2, ∀ σ : SecondMomentShifts,
@@ -483,7 +456,6 @@ theorem secondDualPower_uniform_normalized_window_tendsto {R : ℝ} (hR : 0 ≤ 
     exact norm_add_le _ _
   exact htri.trans_lt ((add_lt_add (hp.trans_lt hT) hc).trans_eq (by ring))
 
-/-- The separated height-only power inherits the same compact-box limit. -/
 theorem secondDualPower_base_uniform_normalized_tendsto {R : ℝ} (hR : 0 ≤ R)
     {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ T : ℝ in atTop, ∀ σ : SecondMomentShifts,
@@ -495,8 +467,6 @@ theorem secondDualPower_base_uniform_normalized_tendsto {R : ℝ} (hR : 0 ≤ R)
   have hτ : (1:ℝ) ∈ Icc (1:ℝ) 2 := by norm_num
   simpa only [mul_one] using hT 1 hτ σ hσ
 
-/-- In particular, a fixed normalized shift has the literal height-power
-limit required after retaining the dyadic time factor. -/
 theorem secondDualPower_base_normalized_tendsto {R : ℝ} (hR : 0 ≤ R)
     (σ : SecondMomentShifts) (hσ : ∀ j, ‖σ j‖ ≤ R) :
     Tendsto (fun T : ℝ => secondDualPower T (rawSecondMomentShifts T σ))
@@ -506,7 +476,6 @@ theorem secondDualPower_base_normalized_tendsto {R : ℝ} (hR : 0 ≤ R)
   filter_upwards [secondDualPower_base_uniform_normalized_tendsto hR hε] with T hT
   simpa only [dist_eq_norm] using hT σ hσ
 
-/-- The separated height-only factor has one eventual compact-box bound. -/
 theorem secondDualPower_base_uniform_normalized_norm_le {R : ℝ} (hR : 0 ≤ R) :
     ∀ᶠ T : ℝ in atTop, ∀ σ : SecondMomentShifts,
       (∀ j, ‖σ j‖ ≤ R) →

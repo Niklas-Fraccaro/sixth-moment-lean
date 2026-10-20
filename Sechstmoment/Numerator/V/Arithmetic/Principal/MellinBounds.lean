@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.Transforms.PositiveTimeMellinStripDeca
 import Sechstmoment.Numerator.V.Arithmetic.Principal.MellinNumerator
 import Sechstmoment.Zeta.Bounds.ZetaPolynomialBound
 
-/-! Arbitrary polynomial strip decay for the actual principal-character
-Mellin numerator. Its regularized L-factors are bounded using the proved
-regularized zeta bound and the finite Euler factors. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory

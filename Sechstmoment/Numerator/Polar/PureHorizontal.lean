@@ -4,15 +4,6 @@ import Sechstmoment.Analysis.Gaussian.Decay
 import Sechstmoment.Numerator.Polar.PureLeftContour
 import Sechstmoment.Zeta.Bounds.MellinZetaHalfPlaneGrowth
 
-/-!
-# Vanishing horizontal sides for the actual pure-zeta Gaussian factor
-
-On the literal strip between `-δ/2` and `1`, the actual four zeta arguments
-have uniformly positive real parts. At large height their poles are uniformly
-separated. The actual Gaussian majorant therefore makes both horizontal side
-integrals vanish. This is one ingredient of the full Mellin contour move;
-the arithmetic factor and five entangled factors remain separate.
--/
 
 namespace Sechstmoment
 

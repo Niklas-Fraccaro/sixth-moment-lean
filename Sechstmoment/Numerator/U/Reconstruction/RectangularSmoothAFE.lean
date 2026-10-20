@@ -2,8 +2,6 @@ import Mathlib.Topology.Algebra.InfiniteSum.Real
 import Sechstmoment.Analysis.Dyadic.Partition
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEInterchange
 
-/-! The actual convergent fourfold AFE is regrouped using a genuine
-nonnegative smooth partition. The bounded-small-scale edge is retained. -/
 
 namespace Sechstmoment
 open Complex Source MeasureTheory Set
@@ -37,8 +35,6 @@ theorem rectangular_AFE_smooth_weight_nonneg (k n : Fin 4 → ℕ) :
     0 ≤ rectangularAFESmoothWeight k n :=
   Finset.prod_nonneg (fun _j _ => rectangularSmoothBlockWeight_nonneg _)
 
-/-- The partition of the actual four positive integer variables sums exactly
-to one, rather than being supplied as a decomposition hypothesis. -/
 theorem rectangular_AFE_smooth_weight_hasSum (n : Fin 4 → ℕ) :
     HasSum (fun k => rectangularAFESmoothWeight k n) 1 := by
   have h := rectangular_finitePi_hasSum_prod_nonneg 4
@@ -51,8 +47,6 @@ theorem rectangular_AFE_smooth_weight_hasSum (n : Fin 4 → ℕ) :
       simpa only [he] using hs.hasSum)
   simpa [rectangularAFESmoothWeight] using h
 
-/-- Absolute summability of the complete double smooth-block expansion is
-inherited from the original convergent series by nonnegativity and sum one. -/
 theorem rectangular_AFE_smooth_double_summable (f : (Fin 4 → ℕ) → ℂ) (hf : Summable f) :
     Summable (fun p : (Fin 4 → ℕ) × (Fin 4 → ℕ) =>
       (rectangularAFESmoothWeight p.2 p.1 : ℂ)*f p.1) := by
@@ -92,8 +86,6 @@ theorem rectangular_AFE_smooth_grouping (f : (Fin 4 → ℕ) → ℂ) (hf : Summ
 def rectangularAFESmoothBox (k : Fin 4 → ℕ) : Finset (Fin 4 → ℕ) :=
   Fintype.piFinset fun j => Finset.range ⌊2*rectangularAFESmoothScale (k j)⌋₊
 
-/-- Each actual smooth block contains only finitely many positive integers.
-The lowest scale `2/3` is present, so integer one is retained. -/
 theorem rectangular_AFE_smooth_weight_zero_outside (k n : Fin 4 → ℕ)
     (hn : n ∉ rectangularAFESmoothBox k) : rectangularAFESmoothWeight k n = 0 := by
   simp only [rectangularAFESmoothBox, Fintype.mem_piFinset, Finset.mem_range] at hn
@@ -119,8 +111,6 @@ theorem rectangular_AFE_smooth_block_finite (f : (Fin 4 → ℕ) → ℂ) (k : F
   intro n hn
   simp only [rectangular_AFE_smooth_weight_zero_outside k n hn, Complex.ofReal_zero, zero_mul]
 
-/-- The genuine full AFE is now the sum of actual finite smooth blocks,
-with absolute regrouping proved from its actual fourfold convergence. -/
 theorem rectangular_actual_AFE_smooth_blocks (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re) :
     bblrAFESum G α t = ∑' k : Fin 4 → ℕ, ∑ n ∈ rectangularAFESmoothBox k,
@@ -129,8 +119,6 @@ theorem rectangular_actual_AFE_smooth_blocks (G : ℂ → ℂ) (α : MomentShift
     (rectangular_actual_AFE_summable G α hG t hα)]
   exact tsum_congr (fun k => rectangular_AFE_smooth_block_finite _ k)
 
-/-- The all-source-scale range starts at index one. The omitted index-zero
-edge is not discarded by the exact smooth reconstruction. -/
 theorem rectangular_AFE_smooth_scale_ge_one {k : ℕ} (hk : 1 ≤ k) :
     1 ≤ rectangularAFESmoothScale k := by
   unfold rectangularAFESmoothScale
@@ -142,8 +130,6 @@ theorem rectangular_AFE_smooth_scale_ge_one {k : ℕ} (hk : 1 ≤ k) :
 theorem rectangular_AFE_smooth_low_scale : rectangularAFESmoothScale 0 = 2/3 := by
   norm_num [rectangularAFESmoothScale]
 
-/-- A lowest-scale block contributes only when the corresponding positive
-integer AFE variable is exactly one. This boundary is retained explicitly. -/
 theorem rectangular_AFE_smooth_low_block_zero (k n : Fin 4 → ℕ) (j : Fin 4)
     (hk : k j = 0) (hn : n j ≠ 0) : rectangularAFESmoothWeight k n = 0 := by
   apply Finset.prod_eq_zero (Finset.mem_univ j)
@@ -159,8 +145,6 @@ theorem rectangular_AFE_smooth_blocks_summable (f : (Fin 4 → ℕ) → ℂ) (hf
   intro k
   exact rectangular_AFE_smooth_block_finite f k
 
-/-- The actual full AFE splits into source-domain smooth blocks and the
-explicit boundary blocks containing at least one integer-one variable. -/
 theorem rectangular_actual_AFE_smooth_interior_boundary (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (t : ℝ) (hα : ∀ j, -1/2 < (α j).re) :
     bblrAFESum G α t =
@@ -187,8 +171,6 @@ theorem rectangular_actual_AFE_smooth_interior_boundary (G : ℂ → ℂ) (α : 
   intro k
   by_cases hk : ∀ j, 1 ≤ k j <;> simp [F, hk]
 
-/-- After the genuine time-series interchange, the actual weighted moment
-AFE integral is the absolutely convergent sum of finite smooth blocks. -/
 theorem rectangular_actual_AFE_integrated_smooth_blocks (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (hα : ∀ j, -1/2 < (α j).re)
     (w : ℝ → ℂ) (hw : Continuous w) (hws : HasCompactSupport w) :

@@ -38,7 +38,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Analysis.Profiles.Classes
 import Std
 
-/-! Own extension of the same-polynomial DP input to two actual polynomial amplifiers. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Filter

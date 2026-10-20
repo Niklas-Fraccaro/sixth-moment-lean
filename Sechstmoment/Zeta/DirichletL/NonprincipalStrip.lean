@@ -2,9 +2,6 @@ import Mathlib.Analysis.Complex.PhragmenLindelof
 import Sechstmoment.Zeta.DirichletL.CharacterFourthMoment
 import Sechstmoment.Zeta.DirichletL.NonprincipalStripGrowth
 
-/-! Polynomial growth of each actual nonprincipal L-function throughout
-the Mellin contour strip. Constants here may depend on the fixed character;
-the uniform modulus bound for the final displaced integral is separate. -/
 
 namespace Sechstmoment.Source
 open Complex Real Filter Set

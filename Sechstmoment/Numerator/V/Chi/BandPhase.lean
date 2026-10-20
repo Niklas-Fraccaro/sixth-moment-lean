@@ -1,9 +1,6 @@
 import Sechstmoment.Analysis.Mellin.FourierCutoff
 import Sechstmoment.Numerator.V.Arithmetic.Additive.PhaseTaylor
 
-/-! Integrated Taylor control of the concrete band-limited additive phase.
-The first two absolute moments of the original Schwartz transform control
-the error, independently of the cutoff scale H. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set

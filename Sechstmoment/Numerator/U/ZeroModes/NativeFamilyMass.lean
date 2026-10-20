@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.LeadingFubini
 import Sechstmoment.Numerator.U.ZeroModes.PhysicalBound
 
-/-! The literal native smooth GCD density controls physical kernels which
-depend on the actual integer tuple as well as its continuous x-coordinate. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

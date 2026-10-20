@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.EtaMainFunction
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalPowers
 
-/-! Exact complex-power normalization after the actual positive common-X
-Mellin evaluation. The original coefficients stay at g*a and g*b. -/
 namespace Sechstmoment.Source
 open Complex Real Set
 open scoped BigOperators
@@ -69,8 +67,6 @@ def a03ZeroModeStaticEtaXMellinArithmetic (N₁ N₂ : ℕ) (A B : ℕ→ℂ)
         ((P*(g:ℝ)*Real.sqrt ((a:ℝ)*(b:ℝ)):ℝ):ℂ)^(s-α 1-α 3)*
           a03ZeroModeRatioEtaPair α a b 0 0 s else 0
 
-/-- The finite coefficient array obtained from the literal common-X
-Mellin scale is the existing M-arithmetic, with its original amplitudes. -/
 theorem a03ZeroModeStaticEtaXMellinArithmetic_eq_MArithmetic (N₁ N₂ : ℕ)
     (A B : ℕ→ℂ) (α : MomentShifts) {P : ℝ} (hP : 0<P) (s : ℂ) :
     a03ZeroModeStaticEtaXMellinArithmetic N₁ N₂ A B α P s=

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.Weights.SixTensorAdmissibility
 import Sechstmoment.Numerator.U.ZeroModes.SoftSourceOrientation
 
-/-! A bounded genuine six-coordinate tensor family supplies the literal
-unsorted source class on the soft pair-ordered range. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology

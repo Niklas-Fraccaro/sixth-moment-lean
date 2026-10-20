@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.Shared.MomentHolomorphy
 
-/-! A05: genuine joint complex differentiability of the literal BBLR moment
-through its actual compact integral. This supplies the concrete rectangular
-polydisc hypothesis, without an assumed own moment asymptotic. -/
 namespace Sechstmoment
 open Complex Metric MeasureTheory Set
 open scoped BigOperators Topology ComplexConjugate
@@ -71,8 +68,6 @@ theorem twistedMomentFamily_value {T : ℝ} (hT : 1 < T)
 
 attribute [irreducible] twistedMomentFamily
 
-/-- The literal source moment is jointly complex differentiable in its four
-raw shifts throughout their actual critical strip. Profiles may differ. -/
 theorem twistedFourthMoment_differentiableOn_raw {T : ℝ} (hT : 1 < T)
     (a b : ℝ) (f g Φ : ℝ → ℝ)
     (hf : ∀ x, a < x → f x=0) (hg : ∀ x, b < x → g x=0) (hΦ : SmoothDyadicWeight Φ) :
@@ -85,8 +80,6 @@ theorem twistedFourthMoment_differentiableOn_raw {T : ℝ} (hT : 1 < T)
   rw [heq] at h
   exact h.differentiableWithinAt
 
-/-- The actual normalized source moment has genuine complex derivatives;
-normalization is the literal linear map σ↦σ/log(T). -/
 theorem twistedFourthMoment_differentiableOn_normalized {T : ℝ} (hT : 1 < T)
     (a b : ℝ) (f g Φ : ℝ → ℝ)
     (hf : ∀ x, a < x → f x=0) (hg : ∀ x, b < x → g x=0) (hΦ : SmoothDyadicWeight Φ) :
@@ -95,8 +88,6 @@ theorem twistedFourthMoment_differentiableOn_normalized {T : ℝ} (hT : 1 < T)
   (twistedFourthMoment_differentiableOn_raw hT a b f g Φ hf hg hΦ).comp
     (rawMomentShifts_differentiable T).differentiableOn (fun _ h => h)
 
-/-- Own holomorphy supplies the actual hypothesis needed by the iterated
-maximum principle on a fixed complex shift polydisc. -/
 theorem twistedFourthMoment_differentiableOn_polydisc {T : ℝ} (hT : 1 < T)
     (R : Fin 4 → ℝ) (hR : ∀ j, 2*R j < Real.log T)
     (a b : ℝ) (f g Φ : ℝ → ℝ)
@@ -106,11 +97,9 @@ theorem twistedFourthMoment_differentiableOn_polydisc {T : ℝ} (hT : 1 < T)
   (twistedFourthMoment_differentiableOn_normalized hT a b f g Φ hf hg hΦ).mono
     (closedPolydisc_subset_momentNormalizedShiftDomain hT R hR)
 
-/-- Exact conjugate orientation for swapping unequal BBLR amplifiers. -/
 def twistedConjugateSwapShifts (α : MomentShifts) : MomentShifts :=
   ![conj (α 2),conj (α 3),conj (α 0),conj (α 1)]
 
-/-- Both the shifts and amplifier roles change under conjugation. -/
 theorem twistedFourthIntegrand_conj_swap (T t : ℝ) (α : MomentShifts)
     (f g Φ : ℝ→ℝ) :
     conj (twistedFourthIntegrand T t α f g Φ) =
@@ -138,7 +127,6 @@ theorem twistedFourthIntegrand_conj_swap (T t : ℝ) (α : MomentShifts)
   simp [twistedConjugateSwapShifts]
   ring
 
-/-- Exact time-integral swap, including all complex shift conjugations. -/
 theorem twistedFourthMoment_conj_swap (T : ℝ) (α : MomentShifts)
     (f g Φ : ℝ→ℝ) :
     conj (twistedFourthMoment T α f g Φ) =

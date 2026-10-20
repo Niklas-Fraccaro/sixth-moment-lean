@@ -1,10 +1,6 @@
 import Sechstmoment.Zeta.Bounds.MellinZetaDirichletBounds
 import Sechstmoment.Zeta.DirichletL.DualBound
 
-/-! An actual polynomial boundary estimate for zeta. On `Re(s)=-1/2`,
-the Gamma factors cancel exactly after one recurrence and conjugation.
-No Stirling or zeta growth estimate is assumed.
--/
 
 namespace Sechstmoment.Source
 open Complex Real ComplexConjugate

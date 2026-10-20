@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.V.Arithmetic.FourDirichletSeries
 
-/-! Positive-index and rescaled absolute mass for the literal fourfold
-Dirichlet coefficients on the common logarithmic line. -/
 
 namespace Sechstmoment.Source
 open Complex Real

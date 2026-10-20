@@ -3,15 +3,6 @@ import Mathlib.Tactic.Positivity
 import Sechstmoment.Zeta.Centering.Elementary
 import Sechstmoment.Zeta.Centering.Stirling
 
-/-!
-# The actual Gamma main phase at complex height
-
-The normalized Gamma arguments remain in a fixed annulus on a genuine complex
-height window. Positive-real rescaling of the principal logarithm then gives
-an exact cancellation of `log T` and an explicit inverse-logarithmic bound for
-the actual main phase. No logarithm of Gamma or unproved Stirling hypothesis is
-used in this file.
--/
 
 namespace Sechstmoment
 
@@ -25,13 +16,11 @@ def gammaHeightA (T : ℝ) (x : ℂ) : ℂ := (1 - complexHeightPoint T x) / 2
 
 def gammaHeightB (T : ℝ) (x : ℂ) : ℂ := complexHeightPoint T x / 2
 
-/-- The actual leading Gamma phase, prior to the cancellation of `log T`. -/
 def centeringGammaMain (T : ℝ) (x z : ℂ) : ℂ :=
   Complex.exp z * (Real.pi : ℂ) ^ (z / (Real.log T : ℂ)) *
     gammaHeightA T x ^ (-z / (2 * (Real.log T : ℂ))) *
     gammaHeightB T x ^ (-z / (2 * (Real.log T : ℂ)))
 
-/-- Exact connection with the main phase in the actual Gamma-ratio decomposition. -/
 theorem centeringGammaMain_eq_gammaChiMainPhase (T : ℝ) (x z : ℂ) :
     centeringGammaMain T x z =
       gammaChiMainPhase (complexHeightPoint T x) (z / (Real.log T : ℂ)) z := by
@@ -55,14 +44,12 @@ theorem complexHeightPoint_im (T : ℝ) (x : ℂ) :
     (complexHeightPoint T x).im = T * x.re := by
   simp [complexHeightPoint, Complex.mul_im]
 
-/-- The actual archimedean Gamma factor has no zeros off the real axis. -/
 theorem gammaReal_ne_zero_nonreal {s : ℂ} (hs : s.im ≠ 0) : Complex.Gammaℝ s ≠ 0 := by
   intro h
   obtain ⟨n, hn⟩ := Complex.Gammaℝ_eq_zero_iff.mp h
   apply hs
   simpa using congrArg Complex.im hn
 
-/-- Holomorphy of the actual archimedean factor at every nonreal point. -/
 theorem gammaReal_differentiableAt_nonreal {s : ℂ} (hs : s.im ≠ 0) :
     DifferentiableAt ℂ Complex.Gammaℝ s := by
   unfold Complex.Gammaℝ
@@ -107,7 +94,6 @@ theorem zetaChi_analyticOnNhd_nonreal :
 theorem zetaChi_analyticAt_nonreal {s : ℂ} (hs : s.im ≠ 0) :
     AnalyticAt ℂ zetaChi s := zetaChi_analyticOnNhd_nonreal s hs
 
-/-- The actual centering factor is holomorphic in its base point while both arguments are nonreal. -/
 theorem centeringFactorAt_analyticAt_base (T : ℝ) (z : ℂ) {s : ℂ}
     (hs : s.im ≠ 0) (hw : (s + z / (Real.log T : ℂ)).im ≠ 0) :
     AnalyticAt ℂ (fun w : ℂ => centeringFactorAt T w z) s := by
@@ -117,7 +103,6 @@ theorem centeringFactorAt_analyticAt_base (T : ℝ) (z : ℂ) {s : ℂ}
   exact ((analyticAt_const.mul hnum).div
     (zetaChi_analyticAt_nonreal hs) (zetaChi_ne_zero_nonreal hs))
 
-/-- The actual centering factor is holomorphic in the complex height on the genuine nonpole domain. -/
 theorem centeringFactorAt_analyticAt_height (T : ℝ) (z : ℂ) {x : ℂ}
     (hs : (complexHeightPoint T x).im ≠ 0)
     (hw : (complexHeightPoint T x + z / (Real.log T : ℂ)).im ≠ 0) :
@@ -133,7 +118,6 @@ theorem centeringFactorAt_error_analyticAt_height (T : ℝ) (z : ℂ) {x : ℂ}
     AnalyticAt ℂ (fun y : ℂ => centeringFactorAt T (complexHeightPoint T y) z - 1) x :=
   (centeringFactorAt_analyticAt_height T z hs hw).sub analyticAt_const
 
-/-- Holomorphy of the same actual factor in the complex shift variable. -/
 theorem centeringFactorAt_analyticAt_shift (T : ℝ) (s : ℂ) {z : ℂ}
     (hw : (s + z / (Real.log T : ℂ)).im ≠ 0) :
     AnalyticAt ℂ (centeringFactorAt T s) z := by
@@ -180,7 +164,6 @@ theorem gammaHeightB_div_T_im {T : ℝ} (x : ℂ) (hT : T ≠ 0) :
   rw [Complex.div_ofReal_im, gammaHeightB_im]
   field_simp
 
-/-- The normalized arguments belong to `[1/4,2]` in norm throughout the complex height window. -/
 theorem gammaHeight_normalized_norm_bounds {T : ℝ} {x : ℂ} (hT : 1 ≤ T)
     (hxre : x.re ∈ Set.Icc (3 / 4 : ℝ) (9 / 4)) (hxim : |x.im| ≤ 1 / 4) :
     (1 / 4 ≤ ‖gammaHeightA T x / (T : ℂ)‖ ∧ ‖gammaHeightA T x / (T : ℂ)‖ ≤ 2) ∧
@@ -225,14 +208,12 @@ theorem gammaHeight_normalized_norm_bounds {T : ℝ} {x : ℂ} (hT : 1 ≤ T)
       rw [himB] at h
       linarith [hxre.2]
 
-/-- The two original Gamma arguments stay off the real axis. -/
 theorem gammaHeight_im_ne_zero {T : ℝ} {x : ℂ} (hT : 0 < T)
     (hxre : 0 < x.re) : (gammaHeightA T x).im ≠ 0 ∧ (gammaHeightB T x).im ≠ 0 := by
   rw [gammaHeightA_im, gammaHeightB_im]
   have h : 0 < T * x.re / 2 := by positivity
   exact ⟨neg_ne_zero.mpr h.ne', h.ne'⟩
 
-/-- The main phase is holomorphic in the complex height on its full right half-plane. -/
 theorem centeringGammaMain_analyticOnNhd_height {T : ℝ} (hT : 0 < T) (z : ℂ) :
     AnalyticOnNhd ℂ (fun x : ℂ => centeringGammaMain T x z) {x : ℂ | 0 < x.re} := by
   apply DifferentiableOn.analyticOnNhd _ (isOpen_lt continuous_const Complex.continuous_re)
@@ -257,7 +238,6 @@ theorem centeringGammaMain_analyticAt_height {T : ℝ} {x : ℂ} (z : ℂ)
     AnalyticAt ℂ (fun y : ℂ => centeringGammaMain T y z) x :=
   centeringGammaMain_analyticOnNhd_height hT z x hx
 
-/-- Explicit lower bound for the imaginary parts in the complex window. -/
 theorem gammaHeight_im_abs_lower {T : ℝ} {x : ℂ} (hT : 0 ≤ T)
     (hxre : 3 / 4 ≤ x.re) :
     3 * T / 8 ≤ |(gammaHeightA T x).im| ∧
@@ -268,7 +248,6 @@ theorem gammaHeight_im_abs_lower {T : ℝ} {x : ℂ} (hT : 0 ≤ T)
   have hprod := mul_le_mul_of_nonneg_left hxre hT
   constructor <;> nlinarith
 
-/-- The geometry also gives the cone required by the actual Gamma-ratio bound. -/
 theorem gammaHeight_mem_cone {T : ℝ} {x : ℂ} (hT : 0 ≤ T)
     (hxre : 3 / 4 ≤ x.re) (hxim : |x.im| ≤ 1 / 4) :
     -|(gammaHeightA T x).im| ≤ (gammaHeightA T x).re ∧
@@ -282,7 +261,6 @@ theorem gammaHeight_mem_cone {T : ℝ} {x : ℂ} (hT : 0 ≤ T)
   have hr := mul_le_mul_of_nonneg_left hxre hT
   constructor <;> nlinarith
 
-/-- Principal logarithms are uniformly bounded on the explicit fixed annulus. -/
 theorem norm_log_le_of_annulus {w : ℂ} (hlo : 1 / 4 ≤ ‖w‖) (hhi : ‖w‖ ≤ 2) :
     ‖Complex.log w‖ ≤ Real.log 4 + Real.pi := by
   have hw0 : 0 < ‖w‖ := lt_of_lt_of_le (by norm_num) hlo
@@ -304,7 +282,6 @@ theorem centeringPhaseComplexBound_pos : 0 < centeringPhaseComplexBound := by
   have hlog : 0 < Real.log 4 := Real.log_pos (by norm_num)
   linarith [abs_nonneg (Real.log Real.pi), Real.pi_pos]
 
-/-- Exact cancellation of the positive-real height scale in the actual phase. -/
 theorem centeringGammaMain_eq_exp {T : ℝ} {x : ℂ} (z : ℂ)
     (hT : 0 < T) (hL : Real.log T ≠ 0)
     (hA : gammaHeightA T x ≠ 0) (hB : gammaHeightB T x ≠ 0) :
@@ -324,7 +301,6 @@ theorem centeringGammaMain_eq_exp {T : ℝ} {x : ℂ} (z : ℂ)
   field_simp [Complex.ofReal_ne_zero.mpr hL]
   ring
 
-/-- An explicit bound for the remaining height-independent exponent coefficient. -/
 theorem centeringGammaMainCoefficient_norm_le {T : ℝ} {x : ℂ} (hT : 1 ≤ T)
     (hxre : x.re ∈ Set.Icc (3 / 4 : ℝ) (9 / 4)) (hxim : |x.im| ≤ 1 / 4) :
     ‖centeringGammaMainCoefficient T x‖ ≤ centeringPhaseComplexBound := by
@@ -346,7 +322,6 @@ theorem centeringGammaMainCoefficient_norm_le {T : ℝ} {x : ℂ} (hT : 1 ≤ T)
       exact add_le_add le_rfl (div_le_div_of_nonneg_right (add_le_add hA hB) (by norm_num))
     _ = centeringPhaseComplexBound := by unfold centeringPhaseComplexBound; ring
 
-/-- The genuine complex-height main phase differs from `1` by at most `2 R K / log T`. -/
 theorem centeringGammaMain_error_bound {T R : ℝ} {x z : ℂ} (hT : 1 ≤ T)
     (hxre : x.re ∈ Set.Icc (3 / 4 : ℝ) (9 / 4)) (hxim : |x.im| ≤ 1 / 4)
     (hz : ‖z‖ ≤ R) (hL : 0 < Real.log T)
@@ -377,7 +352,6 @@ theorem centeringGammaMain_error_bound {T R : ℝ} {x z : ℂ} (hT : 1 ≤ T)
       mul_le_mul_of_nonneg_left hexponent (by norm_num)
     _ = _ := by ring
 
-/-- The explicit estimate is eventually uniform on the entire complex height window. -/
 theorem centeringGammaMain_uniform_error_bound (R : ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ x : ℂ,
       x.re ∈ Set.Icc (3 / 4 : ℝ) (9 / 4) → |x.im| ≤ 1 / 4 →

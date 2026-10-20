@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.GlobalReindex
 import Sechstmoment.Numerator.U.Sources.MomentIntegrability
 
-/-! The literal complete finite original/dual Gamma offdiagonal moment
-minus the actual summed native sorted GCD zero modes is sublinear. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff
@@ -100,8 +98,6 @@ theorem a03_actual_finite_offdiagonal_Gamma_minus_zeros (dual : Bool)
   unfold a03ActualFiniteGammaZeroMoment
   ring
 
-/-- No auxiliary exponent, loss budget, error receipt, or reconstruction
-premise is supplied: all choices follow from the rectangular source slack. -/
 theorem a03_actual_finite_offdiagonal_Gamma_minus_zeros_of_source (dual : Bool)
     (hinput : SeparatedQuadraticInput) {a b κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)

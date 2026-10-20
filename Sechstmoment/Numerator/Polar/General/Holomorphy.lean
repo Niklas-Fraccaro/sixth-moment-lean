@@ -54,8 +54,6 @@ theorem polarInnerCircleExtended_contDiffAt (R : ℝ)
     · fun_prop
     · exact hn
 
-/-- The true circular inverse integrand, with its genuine complex derivative
-in all four knots and the outer contour variable. -/
 noncomputable def polarInnerCircleFamily (R : ℝ) :
     ComplexIntegralFamily (polarInnerDomain R) (ℝ × ℝ) where
   value p x := polarInnerCircleExtended R (p,((x.1:ℂ),(x.2:ℂ)))
@@ -113,8 +111,6 @@ theorem polarProfileFamily_value (η : ℝ) (P : Polynomial ℝ) (R : ℝ) (hη 
 
 attribute [irreducible] polarProfileFamily
 
-/-- The actual polynomial source profile is jointly complex differentiable
-in all four knots and in ω, including all knot collisions. -/
 theorem polarGeneralProfile_differentiableOn_joint (η : ℝ) (P : Polynomial ℝ)
     (R : ℝ) (hη : 0 ≤ η) :
     DifferentiableOn ℂ (fun p : (Fin 4 → ℂ) × ℂ => polarGeneralProfile η P p.1 R p.2)
@@ -224,8 +220,6 @@ theorem polarGeneratorFamily_value (η : ℝ) (P : Polynomial ℝ)
   intro θ _
   ring
 
-/-- Genuine joint complex differentiability of the actual general-shift
-generator, including all coincident shifts inside the enclosing circles. -/
 theorem polarGeneralGeneratorContour_differentiableOn (η : ℝ) (P : Polynomial ℝ)
     (innerR outerR : ℝ) (hη : 0 ≤ η) :
     DifferentiableOn ℂ (fun q => polarGeneralGeneratorContour η P q innerR outerR)

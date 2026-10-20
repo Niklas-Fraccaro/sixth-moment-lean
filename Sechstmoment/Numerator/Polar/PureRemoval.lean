@@ -2,14 +2,6 @@ import Mathlib.Tactic
 import Sechstmoment.Numerator.Polar.PoleKiller
 import Sechstmoment.Zeta.Regularized
 
-/-!
-# Holomorphic removal of the actual four pure zeta poles in each of six terms
-
-The extension below is an explicit function assembled from `G_T` and the
-entire regularization of the actual Riemann zeta function. Equality with the
-unregularized integrand is proved away from its poles. No contour movement or
-bound at infinity is inferred from this local pole removal.
--/
 
 namespace Sechstmoment
 
@@ -49,11 +41,9 @@ theorem polarOtherTermsKiller_differentiable (T : ℝ) (σ : MomentShifts) (m : 
   unfold polarOtherTermsKiller
   exact Differentiable.fun_finsetProd (fun _ _ => purePolarTermKiller_differentiable T σ _)
 
-/-- The actual product of four pure zeta factors in a literal BBLR term. -/
 def purePolarZetaProduct (T : ℝ) (σ : MomentShifts) (m : Fin 6) (z : ℂ) : ℂ :=
   ∏ ij : Fin 2 × Fin 2, riemannZeta (1+2*(z-purePolarRoot T σ (m,ij)))
 
-/-- Its explicit entire extension after multiplication by `G_T`. -/
 def purePolarRemovedIntegrand (T : ℝ) (σ : MomentShifts) (m : Fin 6) (z : ℂ) : ℂ :=
   Complex.exp (z^2) * polarOtherTermsKiller T σ m z *
     purePolarTermRemovedKiller T σ m z *
@@ -67,7 +57,6 @@ theorem purePolarZetaArgument_eq_source (T : ℝ) (σ : MomentShifts) (m : Fin 6
   unfold purePolarRoot
   ring
 
-/-- Exact agreement off the actual polar roots, with all multiplicities kept. -/
 theorem purePolarRemovedIntegrand_eq (T : ℝ) (σ : MomentShifts) (m : Fin 6)
     (hρ : ∀ ij : Fin 2 × Fin 2, purePolarRoot T σ (m,ij) ≠ 0)
     {z : ℂ} (hz : ∀ ij : Fin 2 × Fin 2, z ≠ purePolarRoot T σ (m,ij)) :
@@ -89,7 +78,6 @@ theorem purePolarRemovedIntegrand_eq (T : ℝ) (σ : MomentShifts) (m : Fin 6)
   unfold purePolarTermDivisor purePolarZetaProduct
   ring
 
-/-- The extension is genuinely entire in `z`, even at coincident polar roots. -/
 theorem purePolarRemovedIntegrand_differentiable (T : ℝ) (σ : MomentShifts) (m : Fin 6) :
     Differentiable ℂ (purePolarRemovedIntegrand T σ m) := by
   unfold purePolarRemovedIntegrand

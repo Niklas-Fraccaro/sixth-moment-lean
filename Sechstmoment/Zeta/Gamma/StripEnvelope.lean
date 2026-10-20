@@ -3,10 +3,6 @@ import Mathlib.Analysis.Normed.Group.Bounded
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Sechstmoment.Zeta.Centering.GammaRatio
 
-/-! Actual Gamma envelopes for quantitative tails on the original AFE line.
-The reflection formula supplies the exponential cancellation; the proved
-Euler-product Gamma-ratio estimate supplies the remaining polynomial factor.
--/
 
 namespace Sechstmoment.Source
 open Complex Filter Set ComplexConjugate

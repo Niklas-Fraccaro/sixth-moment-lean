@@ -1,8 +1,6 @@
 import Mathlib.Analysis.PSeries
 import Sechstmoment.Numerator.U.ZeroModes.RatioUnitTail
 
-/-! Absolute Dirichlet mass of the actual ratio partition at every positive
-spatial scale, uniformly in the normalized root-gap chamber. -/
 namespace Sechstmoment.Source
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology

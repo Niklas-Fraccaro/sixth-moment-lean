@@ -2,13 +2,6 @@ import Mathlib.Tactic
 import Sechstmoment.Zeta.Bounds.MellinZetaDirichletBounds
 import Sechstmoment.Zeta.Bounds.MellinZetaGrowth
 
-/-!
-# A genuine zeta majorant throughout a right half-plane
-
-The Gamma/Mellin strip bound and the actual Dirichlet-series bound together
-control every argument with positive real part, away from the pole. This
-includes both ends and the horizontal sides of the initial contour move.
--/
 
 namespace Sechstmoment
 

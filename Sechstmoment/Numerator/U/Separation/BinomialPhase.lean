@@ -3,8 +3,6 @@ import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Sechstmoment.Analysis.Complex.PositivePowers
 import Sechstmoment.Arithmetic.QuadraticDivisor.Definitions
 
-/-! Exact convergent binomial separation of the signed logarithmic phase.
-The quantitative tail is a proved tail of this actual series. -/
 namespace Sechstmoment
 open Complex Real Set Filter Polynomial
 open scoped BigOperators Topology

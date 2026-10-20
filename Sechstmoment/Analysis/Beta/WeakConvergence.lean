@@ -5,7 +5,6 @@ namespace Sechstmoment
 
 open Filter MeasureTheory
 
-/-- The elementary near/far decomposition used to pass from concentration to test functions. -/
 theorem betaScaled_test_error_bound {η : ℝ} (hη : 0 < η) {n k : ℕ} (hk : k ≤ n)
     (g : ℝ → ℝ) (a ε M δ : ℝ) (hε : 0 ≤ ε)
     (hg : ContinuousOn g (Set.Icc (0 : ℝ) η))
@@ -60,7 +59,6 @@ theorem betaScaled_test_error_bound {η : ℝ} (hη : 0 < η) {n k : ℕ} (hk : 
         intervalIntegral.integral_const_mul, betaScaled_mass hη.ne' hk]
       simp only [mul_one, betaScaledTailMass]
 
-/-- Weak approximation of the point mass at `a`, in the compact-interval test-function form. -/
 theorem betaProfile_continuous_test_tendsto {η a : ℝ} (hη : 0 < η)
     (ha : 0 ≤ a) (haη : a ≤ η) (g : ℝ → ℝ)
     (hg : ContinuousOn g (Set.Icc (0 : ℝ) η)) :

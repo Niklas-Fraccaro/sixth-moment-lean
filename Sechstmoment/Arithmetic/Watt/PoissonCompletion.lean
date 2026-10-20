@@ -1,9 +1,6 @@
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.WeilBounds
 import Sechstmoment.Arithmetic.Watt.Statement
 
-/-! Exact Poisson completion for an arbitrary smooth compactly supported
-complex weight. This generalises the profile-specific completion in the
-original project. No estimate for Kloosterman sums is assumed or used. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -83,7 +80,6 @@ def completedSum (g : ℝ → ℂ) (c : ℕ) (k : ℤ) : ℂ :=
     ePhase ((k : ℝ)*(inverseRepresentative a c : ℝ)/(c : ℝ))*
       ∑' j : ℤ, g ((a : ℝ)+(c : ℝ)*j)
 
-/-- The exact Kloosterman expansion, with the project's parameter order. -/
 theorem completedSum_eq_fourier {g : ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
     (hs : HasCompactSupport g) {c : ℕ} (hc : 0 < c) (k : ℤ) :
     completedSum g c k =
@@ -112,7 +108,6 @@ theorem completedSum_eq_fourier {g : ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
       push_cast
       ring
 
-/-- The same expansion in exactly the convention quoted for Watt 4.1. -/
 theorem completedSum_eq_classical {g : ℝ → ℂ} (hg : ContDiff ℝ ∞ g)
     (hs : HasCompactSupport g) {c : ℕ} (hc : 0 < c) (k : ℤ) :
     completedSum g c k =

@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ActualBranchResidualBudget
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.EtaFullReconstruction
 import Sechstmoment.Numerator.U.ZeroModes.PhysicalMainPair
 
-/-! The full eight actual eta fronts give exactly the four crossed source
-main terms up to the proved three-contour and literal-main tail budgets. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

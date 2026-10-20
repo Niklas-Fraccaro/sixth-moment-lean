@@ -1,7 +1,5 @@
 import Sechstmoment.Zeta.Gamma.VerticalDecay
 
-/-! Polynomially weighted absolute Gamma integrability on every actual D04
-vertical line avoiding the Gamma pole at zero. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
@@ -25,8 +23,6 @@ private theorem d04Gamma_vertical_line_continuous {c : ℝ}
   · have hcast : (1 : ℝ) ≤ n := by exact_mod_cast hn
     linarith
 
-/-- An integrable rational envelope controls Gamma multiplied by any fixed
-polynomial on the vertical lines used by the one-sided contour shift. -/
 theorem d04Gamma_vertical_polynomial_rational_bound {c : ℝ}
     (hc : -1 < c) (hc2 : c ≤ 2) (hc0 : c ≠ 0) (k : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ v : ℝ,

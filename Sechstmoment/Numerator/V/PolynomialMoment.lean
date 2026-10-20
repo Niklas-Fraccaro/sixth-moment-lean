@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Asymptotic.VGeneratorLeading
 import Sechstmoment.Numerator.V.DP.VPolynomialAsymptotic
 
-/-! Derivatives and polynomial operators of the actual V moment, with the
-uniform disk estimate proved independently of the former DP source input. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Filter Metric

@@ -18,8 +18,6 @@ theorem l2_integral_norm_sq (f : α →₂[μ] ℂ) :
     _ = RCLike.re (inner ℂ f f) := by rw [← L2.inner_def]
     _ = ‖f‖^2 := inner_self_eq_norm_sq f
 
-/-- Integral Cauchy--Schwarz. Applications to the zeta test still require
-their measurability, square integrability and moment asymptotics. -/
 theorem integral_cauchy_schwarz (f g : α →₂[μ] ℂ) :
     ‖∫ x, star (f x) * g x ∂μ‖^2 ≤
       (∫ x, ‖f x‖^2 ∂μ) * (∫ x, ‖g x‖^2 ∂μ) := by

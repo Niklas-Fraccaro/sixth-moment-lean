@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.TimeMellinRepresentation
 
-/-! Spatial envelopes with full Mellin-height decay for the genuine VStar
-compact-time integral, obtained from its two actual vertical convolutions. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators Topology ContDiff

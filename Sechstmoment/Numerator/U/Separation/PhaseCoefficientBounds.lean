@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.SeparatedGapKernel
 
-/-! Genuine support and norm control of the separated coefficients.
-No structural source hypothesis or desired moment estimate is added. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.RatioTimeFourierContour
 
-/-! Arbitrary Fourier decay and positive Mellin spatial gains of the actual
-ratio/time contour, uniformly for compact complex powers in the dual profile. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

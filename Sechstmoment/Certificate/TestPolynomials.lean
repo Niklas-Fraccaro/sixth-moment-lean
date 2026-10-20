@@ -17,15 +17,6 @@ import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 import Std
 
-/-!
-# The manuscript's actual U/V tests
-
-These definitions use the Riemann zeta function and its complex derivatives.
-They instantiate the exact phase projection of §1.1, and also assemble the 250
-rows of Appendix A with their unscaled integer coefficients. They introduce no
-asymptotic moment formula. The profile sum is indexed by `n+1` to exclude zero;
-for the supported profiles and `T > 1` it is proved to be a finite Dirichlet sum.
--/
 
 namespace Sechstmoment
 
@@ -34,7 +25,6 @@ open scoped ComplexConjugate
 
 noncomputable section
 
-/-- The five polynomial tests in (1.6); unsupported indices give zero. -/
 def manuscriptTestPolynomial (m : ℕ) : ℝ[X] :=
   match m with
   | 0 => 1

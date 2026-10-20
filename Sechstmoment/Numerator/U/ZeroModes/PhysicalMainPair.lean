@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.ChamberVariableMainStart
 import Sechstmoment.Numerator.U.ZeroModes.MainXMellinJoin
 import Sechstmoment.Numerator.U.ZeroModes.RatioLeadingBranchSmooth
 
-/-! The actual original/dual x-integrated chamber pair has the required
-physical time phase and equals its literal crossed arithmetic main term. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -46,7 +44,6 @@ theorem a03ZeroModeTimeMoment_dual_partner {Φ : ℝ→ℂ}
     rw [mul_assoc,←hp,he]
 
 
-/-- Exact positive rescaling from normalized time to the physical t-integral. -/
 theorem a03ZeroModeTimeMoment_scaled_eq_physical (Φ : ℝ→ℂ)
     (hSupp : tsupport Φ⊆Icc (1:ℝ) 2) {T : ℝ} (hT : 0<T)
     (α : MomentShifts) (C : ℂ) :
@@ -152,8 +149,6 @@ theorem a03PhysicalChamberIntegratedMain_pair_eq_crossed {Φ : ℝ→ℂ}
     _=_ := by rw [hpair]
 
 
-/-- The actual normalized-time original/dual main pair lands on the existing
-indexed arithmetic main term on the original compact pure-root domain. -/
 theorem a03PhysicalChamberIntegratedMain_pair_eventually_eq_indexed
     (K : Set MomentShifts) (hK : IsCompact K) {κ cs : ℝ} (hκ : 0<κ)
     (hcs : 1<cs) (hcs2 : cs≤3/2)
@@ -184,8 +179,6 @@ theorem a03PhysicalChamberIntegratedMain_pair_eventually_eq_indexed
   exact a03CrossedChamberArithmeticMoment_eq_indexed m n T a b (rawMomentShifts T σ) f g Φ
 
 
-/-- All eight original/dual main contours give exactly the four existing
-crossed arithmetic main terms, with the partner chamber reindexing explicit. -/
 theorem a03PhysicalEightIntegratedMain_eventually_eq_crossedArithmetic
     (K : Set MomentShifts) (hK : IsCompact K) {κ cs : ℝ} (hκ : 0<κ)
     (hcs : 1<cs) (hcs2 : cs≤3/2)

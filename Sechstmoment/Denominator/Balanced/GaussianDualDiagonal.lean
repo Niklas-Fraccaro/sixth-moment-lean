@@ -2,9 +2,6 @@ import Mathlib.MeasureTheory.Function.SpecialFunctions.Basic
 import Sechstmoment.Denominator.Balanced.GaussianPhysicalTimeMean
 import Sechstmoment.Zeta.AFE.Two.DualPower
 
-/-! The literal time-dependent dual power can be replaced only on the
-actual masked diagonal. Its error is controlled by the proved physical
-diagonal mass bound, and outer integrability is derived. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Filter Set
 open scoped BigOperators Topology
@@ -17,8 +14,6 @@ def d02PhysicalGaussianTruncatedDualDiagonalTimeMean (δ T : ℝ)
   ∫ τ : ℝ, (Φ τ : ℂ)*secondDualPower (T*τ) (rawSecondMomentShifts T σ)*
     d02PhysicalGaussianTruncatedDiagonalIntegral δ (Real.log T) ρ ab τ
 
-/-- The dual power is retained at its literal physical height inside the
-height integral until after the diagonal is identified. -/
 def d02GaussianTruncatedDualDiagonalPhysicalHeightMean (δ T : ℝ)
     (ρ : Fin 4 → ℝ → ℂ) (ab : PolarShiftSpace) (σ : SecondMomentShifts)
     (Φ : ℝ → ℝ) : ℂ :=
@@ -61,8 +56,6 @@ theorem d02GaussianTruncatedDualDiagonalPhysicalHeightMean_eq {T : ℝ} (hT : 0<
     abs_of_pos hT,Complex.real_smul]
   exact mul_div_cancel_left₀ _ (Complex.ofReal_ne_zero.mpr hT.ne')
 
-/-- Uniform replacement of the actual dual time power on the diagonal.
-The physical Gaussian inner bound supplies the domination. -/
 theorem d02PhysicalGaussianTruncatedDualDiagonalTimeMean_replacement_uniform
     {δ R C : ℝ} (hδ : 0≤δ) (hR : 0≤R) (hC : 0≤C)
     (hOffset : |Real.log (2*Real.pi)|+Real.log 2≤C)
@@ -147,8 +140,6 @@ theorem d02PhysicalGaussianTruncatedDualDiagonalTimeMean_replacement_uniform
     exact div_mul_cancel₀ ε (by positivity : B*(M+1)≠0)
   nlinarith [mul_pos hη hB]
 
-/-- The replacement is an estimate for the literal physical-height
-integral, with its actual time integrability proved. -/
 theorem d02GaussianTruncatedDualDiagonalPhysicalHeightMean_replacement_uniform
     {δ R C : ℝ} (hδ : 0≤δ) (hR : 0≤R) (hC : 0≤C)
     (hOffset : |Real.log (2*Real.pi)|+Real.log 2≤C)
@@ -179,8 +170,6 @@ theorem d02GaussianTruncatedDualDiagonalPhysicalHeightMean_replacement_uniform
       d02GaussianTruncatedDiagonalPhysicalHeightMean_eq hT]
     exact h.2
 
-/-- Fixed shifts retain the exact exp(-sum sigma) dual coefficient after
-physical time averaging. No negligible-error premise is supplied. -/
 theorem d02GaussianTruncatedDualDiagonalPhysicalHeightMean_replacement_tendsto
     {δ R C : ℝ} (hδ : 0≤δ) (hR : 0≤R) (hC : 0≤C)
     (hOffset : |Real.log (2*Real.pi)|+Real.log 2≤C)
@@ -199,7 +188,6 @@ theorem d02GaussianTruncatedDualDiagonalPhysicalHeightMean_replacement_tendsto
     hδ hR hC hOffset ρ a Φ hρc hρcap hΦc hΦs hε] with T hT
   simpa only [dist_zero_right] using (hT σ ab hσ ha hb).2
 
-/-- No box premises are required for fixed original complex shifts. -/
 theorem d02GaussianTruncatedDualDiagonalPhysicalHeightMean_replacement_tendsto_fixed_shifts
     {δ : ℝ} (hδ : 0≤δ) (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (Φ : ℝ → ℝ)
     (hρc : ∀ k,Continuous (ρ k))
@@ -238,8 +226,6 @@ theorem d02GaussianTruncatedDualDiagonalPhysicalHeightMean_replacement_tendsto_f
   exact d02GaussianTruncatedDualDiagonalPhysicalHeightMean_replacement_tendsto
     hδ hR hC (le_max_left _ _) ρ a Φ hρc hρcap hΦc hΦs σ ab hσ ha hb
 
-/-- The literal dual diagonal has one uniform box norm bound and is
-integrable on the physical height window. -/
 theorem d02GaussianTruncatedDualDiagonalPhysicalHeightMean_eventually_uniform_norm_bound
     {δ R C : ℝ} (hδ : 0≤δ) (hR : 0≤R) (hC : 0≤C)
     (hOffset : |Real.log (2*Real.pi)|+Real.log 2≤C)

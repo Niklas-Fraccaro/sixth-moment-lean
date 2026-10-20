@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.MainTerm.DyadicSixPhaseLimit
 import Sechstmoment.Numerator.U.MainTerm.MovingPolarFactors
 
-/-! Joint limits for the actual outer dyadic time factors. -/
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Filter
 open scoped Topology

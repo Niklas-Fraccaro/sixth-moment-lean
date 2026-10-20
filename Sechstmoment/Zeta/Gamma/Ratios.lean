@@ -19,14 +19,6 @@ import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 import Std
 
-/-!
-# Exact shifted functional equation before asymptotic centering
-
-`centeringFactor` is the literal ratio in (1.4), built from the actual
-archimedean Gamma factors. The functional equation below is exact on the
-critical strip and on every fixed shift disk once its radius is smaller than
-`log T / 2`. No Stirling estimate or moment estimate is assumed or asserted.
--/
 
 namespace Sechstmoment
 open Complex Filter Set
@@ -34,7 +26,6 @@ open scoped Topology
 
 noncomputable section
 
-/-- Differentiability of the archimedean factor in its positive half-plane. -/
 theorem gammaReal_differentiableAt_of_re_pos {s : ℂ} (hs : 0 < s.re) :
     DifferentiableAt ℂ Gammaℝ s := by
   unfold Gammaℝ
@@ -50,8 +41,6 @@ theorem gammaReal_differentiableAt_of_re_pos {s : ℂ} (hs : 0 < s.re) :
     have hnpos : (0 : ℝ) ≤ n := Nat.cast_nonneg n
     linarith
 
-/-- Exact ratio of archimedean factors: the elementary power and the Gamma
-ratio are separated without taking a branch-dependent logarithm of Gamma. -/
 theorem gammaReal_shift_ratio (s u : ℂ) :
     Gammaℝ (s+u)/Gammaℝ s = (Real.pi : ℂ)^(-u/2) *
       (Gamma ((s+u)/2)/Gamma (s/2)) := by

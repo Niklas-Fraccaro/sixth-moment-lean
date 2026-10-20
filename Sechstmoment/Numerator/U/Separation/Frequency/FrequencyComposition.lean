@@ -1,8 +1,6 @@
 import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 import Sechstmoment.Numerator.U.Separation.Frequency.Composition
 
-/-! Quantitative all-order cancellation between derivatives of a logarithmic
-phase and rapid Fourier decay. This works at arbitrary phase size. -/
 namespace Sechstmoment
 open Set
 open scoped BigOperators

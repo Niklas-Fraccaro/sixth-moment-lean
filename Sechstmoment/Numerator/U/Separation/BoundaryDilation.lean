@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Reconstruction.RectangularUnitEmbedding
 
-/-! Exact common amplifier/gap dilation. This supplies the source scale
-domain even for the retained scale 2/3 in a, b, or h. The literal transformed
-zero mode is retained; no assertion about unit zero-mode cancellation occurs. -/
 namespace Sechstmoment
 open Complex Source Set MeasureTheory
 open scoped BigOperators Topology

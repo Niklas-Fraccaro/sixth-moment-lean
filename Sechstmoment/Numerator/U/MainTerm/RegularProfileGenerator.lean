@@ -3,8 +3,6 @@ import Sechstmoment.Arithmetic.Factor.Definitions
 import Sechstmoment.Numerator.Kernels.Holomorphy
 import Sechstmoment.Numerator.Kernels.ReflectionGenerator
 
-/-! The regular compact profile generator for the literal BBLR six-term limit.
-All shift collisions are retained in the actual regularized alternant. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set
@@ -12,13 +10,11 @@ open scoped Topology
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- Regular kernel before the two amplifier profile integrals. -/
 def actualRegularProfileKernel (σ : Fin 4 → ℂ) (A B : ℝ) : ℂ :=
   ∫ t in (0:ℝ)..min A B,
     exponentialAlternantRegularized (polarSourceKnots σ)
       (numeratorRho (A-t) (B-t))
 
-/-- Actual compact regular profile generator, in source amplifier order. -/
 def actualRegularProfileGenerator (a b : ℝ) (f g : ℝ → ℂ) (Φ : ℝ → ℝ)
     (σ : Fin 4 → ℂ) : ℂ :=
   (arithmeticFactor:ℂ) * (∫ x, (Φ x:ℂ)) *
@@ -133,8 +129,6 @@ private theorem actualRegularProfileFamily_value (a b : ℝ) (f g : ℝ → ℂ)
     f A*g B*actualRegularProfileKernelFamily.value σ (A,B)) = _
   simp_rw [actualRegularProfileKernelFamily_value]
 
-/-- The regular source-profile generator is entire in all four source
-shifts; no pole-separation condition is required. -/
 theorem actualRegularProfileGenerator_contDiff
     (a b : ℝ) (f g : ℝ → ℂ) (Φ : ℝ → ℝ)
     (hf : Continuous f) (hg : Continuous g) :
@@ -159,8 +153,6 @@ theorem actualRegularProfileGenerator_differentiable
     Differentiable ℂ (actualRegularProfileGenerator a b f g Φ) :=
   (actualRegularProfileGenerator_contDiff a b f g Φ hf hg).differentiable (by norm_num)
 
-/-- On the colliding U line, the centering factor translates the four
-polar nodes to exactly the manuscript's centered numerator nodes. -/
 theorem actualRegularProfileKernel_centered_u_slice (A B : ℝ) (z : ℂ) :
     Complex.exp (z/2)*actualRegularProfileKernel (![0,0,z,0]) B A =
       numeratorExpGenerator A B z := by
@@ -217,8 +209,6 @@ theorem actualRegularProfileGenerator_swap_integrals
   funext B
   rw [mul_comm (g B) (f A)]
 
-/-- The amplifier reversal in the exact U-to-BBLR identity is carried
-through the regular limit, yielding the actual centered numerator generator. -/
 theorem actualRegularProfileGenerator_centered_u_slice
     (a b : ℝ) (f g : ℝ → ℂ) (Φ : ℝ → ℝ)
     (hf : Continuous f) (hg : Continuous g) (z : ℂ) :
@@ -252,8 +242,6 @@ theorem actualRegularProfileGenerator_centered_u_slice
             f A*g B*actualRegularProfileKernel (![0,0,z,0]) B A)) := by ring
     _ = _ := by rw [hi]
 
-/-- Actual centered numerator profile generator, with all profile and
-dyadic-weight integrations retained. -/
 def actualCenteredNumeratorProfileGenerator (a b : ℝ) (f g : ℝ → ℂ)
     (Φ : ℝ → ℝ) (z : ℂ) : ℂ :=
   (arithmeticFactor:ℂ)*(∫ x, (Φ x:ℂ))*

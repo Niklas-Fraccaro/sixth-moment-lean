@@ -31,8 +31,6 @@ import Sechstmoment.Numerator.Kernels.Nodes
 import Sechstmoment.Numerator.Polar.General.Holomorphy
 import Std
 
-/-! Holomorphic continuation of the exponential alternant through all source
-collisions.  Its derivatives are obtained from the defining compact integrals. -/
 
 namespace Sechstmoment
 open Filter MeasureTheory Set

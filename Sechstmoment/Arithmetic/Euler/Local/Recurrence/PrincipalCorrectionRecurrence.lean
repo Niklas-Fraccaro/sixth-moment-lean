@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Prime.PrincipalCorrectionBase
 
-/-! A first difference formula for the principal local correction. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

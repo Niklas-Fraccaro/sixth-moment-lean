@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Chi.Phase
 import Sechstmoment.Zeta.Gamma.Stirling
 
-/-! Explicit correction between the Gamma/Stirling exponent and the oscillatory
-chi main phase. All logarithms stay on their actual principal branches. -/
 
 namespace Sechstmoment.Source
 open Complex Real

@@ -2,7 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 import Sechstmoment.Analysis.Mellin.SmoothMellin
 import Sechstmoment.Numerator.V.Arithmetic.TimeWeightFamily
 
-/-! Common polynomially weighted Mellin L1 budgets for the actual time weights. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

@@ -1,16 +1,6 @@
 import Mathlib.Analysis.Complex.Liouville
 import Sechstmoment.Numerator.V.DP.DPPolydiscBoundary
 
-/-!
-# Uniform holomorphic error transfer and ordinary U-slice derivatives
-
-A uniform zero limit on a distinguished polydisc boundary propagates to
-the closed polydisc by the already proved maximum principle. Cauchy's
-estimate then propagates it to every fixed derivative order on the U slice.
-
-These are generic error-family theorems: holomorphy is an explicit input.
-They do not identify any actual polar limit with a regular generator.
--/
 
 namespace Sechstmoment
 open Complex Metric Set Filter Source
@@ -19,8 +9,6 @@ noncomputable section
 
 set_option maxHeartbeats 2000000
 
-/-- Boundary convergence of a holomorphic error family implies convergence
-throughout the closed rectangular polydisc, including coincident shifts. -/
 theorem rectangular_uniform_boundary_zero_to_polydisc_zero
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (R : ι → ℝ) (hR : ∀ i, 0 < R i) (E : ℝ → (ι → ℂ) → ℂ)
@@ -42,7 +30,6 @@ theorem rectangular_uniform_boundary_zero_to_polydisc_zero
   exact (rectangular_polydisc_norm_le R hR (E T) hT hbound σ hσ).trans_lt
     (by linarith)
 
-/-- A coordinate line through the collision point. -/
 def rectangularCoordinateLine {ι : Type*} [DecidableEq ι] (i : ι) (z : ℂ) : ι → ℂ :=
   Function.update 0 i z
 
@@ -68,10 +55,6 @@ private theorem disk_around_disk_norm_le {r : ℝ} {z w : ℂ}
     simp
   linarith
 
-/-- Cauchy's estimate transfers a uniform holomorphic boundary error to
-every fixed ordinary derivative order on any coordinate slice. The inner
-disk has radius `r`, and its Cauchy circles stay inside the polydisc because
-`2*r≤R i`. The theorem covers all orders, including 0–4. -/
 theorem rectangular_coordinate_iteratedDeriv_uniform_zero
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (R : ι → ℝ) (hR : ∀ i, 0 < R i) (i : ι)
@@ -129,10 +112,6 @@ private theorem rectangular_coordinate_slice_analyticAt
     hF.comp (rectangularCoordinateLine_differentiable i).differentiableOn hmap
   exact hd.analyticAt (closedBall_mem_nhds z hr)
 
-/-- A holomorphic family and a holomorphic proposed limit which agree
-asymptotically on the boundary have uniformly convergent ordinary coordinate
-derivatives on the smaller disk. Holomorphy of both functions is explicit;
-no meromorphic-summand cancellation or generator identity is inferred here. -/
 theorem rectangular_coordinate_iteratedDeriv_uniform_limit
     {ι : Type*} [Fintype ι] [DecidableEq ι]
     (R : ι → ℝ) (hR : ∀ i, 0 < R i) (i : ι)
@@ -169,15 +148,12 @@ theorem rectangular_coordinate_iteratedDeriv_uniform_limit
   rw [dist_eq_norm, zero_sub, norm_neg, hsub, norm_sub_rev] at hh
   simpa only [dist_eq_norm] using hh
 
-/-- The ordinary U slice uses the third of the four complex shifts. -/
 def dpUShiftLine (z : ℂ) : MomentShifts := rectangularCoordinateLine (2:Fin 4) z
 
 theorem dpUShiftLine_eq_vector (z : ℂ) : dpUShiftLine z = ![0,0,z,0] := by
   ext j
   fin_cases j <;> simp [dpUShiftLine, rectangularCoordinateLine]
 
-/-- The specific U slice inherits all fixed derivative orders, uniformly
-on the unit disk, from a holomorphic error on the separated Cauchy boundary. -/
 theorem dpUShiftLine_iteratedDeriv_uniform_zero
     (E : ℝ → MomentShifts → ℂ)
     (hhol : ∀ᶠ T : ℝ in atTop,
@@ -190,8 +166,6 @@ theorem dpUShiftLine_iteratedDeriv_uniform_zero
   rectangular_coordinate_iteratedDeriv_uniform_zero dpCauchyRadii dpCauchyRadii_positive
     (2:Fin 4) 1 (by norm_num) (by norm_num [dpCauchyRadii]) E hhol hboundary n
 
-/-- The concrete collision-point derivatives through degree four converge to
-zero whenever the holomorphic error converges uniformly on the Cauchy boundary. -/
 theorem dpUShiftLine_iteratedDeriv_zero_through_four
     (E : ℝ → MomentShifts → ℂ)
     (hhol : ∀ᶠ T : ℝ in atTop,

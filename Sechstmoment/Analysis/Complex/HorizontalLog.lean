@@ -1,8 +1,6 @@
 import Mathlib.Analysis.Calculus.MeanValue
 import Mathlib.Analysis.SpecialFunctions.Complex.LogDeriv
 
-/-! A branch-safe quantitative logarithm comparison on every horizontal line
-off the real axis. Used to simplify the two Gamma powers in the chi phase. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

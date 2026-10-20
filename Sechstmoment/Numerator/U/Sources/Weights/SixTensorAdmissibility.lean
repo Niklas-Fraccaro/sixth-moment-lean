@@ -33,10 +33,6 @@ theorem a03SixActualBoundaryBeta_norm (T B : ℝ) (g : ℝ → ℝ)
   exact rectangular_unit_coefficient_bound _ hG
     (fun m => rectangular_unit_coefficient_bound _ hG hb m) n
 
-/-- A common bounded six-dimensional Schwartz family is separated with
-one normalization, one source derivative sequence, and uniformly L1
-coefficients. Every resulting actual full-power-near block is admissible,
-for every Fourier frequency and every real/imaginary component. -/
 theorem a03Six_actual_power_near_source_admissibility {ι : Type*} {a b ε : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hε : 0<ε)
     (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Balanced.ActualCircleFubini
 import Sechstmoment.Denominator.Balanced.GaussianMomentRegularity
 
-/-! Exact integral comparison between the actual zeta height moment and
-the direct-plus-dual Gaussian model, followed by its proved vanishing error. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Filter Set Metric
 open scoped BigOperators Topology

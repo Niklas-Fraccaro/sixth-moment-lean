@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Balanced.NormalizedHeightBudget
 import Sechstmoment.Denominator.Unbalanced.FiniteMainTerm
 
-/-! The literal four-profile coefficient mass closes the one-sided
-off-diagonal estimate uniformly over compact normalized shift boxes. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

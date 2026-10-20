@@ -1,13 +1,6 @@
 import Sechstmoment.Arithmetic.Euler.Shifted.ScaledLimit
 import Sechstmoment.Numerator.U.Diagonal.DiagonalEulerSixIndices
 
-/-!
-# D01: the actual six-index diagonal Laplace transform
-
-The normalized arithmetic sum is the convergent literal six-positive-index
-sum. Its Euler factorization and its nine-pole Laplace limit use proved
-arithmetic and the residue of the actual Riemann zeta function.
--/
 
 namespace Sechstmoment
 

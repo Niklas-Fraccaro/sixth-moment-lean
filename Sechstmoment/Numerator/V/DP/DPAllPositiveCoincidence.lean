@@ -2,10 +2,6 @@ import Sechstmoment.Numerator.Polar.WeightedCoincidence
 import Sechstmoment.Numerator.V.DP.DPAllPositiveBoundary
 import Sechstmoment.Numerator.V.DP.DPAllPositiveHolomorphy
 
-/-! A genuine DP moment asymptotic at coincident shifts, with its actual
-polynomial polar generator. The only external input is the literal sharp
-DP-v2 estimate; all functional equations, smoothing, holomorphy and collision
-transfer are theorems of the present formalization. -/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Polynomial Filter
@@ -59,7 +55,6 @@ theorem dpAllPositiveMoment_coincident_normalized_tendsto (hsource : DPv2SharpIn
   field_simp
   ring
 
-/-- The actual one-variable coincident tuple used for the polar numerator. -/
 def dpCoincidentShifts (z : ℂ) : MomentShifts := ![0,0,-z,0]
 
 theorem dpCoincidentShifts_differentiable : Differentiable ℂ dpCoincidentShifts := by
@@ -80,8 +75,6 @@ theorem dpCoincidentShifts_mem_polydisc {z : ℂ} (hz : ‖z‖ ≤ 4) :
   intro j
   fin_cases j <;> simp [dpCoincidentShifts,dpCauchyRadii,hz]
 
-/-- The exponential from the exact functional equations cancels the source
-outer-contour phase. This equality includes z=0. -/
 theorem dpAllPositiveRegularKernel_coincident (η : ℝ) (P : ℝ[X]) (z : ℂ)
     (hz : ‖z‖ < 16) :
     dpAllPositiveRegularKernel η P (dpCoincidentShifts z) = polarPolynomialJ η P z := by
@@ -94,8 +87,6 @@ theorem dpAllPositiveRegularKernel_coincident (η : ℝ) (P : ℝ[X]) (z : ℂ)
   rw [add_zero,← mul_assoc,← Complex.exp_add]
   simp
 
-/-- The genuine all-positive moment tends to the actual polynomial polar
-generator for coincident shifts, including z=0, after T log^9(T) normalization. -/
 theorem dpAllPositiveMoment_polarPolynomialJ_tendsto (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P : ℝ[X])
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (z : ℂ) (hz : ‖z‖ ≤ 4) :

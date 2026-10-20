@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.CountableJoint
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.FrontFubini
 
-/-! The full x/u/v/s product integral, normalized by the three genuine
-vertical-line factors, is exactly the original-amplifier initial front. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

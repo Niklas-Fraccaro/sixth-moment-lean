@@ -5,7 +5,6 @@ namespace Sechstmoment
 open Complex Metric
 open scoped Real
 
-/-- The actual contour in (3.7); `R` must surround both zero and `-z`. -/
 noncomputable def polarContourJ (a b : ℝ) (z : ℂ) (R : ℝ) : ℂ :=
   (2 * (Real.pi:ℂ) * Complex.I)⁻¹ *
     ∮ ω in C(0, R), Complex.exp ω / ((ω+z)*ω^3) *
@@ -57,7 +56,6 @@ private theorem exp_shift_integrable (R : ℝ) (z : ℂ) (hR : ‖z‖ < R) :
   exact Complex.continuous_exp.continuousOn.div (continuous_id.add_const z).continuousOn
     (circle_shift_nonzero R z hR)
 
-/-- The four-term partial-fraction decomposition, checked in the field `ℂ`. -/
 theorem polar_quadratic_partial_fractions (A B C z ω : ℂ)
     (hz : z ≠ 0) (hω : ω ≠ 0) (hplus : ω+z ≠ 0) :
     (A+B*ω+C*ω^2)/((ω+z)*ω^3) =
@@ -66,7 +64,6 @@ theorem polar_quadratic_partial_fractions (A B C z ω : ℂ)
   field_simp
   ring
 
-/-- Cauchy's theorem evaluates all poles in the rational contour. -/
 theorem polar_quadratic_contour (A B C z : ℂ) (R : ℝ)
     (hz : z ≠ 0) (hR : ‖z‖ < R) :
     (2*(Real.pi:ℂ)*Complex.I)⁻¹ *
@@ -116,7 +113,6 @@ theorem polar_quadratic_contour (A B C z : ℂ) (R : ℝ)
   field_simp
   ring
 
-/-- Cauchy evaluation at the coalesced pole `z=0`. -/
 theorem polar_quadratic_contour_zero (A B C : ℂ) (R : ℝ) (hR : 0 < R) :
     (2*(Real.pi:ℂ)*Complex.I)⁻¹ *
       (∮ ω in C(0,R), Complex.exp ω*(A+B*ω+C*ω^2)/(ω^4)) =
@@ -149,7 +145,6 @@ theorem polar_quadratic_contour_zero (A B C : ℂ) (R : ℝ) (hR : 0 < R) :
   norm_num [Complex.I_sq]
   try ring
 
-/-- The contour generator equals the independently defined regular convolution generator. -/
 theorem polarContourJ_eq_polarJ (a b : ℝ) (z : ℂ) (R : ℝ)
     (hz : z ≠ 0) (hR : ‖z‖ < R) : polarContourJ a b z R = polarJ a b z := by
   unfold polarContourJ
@@ -162,7 +157,6 @@ theorem polarContourJ_eq_polarJ (a b : ℝ) (z : ℂ) (R : ℝ)
   rw [heq, polar_quadratic_contour _ _ _ z R hz hR]
   rfl
 
-/-- Identification of the genuine outer contour at every shift, including the coalesced pole. -/
 theorem polarContourJ_eq_polarJ_all (a b : ℝ) (z : ℂ) (R : ℝ) (hR : ‖z‖ < R) :
     polarContourJ a b z R = polarJ a b z := by
   by_cases hz : z = 0
@@ -181,7 +175,6 @@ theorem polarContourJ_eq_polarJ_all (a b : ℝ) (z : ℂ) (R : ℝ) (hR : ‖z�
     rfl
   · exact polarContourJ_eq_polarJ a b z R hz hR
 
-/-- Equation (3.8) for the actual complex contour, not an assumed residue identity. -/
 theorem polarContourJ_residue_formula (a b : ℝ) (z : ℂ) (R : ℝ)
     (hz : z ≠ 0) (hR : ‖z‖ < R) :
     z^7 * polarContourJ a b z R = z*(1+z/2)*polarA a z*polarA b z -

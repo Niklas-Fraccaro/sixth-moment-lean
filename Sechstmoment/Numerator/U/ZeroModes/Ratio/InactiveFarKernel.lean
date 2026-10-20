@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.BadSourceKernel
 
-/-! Uniform arbitrary-power estimates for the genuine original and dual
-far time integrals, including their actual amplifier factors. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

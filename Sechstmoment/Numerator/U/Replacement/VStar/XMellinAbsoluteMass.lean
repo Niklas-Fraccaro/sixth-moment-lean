@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.VStarMellin
 
-/-! Genuine weighted absolute x-masses of VStar and their real scaling law. -/
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory
 noncomputable section

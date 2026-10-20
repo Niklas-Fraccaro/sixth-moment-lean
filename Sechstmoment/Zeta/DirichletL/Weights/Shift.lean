@@ -1,9 +1,6 @@
 import Sechstmoment.Analysis.Mellin.VerticalShift
 import Sechstmoment.Zeta.DirichletL.Weights.Definitions
 
-/-! The smooth-square Gamma weight can be evaluated on every positive
-vertical line. All contour, boundary and convergence conditions are proved.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

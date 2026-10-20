@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.OffdiagonalMoment
 import Sechstmoment.Numerator.U.ZeroModes.Replacement.Identity
 
-/-! The proved genuine Gamma-zero replacement is attached to the literal
-source Gamma zero moment, including its 1/(2*pi) contour prefactor. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

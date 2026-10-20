@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.ThreeEqualRoots
 
-/-! The cubic binomial coefficient for four coinciding local roots. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

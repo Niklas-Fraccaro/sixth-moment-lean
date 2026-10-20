@@ -1,26 +1,16 @@
 import Sechstmoment.Numerator.U.Diagonal.NearFactorCount
 
-/-!
-# Weighted mass of the genuine four-variable near set
-
-This is the arithmetic mass behind a pointwise `1/T` weight or dual-phase
-error. Both products are localized below and above; all four AFE variables
-are summed. The proof uses the unconditional near-fiber counting theorem,
-not an assumed mass bound. The short-interval endpoint term is retained.
--/
 
 namespace Sechstmoment
 open scoped BigOperators
 open Classical
 noncomputable section
 
-/-- The actual lower-localized near set, with all four positive AFE variables. -/
 def positiveNearFactorBlock (L P J Q u v H : ℕ) :
     Finset ((ℕ × ℕ) × (ℕ × ℕ)) :=
   (positiveNearFactorRectangle P Q u v H).filter fun pq =>
     L≤pq.1.1*pq.1.2 ∧ J≤pq.2.1*pq.2.2
 
-/-- The true reciprocal square-root weight, including amplifier denominators. -/
 def positiveNearFactorWeight (u v : ℕ) (pq : (ℕ × ℕ) × (ℕ × ℕ)) : ℝ :=
   1/Real.sqrt ((u:ℝ)*v*(pq.1.1*pq.1.2 : ℕ)*(pq.2.1*pq.2.2 : ℕ))
 
@@ -29,7 +19,6 @@ theorem positiveNearFactorWeight_nonneg (u v : ℕ)
   unfold positiveNearFactorWeight
   positivity
 
-/-- Counting may choose either product orientation without changing the set. -/
 theorem positiveNearFactorBlock_swap_mem {L P J Q u v H : ℕ}
     {pq : (ℕ × ℕ) × (ℕ × ℕ)} :
     pq.swap ∈ positiveNearFactorBlock J Q L P v u H ↔
@@ -68,7 +57,6 @@ theorem positiveNearFactorWeight_swap (u v : ℕ)
   dsimp [Prod.swap]
   ring
 
-/-- The complete true weighted mass is invariant under product orientation. -/
 theorem positiveNearFactorBlock_mass_swap (L P J Q u v H : ℕ) :
     (∑ pq ∈ positiveNearFactorBlock J Q L P v u H,
       positiveNearFactorWeight v u pq)=
@@ -94,7 +82,6 @@ theorem positiveNearFactorWeight_le_block {L P J Q u v H : ℕ}
   apply Real.sqrt_le_sqrt
   gcongr
 
-/-- Actual complete weighted near-block mass, proved from factor counts. -/
 theorem positiveNearFactorBlock_mass_le_harmonic {L P J Q u v H K : ℕ}
     (hu : 0<u) (hv : 0<v) (hL : 0<L) (hJ : 0<J) (hQ : Q≤K^2) :
     (∑ pq ∈ positiveNearFactorBlock L P J Q u v H,
@@ -118,7 +105,6 @@ theorem positiveNearFactorBlock_mass_le_harmonic {L P J Q u v H K : ℕ}
     _ ≤ _ := div_le_div_of_nonneg_right
       (positiveNearFactorRectangle_card_le_harmonic hv hQ) (Real.sqrt_nonneg _)
 
-/-- The same genuine weighted mass with its logarithmic majorant. -/
 theorem positiveNearFactorBlock_mass_le_log {L P J Q u v H K : ℕ}
     (hu : 0<u) (hv : 0<v) (hL : 0<L) (hJ : 0<J) (hQ : Q≤K^2) :
     (∑ pq ∈ positiveNearFactorBlock L P J Q u v H,
@@ -139,8 +125,6 @@ theorem positiveNearFactorBlock_mass_le_log {L P J Q u v H K : ℕ}
   · exact harmonic_le_one_add_log P
   · exact harmonic_le_one_add_log K
 
-/-- The actual amplifier indices and all four AFE variables are summed.
-Only integer support and product localization assumptions enter. -/
 theorem amplifiedPositiveNearFactorBlock_mass_le_harmonic
     {U A V B L P J Q H K : ℕ}
     (hU : 0<U) (hV : 0<V) (hL : 0<L) (hJ : 0<J) (hQ : Q≤K^2) :

@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Sources.FiniteReindex
 import Sechstmoment.Numerator.U.ZeroModes.PolarChamberInvariance
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.DiscretePartition
 
-/-! Exact chamber symmetries are performed on the four integer AFE
-variables, together with their actual shifts and dyadic scales. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology

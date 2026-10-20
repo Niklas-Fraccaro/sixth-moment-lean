@@ -61,8 +61,6 @@ theorem phase_supported_right_product_bounds (q : QuadraticScales)
       _ ≤ (2*q.B)*(2*q.N₁)*(2*q.N₂) := by gcongr <;> linarith
       _ = _ := by ring
 
-/-- Literal support and the actual signed near relation give uniform
-comparability of the two source block products. -/
 theorem phase_active_near_scales_comparable (q : QuadraticScales)
     (hq : ∀ j, 0 ≤ q.size j) (n : Fin 7 → ℕ)
     (hn : ∀ j, (n j:ℝ) ∈ Icc (q.size j) (2*q.size j))
@@ -112,8 +110,6 @@ theorem phase_active_near_gap_scale_bound (q : QuadraticScales)
   have hηs := mul_le_mul_of_nonneg_left hsr hη
   nlinarith
 
-/-- A nonzero integer gap forces the source's nontrivial range whenever
-the genuine near width times AB is at most 1/8. -/
 theorem phase_active_near_nontrivial_range (q : QuadraticScales)
     (hq : ∀ j, 0 ≤ q.size j) (hAB : 0 < q.A*q.B) (n : Fin 7 → ℕ)
     (hn : ∀ j, (n j:ℝ) ∈ Icc (q.size j) (2*q.size j)) (hh : 0 < n 6)

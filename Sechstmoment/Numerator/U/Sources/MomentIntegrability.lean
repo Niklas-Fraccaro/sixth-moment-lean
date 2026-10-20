@@ -2,8 +2,6 @@ import Mathlib.MeasureTheory.Function.LocallyIntegrable
 import Sechstmoment.Numerator.U.Separation.ActualTensorMellinIntegrability
 import Sechstmoment.Numerator.U.Sources.MomentJoin
 
-/-! Genuine Mellin integrability for the complete finite physical source
-and summed Gamma GCD zero moments, and their source-only sublinear difference. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff
@@ -73,8 +71,6 @@ theorem a03_actual_source_finite_values_integrableOn (dual : Bool)
   · simp only [hactive,ite_false]
     exact integrable_zero _ _ _
 
-/-- The source estimate now applies to the difference of two separately
-defined, genuinely convergent physical Mellin moments. -/
 theorem a03_actual_source_physical_moment_sub_Gamma_zero (dual : Bool)
     (hinput : SeparatedQuadraticInput) {a b εsource εkernel c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)

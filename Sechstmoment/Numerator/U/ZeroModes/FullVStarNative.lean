@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.RatioEuclideanMultiplier
 import Sechstmoment.Numerator.U.ZeroModes.SpectralFubini
 
-/-! The full positive-line V* reconstruction of the actual native physical
-zero, retaining every arithmetic weight and a genuine ratio multiplier. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

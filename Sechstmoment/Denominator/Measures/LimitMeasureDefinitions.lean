@@ -3,8 +3,6 @@ import Mathlib.MeasureTheory.Integral.Pi
 import Mathlib.MeasureTheory.Measure.Regular
 import Sechstmoment.Denominator.Measures.DiagonalMeasureDefinitions
 
-/-! The geometric D01 limit is the push-forward of nine-dimensional positive
-Lebesgue measure under the three row and three column sums. -/
 namespace Sechstmoment
 open MeasureTheory Set
 open scoped BigOperators ENNReal

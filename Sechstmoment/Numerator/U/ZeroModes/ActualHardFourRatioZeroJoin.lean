@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.FourGammaZeroJoin
 
-/-! The actual hard sorted Gamma zero is close to the four native ratio
-Gamma zeros. One positive witness choice works for both AFE branches and
-all smaller exponents; no sorted/unsorted zero equality is assumed. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -80,8 +77,6 @@ theorem a03_actual_hard_Gamma_zero_sub_four_ratio_Gamma_zeros_uniform_smaller
   · exact h0 σ hσ hroot
   · exact h1 σ hσ hroot
 
-/-- Fixed concrete source budgets. The same contour and positive exponent
-choice work for original/dual and every actual factor chamber. -/
 theorem a03_actual_hard_Gamma_zero_sub_four_ratio_Gamma_zeros_uniform_slack
     (hinput : SeparatedQuadraticInput) {a b κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)

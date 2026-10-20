@@ -1,9 +1,5 @@
 import Sechstmoment.Numerator.Polar.General.Contour
 
-/-!
-The literal four source residues, before the radial profile conversion.
-No Mellin inversion or coincident-shift extension is assumed here.
--/
 
 namespace Sechstmoment
 open Complex Metric
@@ -36,9 +32,6 @@ theorem polarGeneralTripleProfile_cycle (η : ℝ) (P : Polynomial ℝ)
   unfold polarGeneralTripleProfile polarTripleInverseContour
   simp_rw [hp]
 
-/-- The contour's four residues have exactly the source's signs, phases and
-three-node profile arguments. This equality still retains the actual contour
-profiles, pending their independently proved radial conversion. -/
 theorem polarGeneralGeneratorContour_source_residues
     (η : ℝ) (P : Polynomial ℝ) (σ : Fin 4 → ℂ) (innerR outerR : ℝ)
     (hσ : Function.Injective (polarSourceKnots σ))

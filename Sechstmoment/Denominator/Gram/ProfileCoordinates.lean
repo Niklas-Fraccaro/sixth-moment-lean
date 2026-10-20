@@ -4,9 +4,6 @@ import Mathlib.MeasureTheory.Integral.Bochner.Basic
 import Mathlib.MeasureTheory.Integral.Prod
 import Mathlib.Tactic.FinCases
 
-/-! Exact coordinate transport for the four-profile Gram integrals.
-The measure is product Lebesgue measure; no integrability or limit premise
-is needed to transport the Bochner integral along these measurable equivalences. -/
 namespace Sechstmoment
 open MeasureTheory
 noncomputable section
@@ -50,7 +47,6 @@ theorem d06ProfileCoordinates_symm_apply (z : D06ProfileProductSpace) :
   rw [d06ProfileCoordinates.apply_symm_apply,d06ProfileCoordinates_apply]
   rfl
 
-/-- The Fin-4 product volume and the original paired product volume agree. -/
 theorem d06ProfileIntegral_coordinates {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] [CompleteSpace E] (f : (Fin 4 → ℝ) → E) :
     (∫ a : Fin 4 → ℝ, f a) =
@@ -61,7 +57,6 @@ theorem d06ProfileIntegral_coordinates {E : Type*} [NormedAddCommGroup E]
   simp only [d06ProfileCoordinates_symm_apply] at h
   simpa only [Measure.volume_eq_prod] using h.symm
 
-/-- Relabeling the four real coordinates preserves their product volume. -/
 theorem d06ProfileIntegral_permute {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] [CompleteSpace E] (e : Fin 4 ≃ Fin 4)
     (f : (Fin 4 → ℝ) → E) :
@@ -79,8 +74,6 @@ open MeasureTheory
 open scoped BigOperators
 noncomputable section
 
-/-- Simultaneous relabeling of profiles and endpoint kernel, retaining all
-four actual Lebesgue differentials. -/
 theorem d06ProfileIntegral_reindex (e : Fin 4 ≃ Fin 4)
     (ρ : Fin 4 → ℝ → ℝ) (F : (Fin 4 → ℝ) → ℝ) :
     (∫ a : Fin 4 → ℝ, (∏ i, ρ (e i) (a i))*F a) =

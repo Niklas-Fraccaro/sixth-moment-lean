@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SecondaryShift
 
-/-! Pointwise horizontal majorants retained for multiplication by the
-actual positive-real powers in the physical ratio Mellin integrand. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

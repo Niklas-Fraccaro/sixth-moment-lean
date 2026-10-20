@@ -1,9 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.ThreeAnnihilator
 
-/-!
-# Symmetric three-root coefficients and the residue cancellation
-These identities hold over every commutative ring, including colliding or zero roots.
--/
 set_option linter.unnecessarySeqFocus false
 
 set_option linter.unusedSimpArgs false

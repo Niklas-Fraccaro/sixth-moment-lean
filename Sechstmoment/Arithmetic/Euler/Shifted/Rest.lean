@@ -3,15 +3,6 @@ import Mathlib.Tactic
 import Sechstmoment.Arithmetic.Euler.Shifted.Pairings
 import Sechstmoment.Zeta.Regularized
 
-/-!
-# The actual shifted Euler remainder
-
-The definition is the true prime-power diagonal series multiplied by its nine
-local zeta divisors. Its value at zero is identified with `a₃`, using convergent
-prime-power summation and the proved arithmetic Euler product. The finite
-coefficient bound is also proved. Analyticity and uniform product convergence
-away from zero are not consequences of the definition alone.
--/
 
 namespace Sechstmoment
 
@@ -69,8 +60,6 @@ theorem diagonalPrimeTerm_norm_le {a b : Fin 3 → ℂ} {r : ℝ}
       rw [show r^2 = r*r by ring, mul_pow, mul_pow]
       ring
 
-/-- Absolute convergence of the genuine diagonal local series in its
-geometric domain, deduced from the actual squared `d₃` coefficients. -/
 theorem diagonalPrimeSeries_norm_summable {a b : Fin 3 → ℂ} {r : ℝ}
     (hr : 0 ≤ r) (ha : ∀ i : Fin 3, ‖a i‖ ≤ r) (hb : ∀ i : Fin 3, ‖b i‖ ≤ r)
     {x : ℂ} (hx : r^2*‖x‖ < 1) :
@@ -109,13 +98,10 @@ theorem primePolarWeights_norm_le (p : {n : ℕ // Nat.Prime n}) (a : Fin 3 → 
   · exact_mod_cast p.property.one_lt.le
   · linarith [ha i]
 
-/-- The genuine diagonal prime-power series. -/
 def shiftedDiagonalPrimeSeries (p : {n : ℕ // Nat.Prime n}) (a b : Fin 3 → ℂ) : ℂ :=
   ∑' m : ℕ, triplePrimePowerCoefficient (primePolarWeights p a) m *
     triplePrimePowerCoefficient (primePolarWeights p b) m * (1/(p.val:ℂ))^m
 
-/-- The real half-space conditions prove absolute convergence of the actual
-local complex series throughout a genuine neighborhood of the zero shifts. -/
 theorem shiftedDiagonalPrimeSeries_norm_summable (p : {n : ℕ // Nat.Prime n})
     (a b : Fin 3 → ℂ) {δ : ℝ} (hδ : δ < 1/2)
     (ha : ∀ i : Fin 3, -δ ≤ (a i).re) (hb : ∀ i : Fin 3, -δ ≤ (b i).re) :
@@ -139,7 +125,6 @@ def shiftedPolarPrimeDivisors (p : {n : ℕ // Nat.Prime n}) (a b : Fin 3 → �
 def shiftedPolarPrimeRemainder (p : {n : ℕ // Nat.Prime n}) (a b : Fin 3 → ℂ) : ℂ :=
   shiftedPolarPrimeDivisors p a b * shiftedDiagonalPrimeSeries p a b
 
-/-- The actual shifted arithmetic Euler remainder `A`, as a prime product. -/
 def shiftedPolarEulerRest (a b : Fin 3 → ℂ) : ℂ :=
   ∏' p : {n : ℕ // Nat.Prime n}, shiftedPolarPrimeRemainder p a b
 
@@ -167,7 +152,6 @@ theorem shiftedPolarPrimeRemainder_zero (p : {n : ℕ // Nat.Prime n}) :
   push_cast
   field_simp
 
-/-- The genuine actual product at all zero shifts, with convergence proved. -/
 theorem shiftedPolarEulerRest_zero :
     shiftedPolarEulerRest (fun _ => 0) (fun _ => 0) = (arithmeticFactor:ℂ) := by
   unfold shiftedPolarEulerRest

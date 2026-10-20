@@ -54,11 +54,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.MassBounds
 import Std
 
-/-! ## Watt Geometry
-
-Arithmetic and scale computations for the actual natural Watt parameters.
-These are proved numerical identities and inequalities, not a Watt hypothesis.
--/
 namespace DivisorProof
 open Real Finset Classical
 open scoped BigOperators
@@ -103,7 +98,6 @@ theorem naturalWatt_product_le_mass (q : QuadraticScales)
       (one_le_mul_of_one_le_of_one_le (one_le_mul_of_one_le_of_one_le (h 0) (h 1)) (h 2)) (h 4))
   exact (div_le_self hprod0 (one_le_pow₀ hd)).trans hprod
 
-/-- The exact square of X in (27), before taking any asymptotic estimate. -/
 theorem naturalWatt_X_sq (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)
     (ρ : ℝ) {d d₁ d₂ d₃ d₄ : ℝ} (h₁ : 0 < d₁) (h₂ : 0 < d₂)
     (h₃ : 0 < d₃) (h₄ : 0 < d₄) (h₁₂ : d₁*d₂ = d) (h₃₄ : d₃*d₄ = d) :
@@ -191,7 +185,6 @@ theorem sqrt_mass_le_inner_product {ρ : ℝ} (_hρ : 0 ≤ ρ)
     convert hm using 1 <;> dsimp [QuadraticScales.mass,QuadraticScales.M,QuadraticScales.N] <;> ring
   exact (sq_le_sq₀ (Real.sqrt_nonneg _) (by positivity)).mp hsq
 
-/-- Nonempty integer dyadic supports become admissible Watt supports after doubling. -/
 theorem doubled_dyadic_support {U : ℝ} {n : ℕ} (hn : 0 < n)
     (hupper : (n : ℝ) ≤ 2*U) : 1 ≤ 2*U := by
   exact (show (1 : ℝ) ≤ n by exact_mod_cast hn).trans hupper
@@ -201,10 +194,6 @@ end DivisorProof
 
 
 
-/-! ## Watt Reserves
-
-The numerical power reserves in §6.3, with the original exponent retained.
--/
 namespace DivisorProof
 open Real Finset Classical Filter
 open scoped BigOperators Topology
@@ -231,7 +220,6 @@ theorem cutoff_div_sqrt_bound (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)
   apply (div_le_iff₀ (Real.sqrt_pos.mpr hAB)).mpr
   simpa only [gcdCutoff,Real.sqrt_eq_rpow,mul_comm] using hcut
 
-/-- The reserve `Λ^-87` in the second Watt size condition. -/
 theorem cutoff_second_power_reserve (q : QuadraticScales)
     (h : ∀ j, 1 ≤ q.size j) (ρ : ℝ) {d : ℝ} (hcut : d ≤ gcdCutoff q ρ) :
     (d/Real.sqrt (q.A*q.B))*(q.mass^ρ)^13 ≤ q.mass^(-87*ρ) := by
@@ -259,7 +247,6 @@ theorem cutoff_square_bound (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)
       norm_num
       ring
 
-/-- The reserve `2Λ^-199` in the third Watt size condition. -/
 theorem cutoff_third_power_reserve (q : QuadraticScales)
     (h : ∀ j, 1 ≤ q.size j) (ρ : ℝ) {d : ℝ} (hd : 0 ≤ d) (hcut : d ≤ gcdCutoff q ρ) :
     (2*d^2/(q.A*q.B))*q.mass^ρ ≤ 2*q.mass^(-199*ρ) := by
@@ -317,7 +304,6 @@ theorem naturalWatt_X_lower {ρ δ K : ℝ}
   exact mul_le_mul_of_nonneg_right (mul_le_mul_of_nonneg_left hHpow
     (Real.rpow_nonneg hQ.le _)) (Real.rpow_nonneg hQ.le _)
 
-/-- The first Watt size condition has arbitrary fixed-factor reserve. -/
 theorem naturalWatt_first_size_eventually {ρ δ K F : ℝ}
     (hρ : 0 < ρ) (hδ : 0 < δ) (hbound : ρ ≤ δ/(1000*(1+δ)))
     (hK : 1 ≤ K) (hF : 0 ≤ F) :
@@ -358,10 +344,6 @@ end DivisorProof
 
 
 
-/-! ## Watt Sizes
-
-The remaining two natural Watt size conditions, with explicit power reserves.
--/
 namespace DivisorProof
 open Real Finset Classical Filter
 open scoped BigOperators Topology
@@ -404,7 +386,6 @@ theorem naturalWatt_third_ratio (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j
     (naturalWattScales q ρ d d₁ d₂ d₃ d₄).product^ρ/((q.A/d₁)*(q.B/d₃))^2 = _
   rw [mul_div_right_comm,halg]
 
-/-- The full second size ratio, rather than just its exponent calculation. -/
 theorem naturalWatt_second_ratio_le {ρ δ K : ℝ} (hρ : 0 < ρ) (hK : 1 ≤ K)
     {bounds : ℕ → ℝ} {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (hadm : QuadraticAdmissible ρ δ K bounds q α β W)
@@ -449,7 +430,6 @@ theorem naturalWatt_second_ratio_le {ρ δ K : ℝ} (hρ : 0 < ρ) (hK : 1 ≤ K
       rw [hs]
     _ ≤ _ := mul_le_mul_of_nonneg_left (cutoff_second_power_reserve q h ρ hcut) (sq_nonneg K)
 
-/-- The full third size ratio, retaining the coefficient-counting factor. -/
 theorem naturalWatt_third_ratio_le {ρ δ K : ℝ} (hρ : 0 < ρ)
     {bounds : ℕ → ℝ} {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (hadm : QuadraticAdmissible ρ δ K bounds q α β W)
@@ -497,12 +477,6 @@ end DivisorProof
 
 
 
-/-! ## Watt Validated
-
-Uniform validation of all three numerical Watt size conditions and of the
-lower scale limits for the concrete, canonically split arithmetic tuples.
-This does not assert the analytic Watt estimate.
--/
 namespace DivisorProof
 open Real Finset Classical Filter
 open scoped BigOperators Topology
@@ -588,7 +562,6 @@ def canonicalWattScales (q : QuadraticScales) (ρ : ℝ) (n : Fin 5 → ℕ) : W
     (splitRight (n 0) (outerGCD n)) (splitLeft (n 1) (outerGCD n))
     (splitRight (n 1) (outerGCD n))
 
-/-- All three size conditions instantiated with the unique arithmetic split. -/
 theorem canonicalWatt_all_sizes_eventually {ρ δ K F : ℝ}
     (hρ : 0 < ρ) (hδ : 0 < δ) (hbound : ρ ≤ δ/(1000*(1+δ)))
     (hK : 1 ≤ K) (hF : 0 ≤ F) :
@@ -614,7 +587,6 @@ theorem canonicalWatt_all_sizes_eventually {ρ δ K F : ℝ}
   exact hsize bounds q α β W hadm hmass _ _ _ _ _ (by exact_mod_cast hd)
     h₁ h₂ h₃ h₄ h₁₂ h₃₄ (canonical_divisor_upper_bounds hadm.1 hn).2.2.1 hcut
 
-/-- Every actual nonempty support has all six doubled Watt scales at least one. -/
 theorem canonicalWatt_doubled_scales_ge_one {bounds : ℕ → ℝ}
     {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (h : ∀ j, 1 ≤ q.size j) (hw : NormalizedWeightData bounds q α β W)

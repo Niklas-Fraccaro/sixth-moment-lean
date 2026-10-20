@@ -1,8 +1,6 @@
 import Mathlib.Basic.Complex.Basic
 import Mathlib.NumberTheory.Divisors
 
-/-! Finite multiplicative reindexing. Terms beyond the original cutoff vanish;
-there is no convergence premise or asymptotic input in these identities. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open scoped BigOperators

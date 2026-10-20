@@ -2,9 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 import Mathlib.Analysis.SumIntegralComparisons
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEError
 
-/-! The complete original amplifier ranges in the ratio-contour residual
-budget. The common gcd is extracted from each literal original pair; no
-independent gcd cutoff or divisor-growth premise is introduced. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter Asymptotics

@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Contour.LargeShift
 
-/-! The actual affine x-Mellin substitution has a positive M-start line
-near one half. Every such line reaches the small line with the genuine
-Gaussian edge bounds already proved on the whole strip. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -42,8 +39,6 @@ theorem a03ZeroModeMainRemovedNumerator_start_horizontal_tendsto_zero {T δ c₀
       _=_ := by ring
   exact (intervalIntegral.norm_integral_le_of_norm_le_const hn).trans_eq (by ring)
 
-/-- The genuine large source M contour reaches the small line; no contour
-identity or edge-bound hypothesis is supplied by the caller. -/
 theorem a03ZeroModeMainContour_start_to_small {T δ c₀ : ℝ}
     (σ : MomentShifts) (N₁ N₂ : ℕ) (a b : ℕ→ℂ)
     (hδ : 0<δ) (hδ1 : δ<1/4) (hc₀ : c₀∈Icc δ 1)

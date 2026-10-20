@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.WeightedDoubleShift
 
-/-! Exact retention of every g,a,b,x power and amplifier coefficient
-in the physical ratio-u/v Mellin expression from BBLR (22). -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory
@@ -84,8 +82,6 @@ theorem a03ZeroModeRatioDoubleIntegral_const_mul (c d : ℝ) (C : ℂ) (F : ℂ�
   simp only [integral_const_mul]
   ring
 
-/-- Physical weighted ratio reconstruction with the actual amplifier
-coefficients untouched and all three remainder integrals present. -/
 theorem a03ZeroModeRatioPhysicalKernel_double_shift
     {ε δ : ℝ} (hε : 0<ε) (hε1 : ε<1/8) (hδ : 0<δ)
     (α : MomentShifts) (hα : ∀ j : Fin 4,‖α j‖≤ε/8)

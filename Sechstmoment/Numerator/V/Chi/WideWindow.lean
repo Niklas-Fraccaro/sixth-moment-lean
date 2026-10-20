@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.V.Chi.StartingLine
 
-/-! The sharp chi bound on the enlarged window needed for a small
-translation of the physical time weight. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

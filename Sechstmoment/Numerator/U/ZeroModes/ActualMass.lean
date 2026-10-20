@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.GlobalBudget
 import Sechstmoment.Numerator.U.ZeroModes.Mass.Summed
 
-/-! The actual sorted native zero-mode density is bounded on every retained
-source block and aggregated on the literal seven-dimensional scale grid. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology

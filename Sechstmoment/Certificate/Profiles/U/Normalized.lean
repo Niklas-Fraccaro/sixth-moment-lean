@@ -5,7 +5,6 @@ import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 import Sechstmoment.Analysis.Profiles.Classes
 import Sechstmoment.Analysis.Profiles.Endpoint
 
-/-! A concrete admissible normalized bump and the actual U profiles of §5.1. -/
 
 namespace Sechstmoment
 open Set MeasureTheory Filter
@@ -126,7 +125,6 @@ theorem uEndpointProfile_normalized_interior {hstar a : ℝ} (hh : 0 < hstar)
   rcases uEndpointProfile_normalized_tsupport hh a hn hx with ⟨hl,hr⟩
   constructor <;> linarith
 
-/-- The affine change of variables for the literal U family, with its exact Jacobian. -/
 theorem uEndpointProfile_normalized_test_integral {hstar : ℝ} (hh : 0 < hstar)
     (a : ℝ) {n : ℕ} (hn : 0 < n) (g : ℝ → ℝ) :
     (∫ x : ℝ, g x * uEndpointProfile uNormalizedBump hstar a n x) =
@@ -163,7 +161,6 @@ theorem uEndpointProfile_normalized_width {hstar : ℝ} (hh : 0 < hstar) (n : �
       have hn1 : (1:ℝ) ≤ n := by exact_mod_cast hn0
       exact (div_le_iff₀ (by exact_mod_cast hn0)).mpr (by nlinarith)
 
-/-- Actual weak concentration of the normalized U family for every continuous test. -/
 theorem uEndpointProfile_normalized_continuous_test_tendsto {hstar : ℝ}
     (hh : 0 < hstar) (a : ℝ) (g : ℝ → ℝ) (hg : Continuous g) :
     Tendsto (fun n : ℕ => ∫ x : ℝ,
@@ -201,7 +198,6 @@ theorem uEndpointProfile_normalized_continuous_test_tendsto {hstar : ℝ}
   filter_upwards [eventually_gt_atTop (0:ℕ)] with n hn
   exact (uEndpointProfile_normalized_test_integral hh a hn g).symm
 
-/-- The compact-interval test-function statement required for the manuscript profiles. -/
 theorem uEndpointProfile_normalized_continuousOn_test_tendsto {hstar a : ℝ}
     (hh : 0 < hstar) (hha : hstar < a) (g : ℝ → ℝ)
     (hg : ContinuousOn g (Icc (0:ℝ) a)) :

@@ -1,7 +1,5 @@
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 
-/-! Quantitative additive-phase linearization after the exact cosine-Mellin
-transform. The estimates are global in the frequency a. -/
 
 namespace Sechstmoment.Source
 open Complex Real

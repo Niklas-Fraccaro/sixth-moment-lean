@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Residues.DoubleSeries
 
-/-! Exact finite support and all coefficients of the local six-denominator rest. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPLocalClosure

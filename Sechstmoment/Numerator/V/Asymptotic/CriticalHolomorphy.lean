@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Asymptotic.CriticalSeparatedMain
 import Sechstmoment.Numerator.V.DP.DPAllPositiveHolomorphy
 
-/-! Joint holomorphy of the literal shifted-chi moment in all four zeta
-shifts. The independent chi shift is retained in the actual amplitude. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

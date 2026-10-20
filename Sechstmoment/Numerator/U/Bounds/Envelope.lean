@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.Bounds.SharpGammaFrontReduction
 import Sechstmoment.Numerator.U.OffDiagonal
 import Sechstmoment.Numerator.U.ZeroModes.EightEtaFrontSharpMainBudget
 
-/-! The original rectangular quantitative A03 error form. The contour,
-source loss and native cutoff parameters are fixed before T; all front
-reconstruction and source comparison estimates are proved production inputs. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

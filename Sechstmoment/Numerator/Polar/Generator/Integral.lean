@@ -9,22 +9,17 @@ import Sechstmoment.Analysis.Integration.PolynomialIntegral
 namespace Sechstmoment
 open MeasureTheory
 
-/-- The first convolution factor in the inverse transform of `(u-ω)/(u³(u+z))`. -/
 noncomputable def polarB (x : ℝ) (z : ℂ) : ℂ :=
   ∫ t in (0 : ℝ)..x, ((x-t : ℝ) : ℂ) * Complex.exp (-z * t)
 
-/-- The coefficient of `ω` in that inverse transform. -/
 noncomputable def polarC (x : ℝ) (z : ℂ) : ℂ :=
   -(∫ t in (0 : ℝ)..x, ((x-t : ℝ) : ℂ)^2 / 2 * Complex.exp (-z * t))
 
 noncomputable def polarInverseFactor (x : ℝ) (ω z : ℂ) : ℂ := polarB x z + ω * polarC x z
 
-/-- The convolution integral for the inverse transform of `1/(ω^(m+1)(ω+z))`
-    evaluated at time one. -/
 noncomputable def polarH (m : ℕ) (z : ℂ) : ℂ :=
   ∫ t in (0 : ℝ)..1, (1-(t:ℂ))^m / (Nat.factorial m : ℂ) * Complex.exp (-z * t)
 
-/-- Regular, including `z=0`, convolution expression for the polar generator. -/
 noncomputable def polarJ (a b : ℝ) (z : ℂ) : ℂ :=
   polarB a z * polarB b z * polarH 2 z +
   (polarB a z * polarC b z + polarC a z * polarB b z) * polarH 1 z +
@@ -32,7 +27,6 @@ noncomputable def polarJ (a b : ℝ) (z : ℂ) : ℂ :=
 
 noncomputable def polarA (x : ℝ) (z : ℂ) : ℂ := Complex.exp (-(x:ℂ)*z) - 1 + (x:ℂ)*z
 
-/-- A checked exponential antiderivative for every complex quadratic. -/
 theorem integral_cexp_quadratic (l u : ℝ) (z A B C : ℂ) (hz : z ≠ 0) :
     (∫ t in l..u, Complex.exp (z*t) * (A*(t:ℂ)^2+B*t+C)) =
     Complex.exp (z*u) * ((A*(u:ℂ)^2+B*u+C)/z - (2*A*u+B)/z^2 + 2*A/z^3) -
@@ -112,7 +106,6 @@ theorem polarH_two_closed (z : ℂ) (hz : z ≠ 0) :
   field_simp
   ring
 
-/-- Equation (3.8), obtained from the regular inverse-transform integrals. -/
 theorem polarJ_residue_formula (a b : ℝ) (z : ℂ) (hz : z ≠ 0) :
     z^7 * polarJ a b z = z*(1+z/2)*polarA a z*polarA b z -
       z^3/2*((a:ℂ)^2*polarA b z+(b:ℂ)^2*polarA a z) +
@@ -124,7 +117,6 @@ theorem polarJ_residue_formula (a b : ℝ) (z : ℂ) (hz : z ≠ 0) :
   ring
 
 
-/-- The removable zero of the first inverse-transform factor is evaluated by its integral. -/
 theorem polarB_zero (x : ℝ) : polarB x 0 = (x:ℂ)^2/2 := by
   unfold polarB
   simp only [neg_zero,zero_mul,Complex.exp_zero,mul_one]
@@ -137,7 +129,6 @@ theorem polarB_zero (x : ℝ) : polarB x 0 = (x:ℂ)^2/2 := by
     ring
   exact_mod_cast h
 
-/-- The removable zero of the second inverse-transform factor. -/
 theorem polarC_zero (x : ℝ) : polarC x 0 = -(x:ℂ)^3/6 := by
   unfold polarC
   simp only [neg_zero,zero_mul,Complex.exp_zero,mul_one]
@@ -156,7 +147,6 @@ theorem polarC_zero (x : ℝ) : polarC x 0 = -(x:ℂ)^3/6 := by
   push_cast
   ring
 
-/-- All zero-shift convolution moments, including the zero pole, are regular. -/
 theorem polarH_zero (m : ℕ) : polarH m 0 = 1/(Nat.factorial (m+1):ℂ) := by
   unfold polarH
   simp only [neg_zero,zero_mul,Complex.exp_zero,mul_one]
@@ -191,7 +181,6 @@ theorem polarJ_continuous (a b : ℝ) : Continuous (polarJ a b) := by
       ((polarC_continuous a).mul (polarB_continuous b))).mul (polarH_continuous 1)) |>.add
     (((polarC_continuous a).mul (polarC_continuous b)).mul (polarH_continuous 0))
 
-/-- Differentiability away from the apparent seventh-order pole follows from the checked formula. -/
 theorem polarJ_differentiableAt_nonzero (a b : ℝ) {z : ℂ} (hz : z ≠ 0) :
     DifferentiableAt ℂ (polarJ a b) z := by
   let F : ℂ → ℂ := fun w => (w*(1+w/2)*polarA a w*polarA b w -
@@ -209,7 +198,6 @@ theorem polarJ_differentiableAt_nonzero (a b : ℝ) {z : ℂ} (hz : z ≠ 0) :
   have h := polarJ_residue_formula a b w hw
   exact (eq_div_iff (pow_ne_zero _ hw)).mpr (by simpa only [mul_comm] using h)
 
-/-- Zero is removable because the independently defined convolution integrals are continuous. -/
 theorem polarJ_analyticAt_zero (a b : ℝ) : AnalyticAt ℂ (polarJ a b) 0 := by
   apply Complex.analyticAt_of_differentiable_on_punctured_nhds_of_continuousAt
   · filter_upwards [self_mem_nhdsWithin] with z hz
@@ -223,7 +211,6 @@ theorem polarJ_differentiable (a b : ℝ) : Differentiable ℂ (polarJ a b) := b
     exact (polarJ_analyticAt_zero a b).differentiableAt
   · exact polarJ_differentiableAt_nonzero a b hz
 
-/-- The polar generator is entire, rather than merely having a prescribed value at zero. -/
 theorem polarJ_analyticAt (a b : ℝ) (z : ℂ) : AnalyticAt ℂ (polarJ a b) z :=
   (polarJ_differentiable a b).analyticAt z
 

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.PolarChamberGap
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalResidual
 
-/-! All eight literal factor chambers share the original compact pure-root
-gap in the physical residual bound. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

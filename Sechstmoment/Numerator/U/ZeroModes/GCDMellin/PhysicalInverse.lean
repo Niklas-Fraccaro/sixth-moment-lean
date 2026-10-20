@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Separation.NativeGapSigns
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.InitialKernel
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ChamberWeight
 
-/-! Literal three inverse Mellin factors of each positive native GCD tuple.
-The actual two orientations give precisely the factor two. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

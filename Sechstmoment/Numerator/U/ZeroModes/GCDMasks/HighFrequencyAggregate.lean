@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.AbsoluteConvergence
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.HighFrequencyEnvelope
 
-/-! Fully integrated and amplified actual native high-frequency tails.
-The common-X moments and both independent amplifier ranges are paid for
-explicitly, before an arbitrary power saving is asserted. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

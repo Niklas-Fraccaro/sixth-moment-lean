@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.FourRecurrence
 
-/-! Index shifts used by the local correction at prime powers. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -15,7 +14,6 @@ theorem tail4_translate (a b c d : R) (h k n : ℕ) :
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Constant coefficient of the local Euler correction. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -29,7 +27,6 @@ theorem q0_eq_tail (a b c d : R) (h : ℕ) : q0 a b c d h = tail4 a b c d h 0 :=
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Linear coefficient after removing the four Euler denominators. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -44,7 +41,6 @@ theorem q1_eq (a b c d : R) (h : ℕ) :
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Quadratic coefficient of the local Euler correction. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -60,7 +56,6 @@ theorem q2_eq (a b c d : R) (h : ℕ) :
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Cubic coefficient of the local Euler correction. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -76,7 +71,6 @@ theorem q3_eq (a b c d : R) (h : ℕ) :
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! An explicit cubic local Euler numerator. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

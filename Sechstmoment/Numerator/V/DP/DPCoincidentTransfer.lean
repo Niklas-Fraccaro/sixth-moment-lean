@@ -1,14 +1,6 @@
 import Sechstmoment.Numerator.Shared.MomentHolomorphy
 import Sechstmoment.Numerator.V.DP.DPRegularHolomorphy
 
-/-!
-# Genuine transfer of the actual DP moment to coincident shifts
-
-The source sharp estimate is used only on the explicitly separated compact
-product of circles. Both the actual moment and its actual fixed-circle main
-term have independently proved holomorphy. The iterated maximum principle
-therefore transfers the error to the whole polydisc, including zero shifts.
--/
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Polynomial Filter
 open scoped Topology

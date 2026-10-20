@@ -9,31 +9,19 @@ import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 
-/-!
-# D02: the actual complementary Gaussian weight
-
-The complementary error function is defined by its convergent Gaussian tail.
-All estimates in this file are unconditional. The identification of this
-weight with the `exp(z^2)/z` Mellin contour is a separate analytic step.
--/
 
 namespace Sechstmoment
 open MeasureTheory Set Filter Real
 open scoped Topology
 noncomputable section
 
-/-- The normalized Gaussian right tail. -/
 def d02GaussianTail (u : ℝ) : ℝ :=
   (∫ v in Ioi u, Real.exp (-v^2)) / Real.sqrt Real.pi
 
-/-- Literal complementary error function, with its standard normalization. -/
 def d02Erfc (u : ℝ) : ℝ := 2*d02GaussianTail u
 
-/-- The zero-shift leading smoothing weight from manuscript (4.3). -/
 def d02GaussianV0 (x : ℝ) : ℝ := d02GaussianTail (Real.log x/2)
 
-/-- The logarithmic cutoff in the variables used by the diagonal measure.
-Here `c = log (2*pi/τ)` when `t = exp(L)*τ`. -/
 def d02GaussianLogWeight (L q c : ℝ) : ℝ :=
   d02GaussianTail ((L*(q-1)+c)/2)
 
@@ -55,7 +43,6 @@ theorem d02GaussianTail_le_one (u : ℝ) : d02GaussianTail u ≤ 1 := by
   exact setIntegral_le_integral d02Gaussian_integrable
     (Eventually.of_forall (fun _ => (Real.exp_pos _).le))
 
-/-- Reflection supplies exactly the second half of the Gaussian cutoff. -/
 theorem d02GaussianTail_reflection (u : ℝ) :
     d02GaussianTail (-u) = 1-d02GaussianTail u := by
   have hs : (∫ v in Ioi (-u), Real.exp (-v^2)) =
@@ -90,7 +77,6 @@ theorem d02GaussianV0_eq_erfc (x : ℝ) :
     d02GaussianV0 x = (1/2)*d02Erfc (Real.log x/2) := by
   simp [d02GaussianV0, d02Erfc]
 
-/-- Enlarging the logarithmic product makes the actual weight smaller. -/
 theorem d02GaussianTail_antitone : Antitone d02GaussianTail := by
   intro u v huv
   unfold d02GaussianTail
@@ -99,7 +85,6 @@ theorem d02GaussianTail_antitone : Antitone d02GaussianTail := by
     (Eventually.of_forall (fun _ => (Real.exp_pos _).le))
     (Eventually.of_forall (fun x hx => lt_of_le_of_lt huv hx))
 
-/-- Quantitative Gaussian decay, with an explicit harmless normalizing constant. -/
 theorem d02GaussianTail_gaussian_bound {u : ℝ} (hu : 0 ≤ u) :
     d02GaussianTail u ≤ (Real.sqrt (2*Real.pi)/Real.sqrt Real.pi)*
       Real.exp (-(1/2)*u^2) := by
@@ -148,21 +133,18 @@ theorem d02GaussianTail_tendsto_one :
     ring
   · norm_num
 
-/-- Fixed logarithmic products below the cut tend to weight one. -/
 theorem d02GaussianLogWeight_below_cut {q : ℝ} (hq : q < 1) (c : ℝ) :
     Tendsto (fun L : ℝ => d02GaussianLogWeight L q c) atTop (𝓝 1) := by
   apply d02GaussianTail_tendsto_one.comp
   exact (tendsto_atBot_add_const_right atTop c
     (tendsto_id.atTop_mul_const_of_neg (by linarith : q-1 < 0))).atBot_div_const (by norm_num : (0 : ℝ)<2)
 
-/-- Fixed logarithmic products above the cut tend to weight zero. -/
 theorem d02GaussianLogWeight_above_cut {q : ℝ} (hq : 1 < q) (c : ℝ) :
     Tendsto (fun L : ℝ => d02GaussianLogWeight L q c) atTop (𝓝 0) := by
   apply d02GaussianTail_tendsto_zero.comp
   exact (tendsto_atTop_add_const_right atTop c
     (tendsto_id.atTop_mul_const (by linarith : 0 < q-1))).atTop_div_const (by norm_num : (0 : ℝ)<2)
 
-/-- Exact conversion from the physical ratio `2*pi*mn/t` to the logarithmic weight. -/
 theorem d02GaussianV0_logarithmic_identity (L q : ℝ) {τ : ℝ} (hτ : 0 < τ) :
     d02GaussianV0 (2*Real.pi*Real.exp (L*q)/(Real.exp L*τ)) =
       d02GaussianLogWeight L q (Real.log (2*Real.pi/τ)) := by
@@ -177,8 +159,6 @@ theorem d02GaussianV0_logarithmic_identity (L q : ℝ) {τ : ℝ} (hτ : 0 < τ)
   ring
 
 
-/-- Uniform cutoff convergence above every fixed positive gap, including
-bounded physical-height offsets. -/
 theorem d02GaussianLogWeight_uniform_above {η ε C : ℝ}
     (hη : 0 < η) (hε : 0 < ε) :
     ∀ᶠ L : ℝ in atTop, ∀ q c : ℝ, 1+η ≤ q → |c| ≤ C →
@@ -194,7 +174,6 @@ theorem d02GaussianLogWeight_uniform_above {η ε C : ℝ}
   change (L*η-C)/2 ≤ (L*(q-1)+c)/2
   nlinarith
 
-/-- The reflected uniform limit below the cut. -/
 theorem d02GaussianLogWeight_uniform_below {η ε C : ℝ}
     (hη : 0 < η) (hε : 0 < ε) :
     ∀ᶠ L : ℝ in atTop, ∀ q c : ℝ, q ≤ 1-η → |c| ≤ C →
@@ -210,8 +189,6 @@ theorem d02GaussianLogWeight_uniform_below {η ε C : ℝ}
   rw [he] at h
   linarith
 
-/-- The positive-product tail remains Gaussian after every fixed
-exponential complex-shift majorant. This is the tail needed after D01. -/
 theorem d02GaussianLogWeight_exponential_tail {C L q c : ℝ}
     (hC : 0 ≤ C) (hL : 8+2*C ≤ L) (hq : 2 ≤ q) (hc : |c| ≤ C) :
     Real.exp (C*q)*d02GaussianLogWeight L q c ≤
@@ -245,8 +222,6 @@ theorem d02GaussianLogWeight_exponential_tail {C L q c : ℝ}
       congr 1
 
 
-/-- Every power is absorbed by the actual logarithmic Gaussian. The
-constant is explicit and the exponent may be any real number. -/
 theorem d02GaussianV0_power_bound {x : ℝ} (hx : 1 ≤ x) (A : ℝ) :
     d02GaussianV0 x ≤
       (Real.sqrt (2*Real.pi)/Real.sqrt Real.pi)*Real.exp (2*A^2)*x^(-A) := by
@@ -263,7 +238,6 @@ theorem d02GaussianV0_power_bound {x : ℝ} (hx : 1 ≤ x) (A : ℝ) :
   simpa only [mul_assoc] using mul_le_mul_of_nonneg_left he
     (show 0 ≤ Real.sqrt (2*Real.pi)/Real.sqrt Real.pi by positivity)
 
-/-- The same all-power estimate on the literal complementary error function. -/
 theorem d02Erfc_log_power_bound {x : ℝ} (hx : 1 ≤ x) (A : ℝ) :
     d02Erfc (Real.log x/2) ≤
       2*((Real.sqrt (2*Real.pi)/Real.sqrt Real.pi)*Real.exp (2*A^2))*x^(-A) := by
@@ -271,7 +245,6 @@ theorem d02Erfc_log_power_bound {x : ℝ} (hx : 1 ≤ x) (A : ℝ) :
   simpa only [d02GaussianV0, d02Erfc, mul_assoc] using h
 
 
-/-- A convenient positive-argument envelope for summing the long AFE series. -/
 theorem d02GaussianV0_power_bound_all {x A : ℝ} (hx : 0 < x) (hA : 0 ≤ A) :
     d02GaussianV0 x ≤
       (1+(Real.sqrt (2*Real.pi)/Real.sqrt Real.pi)*Real.exp (2*A^2))*x^(-A) := by

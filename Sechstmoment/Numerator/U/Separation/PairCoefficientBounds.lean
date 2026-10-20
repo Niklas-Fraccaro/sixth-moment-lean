@@ -1,8 +1,6 @@
 import Mathlib.NumberTheory.ArithmeticFunction.Misc
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.PairDiagonalEuler
 
-/-! Absolute convergence of the genuinely translated fixed-amplifier
-correlation, without normalizing its possibly zero value at one. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat Complex

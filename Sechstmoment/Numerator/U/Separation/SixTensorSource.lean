@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.Separation.Tensor.SixBeta
 import Sechstmoment.Numerator.U.Separation.Tensor.SixSeparation
 import Sechstmoment.Numerator.U.Sources.Weights.KernelIntegral
 
-/-! Exact finite signed-source reconstruction of a genuine six-variable
-Schwartz tensor. No assertion that the actual AFE kernels already satisfy
-uniform Schwartz seminorm bounds is made in this bridge. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators FourierTransform RealInnerProductSpace Topology

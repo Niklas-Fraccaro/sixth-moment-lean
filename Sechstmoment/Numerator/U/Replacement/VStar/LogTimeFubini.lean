@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.RatioGlobalLogDerivatives
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.PositiveTimeGaussianConvolution
 
-/-! Absolute time/vertical Fubini for the literal VStar logarithmic kernel. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -89,7 +88,6 @@ theorem a03PositiveTime_logged_integral_eq_mellin {Φ : ℝ→ℂ}
       exact ht (zero_lt_one.trans_le (hSupp (subset_tsupport _ hh)).1)
     simp [indicator_of_notMem ht,hzero]
 
-/-- The actual vertical convolution is obtained by absolute Fubini. -/
 theorem a03VStarLogTimeMode_integrable_eq {Φ : ℝ→ℂ} (hΦ : Continuous Φ)
     (hSupp : tsupport Φ⊆Icc (1:ℝ) 2) (T : ℝ) (σ : MomentShifts)
     (A b : ℝ) (q : ℂ) :

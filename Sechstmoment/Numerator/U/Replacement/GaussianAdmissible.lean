@@ -3,7 +3,6 @@ import Mathlib.Analysis.SpecialFunctions.Complex.Analytic
 import Mathlib.Analysis.SpecialFunctions.Gaussian.PoissonSummation
 import Sechstmoment.Numerator.U.Replacement.GaussianBasis
 
-/-! Genuine rapid-strip bounds for the fixed finite Gaussian basis. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set Filter Asymptotics Bornology

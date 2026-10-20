@@ -5,14 +5,6 @@ import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 import Sechstmoment.Numerator.V.DP.DPPhaseControl
 import Sechstmoment.Zeta.Moments.SixTerms
 
-/-!
-# The actual dyadic outer phase and all six normalized BBLR phases
-
-The substitution t = T x converts the true time integral into an integral
-on the fixed weight support.  The actual complex power there equals an
-exponential whose logarithmic ratio tends to one.  Dominated convergence
-uses the proved dyadic phase window and the integrable fixed weight norm.
--/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Filter
@@ -100,7 +92,6 @@ lemma dyadic_phase_cpow_eq_exp {T x : ℝ} (hT : 0 < T) (hx : 0 < x) (θ : ℂ) 
     Complex.cpow_def_of_ne_zero (Complex.ofReal_ne_zero.mpr hp.ne'),
     ← Complex.ofReal_log hp.le]
 
-/-- An actual dyadic weight times an arbitrary complex power is integrable. -/
 theorem dyadicComplexPowerWeight_integrable {T : ℝ} (hT : 0 < T) (θ : ℂ)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :
     Integrable (fun t : ℝ => (Φ (t/T):ℂ)*(t/(2*Real.pi):ℂ)^θ) := by
@@ -158,7 +149,6 @@ lemma dyadicComplexPowerWeight_normalized_eq {T : ℝ} (hT : 0<T) (θ : ℂ)
       push_cast
       ring
 
-/-- The actual normalized outer time factor converges to the weight mass times exp θ. -/
 theorem dyadicComplexPowerWeight_normalized_tendsto (θ : ℂ) (Φ : ℝ → ℝ)
     (hΦ : SmoothDyadicWeight Φ) :
     Tendsto (fun T : ℝ =>
@@ -168,13 +158,11 @@ theorem dyadicComplexPowerWeight_normalized_tendsto (θ : ℂ) (Φ : ℝ → ℝ
   filter_upwards [eventually_gt_atTop (0:ℝ)] with T hT
   exact (dyadicComplexPowerWeight_normalized_eq hT θ Φ hΦ).symm
 
-/-- All six literal source powers scale by the same logarithmic normalization. -/
 theorem bblrSixPhaseExponents_raw (T : ℝ) (σ : MomentShifts) (m : Fin 6) :
     bblrSixPhaseExponents (rawMomentShifts T σ) m =
       bblrSixPhaseExponents σ m / (Real.log T:ℂ) := by
   fin_cases m <;> simp [bblrSixPhaseExponents,rawMomentShifts] <;> ring
 
-/-- The actual time factor for each of the six source phases has its claimed limit. -/
 theorem bblrSixPhaseWeight_normalized_tendsto (σ : MomentShifts) (m : Fin 6)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :
     Tendsto (fun T : ℝ =>

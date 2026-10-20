@@ -54,11 +54,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.Ranges
 import Std
 
-/-! ## Large Mass
-
-The small-shift condition is derived uniformly from the original admissibility
-conditions.  Its threshold depends only on the fixed exponents and K.
--/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical Filter
 open scoped BigOperators Topology
@@ -138,7 +133,6 @@ theorem sqrt_mass_le_balanced_left {q : QuadraticScales}
     exact hQle.trans (mul_le_mul_of_nonneg_right hKK (sq_nonneg _))
   exact (sq_le_sq₀ (Real.sqrt_nonneg _) (mul_nonneg hKp.le hu.le)).mp hsq
 
-/-- A single threshold works for all admissible data with the fixed parameters. -/
 theorem admissible_eventually_small_shift {ρ δ K : ℝ}
     (hρ : 0 < ρ) (hδ : 0 < δ) (hgap : 2*ρ < δ) (hK : 1 ≤ K) :
     ∃ Q₀ : ℝ, 1 ≤ Q₀ ∧ ∀ (bounds : ℕ → ℝ) (q : QuadraticScales)
@@ -172,8 +166,6 @@ theorem admissible_eventually_small_shift {ρ δ K : ℝ}
     nlinarith
   nlinarith
 
-/-- The exact normal form applies to the original admissibility class after
-the proved normalization, for all sufficiently large masses. -/
 theorem admissible_normalized_finite_poisson_normal_form {ρ δ K : ℝ}
     (hρ : 0 < ρ) (hδ : 0 < δ) (hbound : ρ ≤ δ/(1000*(1+δ)))
     (hK : 1 ≤ K) (bounds : ℕ → ℝ) (hb : ∀ j, 0 ≤ bounds j) :
@@ -200,11 +192,6 @@ end DivisorProof
 
 
 
-/-! ## Bounded Mass
-
-A genuine uniform crude bound for the actual normalized discrepancy.  This
-settles the bounded-mass range without using any divisor-sum estimate.
--/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical
 open scoped BigOperators ContDiff
@@ -313,7 +300,6 @@ theorem quadraticZeroMode_crude_bound {K : ℝ} (hK : 1 ≤ K) {bounds : ℕ →
 def crudeDiscrepancyConstant (bounds : ℕ → ℝ) (K : ℝ) : ℝ :=
   128*K*((bounds 0)^5+(bounds 0)^3*profileFourierBound bounds (4*K) 0)
 
-/-- An unconditional polynomial bound on the actual normalized discrepancy. -/
 theorem normalized_discrepancy_crude_bound {K : ℝ} (hK : 1 ≤ K) {bounds : ℕ → ℝ}
     {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (h : ∀ j, 1 ≤ q.size j) (hw : NormalizedWeightData bounds q α β W)
@@ -336,7 +322,6 @@ theorem normalized_discrepancy_crude_bound {K : ℝ} (hK : 1 ≤ K) {bounds : �
         add_le_add (hS.trans hS') hZ
     _ = _ := by unfold crudeDiscrepancyConstant; ring
 
-/-- A fixed bounded mass range is uniformly absorbed, with an explicit constant. -/
 theorem normalized_discrepancy_bounded_mass {K Q₀ : ℝ} (hK : 1 ≤ K) (_hQ₀ : 1 ≤ Q₀)
     {bounds : ℕ → ℝ} {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (h : ∀ j, 1 ≤ q.size j) (hw : NormalizedWeightData bounds q α β W)
@@ -356,11 +341,6 @@ end DivisorProof
 
 
 
-/-! ## Normal Form Scaling
-
-Exact multilinearity of the actual finite normal form, followed by its return
-to the original, unnormalized coefficients and weights.
--/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -463,18 +443,12 @@ end DivisorProof
 
 
 
-/-! ## Actual Normal Form
-
-The complete finite Poisson reduction for the original input data.  The
-bounded-mass range is also proved directly for the original discrepancy.
--/
 namespace DivisorProof
 open MeasureTheory Set Finset Classical
 open scoped BigOperators
 noncomputable section
 set_option maxHeartbeats 2200000
 
-/-- Equation (22) returned to the original weights: the total error costs `8ρ`. -/
 theorem admissible_actual_finite_poisson_normal_form {ρ δ K : ℝ}
     (hρ : 0 < ρ) (hδ : 0 < δ) (hbound : ρ ≤ δ/(1000*(1+δ)))
     (hK : 1 ≤ K) (bounds : ℕ → ℝ) (hb : ∀ j, 0 ≤ bounds j) :
@@ -520,7 +494,6 @@ theorem boundedMassConstant_nonneg {bounds : ℕ → ℝ} {K ρ Q₀ : ℝ}
   exact mul_nonneg (mul_nonneg (sq_nonneg _) (pow_nonneg (Real.rpow_nonneg hQ₀ _) _))
     (mul_nonneg (crudeDiscrepancyConstant_nonneg hb hK) (pow_nonneg hQ₀ _))
 
-/-- The bounded-mass estimate for the actual unnormalized source discrepancy. -/
 theorem admissible_bounded_mass_discrepancy {ρ δ K Q₀ : ℝ}
     (hρ : 0 < ρ) (hρhalf : ρ ≤ 1/2) (hK : 1 ≤ K) (hQ₀ : 1 ≤ Q₀)
     {bounds : ℕ → ℝ} {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
@@ -546,8 +519,6 @@ theorem admissible_bounded_mass_discrepancy {ρ δ K Q₀ : ℝ}
     _ ≤ (K^2*(Q₀^ρ)^6)*(crudeDiscrepancyConstant bounds K*Q₀^3) := by gcongr
     _ = _ := rfl
 
-/-- The bounded range already has exactly the target shape of (9), without
-assuming the still-open large-mass divisor bound. -/
 theorem admissible_bounded_mass_target {ρ δ K Q₀ : ℝ}
     (hρ : 0 < ρ) (hρhalf : ρ ≤ 1/2) (hK : 1 ≤ K) (hQ₀ : 1 ≤ Q₀)
     {bounds : ℕ → ℝ} {q : QuadraticScales} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}

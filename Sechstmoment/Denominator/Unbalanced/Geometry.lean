@@ -2,15 +2,11 @@ import Mathlib.Tactic
 import Sechstmoment.Certificate.Kernels.Unbalanced.Kernel
 import Sechstmoment.Denominator.Measures.LimitMeasureDefinitions
 
-/-! Literal nine-edge coordinates for the unbalanced three-to-one slice.
-The third-column edges form the original two-coordinate simplex slice; the
-first-column edges independently split the three residual row masses. -/
 namespace Sechstmoment
 open Set
 open scoped BigOperators
 noncomputable section
 
-/-- The four original profile vertices: all three rows and the last column. -/
 def d04UnbalancedProfileCoordinates (x : D01EdgeSpace) : Fin 4 → ℝ :=
   ![(d01RowColumnSums x).1 0,(d01RowColumnSums x).1 1,
     (d01RowColumnSums x).1 2,(d01RowColumnSums x).2 2]
@@ -89,7 +85,6 @@ theorem d04UnbalancedResiduals_nonnegative {a b c d : ℝ} {u : Fin 2 → ℝ}
   intro i
   fin_cases i <;> simp [d04UnbalancedResiduals] <;> linarith [hu.2.1,hu.2.2.1,hu.2.2.2]
 
-/-- Translation centers each independent split interval without changing dx. -/
 def d04UnbalancedCenteredSplit (a b c d : ℝ) (_u : Fin 2 → ℝ) (y : Fin 3 → ℝ) : ℝ :=
   y 0+y 1+y 2-(minusKernelH a b c d)/2
 

@@ -2,8 +2,6 @@ import Sechstmoment.Zeta.AFE.Four.CompletedExpansion
 import Sechstmoment.Zeta.AFE.Four.ContourSplit
 import Sechstmoment.Zeta.AFE.Four.VerticalTails
 
-/-! Uniform small-shift approximate functional equation from the finite
-contour identity and independently proved edge and tail estimates. -/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set
@@ -69,7 +67,6 @@ theorem fixedAFEVerticalTail_inverse_power_bound
     ← integral_Icc_eq_integral_Ioc]
   exact hbound t ht α hα
 
-/-- Uniform arbitrary-order AFE on a fixed box of raw shifts. -/
 theorem fixedAFE_uniform_smallShifts
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0)) (A : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t : ℝ, 16 ≤ t → ∀ α : MomentShifts,

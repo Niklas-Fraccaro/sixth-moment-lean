@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Separation.ActualGapPhase
 import Sechstmoment.Numerator.U.Separation.PhaseCoefficientBounds
 import Sechstmoment.Numerator.U.Separation.SeparatedPhaseRemainder
 
-/-! The finite literal signed source block has a proved five-product
-expansion and uniform remainder on its supported logarithmic near range. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

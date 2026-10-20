@@ -50,7 +50,6 @@ import Sechstmoment.Numerator.Polar.GaussianControl
 import Sechstmoment.Zeta.Gamma.QuotientTail
 import Std
 
-/-! Actual Gaussian tails of the original BBLR vertical integrand. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

@@ -66,15 +66,12 @@ import Sechstmoment.Zeta.Moments.AnalyticMomentLinearity
 import Sechstmoment.Zeta.Tests
 import Std
 
-/-! Genuine polynomial V tests and compact differentiation of their actual
-mixed zeta generator. No moment asymptotic is assumed in this module. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial
 open scoped Topology BigOperators ComplexConjugate
 noncomputable section
 set_option maxHeartbeats 1600000
 
-/-- Actual mixed V generator before applying the finite polynomial operator. -/
 def vPolynomialMixedAmplitude (T : ℝ) (f g Φ : ℝ→ℝ) (t : ℝ) : ℂ :=
   (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
     profileDirichletSum T f (1-criticalLinePoint t)*
@@ -124,8 +121,6 @@ private def vMinusDerivativeFamily (n : ℕ) {T : ℝ} (hT : 1<T)
     rw [← iteratedDeriv_succ] at hd
     exact hd.hasFDerivAt
 
-/-- Every next derivative of the actual compact mixed integral is obtained
-by differentiating its actual zeta integrand. -/
 theorem vPolynomialMixedDerivative_hasDerivAt (n : ℕ) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ)
@@ -159,8 +154,6 @@ theorem vPolynomialMixedDerivative_hasDerivAt (n : ℕ) {T : ℝ} (hT : 1<T)
   simpa only [ContinuousLinearMap.toSpanSingleton_apply,smul_apply,
     one_smul,smul_eq_mul,one_mul,vPolynomialMixedDerivative,A] using h
 
-/-- The full integral is exactly the actual compact integral, because the
-source weight has its proved dyadic support. -/
 theorem vPolynomialMixedGenerator_eq_interval {T : ℝ} (hT : 0<T)
     (f g Φ : ℝ→ℝ) (hΦ : tsupport Φ⊆Icc 1 2) (z : ℂ) :
     vPolynomialMixedGenerator T f g Φ z = vPolynomialMixedDerivative 0 T f g Φ z := by
@@ -181,7 +174,6 @@ theorem vPolynomialMixedGenerator_eq_interval {T : ℝ} (hT : 0<T)
   have hf0 : Φ (t/T)=0 := image_eq_zero_of_notMem_tsupport (fun h=>hx (hΦ h))
   simp only [vPolynomialMixedAmplitude,hf0,Complex.ofReal_zero,zero_mul]
 
-/-- Genuine all-order differentiation of the literal V mixed moment. -/
 theorem vPolynomialMixedGenerator_iteratedDeriv (n : ℕ) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ)
@@ -200,8 +192,6 @@ theorem vPolynomialMixedGenerator_iteratedDeriv (n : ℕ) {T : ℝ} (hT : 1<T)
     rw [iteratedDeriv_succ,he.deriv_eq]
     exact (vPolynomialMixedDerivative_hasDerivAt n hT hL a b f g Φ hf hg hΦ z hz).deriv
 
-/-- Dyadic support turns any actual V-amplitude integral into its compact
-interval integral, without assuming integrability of the multiplier. -/
 theorem vPolynomialMixedAmplitude_integral_eq_interval {T : ℝ} (hT : 0<T)
     (f g Φ : ℝ→ℝ) (hΦ : tsupport Φ⊆Icc 1 2) (K : ℝ→ℂ) :
     (∫ t:ℝ, vPolynomialMixedAmplitude T f g Φ t*K t) =
@@ -220,8 +210,6 @@ theorem vPolynomialMixedAmplitude_integral_eq_interval {T : ℝ} (hT : 0<T)
   have hf0 : Φ (t/T)=0 := image_eq_zero_of_notMem_tsupport (fun h=>hx (hΦ h))
   simp only [vPolynomialMixedAmplitude,hf0,Complex.ofReal_zero,zero_mul]
 
-/-- Actual V derivative integrands are integrable: continuity and the actual
-compact weight support prove the required domination. -/
 theorem vPolynomialMixedDerivative_integrable (n : ℕ) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ)
@@ -251,8 +239,6 @@ theorem vPolynomialMixedDerivative_integrable (n : ℕ) {T : ℝ} (hT : 1<T)
     iteratedDeriv n (zetaCMinus T t) z ≠ 0 at ht
   simp only [vPolynomialMixedAmplitude,hf0,Complex.ofReal_zero,zero_mul,ne_eq,not_true_eq_false] at ht
 
-/-- Literal polynomial derivatives of the lower generator realize the
-conjugated actual `C_p`, for arbitrary degree. -/
 theorem zetaCp_conj_eq_minus_generator {T : ℝ} (hT : 1<T) (t : ℝ) (p : ℝ[X]) :
     star (zetaCp T t p) =
       p.sum (fun n c => (c:ℂ)*iteratedDeriv n (zetaCMinus T t) 0) := by
@@ -267,13 +253,10 @@ theorem zetaCp_conj_eq_minus_generator {T : ℝ} (hT : 1<T) (t : ℝ) (p : ℝ[X
   have hr := congrArg Complex.re h
   norm_num [sub_re,criticalLinePoint_re] at hr
 
-/-- The literal complex V numerator moment, with the actual test from §1.1. -/
 def vPolynomialRawMixedMoment (T : ℝ) (p : ℝ[X]) (f g Φ : ℝ→ℝ) : ℂ :=
   ∫ t:ℝ, (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
     star (rawZetaTest .V T t p f g)
 
-/-- Exact pointwise realization of the actual V integrand by lower-generator
-polynomial derivatives. -/
 theorem vPolynomialRawMixedIntegrand_eq {T : ℝ} (hT : 1<T) (t : ℝ)
     (p : ℝ[X]) (f g Φ : ℝ→ℝ) :
     (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
@@ -292,8 +275,6 @@ theorem vPolynomialRawMixedIntegrand_eq {T : ℝ} (hT : 1<T) (t : ℝ)
   intro n _
   ring
 
-/-- The actual V numerator is exactly the same finite polynomial operator
-applied to the genuine mixed integral, with proved integrability. -/
 theorem vPolynomialRawMixedMoment_eq_polynomialOperator {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (p : ℝ[X]) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ) :
@@ -309,7 +290,6 @@ theorem vPolynomialRawMixedMoment_eq_polynomialOperator {T : ℝ} (hT : 1<T)
   rw [vPolynomialMixedAmplitude_integral_eq_interval (zero_lt_one.trans hT) f g Φ hΦ.2]
   rfl
 
-/-- Literal Fin(N+1) operator form, for every degree bound. -/
 theorem vPolynomialRawMixedMoment_eq_finiteDifferentialOperator (N : ℕ)
     {T : ℝ} (hT : 1<T) (hL : 16<Real.log T) (a b : ℝ) (p : ℝ[X])
     (hp : p.natDegree≤N) (f g Φ : ℝ→ℝ)
@@ -323,7 +303,6 @@ theorem vPolynomialRawMixedMoment_eq_finiteDifferentialOperator (N : ℕ)
   exact (Fin.sum_univ_eq_sum_range (fun n =>
     (p.coeff n:ℂ)*iteratedDeriv n (vPolynomialMixedGenerator T f g Φ) 0) (N+1)).symm
 
-/-- The actual V mixed generator is holomorphic on the fixed genuine disk. -/
 theorem vPolynomialMixedGenerator_differentiableOn {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ) :
@@ -343,8 +322,6 @@ theorem vPolynomialMixedGenerator_analyticAt {T : ℝ} (hT : 1<T)
   (vPolynomialMixedGenerator_differentiableOn hT hL a b f g Φ hf hg hΦ).analyticAt
     (isOpen_ball.mem_nhds (by simpa only [mem_ball,dist_zero_right] using hz))
 
-/-- Actual raw V numerator integrability, derived from the proved compact
-zeta derivative integrands. -/
 theorem vPolynomialRawMixedIntegrand_integrable {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (p : ℝ[X]) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ) :
@@ -356,13 +333,10 @@ theorem vPolynomialRawMixedIntegrand_integrable {T : ℝ} (hT : 1<T)
   exact hi.congr (Eventually.of_forall (fun t =>
     (vPolynomialRawMixedIntegrand_eq hT t p f g Φ).symm))
 
-/-- The exact phase-projected V numerator integral from §1.1. -/
 def vPolynomialProjectedMixedMoment (T : ℝ) (p : ℝ[X]) (f g Φ : ℝ→ℝ) : ℂ :=
   ∫ t:ℝ, (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
     star (projectedZetaTest .V T t p f g)
 
-/-- Projection takes exactly the real part of the actual complex V moment;
-all Bochner integrability requirements are proved from the actual profiles. -/
 theorem vPolynomialProjectedMixedMoment_eq_real {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (a b : ℝ) (p : ℝ[X]) (f g Φ : ℝ→ℝ)
     (hf : ∀x,a<x→f x=0) (hg : ∀x,b<x→g x=0) (hΦ : SmoothDyadicWeight Φ) :

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Prime.PrincipalCubicNumerator
 
-/-! Exact rational evaluation of every zero-shift binomial tail. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

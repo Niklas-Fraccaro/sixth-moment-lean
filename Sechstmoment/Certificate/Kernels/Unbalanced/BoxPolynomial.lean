@@ -9,7 +9,6 @@ open scoped BigOperators
 set_option maxHeartbeats 0
 set_option maxRecDepth 100000
 
-/-- Coefficients of the actual product `p(Z - shift) q(Z + shift)`. -/
 noncomputable def minusBoxCoefficient (p q : Fin 5 → ℝ) (shift : ℝ) : Fin 9 → ℝ :=
   productCoefficient (shiftedCoefficient p (-shift) 1) (shiftedCoefficient q shift 1)
 
@@ -25,7 +24,6 @@ theorem minusBox_integrand_polynomial (p q : Fin 5 → ℝ) (shift Z : ℝ) :
   rw [hp, hq]
   exact polynomialProduct_exact _ _ Z
 
-/-- Finite linearity of the three oriented integrals for polynomials in `x+y+z`. -/
 theorem boxIntegral_finite_polynomial {n : ℕ} (c : Fin n → ℝ) (r s t : ℝ) :
     boxIntegral r s t (fun x y z => ∑ k : Fin n, c k * (x + y + z) ^ k.val) =
       ∑ k : Fin n, c k * boxIntegral r s t (fun x y z => (x + y + z) ^ k.val) := by
@@ -61,7 +59,6 @@ theorem boxIntegral_finite_polynomial {n : ℕ} (c : Fin n → ℝ) (r s t : ℝ
   · intro k _
     exact (continuous_const.mul (hcy k)).intervalIntegrable _ _
 
-/-- The unnormalized box integral that occurs in the minus kernel. -/
 noncomputable def minusBoxIntegral (p q : Fin 5 → ℝ) (shift r s t : ℝ) : ℝ :=
   boxIntegral r s t (fun x y z =>
     evalDegreeFour p (x + y + z - shift) * evalDegreeFour q (x + y + z + shift))
@@ -95,7 +92,6 @@ theorem minusBoxCoefficient_continuous (p q : Fin 5 → ℝ) (k : Fin 9) :
       (shiftedCoefficient_continuous q 1 j)
   · exact continuous_const
 
-/-- Exact even moments; `m` is half the degree, so each summand has degree `2m+3`. -/
 noncomputable def minusBoxEvenMoment (m : ℕ) (r s t : ℝ) : ℝ :=
   (Nat.factorial (2 * m) : ℝ) / (2 : ℝ) ^ (2 * m) *
     ∑ l1 : Fin (m + 1), ∑ l2 : Fin (m + 1), ∑ l3 : Fin (m + 1),

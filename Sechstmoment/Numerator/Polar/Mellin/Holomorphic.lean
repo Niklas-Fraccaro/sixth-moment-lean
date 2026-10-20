@@ -1,14 +1,6 @@
 import Mathlib.Tactic
 import Sechstmoment.Numerator.Polar.EulerMellinKernel
 
-/-!
-# Holomorphic numerator for the genuine Mellin contour move
-
-The actual Euler rest and five entangled factors are holomorphic in an open
-half-plane containing the whole prescribed strip. The literal four pure
-factors multiplied by G are replaced by their proved entire extension;
-agreement with the original kernel is established away from the actual roots.
--/
 
 namespace Sechstmoment
 

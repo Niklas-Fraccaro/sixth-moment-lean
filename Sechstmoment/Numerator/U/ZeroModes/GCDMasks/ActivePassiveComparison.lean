@@ -4,9 +4,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.MaskedHighFrequency
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.MaskedPhysicalLinearity
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.PassivePhysicalMasked
 
-/-! The genuine active and selected passive masks agree at supported
-low-gap points. Their difference has an actual continuous high-frequency
-bound; the remaining inactive whole zero is controlled by its source. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

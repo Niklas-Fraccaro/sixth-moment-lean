@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.AmplifierExpansion
 import Sechstmoment.Numerator.V.Contour.ShiftedChiWeightReplacement
 
-/-! Additive reduction on the critical line for the literal polynomial
-amplifiers, with a common constant for all logarithmically small shifts. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Polynomial

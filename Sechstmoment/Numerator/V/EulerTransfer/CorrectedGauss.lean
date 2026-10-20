@@ -1,7 +1,6 @@
 import Sechstmoment.Arithmetic.Euler.FourL.Continuation
 import Sechstmoment.Numerator.V.Arithmetic.GaussMellinBound
 
-/-! The actual character-dependent Euler correction inside the Gauss-weighted four-L mean. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option maxHeartbeats 2000000

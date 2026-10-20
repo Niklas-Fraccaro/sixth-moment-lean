@@ -1,7 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Bivariate.PrimeParameters
 
-/-! The original prime-power residue, all six factors, and the complete local error norm.
-The distinguished residue index is 0; the other three indices are 1, 2 and 3. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPLocalClosure

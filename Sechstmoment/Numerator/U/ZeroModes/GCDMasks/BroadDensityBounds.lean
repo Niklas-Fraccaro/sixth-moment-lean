@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.ActualUnrestrictedRatioGCDVStar
 
-/-! Concrete absolute majorant for the actual shifted common-X density.
-No amplifier coefficient or continuous coordinate is reinterpreted. -/
 namespace Sechstmoment.Source
 open Complex Real Set
 open scoped BigOperators
@@ -49,8 +47,6 @@ theorem a03NativeGCDBroadDensity_norm_bound (α : MomentShifts)
     _≤1*1*(m:ℝ)^(-(1/2:ℝ))*(n:ℝ)^(-(1/2:ℝ))*(X^(-(3/2:ℝ))+X^(-(1/2:ℝ))) := by gcongr
     _=_ := by ring
 
-/-- This is exactly the five-power density in the unrestricted actual
-native integrand; the positive gcd coefficient remains outside it. -/
 theorem a03UnrestrictedRatioGCDVStarIntegrand_eq_broadDensity
     (dual positive : Bool) (Φ : ℝ→ℂ) (T : ℝ) (σ α : MomentShifts)
     (f g : ℝ→ℝ) (u v m n h : ℕ) (X : ℝ) :

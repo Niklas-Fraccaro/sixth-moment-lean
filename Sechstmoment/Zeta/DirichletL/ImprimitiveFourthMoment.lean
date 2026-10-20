@@ -1,9 +1,5 @@
 import Sechstmoment.Zeta.DirichletL.PrimitiveFourthMoment
 
-/-! Extension of the fourth moment to every nonprincipal character. These
-are exactly the characters in the error term of the V-generator reduction.
-The principal character belongs to the separately evaluated main term.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Unbalanced.Expansion.Series
 import Sechstmoment.Zeta.AFE.OneSided.FiniteRectangle
 
-/-! The finite Gamma rectangle behind the one-sided expansion. Its upper
-and lower edges remain strictly below both moving zeta poles. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped Topology
@@ -129,8 +127,6 @@ theorem d04OneSidedGamma_rectangle_integrals {X a R : ℝ} (hX : 0<X)
     hver 2 (by norm_num), hver a ha0.ne] at h
   exact h
 
-/-- The actual expansion error consists exactly of the three displaced
-boundaries and the original positive-line tail. -/
 theorem d04OneSidedRawSeries_error_decomposition {X a R : ℝ} (hX : 0<X)
     (ha : -1<a) (ha0 : a<0) (hR : 0<R) (s r : ℂ)
     (hs : R < |s.im|) (hr : R < |r.im|) (hsre : -1<s.re) (hrre : -1<r.re) :

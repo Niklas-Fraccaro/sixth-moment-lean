@@ -48,7 +48,6 @@ import Mathlib.Topology.Order.Compact
 import Sechstmoment.Analysis.Gaussian.Integrability
 import Std
 
-/-! Actual Gaussian tails of the original BBLR vertical integrand. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

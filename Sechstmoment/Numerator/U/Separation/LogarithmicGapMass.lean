@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.SeparatedBlock
 
-/-! The literal signed logarithmic gap supplies its own source mass lower
-bound. This closes all five weight derivative conditions in that range. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

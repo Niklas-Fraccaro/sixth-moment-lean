@@ -1,7 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.FourL.Continuation
 
-/-! The two surviving local Mobius terms reproduce the original residue
-coefficient. This keeps both the unramified and ramified correction. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open NoDPLocal NoDPResidues NoDPLocalClosure NoDPGlobalRest NoDPGlobalConvolution

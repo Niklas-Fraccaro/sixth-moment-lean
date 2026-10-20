@@ -1,9 +1,6 @@
 import Sechstmoment.Denominator.Unbalanced.Expansion.Mass
 import Sechstmoment.Numerator.U.Separation.TimePowerProfileFourier
 
-/-! The one-sided off-diagonal has an arithmetic gap depending only on
-the three positive profile lengths. This gap holds for the entire infinite
-exponentially smoothed pair, including every noncomparable pair. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -49,9 +46,6 @@ theorem d04_nat_log_ratio_gap {T P : ℝ} (hT : 1 ≤ T) (hP : 0 ≤ P)
   field_simp
   norm_num
 
-/-- Fixed-profile integration by parts works for the complete infinite
-exponential series. The coefficient premise is a pointwise literal majorant,
-not an off-diagonal error estimate. -/
 theorem d04_exponential_offDiagonal_fourier_bound {Φ : ℝ → ℂ}
     (hΦK : HasCompactSupport Φ) (hΦ : ContDiff ℝ ∞ Φ)
     {P : ℝ} (hP : 0 ≤ P) (N : ℕ) :
@@ -128,8 +122,6 @@ theorem d04_exponential_offDiagonal_fourier_bound {Φ : ℝ → ℂ}
       rw [hpTotal]
       ring
 
-/-- The condition on the three row lengths, `P < 1`, is precisely what
-permits an arbitrary integration-by-parts order. -/
 theorem d04_oneSided_offDiagonal_exists_order {P : ℝ} (hP : P < 1)
     (Q A : ℝ) : ∃ N : ℕ, 7 + Q - (1 - P) * (N : ℝ) ≤ -A := by
   have hp : 0 < 1 - P := by linarith
@@ -199,8 +191,6 @@ theorem d04_exponential_offDiagonal_sum_bound {T C B : ℝ}
     _ ≤ B * (9 * C * T ^ (6 : ℕ)) := mul_le_mul_of_nonneg_left hm hB
     _ = _ := by ring
 
-/-- Uniform PI for the actual normalized-time complex power retained by
-the shifted single-chi leading term. -/
 theorem d04_exponential_offDiagonal_timePower_uniform_bound {Φ : ℝ → ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ ⊆ Icc (1 : ℝ) 2)
     {P R : ℝ} (hP : 0 ≤ P) (hR : 0 ≤ R) (N : ℕ) :

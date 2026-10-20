@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.Contour.VariableStart
 import Sechstmoment.Numerator.U.ZeroModes.FourChamberMainPair
 import Sechstmoment.Numerator.U.ZeroModes.PolarChamberGap
 
-/-! The genuine affine Mellin start line in every actual chamber reaches
-its original line, preserving the primary weight and original root domain. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

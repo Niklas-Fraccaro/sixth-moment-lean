@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.Shared.MomentHolomorphy
 import Sechstmoment.Numerator.V.DP.CenteringRemainder
 
-/-! Own holomorphy of the actual all-positive DP moment and centering error. -/
 
 namespace Sechstmoment
 open Complex Metric MeasureTheory Set
@@ -149,8 +148,6 @@ theorem dpAllPositiveMoment_eq_raw (T η : ℝ) (P : Polynomial ℝ) (σ : Momen
     dpAllPositiveMoment T η P σ Φ = allPositiveRawMoment T (rawMomentShifts T σ)
       (zeroExtendedPolynomialProfile η P) (zeroExtendedPolynomialProfile η P) Φ := rfl
 
-/-- Own joint complex differentiability of the actual all-positive moment
-produced by the exact functional-equation conversion. -/
 theorem dpAllPositiveMoment_differentiableOn_normalized {T : ℝ} (hT : 1 < T)
     (η : ℝ) (P : Polynomial ℝ) (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :
     DifferentiableOn ℂ (fun σ => dpAllPositiveMoment T η P σ Φ)

@@ -3,7 +3,6 @@ import Sechstmoment.Numerator.Polar.Generator.Contour
 namespace Sechstmoment
 open Complex Metric
 
-/-- Cauchy contour inversion of the proper rational transform in (3.7). -/
 noncomputable def polarInverseLaplaceContour (x : ℝ) (ω z : ℂ) (R : ℝ) : ℂ :=
   (2*(Real.pi:ℂ)*Complex.I)⁻¹ *
     ∮ u in C(0,R), Complex.exp ((x:ℂ)*u)*(u-ω)/(u^3*(u+z))
@@ -102,8 +101,6 @@ theorem polar_quadratic_contour_atTime (x : ℝ) (A B C z : ℂ) (R : ℝ)
   field_simp
 
 
-/-- Exact rational inverse-Laplace contour evaluation. The factor is proved from a
-    genuine circle integral, not specified by an assumed transform identity. -/
 theorem polarInverseLaplaceContour_eq (x : ℝ) (ω z : ℂ) (R : ℝ)
     (hz : z ≠ 0) (hR : ‖z‖ < R) :
     polarInverseLaplaceContour x ω z R = polarInverseFactor x ω z := by
@@ -116,7 +113,6 @@ theorem polarInverseLaplaceContour_eq (x : ℝ) (ω z : ℂ) (R : ℝ)
   field_simp
   ring
 
-/-- The inner inverse contour evaluated at the fully coalesced pole. -/
 theorem polarInverseLaplaceContour_zero (x : ℝ) (ω : ℂ) (R : ℝ) (hR : 0 < R) :
     polarInverseLaplaceContour x ω 0 R = polarInverseFactor x ω 0 := by
   unfold polarInverseLaplaceContour
@@ -142,7 +138,6 @@ theorem polarInverseLaplaceContour_zero (x : ℝ) (ω : ℂ) (R : ℝ) (hR : 0 <
   field_simp
   ring
 
-/-- Rational Cauchy inversion at every complex shift, with the coalesced pole checked separately. -/
 theorem polarInverseLaplaceContour_eq_all (x : ℝ) (ω z : ℂ) (R : ℝ) (hR : ‖z‖ < R) :
     polarInverseLaplaceContour x ω z R = polarInverseFactor x ω z := by
   by_cases hz : z = 0

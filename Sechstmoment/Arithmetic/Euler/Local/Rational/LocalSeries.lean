@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.LowerCoefficientComparison
 
-/-! The genuine infinite tail used in the local Euler correction. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

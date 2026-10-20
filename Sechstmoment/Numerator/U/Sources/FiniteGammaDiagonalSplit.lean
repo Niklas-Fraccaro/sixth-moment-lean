@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.ReplacementMomentMellin
 import Sechstmoment.Numerator.U.Sources.FiniteGammaDiagonalDefinitions
 
-/-! Exact diagonal / two orientations split of the literal finite Gamma
-moment. Integrability is obtained from the actual compact time--Mellin kernel. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

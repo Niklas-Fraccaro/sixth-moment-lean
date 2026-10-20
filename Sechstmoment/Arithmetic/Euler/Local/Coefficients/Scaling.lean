@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Geometric.StepProductScaling
 
-/-! Homogeneity of the twofold coefficients. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -15,7 +14,6 @@ theorem coeff2_scaled (a b r : R) (n : ℕ) : coeff2 (r*a) (r*b) n=r^n*coeff2 a 
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Homogeneity of the threefold coefficients. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -30,7 +28,6 @@ theorem coeff3_scaled (a b c r : R) (n : ℕ) : coeff3 (r*a) (r*b) (r*c) n=r^n*c
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Homogeneity of the fourfold shifted coefficients. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -46,7 +43,6 @@ theorem coeff4_scaled (a b c d r : R) (n : ℕ) :
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Homogeneity of the four denominator coefficients. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -61,7 +57,6 @@ theorem e4_scaled (a b c d r : R) : e4 (r*a) (r*b) (r*c) (r*d)=r^4*e4 a b c d :=
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Homogeneity of each coefficient of the local numerator. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -83,7 +78,6 @@ theorem q3_scaled (a b c d r : R) (h : ℕ) :
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! The entire Euler correction scales homogeneously. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -97,7 +91,6 @@ theorem numerator_scaled (a b c d r t : R) (h : ℕ) :
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Scaling the four local roots is equivalent to scaling the series variable. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

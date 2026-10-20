@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.TimeGamma.DualDerivatives
 import Sechstmoment.Numerator.U.Replacement.TimeGammaError
 
-/-! Actual four-chi dual phase replacement, with its complex-time error. -/
 namespace Sechstmoment.Source
 open Sechstmoment Complex Set Metric Filter
 open scoped BigOperators Topology ContDiff
@@ -89,8 +88,6 @@ private theorem dual_point_nonreal {T R : ℝ} (hR : 0≤R) (hL : 1≤Real.log T
   · constructor <;> exact ne_of_gt (by nlinarith [hy.1])
   · constructor <;> exact ne_of_lt (by nlinarith [hy.1])
 
-/-- Exact separation of the actual four-chi multiplier into the leading power,
-the elementary logarithmic phase error, and its eight actual Gamma ratios. -/
 theorem a03DualMultiplier_phase_gamma_eq {T R : ℝ} (hR : 0≤R) (hL : 1≤Real.log T)
     (hT : 192*(R+R^2)+8≤T) (σ : MomentShifts) (hσ : ∀ j, ‖σ j‖≤R)
     {x : ℝ} (hx : x∈Icc (1:ℝ) 2) {y : ℂ} (hy : y∈closedBall (x:ℂ) (1/4:ℝ)) :
@@ -172,7 +169,6 @@ theorem a03DualGammaRatio_error_le {T R : ℝ} (hR : 0≤R) (hL : 1≤Real.log T
   have hδ1 : 48*(R+R^2)/T≤1/2 := (div_le_iff₀ hT0).mpr (by nlinarith [sq_nonneg R])
   exact (norm_div_sub_one_le_four hδ0 hδ1 (hneg _) (hn _)).trans_eq (by ring)
 
-/-- Uniform T⁻¹ relative error for the literal four-chi phase. -/
 theorem a03DualMultiplier_normalized_error_le {T R : ℝ} (hR : 0≤R) (hL : 1≤Real.log T)
     (hT : 192*(R+R^2)+8≤T) (σ : MomentShifts) (hσ : ∀ j, ‖σ j‖≤R)
     {x : ℝ} (hx : x∈Icc (1:ℝ) 2) {y : ℂ} (hy : y∈closedBall (x:ℂ) (1/4:ℝ)) :
@@ -238,8 +234,6 @@ def a03DualPhaseErrorConstant (R : ℝ) : ℝ := 5760*(R+R^2)+16*R
 def a03DualPhaseReplacementError (T : ℝ) (σ : MomentShifts) (y : ℂ) : ℂ :=
   bblrTimeDualMultiplier T σ y-a03DualLeadingPhase T σ y
 
-/-- Absolute O(T⁻¹) estimate for the actual four-chi error, uniform on the
-complex circles needed for every time derivative. -/
 theorem a03DualPhaseReplacementError_uniform_complex_bound {R : ℝ} (hR : 0≤R) :
     ∀ᶠ T : ℝ in atTop, ∀ σ : MomentShifts, (∀ j, ‖σ j‖≤R) →
       ∀ x : ℝ, x∈Icc (1:ℝ) 2 → ∀ y : ℂ, y∈closedBall (x:ℂ) (1/4:ℝ) →
@@ -281,8 +275,6 @@ private theorem dual_leading_differentiableAt {T : ℝ} (hT : 0<T)
     simp [Complex.div_re,Complex.mul_re,Complex.mul_im]
     positivity
 
-/-- Every normalized-time derivative of the true dual phase replacement keeps
-its T⁻¹ saving. The sequence is chosen uniformly before σ, x, and n. -/
 theorem a03DualPhaseReplacementError_normalizedTime_uniform_derivative_bounds
     {R : ℝ} (hR : 0≤R) :
     ∃ B : ℕ→ℝ, (∀ n, 0≤B n) ∧ ∀ᶠ T : ℝ in atTop,

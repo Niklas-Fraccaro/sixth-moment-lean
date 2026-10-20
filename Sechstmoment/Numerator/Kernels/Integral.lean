@@ -21,8 +21,6 @@ noncomputable def numeratorPointKernel (p : Fin 5 → ℝ) (a b : ℝ) : ℝ :=
     simplexExpectation (fun x y z => evalDegreeFour p
       (simplexDot (-1/2) (a-t-1/2) (1/2-b+t) (1/2) x y z))
 
-/-- The real simplex definition of the common numerator kernel is reduced
-to the five polynomial integrals used by the exact certificate. -/
 theorem numeratorPointKernel_polynomial (p : Fin 5 → ℝ) {a b : ℝ} (hab : a ≤ b) :
     numeratorPointKernel p a b =
       ∑ r : Fin 5, p r*(∫ t in (0 : ℝ)..a, numeratorIntegrand r.val a b t) := by

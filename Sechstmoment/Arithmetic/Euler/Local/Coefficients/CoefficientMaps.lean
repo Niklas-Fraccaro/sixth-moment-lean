@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Geometric.StepMap
 
-/-! Transport of the first two local coefficient sequences. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -16,7 +15,6 @@ theorem coeff2_map (F : R →+* S) (a b : R) (n : ℕ) : F (coeff2 a b n)=coeff2
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Transport of threefold local coefficients. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 
@@ -31,7 +29,6 @@ theorem coeff3_map (F : R →+* S) (a b c : R) (n : ℕ) : F (coeff3 a b c n)=co
 
 end Sechstmoment.Source.NoDPLocal
 
-/-! Transport of fourfold local coefficients. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

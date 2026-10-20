@@ -1,8 +1,6 @@
 import Sechstmoment.Analysis.Complex.ContourShift
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PrimaryShift
 
-/-! Actual single-residue ratio contours. The remaining variable is moved
-to -1/2+ε with the genuine arithmetic numerator retained throughout. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalPowers
 
-/-! Quantitative norms of the actual three ratio-contour remainders.
-The physical power gains remain explicit through exp(Lc+Md), while every
-arithmetic and Gaussian constant is independent of the frequencies. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

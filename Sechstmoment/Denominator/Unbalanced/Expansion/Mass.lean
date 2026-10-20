@@ -3,9 +3,6 @@ import Mathlib.Analysis.SpecificLimits.Normed
 import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Sechstmoment.Arithmetic.Divisors.LogFrequency
 
-/-! Absolute summation for the literal one-sided exponential smoothing.
-The two positive indices are encoded by `n.1 + 1` and `n.2 + 1`.
-The majorant retains every unrestricted index; no long-sum error is assumed. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -100,8 +97,6 @@ theorem d04_exponential_pair_tsum_le {T : ℝ} (hT : 1 ≤ T) :
     (d04_exponential_pair_le_geometric ht) (d04_pair_geometric_summable ht)).trans
     (d04_pair_geometric_tsum_le hT)
 
-/-- A literal exponential coefficient majorant gives absolute convergence
-and a polynomial bound without truncating the unrestricted pair. -/
 theorem d04_exponential_coefficient_mass {T C : ℝ} (hT : 1 ≤ T) (hC : 0 ≤ C)
     (c : ℕ × ℕ → ℂ)
     (hc : ∀ n, ‖c n‖ ≤ C * d04ExponentialPairWeight T n) :

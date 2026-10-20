@@ -1,7 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.FourL.Continuation
 
-/-! Reindexing the distinguished residue leaves the actual fourfold
-Dirichlet coefficients and the entire arithmetic correction unchanged. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open NoDPLocal NoDPResidues NoDPLocalClosure NoDPGlobalRest NoDPGlobalConvolution

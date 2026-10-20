@@ -1,12 +1,6 @@
 import Sechstmoment.Zeta.AFE.Four.DualBound
 import Sechstmoment.Zeta.AFE.Two.Gamma
 
-/-!
-# D02: the actual two-factor dual multiplier
-
-The exact upper/lower centering identity cancels the critical-line phase.
-The bounded normalized shift limit is the explicit exponential dual factor.
--/
 namespace Sechstmoment.Source
 open Complex Filter Set
 open scoped BigOperators Topology ComplexConjugate
@@ -20,7 +14,6 @@ def secondDualMultiplier (t : ℝ) (α : SecondMomentShifts) : ℂ :=
   zetaChi (secondSourceZetaPoints t 0+α 0)*
     zetaChi (secondSourceZetaPoints t 1+α 1)
 
-/-- The exact dual factor with the cancelling critical-line phases retained. -/
 theorem secondDualMultiplier_eq_centering (T t : ℝ) (σ : SecondMomentShifts) :
     secondDualMultiplier t (rawSecondMomentShifts T σ) =
       Complex.exp (-(σ 0+σ 1))*centeringFactor T t (σ 0)*
@@ -45,7 +38,6 @@ theorem secondDualMultiplier_eq_centering (T t : ℝ) (σ : SecondMomentShifts) 
         show -(σ 0)+-(σ 1) = -(σ 0+σ 1) by ring]
       ring
 
-/-- The actual dual multiplier has its uniform inverse-logarithmic error. -/
 theorem secondDualMultiplier_uniform_normalized_error {R : ℝ} (hR : 0 ≤ R) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ᶠ T : ℝ in atTop,
       ∀ x ∈ Icc (1:ℝ) 2, ∀ σ : SecondMomentShifts,
@@ -97,7 +89,6 @@ theorem secondDualMultiplier_uniform_normalized_error {R : ℝ} (hR : 0 ≤ R) :
   exact (mul_le_mul hexp hp (norm_nonneg _) (Real.exp_pos _).le).trans_eq
     (by dsimp [E]; ring)
 
-/-- Uniform convergence on every bounded normalized shift box. -/
 theorem secondDualMultiplier_uniform_normalized_tendsto {R : ℝ} (hR : 0 ≤ R)
     {ε : ℝ} (hε : 0 < ε) :
     ∀ᶠ T : ℝ in atTop, ∀ x ∈ Icc (1:ℝ) 2, ∀ σ : SecondMomentShifts,

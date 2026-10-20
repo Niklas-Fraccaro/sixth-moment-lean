@@ -7,8 +7,6 @@ import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 import Mathlib.Topology.UniformSpace.UniformConvergence
 
-/-! Quantitative distribution bound for the literal logarithmic harmonic sums.
-The endpoint atom at n = 1 is included. No asymptotic input is assumed. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Filter Set Metric

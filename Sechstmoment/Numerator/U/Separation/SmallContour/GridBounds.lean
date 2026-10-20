@@ -8,8 +8,6 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- The actual finite smooth boxes have a polynomial cardinality bound,
-including their integer-one boundary. -/
 theorem rectangular_small_contour_box_card_le (k : Fin 4 → ℕ) :
     ((rectangularAFESmoothBox k).card : ℝ) ≤
       16*∏ j : Fin 4, rectangularAFESmoothScale (k j) := by

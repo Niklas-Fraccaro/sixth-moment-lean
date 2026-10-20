@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.Diagonal.ActualSmoothNearGlobal
 import Sechstmoment.Numerator.U.Diagonal.RawShiftFactorMass
 import Sechstmoment.Numerator.U.Replacement.DualWeightReplacementContour
 
-/-! Actual original and dual weight/phase errors are summed over the complete
-retained near AFE grid. Genuine raw coefficients feed the proved near mass;
-no weighted-error or moment-asymptotic hypothesis is introduced. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology ENNReal
@@ -80,8 +77,6 @@ theorem a03_replacement_near_grid_norm_le_raw_mass
       simp only [Finset.mul_sum]
       rfl
 
-/-- Both actual near branches, including the true dual multiplier and its
-phase error, inherit the complete proved raw arithmetic mass. -/
 theorem a03_actual_weight_replacement_near_finite_grid_uniform_mass_bound
     {a b c e κ θ R η ρ : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -124,8 +119,6 @@ theorem a03_actual_weight_replacement_near_finite_grid_uniform_mass_bound
   exact (add_le_add h₀ h₁).trans_eq (by dsimp [D]; ring)
 
 
-/-- Both complete near Mellin contours are integrable and carry the genuine
-full arithmetic mass, with only the actual contour-length logarithm lost. -/
 theorem a03_actual_weight_replacement_near_finite_contour_uniform_mass_bound
     {a b c e κ θ R η ρ : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

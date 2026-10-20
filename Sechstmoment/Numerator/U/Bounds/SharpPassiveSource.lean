@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Bounds.SharpPassiveSourceBudget
 
-/-! Freely small rectangular powers for the true selected passive
-physical source discrepancy. The parameters are fixed before T and no
-little-o assertion is converted into a power assertion. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

@@ -1,8 +1,6 @@
 import Mathlib.MeasureTheory.Integral.Prod
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ContourBounds
 
-/-! Genuine one- and two-variable integrability of the coupled ratio
-arithmetic kernel, on the actual separated boundary lines. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
@@ -100,8 +98,6 @@ theorem a03ZeroModeRatioArithmeticKernel_boundary_majorant
       dsimp [C]
       ring
 
-/-- Both real frequency variables are genuinely jointly integrable.
-This is the absolute Fubini input, proved from the concrete kernel. -/
 theorem a03ZeroModeRatioArithmeticKernel_boundary_joint_integrable
     {ε δ c d : ℝ} (hε : 0<ε) (hδ : 0<δ) (α : MomentShifts)
     (hα : ∀ j : Fin 4,‖α j‖≤ε/8)

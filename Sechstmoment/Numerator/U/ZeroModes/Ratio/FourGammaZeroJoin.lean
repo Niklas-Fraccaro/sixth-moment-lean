@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.Sources.UniformMomentRestriction
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.BadSourceContourBudget
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourceTimePartition
 
-/-! The literal source moment is approximated by the four genuine native
-ratio Gamma zero moments. Pair permutation occurs in finite discrete sums;
-no invariance of a factor-sorted GCD zero mode is used. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

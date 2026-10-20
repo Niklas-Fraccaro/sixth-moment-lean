@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.GCDDirichletEta
 
-/-! Native `d=gcd(a*m,b*n)` indexing and the finite original amplifier
-sum for the GCD-to-eta arithmetic join. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat Complex
@@ -29,8 +27,6 @@ def a03NativeGCDDirichletTerm {a b : ℕ} (w z s : ℂ) (x : A03NativeGCDIndex a
 def a03NativeGCDDirichlet (a b : ℕ) (w z s : ℂ) : ℂ :=
   ∑' x : A03NativeGCDIndex a b, a03NativeGCDDirichletTerm w z s x
 
-/-- The original positive `(m,n,d=gcd(a*m,b*n))` sum is the actual GCD
-series, by an explicit equivalence rather than a reconstruction premise. -/
 theorem a03NativeGCDDirichlet_eq (a b : ℕ) (w z s : ℂ) :
     a03NativeGCDDirichlet a b w z s=a03GCDDirichlet a b w z s := by
   unfold a03NativeGCDDirichlet
@@ -64,8 +60,6 @@ def a03NativeAmplifierGCDDirichlet (N₁ N₂ : ℕ) (A B : ℕ→ℂ)
     A a*B b*(a:ℂ)^(-(1-α 1+u))*(b:ℂ)^(-(1-α 3+v))*
       a03NativeGCDDirichlet a b (α 0-α 1+2*u) (α 2-α 3+2*v) s
 
-/-- The native finite amplifier GCD expression is identified with the
-actual eta arithmetic, retaining both original coefficient ranges. -/
 theorem a03NativeAmplifierGCDDirichlet_eq_ratioEta (N₁ N₂ : ℕ) (A B : ℕ→ℂ)
     (α : MomentShifts) (u v s : ℂ)
     (hu : 0<(α 0-α 1+2*u).re) (hv : 0<(α 2-α 3+2*v).re) (hs : 1<s.re) :

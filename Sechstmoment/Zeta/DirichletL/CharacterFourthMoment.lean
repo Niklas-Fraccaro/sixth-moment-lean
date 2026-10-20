@@ -1,10 +1,6 @@
 import Sechstmoment.Zeta.Bounds.ZetaPolynomialBound
 import Sechstmoment.Zeta.DirichletL.FourLProduct
 
-/-! The fourth moment and shifted four-L-product bound for all characters,
-including the principal character. The principal estimate uses the proved
-polynomial zeta bound, rather than an assumed moment estimate.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

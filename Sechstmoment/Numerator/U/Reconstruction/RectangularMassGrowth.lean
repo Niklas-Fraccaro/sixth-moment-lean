@@ -1,12 +1,9 @@
 import Mathlib.Tactic
 import Sechstmoment.Arithmetic.QuadraticDivisor.Estimates.SourceAdapter
 
-/-! Explicit polynomial control of the source's `mass^ε` factors. -/
 
 namespace Sechstmoment
 
-/-- The dyadic support inequalities control the source mass and its `H₀²`
-multiple by the same fourth power of `T`; this is not a moment-error premise. -/
 theorem rectangular_mass_growth {T A B X H K L a b s : ℝ}
     (hT : 1 ≤ T) (hA : 0 ≤ A) (hB : 0 ≤ B) (hX : 0 ≤ X) (hH : 0 ≤ H)
     (_hK : 0 ≤ K) (_hL : 0 ≤ L) (hab : a+b ≤ 1/2) (hs : s ≤ 1/6)

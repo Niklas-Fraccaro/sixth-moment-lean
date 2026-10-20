@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.Frequency.GammaFar
 
-/-! The far estimate is applied to the literal amplified Mellin AFE kernel,
-with its exact static arithmetic factor retained in the error budget. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped ContDiff BigOperators Topology

@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.V.EulerTransfer.CorrectedMellin
 
-/-! The actual displaced-line remainder, including all divisor moduli and the outer 1/N factor. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option maxHeartbeats 2000000
@@ -47,7 +46,6 @@ theorem divisor_negative_power_sum (κ : ℝ) (hκ : 1/2 < κ) (N : ℕ) :
   have H : Summable (fun d : ℕ => (d:ℝ)^(-κ-1/2)) := Real.summable_nat_rpow.mpr (by linarith)
   exact Summable.sum_le_tsum N.divisors (fun d _ => Real.rpow_nonneg (Nat.cast_nonneg d) _) H
 
-/-- PDF (5.5): all divisor moduli, the character-dependent correction, and the outer 1/N. -/
 theorem displacedRemainder_bound {w : ℝ → ℂ} (hw : ContDiff ℝ ∞ w)
     (hws : tsupport w ⊆ Icc (1:ℝ) 2) (κ ε : ℝ) (hκ : 1/2 < κ) (hε : 0 < ε) :
     ∃ C : ℝ, 0 < C ∧ ∀ N : ℕ, ∀ hN : N ≠ 0,

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.ThreeAnnihilator
 
-/-! A first order recursion is uniquely determined by its input and initial value. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

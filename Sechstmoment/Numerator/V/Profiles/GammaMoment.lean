@@ -1,8 +1,6 @@
 import Sechstmoment.Arithmetic.Euler.Remainder.Factorization
 import Sechstmoment.Numerator.V.Profiles.ProfileProduct
 
-/-! A logarithmic moment for the actual global remainder coefficients, for
-every residue index. This is the summable majorant needed for the L^5 error. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set Polynomial NoDPGlobalRest

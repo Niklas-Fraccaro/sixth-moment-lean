@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.ActualBranchTimeFourierEnvelope
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.SpatialPowerTail
 
-/-! Arbitrary power savings at the genuine continuous gcd-frequency
-boundary. The arithmetic factor d is retained in the native convergence
-majorant, while this lemma saves any prescribed T-power. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -57,8 +54,6 @@ theorem a03VStarActualBranchTimeFourier_highFrequency_uniform_rapid
       mul_le_mul_of_nonneg_left hp (by unfold a03NativeGCDSpatialEnvelope; positivity)
     _=_ := by ring
 
-/-- The literal physical product boundary gains every T-power while
-retaining the degree-ten envelope used by the countable native mass. -/
 theorem a03VStarActualBranchTimeFourier_highSpatial_uniform_rapid
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     (K : Set MomentShifts) (hK : IsCompact K) {κ δ : ℝ}

@@ -4,13 +4,6 @@ import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Sechstmoment.Zeta.AFE.Two.DirichletInterchange
 import Sechstmoment.Zeta.Gamma.MellinBounds
 
-/-!
-# Exponential Mellin inversion for the one-sided expansion
-
-The Mellin weight is the actual exponential function. Absolute integrability
-on the line of real part two follows from Euler's Gamma integral and two
-Gamma recurrences. No Mellin inversion or Gamma decay hypothesis is assumed.
--/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set

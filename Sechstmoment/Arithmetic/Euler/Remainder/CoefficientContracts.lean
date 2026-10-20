@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Remainder.Configurations
 
-/-! Normalization, exact prime-power coefficients, and the global support restriction. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalRest

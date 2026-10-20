@@ -4,9 +4,6 @@ import Sechstmoment.Numerator.U.Diagonal.ProfileHolomorphy
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.PositiveTimeMellinDecay
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.SmoothedCosineGamma
 
-/-! Actual smoothed-cosine inverse Mellin preparation. The elementary
-Gamma/cosine line estimate is separated here and discharged by its genuine
-Gamma-integral theorem in the final wrapper. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped Topology ContDiff

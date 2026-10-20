@@ -2,8 +2,6 @@ import Mathlib.MeasureTheory.Constructions.Polish.Basic
 import Mathlib.MeasureTheory.Function.SpecialFunctions.Basic
 import Sechstmoment.Denominator.Balanced.ZetaGaussianMomentError
 
-/-! Measurability and time integrability of the literal infinite Gaussian
-moment.  Compact-window domination is obtained from the actual pair mass. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Filter Set
 open scoped BigOperators Topology
@@ -93,8 +91,6 @@ theorem d02CenteredGaussianPair_time_measurable (T : ℝ) (σ : SecondMomentShif
     (Complex.measurable_ofReal.comp (measurable_id.div_const (2*Real.pi))) _).mul
     (d02ActualGaussianPair_time_measurable _)
 
-/-- Every complex time power and every actual Gaussian shift pair is
-integrable after localization by the manuscript's time test and profiles. -/
 theorem d02GaussianPairMoment_integrable {T ε : ℝ} (hT : 1<T)
     (hε : 0<ε) (hε1 : ε≤1/4) (α : SecondMomentShifts) (hα : ∀ j,‖α j‖≤ε)
     (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)

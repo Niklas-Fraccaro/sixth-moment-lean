@@ -1,8 +1,6 @@
 import Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension
 import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
 
-/-! A concrete smooth frequency cutoff and arbitrary-order weighted tail
-control. These are bounds for the actual truncated Schwartz function. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Metric

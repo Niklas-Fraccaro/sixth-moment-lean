@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.TimeGamma.DualDerivatives
 import Sechstmoment.Numerator.U.Separation.Frequency.GammaProfile
 
-/-! The actual dual multiplier is retained in the localized Gamma profile.
-Its independent derivative bounds yield the same uniform Schwartz family. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped ContDiff BigOperators Topology

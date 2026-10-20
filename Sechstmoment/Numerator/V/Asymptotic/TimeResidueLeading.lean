@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Asymptotic.TimeMellinLeading
 import Sechstmoment.Numerator.V.Asymptotic.TimeResidueScale
 
-/-! Uniform inverse-logarithmic error for the actual normalized time
-factor in each principal residue. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

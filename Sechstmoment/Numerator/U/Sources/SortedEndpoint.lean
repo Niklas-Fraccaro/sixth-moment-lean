@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.GlobalAmplifier
 import Sechstmoment.Numerator.U.ZeroModes.ActualZeroModeBackTransport
 
-/-! The actual source endpoint is back-transported to the native
-factor-sorted zero mode. Its four factor chambers remain literal. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -27,9 +25,6 @@ def a03EndpointNativeSortedZeroIntegral (kernel : SchwartzMap A03SixTensorSpace 
   ∫ ν, a03SixTensorCoefficient kernel normalizer ν*
     a03EndpointNativeSortedZeroMode T A B H f g k normalizer ν
 
-/-- The literal normalized endpoint equals the native sorted endpoint
-for every Fourier frequency; its index exclusions follow from the actual
-profile and power-near support. -/
 theorem a03_actual_endpoint_zero_mode_eq_native_sorted
     {a b s : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs : s<1/2)
     (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :
@@ -48,8 +43,6 @@ theorem a03_actual_endpoint_zero_mode_eq_native_sorted
     (a03SixTensorBeta ν B (phaseActualAmplifierCoefficient T g B))
     (a03SixTensorWeight normalizer ν) (hW ν)
 
-/-- Exact Fourier-integrated back-transport preserves both the native
-sorted zero integral and its integrability. -/
 theorem a03_actual_endpoint_zero_integral_eq_native_sorted
     {a b s : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs : s<1/2)
     (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :

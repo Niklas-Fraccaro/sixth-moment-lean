@@ -4,9 +4,6 @@ import Mathlib.MeasureTheory.Constructions.Pi
 import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 import Sechstmoment.Denominator.Balanced.Geometry
 
-/-! DRAFT UNTIL KERNEL CHECKED: the literal nine-edge coordinate transformation
-has determinant one.  Reindexing is a permutation of the original nine edges;
-the endpoint coordinates arise by an upper block triangular shear. -/
 
 namespace Sechstmoment
 open MeasureTheory Set

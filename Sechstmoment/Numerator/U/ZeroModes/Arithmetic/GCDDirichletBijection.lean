@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.GCDDirichlet
 
-/-! Genuine divisor reindexing of the original GCD kernel.  Each divisor
-and residual factor is recovered by a gcd and exact natural-number division. -/
 
 namespace Sechstmoment
 open Nat Complex
@@ -43,14 +41,11 @@ def a03GCDDivisorEquiv (b : ℕ) (hb : 0<b) :
         ⟨k,hk,hkpos,m,hm,hcop⟩
       simp only [hgcd,Nat.mul_div_cancel_left _ hkpos]
 
-/-- This is the actual `k|b`, `l|a` bijection used before (22). -/
 def a03GCDPairDivisorEquiv (a b : ℕ) (ha : 0<a) (hb : 0<b) :
     ({m : ℕ // 0<m} × {n : ℕ // 0<n}) ≃
       (A03GCDDivisorIndex b × A03GCDDivisorIndex a) :=
   Equiv.prodCongr (a03GCDDivisorEquiv b hb) (a03GCDDivisorEquiv a ha)
 
-/-- The original gcd is exactly `k*l*gcd(m',n')`, including all prime powers
-of the two amplifier integers. -/
 theorem a03GCDPairDivisor_gcd {a b : ℕ} (hab : a.Coprime b)
     (x : A03GCDDivisorIndex b) (y : A03GCDDivisorIndex a) :
     Nat.gcd (a*(x.divisor*x.residual)) (b*(y.divisor*y.residual))=
@@ -77,7 +72,6 @@ def a03GCDDivisorDirichletTerm {a b : ℕ} (w z s : ℂ)
     (Nat.gcd x.residual y.residual:ℂ)^(1-s)*
       (x.residual:ℂ)^(-(1+w))*(y.residual:ℂ)^(-(1+z))
 
-/-- Reindexing preserves the literal summand, with the actual powers in (22). -/
 theorem a03GCDDirichletTerm_divisor {a b : ℕ} (hab : a.Coprime b)
     (w z s : ℂ) (x : A03GCDDivisorIndex b) (y : A03GCDDivisorIndex a) :
     a03GCDDirichletTerm a b w z s
@@ -137,9 +131,6 @@ theorem a03GCDDirichlet_eq_positiveSum (a b : ℕ) (w z s : ℂ) :
     (fun x : {x : ℕ × ℕ // 0<x.1 ∧ 0<x.2} => a03GCDDirichletTerm a b w z s x.val)
     |>.symm
 
-/-- Exact (22)-reindexing of the *original* GCD Dirichlet series.  The two
-divisor sets, positive residuals and both coprimality restrictions are retained
-in the target index type. -/
 theorem a03GCDDirichlet_eq_divisorSum {a b : ℕ} (ha : 0<a) (hb : 0<b)
     (hab : a.Coprime b) (w z s : ℂ) :
     a03GCDDirichlet a b w z s=
@@ -167,7 +158,6 @@ theorem a03GCDDivisorDirichletTerm_norm_summable {a b : ℕ}
   intro xy
   exact congrArg norm (a03GCDDirichletTerm_divisor hab w z s xy.1 xy.2)
 
-/-- The first, common-amplifier gcd in BBLR §4 is retained explicitly. -/
 theorem a03GCDDirichletTerm_commonAmplifier (g a b : ℕ) (w z s : ℂ)
     (x : ℕ × ℕ) :
     a03GCDDirichletTerm (g*a) (g*b) w z s x=
@@ -189,8 +179,6 @@ theorem a03GCDDirichlet_commonAmplifier (g a b : ℕ) (w z s : ℂ) :
   simp_rw [a03GCDDirichletTerm_commonAmplifier]
   exact tsum_mul_left
 
-/-- Both reindexings applied to arbitrary positive amplifier integers, with
-`g=gcd(a,b)` and the genuinely coprime residual amplifiers. -/
 theorem a03GCDDirichlet_eq_gcdAmplifier_divisorSum {a b : ℕ}
     (ha : 0<a) (hb : 0<b) (w z s : ℂ) :
     a03GCDDirichlet a b w z s=

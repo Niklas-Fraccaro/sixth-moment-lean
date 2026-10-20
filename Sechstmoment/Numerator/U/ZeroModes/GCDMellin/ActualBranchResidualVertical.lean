@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ActualBranchResidualAggregate
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ResidualVertical
 
-/-! The full outer Mellin line for the actual original/dual ratio remainder,
-with genuine integrability uniformly on the original normalized shift set. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

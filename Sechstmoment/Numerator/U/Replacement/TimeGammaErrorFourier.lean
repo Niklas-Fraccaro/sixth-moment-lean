@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Replacement.TimeGammaErrorGaussian
 import Sechstmoment.Numerator.U.Separation.Frequency.ActualFarIntegral
 import Sechstmoment.Numerator.U.Separation.Frequency.GammaProfile
 
-/-! Actual weight replacement-error Fourier symbol. Every frequency seminorm
-keeps the proven saving T⁻¹ before the actual AFE index sums are estimated. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped ContDiff BigOperators Topology
@@ -42,7 +40,6 @@ theorem a03_gaussian_replacement_frequency_uniform_derivative_bounds
     hBd T σ α v x hT hlog hα hroot hz hx j
   exact hCd _ hAc B hB (T^(ε-1)) (Real.rpow_nonneg (by linarith) _) hAd k N ξ
 
-/-- All orders are uniform on the actual logarithmic contour truncation. -/
 theorem a03_gaussian_replacement_frequency_logarithmic_uniform_derivative_bounds
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 2*c<ε) (hκ : 0<κ) (hθ : 0≤θ) :
@@ -88,9 +85,6 @@ theorem a03_gaussian_replacement_actual_time_exact_rescaling (Φ : ℝ→ℂ)
   push_cast
   ring
 
-/-- The genuine time-integrated replacement kernel, with its exact arithmetic
-frequency. The bound includes all four AFE variables without substituting a
-free near-gap parameter. -/
 theorem a03_gaussian_replacement_actual_time_uniform_weighted_bound
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 2*c<ε) (hκ : 0<κ) (hθ : 0≤θ) :
@@ -122,8 +116,6 @@ theorem a03_gaussian_replacement_actual_time_uniform_weighted_bound
       ring
 
 
-/-- The actual integrated error is uniformly a rapidly decreasing symbol at
-the exact amplified AFE frequency, including frequency zero. -/
 theorem a03_gaussian_replacement_actual_time_uniform_schwartz_bound
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 2*c<ε) (hκ : 0<κ) (hθ : 0≤θ) :
@@ -170,8 +162,6 @@ def rectangularWeightReplacementMellinKernel (G : ℂ→ℂ) (α : MomentShifts)
   G z/z*(bblrGammaQuotient t α z-(t/2:ℂ)^(2*z))*(Real.pi:ℂ)^(-2*z)*
     rectangularAFEOscillation t n/∏ j : Fin 4, (n j+1:ℂ)^(1/2+α j+z)
 
-/-- Exact time factorization retains both real amplifier coefficients and all
-four literal AFE denominator powers. -/
 theorem rectangular_weight_replacement_actual_time_factorization (T : ℝ)
     (f g Φ : ℝ→ℝ) (σ α : MomentShifts) (u v : ℕ) (n : Fin 4→ℕ) (z : ℂ) :
     (∫ t : ℝ, rectangularMomentPairWeight T f g Φ u v t*
@@ -194,8 +184,6 @@ theorem rectangular_weight_replacement_actual_time_factorization (T : ℝ)
       unfold phaseActualAmplifierPairConstant
       ring
 
-/-- The actual amplified Mellin error has a uniform rapidly decreasing
-frequency budget. The complete arithmetic prefactor is explicit. -/
 theorem rectangular_weight_replacement_actual_time_uniform_schwartz_bound
     {Φ : ℝ→ℝ} (hΦ : SmoothDyadicWeight Φ)
     {c ε κ θ : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 2*c<ε) (hκ : 0<κ) (hθ : 0≤θ) :

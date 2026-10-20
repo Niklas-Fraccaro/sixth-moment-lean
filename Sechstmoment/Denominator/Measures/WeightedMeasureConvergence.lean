@@ -3,9 +3,6 @@ import Sechstmoment.Denominator.Measures.DiagonalMeasureFinite
 import Sechstmoment.Denominator.Measures.EuclideanLaplace
 import Sechstmoment.Denominator.Measures.LimitMeasureIntegral
 
-/-! Weak convergence of the actual finite exponential tilts.  The Fourier
-transform is the complex Laplace transform of the original six logarithmic
-coordinates; the nine-edge push-forward is the explicit limiting measure. -/
 
 namespace Sechstmoment
 open MeasureTheory Filter Set

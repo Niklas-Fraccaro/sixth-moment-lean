@@ -1,7 +1,6 @@
 import Mathlib.Analysis.Complex.Basic
 import Mathlib.LinearAlgebra.Lagrange
 
-/-! Exact partial fractions at the separated Mellin poles. -/
 
 namespace Sechstmoment.Source
 open Complex Polynomial

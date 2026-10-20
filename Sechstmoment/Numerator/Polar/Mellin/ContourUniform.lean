@@ -1,14 +1,6 @@
 import Sechstmoment.Numerator.Polar.ContourShift
 import Sechstmoment.Numerator.Polar.RemainderDecay
 
-/-!
-# Uniform asymptotic conclusion for the literal weighted Mellin contour
-
-The genuine rectangle displacement is combined with the independently proved
-left-contour remainder estimate. Both the removed-kernel value and its actual
-Euler/zeta expression are identified explicitly. The normalized root gap is
-used only to exclude collisions and to bound the actual pole-killer growth.
--/
 
 namespace Sechstmoment
 
@@ -38,8 +30,6 @@ theorem polarMellinWeightedKernel_contour_shift_explicit_residue
   rw [polarMellinWeightedKernel_contour_shift T σ m hδ hδ1 hx hα hu hv hρ,
     polarMellinRemovedKernel_zero T σ m u v hρ]
 
-/-- Uniform power decay of the difference between the actual right-line
-integral and its actual removed-kernel value at zero. -/
 theorem polarMellinWeightedKernel_uniform_eventually_power_decay {R δ κ : ℝ}
     (hR : 0 ≤ R) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hκ : 0 < κ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ᶠ T : ℝ in atTop,
@@ -63,8 +53,6 @@ theorem polarMellinWeightedKernel_uniform_eventually_power_decay {R δ κ : ℝ}
     add_sub_cancel_left]
   exact hB σ hσ hgap m u v hu hv t ht
 
-/-- The same uniform power estimate with the principal term written as its
-literal shifted Euler factor times the four literal pure zeta factors. -/
 theorem polarMellinWeightedKernel_explicit_residue_uniform_eventually_power_decay
     {R δ κ : ℝ} (hR : 0 ≤ R) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hκ : 0 < κ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ᶠ T : ℝ in atTop,

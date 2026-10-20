@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Bivariate.RestNorms
 
-/-! A uniform region closing convergence, pole cancellation and all local remainder bounds. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPLocalClosure

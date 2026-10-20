@@ -1,7 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalScaleAlgebra
 
-/-! Full positive spatial mass for the actual degree-ten native GCD envelope. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

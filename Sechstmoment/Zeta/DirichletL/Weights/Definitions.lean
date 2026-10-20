@@ -1,10 +1,6 @@
 import Sechstmoment.Zeta.DirichletL.GammaWeights
 import Sechstmoment.Zeta.DirichletL.SquareSeries
 
-/-! Character-independent smooth-square weights, exactly as in the plan.
-The conductor occurs only in the argument `π*n/N`, and the character occurs
-in the weight only through its parity.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set
@@ -105,7 +101,6 @@ theorem dirichletSquareSeriesWeight_eq {N : ℕ} [NeZero N]
     rw [← squareSmooth_scale_power]
     ring
 
-/-- The derived AFE with the parity-only Gamma weights of the supplied plan. -/
 theorem dirichletL_square_eq_canonical_smooth_series {N : ℕ} [NeZero N]
     (χ : DirichletCharacter ℂ N) (hχ : χ ≠ 1) (hprim : χ.IsPrimitive)
     {s : ℂ} (hs0 : 0 < s.re) (hs1 : s.re < 1) :

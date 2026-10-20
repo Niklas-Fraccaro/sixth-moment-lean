@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.V.Arithmetic.FourDirichletPNatMass
 import Sechstmoment.Numerator.V.Arithmetic.SeriesReplacement
 import Sechstmoment.Numerator.V.Chi.ShiftedGlobalChiKernel
 
-/-! Additive reduction of the actual four-zeta integral, before the finite
-amplifier sums. All frequencies are summed using the absolute fourfold mass. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

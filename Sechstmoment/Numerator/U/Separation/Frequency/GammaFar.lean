@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.Frequency.ActualFarIntegral
 import Sechstmoment.Numerator.U.Separation.Frequency.GammaProfile
 
-/-! Uniform arbitrary-power decay on the entire actual far-gap region.
-The exact amplifier-adjusted phase, Gamma quotient and polar Gaussian are
-retained; no comparability restriction is imposed on arithmetic products. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped ContDiff BigOperators Topology

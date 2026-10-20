@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Replacement.VStar.TimeMellinEnvelope
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.Front
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.GammaCosStripGrowth
 
-/-! Full height and spatial envelopes of the literal time-smoothed
-cosine Mellin factor in the native GCD front. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

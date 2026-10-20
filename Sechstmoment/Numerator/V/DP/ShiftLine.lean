@@ -2,19 +2,11 @@ import Sechstmoment.Analysis.Complex.CauchyBounds
 import Sechstmoment.Arithmetic.QuadraticDivisor.Definitions
 import Sechstmoment.Numerator.V.DP.DPCoincidentTransfer
 
-/-!
-# Genuine all-order Cauchy transfer on normalized complex shift lines
-
-A joint complex derivative of the actual moment suffices here: after restriction
-to a complex line, ordinary holomorphy and all-order Cauchy estimates apply.
-No higher joint regularity is assumed.
--/
 namespace Sechstmoment
 open Complex Set Metric Filter MeasureTheory Polynomial
 open scoped Topology
 noncomputable section
 
-/-- An actual complex line in the four normalized shift coordinates. -/
 def momentShiftLine (v : MomentShifts) (z : ℂ) : MomentShifts := fun j => z*v j
 
 theorem momentShiftLine_differentiable (v : MomentShifts) :
@@ -32,8 +24,6 @@ theorem momentShiftLine_mem_polydisc (R : Fin 4 → ℝ) (v : MomentShifts)
   rw [norm_mul]
   exact (mul_le_of_le_one_left (norm_nonneg (v j)) hz).trans (hv j)
 
-/-- All derivatives along any line contained in the true polydisc retain the
-same majorant, with the usual factorial constant. -/
 theorem shiftLine_cauchy_polydisc_bound (n : ℕ) (R : Fin 4 → ℝ)
     (v : MomentShifts) (hv : v ∈ rectangularClosedPolydisc R)
     (f : MomentShifts → ℂ) (hf : DifferentiableOn ℂ f (rectangularClosedPolydisc R))
@@ -52,15 +42,12 @@ theorem shiftLine_cauchy_polydisc_bound (n : ℕ) (R : Fin 4 → ℝ)
 
 namespace Source
 
-/-- The literal DP source-moment error restricted to an actual complex line. -/
 def dpActualMomentShiftLineError (T η : ℝ) (P : ℝ[X]) (Φ : ℝ → ℝ)
     (v : MomentShifts) (z : ℂ) : ℂ :=
   chiTwistedFourthMoment T (rawMomentShifts T (momentShiftLine v z))
     (zeroExtendedPolynomialProfile η P) (zeroExtendedPolynomialProfile η P) Φ-
     (T : ℂ)*(∫ x : ℝ, (Φ x : ℂ))*dpRegularLeadingDensity T η P (momentShiftLine v z)
 
-/-- Actual source moments: every fixed derivative order in a normalized complex
-shift line has the genuine `T log^8 T` error, uniformly in the weight and line. -/
 theorem dpActualMoment_shiftLine_uniform_derivative_bound (n : ℕ)
     (hsource : DPv2SharpInput) (η : ℝ) (hη : 0 < η) (hηu : η < 1/4)
     (P : ℝ[X]) (B : ℝ) (hB : 0 ≤ B) :

@@ -4,9 +4,6 @@ import Sechstmoment.Numerator.U.ZeroModes.EightEtaFrontMainBudget
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.ActivePassiveComparison
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.PassiveMaskBound
 
-/-! The actual source-only A03 uniform little-o completion. Every native
-reconstruction and mask comparison is supplied by a proved theorem;
-the final analytic inputs are the unchanged fixed AFE and oriented source inputs. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -35,8 +32,6 @@ theorem a03EightUnrestricted_eventually_eq_actualEtaFront
   unfold a03EightActualEtaFront
   simp only [Finset.mul_sum,a03SourceNormalizedChamber_raw,a03SourceShifts]
 
-/-- Eight actual unrestricted native branches produce the four literal
-crossed BBLR main terms, uniformly on the original compact shift domain. -/
 theorem a03EightUnrestricted_minus_literal_crossed_uniform_oT
     {a b : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)
     (K : Set MomentShifts) (hK : IsCompact K) {κ : ℝ} (hκ : 0<κ)
@@ -74,8 +69,6 @@ private theorem norm_eight_bool_sum_le (F : Bool→Bool→Bool→ℂ) (E : ℝ)
       exact Finset.sum_le_sum (fun n _ => hF dual m n)
     _=_ := by simp only [Fintype.sum_bool]; ring
 
-/-- The eight retained source branches converge to the eight unrestricted
-native branches. The only source input is the unchanged oriented divisor-sum input. -/
 theorem a03ActualRetained_minus_unrestricted_uniform_slack_smaller
     (hSource : SeparatedQuadraticInput) {a b : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)
@@ -148,9 +141,6 @@ theorem a03ActualRetained_minus_unrestricted_uniform_slack_smaller
   simp_rw [←Finset.sum_sub_distrib]
   exact (norm_eight_bool_sum_le _ ((δ/8)*T) hsingle).trans_eq (by ring)
 
-/-- Source-only A03 on the original compact normalized-shift domain.
-The smooth functions and the root gap are fixed before T. Both original
-paper inputs remain explicit; no reconstruction or final error bound is assumed. -/
 theorem a03SourceOnly_uniform_oT
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput) {a b : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)

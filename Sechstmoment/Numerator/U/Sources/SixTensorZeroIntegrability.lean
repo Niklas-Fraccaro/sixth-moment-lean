@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.ShapeNormalization
 import Sechstmoment.Numerator.U.Separation.SixTensorSource
 
-/-! Absolute product integrability for the literal zero-mode physical integral
-of a separated six-variable Schwartz tensor. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators FourierTransform RealInnerProductSpace Topology

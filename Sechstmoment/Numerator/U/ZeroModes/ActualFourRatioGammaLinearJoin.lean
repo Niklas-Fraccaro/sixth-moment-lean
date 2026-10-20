@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.OffdiagonalGammaMoment
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ZeroReplacementMoment
 
-/-! The genuine four chamber Gamma-to-linear replacement is summed over
-both AFE branches with the literal 1/(2*pi) Mellin prefactor. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff
@@ -79,8 +77,6 @@ theorem a03_actual_four_ratio_Gamma_zero_sub_linear_uniform
     _≤∑ _dual : Bool,(δ/2)*T := Finset.sum_le_sum (fun dual _ => hdual dual)
     _=δ*T := by simp only [Fintype.sum_bool]; ring
 
-/-- The source caps pay for the full Gamma-to-linear replacement budget,
-using the same positive contour and source epsilon as the genuine factory. -/
 theorem a03_actual_four_ratio_replacement_slack_budget {a b s u : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs : s≤1/8) (hu : u≤1/8) :
     0<rectangularSlack a b/512 ∧ rectangularSlack a b/512≤1 ∧

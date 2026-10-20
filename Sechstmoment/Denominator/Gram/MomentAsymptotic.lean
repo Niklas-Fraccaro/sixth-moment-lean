@@ -3,8 +3,6 @@ import Sechstmoment.Denominator.Gram.MomentIntegration
 import Sechstmoment.Denominator.Gram.PhaseClosure
 import Sechstmoment.Denominator.Unbalanced.Asymptotic
 
-/-! Actual Gram moment limits, assembled from the closed D02 and D04
-theorems, the actual extreme phase, and the proved FE reflection remainder. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Polynomial Filter
 open scoped BigOperators Topology ComplexConjugate
@@ -261,8 +259,6 @@ theorem d06ProjectedPolynomialGramMoment_VV_normalized_tendsto
   simp only [d06GramKernel, Equiv.refl_apply]
   ring
 
-/-- Every orientation of the actual projected Gram moment has its concrete
-geometric kernel limit. The two test caps are individually below one half. -/
 theorem d06ProjectedPolynomialGramMoment_normalized_tendsto
     (τ σ : TestType) (a : Fin 4 → ℝ) (ha : ∀ i,0<a i)
     (hp1 : a 0+a 1<1/2) (hp2 : a 2+a 3<1/2)

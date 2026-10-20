@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.Tensor.Normalizer
 import Sechstmoment.Numerator.U.Separation.Tensor.SixFourierUniform
 
-/-! A complete genuine uniform tensor-separation theorem. A common bounded
-Schwartz family yields an exact five-weight integral representation, a single
-all-order derivative sequence, and uniformly integrable coefficients. -/
 
 namespace Sechstmoment
 open Complex Real Set MeasureTheory

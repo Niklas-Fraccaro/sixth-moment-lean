@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.TwoCoefficients
 
-/-! Coefficients of a product of three geometric series. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Contour.ShiftedChiFactor
 import Sechstmoment.Numerator.V.PolynomialDefinitions
 
-/-! Exact identification of the actual V generator with a single shifted chi
-moment. The phase and the original polynomial amplifiers are retained. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

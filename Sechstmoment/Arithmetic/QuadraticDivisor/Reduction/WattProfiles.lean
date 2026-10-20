@@ -54,12 +54,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.BlockSums
 import Std
 
-/-! ## Watt Dilation
-
-The fixed doubling required by the literal Watt statement is included in
-all three size checks. No assertion about the concrete profile derivatives
-or about reindexing the divisor integrand is hidden in this module.
--/
 namespace DivisorProof
 open Real Classical
 noncomputable section
@@ -83,7 +77,6 @@ theorem WattScales.doubled_X (p : WattScales) : p.doubled.X = 2*p.X := by
   rw [hratio,Real.sqrt_mul (by norm_num : (0:ℝ) ≤ 4)]
   norm_num
 
-/-- A single fixed natural-scale reserve suffices after doubling. -/
 theorem WattScales.doubled_sizes {p : WattScales} {ρ F : ℝ}
     (hp : 0 ≤ p.product) (_hH : 0 ≤ p.H) (hC : 0 ≤ p.C)
     (hS : 0 ≤ p.S) (hP : 0 ≤ p.P) (hV : 0 ≤ p.V)
@@ -119,8 +112,6 @@ theorem WattScales.doubled_sizes {p : WattScales} {ρ F : ℝ}
     rw [hid]
     nlinarith [sq_nonneg (p.R*p.S)]
 
-/-- Invoke the open weighted Watt theorem only after all three dilated
-numerical conditions have been proved. The weight data remain explicit. -/
 theorem weightedWatt_at_doubled_natural_scales (hWatt : WeightedWattBound)
     {ρ δ K : ℝ} (hρ : 0 < ρ) (hδ : 0 < δ)
     (hbound : ρ ≤ δ/(1000*(1+δ))) (hK : 1 ≤ K)
@@ -167,12 +158,6 @@ end DivisorProof
 
 
 
-/-! ## Watt Profiles
-
-Uniform scaled mixed derivatives for the separated two-variable profile
-appearing in §6.1. All constants are obtained from the original fixed
-derivative sequence, not chosen separately for each arithmetic tuple.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators ContDiff
@@ -218,8 +203,6 @@ theorem poissonProfile_scaled_derivative_bound {W₂ W₄ : ℝ → ℝ}
   rw [hpow]
   exact mul_le_mul_of_nonneg_left hbound (Real.rpow_nonneg hV.le _)
 
-/-- Derivatives have the multiplicative `x^-j` form required by (Wa), even
-away from the support, because every derivative vanishes there. -/
 theorem poissonProfile_multiplicative_derivative_bound {W₂ W₄ : ℝ → ℝ}
     {a b V K : ℝ} {bounds : ℕ → ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
@@ -273,7 +256,6 @@ theorem separatedWattProfile_mixed_derivative (W : Fin 5 → ℝ → ℝ)
         iteratedDeriv j (poissonProfile (W 3) (W 2) c d) y := by
   simp only [separatedWattProfile,iteratedDeriv_mul_const_field,iteratedDeriv_const_mul_field]
 
-/-- Uniform mixed derivative constants for the precise four-weight profile. -/
 theorem separatedWattProfile_mixed_bound {W : Fin 5 → ℝ → ℝ}
     {a b c d V P K : ℝ} {bounds : ℕ → ℝ}
     (hW : ∀ i, SmoothDyadicWeight (W i))
@@ -295,8 +277,6 @@ theorem separatedWattProfile_mixed_bound {W : Fin 5 → ℝ → ℝ}
         mul_le_mul h₁ h₂ (norm_nonneg _) ((norm_nonneg _).trans h₁)
     _ = _ := by ring
 
-/-- The normalized slopes for the actual `v,p` profile are bounded by
-`4K` throughout the common spatial support. -/
 theorem naturalWatt_profile_slopes {ρ K : ℝ} {q : QuadraticScales}
     (h : ScaleGeometry ρ K q) (hK : 1 ≤ K)
     {d d₁ d₂ d₃ d₄ r s x : ℝ}
@@ -332,8 +312,6 @@ theorem naturalWatt_profile_slopes {ρ K : ℝ} {q : QuadraticScales}
       _ = 4 := hid₂
       _ ≤ 4*K := by linarith
 
-/-- Mixed bounds for the actual four smooth weights of §6.1, with a
-single sequence uniform in the scales, divisors, coefficients and `x`. -/
 theorem naturalWatt_gamma_mixed_bound {ρ K : ℝ} {q : QuadraticScales}
     {bounds : ℕ → ℝ} {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (h : ScaleGeometry ρ K q) (hK : 1 ≤ K)

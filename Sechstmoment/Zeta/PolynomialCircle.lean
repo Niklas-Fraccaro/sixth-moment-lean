@@ -3,9 +3,6 @@ import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 import Mathlib.Tactic
 import Sechstmoment.Zeta.Generators
 
-/-! Cauchy extraction of the manuscript's actual polynomial zeta tests.
-This proves the derivative representation without assuming any moment
-asymptotic or any convergence of derivatives. -/
 namespace Sechstmoment
 open Complex Real Polynomial MeasureTheory Filter Set Metric
 open scoped Topology
@@ -48,7 +45,6 @@ theorem d02ShiftedZetaGenerator_differentiableOn {T : ℝ} {s : ℂ}
   exact ((by fun_prop : DifferentiableAt ℂ (fun w : ℂ => Complex.exp (w/2)) z).mul
     (hzeta.comp z (by fun_prop))).differentiableWithinAt
 
-/-- Exact Cauchy representation for either critical-line generator. -/
 theorem d02_zetaPolynomialDerivative_eq_circle {T : ℝ} (s : ℂ)
     (hT : 1 < T) (hL : 1 ≤ Real.log T) (hs : 1 < |s.im|) (p : ℝ[X]) :
     zetaPolynomialDerivative T p s = d02PolynomialCircle p (shiftedZetaGenerator T s) := by
@@ -105,8 +101,6 @@ private theorem d02CircleKernel_continuousOn (m : ℕ) :
   have hn : ‖z‖ = 1 := mem_sphere_zero_iff_norm.mp hz
   simp [hzero] at hn
 
-/-- Cauchy coefficients pass through genuine uniform convergence on the unit circle.
-No limit of derivatives is assumed. -/
 theorem d02CircleExtract_tendsto {ι : Type*} {l : Filter ι} [l.IsCountablyGenerated]
     (m : ℕ) {F : ι → ℂ → ℂ} {g : ℂ → ℂ}
     (hf : ∀ᶠ i in l, ContinuousOn (F i) (sphere (0 : ℂ) 1))
@@ -126,7 +120,6 @@ theorem d02CircleExtract_tendsto {ι : Type*} {l : Filter ι} [l.IsCountablyGene
   unfold d02CircleExtract
   exact tendsto_const_nhds.mul ht
 
-/-- Finite polynomial extraction commutes with uniform circle limits. -/
 theorem d02PolynomialCircle_tendsto {ι : Type*} {l : Filter ι} [l.IsCountablyGenerated]
     (p : ℝ[X]) {F : ι → ℂ → ℂ} {g : ℂ → ℂ}
     (hf : ∀ᶠ i in l, ContinuousOn (F i) (sphere (0 : ℂ) 1))
@@ -137,7 +130,6 @@ theorem d02PolynomialCircle_tendsto {ι : Type*} {l : Filter ι} [l.IsCountablyG
   intro m hm
   exact tendsto_const_nhds.mul (d02CircleExtract_tendsto m hf hF)
 
-/-- The derivative limit is a consequence of Cauchy's formula and circle convergence. -/
 theorem d02_iteratedDeriv_tendsto_of_uniform_circle
     {ι : Type*} {l : Filter ι} [l.IsCountablyGenerated]
     (m : ℕ) {F : ι → ℂ → ℂ} {g : ℂ → ℂ}
@@ -150,7 +142,6 @@ theorem d02_iteratedDeriv_tendsto_of_uniform_circle
   rw [d02CircleExtract_eq_iteratedDeriv m g hg] at hc
   exact hc.congr' (hf.mono fun i hi => d02CircleExtract_eq_iteratedDeriv m (F i) hi)
 
-/-- Exponential limiting generators give the literal real polynomial value. -/
 theorem d02PolynomialCircle_tendsto_exp_real
     {ι : Type*} {l : Filter ι} [l.IsCountablyGenerated]
     (p : ℝ[X]) (x : ℝ) {F : ι → ℂ → ℂ}
@@ -160,7 +151,6 @@ theorem d02PolynomialCircle_tendsto_exp_real
     Tendsto (fun i => d02PolynomialCircle p (F i)) l (𝓝 ((p.eval x : ℝ) : ℂ)) := by
   simpa only [d02PolynomialCircle_exp_real] using d02PolynomialCircle_tendsto p hf hF
 
-/-- Scalar extraction is linear without an extra integrability hypothesis. -/
 theorem d02CircleExtract_const_mul (m : ℕ) (a : ℂ) (f : ℂ → ℂ) :
     d02CircleExtract m (fun z => a * f z) = a * d02CircleExtract m f := by
   have hfun : (fun z : ℂ => (1 / z ^ (m + 1)) * (a * f z)) =
@@ -241,7 +231,6 @@ theorem d02PolynomialCircle_congr (p : ℝ[X]) {f g : ℂ → ℂ}
     (p.coeff m : ℂ) * d02CircleExtract m g
   rw [d02CircleExtract_congr m hfg]
 
-/-- A bound on the generator gives a bound on each Cauchy coefficient. -/
 theorem d02CircleExtract_norm_le (m : ℕ) {f : ℂ → ℂ} {C : ℝ}
     (hf : ∀ z ∈ sphere (0 : ℂ) 1, ‖f z‖ ≤ C) :
     ‖d02CircleExtract m f‖ ≤ (m.factorial : ℝ) * C := by
@@ -255,7 +244,6 @@ theorem d02CircleExtract_norm_le (m : ℕ) {f : ℂ → ℂ} {C : ℝ}
   simp only [smul_eq_mul, one_mul] at h
   simpa using mul_le_mul_of_nonneg_left h (by positivity : 0 ≤ (m.factorial : ℝ))
 
-/-- Polynomial extraction has a finite operator bound of every degree. -/
 def d02PolynomialCircleBound (p : ℝ[X]) : ℝ :=
   p.sum fun m a => |a| * (m.factorial : ℝ)
 
@@ -278,7 +266,6 @@ theorem d02PolynomialCircle_norm_le (p : ℝ[X]) {f : ℂ → ℂ} {C : ℝ}
       exact mul_le_mul_of_nonneg_left (d02CircleExtract_norm_le m hf) (abs_nonneg _)
     _ = _ := by simp_rw [← mul_assoc]; exact (Finset.sum_mul _ _ _).symm
 
-/-- Pointwise convergence and one uniform norm bound suffice on the circle. -/
 theorem d02CircleExtract_tendsto_of_dominated
     {ι : Type*} {l : Filter ι} [l.IsCountablyGenerated]
     (m : ℕ) {F : ι → ℂ → ℂ} {g : ℂ → ℂ} {C : ℝ}
@@ -332,7 +319,6 @@ theorem d02PolynomialCircle_tendsto_of_dominated
   intro m hm
   exact tendsto_const_nhds.mul (d02CircleExtract_tendsto_of_dominated m hf hbound hlim)
 
-/-- Joint continuity on the two circles makes the first extracted coefficient continuous. -/
 theorem d02CircleExtract_continuousOn_parameter (m : ℕ) (F : ℂ → ℂ → ℂ)
     (hF : ContinuousOn (Function.uncurry F)
       ((sphere (0 : ℂ) 1) ×ˢ (sphere (0 : ℂ) 1))) :
@@ -365,7 +351,6 @@ theorem d02PolynomialCircle_continuousOn_parameter (p : ℝ[X]) (F : ℂ → ℂ
   intro m hm
   exact continuousOn_const.mul (d02CircleExtract_continuousOn_parameter m F hF)
 
-/-- Two Cauchy contours transfer pointwise shift limits under a uniform norm bound. -/
 theorem d02PolynomialCircle_two_tendsto_of_dominated
     {ι : Type*} {l : Filter ι} [l.IsCountablyGenerated]
     (p q : ℝ[X]) {F : ι → ℂ → ℂ → ℂ} {g : ℂ → ℂ → ℂ} {C : ℝ}

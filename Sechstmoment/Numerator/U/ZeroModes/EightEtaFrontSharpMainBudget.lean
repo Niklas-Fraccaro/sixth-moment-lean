@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.ActualUnrestrictedGCDInitialJoin
 import Sechstmoment.Numerator.U.ZeroModes.EightEtaFrontMainBudget
 
-/-! Quantitative bounds for the eight actual eta fronts, using a freely small
-positive contour parameter and absorbing every logarithmic cost. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -264,8 +262,6 @@ theorem a03EightActualEtaFrontAtEta_minus_literal_crossed_uniform_sharp
         (mul_le_mul_of_nonneg_right (le_add_of_nonneg_left hR) (Real.rpow_nonneg hT.le _))
     _=_ := by ring
 
-/-- The literal unrestricted native expression is independent of the chosen
-Mellin start lines. Choosing a small eta gives the original rectangular rate. -/
 theorem a03ActualEightUnrestrictedRatioGCDVStar_minus_literal_crossed_uniform_sharp
     {a b : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)
     (K : Set MomentShifts) (hK : IsCompact K) {κ : ℝ} (hκ : 0<κ)

@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.V.Arithmetic.Residues.Global
 
-/-! A direct uniform remainder for the actual additive fourfold sum at
-small separated shifts. The main coefficient is the original one. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory NoDPGlobalConvolution

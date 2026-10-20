@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.V.Arithmetic.Principal.MellinNumerator
 
-/-! Exact principal-character residue coefficients at separated shifts. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory

@@ -1,9 +1,6 @@
 import Sechstmoment.Zeta.AFE.Two.Gamma
 import Sechstmoment.Zeta.AFE.Two.Series
 
-/-! Exact algebra between the pole-removed completed-pair AFE and its
-two-Gamma quotient. This identifies the weight being estimated with the
-weight of the actual Dirichlet series. -/
 namespace Sechstmoment
 open Complex Real Source
 open scoped BigOperators
@@ -63,8 +60,6 @@ theorem d02SecondAFEKernel_eq_gammaKernel (t : ℝ) (α : SecondMomentShifts)
   simp only [Fin.prod_univ_two]
   ring
 
-/-- The second AFE's literal original-line weight is exactly the
-pole-corrected Gaussian two-Gamma weight, including both pi powers. -/
 theorem d02SecondAFEWeight_eq_gammaWeight (t : ℝ) (α : SecondMomentShifts)
     (h0 : 0<(secondSourceZetaPoints t 0+α 0).re)
     (h1 : (secondSourceZetaPoints t 0+α 0).re<1)

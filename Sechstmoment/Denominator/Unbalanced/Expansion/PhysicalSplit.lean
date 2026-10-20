@@ -2,8 +2,6 @@ import Sechstmoment.Denominator.Unbalanced.CenteringPower
 import Sechstmoment.Denominator.Unbalanced.Expansion.MomentSplit
 import Sechstmoment.Denominator.Unbalanced.OffDiagonalClosure
 
-/-! Closed leading one-sided height asymptotic, retaining the exact
-physical time mean and the complete infinite off-diagonal. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

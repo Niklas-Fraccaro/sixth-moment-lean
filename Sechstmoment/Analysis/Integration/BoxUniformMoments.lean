@@ -3,8 +3,6 @@ import Mathlib.MeasureTheory.Integral.Prod
 import Mathlib.Probability.ConditionalProbability
 import Sechstmoment.Analysis.Integration.BoxMoments
 
-/-! Uniform laws behind the box moments used in D⁻¹.
-The three coordinates have a product law. No zeta asymptotic is asserted. -/
 
 namespace Sechstmoment
 open MeasureTheory

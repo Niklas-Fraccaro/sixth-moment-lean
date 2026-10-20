@@ -1,7 +1,5 @@
 import Sechstmoment.Zeta.Bounds.ZetaStripGrowth
 
-/-! Growth on the full contour strip for actual nonprincipal L-functions.
-The exponential estimate is only a Phragmen--Lindelof growth condition. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

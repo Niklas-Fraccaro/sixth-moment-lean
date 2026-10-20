@@ -1,13 +1,5 @@
 import Sechstmoment.Numerator.U.MainTerm.PrincipalProfileContours
 
-/-!
-# A04: exact logarithmic rescaling of both actual principal contours
-
-The Jacobian is derived twice from the one-dimensional Lebesgue integral
-scaling theorem. The profile transforms become fixed transforms on the
-normalized contours; the genuine shifted arithmetic kernel remains explicit.
-No limiting interchange is asserted by this algebraic identity.
--/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
@@ -77,7 +69,6 @@ theorem actualPrincipalProfileRescaledKernel_integrable
   simp only [one_mul]
   ring
 
-/-- Exact two-variable Jacobian cancellation in the actual principal term. -/
 theorem actualPrincipalProfileIntegral_log_rescaling
     (T : ℝ) (σ : MomentShifts) (m : Fin 6)
     {f g : ℝ → ℂ} (hf : HasCompactSupport f) (hfs : ContDiff ℝ ∞ f)

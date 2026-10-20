@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.ComplexLaplaceGamma
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.SmoothedCosineMellin
 
-/-! Absolute Abel-damped u/time interchange for the actual cosine profile. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -90,8 +89,6 @@ theorem a03DampedCosineTimeKernel_integral_eq {Φ : ℝ→ℂ} {s : ℂ}
       rw [integral_mul_const,integral_div,integral_add im ip]
     _=_ := by rw [vm,vp]; dsimp [rMinus,rPlus]; ring
 
-/-- Actual damped Mellin integral, evaluated after genuine absolute
-u/time interchange using the proved complex Laplace primitive. -/
 theorem a03DampedSmoothedCosine_mellin_eq_gamma {Φ : ℝ→ℂ} (hΦ : Continuous Φ)
     (hK : HasCompactSupport Φ) {s : ℂ} (hs : 0<s.re) (n : ℕ) :
     mellin (a03DampedSmoothedCosine Φ n) s=

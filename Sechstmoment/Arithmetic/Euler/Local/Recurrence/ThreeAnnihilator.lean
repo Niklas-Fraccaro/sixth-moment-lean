@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.TwoAnnihilator
 
-/-! The lower order recurrence for three geometric factors. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

@@ -2,8 +2,6 @@ import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 import Sechstmoment.Numerator.U.ZeroModes.Contour.RatioSmooth
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ContourBounds
 
-/-! Global logarithmic derivative bounds for the actual two-root ratio
-partition. Reflection supplies the negative half-line without exponential loss. -/
 namespace Sechstmoment.Source
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

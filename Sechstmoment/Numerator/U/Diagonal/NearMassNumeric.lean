@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualNearAmplifierMass
 
-/-! An explicit numerical consequence of the genuine hyperbola count.
-Product orientation is chosen freely; no near-comparability assumption enters.
--/
 namespace Sechstmoment
 open Real
 open scoped BigOperators
@@ -116,8 +113,6 @@ theorem nearFactorHarmonicBudget_le {u v L P J Q K H : ℕ} {D R : ℝ}
       have hp0 : 0≤Real.sqrt (P:ℝ) := Real.sqrt_nonneg _
       nlinarith [mul_le_mul_of_nonneg_right hh hp0]
 
-/-- Exact product orientation gives the smaller-product endpoint for the
-actual four-index mass, including diagonal tuples. -/
 theorem positiveNearFactorBlock_mass_le_symmetric
     {u v L P J Q Kp Kq H : ℕ} {D R : ℝ}
     (hu : 0<u) (hv : 0<v) (hL : 0<L) (hJ : 0<J) (hP : 0<P) (hQ : 0<Q)

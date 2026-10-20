@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Geometric.StepLinearity
 
-/-! The forward difference associated with an Euler denominator. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

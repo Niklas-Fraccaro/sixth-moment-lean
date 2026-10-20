@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.ShapeActualPowerNear
 import Sechstmoment.Numerator.U.ZeroModes.SideOrientation
 
-/-! Source orientation without changing the two discrete GCD factors.
-The soft pair-order conditions are the literal conditions of the cited source.
-No equality with a factor-sorted zero mode is asserted. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology

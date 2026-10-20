@@ -5,8 +5,6 @@ open Complex Real Source Set Filter
 open scoped BigOperators Topology
 noncomputable section
 
-/-- The actual literal sum equals its fully source-admissible normalized
-sum; the sign changes exactly when the two amplifier sides are swapped. -/
 theorem phase_actual_normalized_source_sum (positive : Bool) (T A B H : ℝ)
     (f g : ℝ → ℝ) (k : Fin 4 → ℕ) (α : MomentShifts) (z : ℂ) (l : ℕ)
     (hA : 0<A) (hB : 0<B) (hH : 0<H) :
@@ -23,8 +21,6 @@ theorem phase_actual_normalized_source_sum (positive : Bool) (T A B H : ℝ)
   rw [boundaryActual_source_sum positive T A B H f g k α z l hA hB hH]
   exact (phase_normalized_quadratic_sum _ positive _ _ _).symm
 
-/-- The retained main term is exactly the normalized source zero mode,
-with no unproved pair-swap or unit cancellation identity. -/
 theorem phase_actual_normalized_source_discrepancy (positive : Bool) (T A B H : ℝ)
     (f g : ℝ → ℝ) (k : Fin 4 → ℕ) (α : MomentShifts) (z : ℂ) (l : ℕ)
     (hA : 0<A) (hB : 0<B) (hH : 0<H) :

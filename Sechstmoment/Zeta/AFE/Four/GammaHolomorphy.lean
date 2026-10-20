@@ -1,23 +1,14 @@
 import Mathlib.Analysis.Complex.RemovableSingularity
 import Sechstmoment.Zeta.AFE.Four.GammaComparison
 
-/-!
-# Actual holomorphy of the central normalized Gamma quotient
-
-The non-pole check uses the imaginary part of every actual Gamma argument.
-The removable divided difference is Mathlib's `dslope` of this actual quotient.
-No Stirling input or analytic hypothesis about the quotient is assumed.
--/
 namespace Sechstmoment.Source
 open Complex Set Metric
 open scoped BigOperators Topology
 noncomputable section
 
-/-- The actual normalized fourfold Gamma quotient. -/
 def bblrCentralNormalizedGamma (t : ℝ) (α : MomentShifts) (z : ℂ) : ℂ :=
   bblrGammaQuotient t α z/(t/2 : ℂ)^(2*z)
 
-/-- A true open non-pole strip for all four numerator Gamma factors. -/
 def bblrCentralGammaStrip (t A : ℝ) : Set ℂ := {z | |z.im|<t-A}
 
 theorem bblrCentralGammaStrip_isOpen (t A : ℝ) : IsOpen (bblrCentralGammaStrip t A) :=
@@ -40,7 +31,6 @@ private theorem bblrCentralGammaArgument_ne_neg_nat {t A : ℝ}
   rw [he]
   simp
 
-/-- Normalization at zero is an exact identity of actual nonzero Gamma values. -/
 theorem bblrCentralNormalizedGamma_zero {t A : ℝ} (_hA : 0≤A) (ht : A<t)
     (α : MomentShifts) (hα : ∀ j, ‖α j‖≤A) :
     bblrCentralNormalizedGamma t α 0=1 := by
@@ -52,7 +42,6 @@ theorem bblrCentralNormalizedGamma_zero {t A : ℝ} (_hA : 0≤A) (ht : A<t)
     simpa only [add_zero] using bblrCentralGammaArgument_ne_neg_nat α hα hz j
   simp [bblrCentralNormalizedGamma,bblrGammaQuotient,hg]
 
-/-- Actual holomorphy of the normalized quotient on its non-pole strip. -/
 theorem bblrCentralNormalizedGamma_differentiableOn {t A : ℝ}
     (hA : 0≤A) (ht : A<t) (α : MomentShifts) (hα : ∀ j, ‖α j‖≤A) :
     DifferentiableOn ℂ (bblrCentralNormalizedGamma t α) (bblrCentralGammaStrip t A) := by
@@ -72,14 +61,12 @@ theorem bblrCentralNormalizedGamma_differentiableOn {t A : ℝ}
     (differentiableOn_id.const_mul (2:ℂ)).const_cpow (.inl hb)
   exact hQ.div hP (fun z _ => by simp [hb])
 
-/-- Joint receipt in the actual one-variable analytic predicate. -/
 theorem bblrCentralNormalizedGamma_analyticOnNhd {t A : ℝ}
     (hA : 0≤A) (ht : A<t) (α : MomentShifts) (hα : ∀ j, ‖α j‖≤A) :
     AnalyticOnNhd ℂ (bblrCentralNormalizedGamma t α) (bblrCentralGammaStrip t A) :=
   (bblrCentralNormalizedGamma_differentiableOn hA ht α hα).analyticOnNhd
     (bblrCentralGammaStrip_isOpen t A)
 
-/-- The actual divided Gamma error extends holomorphically through zero. -/
 theorem bblrCentralNormalizedGamma_dslope_differentiableOn {t A : ℝ}
     (hA : 0≤A) (ht : A<t) (α : MomentShifts) (hα : ∀ j, ‖α j‖≤A) :
     DifferentiableOn ℂ (dslope (bblrCentralNormalizedGamma t α) 0)
@@ -97,7 +84,6 @@ theorem bblrCentralNormalizedGamma_dslope_analyticOnNhd {t A : ℝ}
   (bblrCentralNormalizedGamma_dslope_differentiableOn hA ht α hα).analyticOnNhd
     (bblrCentralGammaStrip_isOpen t A)
 
-/-- The divided difference equals the literal divided error at every nonzero point. -/
 theorem bblrCentralNormalizedGamma_dslope_eq {t A : ℝ}
     (hA : 0≤A) (ht : A<t) (α : MomentShifts) (hα : ∀ j, ‖α j‖≤A)
     {z : ℂ} (hz : z≠0) :
@@ -105,8 +91,6 @@ theorem bblrCentralNormalizedGamma_dslope_eq {t A : ℝ}
       (bblrCentralNormalizedGamma t α z-1)/z := by
   rw [dslope_of_ne _ hz,slope_def_field,sub_zero,bblrCentralNormalizedGamma_zero hA ht α hα]
 
-/-- A growing central disk is contained in the actual holomorphy strip as soon
-as its radius is below t-A. -/
 theorem bblrCentralGamma_ball_subset_strip {t A R : ℝ} (hR : R<t-A) :
     ball (0:ℂ) R ⊆ bblrCentralGammaStrip t A := by
   intro z hz
@@ -125,8 +109,6 @@ theorem bblrCentralNormalizedGamma_dslope_analyticOnNhd_ball {t A R : ℝ}
   (bblrCentralNormalizedGamma_dslope_analyticOnNhd hA ht α hα).mono
     (bblrCentralGamma_ball_subset_strip hR)
 
-/-- Small actual shifts put every numerator Gamma argument in the positive
-real half-plane for all contour heights whenever Re z>0. -/
 theorem bblrCentralNormalizedGamma_differentiableOn_rightHalfPlane {t : ℝ}
     (ht : 0<t) (α : MomentShifts) (hα : ∀ j, ‖α j‖≤1/4) :
     DifferentiableOn ℂ (bblrCentralNormalizedGamma t α) {z : ℂ | 0<z.re} := by
@@ -158,8 +140,6 @@ theorem bblrCentralNormalizedGamma_analyticOnNhd_rightHalfPlane {t : ℝ}
   (bblrCentralNormalizedGamma_differentiableOn_rightHalfPlane ht α hα).analyticOnNhd
     (isOpen_lt continuous_const Complex.continuous_re)
 
-/-- The same actual divided difference is holomorphic at every height on a
-positive contour line; the strip receipt separately handles its value at zero. -/
 theorem bblrCentralNormalizedGamma_dslope_analyticOnNhd_rightHalfPlane {t : ℝ}
     (ht : 0<t) (α : MomentShifts) (hα : ∀ j, ‖α j‖≤1/4) :
     AnalyticOnNhd ℂ (dslope (bblrCentralNormalizedGamma t α) 0) {z : ℂ | 0<z.re} := by

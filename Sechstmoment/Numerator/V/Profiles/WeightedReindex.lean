@@ -2,7 +2,6 @@ import Sechstmoment.Analysis.Harmonic.FiniteReindex
 import Sechstmoment.Arithmetic.Euler.Convolution.Factorization
 import Sechstmoment.Numerator.V.Profiles.SourceProfile
 
-/-! The production polynomial profiles as finitely supported arithmetic weights. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex Set Polynomial NoDPGlobalConvolution

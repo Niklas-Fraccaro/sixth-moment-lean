@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.ActualSeparatedGap
 import Sechstmoment.Numerator.U.Separation.PhaseCoefficientBounds
 
-/-! Actual localized amplifier coefficients, without an assumed support
-receipt. Their bounds are uniform in T and in the binomial index. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

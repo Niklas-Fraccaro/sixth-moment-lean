@@ -1,8 +1,6 @@
 import Mathlib.Analysis.Calculus.ContDiff.Bounds
 import Mathlib.Tactic
 
-/-! The chain-rule powers of a varying phase are cancelled by genuine
-rapid Fourier decay. No bound for a composed actual kernel is assumed. -/
 namespace Sechstmoment
 open Set
 noncomputable section
@@ -38,8 +36,6 @@ theorem phase_composition_frequency_cancellation_on
   rw [mul_pow]
   field_simp
 
-/-- Linear growth of every positive derivative up to n is enough for the
-geometric chain-rule hypothesis; all constants are chosen before R. -/
 theorem phase_linear_derivative_growth_to_geometric {R D : ℝ}
     (hR : 1 ≤ R) (hD : 1 ≤ D) {i : ℕ} (hi : 1 ≤ i) {v : ℝ}
     (hv : v ≤ D*R) : v ≤ (D*R)^i := by

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Watt.Partition
 
-/-! Numerical bounds used in summing completed Watt blocks. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -48,7 +47,6 @@ theorem blockScale_sqrt_le {A : ℝ} (_hA : 0 ≤ A) (j : ℕ) :
         mul_le_mul hr ih (Real.sqrt_nonneg _) (by norm_num)
       _ = _ := by ring
 
-/-- An absolute bound for the square-root mass of every finite block family. -/
 theorem sum_blockScale_sqrt_le {A : ℝ} (hA : 0 ≤ A) (N : ℕ) :
     (∑ j ∈ range N, Real.sqrt (blockScale A j)) ≤ 8*Real.sqrt A := by
   have hgeo : (∑ j ∈ range N, (7/8 : ℝ)^j) = 8*(1-(7/8 : ℝ)^N) := by

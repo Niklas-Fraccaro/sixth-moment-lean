@@ -1,7 +1,5 @@
 import Sechstmoment.Analysis.Fourier.ProfileProduct
 
-/-! A finite-order Leibniz budget on an arbitrary compact interval.
-The varying factor may be smooth only near that interval. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

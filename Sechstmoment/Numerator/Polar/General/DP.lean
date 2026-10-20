@@ -8,8 +8,6 @@ open scoped BigOperators Topology
 
 set_option maxHeartbeats 1000000
 
-/-- The actual polynomial-weighted inner circle is precisely the normalized
-triple integral appearing in DP. The factor η³ is the proved Jacobian. -/
 theorem polarGeneralTripleProfile_eq_dpNormalizedTriple
     {η : ℝ} (hη : 0 < η) (P : Polynomial ℝ) (β γ δ : ℂ) (R : ℝ)
     (hq : Function.Injective (![-β,γ,δ] : Fin 3 → ℂ))
@@ -20,9 +18,6 @@ theorem polarGeneralTripleProfile_eq_dpNormalizedTriple
   simp_rw [polarTripleInverseContour_eq_triangle _ _ R hq hR]
   exact weighted_triangle_eq_dpNormalizedTriple hη P β γ δ
 
-/-- Exact bridge from the four literal DP source residues to the genuine
-general-shift circle formula. All profile integrations are proved, rather
-than supplied as an asymptotic input. -/
 theorem polarGeneralGeneratorContour_eq_dpNormalizedFourResidues
     {η : ℝ} (hη : 0 < η) (P : Polynomial ℝ) (σ : Fin 4 → ℂ) (innerR outerR : ℝ)
     (hσ : Function.Injective (polarSourceKnots σ))
@@ -90,9 +85,6 @@ theorem polarSourceKnots_continuous : Continuous polarSourceKnots := by
   unfold polarSourceKnots
   fun_prop
 
-/-- Joint coalescence of the actual normalized DP residue kernel. The value
-at colliding shifts is the actual enclosing-circle integral, rather than an
-assigned value for the singular rational expression. -/
 theorem dpNormalizedFourResidues_joint_limit
     {η : ℝ} (hη : 0 < η) (P : Polynomial ℝ) (σ : Fin 4 → ℂ) (innerR outerR : ℝ)
     (hinner : ∀ j, ‖polarSourceKnots σ j‖ < innerR)

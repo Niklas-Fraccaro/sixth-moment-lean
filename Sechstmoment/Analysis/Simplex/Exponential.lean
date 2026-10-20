@@ -4,8 +4,6 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Mathlib.Tactic
 import Sechstmoment.Analysis.Simplex.Moments
 
-/-! Genuine complex exponential integration over the normalized three-simplex.
-The divided differences are derived by three interval integrations. -/
 
 namespace Sechstmoment
 open MeasureTheory
@@ -30,7 +28,6 @@ theorem integral_cexp_affine (l u : ℝ) (A B : ℂ) (hA : A ≠ 0) :
   rw [intervalIntegral.integral_mul_const, integral_exp_mul_complex hA]
   ring
 
-/-- The first divided difference, directly from one interval integration. -/
 theorem integral_cexp_simplex_line (a b z c : ℂ) (H : ℝ)
     (hz : z ≠ 0) (hab : a ≠ b) :
     (∫ x in (0 : ℝ)..H, Complex.exp (z*(a*x+b*(H-x : ℝ)+c))) =
@@ -114,7 +111,6 @@ theorem simplexExpGenerator_iterated (q : Fin 4 → ℂ) (z : ℂ)
     simplexTriangleExpIntegral _ _ _ _ _ _) / _) = _
   ring
 
-/-- Explicit alternant from the actual three-simplex expectation. -/
 theorem simplexExpGenerator_distinct (q : Fin 4 → ℂ) (z : ℂ)
     (hq : Function.Injective q) (hz : z ≠ 0) :
     simplexExpGenerator q z = (6/z^3) *
@@ -152,7 +148,6 @@ theorem simplexExpGenerator_zero (q : Fin 4 → ℂ) : simplexExpGenerator q 0 =
   simp only [simplexExpGenerator, zero_mul, Complex.exp_zero]
   exact complexSimplexExpectation_one
 
-/-- The defining integral is continuous even when nodes coalesce. -/
 theorem simplexExpGenerator_continuous (q : Fin 4 → ℂ) :
     Continuous (simplexExpGenerator q) := by
   unfold simplexExpGenerator complexSimplexExpectation complexSimplexDot
@@ -205,7 +200,6 @@ theorem simplexExpGenerator_differentiableAt_distinct (q : Fin 4 → ℂ)
   filter_upwards [eventually_ne_nhds hz] with w hw
   exact simplexExpGenerator_distinct q w hq hw
 
-/-- The apparent z⁻³ singularity is removable at zero, with value one. -/
 theorem simplexExpGenerator_analyticAt_zero (q : Fin 4 → ℂ)
     (hq : Function.Injective q) : AnalyticAt ℂ (simplexExpGenerator q) 0 := by
   apply Complex.analyticAt_of_differentiable_on_punctured_nhds_of_continuousAt

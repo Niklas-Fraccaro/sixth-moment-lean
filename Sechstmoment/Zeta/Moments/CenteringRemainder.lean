@@ -4,34 +4,24 @@ import Sechstmoment.Analysis.Profiles.Classes
 import Sechstmoment.Zeta.Centering.Uniform
 import Sechstmoment.Zeta.Moments.Definitions
 
-/-!
-# Literal DP centering correction
-
-This file proves estimates for the actual pair of archimedean correction
-factors. It does not assume a moment bound in order to discard that correction.
--/
 namespace Sechstmoment
 open Complex Filter Metric
 open scoped BigOperators Topology ComplexConjugate
 noncomputable section
 
-/-- Conjugation of the actual zeta functional-equation factor. -/
 theorem zetaChi_conj (s : ℂ) : zetaChi (conj s) = conj (zetaChi s) := by
   simp [zetaChi, ← gammaReal_conj]
 
-/-- Conjugation of the normalized centering ratio at an arbitrary base point. -/
 theorem centeringFactorAt_conj (T : ℝ) (s z : ℂ) :
     centeringFactorAt T (conj s) (conj z) = conj (centeringFactorAt T s z) := by
   simp [centeringFactorAt, ← zetaChi_conj, Complex.exp_conj]
 
-/-- The lower-half-plane centering factor used by the DP source orientation. -/
 def lowerCenteringFactor (T : ℝ) (x z : ℂ) : ℂ :=
   centeringFactorAt T (1-complexHeightPoint T x) z
 
 def dpCenteringPairError (T : ℝ) (x z w : ℂ) : ℂ :=
   lowerCenteringFactor T x z*lowerCenteringFactor T x w-1
 
-/-- The literal DP correction, centered by its fixed exponential phase. -/
 def dpCenteredArchimedeanCorrection (T t : ℝ) (σ : MomentShifts) : ℂ :=
   Complex.exp (σ 2+σ 3)*dpArchimedeanCorrection t (rawMomentShifts T σ)
 
@@ -44,8 +34,6 @@ theorem lowerCenteringFactor_eq_conj (T : ℝ) (x z : ℂ) :
   rw [← centeringFactorAt_conj, hp, Complex.conj_conj]
   rfl
 
-/-- Exact equality between the DP raw-shift correction and the proved
-centering pair, including the source orientation. -/
 theorem dpCenteredArchimedeanCorrection_eq_pair (T x : ℝ) (σ : MomentShifts) :
     dpCenteredArchimedeanCorrection T (T*x) σ-1 =
       dpCenteringPairError T (x : ℂ) (σ 2) (σ 3) := by
@@ -58,8 +46,6 @@ theorem dpCenteredArchimedeanCorrection_eq_pair (T x : ℝ) (σ : MomentShifts) 
   rw [hp, Complex.exp_add]
   ring
 
-/-- The actual lower factors obey the same complex-height bound as the upper
-factors by the proved conjugation identity. -/
 theorem lowerCenteringFactor_uniform_complex_height_bound (R : ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ x z : ℂ,
       x.re ∈ Set.Icc (3/4 : ℝ) (9/4) → |x.im| ≤ 1/4 → ‖z‖ ≤ R →
@@ -74,7 +60,6 @@ theorem lowerCenteringFactor_uniform_complex_height_bound (R : ℝ) :
     Complex.norm_conj]
   exact hh
 
-/-- Uniform inverse-logarithmic error for both actual DP factors together. -/
 theorem dpCenteringPairError_uniform_complex_height_bound {R : ℝ} (hR : 0 ≤ R) :
     ∀ᶠ T : ℝ in atTop, ∀ x z w : ℂ,
       x.re ∈ Set.Icc (3/4 : ℝ) (9/4) → |x.im| ≤ 1/4 → ‖z‖ ≤ R → ‖w‖ ≤ R →
@@ -109,7 +94,6 @@ theorem dpCenteringPairError_uniform_complex_height_bound {R : ℝ} (hR : 0 ≤ 
     _ = _ := by ring
 
 
-/-- Holomorphy of the literal lower factor in the complex height. -/
 theorem lowerCenteringFactor_analyticAt_height (T : ℝ) (z : ℂ) {x : ℂ}
     (hs : (1-complexHeightPoint T x).im ≠ 0)
     (hw : (1-complexHeightPoint T x+z/(Real.log T : ℂ)).im ≠ 0) :
@@ -150,8 +134,6 @@ private theorem dpCentering_quarter_ball_window {x : ℝ}
   exact ⟨⟨by linarith [(abs_le.mp hre).1, hx.1],
     by linarith [(abs_le.mp hre).2, hx.2]⟩, him⟩
 
-/-- Every fixed real derivative of the actual DP pair correction remains
-inverse-logarithmic on the full dyadic interval. -/
 theorem dpCenteringPairError_uniform_real_derivative_bound (n : ℕ)
     {R : ℝ} (hR : 0 ≤ R) :
     ∀ᶠ T : ℝ in atTop, ∀ x : ℝ, x ∈ Set.Icc (1 : ℝ) 2 →
@@ -208,8 +190,6 @@ private theorem lowerCenteringFactor_analyticAt_real_height {T : ℝ}
   exact (centeringFactorAt_analyticAt_base_strip T z hs hws).comp
     (f := fun y : ℂ => 1-complexHeightPoint T y) ha
 
-/-- The actual correction is globally smooth on the real height axis once
-both normalized shifts lie in the critical strip. -/
 theorem dpCenteringPairError_contDiff_real_height {T : ℝ}
     (hL : 0 < Real.log T) (z w : ℂ)
     (hz : 2*‖z‖ < Real.log T) (hw : 2*‖w‖ < Real.log T) :
@@ -221,13 +201,10 @@ theorem dpCenteringPairError_contDiff_real_height {T : ℝ}
       (lowerCenteringFactor_analyticAt_real_height hL w hw x)).sub analyticAt_const
   exact (ha.contDiffAt.restrict_scalars ℝ).comp x Complex.ofRealCLM.contDiff.contDiffAt
 
-/-- A bounded real coordinate functional used for the actual Re/Im split. -/
 def dpCenteringErrorWeight (T : ℝ) (Φ : ℝ → ℝ) (z w : ℂ)
     (ℓ : ℂ →L[ℝ] ℝ) (x : ℝ) : ℝ :=
   Φ x*(Real.log T*ℓ (dpCenteringPairError T (x : ℂ) z w))
 
-/-- Both literal real and imaginary error weights are valid smooth dyadic
-source weights. -/
 theorem dpCenteringErrorWeight_smooth {T : ℝ} {Φ : ℝ → ℝ}
     (hΦ : SmoothDyadicWeight Φ) (hL : 0 < Real.log T) (z w : ℂ)
     (hz : 2*‖z‖ < Real.log T) (hw : 2*‖w‖ < Real.log T)
@@ -239,9 +216,6 @@ theorem dpCenteringErrorWeight_smooth {T : ℝ} {Φ : ℝ → ℝ}
       (g := fun x => Real.log T*ℓ (dpCenteringPairError T (x : ℂ) z w))).trans hΦ.2
 
 
-/-- Uniform first-derivative control of the literal Re/Im error weights.
-Multiplication by `log T` turns the already proved inverse-logarithmic
-centering estimate into a bounded family of smooth source weights. -/
 theorem dpCenteringErrorWeight_uniform_deriv_bound {R B : ℝ}
     (hR : 0 ≤ R) (hB : 0 ≤ B) :
     ∀ᶠ T : ℝ in atTop, ∀ Φ : ℝ → ℝ, SmoothDyadicWeight Φ →
@@ -301,7 +275,6 @@ theorem dpCenteringErrorWeight_uniform_deriv_bound {R B : ℝ}
     positivity
 
 
-/-- Uniform value control of the actual logarithmically scaled error weights. -/
 theorem dpCenteringErrorWeight_uniform_norm_bound {R B : ℝ}
     (hR : 0 ≤ R) (hB : 0 ≤ B) :
     ∀ᶠ T : ℝ in atTop, ∀ Φ : ℝ → ℝ, SmoothDyadicWeight Φ →

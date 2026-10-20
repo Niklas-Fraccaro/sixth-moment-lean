@@ -2,8 +2,6 @@ import Sechstmoment.Analysis.Calculus.CompactProduct
 import Sechstmoment.Analysis.Complex.PositivePowerBounds
 import Sechstmoment.Numerator.V.Chi.LogBandProfile
 
-/-! A fixed compact mask and the uniformly smooth real-power amplitude
-of the actual logarithmic profile. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

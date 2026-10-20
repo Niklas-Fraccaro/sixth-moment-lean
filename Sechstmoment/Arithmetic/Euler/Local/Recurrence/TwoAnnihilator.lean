@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Geometric.ZeroStepParameter
 
-/-! The lower order recurrence for two geometric factors. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

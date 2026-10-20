@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.RationalLocalTail
 
-/-! The h=0 local series is exactly the product of four geometric factors. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

@@ -61,8 +61,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Numerator.V.KernelRegularity
 import Std
 
-/-! All actual complex derivatives and finite differential operators of
-the cross-polynomial DP moment converge to the genuine bilinear J generator. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter
@@ -108,8 +106,6 @@ private theorem square_actual_moment_analyticAt {T : ℝ} (hT : 1 < T)
   exact hd.analyticAt (isOpen_ball.mem_nhds
     (by simpa only [mem_ball,dist_zero_right] using hz))
 
-/-- Genuine derivatives of both actual polynomial amplifiers: no moment
-derivative, integrability or holomorphy is assumed as an extra black box. -/
 theorem dpAllPositiveBilinearMoment_polarPolynomialBilinearJ_derivative_tendsto_at
     (n : ℕ) (hsource : DPv2SharpInput) (η : ℝ) (hη : 0 < η) (hηu : η < 1/4)
     (P Q : Polynomial ℝ) (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ)
@@ -154,8 +150,6 @@ theorem dpAllPositiveBilinearMoment_polarPolynomialBilinearJ_derivative_tendsto_
       ((square_actual_moment_analyticAt hT hL η (P-Q) Φ hΦ z hz4).contDiffAt (n := n))]
   ring
 
-/-- Every finite differential operator of the literal cross-profile moment
-has the corresponding actual Jcross limit. -/
 theorem dpAllPositiveBilinearMoment_polarPolynomialBilinearJ_operator_tendsto
     (N : ℕ) (q : Fin (N+1) → ℂ) (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P Q : Polynomial ℝ)

@@ -1,8 +1,6 @@
 import Mathlib.Data.Nat.Factorization.Basic
 import Sechstmoment.Arithmetic.Euler.Bivariate.Factorization
 
-/-! Canonical finite prime configurations for the eight nonconstant local coefficients.
-The map to positive integer pairs is injective, by unique prime factorization. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalRest
@@ -103,7 +101,6 @@ theorem configIndex_injective : Function.Injective configIndex := by
     (config_factorization_mem ⟨S,g⟩ p.val p.property).2] at hfr
   exact Prod.ext hfl hfr
 
-/-- The coefficient of the genuine global remainder. Unsupported integer pairs have coefficient zero. -/
 def gamma (s : Fin 4 → ℂ) : ℕ × ℕ → ℂ := Function.extend configIndex (configCoeff s) 0
 
 theorem gamma_config (s : Fin 4 → ℂ) (c : Configuration) :

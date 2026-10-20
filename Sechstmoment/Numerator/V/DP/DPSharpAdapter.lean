@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.V.DP.DPCoincidentTransfer
 
-/-! Derive the earlier fixed smooth DP source interface from the literal
-sharp-endpoint input, using proved partial summation and phase replacement.
-Thus the fixed smooth interface introduces no additional analytical input. -/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Polynomial Filter

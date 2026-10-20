@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.HighFrequencyAggregate
 
-/-! Exact difference of actual masked physical expressions. The infinite
-native sums and every spatial integral are exchanged by the proved
-absolute convergence, before algebraic subtraction is performed. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

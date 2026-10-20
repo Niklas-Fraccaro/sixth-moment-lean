@@ -1,9 +1,6 @@
 import Mathlib.Data.Fin.Tuple.Finset
 import Sechstmoment.Numerator.U.ZeroModes.Mass.ActualSupport
 
-/-! The literal native five-index zero-mode density is summed in its genuine
-source ranges. The reduced-gap count cancels the GCD before any harmonic
-sum is bounded. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

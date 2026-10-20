@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.SixTensorZeroIntegrability
 import Sechstmoment.Numerator.U.Sources.SortedEndpoint
 
-/-! Physical reconstruction of native factor-chamber zero modes.
-The sixth logarithmic Fourier character remains in the beta coefficient. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology FourierTransform RealInnerProductSpace
@@ -10,8 +8,6 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 3000000
 
-/-- Inverse factor permutation applied to physical arguments, without an
-assertion that the unsorted and sorted zero modes coincide. -/
 def a03SixZeroPairArguments (m n : Bool) (y : Fin 5→ℝ) : Fin 5→ℝ :=
   ![y 0,if m then y 2 else y 1,if m then y 1 else y 2,
     if n then y 4 else y 3,if n then y 3 else y 4]
@@ -20,8 +16,6 @@ def a03SixZeroSourceArguments (m n : Bool) (q : QuadraticScales)
     (v : Fin 5→ℕ) (x : ℝ) : Fin 6→ℝ :=
   Fin.cons ((v 1:ℝ)/q.B) (a03SixZeroPairArguments m n (rectangularZeroArguments q v x))
 
-/-- The finite source GCD sum with its continuous physical variable and
-full six-variable coupled tensor; no Fourier normalizer occurs here. -/
 def a03SixTensorPhysicalZeroMode (F : A03SixTensorSpace→ℂ) (m n : Bool)
     (q : QuadraticScales) (α β : ℕ→ℂ) : ℂ :=
   ∑ v∈quadraticMainIndexSet q, α (v 0)*β (v 1)*
@@ -43,7 +37,6 @@ theorem a03SixZero_first_argument_positive (m n : Bool) (q : QuadraticScales)
   exact div_pos (by exact_mod_cast (show 0<v 1 by omega)) hB
 
 
-/-- Each physical GCD summand is an absolutely convergent continuous integral. -/
 theorem a03SixTensor_physical_zero_term_integrable
     (f : SchwartzMap A03SixTensorSpace ℂ) (a : A03SixTensorSpace→ℝ)
     (ham : Measurable a) (ha : ∀ ν,0<a ν) (hc : Integrable (a03SixTensorCoefficient f a))
@@ -63,8 +56,6 @@ theorem a03SixTensor_physical_zero_term_integrable
     (a03SixZeroSourceArguments m n q v x)
     (a03SixZero_first_argument_positive m n q hB v hv x)).symm
 
-/-- Exact native GCD reconstruction by Fourier inversion and genuine Fubini.
-Both the continuous zero-mode integral and its frequency integral converge. -/
 theorem a03SixTensor_native_zero_reconstruction
     (f : SchwartzMap A03SixTensorSpace ℂ) (a : A03SixTensorSpace→ℝ)
     (ham : Measurable a) (ha : ∀ ν,0<a ν) (hc : Integrable (a03SixTensorCoefficient f a))
@@ -120,8 +111,6 @@ theorem a03SixTensor_native_zero_reconstruction
           (a03SixZeroSourceArguments m n q v x)
           (a03SixZero_first_argument_positive m n q hB v hv x)).symm
 
-/-- A physical zero mode only evaluates its tensor on the original full
-six-dimensional dyadic box, including the supported beta variable. -/
 theorem a03SixTensorPhysicalZeroMode_congr_on_dyadic_box
     (F G : A03SixTensorSpace→ℂ) (m n : Bool) (q : QuadraticScales) (hB : 0<q.B)
     (α β : ℕ→ℂ) (hβ : ∀ v : ℕ,(v:ℝ)∉Icc q.B (2*q.B) → β v=0)
@@ -164,7 +153,6 @@ theorem a03SixTensorPhysicalZeroMode_remove_log_cutoff
   rw [hgraph,a03TensorLogCutoff_logPoint_one hx,one_mul]
 
 
-/-- Physical version of the actual endpoint, in its four retained factor chambers. -/
 def a03EndpointPhysicalSortedZeroMode (F : A03SixTensorSpace→ℂ) (T A B H : ℝ)
     (f g : ℝ→ℝ) (k : Fin 4→ℕ) : ℂ :=
   let q := phaseActualScales A B H k
@@ -201,8 +189,6 @@ theorem a03_actual_native_sorted_zero_integral_eq_physical
       (phaseActualAmplifierCoefficient T f A) (phaseActualAmplifierCoefficient T g B)
   exact hz
 
-/-- The actual cutoff tensor may be removed after physical reconstruction:
-the endpoint is evaluated directly on its actual original or dual kernel. -/
 theorem a03_actual_native_sorted_zero_integral_eq_uncut_physical
     (kernel : SchwartzMap A03SixTensorSpace ℂ) (F : A03SixTensorSpace→ℂ)
     (hgraph : ∀ y,kernel y=a03TensorLogCutoff y*F y)
@@ -221,9 +207,6 @@ theorem a03_actual_native_sorted_zero_integral_eq_uncut_physical
   exact a03SixTensorPhysicalZeroMode_remove_log_cutoff kernel F hgraph _ _ _ hB _ _
     (phaseActualAmplifierCoefficient_support T g hB)
 
-/-- On every actual active near block the source endpoint reconstructs the
-native physical GCD sum in its retained factor chamber. Zero-mode
-integrability is a conclusion of the genuine Fourier data. -/
 theorem a03_actual_endpoint_zero_integral_eventually_eq_uncut_physical
     {a b s : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs : s<1/2)
     (f g : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :
@@ -248,8 +231,6 @@ theorem a03_actual_endpoint_zero_integral_eventually_eq_uncut_physical
     normalizer ham hpos hcoef hD hW T A B H f g k hA hB hH
   exact ⟨he.2.mpr hp.1,he.1.trans hp.2⟩
 
-/-- For a bounded genuine Schwartz family, the normalizer and every
-integrability obligation are provided by the existing separation theorem. -/
 theorem a03SixTensor_uniform_native_zero_reconstruction {ι : Type*}
     (f : ι→SchwartzMap A03SixTensorSpace ℂ)
     (hf : ∀ k n : ℕ,∃ C : ℝ,0≤C ∧ ∀ i,SchwartzMap.seminorm ℂ k n (f i)≤C) :

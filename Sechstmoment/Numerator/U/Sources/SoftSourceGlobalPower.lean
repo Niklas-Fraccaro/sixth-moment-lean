@@ -8,9 +8,6 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 3000000
 
-/-- Explicit rectangular power bound for the reconstructed full source
-majorant. Its mass, gap, and independent lengths have already been proved
-from the actual profile and near grid. -/
 theorem a03_actual_near_soft_source_majorant_power_bound {a b s u ε : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs : s≤1/8) (hu : u≤1/8)
     (hε : 0≤ε) (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :
@@ -113,9 +110,6 @@ theorem a03_actual_near_soft_source_majorant_power_bound {a b s u ε : ℝ}
         _=_ := by rw [he1,he2]
 
 
-/-- The original physical reconstruction factor differs from its source
-boundary normalization by a fixed bounded dilation.  The final native
-rectangular powers retain both independent amplifier exponents. -/
 theorem a03_actual_near_soft_source_native_majorant_power_bound {a b s u ε : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs : s≤1/8) (hu : u≤1/8)
     (hε : 0≤ε) (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :

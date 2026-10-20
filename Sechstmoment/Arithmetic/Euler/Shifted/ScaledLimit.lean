@@ -1,12 +1,6 @@
 import Mathlib.Tactic
 import Sechstmoment.Arithmetic.Euler.Shifted.Uniform
 
-/-!
-# The actual arithmetic-factor limit on rescaled polar contours
-
-Continuity of the convergent six-variable shifted product gives uniform
-convergence to `a₃` on every bounded set of normalized shifts.
--/
 
 namespace Sechstmoment
 

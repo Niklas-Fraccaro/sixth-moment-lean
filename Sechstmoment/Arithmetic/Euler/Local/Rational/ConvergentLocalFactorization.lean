@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.LocalSeriesRecurrence
 
-/-! The actual infinite local tail times its Euler denominator is cubic. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

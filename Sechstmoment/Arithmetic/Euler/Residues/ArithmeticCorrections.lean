@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Residues.PrimePowerCoefficients
 
-/-! The finite correction indexed by an integer and its genuine local series. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option linter.unusedSectionVars false

@@ -2,11 +2,6 @@ import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
 import Mathlib.Analysis.MellinInversion
 import Sechstmoment.Analysis.Gaussian.Integrability
 
-/-! Mellin transforms of the literal fixed smooth dyadic weights.
-The logarithmic pullback is compactly supported and smooth; its Fourier
-transform is Schwartz. In particular every fixed polynomial height cost
-is integrable. No Mellin-decay hypothesis is added to the weight.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set
@@ -82,8 +77,6 @@ theorem schwartz_one_add_abs_pow_integrable (f : SchwartzMap ℝ ℂ) (k : ℕ) 
       mul_le_mul_of_nonneg_right (one_add_abs_pow_le k v) (norm_nonneg _)
     _ = _ := by ring
 
-/-- Every fixed polynomial height loss is integrable against the actual
-Mellin transform of a fixed smooth dyadic weight. -/
 theorem smooth_mellin_weighted_integrable {w : ℝ → ℂ}
     (hw : ContDiff ℝ ∞ w) (hws : tsupport w ⊆ Icc (1 : ℝ) 2)
     (κ : ℝ) (k : ℕ) :

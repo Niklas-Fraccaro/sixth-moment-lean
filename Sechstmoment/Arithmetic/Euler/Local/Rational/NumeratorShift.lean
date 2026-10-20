@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.TailLinearBoundary
 
-/-! The polynomial identity relating successive prime power corrections. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

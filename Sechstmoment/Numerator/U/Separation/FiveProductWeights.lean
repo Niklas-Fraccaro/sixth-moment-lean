@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.NearMellinWeights
 
-/-! All five genuine smooth weights in the normalized binomial separation.
-These are weight conditions, not the remaining quadratic shape conditions. -/
 namespace Sechstmoment
 open Complex Real Set Filter
 open scoped BigOperators Topology

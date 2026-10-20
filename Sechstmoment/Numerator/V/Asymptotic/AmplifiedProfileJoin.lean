@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.V.Arithmetic.Additive.ChiOriginal
 import Sechstmoment.Numerator.V.Asymptotic.ProfileOriginalCoefficients
 import Sechstmoment.Numerator.V.Contour.PolynomialAdditiveReduction
 
-/-! Exact finite grouping of the literal two polynomial amplifiers by
-their product. This connects the chi additive reduction to the profile
-remainder and the independently defined original harmonic coefficients. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open NoDPHarmonic Real Complex Polynomial

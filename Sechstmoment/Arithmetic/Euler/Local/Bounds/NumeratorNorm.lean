@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Prime.PrincipalTailIdentity
 
-/-! A direct norm estimate for the cubic correction. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

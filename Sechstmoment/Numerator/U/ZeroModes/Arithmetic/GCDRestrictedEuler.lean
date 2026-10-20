@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.GCDPrimitiveBijection
 
-/-! Global Euler evaluation of the original restricted GCD series (22),
-including every exceptional prime of the amplifier divisors. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat Complex
@@ -27,9 +25,6 @@ theorem a03GCDPrimeCorrectionProduct_eq (q : ℕ) (w z s : ℂ) :
   intro p _
   congr 2 <;> congr 1 <;> ring
 
-/-- The global Euler factorization of the literal restricted GCD sum in
-(22).  Absolute Dirichlet convergence and the primitive-pair bijection were
-proved in the imported modules, rather than postulated as an Euler contract. -/
 theorem a03RestrictedGCDSeries_eq_zeta_mul_corrections {A B : ℕ}
     (hA : A≠0) (hB : B≠0) (hAB : A.Coprime B)
     {w z s : ℂ} (hw : 0<w.re) (hz : 0<z.re) (ht : 1<(1+w+z+s).re) :

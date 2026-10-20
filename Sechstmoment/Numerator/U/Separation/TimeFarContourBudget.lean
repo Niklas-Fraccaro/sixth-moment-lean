@@ -2,9 +2,6 @@ import Mathlib.MeasureTheory.Integral.Prod
 import Sechstmoment.Numerator.Polar.RemainderDecay
 import Sechstmoment.Numerator.U.Separation.TimeFarFiniteBudget
 
-/-! The literal original and dual finite far grids are genuinely measurable
-in Mellin frequency, and their bounded-frequency contour integrals have a
-uniform arbitrary-power budget. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter
 open scoped BigOperators Topology ENNReal
@@ -147,8 +144,6 @@ def a03ActualFarFiniteContour (dual positive : Bool) (c T a b ε ρ θ : ℝ)
   (1/(2*Real.pi):ℂ)*∫ v in Icc (-θ*Real.log T) (θ*Real.log T),
     a03ActualFarFiniteMellinGrid dual positive c T a b ε ρ v f g Φ σ α
 
-/-- Frequency measurability and integrability are derived for the literal
-finite original/dual grid before its complete logarithmic contour is bounded. -/
 theorem a03_actual_far_finite_contour_uniform_rapid
     {a b c ε κ θ R ρ : ℝ} {f g Φ : ℝ → ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

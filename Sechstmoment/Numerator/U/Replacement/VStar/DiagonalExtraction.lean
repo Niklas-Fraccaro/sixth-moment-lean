@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.AmplifiedVStarFiniteGrid
 import Sechstmoment.Numerator.U.Separation.ActualGapPhase
 
-/-! Literal diagonal selection inside the full VStar fourfold series.
-The amplifier coefficients and its exact phase are retained. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology
@@ -10,13 +8,11 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- `diagonal=true` selects the literal source equality; false selects its complement. -/
 def bblrVStarSelectedAFESum (diagonal : Bool) (G : ℂ → ℂ) (α : MomentShifts)
     (u w : ℕ) (t : ℝ) : ℂ :=
   ∑' n : Fin 4 → ℕ, if (diagonalQuadRelation (u+1) (w+1) n ↔ diagonal=true)
     then bblrVStarAFESummand G α t n else 0
 
-/-- The actual finite amplifier expansion, with its full fourfold indicator series. -/
 def rectangularVStarSelectedIntegrand (diagonal : Bool) (T a b : ℝ)
     (σ α : MomentShifts) (f g Φ : ℝ → ℝ) (t : ℝ) : ℂ :=
   ∑ u∈Finset.range ⌊T^a⌋₊, ∑ w∈Finset.range ⌊T^b⌋₊,
@@ -34,7 +30,6 @@ def rectangularVStarSelectedMoment (diagonal : Bool) (T a b : ℝ)
     (σ : MomentShifts) (f g Φ : ℝ → ℝ) : ℂ :=
   ∫ t : ℝ, rectangularVStarSelectedCombinedIntegrand diagonal T a b σ f g Φ t
 
-/-- An individual literal term of the original source six-term expression. -/
 def bblrIndexedMainTerm (j : Fin 6) (T a b : ℝ) (α : MomentShifts) (G : ℂ → ℂ)
     (f g Φ : ℝ → ℝ) : ℂ :=
   ∑ m∈Finset.Icc 1 ⌊T^a⌋₊, ∑ n∈Finset.Icc 1 ⌊T^b⌋₊,
@@ -121,7 +116,6 @@ private theorem sum_range_succ_eq_Icc (N : ℕ) (H : ℕ→ℂ) :
   | zero => simp
   | succ N ih => rw [Finset.sum_range_succ,Finset.sum_Icc_succ_top (by omega),ih]
 
-/-- On the literal source diagonal the combined amplifier/AFE phase is exactly one. -/
 theorem rectangular_actual_pair_VStar_diagonal (T : ℝ) (f g Φ : ℝ→ℝ)
     (G : ℂ→ℂ) (α : MomentShifts) (u w : ℕ) (t : ℝ) (n : Fin 4→ℕ)
     (hn : diagonalQuadRelation (u+1) (w+1) n) :

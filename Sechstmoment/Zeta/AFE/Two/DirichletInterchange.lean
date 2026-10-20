@@ -4,8 +4,6 @@ import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Mathlib.NumberTheory.LSeries.RiemannZeta
 import Mathlib.Tactic
 
-/-! Exact twofold Dirichlet-series / vertical-integral interchange.  Absolute
-summability and the domination are derived from positive real parts. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter
 open scoped BigOperators
@@ -88,7 +86,6 @@ theorem d02PairDirichletKernel_continuous (s r : ℂ) (n : ℕ × ℕ) :
       (Continuous.const_cpow (by fun_prop) (Or.inl h2))
       (fun _ => Complex.cpow_ne_zero_iff.mpr (Or.inl h2))
 
-/-- Literal Fubini for both unrestricted positive Dirichlet indices. -/
 theorem d02PairDirichlet_integral_interchange {s r : ℂ}
     (hs : 0 < s.re) (hr : 0 < r.re) (F : ℝ → ℂ) (hF : Integrable F) :
     (∑' n : ℕ × ℕ, ∫ v : ℝ, F v * d02PairDirichletKernel s r n v) =

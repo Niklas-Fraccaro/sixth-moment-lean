@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.BadSourceFiniteBudget
 
-/-! Exact decomposition of each actual ratio time source into the
-source-admissible good blocks and its genuine finite bad-block remainder. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -66,8 +64,6 @@ theorem a03ActualRatioBadSourceFinite_Mellin_continuous {c T : ℝ}
   · simp only [hgood,ite_false]
     exact a03ActualRatioTimeBlock_Mellin_continuous hc hT false false dual positive _ a b s σ α f g Φ hΦ hα hσ i.1 i.2
 
-/-- The separate good and bad Mellin moments converge and add to the
-literal ratio time source without any integrability premise. -/
 theorem a03ActualRatioTimeMoment_eq_source_add_bad {a b c T : ℝ}
     (hc : 0<c) (hT : 1<T) (dual : Bool) (f g Φ : ℝ→ℝ)
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) (hΦ : SmoothDyadicWeight Φ)

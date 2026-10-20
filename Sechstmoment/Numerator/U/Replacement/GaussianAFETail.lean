@@ -1,9 +1,6 @@
 import Mathlib.Analysis.Normed.Group.InfiniteSum
 import Sechstmoment.Numerator.U.Replacement.GaussianTailUniform
 
-/-! Summability and uniform power decay of the genuine fourfold AFE tail.
-The cutoff acts on the actual vertical V integral, not on an abstract error.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

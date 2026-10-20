@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.DualErrorFourier
 import Sechstmoment.Numerator.U.Replacement.VStar.Definitions
 
-/-! Exact identification of the proved replacement kernels with differences
-of the actual original/dual Gamma kernel and the literal VStar kernel.
-Only positive real time is needed for the principal-power identity. -/
 
 namespace Sechstmoment
 open Complex Real Source

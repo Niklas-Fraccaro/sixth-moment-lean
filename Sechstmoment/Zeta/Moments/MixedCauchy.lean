@@ -3,19 +3,11 @@ import Sechstmoment.Analysis.Complex.CauchyBounds
 import Sechstmoment.Analysis.Complex.Polydisc
 import Sechstmoment.Zeta.Moments.Shifts
 
-/-!
-# Own Cauchy transfer for genuine mixed shift derivatives
-
-The derivatives below are the actual complex Frechet derivatives applied to
-coordinate basis vectors. A disk estimate is applied repeatedly, on shrinking
-cubes. The constants depend on derivative order and never on `T`.
--/
 namespace Sechstmoment
 open Complex Metric Filter Set
 open scoped BigOperators Topology
 noncomputable section
 
-/-- An open cube in the four actual normalized complex shifts. -/
 def momentOpenCube (r : ℝ) : Set MomentShifts := {σ | ∀ j, ‖σ j‖ < r}
 
 theorem momentOpenCube_isOpen (r : ℝ) : IsOpen (momentOpenCube r) := by
@@ -25,16 +17,13 @@ theorem momentOpenCube_isOpen (r : ℝ) : IsOpen (momentOpenCube r) := by
   intro j
   exact isOpen_lt (continuous_norm.comp (continuous_apply j)) continuous_const
 
-/-- The actual derivative in the indicated shift coordinate. -/
 def coordinateShiftDeriv (i : Fin 4) (f : MomentShifts → ℂ) (σ : MomentShifts) : ℂ :=
   fderiv ℂ f σ (Pi.single i 1)
 
-/-- Arbitrary ordered mixed derivatives, including repeated coordinates. -/
 def orderedShiftDeriv : List (Fin 4) → (MomentShifts → ℂ) → MomentShifts → ℂ
   | [],f => f
   | i :: is,f => coordinateShiftDeriv i (orderedShiftDeriv is f)
 
-/-- Actual coordinate derivatives remain jointly holomorphic. -/
 theorem coordinateShiftDeriv_analyticOnNhd (i : Fin 4) {f : MomentShifts → ℂ}
     {s : Set MomentShifts} (hf : AnalyticOnNhd ℂ f s) :
     AnalyticOnNhd ℂ (coordinateShiftDeriv i f) s :=
@@ -49,7 +38,6 @@ theorem orderedShiftDeriv_analyticOnNhd (is : List (Fin 4)) {f : MomentShifts �
   | nil => exact hf
   | cons i is ih => exact coordinateShiftDeriv_analyticOnNhd i ih
 
-/-- Identification with the ordinary derivative on the actual coordinate line. -/
 theorem coordinateShiftDeriv_eq_deriv (i : Fin 4) (f : MomentShifts → ℂ)
     (σ : MomentShifts) (hf : DifferentiableAt ℂ f σ) :
     coordinateShiftDeriv i f σ = deriv (fun z : ℂ => f (Function.update σ i z)) (σ i) := by
@@ -106,8 +94,6 @@ private theorem coordinate_update_cube {r : ℝ} (i : Fin 4) (σ : MomentShifts)
     have hr : 0 ≤ r := (norm_nonneg (σ j)).trans (hσ j)
     linarith [hσ j]
 
-/-- Repeated Cauchy differentiation bounds all ordered mixed shift derivatives
-on a smaller cube by a fixed order-dependent constant. -/
 theorem orderedShiftDeriv_cauchy_bound (is : List (Fin 4)) {f : MomentShifts → ℂ}
     (hf : AnalyticOnNhd ℂ f (momentOpenCube 1)) {M : ℝ}
     (hM : ∀ σ ∈ rectangularClosedPolydisc (fun _ => mixedCauchyRadius 0), ‖f σ‖ ≤ M) :
@@ -151,8 +137,6 @@ theorem orderedShiftDeriv_cauchy_bound (is : List (Fin 4)) {f : MomentShifts →
     convert hb using 1; ring
 
 
-/-- A genuine bound on a separated product of circles therefore controls all
-mixed derivatives at the coincident-shift point. -/
 theorem orderedShiftDeriv_polydisc_bound (is : List (Fin 4))
     (R : Fin 4 → ℝ) (hR : ∀ j, 1 ≤ R j) (f : MomentShifts → ℂ)
     (hf : DifferentiableOn ℂ f (rectangularClosedPolydisc R))
@@ -170,8 +154,6 @@ theorem orderedShiftDeriv_polydisc_bound (is : List (Fin 4))
     simpa using (mixedCauchyRadius_pos is.length).le
   exact orderedShiftDeriv_cauchy_bound is ha (fun σ hσ => hb σ (hhalf hσ)) 0 hzero
 
-/-- The same fixed constant works for an entire actual moment-error family;
-there is no logarithmic loss from mixed complex shift differentiation. -/
 theorem orderedShiftDeriv_uniform_polydisc_bound (is : List (Fin 4))
     (R : Fin 4 → ℝ) (hR : ∀ j, 1 ≤ R j)
     (f : ℝ → MomentShifts → ℂ) (B : ℝ → ℝ)

@@ -1,7 +1,5 @@
 import Sechstmoment.Analysis.Harmonic.Support
 
-/-! The iterated finite sum is the literal three-variable logarithmic simplex,
-with one strict support condition and ordinary complex powers. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set Polynomial

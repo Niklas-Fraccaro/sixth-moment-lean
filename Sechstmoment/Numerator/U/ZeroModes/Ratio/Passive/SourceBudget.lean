@@ -1,10 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.PassiveSoftSourceGlobalPower
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourceBudget
 
-/-! Fully finite actual source-majorant aggregation: independent amplifier
-scales, the four AFE scales, every retained gap scale, both signs, and the
-entire logarithmic Mellin interval. No cardinality or mass hypothesis is
-introduced. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology
@@ -55,8 +51,6 @@ theorem a03ActualPassiveSoftSourceBlockMajorant_nonneg {T : ℝ} (hT : 0≤T) (s
     positivity
   · exact le_rfl
 
-/-- Fully summed literal dyadic source budget; the logarithmic exponent
-seven is proved from the actual three-plus-four scale grid. -/
 theorem a03_actual_passive_soft_source_finite_majorant_bound {a b s u ε : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs0 : 0≤s) (hs : s≤1/8)
     (hu0 : 0<u) (hu : u≤1/8) (hε : 0≤ε)
@@ -93,8 +87,6 @@ theorem a03_actual_passive_soft_source_finite_majorant_bound {a b s u ε : ℝ}
       mul_le_mul_of_nonneg_right hcard (by positivity)
     _=_ := by dsimp [C]; ring
 
-/-- The two signs and the literal logarithmic Mellin interval add one
-logarithm, with no Mellin-mass hypothesis. -/
 theorem a03_actual_passive_soft_source_global_majorant_bound {a b s u ε θ : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs0 : 0≤s) (hs : s≤1/8)
     (hu0 : 0<u) (hu : u≤1/8) (hε : 0≤ε) (hθ : 0≤θ)
@@ -118,8 +110,6 @@ theorem a03_actual_passive_soft_source_global_majorant_bound {a b s u ε θ : �
     _=_ := by ring
 
 
-/-- The global budget is the actual integral of the two-sign constant
-Mellin majorant over the whole retained interval. -/
 theorem a03ActualPassiveSoftSourceGlobalMajorant_eq_mellin_integral
     {T θ : ℝ} (hT : 1≤T) (hθ : 0≤θ) (a b s u ε : ℝ) (f g : ℝ → ℝ) :
     (∫ _v in Icc (-θ*Real.log T) (θ*Real.log T),
@@ -130,8 +120,6 @@ theorem a03ActualPassiveSoftSourceGlobalMajorant_eq_mellin_integral
   unfold a03ActualPassiveSoftSourceGlobalMajorant
   ring
 
-/-- After the fixed rectangular slack has been chosen, the completely
-summed actual source-majorant budget is genuinely sublinear. -/
 theorem a03_actual_passive_soft_source_global_majorant_isLittleO {a b s u ε θ : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs0 : 0≤s) (hs : s≤1/8)
     (hu0 : 0<u) (hu : u≤1/8) (hε : 0≤ε) (hθ : 0≤θ)

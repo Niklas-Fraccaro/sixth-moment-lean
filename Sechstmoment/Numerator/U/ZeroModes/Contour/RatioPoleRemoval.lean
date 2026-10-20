@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Contour.RatioWeight
 import Sechstmoment.Zeta.Regularized
 
-/-! Actual removal of the two same-side difference poles in BBLR §4.
-The extension retains the other quadratic factor of the genuine ratio
-Gaussian. No contour displacement or reconstructed main term is assumed. -/
 
 namespace Sechstmoment.Source
 open Complex
@@ -46,8 +43,6 @@ theorem a03ZeroModeRatioWeight_split (α : MomentShifts) (j : Fin 2) (z : ℂ) :
   fin_cases j <;> simp [a03ZeroModeRatioWeight,a03ZeroModeRatioOtherRoot,
     mul_comm,mul_left_comm,mul_assoc]
 
-/-- Exact equality away from the selected difference pole. The expression
-on the left is entire also at that pole. -/
 theorem a03ZeroModeRatioRemovedDifference_eq (α : MomentShifts) (j : Fin 2)
     (hρ : a03ZeroModeRatioRoot α j≠0) {z : ℂ} (hz : z≠a03ZeroModeRatioRoot α j) :
     a03ZeroModeRatioRemovedDifference α j z=
@@ -64,8 +59,6 @@ theorem a03ZeroModeRatioRemovedDifference_eq (α : MomentShifts) (j : Fin 2)
   field_simp
   ring
 
-/-- At the genuine ratio pole `z=0`, the numerator has exactly the
-same-side zeta value. -/
 theorem a03ZeroModeRatioRemovedDifference_zero (α : MomentShifts) (j : Fin 2)
     (hρ : a03ZeroModeRatioRoot α j≠0) :
     a03ZeroModeRatioRemovedDifference α j 0=
@@ -73,8 +66,6 @@ theorem a03ZeroModeRatioRemovedDifference_zero (α : MomentShifts) (j : Fin 2)
   rw [a03ZeroModeRatioRemovedDifference_eq α j hρ (Ne.symm hρ),
     a03ZeroModeRatioWeight_zero,one_mul]
 
-/-- The actual holomorphic value at a removed difference pole includes
-the factor `1/2` from its affine zeta argument. -/
 theorem a03ZeroModeRatioRemovedDifference_at_root (α : MomentShifts) (j : Fin 2)
     (hρ : a03ZeroModeRatioRoot α j≠0) :
     a03ZeroModeRatioRemovedDifference α j (a03ZeroModeRatioRoot α j)=

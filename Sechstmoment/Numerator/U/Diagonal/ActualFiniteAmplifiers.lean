@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualDiagonalGrouping
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEError
 
-/-! The literal finite amplifier ranges follow from the actual profile support. -/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter

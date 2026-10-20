@@ -1,11 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Contour.Chambers
 
-/-!
-Exact labels of the four residues at `s=0` of the source M-contours.
-Only their shift tuples and diagonal reindexing are established here. This
-does not move the source contour or identify its arithmetic residue with a
-diagonal sum: those remain separate analytic and arithmetic calculations.
--/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory
@@ -45,7 +39,6 @@ theorem a03ZeroModePairIndices_summand (m n : Bool) (G : ℂ → ℂ)
     dsimp [a03ZeroModeChamberShifts,
       a03ZeroModePairPermutation] <;> ring
 
-/-- Literal diagonal invariance for each of the four factor chambers. -/
 theorem bblrDiagonalTerm_zeroMode_chamber (m n : Bool) (G : ℂ → ℂ)
     (α : MomentShifts) (u v : ℕ) (t : ℝ) :
     bblrDiagonalTerm G (a03ZeroModeChamberShifts m n α) u v t =
@@ -57,11 +50,9 @@ theorem bblrDiagonalTerm_zeroMode_chamber (m n : Bool) (G : ℂ → ℂ)
   intro k
   rw [a03ZeroModePairIndices_relation, ← a03ZeroModePairIndices_summand]
 
-/-- Source Eq. (9) associates this crossed tuple with the `s=0` residue. -/
 def a03ZeroModeResidueShifts (α : MomentShifts) : MomentShifts :=
   ![α 0, -α 3, α 2, -α 1]
 
-/-- The four chamber residues have target labels 5,4,3,2. -/
 def a03ZeroModeResidueLabel (m n : Bool) : Fin 6 :=
   if m then (if n then 2 else 3) else (if n then 4 else 5)
 
@@ -84,8 +75,6 @@ theorem a03ZeroModeResidue_phase (m n : Bool) (α : MomentShifts) :
     dsimp [a03ZeroModeChamberShifts, a03ZeroModePairPermutation,
       a03ZeroModeResidueLabel, bblrSixPhaseExponents]
 
-/-- This statement identifies actual diagonal sums by the explicit discrete
-equivalence; it has no assumed main-term identification. -/
 theorem bblrDiagonalTerm_zeroMode_residue_label (m n : Bool) (G : ℂ → ℂ)
     (α : MomentShifts) (u v : ℕ) (t : ℝ) :
     bblrDiagonalTerm G (a03ZeroModeResidueShifts (a03ZeroModeChamberShifts m n α))
@@ -102,7 +91,6 @@ theorem bblrDiagonalTerm_zeroMode_residue_weighted_label (m n : Bool)
         bblrDiagonalTerm G (bblrSixShifts α (a03ZeroModeResidueLabel m n)) u v t := by
   rw [a03ZeroModeResidue_phase, bblrDiagonalTerm_zeroMode_residue_label]
 
-/-- The four literal chamber expressions exhaust the four crossed terms. -/
 theorem bblrDiagonalTerm_zeroMode_four_residue_sum (G : ℂ → ℂ)
     (α : MomentShifts) (u v : ℕ) (t : ℝ) :
     (∑ m : Bool, ∑ n : Bool,

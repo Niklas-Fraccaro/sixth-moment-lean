@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Balanced.CauchyIntegration
 import Sechstmoment.Denominator.Unbalanced.ShiftedDiagonalIntegrability
 
-/-! Actual Cauchy extraction commutes with the compact unbalanced nine-edge
-integral and returns the independently defined original minus kernel. -/
 namespace Sechstmoment
 open MeasureTheory Set Complex Polynomial
 open scoped BigOperators Topology

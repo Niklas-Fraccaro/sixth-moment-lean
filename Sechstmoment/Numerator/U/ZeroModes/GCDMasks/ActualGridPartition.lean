@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.DyadicPartition
 
-/-! Exact completion of the finite seven actual dyadic weights on their
-literal amplifier, gap and physical-product support. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators Topology
@@ -44,8 +42,6 @@ theorem a03NativeGCDSevenWeight_nonzero_actual_grid
     have hm : (∏ j : Fin 4,rectangularAFESmoothScale ((a03GCDScaleBlock k).2 j))≤∏ j : Fin 4,a03NativeGCDCoordinateQuad w X j := Finset.prod_le_prod₀ (fun j _ => (boundaryActual_scale_pos _).le) (fun j _ => hp j)
     exact hm.trans ((a03NativeGCDCoordinateQuad_product w hw X).trans_le hprod)
 
-/-- Every true positive coordinate has total scalar dyadic weight one.
-The two integrated real coordinates need only be at least one here. -/
 theorem a03NativeGCDSevenWeight_hasSum_one (w : Fin 5→ℕ) (hw : ∀ j,1≤w j)
     (X : ℝ) (hM₂ : 1≤X/((w 0:ℝ)*w 2)) (hN₂ : 1≤X/((w 1:ℝ)*w 3)) :
     HasSum (a03NativeGCDSevenWeight w X) 1 := by
@@ -81,8 +77,6 @@ theorem a03NativeGCDSevenWeight_hasSum_one (w : Fin 5→ℕ) (hw : ∀ j,1≤w j
   · rfl
   · simp only [Finset.prod_const_one]
 
-/-- The complete actual finite amplifier/gap/AFE grid is exactly the
-seven-coordinate partition whenever its literal support caps hold. -/
 theorem a03_native_GCD_actual_grid_partition
     {A B H P : ℝ} (hA : 0<A) (hB : 0<B) (hH : 0<H) (hP : 0<P)
     (w : Fin 5→ℕ) (hw : ∀ j,1≤w j) (X : ℝ)

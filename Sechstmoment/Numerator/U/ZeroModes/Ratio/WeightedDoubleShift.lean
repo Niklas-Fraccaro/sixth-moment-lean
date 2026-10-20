@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.DoubleShift
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.WeightedSecondaryShift
 
-/-! Actual weighted two-variable ratio contour decomposition, with both
-physical positive-real powers and all three residual integrals retained. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

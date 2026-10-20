@@ -1,10 +1,6 @@
 import Sechstmoment.Numerator.V.Profiles.Normalization
 import Sechstmoment.Numerator.V.Profiles.SourceProfile
 
-/-! Quantitative harmonic profile chapter: L^3 simplex asymptotics and the
-actual arithmetic remainder convolution with L^6 main term and L^5 error.
-The additive contour/stationary-phase identity and the final DP input are
-separate obligations; neither is asserted by this chapter. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set Polynomial NoDPGlobalRest

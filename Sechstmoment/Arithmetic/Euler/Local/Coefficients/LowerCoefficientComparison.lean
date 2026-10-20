@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.FourTailSummability
 
-/-! The threefold real majorant is bounded by the fourfold majorant. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

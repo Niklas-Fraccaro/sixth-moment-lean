@@ -1,10 +1,6 @@
 import Sechstmoment.Zeta.DirichletL.Weights.Decay
 import Sechstmoment.Zeta.DirichletL.Weights.Residue
 
-/-! Uniform bounds also at small arguments, using the actual residue one.
-Together with the proved large-argument estimates, these are the weight
-bounds required in the fixed-modulus fourth-moment argument.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set
@@ -125,8 +121,6 @@ theorem squareSmoothWeight_small_bound :
       exact (norm_add_le _ _).trans (by simpa [c, div_eq_mul_inv] using add_le_add_left hleft 1)
     _ ≤ (1+D)*H^4 := by nlinarith [one_le_pow₀ hH (n := 4)]
 
-/-- Uniform rapid decay, with polynomial height loss and constants independent
-of the character and conductor. Every fixed decay order is available. -/
 theorem squareSmoothWeight_uniform_decay (m : ℕ) (hm : 1 ≤ m) :
     ∃ C : ℝ, 0 < C ∧ ∀ s : ℂ, s.re ∈ Icc (1/4 : ℝ) (3/4) →
       ∀ a : ℕ, a ≤ 1 → ∀ x : ℝ, 0 < x →
@@ -180,8 +174,6 @@ theorem rpow_le_one_add {x δ : ℝ} (hx : 0 < x) (hδ : δ ∈ Icc (0 : ℝ) 1)
     rw [Real.rpow_one] at h
     linarith
 
-/-- The decay bound with an arbitrary small power of the conductor. This is
-the form used in the weighted character Parseval estimate. -/
 theorem squareSmoothWeight_scaled_bound :
     ∃ C : ℝ, 0 < C ∧ ∀ N : ℕ, 0 < N → ∀ s : ℂ,
       s.re ∈ Icc (1/4 : ℝ) (3/4) → ∀ a : ℕ, a ≤ 1 →

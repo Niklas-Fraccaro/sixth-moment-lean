@@ -1,20 +1,12 @@
 import Sechstmoment.Analysis.Complex.RealDerivatives
 import Sechstmoment.Zeta.Centering.PhaseComplex
 
-/-!
-# Uniform centering of the actual chi ratio
-
-The bound is proved on a complex height window, so Cauchy estimates can control
-the actual real `t/T` seminorms. Its Gamma input is the proved Euler-product
-estimate in `CenteringGammaRatio`, not an additional analytic axiom.
--/
 
 namespace Sechstmoment
 open Complex Filter Metric Asymptotics
 open scoped Topology
 noncomputable section
 
-/-- An explicit constant for every shift disk of radius `R`. -/
 def centeringUniformConstant (R : ℝ) : ℝ :=
   768*(R+R^2)+2*R*centeringPhaseComplexBound
 
@@ -37,7 +29,6 @@ private theorem normalizedGammaRatio_height_bound (s v : ℂ) {T R : ℝ}
       div_le_div_of_nonneg_left (by positivity) (by linarith) him
     _ = _ := by ring
 
-/-- Explicit inverse-logarithmic bound on a genuine complex height window. -/
 theorem centeringFactorAt_complex_height_bound {T R : ℝ} {x z : ℂ}
     (hxre : x.re ∈ Set.Icc (3/4 : ℝ) (9/4)) (hxim : |x.im| ≤ 1/4)
     (hz : ‖z‖ ≤ R) (hL : 1 ≤ Real.log T)
@@ -109,8 +100,6 @@ theorem centeringFactorAt_complex_height_bound {T R : ℝ} {x z : ℂ}
           (div_le_div_of_nonneg_left (by positivity) hL0 hlogT) (by norm_num)) le_rfl
     _ = _ := by unfold centeringUniformConstant; ring
 
-/-- The uniform bound is for the actual chi factor at all complex shifts and
-complex heights in the fixed window. -/
 theorem centeringFactorAt_uniform_complex_height_bound (R : ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ x z : ℂ,
       x.re ∈ Set.Icc (3/4 : ℝ) (9/4) → |x.im| ≤ 1/4 → ‖z‖ ≤ R →
@@ -123,8 +112,6 @@ theorem centeringFactorAt_uniform_complex_height_bound (R : ℝ) :
   exact centeringFactorAt_complex_height_bound hxre hxim hz
     ((le_max_left _ _).trans hLT) hT ((le_max_right _ _).trans hLT)
 
-/-- Equation (1.4), uniformly on every fixed complex shift disk, for the actual
-critical-line multiplier at `t=T x`, `x∈[1,2]`. -/
 theorem centeringFactor_uniform_disk_bound (R : ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ x : ℝ, x ∈ Set.Icc (1 : ℝ) 2 →
       ∀ z : ℂ, ‖z‖ ≤ R →
@@ -140,8 +127,6 @@ theorem centeringFactor_uniform_disk_bound (R : ℝ) :
   rw [hp, centeringFactorAt_criticalLinePoint] at h
   exact h
 
-/-- The actual base and shift stay away from Gamma poles on the whole complex
-height window, including points outside the critical strip. -/
 theorem complexHeightPoint_shift_nonreal {T R : ℝ} {x z : ℂ}
     (hxre : 3/4 ≤ x.re) (hz : ‖z‖ ≤ R) (hL : 1 ≤ Real.log T)
     (hT : 192*(R+R^2)+8 ≤ T) :
@@ -178,8 +163,6 @@ private theorem closedBall_real_quarter_height_window {x : ℝ}
   exact ⟨⟨by linarith [(abs_le.mp hre).1, hx.1],
     by linarith [(abs_le.mp hre).2, hx.2]⟩, him⟩
 
-/-- Equation (1.4) in every genuine real `t/T` derivative, with an explicit
-Cauchy constant and a bound uniform in the complex shift disk. -/
 theorem centeringFactor_uniform_real_derivative_bound (n : ℕ) (R : ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ x : ℝ, x ∈ Set.Icc (1 : ℝ) 2 →
       ∀ z : ℂ, ‖z‖ ≤ R →
@@ -213,8 +196,6 @@ theorem centeringFactor_uniform_real_derivative_bound (n : ℕ) (R : ℝ) :
   rw [← he]
   exact cauchy_real_iteratedDeriv_bound n (by norm_num) hf hM
 
-/-- The actual rescaled-height remainder has inverse-logarithmic big-O in every
-fixed real derivative order, including arbitrary height and shift selections. -/
 theorem centeringError_real_derivative_invLog_isBigO (n : ℕ) (R : ℝ)
     (x : ℝ → ℝ) (z : ℝ → ℂ)
     (hx : ∀ᶠ T in atTop, x T ∈ Set.Icc (1 : ℝ) 2)

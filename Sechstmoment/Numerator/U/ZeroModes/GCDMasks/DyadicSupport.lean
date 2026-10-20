@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.ActualUnrestrictedRatioGCDVStar
 
-/-! Exact finite support of the genuine seven native dyadic masks in the
-positive-integer GCD variables. This justifies the native finite ranges
-before any infinite arithmetic regrouping. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators Topology
@@ -101,8 +98,6 @@ theorem a03NativeGCDAllDyadicWeight_zero_outside_main (q : QuadraticScales)
   by_contra h
   exact hw (a03NativeGCDAllDyadicWeight_nonzero_index q hq w X h)
 
-/-- Pointwise finite-range reindexing for the exact seven native masks,
-valid for an arbitrary genuine common-X integrand. -/
 theorem a03_native_GCD_dyadic_tsum_eq_finite (q : QuadraticScales)
     (hq : ∀ j,0<q.size j) (X : ℝ) (F : (Fin 5→ℕ)→ℂ) :
     (∑' w : Fin 5→ℕ,(a03NativeGCDAllDyadicWeight q w X:ℂ)*F w)=

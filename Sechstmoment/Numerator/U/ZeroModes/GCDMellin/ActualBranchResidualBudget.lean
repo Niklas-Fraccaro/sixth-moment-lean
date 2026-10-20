@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ActualBranchResidualVertical
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ResidualBudget
 
-/-! Full original amplifier aggregation and uniform o(T) of the actual
-leading original/dual three-contour remainder, with every time factor retained. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology ContDiff

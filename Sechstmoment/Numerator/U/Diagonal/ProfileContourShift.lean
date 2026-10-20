@@ -2,8 +2,6 @@ import Sechstmoment.Analysis.Complex.ContourShift
 import Sechstmoment.Numerator.U.Diagonal.ActualProfileMellin
 import Sechstmoment.Numerator.U.Diagonal.ProfileStripDecay
 
-/-! Actual contour movement for a profile multiplied by a bounded holomorphic
-factor. Vertical integrability and horizontal decay are consequences, not inputs. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Filter

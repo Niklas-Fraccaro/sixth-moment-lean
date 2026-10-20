@@ -17,7 +17,6 @@ theorem beta_nat_complex (i j : ℕ) :
     Complex.Gamma_nat_eq_factorial, Complex.Gamma_nat_eq_factorial,
     Complex.Gamma_nat_eq_factorial]
 
-/-- The beta moment formula used for the polynomial profile masses. -/
 theorem beta_nat_integral (i j : ℕ) :
     (∫ x in (0 : ℝ)..1, x^i*(1-x)^j) =
       (Nat.factorial i : ℝ) * Nat.factorial j / Nat.factorial (i+j+1) := by
@@ -45,7 +44,6 @@ theorem beta_nat_scaled {H : ℝ} (hH : 0 ≤ H) (i j : ℕ) :
   simpa only [Complex.ofReal_div, Complex.ofReal_mul, Complex.ofReal_natCast,
     Complex.ofReal_pow, mul_div_assoc, mul_comm, mul_left_comm, mul_assoc] using hb
 
-/-- Polynomial version, valid for every oriented interval endpoint H. -/
 theorem beta_nat_polynomial_integral (H : ℝ) (i j : ℕ) :
     (∫ x in (0 : ℝ)..H, x^i*(H-x)^j) =
       (Nat.factorial i : ℝ) * Nat.factorial j / Nat.factorial (i+j+1) * H^(i+j+1) := by

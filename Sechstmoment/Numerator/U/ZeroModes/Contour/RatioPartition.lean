@@ -3,10 +3,6 @@ import Sechstmoment.Analysis.Complex.SimplePole
 import Sechstmoment.Numerator.U.ZeroModes.Contour.Chambers
 import Sechstmoment.Numerator.U.ZeroModes.Contour.RatioWeight
 
-/-! A constructive Mellin ratio partition for BBLR §4. The identity
-`g(x)+g(1/x)=1` is obtained by moving the genuine one-dimensional contour
-across its simple pole at zero. All boundary integrability and edge limits
-are proved from entire-weight bounds; no displacement is an input. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
@@ -159,7 +155,6 @@ theorem a03ZeroModeRatioPartition_identity {x : ℝ} (hx : 0<x)
   rw [hshift,href']
   ring
 
-/-- The specific two-root Gaussian construction obeys the ratio partition. -/
 theorem a03ZeroModeRatioPartition_actual_identity (α : MomentShifts)
     {x : ℝ} (hx : 0<x) :
     a03ZeroModeRatioPartition (a03ZeroModeRatioWeight α) x+

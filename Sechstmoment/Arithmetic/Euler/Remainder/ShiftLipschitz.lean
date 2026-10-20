@@ -3,8 +3,6 @@ import Mathlib.Analysis.Complex.Liouville
 import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
 import Sechstmoment.Arithmetic.Euler.Remainder.UniformMajorant
 
-/-! Cauchy estimates in a larger polydisc give the global absolute-norm Lipschitz
-estimate (6.6), with no assumption about differentiated Euler products. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalRest

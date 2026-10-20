@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.PolynomialGeometricSummability
 
-/-! Absolute convergence of the actual shifted local fourfold series. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

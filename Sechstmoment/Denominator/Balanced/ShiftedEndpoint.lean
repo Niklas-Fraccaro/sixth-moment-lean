@@ -1,10 +1,6 @@
 import Sechstmoment.Denominator.Balanced.CauchyIntegration
 import Sechstmoment.Denominator.Balanced.GaussianPhysicalTimeMean
 
-/-! The direct and pure-power dual sharp D01 endpoints combine into the
-actual centered nine-edge exponential integral. Profile caps prove every
-required edge and image-measure integrability statement. The physical
-Gaussian means reach this endpoint through the proved moving-cut limit. -/
 
 namespace Sechstmoment
 open MeasureTheory Filter Set Complex
@@ -124,8 +120,6 @@ theorem d02BalancedSharpWeight_limitIntegral
     d01EdgeMeasure,d02BalancedSharpWeight_edgeIntegral]
   exact Complex.real_smul
 
-/-- This equality combines the direct and dual endpoint integrals only
-after both actual sharp edge integrands have been proved integrable. -/
 theorem d02BalancedDirectDual_edgeIntegral
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ) (σ : Fin 2 → ℂ)
     (hρc : ∀ i, Continuous (ρ i))

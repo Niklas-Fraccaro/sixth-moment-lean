@@ -3,9 +3,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.MaskComplementBudget
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.MaskComplementGeometry
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.MaskedReindex
 
-/-! Removal of the literal passive seven-variable continuous mask.
-All actual countable indices, amplifier ranges, gap signs and spatial
-integration remain in the norm bound. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

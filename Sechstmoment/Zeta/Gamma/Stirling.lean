@@ -1,7 +1,5 @@
 import Sechstmoment.Zeta.Gamma.StirlingTail
 
-/-! Quantitative complex Stirling in the right half-plane, derived from the
-finite recurrence and its proved real-factorial normalization. -/
 
 namespace Sechstmoment.Source
 open Complex Real Filter

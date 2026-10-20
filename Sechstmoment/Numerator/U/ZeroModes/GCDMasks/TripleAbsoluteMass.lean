@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.FrequencyMass
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.SpatialMass
 import Sechstmoment.Numerator.U.ZeroModes.RatioBroadDirichletMass
 
-/-! A genuine joint absolute mass for the actual ratio partitions and
-all positive native gcd frequencies, before the spatial integration. -/
 namespace Sechstmoment.Source
 open Complex Real Set Filter MeasureTheory
 open scoped Topology BigOperators

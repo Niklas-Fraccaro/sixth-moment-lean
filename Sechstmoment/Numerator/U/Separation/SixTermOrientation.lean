@@ -1,19 +1,12 @@
 import Mathlib.Tactic
 import Sechstmoment.Zeta.AFE.Four.Terms
 
-/-!
-Exact original/dual orientation of the literal six diagonal expressions.
-This is an unconditional reindexing of their four discrete variables. It does
-not identify a source quadratic zero mode with a diagonal main term, and does
-not evaluate or discard any contour residue.
--/
 namespace Sechstmoment.Source
 open Complex MeasureTheory
 open scoped BigOperators
 open Classical
 noncomputable section
 
-/-- Exchange the two factors on both sides of the diagonal relation. -/
 def a03BothPairFlip (j : Fin 4) : Fin 4 := ![1, 0, 3, 2] j
 
 @[simp] theorem a03BothPairFlip_involutive (j : Fin 4) :
@@ -47,9 +40,6 @@ theorem a03BothPairFlip_diagonal_summand (G : ℂ → ℂ) (α : MomentShifts)
   simp [Fin.prod_univ_four, a03BothPairFlipIndices, a03BothPairFlip]
   ring
 
-/-- The actual infinite diagonal sum is invariant under exchanging both
-factor pairs. No conditional convergence or generic zero-mode invariance is
-used: `tsum` is reindexed by an explicit equivalence. -/
 theorem bblrDiagonalTerm_both_pair_flip (G : ℂ → ℂ) (α : MomentShifts)
     (u v : ℕ) (t : ℝ) :
     bblrDiagonalTerm G (fun j => α (a03BothPairFlip j)) u v t =
@@ -61,15 +51,12 @@ theorem bblrDiagonalTerm_both_pair_flip (G : ℂ → ℂ) (α : MomentShifts)
   intro n
   rw [a03BothPairFlip_diagonal_relation, ← a03BothPairFlip_diagonal_summand]
 
-/-- The four dual off-diagonal labels pair with original labels 5,3,4,2. -/
 def a03DualTermPartner (j : Fin 6) : Fin 6 := ![1, 0, 5, 3, 4, 2] j
 
 @[simp] theorem a03DualTermPartner_involutive (j : Fin 6) :
     a03DualTermPartner (a03DualTermPartner j) = j := by
   fin_cases j <;> norm_num [a03DualTermPartner]
 
-/-- All six actual diagonal expressions have the correct dual partner;
-labels 3 and 4 require the proved factor-pair reindexing. -/
 theorem bblrDiagonalTerm_dual_six_orientation (G : ℂ → ℂ) (α : MomentShifts)
     (u v : ℕ) (t : ℝ) (j : Fin 6) :
     bblrDiagonalTerm G (bblrSixShifts (bblrSixShifts α 1) j) u v t =
@@ -96,8 +83,6 @@ theorem bblrSixPhaseExponents_dual_partner (α : MomentShifts) (j : Fin 6) :
       bblrSixPhaseExponents α (a03DualTermPartner j) := by
   fin_cases j <;> simp [bblrSixPhaseExponents, bblrSixShifts, a03DualTermPartner] <;> ring
 
-/-- Exact pairing with the *leading* dual phase. Replacing the actual four
-chi factors by this phase is a separate analytic error estimate. -/
 theorem bblr_dual_leading_phase_six_orientation (G : ℂ → ℂ) (α : MomentShifts)
     (u v : ℕ) {t : ℝ} (ht : 0 < t) (j : Fin 6) :
     (t/(2*Real.pi) : ℂ)^(bblrSixPhaseExponents α 1)*

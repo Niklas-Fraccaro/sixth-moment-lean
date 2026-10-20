@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Reconstruction.RectangularQuadraticReindex
 
-/-! Genuine integer exclusion of the near-resonant signed off-diagonal when
-one zeta pair consists of two unit variables. This does not estimate any
-far-gap time integral or identify a source quadratic zero mode. -/
 
 namespace Sechstmoment
 open Source
@@ -10,19 +7,15 @@ open Classical
 open scoped BigOperators
 noncomputable section
 
-/-- The literal real products in the signed source relation. -/
 def rectangularNearLeftProduct (n : Fin 7 → ℕ) : ℝ :=
   (n 0 : ℝ)*n 2*n 3
 
 def rectangularNearRightProduct (n : Fin 7 → ℕ) : ℝ :=
   (n 1 : ℝ)*n 4*n 5
 
-/-- A condition on the actual positive integer gap, using the full sixfold
-product of the actual tuple, with no free proxy mass. -/
 def rectangularNearRelation (η : ℝ) (n : Fin 7 → ℕ) : Prop :=
   (n 6 : ℝ) ≤ η*Real.sqrt ((n 0 : ℝ)*n 1*n 2*n 3*n 4*n 5)
 
-/-- A near relation makes the two positive products comparable. -/
 theorem rectangular_near_product_comparable {A B η : ℝ}
     (hA : 0 < A) (hB : 0 ≤ B) (hη : η ≤ 1/2)
     (hne : |A-B| ≤ η*Real.sqrt (A*B)) : B ≤ 4*A := by
@@ -34,7 +27,6 @@ theorem rectangular_near_product_comparable {A B η : ℝ}
   have hab := neg_le_abs (A-B)
   linarith
 
-/-- The square-root mass is bounded by twice the smaller prescribed side. -/
 theorem rectangular_near_product_sqrt_le {A B η : ℝ}
     (hA : 0 < A) (hB : 0 ≤ B) (hη : η ≤ 1/2)
     (hne : |A-B| ≤ η*Real.sqrt (A*B)) : Real.sqrt (A*B) ≤ 2*A := by
@@ -43,7 +35,6 @@ theorem rectangular_near_product_sqrt_le {A B η : ℝ}
   apply Real.sqrt_le_iff.mpr
   exact ⟨by positivity, by nlinarith⟩
 
-/-- The explicit smallness condition bounds the actual near gap below one. -/
 theorem rectangular_near_gap_lt_one {A B η X h : ℝ}
     (hA : 0 < A) (hB : 0 ≤ B) (hη0 : 0 ≤ η) (hη : η ≤ 1/2)
     (hAX : A ≤ X) (hsmall : 2*η*X < 1)
@@ -53,15 +44,12 @@ theorem rectangular_near_gap_lt_one {A B η X h : ℝ}
   have hX := mul_le_mul_of_nonneg_left hAX (mul_nonneg (by norm_num : (0:ℝ) ≤ 2) hη0)
   nlinarith
 
-/-- The literal sixfold product is exactly the product of the two sides. -/
 theorem rectangular_near_tuple_mass (n : Fin 7 → ℕ) :
     (n 0 : ℝ)*n 1*n 2*n 3*n 4*n 5 =
       rectangularNearLeftProduct n*rectangularNearRightProduct n := by
   unfold rectangularNearLeftProduct rectangularNearRightProduct
   ring
 
-/-- Both actual signed orientations have absolute gap equal to the same
-positive natural gap coordinate. -/
 theorem rectangular_signed_relation_abs_gap (positive : Bool) (n : Fin 7 → ℕ)
     (hrel : signedQuadraticRelation positive n) :
     |rectangularNearLeftProduct n-rectangularNearRightProduct n| = (n 6 : ℝ) := by
@@ -74,8 +62,6 @@ theorem rectangular_signed_relation_abs_gap (positive : Bool) (n : Fin 7 → ℕ
   rw [hreal]
   cases positive <;> simp
 
-/-- If m₁=m₂=1, an explicitly small near relation cannot contain an actual
-nonzero signed integer gap. No condition on the other zeta pair is assumed. -/
 theorem rectangular_near_double_m_unit_excluded (positive : Bool)
     (n : Fin 7 → ℕ) {η X : ℝ}
     (hη0 : 0 ≤ η) (hη : η ≤ 1/2) (hsmall : 2*η*X < 1)
@@ -99,8 +85,6 @@ theorem rectangular_near_double_m_unit_excluded (positive : Bool)
   have hh1 : (1:ℝ) ≤ n 6 := by exact_mod_cast Nat.succ_le_iff.mpr hh
   linarith
 
-/-- The symmetric exclusion applies when n₁=n₂=1 and the other amplifier
-is at most X. Both signs remain covered without changing the source relation. -/
 theorem rectangular_near_double_n_unit_excluded (positive : Bool)
     (n : Fin 7 → ℕ) {η X : ℝ}
     (hη0 : 0 ≤ η) (hη : η ≤ 1/2) (hsmall : 2*η*X < 1)
@@ -126,8 +110,6 @@ theorem rectangular_near_double_n_unit_excluded (positive : Bool)
   have hh1 : (1:ℝ) ≤ n 6 := by exact_mod_cast Nat.succ_le_iff.mpr hh
   linarith
 
-/-- The exact gap is zero on either double-unit near relation, provided
-that the amplifier on that same side satisfies the explicit length bound. -/
 theorem rectangular_near_double_unit_gap_zero (positive : Bool)
     (n : Fin 7 → ℕ) {η X : ℝ}
     (hη0 : 0 ≤ η) (hη : η ≤ 1/2) (hsmall : 2*η*X < 1)
@@ -144,8 +126,6 @@ theorem rectangular_near_double_unit_gap_zero (positive : Bool)
   · exact rectangular_near_double_n_unit_excluded positive n hη0 hη hsmall
       hb hbX hh hn₁ hn₂ hrel hne
 
-/-- Every actual nonzero double-unit source relation is in the complementary
-far-gap region. This is a strict pointwise classification, not a far-gap bound. -/
 theorem rectangular_near_double_unit_gap_far (positive : Bool)
     (n : Fin 7 → ℕ) {η X : ℝ}
     (hη0 : 0 ≤ η) (hη : η ≤ 1/2) (hsmall : 2*η*X < 1)
@@ -159,8 +139,6 @@ theorem rectangular_near_double_unit_gap_far (positive : Bool)
   have hz := rectangular_near_double_unit_gap_zero positive n hη0 hη hsmall ha hb hunit hrel hne
   omega
 
-/-- The actual original AFE index convention uses r+1. Thus a pair of zero
-AFE indices is precisely the double-unit m pair of the literal source tuple. -/
 theorem rectangular_AFE_double_m_unit_near_excluded (positive : Bool)
     (a b : ℕ) (n : Fin 4 → ℕ) {η X : ℝ}
     (hη0 : 0 ≤ η) (hη : η ≤ 1/2) (hsmall : 2*η*X < 1)
@@ -177,8 +155,6 @@ theorem rectangular_AFE_double_m_unit_near_excluded (positive : Bool)
   · simp [rectangularAFESourceTuple, hm₂]
   · exact rectangular_AFE_gap_source_relation positive a b n hselected
 
-/-- The symmetric statement applies to the actual n pair of the original
-AFE, using the bound on b rather than an unrelated bound on a. -/
 theorem rectangular_AFE_double_n_unit_near_excluded (positive : Bool)
     (a b : ℕ) (n : Fin 4 → ℕ) {η X : ℝ}
     (hη0 : 0 ≤ η) (hη : η ≤ 1/2) (hsmall : 2*η*X < 1)
@@ -195,16 +171,11 @@ theorem rectangular_AFE_double_n_unit_near_excluded (positive : Bool)
   · simp [rectangularAFESourceTuple, hn₂]
   · exact rectangular_AFE_gap_source_relation positive a b n hselected
 
-/-- The retained double-unit near selection uses the bounded amplifier on
-its own unit side. This cannot silently swap the two amplifier bounds. -/
 def rectangularNearDoubleUnitSelection (η X : ℝ) (n : Fin 7 → ℕ) : Prop :=
   rectangularNearRelation η n ∧
     ((n 2 = 1 ∧ n 3 = 1 ∧ (n 0 : ℝ) ≤ X) ∨
       (n 4 = 1 ∧ n 5 = 1 ∧ (n 1 : ℝ) ≤ X))
 
-/-- The literal finite quadratic source sum restricted to the near
-relation and either double-unit pair is exactly zero. Its index set,
-signed relation, and quadratic summands are all the actual source objects. -/
 theorem rectangular_near_double_unit_source_sum_zero (positive : Bool)
     (q : QuadraticScales) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) {η X : ℝ}
     (hη0 : 0 ≤ η) (hη : η ≤ 1/2) (hsmall : 2*η*X < 1) :

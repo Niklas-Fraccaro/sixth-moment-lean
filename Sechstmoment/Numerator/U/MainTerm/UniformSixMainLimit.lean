@@ -2,15 +2,6 @@ import Sechstmoment.Numerator.U.MainTerm.MovingDyadicPhase
 import Sechstmoment.Numerator.U.MainTerm.MovingPrincipalLimit
 import Sechstmoment.Numerator.U.MainTerm.SixMainPolarLimit
 
-/-!
-# Compact uniformity of the literal six BBLR main terms
-
-The actual finite amplifier sums, shifted Mellin contours, two profile
-integrals, outer time integral and genuine left remainder are retained.
-The resulting limit is uniform on compact separated shift sets. The remaining
-identification with the manuscript generator and collision extension are not
-assumed or asserted here.
--/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff
@@ -136,8 +127,6 @@ theorem actualSmoothSixProfileRemainderMoment_normalized_moving_tendsto
       exact hn.trans (mul_le_mul_of_nonneg_left hd (by positivity)))
     _ < ε := by linarith
 
-/-- Joint limit of the literal six finite-amplifier BBLR source terms,
-including the actual outer integrated remainder. -/
 theorem bblrSixMainTerms_moving_separated_polar_limit
     {ι : Type*} {l : Filter ι} [l.IsCountablyGenerated]
     {T : ι → ℝ} {σ : ι → MomentShifts} {σ₀ : MomentShifts}
@@ -179,8 +168,6 @@ theorem bblrSixMainTerms_moving_separated_polar_limit
     (hα (σ i) hσi) hρT f g Φ hf hg hΦ (hresti (σ i) hσi hgapi).1,add_div]
   rfl
 
-/-- Actual source main-term convergence is locally uniform away from pure
-polar collisions, with the true finite amplifier and time-integral definitions. -/
 theorem bblrSixMainTerms_separated_polar_locally_uniform
     {R c δ a b : ℝ} (hR : 0 ≤ R) (hc : 4*R+1 ≤ c)
     (hδ : 0 < δ) (hδ1 : δ < 1/4) (hab : a+b < 1)
@@ -209,7 +196,6 @@ theorem bblrSixMainTerms_separated_polar_locally_uniform
     (Complex.ofRealCLM.contDiff.comp hg.1) Φ).tendsto.comp (tendsto_snd (f := (atTop : Filter ℝ)))
   exact (hl.prodMk_nhds ht).mono_right (nhds_le_uniformity _)
 
-/-- Compact uniformity of the complete literal source main-term limit. -/
 theorem bblrSixMainTerms_separated_polar_uniform_on_compact
     {R c δ a b : ℝ} (hR : 0 ≤ R) (hc : 4*R+1 ≤ c)
     (hδ : 0 < δ) (hδ1 : δ < 1/4) (hab : a+b < 1)

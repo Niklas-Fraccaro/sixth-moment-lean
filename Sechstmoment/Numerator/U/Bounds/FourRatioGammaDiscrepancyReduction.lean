@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.FiniteGammaDiscrepancyReduction
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.OffdiagonalGammaMoment
 
-/-! The complete literal A03 discrepancy is reduced, uniformly and with
-all choices internal, to the actual four ratio-Gamma zero moments minus
-the four crossed source terms. This remaining expression is not assumed small. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

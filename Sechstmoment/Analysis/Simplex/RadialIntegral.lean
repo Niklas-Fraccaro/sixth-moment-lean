@@ -1,7 +1,6 @@
 import Mathlib.MeasureTheory.Integral.Prod
 import Sechstmoment.Analysis.Simplex.Exponential
 
-/-! Fubini on the genuine triangular integration region. -/
 
 namespace Sechstmoment
 open MeasureTheory Set
@@ -66,8 +65,6 @@ theorem triangular_integral_swap (H : ℝ) (hH : 0 ≤ H)
       ∫ y : ℝ in 0..H, ∫ x : ℝ in 0..y, f x y :=
   triangular_integral_swap_from 0 H hH f hf
 
-/-- Genuine radial slicing of a tetrahedron. This is two triangle Fubini steps,
-followed by translation, and holds without distinctness assumptions on a kernel. -/
 theorem radial_simplex_integral (H : ℝ) (hH : 0 ≤ H)
     (f : ℝ → ℝ → ℝ → ℂ)
     (hf : Continuous (fun p : ℝ × ℝ × ℝ => f p.1 p.2.1 p.2.2)) :

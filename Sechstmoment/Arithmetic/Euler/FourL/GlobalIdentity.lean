@@ -1,7 +1,6 @@
 import Sechstmoment.Arithmetic.Euler.FourL.FinitePolynomial
 import Sechstmoment.Arithmetic.Euler.FourL.FourLSeries
 
-/-! The original shifted Dirichlet series factors as its existing entire correction times four actual L-functions. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
@@ -52,13 +51,11 @@ theorem shiftedTerm_hasSum {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) 
     funext (shiftedTerm_eq_LSeries χ d s z)]
   exact h
 
-/-- Absolute convergence of the actual original shifted fourfold series. -/
 theorem shiftedTerm_absolute {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (d : ℕ) (hd : d ≠ 0)
     (s : Fin 4 → ℂ) (z : ℂ) (H : ∀ j, 1 < (z+s j).re) :
     Summable (fun n => ‖shiftedTerm χ d s z n‖) :=
   (shiftedTerm_hasSum χ d hd s z H).summable.norm
 
-/-- PDF (5.3), with independent fourfold coefficients and actual analytically continued L-functions. -/
 theorem global_L_factorization {q : ℕ} [NeZero q] (χ : DirichletCharacter ℂ q) (d : ℕ) (hd : d ≠ 0)
     (s : Fin 4 → ℂ) (z : ℂ) (H : ∀ j, 1 < (z+s j).re) :
     shiftedDirichlet χ d s z = eulerCorrection χ d s z *

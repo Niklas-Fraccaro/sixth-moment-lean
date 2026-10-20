@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalResidual
 
-/-! A genuine fixed-shift physical residual majorant, independent of
-T or of the time profile, for exact front reconstruction. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

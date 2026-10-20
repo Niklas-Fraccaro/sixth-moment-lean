@@ -1,9 +1,6 @@
 import Sechstmoment.Zeta.Bounds.MellinZetaGrowth
 import Sechstmoment.Zeta.DirichletL.DivisorSeries
 
-/-! Actual convergent smooth-square Dirichlet series. The vertical kernel is
-formed from the true Gamma factor; its integrability is proved below.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set
@@ -126,8 +123,6 @@ theorem lSeriesTerm_add (f : ℕ → ℂ) (s w : ℂ) (n : ℕ) :
     simp only [LSeries.term_of_ne_zero hn, Complex.cpow_add _ _ hn', Complex.cpow_neg]
     ring
 
-/-- The direct contour is an actual convergent divisor-weighted Dirichlet
-series. In particular its sum/integral interchange is not an extra premise. -/
 theorem dirichletSquareLIntegral_hasSum {N : ℕ} [NeZero N]
     (χ : DirichletCharacter ℂ N) {s : ℂ} (hs : 0 < s.re) :
     HasSum (fun n : ℕ => LSeries.term (dirichletDivisorCoefficients χ) s n *
@@ -153,7 +148,6 @@ theorem dirichletSquareLIntegral_hasSum {N : ℕ} [NeZero N]
     rw [show s+2+(v : ℂ)*I = s+(2+(v : ℂ)*I) by ring, lSeriesTerm_add]
     ring
 
-/-- Smooth square AFE in the form of two genuine convergent Dirichlet series. -/
 theorem dirichletL_square_eq_smooth_series {N : ℕ} [NeZero N]
     (χ : DirichletCharacter ℂ N) (hχ : χ ≠ 1) (hprim : χ.IsPrimitive)
     {s : ℂ} (hs0 : 0 < s.re) (hs1 : s.re < 1) :

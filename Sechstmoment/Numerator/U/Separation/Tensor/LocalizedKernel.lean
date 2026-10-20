@@ -2,9 +2,6 @@ import Mathlib.Analysis.Calculus.ContDiff.Bounds
 import Sechstmoment.Numerator.U.Separation.Tensor.CompactSeminorms
 import Sechstmoment.Numerator.U.Separation.Tensor.LogCutoff
 
-/-! A fixed cutoff turns local uniform kernel derivative bounds into a
-bounded Schwartz family. The open neighborhood keeps the literal logarithm
-and its principal branch throughout the actual dyadic box. -/
 namespace Sechstmoment
 open Set Filter
 open scoped BigOperators Topology
@@ -66,8 +63,6 @@ theorem phase_localized_kernel_derivative_bound {χ P : E → ℂ} {U : Set E}
     rw [hz, norm_zero]
     exact mul_nonneg hb hD
 
-/-- All seminorms of the normalized localized family are bounded uniformly.
-The normalization is fixed pointwise from its actual scalar budget. -/
 theorem phase_localized_uniform_schwartz_family {ι : Type*}
     (χ : E → ℂ) (hχ : ContDiff ℝ (⊤ : ℕ∞) χ) (hK : HasCompactSupport χ)
     {U : Set E} (hU : IsOpen U) (hs : tsupport χ ⊆ U)

@@ -21,15 +21,6 @@ import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 import Std
 
-/-!
-# Literal integrands at the two external-source interfaces
-
-All four shifts here are raw complex shifts, rather than shifts silently divided
-by `log T`. The BBLR integrand has one conjugated amplifier. The DP §5.2
-integrand has two conjugated amplifiers and one factor `χ(s)`.
-The exact functional-equation conversion retains its actual Gamma quotient.
-No moment asymptotic or external theorem is asserted by this file.
--/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set
@@ -38,10 +29,8 @@ open Polynomial
 
 noncomputable section
 
-/-- Four raw shifts, in the source order `α₁, α₂, α₃, α₄`. -/
 abbrev MomentShifts := Fin 4 → ℂ
 
-/-- Convert a normalized shift tuple to the raw shifts in the papers. -/
 def rawMomentShifts (T : ℝ) (σ : MomentShifts) : MomentShifts :=
   fun j => σ j / (Real.log T : ℂ)
 

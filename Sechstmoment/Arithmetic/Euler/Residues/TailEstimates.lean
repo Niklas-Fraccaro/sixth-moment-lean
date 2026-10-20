@@ -3,7 +3,6 @@ import Mathlib.Analysis.Normed.Ring.InfiniteSum
 import Mathlib.LinearAlgebra.Complex.FiniteDimensional
 import Sechstmoment.Arithmetic.Euler.Residues.BivariateCoefficients
 
-/-! Absolute convergence and certified finite truncations of the residue series. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPResidues

@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.NativeRatioGCD
 
-/-! A genuine supported continuous native GCD zero point in the low gap
-range. This predicate does not assert an integer quadratic source relation. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

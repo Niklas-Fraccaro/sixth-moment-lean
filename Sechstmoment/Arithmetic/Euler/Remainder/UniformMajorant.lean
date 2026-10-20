@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Remainder.AbsoluteCoefficients
 
-/-! A single summable coefficientwise majorant for the whole shift polydisc. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalRest

@@ -3,7 +3,6 @@ import Mathlib.MeasureTheory.Integral.CompactlySupported
 import Sechstmoment.Numerator.U.Diagonal.ActualDiagonalGrouping
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEError
 
-/-! Time regularity and dyadic integrability of the literal source diagonal. -/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter

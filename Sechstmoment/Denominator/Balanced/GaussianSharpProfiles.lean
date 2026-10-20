@@ -1,10 +1,6 @@
 import Sechstmoment.Denominator.Balanced.FourProfileCutoff
 import Sechstmoment.Denominator.Balanced.GaussianSharpTilt
 
-/-! Removing the finite exponential tilt gives a genuine moving-Gaussian
-cutoff estimate for the original arithmetic measures.  Four profile caps
-bound `Total-q₀`; the Gaussian controls the remaining unbounded directions.
--/
 
 namespace Sechstmoment
 open MeasureTheory Filter Set
@@ -179,9 +175,6 @@ private theorem d02GaussianTilt_profile_comparison
     _ = _ := by
       simpa [K] using (integral_const_mul (μ := d02TiltedDiagonalMeasure L) K (fun _ : D01LogSpace => (1:ℝ)))
 
-/-- The full moving Gaussian-to-sharp error for original D01 arithmetic
-measures.  It is uniform over measurable tests with four caps and a common
-exponential majorant, hence also over bounded complex shifts. -/
 theorem d02DiagonalMeasure_gaussian_sharp_profile_uniform
     (a : Fin 4 → ℝ) {B C : ℝ} (hB : 0 ≤ B) (hC : 0 ≤ C)
     {ε : ℝ} (hε : 0 < ε) :
@@ -282,8 +275,6 @@ theorem d02DiagonalMeasure_gaussian_sharp_profile_uniform
       d01LogTotal_continuous.measurable (d02SharpLogTest f)
   rwa [hUntiltG,hUntiltS] at hSum
 
-/-- The original sharp integral is bounded by the actual finite tilted
-mass. The four caps and the sharp cut bound the exponential untilt. -/
 theorem d02DiagonalMeasure_sharp_profile_norm_bound
     (a : Fin 4 → ℝ) {B C L : ℝ} (hB : 0 ≤ B) (hC : 0 ≤ C) (hL : 0 < L)
     (f : D01LogSpace → ℂ) (hf : d02FourCapSupport f a)
@@ -366,7 +357,6 @@ private theorem d02FourProfileProduct_norm_bound
   exact mul_le_mul h₀₁₂ (hb 3 (y.2 2)) (norm_nonneg _)
     (mul_nonneg (mul_nonneg (hb0 0) (hb0 1)) (hb0 2))
 
-/-- One common exponential bound for four profiles on a real-part shift box. -/
 theorem d02ShiftedFourProfile_growth
     (ρ : Fin 4 → ℝ → ℂ) (a b : Fin 4 → ℝ) {C : ℝ} (hC : 0 ≤ C)
     (hρcap : ∀ k t, ρ k t ≠ 0 → t ∈ Icc 0 (a k))
@@ -403,8 +393,6 @@ theorem d02ShiftedFourProfile_growth
         (mul_le_mul_of_nonneg_left ht hC)) hprod0
     _ = _ := by rw [mul_add, Real.exp_add]; ring
 
-/-- The original sharp four-profile diagonal has a common norm bound on
-all complex shifts in a real-part box, using its actual tilted mass. -/
 theorem d02DiagonalMeasure_shifted_four_profile_sharp_norm_bound
     (ρ : Fin 4 → ℝ → ℂ) (a b : Fin 4 → ℝ) {C L : ℝ} (hC : 0 ≤ C) (hL : 0 < L)
     (hρcap : ∀ k t, ρ k t ≠ 0 → t ∈ Icc 0 (a k))
@@ -436,8 +424,6 @@ theorem d02DiagonalMeasure_shifted_four_profile_sharp_norm_bound
       simp [d02SharpLogTest,d02SharpLogRegion,f,hq]
   rwa [he] at h
 
-/-- Bounded real parts and bounded physical offsets share one uniform
-Gaussian-to-sharp estimate.  Imaginary shift coordinates need no bound. -/
 theorem d02DiagonalMeasure_shifted_four_profile_gaussian_sharp_uniform
     (ρ : Fin 4 → ℝ → ℂ) (a b : Fin 4 → ℝ) {C : ℝ} (hC : 0 ≤ C)
     (hρc : ∀ k, Continuous (ρ k))
@@ -496,9 +482,6 @@ theorem d02DiagonalMeasure_shifted_four_profile_gaussian_sharp_uniform
       simp [d02SharpLogTest,d02SharpLogRegion,f,hq]
   rwa [he] at h
 
-/-- The literal four-profile arithmetic Gaussian diagonal has the original
-nine-edge limit, with actual bounded height offsets rather than a assumed
-moving-test convergence premise. -/
 theorem d02DiagonalMeasure_four_profile_gaussian_limit
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (ab : PolarShiftSpace)
     (c : ℝ → ℝ) {C : ℝ} (hC : 0 ≤ C)
@@ -546,7 +529,6 @@ theorem d02GaussianPhysicalOffset_bound {τ : ℝ} (hτ : τ ∈ Icc (1:ℝ) 2) 
   simp only [sub_zero, zero_sub, abs_neg, abs_of_nonneg hlog0] at h
   linarith
 
-/-- Uniform on the literal physical-time interval `τ ∈ [1,2]`. -/
 theorem d02DiagonalMeasure_shifted_four_profile_physical_gaussian_sharp_uniform
     (ρ : Fin 4 → ℝ → ℂ) (a b : Fin 4 → ℝ) {C : ℝ} (hC : 0 ≤ C)
     (hOffset : |Real.log (2*Real.pi)|+Real.log 2 ≤ C)

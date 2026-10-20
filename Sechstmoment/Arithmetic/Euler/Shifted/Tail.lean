@@ -1,13 +1,6 @@
 import Mathlib.Tactic
 import Sechstmoment.Arithmetic.Euler.Shifted.Rest
 
-/-!
-# A genuine uniform quadratic tail bound for the diagonal local series
-
-The constant is deliberately coarse. The bound is proved from the actual
-prime coefficients and an absolutely convergent geometric majorant, rather
-than from an assumed Euler-remainder estimate.
--/
 
 namespace Sechstmoment
 
@@ -30,7 +23,6 @@ theorem d3PrimePowerCoefficient_add_two_sq_le (m : ℕ) :
   have hb : (0:ℝ) ≤ d3PrimePowerCoefficient m := Nat.cast_nonneg _
   nlinarith
 
-/-- The exact constant of the convergent real majorant at `1/2`. -/
 theorem hasSum_d3PrimePower_half :
     HasSum (fun m : ℕ => (d3PrimePowerCoefficient m:ℝ)^2*(1/2)^m) 104 := by
   convert hasSum_d3PrimePower_sq (x := (1/2:ℝ)) (by norm_num) using 1
@@ -61,8 +53,6 @@ theorem diagonalPrimeTail_norm_le {a b : Fin 3 → ℂ} {r : ℝ}
       gcongr
     _ = _ := by ring
 
-/-- Decomposition of the actual infinite series into its two polar terms
-and the genuinely absolutely convergent tail. -/
 theorem diagonalPrimeSeries_linear_tail {a b : Fin 3 → ℂ} {r : ℝ}
     (hr : 0 ≤ r) (ha : ∀ i : Fin 3, ‖a i‖ ≤ r) (hb : ∀ i : Fin 3, ‖b i‖ ≤ r)
     {x : ℂ} (hx : r^2*‖x‖ < 1) :
@@ -77,8 +67,6 @@ theorem diagonalPrimeSeries_linear_tail {a b : Fin 3 → ℂ} {r : ℝ}
   rw [← h]
   ring
 
-/-- Actual quadratic cancellation of the diagonal local series after its
-constant and linear coefficients have been subtracted. -/
 theorem diagonalPrimeSeries_sub_linear_norm_le {a b : Fin 3 → ℂ} {r : ℝ}
     (hr : 0 ≤ r) (ha : ∀ i : Fin 3, ‖a i‖ ≤ r) (hb : ∀ i : Fin 3, ‖b i‖ ≤ r)
     {x : ℂ} (hx : r^2*‖x‖ ≤ 1/2) :

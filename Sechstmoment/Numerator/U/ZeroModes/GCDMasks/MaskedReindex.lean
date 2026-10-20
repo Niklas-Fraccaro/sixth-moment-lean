@@ -2,10 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.AbsoluteConvergence
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.PassiveMaskPartition
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.FiniteGCDVStarJoin
 
-/-! Exact regrouping of the selected finite seven-dyadic retained GCD
-expression into the actual positive native indices. The finite tuple
-bijection, amplifier profile cutoff and bounded-mask Bochner exchange
-are proved separately and consumed in the literal integrated endpoint. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -29,8 +25,6 @@ def a03NativeGCDNatGrid (q : QuadraticScales) : Finset (Fin 5→ℕ) :=
     have := hz j
     omega
 
-/-- The exact five native positive indices are the successors of a
-finite natural-index grid; the inverse map is coordinatewise predecessor. -/
 theorem a03_native_GCD_main_sum_eq_nat_grid (q : QuadraticScales) (F : (Fin 5→ℕ)→ℂ) :
     (∑w∈quadraticMainIndexSet q,F w)=
       ∑z∈a03NativeGCDNatGrid q,F (fun j => z j+1) := by
@@ -67,8 +61,6 @@ def a03NativeGCDFiveIndexEquiv : (ℕ×(ℕ×(ℕ×(ℕ×ℕ)))) ≃ (Fin 5→�
   left_inv p := by rcases p with ⟨u,v,m,n,h⟩; rfl
   right_inv z := by ext j; fin_cases j <;> rfl
 
-/-- A genuinely finitely supported positive native sum is exactly the
-nested five natural series, with no conditional reindexing premise. -/
 theorem a03_native_GCD_main_sum_eq_nested_tsum (q : QuadraticScales)
     (F : (Fin 5→ℕ)→ℂ) (hF : ∀w,w∉quadraticMainIndexSet q→F w=0) :
     (∑w∈quadraticMainIndexSet q,F w)=
@@ -273,8 +265,6 @@ theorem a03_retained_ratio_GCD_expanded_eq_native (dual positive : Bool) (Φ : �
   unfold a03NativeGCDDensity
   ring
 
-/-- The literal selected native expression retains the actual independent
-amplifier cutoffs and the original nested positive m,n,h series. -/
 def a03ActualMaskedRatioGCDVStar
     (select : ((Fin 3→ℕ)×(Fin 4→ℕ))→Prop) (dual : Bool) (Φ : ℝ→ℂ)
     (T a b s u ε : ℝ) (σ α : MomentShifts) (f g : ℝ→ℝ) : ℂ :=
@@ -294,8 +284,6 @@ theorem a03NativeGCD_actual_profile_zero_outside {T a : ℝ} (hT : 1<T)
   exact rectangular_supported_profile_zero_above f hf _
     ((lt_div_iff₀ (Real.log_pos hT)).mpr (Real.lt_log_of_rpow_lt (zero_lt_one.trans hT) hpow))
 
-/-- Exact finite-grid regrouping. The analytic premise is literal
-integrability, proved automatically in the eventual theorem below. -/
 theorem a03_actual_passive_retained_GCD_eq_masked_of_integrable
     (select : ((Fin 3→ℕ)×(Fin 4→ℕ))→Prop) (dual : Bool) (Φ : ℝ→ℂ)
     {T : ℝ} (hT : 1<T) (a b s u ε : ℝ) (σ α : MomentShifts) (f g : ℝ→ℝ)
@@ -402,9 +390,6 @@ theorem a03_actual_passive_retained_GCD_eq_masked_of_integrable
         have hz := a03NativeGCD_actual_profile_zero_outside hT f hf z hz
         simp [a03UnrestrictedRatioGCDVStarIntegrand,hz]
 
-/-- No reconstruction hypothesis is assumed: the actual branch envelope
-proves absolute integrability, and the finite tuple bijection supplies
-exact equality with the countable native masked expression. -/
 theorem a03_actual_passive_retained_GCD_eq_masked {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     (K : Set MomentShifts) (hK : IsCompact K) {κ : ℝ} (hκ : 0<κ)
@@ -426,8 +411,6 @@ theorem a03NativeGCD_triple_tsum {F : ((ℕ×ℕ)×ℕ)→ℂ} (hF : Summable F)
     (∑'p : (ℕ×ℕ)×ℕ,F p)=∑'m : ℕ,∑'n : ℕ,∑'h : ℕ,F ((m,n),h) := by
   rw [hF.tsum_prod,hF.prod.tsum_prod]
 
-/-- The common-X integral and the actual nested masked native series
-exchange automatically by the proved unmasked absolute majorant. -/
 theorem a03_actual_native_masked_tsum_integral {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     (K : Set MomentShifts) (hK : IsCompact K) {κ : ℝ} (hκ : 0<κ)
@@ -483,8 +466,6 @@ def a03ActualMaskedIntegratedRatioGCDVStar
       (a03NativeGCDSelectedDyadicMask select T a b s u ε f g (a03NativeGCDNatTuple z v m n h) X:ℂ)*
         a03UnrestrictedRatioGCDVStarIntegrand dual positive Φ T σ α f g z v m n h X
 
-/-- Literal integrated masked endpoint, with the finite source scales
-fully regrouped into the actual countable native common-X expression. -/
 theorem a03_actual_passive_retained_GCD_eq_integrated_masked {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     (K : Set MomentShifts) (hK : IsCompact K) {κ : ℝ} (hκ : 0<κ)
@@ -544,8 +525,6 @@ theorem a03NativeGCDSelectedGridMask_zero_outside (S : Finset ((Fin 3→ℕ)×(F
   rw [a03NativeGCDAllDyadicWeight_zero_outside_main _ (a03NativeGCDActualScales_pos i) w hwi X]
   exact ite_self 0
 
-/-- Arbitrary genuine finite source selectors regroup into one common-X
-mask. In particular the selector may be the actual discrete SourceGood. -/
 theorem a03_native_GCD_selected_grid_integral_reindex
     (S : Finset ((Fin 3→ℕ)×(Fin 4→ℕ))) (P : ((Fin 3→ℕ)×(Fin 4→ℕ))→Prop)
     (dual positive : Bool) (Φ : ℝ→ℂ) (T : ℝ) (σ α : MomentShifts) (f g : ℝ→ℝ)

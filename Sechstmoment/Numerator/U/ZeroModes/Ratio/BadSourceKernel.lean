@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourceMomentFrontJoin
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourceUniformMoment
 import Sechstmoment.Numerator.U.ZeroModes.RatioUnitTail
 
-/-! Broad actual kernel bounds for the ratio-source complement. Arbitrary
-ratio power tails pay for the literal finite grids and Mellin integration. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

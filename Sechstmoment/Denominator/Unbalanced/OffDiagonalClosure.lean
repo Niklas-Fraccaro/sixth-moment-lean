@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Balanced.ZetaGaussianMomentError
 import Sechstmoment.Denominator.Unbalanced.ActualOffDiagonal
 
-/-! Closed normalized negligibility, with the bounded profile multiplier
-derived from the actual continuous compactly supported profiles. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

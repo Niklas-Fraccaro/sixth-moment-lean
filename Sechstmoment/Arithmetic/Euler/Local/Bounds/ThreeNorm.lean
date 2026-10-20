@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.TwoNorm
 
-/-! A sharp comparison majorant for threefold local coefficients. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

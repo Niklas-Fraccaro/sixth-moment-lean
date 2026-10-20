@@ -1,8 +1,5 @@
 import Sechstmoment.Zeta.Gamma.QuotientTail
 
-/-! A genuine polynomial Gamma bound uniformly across the positive strip
-0 <= Re z <= 1, at every height. This supports positive contour shifts and
-Gaussian tails on the shifted line. -/
 
 namespace Sechstmoment.Source
 open Complex Filter Set

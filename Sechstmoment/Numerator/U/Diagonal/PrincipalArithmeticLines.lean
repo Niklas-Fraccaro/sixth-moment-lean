@@ -1,15 +1,6 @@
 import Mathlib.Tactic
 import Sechstmoment.Numerator.Polar.Mellin.Holomorphic
 
-/-!
-# Actual arithmetic multiplier on the profile contours
-
-The principal term retains the genuine shifted Euler rest and the five
-entangled zeta factors.  Normal convergence of the Euler rest proves
-holomorphy in each amplifier variable on an open half-plane containing
-every profile contour.  The bounds are independent of both imaginary
-amplifier coordinates.
--/
 
 namespace Sechstmoment
 

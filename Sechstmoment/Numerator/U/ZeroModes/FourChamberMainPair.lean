@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.ArithmeticChamberIdentification
 
-/-! All four actual original/dual M-contour pairs give the literal
-arithmetic main terms 5,4,3,2 on the original compact separated domain. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

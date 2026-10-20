@@ -1,8 +1,5 @@
 import Mathlib.NumberTheory.LSeries.Convolution
 
-/-! Absolute coefficient mass of a genuine Dirichlet convolution.
-The triangle inequality is applied before summation; a bound for the norm
-of a product of L-functions would not give this statement. -/
 
 namespace Sechstmoment.Source
 open Complex Set

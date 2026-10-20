@@ -3,9 +3,6 @@ import Sechstmoment.Denominator.Measures.ExponentialTightness
 import Sechstmoment.Denominator.Measures.LaplaceUniqueness
 import Sechstmoment.Denominator.Measures.WeightedMeasureConvergence
 
-/-! D01, completed: the actual arithmetic logarithmic diagonal measures converge
-to the original nine-edge Lebesgue push-forward, including bounded compact
-tests whose discontinuity set has limit measure zero. -/
 namespace Sechstmoment
 open MeasureTheory Filter Set BoundedContinuousFunction
 open scoped Topology BigOperators CompactlySupported
@@ -38,8 +35,6 @@ theorem d01DiagonalMeasure_vague_tendsto (f : C_c(D01LogSpace, ℂ)) :
     (ae_of_all _ (fun _ => f.continuous.continuousAt)) f.hasCompactSupport
     (fun y => norm_coe_le_norm f.toBoundedContinuousFunction y)
 
-/-- The literal geometric D01 endpoint, without an assumed measure or moment
-limit as a premise. -/
 theorem d01DiagonalMeasure_limit (f : D01LogSpace → ℂ)
     (hfm : Measurable f) (hfc : ∀ᵐ y ∂d01LimitMeasure, ContinuousAt f y)
     (hK : HasCompactSupport f) {C : ℝ} (hC : ∀ y, ‖f y‖ ≤ C) :

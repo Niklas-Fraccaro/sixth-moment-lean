@@ -1,10 +1,6 @@
 import Sechstmoment.Denominator.Balanced.CircleIntegral
 import Sechstmoment.Denominator.Balanced.DiagonalKernelLimit
 
-/-! Two literal Cauchy contours commute with the actual localized nine-edge
-integral.  Compact support and Fubini are proved from the four profiles;
-the resulting polynomial weight is the independently defined original
-four-profile denominator kernel.  No height-moment limit is assumed. -/
 
 namespace Sechstmoment
 open MeasureTheory Set Complex Polynomial
@@ -21,8 +17,6 @@ theorem d02PolynomialCircle_continuous_parameter {A : Type*} [TopologicalSpace A
   intro m hm
   exact continuous_const.mul (d02CircleExtract_continuous_parameter m F hF)
 
-/-- Both contour swaps use the compact edge integral and its proved
-product integrability, rather than an assumed integrability receipt. -/
 theorem d02PolynomialCircle_two_setIntegral (p q : ℝ[X]) (E : Set D01EdgeSpace)
     (hE : IsCompact E) (F : ℂ → ℂ → D01EdgeSpace → ℂ)
     (hF : Continuous (fun y : ℂ × (ℂ × D01EdgeSpace) => F y.1 y.2.1 y.2.2)) :
@@ -60,8 +54,6 @@ theorem d02BalancedWeightedPolynomialEdgeIntegrand (p q : Fin 5 → ℝ)
     rfl
   · simp [d02BalancedWeightedEdgeIntegrand, d02BalancedEdgeIntegrand, hx]
 
-/-- Cauchy extraction in both shifts acts on the actual direct-plus-dual
-nine-edge integral and produces its literal polynomial-weight diagonal. -/
 theorem d02BalancedCauchy_edgeIntegral (p q : ℝ[X])
     (hp : p.natDegree≤4) (hq : q.natDegree≤4)
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
@@ -94,8 +86,6 @@ theorem d02BalancedCauchy_edgeIntegral (p q : ℝ[X])
   simp_rw [d02BalancedWeightedPolynomialEdgeIntegrand]
   exact integral_ofReal
 
-/-- With the manuscript profile caps, the two Cauchy operators yield the
-original four-profile integral of `denominatorZeroKernel`. -/
 theorem d02BalancedCauchy_profileKernel (p q : ℝ[X])
     (hp : p.natDegree≤4) (hq : q.natDegree≤4)
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Convolution.DirichletCoefficients
 
-/-! The independently defined triple Dirichlet series sums to three actual Riemann zeta functions. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalConvolution

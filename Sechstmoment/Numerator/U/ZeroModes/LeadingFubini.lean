@@ -1,8 +1,6 @@
 import Mathlib.Analysis.Normed.Lp.MeasurableSpace
 import Sechstmoment.Numerator.U.ZeroModes.Replacement.Kernels
 
-/-! Genuine physical x/time Fubini for the literal leading tensor.
-The original five dyadic masks and the inverse factor permutation remain. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -129,7 +127,6 @@ theorem a03PhysicalZeroSmoothMask_compact_band (m n : Bool) (q : QuadraticScales
     apply (le_div_iff₀ hP).mpr
     nlinarith only [hhi]
 
-/-- The literal fixed-frequency physical time integrand. -/
 def a03LeadingZeroTimeIntegrand (F : ℝ→ℂ) (T r s : ℝ) (α : MomentShifts) (z : ℂ)
     (m n : Bool) (q : QuadraticScales) (v : Fin 5→ℕ) (x t : ℝ) : ℂ :=
   let y := a03SixTensorLogPoint (a03SixZeroSourceArguments m n q v x)
@@ -181,8 +178,6 @@ theorem a03LeadingZeroTimeIntegrand_joint_integrable
     unfold Function.uncurry a03LeadingZeroTimeIntegrand
     simp only [hzero p.1 hx,zero_mul,norm_zero,le_refl]
 
-/-- Both orders of the actual continuous physical/time integrals converge,
-and their equality follows from the proved absolute joint majorant. -/
 theorem a03LeadingZeroTimeIntegrand_fubini
     (F : ℝ→ℂ) (hFm : Measurable F) (hFi : Integrable F)
     (T r s : ℝ) {α : MomentShifts} (hα : ∀ j,‖α j‖≤1/4) {z : ℂ} (hz : 0≤z.re)
@@ -198,8 +193,6 @@ def a03LeadingPhysicalZeroTimeMode (F : ℝ→ℂ) (T r s : ℝ) (α : MomentShi
   ∑ v∈quadraticMainIndexSet q,a (v 0)*b (v 1)*
     ∫ x : ℝ in Ioi 0,a03LeadingZeroTimeIntegrand F T r s α z m n q v x t
 
-/-- The physical leading tensor is genuinely a time integral of the full
-finite GCD expression. No physical/time interchange is a premise. -/
 theorem a03LeadingPhysicalZeroTimeMode_integrable_eq
     (F : ℝ→ℂ) (hFm : Measurable F) (hFi : Integrable F)
     (T r s : ℝ) {α : MomentShifts} (hα : ∀ j,‖α j‖≤1/4) {z : ℂ} (hz : 0≤z.re)
@@ -268,8 +261,6 @@ theorem a03GaussianLeadingTimeProfile_integrable {Φ : ℝ→ℂ} (hΦ : Continu
   exact isCompact_Icc.of_isClosed_subset (isClosed_tsupport _)
     ((a03_profile_product_tsupport _ _).trans hs)
 
-/-- Concrete leadingVStar time/x reconstruction of the original physical
-sorted GCD zero mode, using its actual time profile. -/
 theorem a03LeadingTensorRawKernel_physical_time_reconstruction
     {Φ : ℝ→ℂ} (hΦ : Continuous Φ) (hs : tsupport Φ⊆Icc (1:ℝ) 2)
     {c : ℝ} (hc : 0≤c) (p : A03NearTensorData) (hT : 0<p.T)

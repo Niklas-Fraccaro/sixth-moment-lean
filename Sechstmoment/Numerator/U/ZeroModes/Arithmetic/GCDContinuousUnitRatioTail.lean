@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.GCDMaskTransport
 
-/-! Uniform actual ratio tails for a omitted continuous integrated-unit
-region of the unrestricted common-X integral. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

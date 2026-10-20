@@ -5,7 +5,6 @@ import Sechstmoment.Numerator.U.Replacement.VStar.DiagonalExtraction
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.DiagonalLeftTail
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.DiagonalSixPhaseBound
 
-/-! Fully summed diagonal arithmetic and its native amplifier/time error. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology

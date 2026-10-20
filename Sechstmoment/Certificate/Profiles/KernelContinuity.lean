@@ -2,9 +2,6 @@ import Sechstmoment.Certificate.Profiles.BalancedContinuity
 import Sechstmoment.Certificate.Profiles.Denominator
 import Sechstmoment.Certificate.Profiles.UnbalancedContinuity
 
-/-! Continuity of every actual Gram kernel in the original orientations.
-The continuous extensions are only used to prove regularity; on the compact
-profile box they equal the independently defined original integrals. -/
 
 namespace Sechstmoment
 open Set
@@ -45,8 +42,6 @@ private theorem gramZeroExtension_eq (x y : Finite.Feature) (z : Fin 4 → ℝ)
   · rfl
   · exact denominatorZeroKernelExtension_eq _ _ z hz
 
-/-- All balanced combinations, including reflected polynomials and endpoint
-collisions, are continuous on the full closed nonnegative orthant. -/
 theorem certificateGramZeroKernel_continuousOn_nonneg (x y : Finite.Feature) :
     ContinuousOn (certificateGramZeroKernel x y) {z | ∀ i, 0 ≤ z i} := by
   apply (gramZeroExtension_continuous x y).continuousOn.congr
@@ -84,8 +79,6 @@ private theorem gramMinusExtension_eq (x y : Finite.Feature) (z : Fin 4 → ℝ)
   · rfl
   · rfl
 
-/-- The unbalanced combinations are also continuous at empty-slice cutoffs
-and at every knot of the eight-mask formula. -/
 theorem certificateGramMinusKernel_continuousOn_nonneg (x y : Finite.Feature) :
     ContinuousOn (certificateGramMinusKernel x y) {z | ∀ i, 0 ≤ z i} := by
   apply (gramMinusExtension_continuous x y).continuousOn.congr

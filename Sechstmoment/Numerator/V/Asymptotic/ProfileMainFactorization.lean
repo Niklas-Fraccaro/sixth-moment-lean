@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Asymptotic.ProfileOriginalCoefficients
 import Sechstmoment.Numerator.V.Asymptotic.ProfileOriginalMain
 
-/-! The finite arithmetic main term factors exactly into its time mass,
-the literal original harmonic profile and the three actual zeta factors. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open NoDPHarmonic NoDPGlobalConvolution Complex Real Polynomial

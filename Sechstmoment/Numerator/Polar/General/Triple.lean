@@ -47,7 +47,6 @@ theorem polarTripleInverseContour_sum (x : ℝ) (q : Fin 3 → ℂ) (R : ℝ)
         (Complex.exp ((x:ℂ)*q j)/polarPoleDenominator q j) := by ring
     _ = _ := by rw [inv_mul_cancel₀ hpi,one_mul]
 
-/-- The genuine triple inverse contour is the genuine triangular exponential convolution. -/
 theorem polarTripleInverseContour_eq_triangle (x : ℝ) (q : Fin 3 → ℂ) (R : ℝ)
     (hq : Function.Injective q) (hR : ∀ j, ‖q j‖ < R) :
     polarTripleInverseContour x q R = simplexTriangleExpIntegral (q 0) (q 1) (q 2) 1 0 x := by

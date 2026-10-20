@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.ActualTensorMellinMeasurability
 
-/-! The actual physical source sum and the sorted physical zero mode are
-integrable over every retained compact Mellin-frequency interval. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology FourierTransform
@@ -26,8 +24,6 @@ private theorem a03SixZeroSmoothProduct_eq (m n : Bool) (q : QuadraticScales)
     simp [a03SixZeroSourceArguments,a03SixZeroPairArguments,Fin.prod_univ_five,
       mul_comm,mul_left_comm,mul_assoc]
 
-/-- A bounded measurable cutoff family gives an actual compact-frequency
-integral of the finite native GCD zero mode. -/
 theorem a03SixTensorPhysicalZeroMode_mellin_integrableOn_of_cutoff_bound
     (F : ℝ→A03SixTensorSpace→ℂ)
     (hF : StronglyMeasurable (fun p : ℝ×A03SixTensorSpace => F p.1 p.2))
@@ -201,8 +197,6 @@ theorem a03EndpointPhysicalTensorSum_mellin_integrableOn_of_cutoff_bound
   convert hi using 1
   funext v
   simp only [a03EndpointPhysicalTensorSum,W,q]
-/-- The main actual physical sum and native sorted zero mode are
-integrable in the genuine retained Mellin interval, with no measurability receipt. -/
 theorem a03_actual_main_tensor_mellin_integrableOn
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ R s : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 4*c<ε)
@@ -248,8 +242,6 @@ theorem a03_actual_main_tensor_mellin_integrableOn
     a03EndpointPhysicalSortedZeroMode_mellin_integrableOn_of_cutoff_bound _ hm hC hb
       T A B H f g k hA hB hH⟩
 
-/-- The dual actual physical sum and native sorted zero mode are
-integrable in the genuine retained Mellin interval, with no measurability receipt. -/
 theorem a03_actual_dual_tensor_mellin_integrableOn
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ R s : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 4*c<ε)
@@ -333,8 +325,6 @@ theorem a03EndpointPhysicalSortedZeroMode_const_mul_mellin
       z*a03EndpointPhysicalSortedZeroMode F T A B H f g k :=
   a03SixTensorPhysicalZeroMode_const_mul F z _ _ _ _ _
 
-/-- The unnormalized actual main sum and zero mode have genuine compact
-Mellin integrals as well. -/
 theorem a03_actual_main_raw_tensor_mellin_integrableOn
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ R s : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 4*c<ε)
@@ -386,8 +376,6 @@ theorem a03_actual_main_raw_tensor_mellin_integrableOn
   exact ⟨(hi.const_mul ((T^ε:ℝ):ℂ)).congr (ae_of_all _ hsum),
     (hz.const_mul ((T^ε:ℝ):ℂ)).congr (ae_of_all _ hzero)⟩
 
-/-- The unnormalized actual dual sum and zero mode have genuine compact
-Mellin integrals as well. -/
 theorem a03_actual_dual_raw_tensor_mellin_integrableOn
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ R s : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 4*c<ε)

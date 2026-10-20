@@ -4,7 +4,6 @@ import Mathlib.Tactic
 import Sechstmoment.Numerator.Polar.PoleKiller
 import Sechstmoment.Zeta.AFE.Four.Specification
 
-/-! The concrete pole killer has a fixed 25-function Gaussian basis. -/
 
 namespace Sechstmoment.Source
 open Complex Polynomial
@@ -165,9 +164,6 @@ theorem polarPoleCoefficientPolynomial_eval_fin (T : ℝ) (σ : MomentShifts) (z
     ← Fin.sum_univ_eq_sum_range, Fin.sum_univ_succ]
   simp [pow_mul]
 
-/-- The actual T-dependent pole killer is an affine combination of exactly
-25 fixed admissible-shaped functions. This is an equality of actual functions,
-independent of any source remainder estimate. -/
 theorem polarPoleKiller_fixed_basis (T : ℝ) (σ : MomentShifts) :
     polarPoleKiller T σ = finiteAuxiliaryCombination (polarPoleBasisWeights T σ)
       fixedGaussianBasis := by

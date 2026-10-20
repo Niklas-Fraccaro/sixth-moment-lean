@@ -2,9 +2,6 @@ import Sechstmoment.Analysis.Mellin.ProfileInversion
 import Sechstmoment.Numerator.U.Diagonal.DiagonalEulerSixIndices
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEInterchange
 
-/-! Actual fourfold source diagonal through its defining Mellin integral.
-The infinite sum/integral interchange uses the source weight class and a proved
-fourfold p-series majorant. No summability or Mellin representation is assumed. -/
 
 namespace Sechstmoment
 open Complex Source MeasureTheory Set Filter

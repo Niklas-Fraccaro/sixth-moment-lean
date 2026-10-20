@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Prime.ShiftedPrimeParameters
 
-/-! The exact shifted prime-power recurrence with concrete complex powers. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

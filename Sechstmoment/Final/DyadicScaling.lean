@@ -1,7 +1,6 @@
 import Mathlib.Analysis.SpecificLimits.Basic
 import Sechstmoment.Arithmetic.Factor.Convergence
 
-/-! Exact normalization and logarithmic scaling for fixed dyadic intervals. -/
 
 namespace Sechstmoment
 open Filter MeasureTheory

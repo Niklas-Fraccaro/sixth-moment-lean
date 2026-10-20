@@ -4,9 +4,6 @@ import Sechstmoment.Arithmetic.Euler.FourL.Continuation
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.PositiveTimeMellinStripDecay
 import Sechstmoment.Zeta.DirichletL.NonprincipalStrip
 
-/-! Exact movement of the actual nonprincipal Mellin integral. The left
-line can be chosen arbitrarily close to 1/2, as required by the unchanged
-amplifier length. Decay and contour conditions are proved here. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory Filter

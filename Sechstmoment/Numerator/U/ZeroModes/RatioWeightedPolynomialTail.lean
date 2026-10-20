@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.RatioUnitTail
 
-/-! Arbitrary actual ratio tails retaining the inverse-ratio weight
-needed for absolute infinite m/n summation. -/
 namespace Sechstmoment.Source
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology

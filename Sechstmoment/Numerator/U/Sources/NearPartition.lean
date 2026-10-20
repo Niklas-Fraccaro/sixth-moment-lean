@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.TimeFarFiniteBudget
 import Sechstmoment.Numerator.U.Sources.ErrorAggregate
 
-/-! The true amplifier/gap partition on active near blocks. Every literal
-near tuple has weight one; the omitted weight lies between zero and one. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

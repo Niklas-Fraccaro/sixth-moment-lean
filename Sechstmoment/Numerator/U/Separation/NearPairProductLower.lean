@@ -1,13 +1,9 @@
 import Sechstmoment.Numerator.U.Reconstruction.RectangularNearUnitExclusion
 
-/-! Positive near gaps force each actual zeta pair product to be large.
-This is the numeric input for removing integrated unit blocks in the
-ratio-partition source reconstruction. -/
 namespace Sechstmoment
 open Real Source
 open scoped BigOperators
 
-/-- Both actual positive sides of a near relation exceed the reciprocal gap scale. -/
 theorem a03_near_both_products_lower {A B η h : ℝ}
     (hA : 0<A) (hB : 0<B) (hη0 : 0<η) (hη : η≤1/2)
     (hh : 1≤h) (hrel : |A-B|=h) (hne : h≤η*Real.sqrt (A*B)) :
@@ -22,7 +18,6 @@ theorem a03_near_both_products_lower {A B η h : ℝ}
   · exact (div_le_iff₀ (by positivity : 0<2*η)).mpr (by nlinarith)
   · exact (div_le_iff₀ (by positivity : 0<2*η)).mpr (by nlinarith)
 
-/-- The bounds use the true signed gap and true amplifier coordinates. -/
 theorem a03_near_tuple_pair_products_lower (positive : Bool) (n : Fin 7→ℕ)
     {η U V : ℝ} (hη0 : 0<η) (hη : η≤1/2) (hU : 0<U) (hV : 0<V)
     (hn : ∀ j,1≤n j) (hu : (n 0:ℝ)≤U) (hv : (n 1:ℝ)≤V)
@@ -48,7 +43,6 @@ theorem a03_near_tuple_pair_products_lower (positive : Bool) (n : Fin 7→ℕ)
   · rw [←div_div]
     exact (div_le_iff₀ hV).mpr (by nlinarith [hl.2.trans hn'])
 
-/-- A second-slot unit makes the first slot itself satisfy the reciprocal bound. -/
 theorem a03_near_tuple_integrated_unit_lower (positive : Bool) (n : Fin 7→ℕ)
     {η U V : ℝ} (hη0 : 0<η) (hη : η≤1/2) (hU : 0<U) (hV : 0<V)
     (hn : ∀ j,1≤n j) (hu : (n 0:ℝ)≤U) (hv : (n 1:ℝ)≤V)

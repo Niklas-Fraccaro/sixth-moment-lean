@@ -1,8 +1,6 @@
 import Sechstmoment.Arithmetic.Watt.CurveWeights
 import Sechstmoment.Arithmetic.Watt.Poisson
 
-/-! The completed coefficients are integrals of the weights to which Watt
-applies.  The integration interval is uniform in every finite summation index. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -103,7 +101,6 @@ theorem pairFrequencyIntegrand_integrable {b : ℕ → ℝ} {g : ℕ → ℕ →
   intro t _
   exact completedIntegrand_integrable hw hV hP hS positive h k r hs t l
 
-/-- Finite sums and the y-integral commute by proved integrability. -/
 theorem pairFrequencySum_eq_integral {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)

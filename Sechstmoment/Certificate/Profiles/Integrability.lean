@@ -2,13 +2,6 @@ import Sechstmoment.Certificate.Profiles.Definitions
 import Sechstmoment.Certificate.Profiles.KernelContinuity
 import Sechstmoment.Certificate.Profiles.ProductLimit
 
-/-!
-# Integrability and fourfold Fubini for the literal certificate profiles
-
-The original four weighted endpoint profiles are integrable at every positive
-common stage. Their integral equals four successive global Lebesgue integrals,
-with no additional hypothesis about a replacement profile family.
--/
 
 namespace Sechstmoment
 
@@ -18,9 +11,6 @@ noncomputable section
 
 set_option maxHeartbeats 2000000
 
-/-- Fourfold Fubini in the exact product-coordinate convention of the
-certificate denominator. Integrable sections are required only almost
-everywhere, as supplied by the genuine product integrability proof. -/
 theorem p02ProfilePoint_integral_fubini (f : P02ProfilePoint → ℝ)
     (hf : Integrable f ((volume.prod volume).prod (volume.prod volume))) :
     (∫ z : P02ProfilePoint, f z ∂((volume.prod volume).prod (volume.prod volume))) =
@@ -49,8 +39,6 @@ private theorem profileIntegrabilityArguments_nonneg {z : P02ProfilePoint}
   · exact hz.2.1.1
   · exact hz.2.2.1
 
-/-- The original literal weighted integrand is globally integrable at every
-positive stage, for every kernel continuous on the nonnegative orthant. -/
 theorem certificateFeatureProfileIntegral_integrable (n : ℕ) (hn : 0 < n)
     {x y : Finite.Feature} (hx : x ∈ Finite.features) (hy : y ∈ Finite.features)
     (F : (Fin 4 → ℝ) → ℝ) (hF : ContinuousOn F {z | ∀ i, 0 ≤ z i}) :
@@ -103,8 +91,6 @@ theorem certificateFeatureProfileIntegral_integrable (n : ℕ) (hn : 0 < n)
       F ![z.1.1, z.1.2, z.2.1, z.2.2]
   ring
 
-/-- The literal product-measure profile integral equals four genuine global
-one-dimensional integrals, in the original endpoint order. -/
 theorem certificateFeatureProfileIntegral_fubini (n : ℕ) (hn : 0 < n)
     {x y : Finite.Feature} (hx : x ∈ Finite.features) (hy : y ∈ Finite.features)
     (F : (Fin 4 → ℝ) → ℝ) (hF : ContinuousOn F {z | ∀ i, 0 ≤ z i}) :
@@ -118,8 +104,6 @@ theorem certificateFeatureProfileIntegral_fubini (n : ℕ) (hn : 0 < n)
   exact p02ProfilePoint_integral_fubini _
     (certificateFeatureProfileIntegral_integrable n hn hx hy F hF)
 
-/-- Actual balanced Gram profile kernels are integrable for all certified
-feature pairs and every positive common profile stage. -/
 theorem certificateProfileGramZero_integrable (n : ℕ) (hn : 0 < n)
     {x y : Finite.Feature} (hx : x ∈ Finite.features) (hy : y ∈ Finite.features) :
     Integrable (fun z : P02ProfilePoint =>
@@ -132,8 +116,6 @@ theorem certificateProfileGramZero_integrable (n : ℕ) (hn : 0 < n)
   certificateFeatureProfileIntegral_integrable n hn hx hy _
     (certificateGramZeroKernel_continuousOn_nonneg x y)
 
-/-- Actual unbalanced Gram profile kernels have the same integrability,
-including all empty-slice cutoffs and every degenerate mask. -/
 theorem certificateProfileGramMinus_integrable (n : ℕ) (hn : 0 < n)
     {x y : Finite.Feature} (hx : x ∈ Finite.features) (hy : y ∈ Finite.features) :
     Integrable (fun z : P02ProfilePoint =>

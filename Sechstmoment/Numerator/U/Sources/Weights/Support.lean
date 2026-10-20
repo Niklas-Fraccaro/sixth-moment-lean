@@ -12,8 +12,6 @@ private theorem block_variable_support {S x : ℝ} (hS : 0<S)
   have hs := rectangularSmoothBlockWeight_tsupport (subset_tsupport _ hw)
   exact ⟨by simpa using (le_div_iff₀ hS).mp hs.1,(div_le_iff₀ hS).mp hs.2⟩
 
-/-- Every coordinate support is read from the actual nonzero coefficient
-and actual smooth AFE/gap factors. -/
 theorem phase_actual_source_tuple_support (T A B H : ℝ) (f g : ℝ → ℝ)
     (hA : 0<A) (hB : 0<B) (hH : 0<H) (k n : Fin 4 → ℕ) (a b h : ℕ)
     (ha : phaseActualAmplifierCoefficient T f A a≠0)

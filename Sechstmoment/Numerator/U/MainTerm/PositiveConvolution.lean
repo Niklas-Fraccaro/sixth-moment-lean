@@ -11,7 +11,6 @@ noncomputable section
 
 namespace Sechstmoment
 
-/-- Translation on the positive half-line, valid without an integrability premise. -/
 theorem integral_Ici_comp_add_right (F : ℝ → ℂ) (t : ℝ) :
     (∫ x in Ici 0, F (x + t)) = ∫ x in Ici t, F x := by
   have h := (measurePreserving_add_right (volume : Measure ℝ) t).setIntegral_preimage_emb
@@ -22,7 +21,6 @@ theorem integral_Ici_comp_add_right (F : ℝ → ℂ) (t : ℝ) :
     constructor <;> intro hx <;> linarith
   simpa only [hs] using h
 
-/-- The integrable simplex used to remove the three positive convolution variables. -/
 def positiveConvolutionDomain (a b : ℝ) : Set (ℝ × ℝ × ℝ) :=
   {p | 0 ≤ p.1 ∧ p.1 ≤ p.2.1 ∧ p.1 ≤ p.2.2 ∧
     p.2.1 ∈ Icc 0 a ∧ p.2.2 ∈ Icc 0 b}
@@ -44,8 +42,6 @@ private theorem positiveConvolutionDomain_compact (a b : ℝ) :
   intro p hp
   exact ⟨⟨hp.1, le_trans hp.2.1 hp.2.2.2.1.2⟩, hp.2.2.2.1, hp.2.2.2.2⟩
 
-/-- Cut off only the positive simplex constraints; the profile supports supply the remaining
-compact bounds. -/
 def positiveConvolutionIntegrand (f g : ℝ → ℂ) (K : ℝ × ℝ → ℂ)
     (p : ℝ × ℝ × ℝ) : ℂ :=
   if 0 ≤ p.1 ∧ p.1 ≤ p.2.1 ∧ p.1 ≤ p.2.2 then
@@ -127,9 +123,6 @@ private theorem positiveConvolution_time_integral
   filter_upwards [] with t
   simp [positiveConvolutionIntegrand, indicator, mem_Icc]
 
-/-- A positive three-variable convolution is the compact profile integral over the common
-translation variable.  The hypotheses are ordinary continuity and the declared profile supports;
-no contour, residue, or formalization-target identity is assumed. -/
 theorem positiveConvolution_eq_compact
     (a b : ℝ) (f g : ℝ → ℂ) (K : ℝ × ℝ → ℂ)
     (hf : Continuous f) (hg : Continuous g) (hK : Continuous K)
@@ -172,7 +165,6 @@ theorem positiveConvolution_eq_compact
       intro B hB
       simp [hgs B hB]
 
-/-- The same positive-convolution identity with oriented compact interval integrals. -/
 theorem positiveConvolution_eq_interval_compact
     (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b)
     (f g : ℝ → ℂ) (K : ℝ × ℝ → ℂ)

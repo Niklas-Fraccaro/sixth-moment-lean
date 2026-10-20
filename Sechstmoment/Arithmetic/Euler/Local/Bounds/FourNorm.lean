@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.ThreeNorm
 
-/-! A sharp comparison majorant for the shifted fourfold coefficients. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

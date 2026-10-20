@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.DiscrepancyIdentity
 import Sechstmoment.Numerator.U.ZeroModes.DiagonalGammaMainTerms
 
-/-! Uniform reduction of the literal A03 discrepancy to the two actual
-finite Gamma offdiagonal moments and the four literal crossed terms.
-Every known error is closed; the remaining discrepancy is explicitly named. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

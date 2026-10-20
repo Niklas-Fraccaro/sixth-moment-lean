@@ -1,7 +1,5 @@
 import Sechstmoment.Denominator.Unbalanced.CenteringPower
 
-/-! A common actual zeta-pair bound is derived from the closed D02
-Gaussian expansion. Conjugation then bounds the two negative generators. -/
 namespace Sechstmoment
 open Complex Real Filter Set Source
 open scoped Topology BigOperators ComplexConjugate

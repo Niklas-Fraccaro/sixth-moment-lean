@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.DiagonalMoment
 
-/-! Exact selected finite smooth grids. Every coefficient is the source
-amplifier coefficient times the original smooth fourfold weight. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology

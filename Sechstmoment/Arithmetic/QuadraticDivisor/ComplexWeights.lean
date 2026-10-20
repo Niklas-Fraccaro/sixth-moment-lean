@@ -5,12 +5,6 @@ import Mathlib.Tactic
 import Mathlib.Topology.Algebra.ConstMulAction
 import Sechstmoment.Arithmetic.QuadraticDivisor.Estimates.SourceAdapter
 
-/-!
-The cited quadratic-divisor input is stated for real test functions. Actual
-Mellin separation produces complex test functions. This file expands their
-fivefold product into its 32 real component products, including the literal
-zero Fourier mode. The factor 32 is an own consequence of multilinearity.
--/
 
 namespace Sechstmoment
 
@@ -53,7 +47,6 @@ def rectangularComplexDiscrepancy (positive : Bool) (q : QuadraticScales)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℂ) : ℂ :=
   rectangularComplexQuadraticSum positive q α β W - rectangularComplexZeroMode q α β W
 
-/-- This is the literal complex product, before any bound is applied. -/
 theorem rectangular_complex_product_expand (W : Fin 5 → ℝ → ℂ) (x : Fin 5 → ℝ) :
     (∏ i, W i (x i)) = ∑ c : Fin 5 → Bool, rectangularComponentPhase c*
       ∏ i, (rectangularRealComponent W c i (x i) : ℂ) := by
@@ -80,7 +73,6 @@ theorem rectangular_component_phase_norm (c : Fin 5 → Bool) :
   intro i hi
   cases c i <;> simp
 
-/-- Each real or imaginary component inherits the actual support and smoothness. -/
 theorem rectangular_component_smooth (W : Fin 5 → ℝ → ℂ)
     (hW : ∀ i, RectangularComplexWeight (W i)) (c : Fin 5 → Bool) (i : Fin 5) :
     SmoothDyadicWeight (rectangularRealComponent W c i) := by
@@ -93,7 +85,6 @@ theorem rectangular_component_smooth (W : Fin 5 → ℝ → ℂ)
     apply Set.Subset.trans _ (hW i).2
     exact tsupport_comp_subset (g := Complex.re) (by simp) (W i)
 
-/-- Real linear projections commute with every fixed derivative order. -/
 theorem rectangular_component_derivative (W : Fin 5 → ℝ → ℂ)
     (hW : ∀ i, RectangularComplexWeight (W i)) (c : Fin 5 → Bool)
     (j : ℕ) (i : Fin 5) (x : ℝ) :
@@ -130,8 +121,6 @@ theorem rectangular_component_admissible {ε δ K : ℝ} (bounds : ℕ → ℝ)
   intro j i x
   exact (rectangular_component_derivative_norm_le W hW c j i x).trans (hd j i x)
 
-/-- The integral appearing in the literal zero mode is an ordinary compactly
-supported integral after each real component has been selected. -/
 theorem rectangular_component_zero_integrable (q : QuadraticScales)
     (hq : 0 < q.M₂) (n : Fin 5 → ℕ) (hn : ∀ j, 1 ≤ n j)
     (W : Fin 5 → ℝ → ℂ) (hW : ∀ i, RectangularComplexWeight (W i))
@@ -178,8 +167,6 @@ theorem rectangular_component_zero_integrable (q : QuadraticScales)
     ring
   exact hc.integrable_of_hasCompactSupport hsupport
 
-/-- Rewriting the source zero mode as a product under the integral is exact;
-the constants outside the source integral have not been lost. -/
 theorem rectangular_real_zero_summand_product (q : QuadraticScales)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) (n : Fin 5 → ℕ) :
     quadraticZeroModeSummand q α β W n = α (n 0)*β (n 1)*
@@ -262,7 +249,6 @@ theorem rectangular_complex_zero_mode_expand (q : QuadraticScales) (hq : 0 < q.M
   intro c hc
   rw [Finset.mul_sum]
 
-/-- The same 32-component identity holds for the entire literal discrepancy. -/
 theorem rectangular_complex_discrepancy_expand (positive : Bool) (q : QuadraticScales)
     (hq : 0 < q.M₂) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℂ)
     (hW : ∀ i, RectangularComplexWeight (W i)) :
@@ -275,8 +261,6 @@ theorem rectangular_complex_discrepancy_expand (positive : Bool) (q : QuadraticS
   intro c hc
   rw [signedQuadraticDiscrepancy, mul_sub]
 
-/-- A source bound for real weights gives a bound for the actual complex
-weights; only the explicit factor 32 is incurred. -/
 theorem rectangular_BBLRv1_complex_weights (hinput : SeparatedQuadraticInput)
     {ε δ K : ℝ} (hε : 0 < ε) (hδ : 0 < δ) (hK : 1 ≤ K)
     (bounds : ℕ → ℝ) (hbounds : ∀ j, 0 ≤ bounds j) :
@@ -307,8 +291,6 @@ theorem rectangular_BBLRv1_complex_weights (hinput : SeparatedQuadraticInput)
         (rectangular_component_admissible bounds q α β W hshape hW hd c) positive
     _ = _ := by simp; ring
 
-/-- The actual complex block, with its original back-transfer prefactor, fits
-the unequal-length rectangular estimate and retains the Poisson remainder. -/
 theorem rectangular_BBLRv1_complex_actual_transfer (hinput : SeparatedQuadraticInput)
     {ε δ K : ℝ} (hε : 0 < ε) (hδ : 0 < δ) (hK : 1 ≤ K)
     (bounds : ℕ → ℝ) (hbounds : ∀ j, 0 ≤ bounds j) :

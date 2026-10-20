@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.ThirdLowCoefficient
 
-/-! The unshifted local numerator equals one. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

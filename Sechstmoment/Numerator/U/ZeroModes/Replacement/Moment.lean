@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.PhysicalReplacement
 
-/-! The genuine Gamma/leading-chi replacement is summed in the literal
-weighted native zero-mode moment over every source scale, both signs,
-and the complete retained Mellin interval. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff
@@ -104,8 +101,6 @@ theorem a03_actual_zero_replacement_weighted_block_uniform_bound
     simpa only [←a03SourceShifts_eq_six dual T σ] using hb
   · simp
 
-/-- All arithmetic and Mellin sums are genuine. The uniform constant depends
-only on the fixed profiles and numerical normalized-shift bounds. -/
 theorem a03_actual_zero_replacement_weighted_moment_uniform_bound
     {a b s : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs : s<1/2)
     (f g : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -124,8 +119,6 @@ theorem a03_actual_zero_replacement_weighted_moment_uniform_bound
   exact a03_actual_zero_replacement_moment_bound hT hθ dual Φ c σ f g
     (fun v hv positive => hbnd σ hσ hroot dual positive v hv)
 
-/-- The complete actual weighted native zero-mode replacement is uniformly
-sublinear, including the actual dual chi-to-leading-chi replacement. -/
 theorem a03_actual_zero_replacement_weighted_moment_uniform_oT
     {a b s : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs0 : 0≤s) (hs : s<1/2)
     (f g : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

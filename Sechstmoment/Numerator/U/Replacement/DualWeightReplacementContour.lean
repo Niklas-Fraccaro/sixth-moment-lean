@@ -2,8 +2,6 @@ import Mathlib.MeasureTheory.Function.SpecialFunctions.Basic
 import Sechstmoment.Numerator.U.Replacement.DualWeightReplacementFarFinite
 import Sechstmoment.Numerator.U.Replacement.WeightReplacementContour
 
-/-! Genuine frequency measurability, finite near/far decomposition and Mellin
-integration for the actual amplified weight replacement error. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter
 open scoped BigOperators Topology ENNReal
@@ -172,7 +170,6 @@ theorem a03ActualDualWeightReplacementFiniteMellinGrid_frequency_stronglyMeasura
     dual_weight_replacement_selected_grid_frequency_stronglyMeasurable hc T a b η f g Φ hΦ σ α hα hσ
       (fun _ _ _ => True)
 
-/-- Complete far Mellin contour, including actual finite arithmetic sums. -/
 theorem a03_actual_dual_weight_replacement_far_finite_contour_uniform_rapid
     {a b c η κ θ R ρ : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -224,7 +221,6 @@ theorem a03_actual_dual_weight_replacement_far_finite_contour_uniform_rapid
         ring
 
 
-/-- Exact full finite Mellin-grid reconstruction. -/
 theorem a03ActualDualWeightReplacementFiniteMellinGrid_near_add_far {T : ℝ} (hT : 0<T)
     (c a b η ρ v : ℝ) (f g Φ : ℝ→ℝ) (σ α : MomentShifts) :
     a03ActualDualWeightReplacementFiniteMellinGrid c T a b η v f g Φ σ α=

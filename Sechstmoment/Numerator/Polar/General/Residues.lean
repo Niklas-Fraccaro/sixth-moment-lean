@@ -150,7 +150,6 @@ theorem polarGeneralInverseContour_sum (x : ℝ) (ω : ℂ) (q : Fin 4 → ℂ) 
   · intro j _
     exact polarCircle_integrable_shift x q R hpos hR j _
 
-/-- At every outer pole the inner numerator cancels exactly one denominator factor. -/
 theorem polarGeneralInverseContour_atPole (x : ℝ) (q : Fin 4 → ℂ) (j : Fin 4) (R : ℝ)
     (hR : ∀ k, ‖q k‖ < R) :
     polarGeneralInverseContour x (q j) q R =

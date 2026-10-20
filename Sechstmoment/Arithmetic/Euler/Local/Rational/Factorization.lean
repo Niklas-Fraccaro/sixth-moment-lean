@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Prime.ShiftedPrimeLocalIdentity
 
-/-! Combined convergence and explicit rational factorization, without a global L-series assertion. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

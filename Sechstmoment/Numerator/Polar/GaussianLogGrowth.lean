@@ -2,13 +2,6 @@ import Mathlib.Tactic
 import Sechstmoment.Numerator.Polar.GaussianControl
 import Sechstmoment.Numerator.U.Replacement.GaussianCoefficientGrowth
 
-/-!
-# Actual Gaussian contour constants grow polynomially in log T
-
-The quantitative vertical majorant of the literal pole killer is uniform
-on any normalized shift family with a positive nonzero-root gap. Its entire
-dependence on T is bounded by log(T)^48.
--/
 
 namespace Sechstmoment
 

@@ -1,13 +1,6 @@
 import Mathlib.MeasureTheory.Integral.Bochner.SumMeasure
 import Sechstmoment.Numerator.U.Diagonal.DiagonalEulerSixIndices
 
-/-!
-# The literal positive logarithmic six-index diagonal measure
-
-For `L > 0`, each positive solution `m₀m₁m₂ = n₀n₁n₂ = N` has
-mass `L⁻⁹/N` at its six logarithmic coordinates divided by `L`.
-The index set and its positivity condition are the original arithmetic ones.
--/
 
 namespace Sechstmoment
 open MeasureTheory Real Complex Set Filter

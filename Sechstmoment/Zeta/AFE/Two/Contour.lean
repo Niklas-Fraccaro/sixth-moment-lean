@@ -2,21 +2,12 @@ import Sechstmoment.Analysis.Complex.SimplePole
 import Sechstmoment.Analysis.Gaussian.Decay
 import Sechstmoment.Zeta.CompletedBounds
 
-/-!
-# The entire two-factor completion for the second functional equation
-
-The original two completed zeta factors have poles at four moving points.
-An even, normalized polynomial cancels them.  The resulting function is
-entire, so its contour split only crosses the simple pole at the origin.
-This module uses the actual completed Riemann zeta, with no AFE input.
--/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped Topology
 noncomputable section
 
-/-- Entire extension of `s(1-s)Λ(s)`, including both original poles. -/
 def d02CompletedPoleRemoved (s : ℂ) : ℂ :=
   s * (1-s) * completedRiemannZeta₀ s - 1
 
@@ -38,7 +29,6 @@ theorem d02CompletedPoleRemoved_one_sub (s : ℂ) :
   simp only [d02CompletedPoleRemoved, completedRiemannZeta₀_one_sub]
   ring
 
-/-- The entire numerator of the pole-killed two-factor Mellin contour. -/
 def d02SecondAFEContour (s r z : ℂ) : ℂ :=
   Complex.exp (z^2) * (s-z) * (1-s+z) * (r-z) * (1-r+z) *
     d02CompletedPoleRemoved (s+z) * d02CompletedPoleRemoved (r+z)
@@ -46,7 +36,6 @@ def d02SecondAFEContour (s r z : ℂ) : ℂ :=
 def d02SecondAFENormalization (s r : ℂ) : ℂ :=
   (s * (1-s) * r * (1-r))^2
 
-/-- Even Gaussian pole killer, normalized to one at the origin. -/
 def d02SecondAFEPoleKiller (s r z : ℂ) : ℂ :=
   Complex.exp (z^2) *
     ((s+z) * (1-s-z) * (s-z) * (1-s+z) *
@@ -102,7 +91,6 @@ theorem d02SecondAFEContour_eq {s r z : ℂ}
   field_simp
   ring
 
-/-- A genuine polynomial strip bound for the pole-removed completion. -/
 theorem d02CompletedPoleRemoved_strip_bound (s : ℂ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ z : ℂ, |z.re| ≤ 1 →
       ‖d02CompletedPoleRemoved (s+z)‖ ≤ C * (1+|z.im|)^2 := by
@@ -233,8 +221,6 @@ theorem d02SecondAFEContour_horizontal_tendsto_zero (s r : ℂ) :
   convert h using 1
   ring_nf
 
-/-- The actual, unnormalized two-factor Mellin contour has a direct and a
-dual half. All contour regularity and boundary hypotheses are proved. -/
 theorem d02SecondAFEContour_split (s r : ℂ) :
     (∫ v : ℝ, d02SecondAFEContour s r (1+(v:ℂ)*I)/(1+(v:ℂ)*I)) +
       (∫ v : ℝ, d02SecondAFEContour (1-s) (1-r) (1+(v:ℂ)*I)/(1+(v:ℂ)*I)) =
@@ -280,13 +266,10 @@ theorem d02SecondAFENormalization_reflection (s r : ℂ) :
   unfold d02SecondAFENormalization
   ring
 
-/-- The normalized direct Mellin integral for the actual completed pair. -/
 def d02SecondAFECompletedIntegral (s r : ℂ) : ℂ :=
   (∫ v : ℝ, d02SecondAFEContour s r (1+(v:ℂ)*I)/(1+(v:ℂ)*I)) /
     ((2*Real.pi:ℂ) * d02SecondAFENormalization s r)
 
-/-- Exact two-factor functional equation on a Mellin contour.  The weight is
-the explicitly defined even Gaussian pole killer. -/
 theorem d02CompletedPair_secondAFE {s r : ℂ}
     (hs : s ≠ 0) (hs1 : s ≠ 1) (hr : r ≠ 0) (hr1 : r ≠ 1) :
     completedRiemannZeta s * completedRiemannZeta r =
@@ -307,8 +290,6 @@ def d02SecondAFEIntegral (s r : ℂ) : ℂ :=
 def d02SecondAFEDualMultiplier (s r : ℂ) : ℂ :=
   (Gammaℝ (1-s) * Gammaℝ (1-r)) / (Gammaℝ s * Gammaℝ r)
 
-/-- The shifted second functional equation for the actual two zeta factors,
-at the exact Mellin-integral stage, without a literature AFE premise. -/
 theorem d02ZetaPair_secondAFE {s r : ℂ}
     (hs : 0 < s.re) (hs1 : s.re < 1) (hr : 0 < r.re) (hr1 : r.re < 1) :
     riemannZeta s * riemannZeta r =

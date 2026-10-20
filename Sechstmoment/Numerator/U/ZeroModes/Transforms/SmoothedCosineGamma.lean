@@ -1,16 +1,12 @@
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.CosineGammaLimit
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.DampedCosineFubini
 
-/-! Exact Gamma/cosine Mellin evaluation after the actual smooth time
-integration. Absolute convergence and both Abel limits are proved. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- The all-positive Mellin strip is valid because time integration precedes
-Abel removal; no non-absolutely-convergent cosine integral is substituted. -/
 theorem a03SmoothedCosine_mellin_eq_gamma {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {s : ℂ} (hs : 0<s.re) :
@@ -33,8 +29,6 @@ theorem a03SmoothedCosine_mellin_eq_gamma {Φ : ℝ→ℂ}
   unfold a03CosineGammaKernel
   ring
 
-/-- Absolute convergence accompanies the exact value, including the source's
-initial s-line to the right of one. -/
 theorem a03SmoothedCosine_hasMellin_gamma {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {s : ℂ} (hs : 0<s.re) :
@@ -45,8 +39,6 @@ theorem a03SmoothedCosine_hasMellin_gamma {Φ : ℝ→ℂ}
     a03SmoothedCosine_mellin_eq_gamma hΦ hSupp hs⟩
 
 
-/-- The actual time scale multiplies the cosine frequency and remains in
-the Gamma/cosine value with its exact complex power. -/
 theorem a03SmoothedCosine_scaled_hasMellin_gamma {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     {s : ℂ} (hs : 0<s.re) {T : ℝ} (hT : 0<T) :

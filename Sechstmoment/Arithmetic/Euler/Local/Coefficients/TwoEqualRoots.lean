@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.FourNorm
 
-/-! The exact repeated-root formula for two geometric factors. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

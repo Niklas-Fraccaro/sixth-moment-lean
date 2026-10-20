@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Separation.TimePowerProfileFourier
 import Sechstmoment.Numerator.U.ZeroModes.ForwardMellin
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.PositiveTimeGaussianConvolution
 
-/-! Actual positive-line ratio/time Fourier reconstruction. All vertical/time
-interchanges are justified by the explicit Gaussian and compact-time majorant. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory Filter
 open scoped BigOperators Topology ContDiff

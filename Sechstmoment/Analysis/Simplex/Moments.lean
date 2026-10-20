@@ -46,7 +46,6 @@ theorem simplex_monomial_three (H : ℝ) (i j k l : ℕ) :
 noncomputable def simplexExpectation (f : ℝ → ℝ → ℝ → ℝ) : ℝ :=
   6*(∫ x in (0 : ℝ)..1, ∫ y in (0 : ℝ)..1-x, ∫ z in (0 : ℝ)..1-x-y, f x y z)
 
-/-- Dirichlet-simplex moments, including the normalization of the uniform law. -/
 theorem simplexExpectation_monomial (i j k l : ℕ) :
     simplexExpectation (fun x y z => x^i*y^j*z^k*(1-x-y-z)^l) =
       6*(Nat.factorial i : ℝ)*Nat.factorial j*Nat.factorial k*Nat.factorial l /

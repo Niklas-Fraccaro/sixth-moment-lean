@@ -1,8 +1,6 @@
 import Mathlib.Topology.UniformSpace.LocallyUniformConvergence
 import Sechstmoment.Numerator.U.MainTerm.UniformPrincipalMajorant
 
-/-! Joint principal-profile limits, retaining both actual contour integrals.
-These results apply away from the pure polar hyperplanes. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff
@@ -26,8 +24,6 @@ theorem polarRightArguments_continuous_shifts (v z : ℂ) :
   intro i
   fin_cases i <;> simp only [polarRightArguments] <;> fun_prop
 
-/-- Convergent separated normalized shifts have one positive eventual gap
-for all twenty-four pure polar roots. -/
 theorem normalizedPurePolarRoot_moving_eventually_gap
     {ι : Type*} {l : Filter ι} {σ : ι → MomentShifts} {σ₀ : MomentShifts}
     (hσ : Tendsto σ l (𝓝 σ₀))
@@ -150,8 +146,6 @@ theorem actualPrincipalProfileRescaledKernel_moving_polar_point_limit
         (v/(Real.log (T i):ℂ)) 0)/(Real.log (T i):ℂ)^9
   rw [mul_div_assoc,polarMellinRemovedKernel_principal_scaled_identity (T i) (σ i) m _ _ hroot]
 
-/-- Dominated convergence under both real profile integrals, simultaneously
-with a convergent normalized shift tuple and the height. -/
 theorem actualPrincipalProfileRescaledIntegral_moving_polar_limit
     {ι : Type*} {l : Filter ι} [l.IsCountablyGenerated]
     {T : ι → ℝ} {σ : ι → MomentShifts} {σ₀ : MomentShifts}
@@ -206,7 +200,6 @@ theorem actualPrincipalProfileRescaledIntegral_moving_polar_limit
       (actualPrincipalPolar_all_pairings_separated hR (by linarith : R+1 ≤ c)
         σ₀ hσ₀ m (fun ij => hρ (m,ij)) y)
 
-/-- Continuity of the separated rational kernel in its normalized shifts. -/
 theorem actualPrincipalPolarLimitKernel_moving_tendsto
     {ι : Type*} {l : Filter ι} {σ : ι → MomentShifts} {σ₀ : MomentShifts}
     (hσ : Tendsto σ l (𝓝 σ₀)) (m : Fin 6) (f g : ℝ → ℂ)
@@ -238,7 +231,6 @@ theorem actualPrincipalPolarLimitKernel_measurable (σ : MomentShifts) (m : Fin 
     polarLeftArguments polarRightArguments
   fun_prop
 
-/-- The common actual-kernel majorant passes to its rational limit. -/
 theorem actualPrincipalPolarLimitKernel_norm_le_of_uniform_bound
     {R c κ C : ℝ} (hR : 0 ≤ R) (hc : 4*R+1 ≤ c) (hκ : 0 < κ)
     (f g : ℝ → ℂ)
@@ -297,8 +289,6 @@ theorem actualPrincipalPolarLimitIntegral_continuousWithinAt
         (actualPrincipalPolar_all_pairings_separated hR (by linarith : R+1 ≤ c)
           σ₀ hσ₀.1 m (fun ij => hσ₀.2 (m,ij)) y))
 
-/-- The two actual normalized principal profile integrals converge locally
-uniformly throughout the bounded separated shift domain. -/
 theorem actualPrincipalProfileRescaledIntegral_polar_locally_uniform
     {R c : ℝ} (hR : 0 ≤ R) (hc : 4*R+1 ≤ c) (m : Fin 6)
     {f g : ℝ → ℂ} (hf : HasCompactSupport f) (hfs : ContDiff ℝ ∞ f)
@@ -325,8 +315,6 @@ theorem actualPrincipalProfileRescaledIntegral_polar_locally_uniform
   rw [← nhds_prod_eq] at hh
   exact hh.mono_right (nhds_le_uniformity _)
 
-/-- Compact uniformity of the genuine two-profile integral limit follows
-from the joint dominated argument, rather than from pointwise convergence. -/
 theorem actualPrincipalProfileRescaledIntegral_polar_uniform_on_compact
     {R c : ℝ} (hR : 0 ≤ R) (hc : 4*R+1 ≤ c) (m : Fin 6)
     {K : Set MomentShifts} (hK : IsCompact K) (hKS : K ⊆ boundedSeparatedPolarShifts R)

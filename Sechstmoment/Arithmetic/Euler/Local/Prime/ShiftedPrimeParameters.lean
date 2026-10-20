@@ -1,7 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Pow.Complex
 import Sechstmoment.Arithmetic.Euler.Local.Prime.PrincipalFactorIdentity
 
-/-! Concrete prime roots and prime-power coefficients for four complex shifts. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

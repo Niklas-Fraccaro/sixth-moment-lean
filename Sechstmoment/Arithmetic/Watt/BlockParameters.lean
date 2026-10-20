@@ -1,7 +1,5 @@
 import Sechstmoment.Arithmetic.Watt.OscillatoryBlocks
 
-/-! All scale and large-X checks for a completed block, derived from the
-original three size hypotheses. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -74,7 +72,6 @@ theorem completedScales_X_sq_mul_E {p : WattScales} {E : ℝ}
     _ = p.X^2*((p.S*p.P/(p.V*dualLength p E))*E) := by ring
     _ = _ := by rw [hc,mul_one]
 
-/-- The original large-X hypothesis implies Watt's threshold on every block. -/
 theorem blockScales_large_X {p : WattScales} {E F : ℝ}
     (hp : ∀ i, 1 ≤ p.size i) (hE : 1 ≤ E) (hF : 1 ≤ F)
     (hlarge : F*E ≤ p.X) (i j k : ℕ) :

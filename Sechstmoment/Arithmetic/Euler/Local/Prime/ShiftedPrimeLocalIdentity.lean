@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.ShiftedPrimeRecurrence
 
-/-! The concrete local identity, including the ramified character value zero. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

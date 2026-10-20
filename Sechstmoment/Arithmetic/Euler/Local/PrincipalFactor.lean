@@ -4,13 +4,6 @@ import Mathlib.Data.Nat.Choose.Cast
 import Mathlib.Tactic.NormNum.NatFactorial
 import Sechstmoment.Arithmetic.Euler.Local.Geometric.GeometricStep
 
-/-!
-# Principal local Euler factor at zero shifts
-
-The factor is defined by the convergent binomial tail in (6.1).
-The polynomial expression and the actual series identity (6.5) are proved.
-This module does not assert the shifted global profile asymptotic (6.8).
--/
 
 open Complex Finset
 open scoped BigOperators
@@ -18,8 +11,6 @@ open scoped BigOperators
 namespace Sechstmoment.Source
 noncomputable section
 
-/-- The local factor in (6.1) at zero shifts, including its value at `h = 0`.
-The tail is an actual convergent series when `‖x‖ < 1`. -/
 def principalLocalFactor (x : ℂ) (h : ℕ) : ℂ :=
   (1-x)^4 * ((∑' k : ℕ, (((k+h)+3).choose 3 : ℂ) * x^(k+h)) -
     ((h+2).choose 3 : ℂ) * x^h/(1-x))
@@ -62,7 +53,6 @@ theorem principalLocalFactor_succ (x : ℂ) (hx : ‖x‖ < 1) (h : ℕ) :
   simp only [← Nat.add_assoc] at ht
   linear_combination (1-x) * ht
 
-/-- The infinite-tail definition has a quadratic polynomial coefficient. -/
 theorem principalLocalFactor_eq_polynomial (x : ℂ) (hx : ‖x‖ < 1) (h : ℕ) :
     principalLocalFactor x h = x^h *
       (((h : ℂ)+2)*((h : ℂ)+1)/2 -
@@ -102,7 +92,6 @@ theorem principalLocalFactor_weighted_hasSum (x : ℂ) (hx : ‖x‖ < 1) :
   · field_simp [hx1]
     ring
 
-/-- The local identity (6.5), derived from an actual summable series. -/
 theorem principal_euler_factor (x : ℂ) (hx : ‖x‖ < 1) :
     (1-x)^6 * (∑' h : ℕ, ((h : ℂ)+1)*principalLocalFactor x h) =
       (1-x)^4*(1+4*x+x^2) := by

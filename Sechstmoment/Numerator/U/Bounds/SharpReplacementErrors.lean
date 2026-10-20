@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.ErrorBound
 
-/-! Arbitrarily small exponent losses for all three genuine full
-weight and dual-phase replacement errors.  All finite truncations and
-auxiliary contours are chosen before T from the requested epsilon. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology

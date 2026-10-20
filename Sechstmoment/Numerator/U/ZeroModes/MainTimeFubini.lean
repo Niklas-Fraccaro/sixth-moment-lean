@@ -2,8 +2,6 @@ import Sechstmoment.Analysis.Complex.PositivePowers
 import Sechstmoment.Numerator.U.Replacement.VStar.XMellinAbsoluteMass
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.Measurability
 
-/-! Absolute positive-x/time Fubini for the literal VStar factor. The time
-profile is compactly supported away from zero; no exchange is assumed. -/
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Filter
 open scoped Topology ContDiff

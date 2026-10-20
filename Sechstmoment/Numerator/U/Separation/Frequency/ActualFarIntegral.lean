@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.Frequency.ActualTimePhase
 import Sechstmoment.Numerator.U.Separation.Frequency.GlobalGap
 
-/-! Exact time-phase identities and fixed-profile far bounds without a
-comparability restriction on the positive arithmetic products. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set
 open scoped ContDiff

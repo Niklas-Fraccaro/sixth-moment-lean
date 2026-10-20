@@ -14,10 +14,6 @@ import Mathlib.Tactic.Ring
 import Sechstmoment.Analysis.Alternants.Four
 import Std
 
-/-! The genuine confluent exponential determinant with derivative rows
-1, rho and rho^2. This identifies the resulting determinant with the simplex
-generator; the limiting operation in the original four shift variables is
-a separate analytic obligation. -/
 
 namespace Sechstmoment
 open scoped BigOperators
@@ -84,7 +80,6 @@ theorem confluentExpMatrix_det_divided_difference (q : Fin 4 → ℂ) (z : ℂ)
 noncomputable def confluentExpGenerator (q : Fin 4 → ℂ) (z : ℂ) : ℂ :=
   (confluentExpMatrix q z).det / (2*z^3)
 
-/-- The factor 2 is precisely the factorial of the second derivative row. -/
 theorem confluentExpGenerator_eq_simplex (q : Fin 4 → ℂ) (z : ℂ)
     (hq : Function.Injective q) (hz : z ≠ 0) :
     confluentExpGenerator q z =

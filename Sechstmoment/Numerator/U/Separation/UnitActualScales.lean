@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.ActualSeparatedGap
 import Sechstmoment.Numerator.U.Separation.BoundaryDilation
 
-/-! The retained k=0 boundary and the identically vanishing k=1 block are
-handled on the actual integer grid. No nonzero integer block is discarded. -/
 namespace Sechstmoment
 open Complex Source Set
 open scoped BigOperators Topology

@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.HighFrequencyAggregate
 
-/-! An arbitrary bounded actual native mask supported on the genuine
-continuous high-gap region is rapidly small after every native sum,
-positive-X integration, sign sum and amplifier coefficient sum. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

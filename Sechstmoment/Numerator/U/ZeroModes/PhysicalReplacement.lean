@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.U.ZeroModes.ActualMass
 import Sechstmoment.Numerator.U.ZeroModes.PhysicalBound
 import Sechstmoment.Numerator.U.ZeroModes.Replacement.Kernels
 
-/-! Genuine original/dual replacement bounds inside the actual weighted
-native physical GCD zero mode, including its exact Mellin scale factor. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff
@@ -36,8 +34,6 @@ private theorem actual_pair_positive (A B H : ℝ) (k : Fin 4→ℕ)
     simp [phasePairSwapScales,phaseActualScales,QuadraticScales.size] <;>
     first | exact hA | exact hB | exact hH | exact boundaryActual_scale_pos _
 
-/-- Both literal Fourier replacement amplitudes keep their T^-1 saving
-uniformly in every continuous arithmetic frequency. -/
 theorem a03_zero_replacement_kernel_uniform_physical_density
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ R η : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 2*c<ε)

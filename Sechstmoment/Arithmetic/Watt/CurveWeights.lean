@@ -1,8 +1,6 @@
 import Sechstmoment.Arithmetic.Watt.Complex
 import Sechstmoment.Arithmetic.Watt.MixedDerivatives
 
-/-! Uniform data for the p-weights created by Poisson completion.
-All constants below are fixed before the scales, slope and arithmetic indices. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -117,7 +115,6 @@ theorem gamma_curve_support {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
   have hn : (fun z : ℝ × ℝ => γ r s z.1 z.2) ((s : ℝ)*y*t,t) ≠ 0 := ht
   exact (hw.gamma_support r s (subset_tsupport _ hn)).2
 
-/-- No new p-weight derivative assumption is introduced: it follows from hw. -/
 theorem gamma_curve_weight_data {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)
@@ -127,8 +124,6 @@ theorem gamma_curve_weight_data {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
   intro j t ht
   exact gamma_ray_derivative_bound hw r s (mul_pos (by exact_mod_cast hs) hy) j ht
 
-/-- Uniform quantifier order: the derivative sequence precedes every scale
-and weight, and in particular precedes the integration variable y. -/
 theorem gamma_curve_uniform_data (g : ℕ → ℕ → ℝ) (hg : ∀ i j, 0 ≤ g i j) :
     ∃ fbound : ℕ → ℝ, (∀ j, 0 ≤ fbound j) ∧
       ∀ (b : ℕ → ℝ) (p : WattScales) (Δ : ℝ) (a bc : ℕ → ℂ)
@@ -140,8 +135,6 @@ theorem gamma_curve_uniform_data (g : ℕ → ℕ → ℝ) (hg : ∀ i j, 0 ≤ 
     fun j => rayDerivativeBound_nonneg hg j 0 0,
     fun _ _ _ _ _ _ _ _ hw _ hy r _ hs => gamma_curve_weight_data hw hy r hs⟩
 
-/-- A complete complex-weight input for Watt, derived from the original
-gamma data and the three dyadic inner weights. -/
 theorem gamma_curve_complexWeightData {b b' : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)
@@ -155,7 +148,6 @@ theorem gamma_curve_complexWeightData {b b' : ℕ → ℝ} {g : ℕ → ℕ → 
   rw [hP]
   exact gamma_curve_weight_data hw hy rs.1 hs
 
-/-- The y-support is common to all active arithmetic indices and p-values. -/
 theorem gamma_curve_y_support {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)
@@ -190,8 +182,6 @@ end Watt41
 
 noncomputable section
 
-/-- Watt 4.1 applies to the composed p-weights with constants fixed before y.
-No regularity or derivative condition on the composed weight is assumed. -/
 theorem Watt41.complexWeightedCurve (hWatt : Watt41) {ε : ℝ} (hε : 0 < ε)
     (b : ℕ → ℝ) (g : ℕ → ℕ → ℝ) (hb : ∀ j, 0 ≤ b j) (hg : ∀ i j, 0 ≤ g i j) :
     ∃ C X₀ : ℝ, 0 ≤ C ∧ 1 ≤ X₀ ∧

@@ -1,7 +1,6 @@
 import Mathlib.MeasureTheory.Function.LocallyIntegrable
 import Sechstmoment.Analysis.Mellin.SmoothMellinInversion
 
-/-! Compact positive support makes the actual Mellin transform entire. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set Filter Asymptotics MeasureTheory

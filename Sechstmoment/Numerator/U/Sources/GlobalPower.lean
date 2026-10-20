@@ -64,9 +64,6 @@ theorem a03_source_poisson_power_identity {T : ℝ} (hT : 0<T) (a b s u : ℝ) :
       (T^(s*(2:ℝ))*T^(a*(1/2:ℝ))*T^(b*(1/2:ℝ))*T^(1+u/2)/T) := by ring
     _=_ := by rw [h32,he]; ring
 
-/-- Explicit rectangular power bound for the reconstructed full source
-majorant. Its mass, gap, and independent lengths have already been proved
-from the actual profile and near grid. -/
 theorem phase_actual_near_source_majorant_power_bound {a b s u ε : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs : s≤1/8) (hu : u≤1/8)
     (hε : 0≤ε) (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :
@@ -169,9 +166,6 @@ theorem phase_actual_near_source_majorant_power_bound {a b s u ε : ℝ}
         _=_ := by rw [he1,he2]
 
 
-/-- The original physical reconstruction factor differs from its source
-boundary normalization by a fixed bounded dilation.  The final native
-rectangular powers retain both independent amplifier exponents. -/
 theorem phase_actual_near_source_native_majorant_power_bound {a b s u ε : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs : s≤1/8) (hu : u≤1/8)
     (hε : 0≤ε) (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :

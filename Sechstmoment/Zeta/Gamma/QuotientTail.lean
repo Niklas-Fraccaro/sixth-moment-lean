@@ -1,9 +1,6 @@
 import Sechstmoment.Zeta.AFE.Four.Integrability
 import Sechstmoment.Zeta.Gamma.StripEnvelope
 
-/-! A polynomial majorant of the actual fourfold Gamma quotient, uniformly
-on the entire original AFE line. The two upper and two lower heights cancel
-the exponential factors, including in the distant Gaussian tail. -/
 
 namespace Sechstmoment.Source
 open Complex Filter Set

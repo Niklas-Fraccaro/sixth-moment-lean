@@ -2,9 +2,6 @@ import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
 import Mathlib.Analysis.InnerProductSpace.PiL2
 import Sechstmoment.Numerator.U.Separation.MellinWeights
 
-/-! Exact continuous-frequency separation in logarithmic coordinates.
-The scalar normalizer is arbitrary and positive. Its rapid decay gives one
-frequency-independent derivative sequence for all five source weights. -/
 
 namespace Sechstmoment
 open Complex Real Set MeasureTheory

@@ -2,8 +2,6 @@ import Sechstmoment.Denominator.Balanced.ActualGaussianTruncation
 import Sechstmoment.Denominator.Balanced.ActualMomentComparison
 import Sechstmoment.Denominator.Balanced.NormalizedHeightBudget
 
-/-! The actual infinite Gaussian height moment can be replaced by its
-literal pair-product cutoff before the six-index Fourier calculation. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Filter Set
 open scoped BigOperators Topology
@@ -28,8 +26,6 @@ theorem d02CenteredGaussianFinitePair_time_measurable (T X : ℝ) (σ : SecondMo
     (Complex.measurable_ofReal.comp (measurable_id.div_const (2*Real.pi))) _).mul
     (d02ActualGaussianFinitePair_time_measurable _ X)
 
-/-- On the physical window, a negative square power of the left endpoint
-is at most four times the same power of the actual height. -/
 theorem d02_window_inverse_square {T t : ℝ} (hT : 0<T) (ht : t∈Icc T (2*T)) :
     T^(-2:ℝ)≤4*t^(-2:ℝ) := by
   have htp : 0<t := hT.trans_le ht.1
@@ -42,9 +38,6 @@ theorem d02_window_inverse_square {T t : ℝ} (hT : 0<T) (ht : t∈Icc T (2*T)) 
       rw [Real.div_rpow htp.le (by norm_num : (0:ℝ)≤2) (-2:ℝ),htE,h2E]
       ring
 
-/-- Both Gaussian halves have a derived, uniform physical height tail
-budget.  The finite integrability receipt follows from the proved infinite
-moment integrability and the same measurable tail domination. -/
 theorem d02BalancedGaussianMoment_truncation_uniform_bound {R ε δ : ℝ}
     (hR : 0≤R) (hε : 0<ε) (hε1 : ε≤1/4) (hδ : 0<δ)
     (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)
@@ -123,8 +116,6 @@ theorem d02BalancedGaussianMoment_truncation_uniform_bound {R ε δ : ℝ}
     _ ≤ K*(4*t^(-2:ℝ)) := mul_le_mul_of_nonneg_left (d02_window_inverse_square hTp ht) hK
     _ = _ := by rw [show (-1:ℝ)-1=-2 by norm_num]; ring
 
-/-- The derived tail budget vanishes uniformly in the actual denominator
-normalization. Finite physical-time integrability remains a conclusion. -/
 theorem d02BalancedGaussianMoment_truncation_normalized_uniform {R ε δ : ℝ}
     (hR : 0≤R) (hε : 0<ε) (hε1 : ε≤1/4) (hδ : 0<δ)
     (a : Fin 4 → ℝ) (hS : (∑ i,a i)<1) (ρ : Fin 4 → ℝ → ℝ)
@@ -147,8 +138,6 @@ theorem d02BalancedGaussianMoment_truncation_normalized_uniform {R ε δ : ℝ}
   intro σ hσ
   exact ⟨(hInt σ hσ).1,hNorm σ hσ⟩
 
-/-- The actual infinite-to-finite Gaussian error tends to zero for every
-fixed original shift in a bounded box. No saving estimate is assumed. -/
 theorem d02BalancedGaussianMoment_truncation_normalized_tendsto {R ε δ : ℝ}
     (hR : 0≤R) (hε : 0<ε) (hε1 : ε≤1/4) (hδ : 0<δ)
     (a : Fin 4 → ℝ) (hS : (∑ i,a i)<1) (ρ : Fin 4 → ℝ → ℝ)
@@ -164,7 +153,6 @@ theorem d02BalancedGaussianMoment_truncation_normalized_tendsto {R ε δ : ℝ}
     hR hε hε1 hδ a hS ρ hρ hs Φ hΦ hΦs hη] with T hT
   simpa only [dist_zero_right] using (hT σ hσ).2
 
-/-- Every fixed original shift determines a finite box automatically. -/
 theorem d02BalancedGaussianMoment_truncation_normalized_tendsto_fixed_shifts {ε δ : ℝ}
     (hε : 0<ε) (hε1 : ε≤1/4) (hδ : 0<δ)
     (a : Fin 4 → ℝ) (hS : (∑ i,a i)<1) (ρ : Fin 4 → ℝ → ℝ)
@@ -184,8 +172,6 @@ theorem d02BalancedGaussianMoment_truncation_normalized_tendsto_fixed_shifts {ε
   exact d02BalancedGaussianMoment_truncation_normalized_tendsto
     hR hε hε1 hδ a hS ρ hρ hs Φ hΦ hΦs σ hσ
 
-/-- One eventual bound controls the normalized truncation error on the
-whole shift box, and the literal finite height integrand is integrable. -/
 theorem d02BalancedGaussianMoment_truncation_normalized_eventually_norm_le_one {R ε δ : ℝ}
     (hR : 0≤R) (hε : 0<ε) (hε1 : ε≤1/4) (hδ : 0<δ)
     (a : Fin 4 → ℝ) (hS : (∑ i,a i)<1) (ρ : Fin 4 → ℝ → ℝ)

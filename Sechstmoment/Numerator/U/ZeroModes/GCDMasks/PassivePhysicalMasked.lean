@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.HighFrequencyAggregate
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.MaskedReindex
 
-/-! The literal retained passive GCD expression is the collapsed physical
-common-X sum with its actual selected dyadic mask. The three native sums
-are collapsed by proved absolute pointwise summability. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

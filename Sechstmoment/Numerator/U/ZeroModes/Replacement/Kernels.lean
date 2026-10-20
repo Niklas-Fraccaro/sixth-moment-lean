@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.DualErrorFourier
 import Sechstmoment.Numerator.U.ZeroModes.Mass.ActualSupport
 
-/-! Literal leading-power tensor kernels and their genuine Gamma/chi
-replacement symbols. These identities hold at every real frequency. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

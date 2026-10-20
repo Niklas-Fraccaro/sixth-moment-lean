@@ -2,8 +2,6 @@ import Sechstmoment.Certificate.Kernels.Unbalanced.EvaluatorBridge
 import Sechstmoment.Certificate.Kernels.Unbalanced.KernelPolynomial
 import Sechstmoment.Certificate.Kernels.Unbalanced.MomentBridge
 
-/-! The complete bridge from the original uniform-expectation integral (4.7)
-to the existing integer evaluator, with its exact denominator and scale. -/
 
 namespace Sechstmoment
 open scoped BigOperators
@@ -26,8 +24,6 @@ private theorem minus_polynomial_mask_sum (coeff : Fin 5 → ℝ)
     intro m _
     ring
 
-/-- The original x-coordinate integral is the exact eight-mask evaluator.
-The only assumptions are nonnegative positive-side masses. -/
 theorem denominatorMinusKernel_eq_maskEvaluator (p q : Fin 5 → ℝ)
     {a b c : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (hc : 0 ≤ c) (d : ℝ) :
     denominatorMinusKernel p q a b c d =
@@ -43,8 +39,6 @@ theorem denominatorMinusKernel_eq_maskEvaluator (p q : Fin 5 → ℝ)
     rw [minus_polynomial_mask_sum]
     simp only [mul_div_assoc]
 
-/-- The complete D⁻¹ integral/evaluator equality for arbitrary natural
-endpoints and integer coefficients of the two degree-four polynomials. -/
 theorem denominatorMinusKernel_eq_integer (A B C D : ℕ) (p q : List ℤ) :
     denominatorMinusKernel (fun k => (Finite.coef p k.val : ℝ))
       (fun k => (Finite.coef q k.val : ℝ))

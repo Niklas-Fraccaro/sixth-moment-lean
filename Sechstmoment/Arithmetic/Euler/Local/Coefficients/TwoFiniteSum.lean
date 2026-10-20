@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Geometric.StepFiniteSum
 
-/-! The twofold divisor coefficient as an actual finite sum. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

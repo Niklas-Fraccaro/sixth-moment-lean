@@ -1,9 +1,5 @@
 import Sechstmoment.Zeta.Gamma.StripEnvelope
 
-/-! Uniform actual Gamma envelopes on any fixed compact strip inside `(0,1)`.
-This extends the fixed-strip argument in `BBLRGammaEnvelope.lean` from the
-repository. The constants are independent of characters and conductors.
--/
 
 namespace Sechstmoment.Source
 open Complex Filter Set ComplexConjugate

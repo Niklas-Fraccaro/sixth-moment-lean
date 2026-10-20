@@ -1,8 +1,6 @@
 import Sechstmoment.Analysis.Fourier.ProfileDecay
 import Sechstmoment.Numerator.U.Separation.Frequency.LogFrequency
 
-/-! Exact uniform far-frequency estimates for the literal amplifier-adjusted
-AFE time phase. The time-dependent Gamma factor is not removed by this file. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set
 open scoped ContDiff

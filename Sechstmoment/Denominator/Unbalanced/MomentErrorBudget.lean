@@ -2,8 +2,6 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 import Sechstmoment.Denominator.Balanced.MomentErrorBudget
 import Sechstmoment.Denominator.Unbalanced.MomentDefinitions
 
-/-! Literal unbalanced four-profile mass and time-window error budgets. These turn
-a proved pointwise analytic error into the required height saving. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped BigOperators Topology
@@ -37,8 +35,6 @@ theorem d04UnbalancedAmplifier_norm_le {T : ℝ} (hT : 1 < T) (t : ℝ)
       simp only [Real.rpow_add hTp]
       ring
 
-/-- The actual physical time integral of a pointwise error on `[T,2T]`.
-For `c+S/2<1` this exponent gives `o(T)`. -/
 theorem d04UnbalancedMoment_pointwise_error_bound {T c C P : ℝ}
     (hT : 1<T) (hc : c≤1) (hC : 0≤C) (hP : 0≤P)
     (a M : Fin 4 → ℝ) (hM : ∀ i, 0≤M i)
@@ -87,8 +83,6 @@ theorem d04UnbalancedMoment_pointwise_error_bound {T c C P : ℝ}
     _ = (P*(∏ i,2*M i)*C)*(T^((∑ i,a i)/2)*T^(c-1)*T) := by ring
     _ = _ := by rw [hp]
 
-/-- The actual physical time integral of a pointwise error on `[T,2T]`.
-For `c+S/2<1` this exponent gives `o(T)`. -/
 theorem d04UnbalancedMoment_uniform_window_error_bound {T d C P : ℝ}
     (hT : 1<T) (hP : 0≤P)
     (a M : Fin 4 → ℝ) (hM : ∀ i, 0≤M i)

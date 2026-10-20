@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.V.Chi.IntegralTranslation
 import Sechstmoment.Numerator.V.Chi.LogBandCosine
 import Sechstmoment.Numerator.V.Chi.TimeTruncation
 
-/-! Integrability and cutoff error for the actual, untruncated chi kernel.
-The polynomial chi bound is used only with an integrable Schwartz majorant. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

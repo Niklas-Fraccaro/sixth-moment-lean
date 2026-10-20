@@ -1,36 +1,24 @@
 import Sechstmoment.Zeta.AFE.Four.Specification
 import Sechstmoment.Zeta.AFE.Two.Contour
 
-/-!
-# The exact completed kernel for the fixed-weight BBLR AFE
-
-This file proves algebraic identities and local holomorphy of the actual
-completed Riemann zeta kernel. It does not assume an approximate functional
-equation, perform a contour shift, or assert a remainder estimate.
--/
 
 namespace Sechstmoment.Source
 open Complex
 open scoped BigOperators
 noncomputable section
 
-/-- The completion reconstructed from its entire pole-removed numerator.
-At `0` and `1` this totalized quotient is zero. -/
 def fixedAFELambda (s : ℂ) : ℂ :=
   d02CompletedPoleRemoved s / (s * (1-s))
 
-/-- The four original shifted zeta arguments. -/
 def fixedAFEShiftedPoint (t : ℝ) (α : MomentShifts) (j : Fin 4) : ℂ :=
   sourceZetaPoints t j + α j
 
-/-- Holomorphic numerator of the Mellin integrand on its pole-free domain. -/
 def fixedAFECompletedKernel (G : ℂ → ℂ)
     (α : MomentShifts) (t : ℝ) (z : ℂ) : ℂ :=
   G z * ∏ j : Fin 4,
     fixedAFELambda (fixedAFEShiftedPoint t α j + z) /
       Gammaℝ (fixedAFEShiftedPoint t α j)
 
-/-- Away from the two poles, this is precisely mathlib's completed zeta. -/
 theorem fixedAFELambda_eq_completed {s : ℂ} (hs : s ≠ 0) (hs1 : s ≠ 1) :
     fixedAFELambda s = completedRiemannZeta s := by
   have hden : s * (1-s) ≠ 0 :=
@@ -38,28 +26,24 @@ theorem fixedAFELambda_eq_completed {s : ℂ} (hs : s ≠ 0) (hs1 : s ≠ 1) :
   rw [fixedAFELambda, d02CompletedPoleRemoved_eq hs hs1]
   exact mul_div_cancel_left₀ _ hden
 
-/-- Reflection holds globally for the totalized pole-removed quotient. -/
 theorem fixedAFELambda_one_sub (s : ℂ) :
     fixedAFELambda (1-s) = fixedAFELambda s := by
   simp only [fixedAFELambda, d02CompletedPoleRemoved_one_sub]
   congr 1
   ring
 
-/-- No holomorphy outside the pole-free domain is asserted. -/
 theorem fixedAFELambda_differentiableAt {s : ℂ} (hs : s ≠ 0) (hs1 : s ≠ 1) :
     DifferentiableAt ℂ fixedAFELambda s := by
   unfold fixedAFELambda
   exact d02CompletedPoleRemoved_differentiable.differentiableAt.div
     (by fun_prop) (mul_ne_zero hs (sub_ne_zero.mpr (Ne.symm hs1)))
 
-/-- The exact dual index order in BBLR is `(2,3,0,1)`. -/
 def fixedAFEDualIndex : Fin 4 → Fin 4 := ![2, 3, 0, 1]
 
 @[simp] theorem fixedAFEDualIndex_involutive (j : Fin 4) :
     fixedAFEDualIndex (fixedAFEDualIndex j) = j := by
   fin_cases j <;> rfl
 
-/-- BBLR's second shift tuple is the reflected tuple in the exact source order. -/
 theorem fixedAFEShiftedPoint_dual (t : ℝ) (α : MomentShifts) (j : Fin 4) :
     fixedAFEShiftedPoint t (bblrSixShifts α 1) j =
       1-fixedAFEShiftedPoint t α (fixedAFEDualIndex j) := by
@@ -67,7 +51,6 @@ theorem fixedAFEShiftedPoint_dual (t : ℝ) (α : MomentShifts) (j : Fin 4) :
     simp [fixedAFEShiftedPoint, sourceZetaPoints, bblrSixShifts, fixedAFEDualIndex] <;>
     ring
 
-/-- The residue numerator at the origin is the actual four-zeta product. -/
 theorem fixedAFECompletedKernel_zero (G : ℂ → ℂ) (α : MomentShifts) (t : ℝ)
     (hG : G 0 = 1)
     (hs : ∀ j, fixedAFEShiftedPoint t α j ≠ 0)
@@ -84,9 +67,6 @@ theorem fixedAFECompletedKernel_zero (G : ℂ → ℂ) (α : MomentShifts) (t : 
   simp [shiftedFourthProduct, fixedAFEShiftedPoint, sourceZetaPoints,
     Fin.prod_univ_succ, mul_assoc]
 
-/-- Exact completed functional equation, with the literal BBLR dual multiplier.
-The sole nonzero assumptions concern the dual archimedean normalizations;
-no zeta value is divided out. -/
 theorem fixedAFECompletedKernel_reflection (G : ℂ → ℂ) (α : MomentShifts)
     (t : ℝ) (z : ℂ) (hG : G (-z) = G z)
     (hΓ : ∀ j, Gammaℝ (1-fixedAFEShiftedPoint t α j) ≠ 0) :
@@ -136,7 +116,6 @@ theorem fixedAFECompletedKernel_reflection (G : ℂ → ℂ) (α : MomentShifts)
           Gammaℝ (1-fixedAFEShiftedPoint t α j)) := by simp_rw [hterm]
     _ = _ := by rw [Finset.prod_mul_distrib]; ring
 
-/-- Exact Gamma/zeta expansion in the Dirichlet-series half-plane. -/
 theorem fixedAFECompletedKernel_eq_gamma_zeta (G : ℂ → ℂ) (α : MomentShifts)
     (t : ℝ) (z : ℂ)
     (hz : ∀ j, 1 < (fixedAFEShiftedPoint t α j+z).re) :
@@ -182,8 +161,6 @@ theorem fixedAFECompletedKernel_eq_gamma_zeta (G : ℂ → ℂ) (α : MomentShif
   unfold bblrGammaQuotient fixedAFEShiftedPoint
   ring
 
-/-- The completed Mellin integrand is exactly the fixed source integrand on
-its right line; this identity involves no limiting argument. -/
 theorem fixedAFECompletedKernel_div_eq_gamma_zeta (G : ℂ → ℂ) (α : MomentShifts)
     (t : ℝ) (z : ℂ)
     (hz : ∀ j, 1 < (fixedAFEShiftedPoint t α j+z).re) :

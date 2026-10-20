@@ -1,10 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.ReplacementErrorDefinitions
 import Sechstmoment.Numerator.U.Replacement.VStar.FiniteGrid
 
-/-! Every literal separate unrestricted replacement error differs from its
-finite small-contour version by a uniformly rapidly decreasing quantity.
-The bounds use only actual spatial/contour tails, smooth profiles and compact
-normalized shifts. No approximate-functional-equation input is needed. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology
@@ -200,8 +196,6 @@ theorem rectangularStarReplacementMultiplier_time_stronglyMeasurable
   · exact hχ
   · exact hχ.sub hl
 
-/-- The actual unrestricted Star AFE remains integrable with each of the
-three concrete multiplier choices on the compact supported time interval. -/
 theorem rectangularStarReplacementParts_eventually_integrable
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0<δ)
     (hroot : ∀ σ∈K, ∀ j : PurePolarIndex, δ≤‖normalizedPurePolarRoot σ j‖)
@@ -252,8 +246,6 @@ theorem rectangularStarReplacementParts_eventually_integrable
   funext t
   ring
 
-/-- Integrability of every separate full error is proved from actual Gamma
-AFE integrability and the actual Star polynomial majorant. -/
 theorem rectangularReplacementErrorParts_eventually_integrable
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0<δ)
     (hroot : ∀ σ∈K, ∀ j : PurePolarIndex, δ≤‖normalizedPurePolarRoot σ j‖)
@@ -338,9 +330,6 @@ theorem rectangularReplacementTruncationMoment_uniform_rapid
   congr 1
   ring
 
-/-- Each of the three fully amplified unrestricted error integrals has an
-integrable finite counterpart, with an arbitrary-power difference estimate.
-All hypotheses describe the actual profiles and normalized shift set. -/
 theorem rectangularReplacementErrorParts_uniform_finite_small_error
     {c η θ : ℝ} (hc : 0<c) (hc1 : c≤1) (hη : 0<η) (hθ : 0<θ)
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0<δ)

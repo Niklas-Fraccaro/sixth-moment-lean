@@ -1,7 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 import Sechstmoment.Denominator.Balanced.MomentErrorBudget
 
-/-! Normalization of a proved physical height power bound. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped Topology

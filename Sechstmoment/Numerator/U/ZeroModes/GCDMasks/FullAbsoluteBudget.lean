@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.AbsoluteConvergence
 
-/-! Genuine finite amplifier and two-sign aggregation of the full native
-positive-X/countable-index mass.  Arbitrary fixed logarithmic powers and
-real saving exponents are retained until the final power estimate. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

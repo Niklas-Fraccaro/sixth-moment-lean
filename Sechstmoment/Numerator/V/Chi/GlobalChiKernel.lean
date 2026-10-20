@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.V.Chi.KernelBounds
 import Sechstmoment.Numerator.V.Chi.WeightedKernelScaling
 import Sechstmoment.Numerator.V.Contour.ShiftedLineGeometry
 
-/-! A single all-frequency bound for the actual untruncated chi kernel.
-The near/far split is completed before any Dirichlet summation. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

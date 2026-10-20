@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.Linearization.Fubini
 import Sechstmoment.Numerator.U.ZeroModes.Linearization.PhysicalBound
 import Sechstmoment.Numerator.U.ZeroModes.Replacement.Identity
 
-/-! The genuine logarithmic-to-linear phase error is summed in the actual
-weighted native zero-mode moment over all scales, signs and Mellin frequencies. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff
@@ -101,8 +99,6 @@ theorem a03_actual_zero_linearization_weighted_block_uniform_bound
     exact hb
   · simp
 
-/-- All arithmetic and Mellin sums are genuine. The uniform constant depends
-only on the fixed profiles and numerical normalized-shift bounds. -/
 theorem a03_actual_zero_linearization_weighted_moment_uniform_bound
     {a b s : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs : s<1/2)
     (f g : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -121,8 +117,6 @@ theorem a03_actual_zero_linearization_weighted_moment_uniform_bound
   exact a03_actual_zero_linearization_moment_bound hT hθ dual Φ c σ f g
     (fun v hv positive => hbnd σ hσ hroot dual positive v hv)
 
-/-- The complete actual weighted native zero-mode replacement is uniformly
-sublinear for both leading original and leading dual profiles. -/
 theorem a03_actual_zero_linearization_weighted_moment_uniform_oT
     {a b s : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hs0 : 0≤s) (hs : s<1/2)
     (f g : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

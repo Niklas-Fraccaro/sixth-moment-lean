@@ -3,10 +3,6 @@ import Sechstmoment.Numerator.U.Separation.Tensor.LocalizedKernel
 import Sechstmoment.Numerator.U.Separation.Tensor.MellinFactor
 import Sechstmoment.Numerator.U.Separation.Tensor.SixSeparation
 
-/-! Uniform separation of the actual Gaussian Gamma/time and spatial
-Mellin kernel, including the amplifier coordinate. The parameter class
-contains only numerical physical constraints. All derivative bounds and
-separated coefficients are consequences proved in this file. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory Filter
 open scoped BigOperators ContDiff Topology FourierTransform

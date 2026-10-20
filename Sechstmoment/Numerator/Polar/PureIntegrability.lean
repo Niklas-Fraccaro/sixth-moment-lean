@@ -4,13 +4,6 @@ import Sechstmoment.Numerator.Polar.GaussianControl
 import Sechstmoment.Numerator.Polar.PureRemoval
 import Sechstmoment.Zeta.Bounds.MellinZetaGrowth
 
-/-!
-# Absolute integrability of the literal pure-zeta Gaussian contour factor
-
-The inputs are concrete geometric conditions on the vertical line and the
-actual roots. Actual zeta growth and the literal Gaussian pole killer are
-estimated by previously proved theorems. Integrability is a conclusion.
--/
 
 namespace Sechstmoment
 
@@ -61,8 +54,6 @@ theorem purePolarZetaProduct_vertical_norm_bound
       congr 2
       ring
 
-/-- The actual pure-zeta part of each literal BBLR remainder contour is
-absolutely integrable. -/
 theorem polarPoleKiller_mul_pureZeta_vertical_integrable
     (T : ℝ) (σ : MomentShifts) (m : Fin 6) (c : ℝ)
     {a b r M : ℝ} (ha : 0 < a) (hb : b < 2) (hr : 0 < r)

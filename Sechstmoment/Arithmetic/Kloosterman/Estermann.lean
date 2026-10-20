@@ -2,10 +2,6 @@ import Salt.Weil.EstermannGlobal
 import Sechstmoment.Arithmetic.Kloosterman.Definitions
 import Sechstmoment.Arithmetic.Kloosterman.TwoAdicMean
 
-/-! Exact comparison of the project's integer exponential sum with SALT's unit sum.
-SALT source: jyh/salt, commit 49197468a2b903385260ee451509943d1934c6de.
-The definition of `ePhase`, `inverseRepresentative`, and `kloostermanSum` is unchanged.
--/
 namespace DivisorProof
 open Finset
 open scoped BigOperators
@@ -19,7 +15,6 @@ theorem stdAddChar_integer_phase {c : ℕ} [NeZero c] (u : ℤ) :
   push_cast
   ring
 
-/-- Equality of the complete sums, including modulus one and negative integer parameters. -/
 theorem kloostermanSum_eq_salt {c : ℕ} (hc : 0 < c) (u v : ℤ) :
     kloostermanSum c u v = @Salt.Weil.kloosterman c ⟨hc.ne'⟩ (u : ZMod c) (v : ZMod c) := by
   let : NeZero c := ⟨hc.ne'⟩
@@ -59,7 +54,6 @@ theorem gcd_zmod_parameters {c : ℕ} [NeZero c] (u v : ℤ) :
   rw [Nat.gcd_comm c, ← Nat.gcd_gcd_gcd_right, gcd_zmod_intCast_val,
     gcd_zmod_intCast_val, Nat.gcd_gcd_gcd_right]
 
-/-- SALT's proved estimate in the original integer-parameter normalization. -/
 theorem kloostermanSum_estermann {c : ℕ} (hc : 0 < c) (u v : ℤ) :
     ‖kloostermanSum c u v‖ ≤ twoAdicWeight c*(c.divisors.card:ℝ)*(c:ℝ)^(1/2:ℝ)*
       (Nat.gcd (Nat.gcd u.natAbs v.natAbs) c:ℝ)^(1/2:ℝ) := by

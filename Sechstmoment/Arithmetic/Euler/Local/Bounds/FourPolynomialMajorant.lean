@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.FourRootBound
 
-/-! A simpler cubic majorant with the correct geometric radius. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

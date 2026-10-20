@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.GlobalAmplifier
 import Sechstmoment.Numerator.U.Sources.GlobalSupport
 
-/-! Restrict the genuine source factories to one positive rectangular slack.
-The original tensors and coefficient bounds are retained; only the near and
-AFE product exponents are reduced. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology FourierTransform
@@ -11,7 +8,6 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 3000000
 
-/-- Smaller near and product-grid exponents lie in the original factory domain. -/
 theorem a03_actual_source_restricted_domain
     {T A B H s u s' u' : ℝ} (hT : 1≤T) (hs : s'≤s) (hu : u'≤u)
     (f g : ℝ → ℝ) (k : Fin 4 → ℕ)
@@ -25,7 +21,6 @@ theorem a03_actual_source_restricted_domain
   exact phaseActualActiveNearBlock_mono f g k
     (Real.rpow_le_rpow_of_exponent_le hT (by linarith)) hactive
 
-/-- The fixed positive contour and source losses leave rectangular slack. -/
 theorem a03_actual_source_slack_choices {a b : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) :
     0<rectangularSlack a b/128 ∧
@@ -37,8 +32,6 @@ theorem a03_actual_source_slack_choices {a b : ℝ}
   unfold rectangularSlack
   linarith
 
-/-- The genuine main endpoint with positive near and AFE exponents fitting
-both global source-loss budgets. -/
 theorem a03_actual_main_tensor_source_endpoint_sqrt_restricted
     (hinput : SeparatedQuadraticInput) {a b εsource εkernel c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)
@@ -106,8 +99,6 @@ theorem a03_actual_main_tensor_source_endpoint_sqrt_restricted
   obtain ⟨hk',hactive'⟩ := a03_actual_source_restricted_domain hT hss huu f g k hk hactive
   exact hactual A B H hA hB hH k hk' hactive' σ hσ hroot v hv positive
 
-/-- The genuine dual endpoint with positive near and AFE exponents fitting
-both global source-loss budgets. -/
 theorem a03_actual_dual_tensor_source_endpoint_sqrt_restricted
     (hinput : SeparatedQuadraticInput) {a b εsource εkernel c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)

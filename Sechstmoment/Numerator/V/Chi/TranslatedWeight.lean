@@ -1,8 +1,6 @@
 import Mathlib.Analysis.Calculus.MeanValue
 import Sechstmoment.Numerator.V.Contour.AlmostHolomorphicWeight
 
-/-! Quantitative translation of the fixed smooth physical weight.
-The constants depend only on the original weight, not on T or the translation. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

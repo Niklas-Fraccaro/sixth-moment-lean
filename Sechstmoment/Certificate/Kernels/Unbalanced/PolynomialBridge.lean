@@ -2,13 +2,6 @@ import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.FinCases
 import Sechstmoment.Certificate.Kernels.Balanced.NormalizedKnots
 
-/-!
-# Integer coefficients of the unbalanced denominator polynomial
-
-The integer evaluator shifts the two quartics by `-t₀` and `t₀`, both with
-positive slope. This module proves the exact half-shift and coefficient
-normalizations; no integral or zeta asymptotic is supplied as a hypothesis.
--/
 
 namespace Sechstmoment
 
@@ -19,8 +12,6 @@ set_option maxHeartbeats 0
 set_option maxRecDepth 100000
 set_option Elab.async false
 
-/-- The integer division in the minus evaluator is exact, also for signed
-endpoints; its real cast is the ordinary half-shift. -/
 theorem denominatorMinus_integer_shift (A B C D : ℤ) :
     (((Finite.scale - (24 * A + 24 * B + 24 * C - 24 * D)) / 2 : ℤ) : ℝ) =
       ((Finite.scale : ℝ) - (24 * A + 24 * B + 24 * C - 24 * D)) / 2 := by
@@ -30,7 +21,6 @@ theorem denominatorMinus_integer_shift (A B C D : ℤ) :
     exact_mod_cast Finite.dminus_half_shift_exact A B C D
   linarith
 
-/-- The integer center becomes `(1-(a+b+c-d))/2` under the prescribed scale. -/
 theorem denominatorMinus_normalized_shift (A B C D : ℕ) :
     (((Finite.scale - (24 * (A : ℤ) + 24 * B + 24 * C - 24 * D)) / 2 : ℤ) : ℝ) /
         (Finite.scale : ℝ) =
@@ -40,9 +30,6 @@ theorem denominatorMinus_normalized_shift (A B C D : ℕ) :
   have hs : (Finite.scale : ℝ) ≠ 0 := ne_of_gt scale_real_pos
   field_simp [hs]
 
-/-- Every product coefficient of the two scaled integer quartics agrees with
-the corresponding real shifted product coefficient after homogeneous scaling.
-Lists of arbitrary length are allowed: both evaluators use coefficients 0–4. -/
 theorem minus_integer_productCoefficient (p q : List ℤ) (t0 : ℤ) (k : Fin 9) :
     (coef (polyMul (shifted p (-t0) 1) (shifted q t0 1)) k.val : ℝ) =
       (Finite.scale : ℝ) ^ (8 - k.val) *
@@ -57,7 +44,6 @@ theorem minus_integer_productCoefficient (p q : List ℤ) (t0 : ℤ) (k : Fin 9)
       productCoefficient, shiftedCoefficient, Fin.sum_univ_succ, Nat.choose] <;>
     ring
 
-/-- The division form of the coefficient normalization. -/
 theorem minus_integer_productCoefficient_div (p q : List ℤ) (t0 : ℤ) (k : Fin 9) :
     (coef (polyMul (shifted p (-t0) 1) (shifted q t0 1)) k.val : ℝ) /
         (Finite.scale : ℝ) ^ (8 - k.val) =
@@ -70,7 +56,6 @@ theorem minus_integer_productCoefficient_div (p q : List ℤ) (t0 : ℤ) (k : Fi
   have hs : (Finite.scale : ℝ) ≠ 0 := by norm_num [Finite.scale, Finite.base]
   exact mul_div_cancel_left₀ _ (pow_ne_zero _ hs)
 
-/-- The coefficient bridge at the actual center used by `Finite.dminus`. -/
 theorem denominatorMinus_integer_productCoefficient (p q : List ℤ)
     (A B C D : ℕ) (k : Fin 9) :
     (coef (polyMul
@@ -86,8 +71,6 @@ theorem denominatorMinus_integer_productCoefficient (p q : List ℤ)
   rw [minus_integer_productCoefficient_div]
   rw [neg_div, denominatorMinus_normalized_shift]
 
-/-- The exact normalization needed when the degree-`k` moment has homogeneous
-degree `k+5`: the full product has degree 13 under scaling. -/
 theorem minus_integer_normalized_sum (p q : List ℤ) (t0 : ℤ) (moments : Fin 9 → ℝ) :
     (∑ k : Fin 9,
       (coef (polyMul (shifted p (-t0) 1) (shifted q t0 1)) k.val : ℝ) * moments k) /
@@ -111,7 +94,6 @@ theorem minus_integer_normalized_sum (p q : List ℤ) (t0 : ℤ) (moments : Fin 
   rw [hp]
   field_simp
 
-/-- The same identity in the exact five-even-degrees form used by `dminus`. -/
 theorem minus_integer_normalized_even_sum (p q : List ℤ) (t0 : ℤ)
     (moments : Fin 5 → ℝ) :
     (∑ j : Fin 5,

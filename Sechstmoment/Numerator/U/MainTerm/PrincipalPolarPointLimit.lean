@@ -2,13 +2,6 @@ import Sechstmoment.Arithmetic.Euler.Shifted.ScaledLimit
 import Sechstmoment.Numerator.Polar.Mellin.ContourUniform
 import Sechstmoment.Numerator.U.MainTerm.PrincipalProfileRescaling
 
-/-!
-# A04: the nine genuine polar factors at each rescaled principal-contour point
-
-This is the actual pointwise normalized arithmetic-kernel limit, rather than
-an assumed main-term asymptotic. A dominated integral limit and the combined
-six-term collision extension are separate remaining obligations.
--/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
@@ -36,7 +29,6 @@ private theorem actualPrincipalRightTriple_scaled (T : ℝ) (σ : MomentShifts)
   funext i
   fin_cases i <;> simp [polarMellinRightTriple,polarRightArguments,bblrSixShifts_rawMomentShifts]
 
-/-- All nine literal zeta factors, with exactly nine logarithmic divisors. -/
 theorem polarMellinRemovedKernel_principal_scaled_identity
     (T : ℝ) (σ : MomentShifts) (m : Fin 6) (u v : ℂ)
     (hρ : ∀ ij : Fin 2 × Fin 2, purePolarRoot T σ (m,ij) ≠ 0) :
@@ -69,8 +61,6 @@ def actualPrincipalPolarLimitKernel (σ : MomentShifts) (m : Fin 6)
     ((arithmeticFactor:ℂ)*ninePolarRationalFactor ((c:ℂ)+(y.1:ℂ)*I)
       ((d:ℂ)+(y.2:ℂ)*I) 0 (bblrSixShifts σ m))
 
-/-- Pointwise limit at each genuine rescaled principal-contour point. This
-statement does not exchange a limit with the two unbounded integrals. -/
 theorem actualPrincipalProfileRescaledKernel_polar_point_limit
     (σ : MomentShifts) (m : Fin 6) (f g : ℝ → ℂ) (c d : ℝ) (y : ℝ × ℝ)
     (hρ : ∀ ij : Fin 2 × Fin 2, normalizedPurePolarRoot σ (m,ij) ≠ 0)

@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.DiagonalFiniteMoment
 import Sechstmoment.Numerator.U.ZeroModes.DiagonalGammaReplacement
 
-/-! Actual selected Gamma diagonal to literal main terms zero and one. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology

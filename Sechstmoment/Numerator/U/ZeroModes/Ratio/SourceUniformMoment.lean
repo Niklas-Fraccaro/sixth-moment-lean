@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourceMomentJoin
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourcePhysicalAggregate
 
-/-! Positive witness restrictions permit one common hard/soft and
-original/dual factory choice; the uniform native moment estimate is retained. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff
@@ -119,9 +117,6 @@ theorem a03_actual_ratio_source_native_moment_sub_Gamma_zero_uniform_capped (dua
   rw [←a03ActualRatioSourceErrorMoment_eq_physical_sub_zero hT dual Φ c e a b s u εsource θ σ α f g hip hiz]
   exact hb σ α hσ hα hroot
 
-/-- One genuine factory works at every smaller positive near and AFE
-exponent. Thus hard/soft and original/dual witnesses may be restricted by
-one literal minimum without changing the fixed contour or source losses. -/
 theorem a03_actual_ratio_source_native_moment_sub_Gamma_zero_uniform_smaller (dual : Bool)
     (hinput : SeparatedQuadraticInput) {a b εsource e c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)

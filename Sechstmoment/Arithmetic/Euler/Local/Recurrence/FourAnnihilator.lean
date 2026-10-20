@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.DifferenceTranslation
 
-/-! The fourfold divisor sequence is annihilated by its Euler operator. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

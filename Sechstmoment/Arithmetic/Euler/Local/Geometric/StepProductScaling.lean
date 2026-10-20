@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.FourRecurrenceUniqueness
 
-/-! Scaling every root scales the n-th coefficient by the n-th power. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

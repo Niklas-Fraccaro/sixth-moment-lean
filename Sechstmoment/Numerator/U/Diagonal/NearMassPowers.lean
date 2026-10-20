@@ -2,15 +2,12 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.NumberTheory.Harmonic.Bounds
 import Mathlib.Tactic
 
-/-! Explicit harmonic and power bounds on a literal two-product AFE cutoff.
-All estimates are numerical consequences of the product support. -/
 
 namespace Sechstmoment
 open Real
 open scoped BigOperators
 noncomputable section
 
-/-- One common logarithmic radius controls all harmonic factors. -/
 def bblrNearMassLogRadius (T η : ℝ) : ℝ :=
   1+Real.log (32*T^(2+η))
 
@@ -21,8 +18,6 @@ theorem bblrNearMassLogRadius_one_le {T η : ℝ} (hT : 1≤T) (hη : 0≤η) :
   unfold bblrNearMassLogRadius
   linarith [Real.log_nonneg hprod]
 
-/-- Positivity of the other product bounds either integer product by the
-literal product cap. -/
 theorem bblrNearMass_product_le_cap {T η : ℝ} {P Q : ℕ}
     (hP : 0<P) (hQ : 0<Q)
     (hcut : (P:ℝ)*Q≤16*T^(2+η)) :
@@ -57,7 +52,6 @@ theorem bblrNearMass_harmonic_K_le_radius {T η : ℝ} {P Q K : ℕ}
   exact (harmonic_le_one_add_log K).trans
     (add_le_add le_rfl (Real.log_le_log hk hbound))
 
-/-- The full product contributes `T^(1+η/2)`. -/
 theorem bblrNearMass_sqrt_product_le_power {T η : ℝ} {P Q : ℕ}
     (hT : 1≤T) (hcut : (P:ℝ)*Q≤16*T^(2+η)) :
     Real.sqrt ((P:ℝ)*Q)≤4*T^(1+η/2) := by
@@ -71,8 +65,6 @@ theorem bblrNearMass_sqrt_product_le_power {T η : ℝ} {P Q : ℕ}
       congr 2
       ring
 
-/-- Ordering the products gives the smaller square-root contribution
-`T^(1/2+η/4)`. -/
 theorem bblrNearMass_sqrt_small_product_le_power {T η : ℝ} {P Q : ℕ}
     (hT : 1≤T) (hPQ : P≤Q) (hcut : (P:ℝ)*Q≤16*T^(2+η)) :
     Real.sqrt (P:ℝ)≤2*T^(1/2+η/4) := by
@@ -91,7 +83,6 @@ theorem bblrNearMass_sqrt_small_product_le_power {T η : ℝ} {P Q : ℕ}
       congr 2
       ring
 
-/-- A completely explicit logarithmic coefficient suffices. -/
 theorem bblrNearMassLogRadius_le_log {T η : ℝ} (hT : 1≤T) (hη : 0≤η) :
     bblrNearMassLogRadius T η≤(10+η)*(1+Real.log T) := by
   have ht : 0<T := zero_lt_one.trans_le hT

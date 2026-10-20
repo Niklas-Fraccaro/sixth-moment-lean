@@ -3,17 +3,12 @@ import Mathlib.Tactic
 import Sechstmoment.Arithmetic.QuadraticDivisor.Estimates.BlockTransfer
 import Sechstmoment.Arithmetic.QuadraticDivisor.Estimates.Exponents
 
-/-!
-The elementary absorption and sublinearity arguments for the additional errors.
-The analytic identities and bounds supplying those errors remain separate inputs.
--/
 
 namespace Sechstmoment
 
 open Filter Asymptotics
 open scoped Topology BigOperators
 
-/-- The main-term contour error is absorbed by the first rectangular block error. -/
 theorem rectangular_contour_coefficient_le {A B : ℝ} (hA : 1 ≤ A) (hB : 1 ≤ B) :
     (A * B) ^ (1/4:ℝ) * (A ^ (1/2:ℝ) + B ^ (1/2:ℝ)) ≤ 2 * (A * B) := by
   have hQ : 1 ≤ A * B := by nlinarith
@@ -33,7 +28,6 @@ theorem rectangular_contour_coefficient_le {A B : ℝ} (hA : 1 ≤ A) (hB : 1 �
     _ = 2 * ((A * B) ^ (1/4:ℝ) * (A * B) ^ (3/4:ℝ)) := by ring
     _ = _ := by rw [← Real.rpow_add (by positivity : 0 < A * B)]; norm_num
 
-/-- The `H₀²` Poisson error after the same reconstruction factor. -/
 theorem rectangular_poisson_back_transfer {T Q X H K : ℝ}
     (hT : 0 < T) (hQ : 0 < Q) (hX : 0 < X) (hH : 0 ≤ H) (hK : 0 < K)
     (hH0 : H ≤ K * Q ^ (1/2:ℝ) * X / T) :
@@ -47,7 +41,6 @@ theorem rectangular_poisson_back_transfer {T Q X H K : ℝ}
       mul_le_mul_of_nonneg_left hp hw
     _ = _ := by field_simp
 
-/-- Padding the diagonal term to length `B` still gives a strictly sublinear power. -/
 theorem rectangular_auxiliary_exponents {a b : ℝ} (ha : 0 ≤ a) (_hab : a ≤ b)
     (h : 3*a + 5*b < 2) :
     1/2 + b/2 + rectangularSlack a b < 1 ∧
@@ -55,7 +48,6 @@ theorem rectangular_auxiliary_exponents {a b : ℝ} (ha : 0 ≤ a) (_hab : a ≤
   dsimp [rectangularSlack]
   constructor <;> linarith
 
-/-- The actual diagonal and phase error powers, with any fixed logarithmic loss, are `o(T)`. -/
 theorem rectangular_auxiliary_errors_isLittleO {a b : ℝ} (ha : 0 ≤ a) (hab : a ≤ b)
     (h : 3*a + 5*b < 2) (n : ℕ) :
     (fun T : ℝ => (Real.log T)^n *
@@ -65,7 +57,6 @@ theorem rectangular_auxiliary_errors_isLittleO {a b : ℝ} (ha : 0 ≤ a) (hab :
   simpa only [mul_add] using (polylog_mul_rpow_isLittleO_id n hd).add
     (polylog_mul_rpow_isLittleO_id n hp)
 
-/-- The minimum in the phase error can be estimated by two reciprocal sums. -/
 theorem rectangular_min_reciprocal_le {u v : ℝ} (hu : 0 < u) (hv : 0 < v) :
     (min u v)⁻¹ ≤ u⁻¹ + v⁻¹ := by
   rcases le_total u v with huv | hvu
@@ -74,7 +65,6 @@ theorem rectangular_min_reciprocal_le {u v : ℝ} (hu : 0 < u) (hv : 0 < v) :
   · rw [min_eq_right hvu]
     exact le_add_of_nonneg_left (inv_nonneg.mpr hu.le)
 
-/-- A logarithmic counting bound for the phase error, valid for rectangular lengths. -/
 theorem rectangular_min_reciprocal_sum_le (A B : ℕ) (hA : 1 ≤ A) (hab : A ≤ B) :
     (∑ u ∈ Finset.Icc 1 A, ∑ v ∈ Finset.Icc 1 B,
       (min (u:ℝ) (v:ℝ))⁻¹) ≤ 2 * (B:ℝ) * (1 + Real.log B) := by

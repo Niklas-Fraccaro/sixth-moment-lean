@@ -2,7 +2,6 @@ import Sechstmoment.Numerator.V.Arithmetic.FourDirichletSeries
 import Sechstmoment.Numerator.V.Chi.SeriesInsertion
 import Sechstmoment.Numerator.V.Chi.ShiftedIntegrability
 
-/-! Exact Dirichlet insertion for the actual shifted four-zeta chi integral. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.LogarithmicPhaseTruncation
 import Sechstmoment.Numerator.U.Separation.SeparatedGapKernel
 
-/-! A single cutoff, fixed before all block data, controls the literal
-five-product expansion on the logarithmic near range. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

@@ -3,8 +3,6 @@ import Sechstmoment.Denominator.Gram.Reflection
 import Sechstmoment.Denominator.Gram.SelfMoments
 import Sechstmoment.Zeta.Moments.AnalyticMomentLinearity
 
-/-! Inverse-logarithmic centering errors are negligible in actual Gram
-moments. The five required self L2 bounds follow from the closed D02 theorem. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Polynomial Filter
 open scoped Topology BigOperators ComplexConjugate
@@ -97,7 +95,6 @@ theorem d06ReflectionAmplitude_eventually_norm_bound (q : ℝ[X]) (hq : q.natDeg
   rw [← Finset.sum_mul,← Finset.sum_mul]
   ring
 
-/-- The actual reflected error test has normalized L2 mass O(log^-2 T). -/
 theorem d06ReflectionAmplitude_self_eventually_bound
     (a b : ℝ) (ha : 0<a) (hb : 0<b) (hab : a+b<1/2)
     (f g : ℝ → ℝ) (hf : Continuous f) (hg : Continuous g)
@@ -176,8 +173,6 @@ theorem d06ReflectionAmplitude_self_eventually_bound
   dsimp [C]
   field_simp
 
-/-- The literal FE reflection remainder contributes zero to every actual
-Gram phase, with no asserted parity or assumed analytic remainder estimate. -/
 theorem d06ReflectionProductMoment_normalized_tendsto
     (τ σ : TestType) (k : ℤ) (a : Fin 4 → ℝ) (ha : ∀ i,0<a i)
     (hpair1 : a 0+a 1<1/2) (hpair2 : a 2+a 3<1/2)

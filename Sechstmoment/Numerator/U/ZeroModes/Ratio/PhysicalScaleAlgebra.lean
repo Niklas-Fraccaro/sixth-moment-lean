@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.AmplifierBudget
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalResidual
 
-/-! Exact common-x normalization of all three physical contour gains,
-followed by the actual original amplifier exponents. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

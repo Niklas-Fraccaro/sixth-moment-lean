@@ -4,7 +4,6 @@ import Mathlib.Analysis.SpecialFunctions.ExpDeriv
 import Sechstmoment.Numerator.V.DP.DPResidueContinuity
 import Sechstmoment.Numerator.V.DP.DPSharpSource
 
-/-! # Actual outer-phase control for the DP four residues -/
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Polynomial Filter
 open scoped Topology BigOperators

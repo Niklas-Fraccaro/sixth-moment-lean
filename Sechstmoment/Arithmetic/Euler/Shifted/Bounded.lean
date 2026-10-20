@@ -1,14 +1,6 @@
 import Mathlib.Tactic
 import Sechstmoment.Arithmetic.Euler.Shifted.Uniform
 
-/-!
-# A uniform bound for the actual arithmetic factor on vertical contours
-
-The bound is independent of all imaginary shifts. Small primes are handled
-by their absolutely convergent genuine diagonal series; the remaining primes
-use the quadratic cancellation bound. This prevents an assumed growth bound
-for the arithmetic Euler product from entering contour domination.
--/
 
 namespace Sechstmoment
 
@@ -90,8 +82,6 @@ theorem shiftedPolarPrimeRemainder_sub_one_uniform_bound
   · exact shiftedPolarPrimeRemainder_sub_one_bound p a b ha hb hp
   · exact shiftedPolarPrimeRemainder_sub_one_coarse_bound p a b hδ ha hb
 
-/-- The true six-variable arithmetic factor is bounded throughout a whole
-vertical half-space, uniformly over all six imaginary parts. -/
 theorem shiftedPolarEulerRest_norm_uniform_bound
     (a b : Fin 3 → ℂ) {δ : ℝ} (hδ : δ < 1/4)
     (ha : ∀ i : Fin 3, -δ ≤ (a i).re) (hb : ∀ i : Fin 3, -δ ≤ (b i).re) :

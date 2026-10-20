@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Separation.ContinuousDyadicUnitRatioTail
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.MaskPowerTransport
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.PassiveMaskPartition
 
-/-! The actual omitted mask is covered by a physical product tail,
-a genuine continuous high-frequency tail, or a polynomial ratio tail. -/
 namespace Sechstmoment
 open Complex Real Source Set
 open scoped BigOperators Topology
@@ -98,8 +96,6 @@ theorem a03NativeGCDMaskTailThreshold_unit {T A m X a b s ε : ℝ}
   exact (mul_le_mul hc hpow (Real.rpow_nonneg (zero_le_one.trans hT) _)
     (by norm_num : (0:ℝ)≤9/16)).trans hh
 
-/-- All seven actual omitted-mask regions reduce to the three tail
-families with a fixed positive polynomial ratio threshold. -/
 theorem a03_native_GCD_passive_mask_complement_classified
     {T : ℝ} (hT : 1≤T) (a b s u ε : ℝ) (hs : s≤1/2) (hε : 0≤ε)
     (f g : ℝ→ℝ) (w : Fin 5→ℕ) (hw : ∀j,1≤w j) (X : ℝ) (hX : 0<X)

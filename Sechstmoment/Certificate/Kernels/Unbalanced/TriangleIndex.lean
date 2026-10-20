@@ -1,7 +1,6 @@
 import Mathlib.Algebra.BigOperators.Fin
 import Mathlib.Basic.Real.Basic
 
-/-! Reindexing the constrained three-dimensional moment sum by a triangle. -/
 
 namespace Sechstmoment
 

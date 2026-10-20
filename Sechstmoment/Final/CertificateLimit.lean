@@ -2,8 +2,6 @@ import Sechstmoment.Denominator.Gram.CertificateAsymptotic
 import Sechstmoment.Final.DyadicScaling
 import Sechstmoment.Numerator.CertificateLimit
 
-/-! The actual Cauchy--Schwarz quotient has the certified scalar limit.
-The profile stage is fixed before the height tends to infinity. -/
 
 namespace Sechstmoment
 open Complex Filter MeasureTheory
@@ -15,7 +13,6 @@ def f01CertificateLowerBound (n : ℕ) (T : ℝ) (Φ : ℝ → ℝ) : ℝ :=
   (‖actual250ProjectedMixedMoment n T Φ‖^2/actual250ProjectedGramMoment n T Φ)/
     f01SixthMomentScale T
 
-/-- Positivity of the genuine Gram moment follows from its proved height limit. -/
 theorem f01ActualGram_eventually_pos (n : ℕ) (hn : 12 ≤ n)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (hΦpos : ∀ x, 0 ≤ Φ x)
     (hI : 0 < ∫ x : ℝ, Φ x) (hD : 0 < certificateProfileDenominator n) :
@@ -28,7 +25,6 @@ theorem f01ActualGram_eventually_pos (n : ℕ) (hn : 12 ≤ n)
   have hk : 0 < T*(Real.log T)^9 := mul_pos (zero_lt_one.trans hT) (pow_pos (Real.log_pos hT) 9)
   exact (div_pos_iff_of_pos_right hk).mp h
 
-/-- The literal actual quotient, normalized exactly as the original main goal. -/
 theorem f01CertificateLowerBound_tendsto
     (hSource : DivisorProof.Watt41)
     (n : ℕ) (hn : 12 ≤ n)

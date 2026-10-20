@@ -2,9 +2,6 @@ import Mathlib.Algebra.Polynomial.Eval.Degree
 import Sechstmoment.Denominator.Balanced.ShiftedDiagonalIntegrability
 import Sechstmoment.Zeta.PolynomialCircle
 
-/-! Cauchy extraction commutes with the actual compactly localized
-nine-edge integral.  The compact set and all integrability facts are
-derived from the four profile caps. -/
 namespace Sechstmoment
 open MeasureTheory Set Complex Polynomial
 open scoped BigOperators
@@ -80,7 +77,6 @@ theorem d02PolynomialCircle_setIntegral (p : ℝ[X]) (E : Set D01EdgeSpace)
   simp_rw [d02CircleExtract_setIntegral _ E hE F hF, ← integral_const_mul]
   rw [integral_finsetSum]
   intro m hm
-  -- Every extracted coefficient is a continuous function on the compact edge set.
   apply ContinuousOn.integrableOn_compact hE
   exact (continuous_const.mul (d02CircleExtract_continuous_parameter m
     (fun x z => F z x) (hF.comp (by fun_prop : Continuous

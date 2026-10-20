@@ -1,7 +1,5 @@
 import Sechstmoment.Analysis.Alternants.AllZeroLimit
 
-/-! The regularized source determinant is jointly continuous in its source shifts
-and its polar nodes. The regularization consists of actual compact simplex integrals. -/
 
 namespace Sechstmoment
 open Filter MeasureTheory Set

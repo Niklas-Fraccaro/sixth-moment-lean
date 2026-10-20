@@ -2,11 +2,6 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
 import Mathlib.Topology.Piecewise
 import Sechstmoment.Denominator.Measures.DiagonalMeasureLimit
 
-/-!
-The sharp logarithmic cutoff in D02 is an admissible D01 test.  Its boundary
-has zero measure for the actual nine-edge push-forward measure; no boundary
-or diagonal convergence hypothesis is inserted into the result.
--/
 
 namespace Sechstmoment
 open MeasureTheory Filter Set
@@ -14,7 +9,6 @@ open scoped BigOperators Topology ENNReal CompactlySupported
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- The logarithm of the product of the two unamplified indices. -/
 def d02LogCutCoordinate (y : D01LogSpace) : ℝ := y.1 0 + y.2 0
 
 theorem d02LogCutCoordinate_continuous : Continuous d02LogCutCoordinate := by
@@ -32,8 +26,6 @@ theorem d02LogCutCoordinate_logPoint (L : ℝ) (x : DiagonalSixIndices) :
     exact_mod_cast (d01RightIndices_pos x 0).ne'
   simp only [d02LogCutCoordinate, d01LogPoint, Real.log_mul hm hn, add_div]
 
-/-- The logarithmic cut is the literal product-length bound on arithmetic
-diagonal atoms. -/
 theorem d02SharpLogRegion_logPoint_iff {L : ℝ} (hL : 0 < L)
     (x : DiagonalSixIndices) :
     d01LogPoint L x ∈ d02SharpLogRegion ↔
@@ -78,8 +70,6 @@ private theorem d02EdgeCutHyperplane_ne_top : d02EdgeCutHyperplane ≠ ⊤ := by
   change d02EdgeCutCoordinate 0 = 1 at hm
   norm_num [d02EdgeCutCoordinate] at hm
 
-/-- In nine-edge coordinates the discontinuity surface is a proper affine
-hyperplane.  In particular its restricted positive Lebesgue measure is zero. -/
 theorem d02EdgeMeasure_cut_boundary_null :
     d01EdgeMeasure {x | d02LogCutCoordinate (d01RowColumnSums x) = 1} = 0 := by
   have hnull : (volume : Measure D01EdgeSpace)
@@ -89,8 +79,6 @@ theorem d02EdgeMeasure_cut_boundary_null :
     {x | d02EdgeCutCoordinate x = 1} = 0
   exact Measure.absolutelyContinuous_restrict hnull
 
-/-- The boundary of the sharp D02 logarithmic cutoff is null for the literal
-geometric D01 limit measure. -/
 theorem d02LimitMeasure_cut_boundary_null :
     d01LimitMeasure {y | d02LogCutCoordinate y = 1} = 0 := by
   rw [d01LimitMeasure, Measure.smul_apply, smul_eq_mul,
@@ -138,7 +126,6 @@ theorem d02SharpLogTest_ae_continuous {f : D01LogSpace → ℂ} (hf : Continuous
   filter_upwards [d02LimitMeasure_ae_off_cut_boundary] with y hy
   exact d02SharpLogTest_continuousAt hf.continuousAt hy
 
-/-- Actual diagonal convergence with the sharp product-length cutoff. -/
 theorem d02DiagonalMeasure_sharp_log_limit (f : D01LogSpace → ℂ)
     (hf : Continuous f) (hK : HasCompactSupport f)
     {C : ℝ} (hC : ∀ y, ‖f y‖ ≤ C) :
@@ -150,7 +137,6 @@ theorem d02DiagonalMeasure_sharp_log_limit (f : D01LogSpace → ℂ)
     (d02SharpLogTest_measurable hf.measurable) (d02SharpLogTest_ae_continuous hf)
     (d02SharpLogTest_compact_support hK) (d02SharpLogTest_norm_le hC)
 
-/-- Complex shifts can be retained in the sharp logarithmic cutoff limit. -/
 theorem d02DiagonalMeasure_complex_weighted_sharp_log_limit
     (f w : D01LogSpace → ℂ) (hf : Continuous f) (hK : HasCompactSupport f)
     {C : ℝ} (hC : ∀ y, ‖f y‖ ≤ C) (hw : Continuous w) :

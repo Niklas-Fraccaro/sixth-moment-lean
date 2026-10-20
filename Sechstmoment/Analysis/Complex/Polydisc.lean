@@ -3,11 +3,6 @@ import Mathlib.Analysis.Complex.AbsMax
 import Mathlib.Tactic
 import Sechstmoment.Analysis.Asymptotics.PowerLog
 
-/-!
-Transfer of contour bounds to a closed polydisc by the maximum modulus principle.
-Holomorphy of the function being bounded is an explicit input, never inferred from
-bounds for its individual meromorphic summands.
--/
 
 namespace Sechstmoment
 
@@ -20,8 +15,6 @@ noncomputable def rectangularClosedPolydisc {ι : Type*} (R : ι → ℝ) : Set 
 noncomputable def rectangularDistinguishedBoundary {ι : Type*} (R : ι → ℝ) : Set (ι → ℂ) :=
   {z | ∀ i, ‖z i‖ = R i}
 
-/-- Iterating the one-dimensional maximum principle transfers a bound on the
-product of circles to the entire closed polydisc. -/
 theorem rectangular_polydisc_norm_le {ι : Type*} [Fintype ι] [DecidableEq ι]
     (R : ι → ℝ) (hR : ∀ i, 0 < R i) (f : (ι → ℂ) → ℂ)
     (hf : DifferentiableOn ℂ f (rectangularClosedPolydisc R)) {M : ℝ}
@@ -67,8 +60,6 @@ theorem rectangular_polydisc_norm_le {ι : Type*} [Fintype ι] [DecidableEq ι]
   intro z hz
   exact aux Finset.univ z hz (by simp)
 
-/-- The contour error is uniform in the shifts because the same majorant is used
-on every distinguished-boundary point. -/
 theorem rectangular_uniform_polydisc_bound {ι : Type*} [Fintype ι] [DecidableEq ι]
     (R : ℝ → ι → ℝ) (f : ℝ → (ι → ℂ) → ℂ) (B : ℝ → ℝ)
     (hR : ∀ᶠ T in atTop, ∀ i, 0 < R T i)
@@ -79,8 +70,6 @@ theorem rectangular_uniform_polydisc_bound {ι : Type*} [Fintype ι] [DecidableE
   filter_upwards [hR, hf, hboundary] with T hr hd hb
   exact rectangular_polydisc_norm_le (R T) hr (f T) hd hb
 
-/-- A common sublinear boundary majorant gives uniform sublinearity throughout
-the polydisc, including the coincident shifts. -/
 theorem rectangular_uniform_polydisc_isLittleO {ι : Type*} [Fintype ι] [DecidableEq ι]
     (R : ℝ → ι → ℝ) (f : ℝ → (ι → ℂ) → ℂ) (B : ℝ → ℝ)
     (hR : ∀ᶠ T in atTop, ∀ i, 0 < R T i)

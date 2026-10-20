@@ -2,16 +2,12 @@ import Mathlib.MeasureTheory.Integral.Prod
 import Sechstmoment.Denominator.Balanced.MomentDefinitions
 import Sechstmoment.Zeta.PolynomialCircle
 
-/-! The Cauchy operators commute with the actual height moment.  All product
-integrability is derived from continuity on the compact height window and the
-unit circles, using the nonpole property of the actual zeta arguments. -/
 namespace Sechstmoment
 open MeasureTheory Set Complex Polynomial Filter Metric
 open scoped BigOperators Topology ContDiff
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- Parameter continuity only needs continuity on the compact parameter set. -/
 theorem d02CircleExtract_continuousOn_compact_parameter {A : Type*}
     [TopologicalSpace A] [FirstCountableTopology A] [T2Space A]
     (S : Set A) (hS : IsCompact S) (m : ℕ) (F : A → ℂ → ℂ)
@@ -184,8 +180,6 @@ theorem d02BalancedAmplifier_continuous {T : ℝ} (hT : 1 < T)
     ((hp 2).comp (continuous_const.sub hc)) |>.mul
       ((hp 3).comp (continuous_const.sub hc))
 
-/-- The actual zeta factors are jointly continuous on the supported t window
-and both unit circles because their arguments cannot meet the zeta pole. -/
 theorem d02BalancedShiftedIntegrand_continuousOn {T : ℝ}
     (hT : 1 < T) (hL : 1 ≤ Real.log T)
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
@@ -265,7 +259,6 @@ theorem d02BalancedShiftedMoment_eq_window_integral {T : ℝ} (hT : 0 < T)
     simp
 
 
-/-- The actual supported height integrand is integrable for the Cauchy shifts. -/
 theorem d02BalancedShiftedMoment_integrable_of_mem_circles {T : ℝ}
     (hT : 1 < T) (hL : 1 ≤ Real.log T) {z w : ℂ}
     (hz : z ∈ sphere (0 : ℂ) 1) (hw : w ∈ sphere (0 : ℂ) 1)
@@ -289,8 +282,6 @@ theorem d02BalancedShiftedMoment_integrable_of_mem_circles {T : ℝ}
     rw [d02_height_cutoff_zero (zero_lt_one.trans hT) Φ hΦs ht]
     simp
 
-/-- Continuity of the actual height moment in both Cauchy shifts follows from
-joint compact regularity; no convergence hypothesis is needed. -/
 theorem d02BalancedShiftedMoment_continuousOn_two_circles {T : ℝ}
     (hT : 1 < T) (hL : 1 ≤ Real.log T)
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
@@ -342,8 +333,6 @@ theorem d02BalancedShiftedMoment_eventually_continuousOn_two_circles
     Real.tendsto_log_atTop.eventually (eventually_ge_atTop (1 : ℝ))] with T hT hL
   exact d02BalancedShiftedMoment_continuousOn_two_circles hT hL ρ A hρsupport Φ hΦ.continuous hΦs
 
-/-- Literal Cauchy extraction of the actual height moment, with compact
-integrability proved rather than assumed. -/
 theorem d02BalancedPolynomialMoment_eq_two_circle {T : ℝ}
     (hT : 1 < T) (hL : 1 ≤ Real.log T) (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
@@ -402,7 +391,6 @@ theorem d02BalancedPolynomialMoment_eq_two_circle {T : ℝ}
   rw [hfactor t, ← d02_zetaCp_eq_circle hT hL ht',
     ← d02_lower_zetaPolynomial_eq_circle hT hL ht']
 
-/-- The preceding exact identity applies eventually to the actual T family. -/
 theorem d02BalancedPolynomialMoment_eventually_eq_two_circle (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
     (hρsupport : ∀ i, tsupport (ρ i) ⊆ Icc 0 (A i))
@@ -414,8 +402,6 @@ theorem d02BalancedPolynomialMoment_eventually_eq_two_circle (p q : ℝ[X])
     Real.tendsto_log_atTop.eventually (eventually_ge_atTop (1 : ℝ))] with T hT hL
   exact d02BalancedPolynomialMoment_eq_two_circle hT hL p q ρ A hρsupport Φ hΦ.continuous hΦs
 
-/-- Pointwise shifted height limits and a bounded shift box imply the actual
-polynomial height limit through the two proved Cauchy contour swaps. -/
 theorem d02BalancedPolynomialMoment_tendsto_of_pointwise_shifted
     (p q : ℝ[X]) (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
     (hρsupport : ∀ i, tsupport (ρ i) ⊆ Icc 0 (A i))

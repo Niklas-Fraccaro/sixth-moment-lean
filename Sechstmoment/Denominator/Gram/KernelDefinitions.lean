@@ -1,7 +1,6 @@
 import Sechstmoment.Denominator.Gram.Algebra
 import Sechstmoment.Denominator.Gram.ProfileCoordinates
 
-/-! The actual balanced and unbalanced profile kernels in each Gram orientation. -/
 namespace Sechstmoment
 open MeasureTheory Polynomial
 open scoped BigOperators

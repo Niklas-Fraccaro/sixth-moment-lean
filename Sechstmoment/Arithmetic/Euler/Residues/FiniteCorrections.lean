@@ -1,10 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Residues.HolomorphicCorrections
 
-/-!
-# Finite Euler corrections
-The series below is a product of genuine convergent local series. No global
-Dirichlet-L identification is asserted by this module.
--/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option linter.unusedSectionVars false

@@ -1,7 +1,6 @@
 import Mathlib.Topology.Algebra.InfiniteSum.Real
 import Sechstmoment.Numerator.U.Diagonal.DiagonalMellinEuler
 
-/-! Exact regrouping of the actual six positive diagonal indices. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat

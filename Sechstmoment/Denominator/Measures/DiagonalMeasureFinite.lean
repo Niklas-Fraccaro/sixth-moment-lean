@@ -1,8 +1,6 @@
 import Mathlib.MeasureTheory.Measure.Regular
 import Sechstmoment.Denominator.Measures.DiagonalLaplaceTransform
 
-/-! Finiteness of the actual positive exponential tilts and local finiteness
-of the literal arithmetic diagonal measure. -/
 
 namespace Sechstmoment
 open MeasureTheory Set

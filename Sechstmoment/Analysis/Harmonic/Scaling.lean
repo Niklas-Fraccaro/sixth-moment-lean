@@ -40,7 +40,6 @@ import Mathlib.Topology.UniformSpace.UniformConvergence
 import Sechstmoment.Analysis.Harmonic.PolynomialProfile
 import Std
 
-/-! Exact Jacobian and signs of the existing normalized DP triple integral. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set Polynomial

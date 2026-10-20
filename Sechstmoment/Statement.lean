@@ -10,8 +10,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Certificate.Bounds
 import Sechstmoment.Zeta.SixthMoment
 
-/-! This module STATES the original analytic goal. It contains no proof of
-`MainClaim` or `FullGoal`, and no axiom asserting either proposition. -/
 
 namespace Sechstmoment
 

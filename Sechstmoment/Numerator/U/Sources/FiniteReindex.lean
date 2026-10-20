@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Reconstruction.TensorActualSourceEndpoint
 import Sechstmoment.Numerator.U.Separation.Tensor.PhysicalKernel
 
-/-! The literal signed source index is the actual finite amplifier/AFE
-index, with its positive natural gap determined by the integer relation. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology FourierTransform
@@ -63,8 +61,6 @@ theorem a03SourceQuadProjection_selected {q : QuadraticScales} (positive : Bool)
     (a03SourceQuadProjection n) hselect (n 6)).mp hrel
   exact ⟨hselect,by rw [←hh]; exact he⟩
 
-/-- The exact literal nonzero source terms are reindexed by the genuine
-finite amplifier ranges and smooth AFE box. The tensor is arbitrary. -/
 theorem a03_actual_source_signed_finite_reindex {a b T A B H : ℝ}
     (hT : 1<T) (hA : 0<A) (hB : 0<B) (hH : 0<H)
     (f g : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -203,8 +199,6 @@ theorem a03_actual_source_signed_finite_reindex {a b T A B H : ℝ}
     have hn0 : n 0-1+1=n 0 := by have := hp 0; omega
     have hn1 : n 1-1+1=n 1 := by have := hp 1; omega
     simp only [D,hn0,hn1,hselect,ite_true,hrec,S,hrel n hSn]
-/-- The actual main physical tensor sum is the literal finite sum of
-its genuine localized time integrals. -/
 theorem a03_actual_main_physical_source_finite_reindex {a b T A B H : ℝ}
     (hT : 1<T) (hA : 0<A) (hB : 0<B) (hH : 0<H)
     (f g Φ : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -231,8 +225,6 @@ theorem a03_actual_main_physical_source_finite_reindex {a b T A B H : ℝ}
     ring
   · simp only [hsel,ite_false,mul_zero]
 
-/-- The actual dual physical tensor sum is the literal finite sum of
-its genuine localized time integrals. -/
 theorem a03_actual_dual_physical_source_finite_reindex {a b T A B H : ℝ}
     (hT : 1<T) (hA : 0<A) (hB : 0<B) (hH : 0<H)
     (f g Φ : ℝ→ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

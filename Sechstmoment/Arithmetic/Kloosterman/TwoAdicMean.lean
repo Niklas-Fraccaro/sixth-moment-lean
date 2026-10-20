@@ -2,7 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.NumberTheory.ArithmeticFunction.Misc
 import Mathlib.Tactic
 
-/-! The elementary mean value of the explicit 2-adic loss in SALT's Estermann bound. -/
 namespace DivisorProof
 open Finset
 open scoped BigOperators
@@ -23,7 +22,6 @@ theorem twoAdicWeight_two_mul {n : ℕ} (hn : n ≠ 0) :
     simp [Nat.prime_two.factorization_self]
   simp [twoAdicWeight, he, pow_add, Real.sqrt_mul (by norm_num : (0 : ℝ) ≤ 2)]
 
-/-- Exact reindexing of positive multiples; zero is deliberately excluded. -/
 theorem sum_positive_multiples_eq (F : ℕ → ℝ) (N : ℕ) {d : ℕ} (hd : 0 < d) :
     (∑ w ∈ (Icc 1 N).filter (fun w => d ∣ w), F (w/d)) =
       ∑ c ∈ Icc 1 (N/d), F c := by
@@ -46,7 +44,6 @@ theorem sum_positive_multiples_eq (F : ℕ → ℝ) (N : ℕ) {d : ℕ} (hd : 0 
   · intro w _
     rfl
 
-/-- The explicit 2-adic factor has an absolute mean value, with constant four. -/
 theorem twoAdicWeight_sum_le (N : ℕ) :
     (∑ n ∈ Icc 1 N, twoAdicWeight n) ≤ 4*(N : ℝ) := by
   induction N using Nat.strong_induction_on with
@@ -104,7 +101,6 @@ theorem twoAdicWeight_sum_le_real {Y : ℝ} (hY : 0 ≤ Y) :
     (∑ n ∈ Icc 1 ⌊Y⌋₊, twoAdicWeight n) ≤ 4*Y :=
   (twoAdicWeight_sum_le _).trans (by gcongr; exact Nat.floor_le hY)
 
-/-- The 2-adic loss disappears on averaging over the modulus, with the full `1/d` saving. -/
 theorem estermann_product_multiple_sum_le {W M : ℝ} (hW : 0 < W) (hM : 0 ≤ M)
     {d : ℕ} (hd : 0 < d) :
     (∑ w ∈ (Icc 1 ⌊4*W⌋₊).filter (fun w : ℕ => W ≤ (w:ℝ) ∧ d ∣ w),

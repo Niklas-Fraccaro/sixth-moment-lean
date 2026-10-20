@@ -2,7 +2,6 @@ import Sechstmoment.Arithmetic.Euler.Convolution.DirichletCoefficients
 import Sechstmoment.Arithmetic.Euler.Convolution.LocalInverse
 import Sechstmoment.Arithmetic.Euler.Convolution.RemainderBridge
 
-/-! The exact global six-zeta divisor convolution (PDF (6.4)), including the original tails. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalConvolution
@@ -10,12 +9,10 @@ open NoDPLocal NoDPResidues NoDPLocalClosure NoDPGlobalRest
 open scoped BigOperators
 noncomputable section
 
-/-- Global multiplicative extension of the original, unscaled four-root pole tails (6.1). -/
 def originalFactor (s : Fin 4 → ℂ) : ℕ → ℂ := eulerCoeff (fun p h =>
   originalPoleTail (primeRoot p (s 0)) (primeRoot p (s 1)) (primeRoot p (s 2))
     (primeRoot p (s 3)) ((p:ℂ)^(-(1-s 0))) (1/((p:ℂ)-1)) h)
 
-/-- Original coefficients, defined before using either gamma or a divisor convolution. -/
 def originalCoeff (s : Fin 4 → ℂ) (a b : ℕ) : ℂ :=
   eulerCoeff (fun p h => primeOriginalWeight p s h) (a*b)
 
@@ -44,7 +41,6 @@ theorem originalCoeff_weightEuler (s : Fin 4 → ℂ) (ρ : ℝ) (hρ0 : 0 ≤ �
   intro p hp h _
   exact prime_residue_cancellation p hp s ρ hρ0 hρ hs h
 
-/-- Exact finite identity for all natural indices, with independent Dirichlet coefficients. -/
 theorem originalCoeff_convolution (s : Fin 4 → ℂ) (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ : ρ < 1/4)
     (hs : ∀ j, ‖s j‖ ≤ ρ) (a b : ℕ) :
     originalCoeff s a b = ∑ d ∈ a.divisors, ∑ e ∈ b.divisors,
@@ -64,7 +60,6 @@ theorem originalCoeff_convolution (s : Fin 4 → ℂ) (ρ : ℝ) (hρ0 : 0 ≤ �
     (fun p => tripleLocal_base s p.val) (fun p => tripleLocal_base s p.val), ← tripleCoeff_euler]
   ring
 
-/-- Formula (6.4) in the original unscaled notation. -/
 theorem originalFactor_convolution (s : Fin 4 → ℂ) (ρ : ℝ) (hρ0 : 0 ≤ ρ) (hρ : ρ < 1/4)
     (hs : ∀ j, ‖s j‖ ≤ ρ) (a b : ℕ) :
     ((a*b:ℕ):ℂ)^(-s 0) * originalFactor s (a*b) =

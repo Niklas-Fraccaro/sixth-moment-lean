@@ -2,11 +2,6 @@ import Mathlib.Data.Nat.Factorization.Basic
 import Mathlib.Data.Nat.Factorization.Induction
 import Sechstmoment.Arithmetic.Euler.Residues.FiniteCorrections
 
-/-!
-# Multiplicative extension of the actual prime-power coefficients
-This is a canonical Euler extension. Identification with an independently defined
-fourfold Dirichlet convolution is a separate theorem, not a definition here.
--/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPResidues

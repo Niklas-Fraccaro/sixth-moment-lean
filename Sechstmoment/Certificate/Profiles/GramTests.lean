@@ -1,9 +1,5 @@
 import Sechstmoment.Certificate.Profiles.Definitions
 
-/-! The actual 178 grouped tests have one common admissible profile stage.
-Every test has a positive pair of caps of sum strictly below one half;
-therefore any pair of tests satisfies the four-profile bound used in D02/D04.
-No height asymptotic is assumed here. -/
 namespace Sechstmoment
 open Set Filter MeasureTheory
 open scoped Topology BigOperators
@@ -11,16 +7,12 @@ noncomputable section
 set_option maxHeartbeats 2000000
 set_option maxRecDepth 100000
 
-/-- The rectangular U and interior V endpoint bounds checked against the
-unchanged 178-group list, without altering its polynomial coefficients. -/
 theorem d06CertificateFeatures_integer_geometry : ∀ x ∈ Finite.features,
     0 < x.A ∧ 0 < x.B ∧
       (x.typ = .U → x.A ≤ x.B ∧ 3*x.A+5*x.B < 2*Finite.base) ∧
       (x.typ = .V → 2106419 ≤ x.A ∧ x.A ≤ 24997500 ∧
         2106419 ≤ x.B ∧ x.B ≤ 24997500) := by decide +kernel
 
-/-- Literal caps: U uses its own original endpoints; V uses the same fixed
-beta support cap `eta` as the original numerator family. -/
 def d06CertificateProfileCap (typ : TestType) (a : ℝ) : ℝ :=
   match typ with
   | .U => a
@@ -50,7 +42,6 @@ theorem d06CertificateFeature_caps {x : Finite.Feature}
     change eta+eta<1/2
     linarith [eta_lt_quarter]
 
-/-- Endpoint regularity of the literal beta profile at the common stage 12. -/
 theorem d06Certificate_beta_endpoints {A n : ℕ}
     (hA : 2106419 ≤ A) (hAu : A ≤ 24997500) (hn : 12 ≤ n) :
     betaScaledProfile eta n (betaProfileIndex eta (realEndpoint A) n) 0 = 0 ∧
@@ -74,7 +65,6 @@ theorem d06Certificate_beta_endpoints {A n : ℕ}
     nlinarith
   exact betaProfile_endpoints eta_pos ha.le haη (by omega) hthreshold
 
-/-- Every original grouped profile is continuous at the same fixed stage. -/
 theorem d06CertificateFeature_profiles_continuous {x : Finite.Feature}
     (hx : x ∈ Finite.features) {n : ℕ} (hn : 12 ≤ n) :
     Continuous (certificateEndpointProfile x.typ (realEndpoint x.A) n) ∧
@@ -89,7 +79,6 @@ theorem d06CertificateFeature_profiles_continuous {x : Finite.Feature}
       vEndpointProfile_continuous_of_endpoints eta_pos n
         (d06Certificate_beta_endpoints hBl hBu hn)⟩
 
-/-- Topological support is contained in the original type-dependent cap. -/
 theorem d06CertificateEndpointProfile_tsupport (typ : TestType) {a : ℝ}
     (ha : CertificateProfileEndpoint typ a) {n : ℕ} (hn : 0 < n) :
     tsupport (certificateEndpointProfile typ a n) ⊆
@@ -102,7 +91,6 @@ theorem d06CertificateEndpointProfile_tsupport (typ : TestType) {a : ℝ}
     · exact vEndpointProfile_support eta a n
     · exact isClosed_Icc
 
-/-- Pairwise cap admissibility, with the actual slot order x.A,x.B,y.A,y.B. -/
 theorem d06CertificateFeature_four_caps {x y : Finite.Feature}
     (hx : x ∈ Finite.features) (hy : y ∈ Finite.features) :
     d06CertificateProfileCap x.typ (realEndpoint x.A)+
@@ -119,13 +107,10 @@ namespace Sechstmoment
 set_option maxHeartbeats 2000000
 set_option maxRecDepth 100000
 
-/-- The original feature order places every U group before every V group;
-therefore each literal upper-triangular mixed pair has orientation U,V. -/
 theorem d06CertificatePairs_type_order : ∀ ij ∈ Finite.pairs,
     (Finite.feature ij.1).typ = .V → (Finite.feature ij.2).typ = .V := by
   decide +kernel
 
-/-- Coefficient reflection agrees with the evaluator on every actual group. -/
 theorem d06CertificateFeatures_reflected_coefficients : ∀ x ∈ Finite.features,
     ∀ r : Fin 5, Finite.coef (Finite.reflect x.poly) r.val =
       Finite.coef x.poly r.val * (-1)^r.val := by

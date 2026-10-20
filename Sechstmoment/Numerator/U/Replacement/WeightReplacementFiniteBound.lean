@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.WeightReplacementNearBound
 
-/-! Completion of the fully summed retained original and dual replacement
-errors. The actual coefficients, four AFE variables, smooth blocks, time
-integration and complete logarithmic Mellin contour are all retained. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology ENNReal
@@ -111,8 +108,6 @@ private theorem dual_contour_near_add_far {T : ℝ} (hT : 0<T)
   rw [he,hI,integral_add h_near h_plus]
   ring
 
-/-- Actual complete retained error bound. Both original and actual dual
-branches are bounded in norm separately before they are added. -/
 theorem a03_actual_weight_replacement_finite_contour_uniform_power_bound
     {a b c e κ θ R η ρ d q : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -173,8 +168,6 @@ theorem a03_actual_weight_replacement_finite_contour_uniform_power_bound
     _=_ := by ring
 
 
-/-- A concrete auxiliary choice closes the complete retained error on the
-rectangular source exponent, uniformly throughout every normalized shift ball. -/
 theorem a03_actual_weight_replacement_rectangular_contour_uniform_power_bound
     {a b κ R : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

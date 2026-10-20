@@ -1,7 +1,5 @@
 import Sechstmoment.Analysis.Complex.SimplePole
 
-/-! Finite rectangle displacement through the sole pole at zero. This form
-keeps the rectangle below the moving zeta poles of the one-sided expansion. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped Topology

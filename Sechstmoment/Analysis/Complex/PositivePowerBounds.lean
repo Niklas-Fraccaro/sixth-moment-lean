@@ -1,7 +1,5 @@
 import Sechstmoment.Analysis.Complex.PositivePowers
 
-/-! Uniform derivatives of the actual real power on a positive compact
-interval, including its lower endpoint below 1. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

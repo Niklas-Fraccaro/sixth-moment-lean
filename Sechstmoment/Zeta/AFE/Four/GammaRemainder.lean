@@ -54,8 +54,6 @@ import Mathlib.Topology.Order.Compact
 import Sechstmoment.Zeta.AFE.Four.GammaHolomorphy
 import Std
 
-/-! Working central-remainder estimates. These statements concern the
-actual Gamma quotient; no V-error or moment estimate is assumed. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
@@ -65,9 +63,6 @@ noncomputable section
 def bblrCentralGammaPuncturedError (t : ℝ) (α : MomentShifts) (z : ℂ) : ℂ :=
   (bblrGammaQuotient t α z/(t/2 : ℂ)^(2*z)-1)/z
 
-/-- Dividing by the AFE pole loses no inverse power of the contour parameter.
-At zero this quotient has Lean's algebraic zero value; holomorphic removal
-uses the actual `dslope` extension separately. -/
 theorem bblrCentralGammaPuncturedError_norm_le {t A : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
     (z : ℂ) (hz : 192*(‖z‖+‖z‖^2) < t) (hphase : (4+8*A)*‖z‖ ≤ t) :
@@ -90,7 +85,6 @@ def bblrCentralWeightDifference (G : ℂ → ℂ) (t : ℝ) (α : MomentShifts)
   G z/z*(bblrGammaQuotient t α z-(t/2 : ℂ)^(2*z))*
     (Real.pi : ℂ)^(-2*z)*(x : ℂ)^(-z)
 
-/-- Actual holomorphy of the difference on the full positive half-plane. -/
 theorem bblrCentralWeightDifference_differentiableOn_rightHalfPlane {t x : ℝ}
     (ht : 0 < t) (hx : 0 < x) (G : ℂ → ℂ) (hG : Differentiable ℂ G)
     (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ 1/4) :
@@ -116,8 +110,6 @@ theorem bblrCentralWeightDifference_differentiableOn_rightHalfPlane {t x : ℝ}
     simp [he] at hz
   exact (((hG.differentiableOn.div differentiableOn_id hz0).mul (hQ.sub hP)).mul hπ).mul hxp
 
-/-- The actual integrand difference has the shifted-line scale
-`t^(2 Re z - 1) x^(-Re z)`, including removal of its apparent `1/z` loss. -/
 theorem bblrCentralWeightDifference_norm_le {t A x : ℝ} (hA : 0 ≤ A)
     (ht : 8*(A+1) ≤ t) (hx : 0 < x) (G : ℂ → ℂ)
     (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
@@ -152,9 +144,6 @@ theorem bblrCentralWeightDifference_norm_le {t A x : ℝ} (hA : 0 ≤ A)
         Real.pi^(-2*z.re)*x^(-z.re) := by gcongr
     _ = _ := by ring
 
-/-- The true holomorphic divided difference is bounded at the origin too.
-The fixed radius Schwarz estimate removes the apparent pole without any
-assumption about a value or derivative of the Gamma quotient. -/
 theorem bblrCentralNormalizedGamma_dslope_norm_le {t A : ℝ} (hA : 0 ≤ A)
     (ht : 1200*(A+1) ≤ t) (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ A)
     (z : ℂ) (hz : 192*(‖z‖+‖z‖^2) < t) (hphase : (4+8*A)*‖z‖ ≤ t) :

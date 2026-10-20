@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.GammaCosStripGrowth
 import Sechstmoment.Numerator.V.Chi.CosineInversion
 
-/-! Actual chi bounds on the full time axis. The single exceptional point
-t=0 is immaterial for the Bochner integrals used in Fourier truncation. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

@@ -2,10 +2,6 @@ import Mathlib.Analysis.Complex.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Tactic
 
-/-!
-Algebraic transfer of the finer, unsymmetrised BBLR block errors.
-No analytic bound for a divisor sum or for a moment is asserted here.
--/
 
 namespace Sechstmoment
 
@@ -18,7 +14,6 @@ noncomputable def rectangularExpandedMajorant (Q P X H : ℝ) : ℝ :=
   H ^ (1 / 2 : ℝ) * (Q ^ (5 / 4 : ℝ) * X ^ (1 / 2 : ℝ)) +
     H ^ (3 / 4 : ℝ) * (Q ^ (1 / 2 : ℝ) * P ^ (1 / 4 : ℝ) * X ^ (3 / 4 : ℝ))
 
-/-- Each orientation in the finer p.17 estimate is bounded by the maximum-length form. -/
 theorem rectangular_oriented_coefficient_le {A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B) :
     A ^ (3 / 8 : ℝ) * B ^ (1 / 8 : ℝ) ≤
       (A * B) ^ (1 / 8 : ℝ) * max A B ^ (1 / 4 : ℝ) := by
@@ -34,7 +29,6 @@ theorem rectangular_oriented_coefficient_le {A B : ℝ} (hA : 0 ≤ A) (hB : 0 �
       (A ^ (1/8:ℝ) * B ^ (1/8:ℝ)) * A ^ (1/4:ℝ) := by ring
     _ ≤ _ := mul_le_mul_of_nonneg_left h (by positivity)
 
-/-- The other `d` range in p.17 is also controlled by the maximum-length coefficient. -/
 theorem rectangular_small_d_coefficient_le {A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B) :
     (A * B) ^ (1/4:ℝ) ≤ (A * B) ^ (1/8:ℝ) * max A B ^ (1/4:ℝ) := by
   have hp : 0 ≤ max A B := le_max_of_le_left hA
@@ -52,7 +46,6 @@ theorem rectangular_small_d_coefficient_le {A B : ℝ} (hA : 0 ≤ A) (hB : 0 �
       norm_num
     _ ≤ _ := mul_le_mul_of_nonneg_left he (by positivity)
 
-/-- The source's common factor multiplies both error summands. -/
 theorem rectangular_quadratic_majorant_expand {A B X H : ℝ}
     (hA : 0 < A) (hB : 0 < B) (hX : 0 < X) (hH : 0 < H) :
     rectangularQuadraticMajorant A B X H =
@@ -116,7 +109,6 @@ private theorem rectangular_second_transfer_identity {T Q P X K : ℝ}
   simp only [Real.log_exp]
   ring
 
-/-- Insert the actual support bound for `H₀` and the reconstruction factor. -/
 theorem rectangular_H0_back_transfer {T A B X H K : ℝ}
     (hT : 0 < T) (hA : 0 < A) (hB : 0 < B) (hX : 0 < X) (hH : 0 < H)
     (hK : 0 < K) (hH0 : H ≤ K * (A * B) ^ (1/2:ℝ) * X / T) :
@@ -145,7 +137,6 @@ theorem rectangular_H0_back_transfer {T A B X H K : ℝ}
           mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right hp (by positivity)) (by positivity)
       _ = _ := by simpa only [mul_assoc] using rectangular_second_transfer_identity hT hQ hP hX hK
 
-/-- Independent dyadic block lengths are enlarged only at the final endpoint step. -/
 theorem rectangular_endpoint_coefficient_le {A₀ B₀ A B : ℝ}
     (hA₀ : 0 ≤ A₀) (hB₀ : 0 ≤ B₀) (hA : 0 ≤ A)
     (hAend : A₀ ≤ A) (hBend : B₀ ≤ B) (hab : A ≤ B) :
@@ -165,7 +156,6 @@ theorem rectangular_endpoint_coefficient_le {A₀ B₀ A B : ℝ}
         (by norm_num : (0:ℝ) ≤ 1/4)]
       norm_num
 
-/-- The source bound is transferred to the actual complex reconstruction factor. -/
 theorem rectangular_error_back_transfer {T A B X H K C : ℝ} (E : ℂ)
     (hT : 0 < T) (hA : 0 < A) (hB : 0 < B) (hX : 0 < X) (hH : 0 < H)
     (hK : 0 < K) (hC : 0 ≤ C)
@@ -185,7 +175,6 @@ theorem rectangular_error_back_transfer {T A B X H K C : ℝ} (E : ℂ)
     _ ≤ _ := mul_le_mul_of_nonneg_left
       (rectangular_H0_back_transfer hT hA hB hX hH hK hH0) hC
 
-/-- Endpoint lengths and the `X` support are inserted after the block transfer. -/
 theorem rectangular_error_endpoint {T A₀ B₀ A B X H K C L Y : ℝ} (E : ℂ)
     (hT : 0 < T) (hA₀ : 0 < A₀) (hB₀ : 0 < B₀) (hX : 0 < X) (hH : 0 < H)
     (hK : 0 < K) (hC : 0 ≤ C) (hL : 0 ≤ L) (hY : 0 ≤ Y)
@@ -214,7 +203,6 @@ theorem rectangular_error_endpoint {T A₀ B₀ A B X H K C L Y : ℝ} (E : ℂ)
           mul_le_mul (mul_le_mul_of_nonneg_left he (by positivity)) hx (by positivity) (by positivity)
       _ = _ := by ring
 
-/-- Exact loss bookkeeping for the first transferred block error. -/
 theorem rectangular_first_power_normalize {T K : ℝ} (hT : 0 < T) (hK : 0 < K)
     (a b ε : ℝ) :
     T ^ ε * ((K * T ^ ε) ^ (1/2:ℝ) * T ^ (1/2:ℝ) * (T ^ a * T ^ b)) =
@@ -224,7 +212,6 @@ theorem rectangular_first_power_normalize {T K : ℝ} (hT : 0 < T) (hK : 0 < K)
   congr 1
   ring
 
-/-- Exact loss bookkeeping for the second transferred block error. -/
 theorem rectangular_second_power_normalize {T K : ℝ} (hT : 0 < T) (hK : 0 < K)
     (a b ε : ℝ) :
     T ^ ε * ((K * T ^ ε) ^ (3/4:ℝ) * T ^ (1/4:ℝ) *
@@ -236,7 +223,6 @@ theorem rectangular_second_power_normalize {T K : ℝ} (hT : 0 < T) (hK : 0 < K)
   congr 1
   ring
 
-/-- The rectangular error is obtained from the primitive block estimate and support bounds. -/
 theorem rectangular_block_error_bound {T A₀ B₀ X H C K L a b ε : ℝ} (E : ℂ)
     (hT : 1 ≤ T) (hA₀ : 0 < A₀) (hB₀ : 0 < B₀) (hX : 0 < X) (hH : 0 < H)
     (hC : 0 ≤ C) (hK : 0 < K) (hL : 0 ≤ L) (hab : a ≤ b)

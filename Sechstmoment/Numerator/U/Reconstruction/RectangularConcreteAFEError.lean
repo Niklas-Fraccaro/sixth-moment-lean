@@ -1,24 +1,17 @@
 import Sechstmoment.Numerator.U.Reconstruction.ConcreteAFE
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEError
 
-/-! The actual Gaussian pole killer's fixed-source AFE remainder stays
-uniformly negligible after both unequal amplifiers and the moment integral.
-Only the cited fixed-G approximate functional equation is a source input. -/
 
 namespace Sechstmoment
 open Complex Source MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology
 
-/-- The literal dyadic weight has a uniform, nonnegative norm bound. -/
 theorem rectangular_supported_weight_bounded (Φ : ℝ → ℝ)
     (hΦ : SmoothDyadicWeight Φ) : ∃ P : ℝ, 0 ≤ P ∧ ∀ x, ‖Φ x‖ ≤ P := by
   have hc : HasCompactSupport Φ := isCompact_Icc.of_isClosed_subset (isClosed_tsupport Φ) hΦ.2
   obtain ⟨P, hP⟩ := hc.exists_bound_of_continuous hΦ.1.continuous
   exact ⟨max P 0, le_max_right _ _, fun x => (hP x).trans (le_max_left _ _)⟩
 
-/-- This is the actual integrated AFE discrepancy, with the actual moving
-Gaussian polynomial auxiliary. The source estimate is derived from fixed
-Gaussian basis inputs before applying the unequal amplifier bound. -/
 theorem rectangular_concrete_AFE_integrated_uniform_bound
     (hsource : BBLRv1FixedApproximateFEInput)
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0 < δ)
@@ -41,8 +34,6 @@ theorem rectangular_concrete_AFE_integrated_uniform_bound
     (rectangular_supported_profile_zero_above f hf)
     (rectangular_supported_profile_zero_above g hg) hfb hgb hΦ hΦb (hs σ hσ)
 
-/-- Every rectangular pair of supported profiles has a uniform `o(T)`
-literal AFE error. No rectangular divisor estimate is used here. -/
 theorem rectangular_concrete_AFE_integrated_uniform_negligible
     (hsource : BBLRv1FixedApproximateFEInput)
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0 < δ)

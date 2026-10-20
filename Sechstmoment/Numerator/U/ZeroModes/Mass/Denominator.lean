@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Diagonal.RawShiftFactorMass
 import Sechstmoment.Numerator.U.Replacement.TimeGammaErrorFourier
 import Sechstmoment.Numerator.U.ZeroModes.Mass.Smooth
 
-/-! Raw-shift denominator bounds on the genuine continuous zero-mode
-variables. The four variables are positive real numbers, not renamed integers. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -65,8 +63,6 @@ theorem a03ZeroModeRealQuadDenominator_raw_inv_norm_le
     _≤_ := div_le_div_of_nonneg_right
       (bblrRawShift_product_rpow_le hT hlog hC hR hprod hcut) (Real.sqrt_nonneg _)
 
-/-- The actual Gamma replacement frequency bound is already uniform over
-all real arithmetic frequencies, including continuous zero-mode variables. -/
 theorem a03ZeroModeReplacementFrequency_uniform_bound
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 2*c<ε) (hκ : 0<κ) (hθ : 0≤θ) :
@@ -81,8 +77,6 @@ theorem a03ZeroModeReplacementFrequency_uniform_bound
   intro σ α hα hroot v hv ξ
   simpa using hb σ α hα hroot v hv 0 0 ξ
 
-/-- Multiplication by a genuine real four-variable Mellin denominator
-preserves the exact square-root density needed by the GCD mass bound. -/
 theorem a03ZeroMode_real_replacement_kernel_uniform_bound
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ R η : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 2*c<ε)

@@ -1,15 +1,11 @@
 import Sechstmoment.Numerator.U.Replacement.DualErrorFourier
 
-/-! Separate literal dual Gamma-weight and dual-phase replacement errors.
-Both estimates follow from the already proved genuine factor derivative bounds. -/
 namespace Sechstmoment.Source
 open Sechstmoment Complex Set Metric Filter
 open scoped BigOperators Topology ContDiff
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- `false` is the dual weight error; `true` is the corresponding phase error.
-The polekiller uses the original shifts in either part. -/
 def bblrGaussianDualErrorPartAmplitude (phasePart : Bool) (T : ℝ)
     (σ τ α : MomentShifts) (z : ℂ) (y : ℝ) : ℂ :=
   if phasePart then
@@ -210,9 +206,6 @@ theorem a03_gaussian_dual_error_part_actual_time_exact_rescaling (phasePart : Bo
   push_cast
   ring
 
-/-- The genuine time-integrated replacement kernel, with its exact arithmetic
-frequency. The bound includes all four AFE variables without substituting a
-free near-gap parameter. -/
 theorem a03_gaussian_dual_error_part_actual_time_uniform_weighted_bound
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ R : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 2*c<ε) (hκ : 0<κ) (hθ : 0≤θ) (hR : 0≤R) :
@@ -244,8 +237,6 @@ theorem a03_gaussian_dual_error_part_actual_time_uniform_weighted_bound
       ring
 
 
-/-- The actual integrated error is uniformly a rapidly decreasing symbol at
-the exact amplified AFE frequency, including frequency zero. -/
 theorem a03_gaussian_dual_error_part_actual_time_uniform_schwartz_bound
     {Φ : ℝ→ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hs : tsupport Φ⊆Icc 1 2)
     {c ε κ θ R : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 2*c<ε) (hκ : 0<κ) (hθ : 0≤θ) (hR : 0≤R) :
@@ -296,7 +287,6 @@ def rectangularDualErrorPartMellinKernel (phasePart : Bool) (T : ℝ) (σ : Mome
       (bblrGammaQuotient t α z-(t/2:ℂ)^(2*z)))*(Real.pi:ℂ)^(-2*z)*
     rectangularAFEOscillation t n/∏ j : Fin 4, (n j+1:ℂ)^(1/2+α j+z)
 
-/-- The combined literal dual replacement equals the two separate errors. -/
 theorem rectangular_dual_replacement_mellin_kernel_eq_error_parts (T : ℝ)
     (σ : MomentShifts) (G : ℂ→ℂ) (α : MomentShifts) (t : ℝ)
     (n : Fin 4→ℕ) (z : ℂ) :
@@ -307,8 +297,6 @@ theorem rectangular_dual_replacement_mellin_kernel_eq_error_parts (T : ℝ)
     Bool.false_eq_true,ite_false,ite_true]
   ring
 
-/-- Exact time factorization retains both real amplifier coefficients and all
-four literal AFE denominator powers. -/
 theorem rectangular_dual_error_part_actual_time_factorization (phasePart : Bool) (T : ℝ)
     (f g Φ : ℝ→ℝ) (σ τ α : MomentShifts) (u v : ℕ) (n : Fin 4→ℕ) (z : ℂ) :
     (∫ t : ℝ, rectangularMomentPairWeight T f g Φ u v t*
@@ -335,8 +323,6 @@ theorem rectangular_dual_error_part_actual_time_factorization (phasePart : Bool)
       unfold phaseActualAmplifierPairConstant
       ring
 
-/-- The actual amplified Mellin error has a uniform rapidly decreasing
-frequency budget. The complete arithmetic prefactor is explicit. -/
 theorem rectangular_dual_error_part_actual_time_uniform_schwartz_bound
     {Φ : ℝ→ℝ} (hΦ : SmoothDyadicWeight Φ)
     {c ε κ θ R : ℝ} (hc : 0<c) (hc1 : c≤1) (hε : 2*c<ε) (hκ : 0<κ) (hθ : 0≤θ) (hR : 0≤R) :

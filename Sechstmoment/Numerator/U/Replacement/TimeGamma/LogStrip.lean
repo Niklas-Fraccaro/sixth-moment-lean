@@ -59,8 +59,6 @@ theorem bblrGamma_logarithmic_strip_large {c θ : ℝ}
     _ = C*T^(1/2 : ℝ) := by dsimp [C]; ring
     _ < T := hbound
 
-/-- The fixed all-order source bound sequence exists before the height,
-contour frequency, shifts, or derivative order are selected. -/
 theorem bblrGaussianTimeAmplitude_logarithmic_uniform_subpower_bounds
     {c ε κ θ A : ℝ} (hc : 0 < c) (hc1 : c ≤ 1) (hε : 2*c < ε)
     (hκ : 0 < κ) (hθ : 0 ≤ θ) (hA : 0 ≤ A) :

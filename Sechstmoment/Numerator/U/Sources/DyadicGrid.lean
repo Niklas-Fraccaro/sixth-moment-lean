@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Sources.Weights.ProfileLengths
 
-/-! Literal amplifier and gap scale grids. Their partitions and logarithmic
-cardinality follow from the actual smooth weight, not a counting premise. -/
 namespace Sechstmoment
 open Complex Source Real Set Filter
 open scoped BigOperators Topology
@@ -68,7 +66,6 @@ theorem a03_source_amplifier_finite_partition {T : ℝ} (hT : 1<T) (a : ℝ)
   unfold phaseActualAmplifierCoefficient
   rw [←Finset.sum_mul,←Finset.sum_mul,←Complex.ofReal_sum,he,Complex.ofReal_one,one_mul]
 
-/-- Cardinality of the literal scalar source grid for a power cutoff. -/
 theorem a03_source_scale_grid_uniform_log_card {L r : ℝ} (hL : 1≤L) (hr : 0≤r) :
     ∃ C : ℝ, 0≤C ∧ ∀ T : ℝ, 1≤T →
       ((a03SourceScaleGrid (L*T^r)).card:ℝ)≤C*(1+Real.log T) := by
@@ -91,12 +88,10 @@ theorem a03_source_scale_grid_uniform_log_card {L r : ℝ} (hL : 1≤L) (hr : 0�
   rw [he] at hf ⊢
   nlinarith
 
-/-- The three actual amplifier/gap scale indices and four AFE scale indices. -/
 def a03ActualSourceBlockGrid (A B H X : ℝ) : Finset ((Fin 3→ℕ)×(Fin 4→ℕ)) :=
   (Fintype.piFinset (fun j : Fin 3 => a03SourceScaleGrid (![A,B,H] j))).product
     (rectangularAFEProductScaleGrid X)
 
-/-- Complete genuine source block count, with independent amplifier lengths. -/
 theorem a03_actual_source_block_grid_uniform_log_card {a b h η : ℝ}
     (ha : 0≤a) (hb : 0≤b) (hh : 0≤h) (hη : 0<η) :
     ∃ C : ℝ, 0≤C ∧ ∀ᶠ T : ℝ in atTop,

@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.U.Sources.ErrorAggregate
 import Sechstmoment.Numerator.U.ZeroModes.RatioEuclideanMultiplier
 import Sechstmoment.Numerator.U.ZeroModes.SoftSourceFactory
 
-/-! Genuine bounded Schwartz families for the actual original and dual
-Gamma tensor times the two-root ratio multiplier. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

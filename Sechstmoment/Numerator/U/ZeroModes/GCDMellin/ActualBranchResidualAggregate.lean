@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ActualBranchArchEnvelope
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ResidualAggregate
 
-/-! Genuine actual leading original/dual profile wrappers for the full
-positive-X ratio-contour remainder, uniformly on the original shift set. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology ContDiff

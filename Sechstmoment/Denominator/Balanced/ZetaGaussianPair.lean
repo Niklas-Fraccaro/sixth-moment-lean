@@ -2,8 +2,6 @@ import Sechstmoment.Denominator.Balanced.MomentDefinitions
 import Sechstmoment.Zeta.AFE.Two.DualPower
 import Sechstmoment.Zeta.AFE.Two.Gaussian
 
-/-! The actual upper/lower zeta pair and its two Gaussian sums.  The dual
-factor is kept as a time power until after oscillatory integration. -/
 namespace Sechstmoment
 open Complex Real Source Filter Set
 open scoped BigOperators Topology
@@ -60,8 +58,6 @@ theorem d02SecondAFEDualMultiplier_eq_secondDualMultiplier (t : ℝ)
   unfold d02SecondAFEDualMultiplier secondDualMultiplier zetaChi
   exact mul_div_mul_comm _ _ _ _
 
-/-- Exact shifted second AFE, with the dual upper/lower indices put back
-in their actual physical order. -/
 theorem d02ActualZetaPair_secondAFE {ε : ℝ} (hε1 : ε≤1/4)
     (t : ℝ) (α : SecondMomentShifts) (hα : ∀ j,‖α j‖≤ε) :
     riemannZeta (secondSourceZetaPoints t 0+α 0) *
@@ -108,8 +104,6 @@ theorem d02ZetaCentering_norm_le {R : ℝ} (σ : SecondMomentShifts)
   simp only [Complex.div_ofNat_re,Complex.add_re]
   linarith
 
-/-- Common absolute budget for every actual Gaussian pair on a small raw
-shift box, independent of the height and the shifts. -/
 theorem d02ActualGaussianPair_uniform_norm {ε : ℝ} (hε : 0<ε) (hε1 : ε≤1/4) :
     ∃ G : ℝ,0≤G ∧ ∀ t : ℝ,0<t → ∀ α : SecondMomentShifts,
       (∀ j,‖α j‖≤ε) → ‖d02ActualGaussianPair t α‖≤G*t^(1/2+2*ε) := by
@@ -126,9 +120,6 @@ theorem d02ActualGaussianPair_uniform_norm {ε : ℝ} (hε : 0<ε) (hε1 : ε≤
   exact d02ActualGaussianSeries_norm_le ht hs.1 hr.1 (by dsimp [c]; linarith)
     (by dsimp [b,c]; linarith)
 
-/-- Actual pointwise replacement of the complete normalized zeta pair.
-Both Gamma errors and the reciprocal-height dual-factor error are derived
-from their proved estimates; the leading dual time power is retained. -/
 theorem d02ZetaPair_gaussian_window_error {R ε : ℝ}
     (hR : 0≤R) (hε : 0<ε) (hε1 : ε≤1/4) :
     ∃ C : ℝ,0≤C ∧ ∀ᶠ T : ℝ in atTop,

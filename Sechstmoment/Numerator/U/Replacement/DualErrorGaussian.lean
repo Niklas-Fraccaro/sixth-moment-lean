@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Replacement.DualPhaseError
 import Sechstmoment.Numerator.U.Replacement.TimeGammaErrorGaussian
 import Sechstmoment.Numerator.U.Separation.Frequency.GammaProfile
 
-/-! Genuine dual branch replacement: both the Gamma weight and four-chi phase
-are replaced, with their common T⁻¹ saving established before arithmetic sums. -/
 namespace Sechstmoment.Source
 open Sechstmoment Complex Set Metric Filter
 open scoped BigOperators Topology ContDiff
@@ -22,8 +20,6 @@ def bblrGaussianDualReplacementAmplitude (T : ℝ) (σ τ α : MomentShifts)
     (bblrDualMultiplier (T*y) (rawMomentShifts T σ)*bblrGammaQuotient (T*y) α z-
       bblrDualLeadingMultiplier T σ y*(T*y/2:ℂ)^(2*z))
 
-/-- Exact weight/phase separation, with original χ shifts and dual Gamma shifts
-kept distinct. -/
 theorem bblrGaussianDualReplacementAmplitude_exact_split (T : ℝ)
     (σ τ α : MomentShifts) (z : ℂ) :
     bblrGaussianDualReplacementAmplitude T σ τ α z = fun y =>
@@ -62,8 +58,6 @@ private theorem dual_error_contDiffAt {T R : ℝ} (hR : 0≤R) (hL : 1≤Real.lo
   rw [he] at hc
   exact (bblrDualMultiplier_normalizedTime_contDiffAt hR hL hT σ hσ hx).sub hc
 
-/-- Leibniz transfers genuine derivative envelopes; no Fourier or error
-control is assumed in this elementary bound. -/
 theorem a03_pointwise_product_derivative_budget {A G : ℝ→ℂ}
     {E B : ℕ→ℝ} (hE : ∀ n, 0≤E n) (_hB : ∀ n, 0≤B n)
     {D F : ℝ} (hD : 0≤D) (_hF : 0≤F) {x : ℝ}

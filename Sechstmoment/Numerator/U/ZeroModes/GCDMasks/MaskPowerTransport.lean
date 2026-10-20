@@ -4,7 +4,6 @@ import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 
-/-! Polynomial thresholds for every genuine continuous native mask boundary. -/
 namespace Sechstmoment
 open Complex Real Set
 open scoped BigOperators Topology

@@ -1,10 +1,6 @@
 import Sechstmoment.Arithmetic.QuadraticDivisor.Definitions
 import Sechstmoment.Arithmetic.QuadraticDivisor.Parameters
 
-/-! Internal divisor interface with separate input and output exponents.
-The source factory may choose any positive admissibility exponent. Watt 4.1
-supplies the displayed output estimate at the smaller input exponent below.
-This is a proved intermediate contract, not an additional external assumption. -/
 namespace Sechstmoment.Source
 open scoped BigOperators
 noncomputable section

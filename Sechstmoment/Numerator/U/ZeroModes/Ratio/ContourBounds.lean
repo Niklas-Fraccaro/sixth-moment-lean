@@ -3,9 +3,6 @@ import Sechstmoment.Numerator.U.Replacement.GaussianTail
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ContourGeometry
 import Sechstmoment.Zeta.Bounds.MellinZetaHalfPlaneGrowth
 
-/-! Actual Gaussian and arithmetic majorants for the ratio-u/v contours.
-The eta cost is a genuine subpower bound and every zeta denominator is
-controlled by its actual Möbius series. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

@@ -3,9 +3,6 @@ import Sechstmoment.Denominator.Balanced.CoordinateMeasure
 import Sechstmoment.Denominator.Balanced.Halves
 import Sechstmoment.Denominator.Balanced.MomentDefinitions
 
-/-! The actual nine-edge sharp-cutoff integral is disintegrated into its
-four endpoint profile integral.  Compact profile caps prove integrability;
-no asymptotic conclusion is an input. -/
 
 namespace Sechstmoment
 open MeasureTheory Set
@@ -70,7 +67,6 @@ theorem d02SliceReconstruct_fubini (z : D02NestedSliceSpace) :
   rw [d02SliceFubiniEquiv_symm_apply]
   rfl
 
-/-- All three product integrations use their actual volume measures. -/
 theorem d02Edge_integral_fubini (f : D01EdgeSpace → ℝ) (hf : Integrable f) :
     (∫ x : D01EdgeSpace, f x) =
       ∫ a : Fin 4 → ℝ, ∫ R : Fin 4 → ℝ, ∫ u : ℝ,
@@ -197,8 +193,6 @@ theorem d02BalancedEdge_nonzero_bounded (p q : Fin 5 → ℝ) (ρ : Fin 4 → �
     x∈Icc (fun _ => (0:ℝ)) (fun _ => d02BalancedEdgeBound a) :=
   d02BalancedEdge_profile_nonzero_bounded ρ a hρ hx (mul_ne_zero_iff.mp hn).1
 
-/-- The sharp test is integrable because its continuous profile/polynomial
-factor vanishes outside one explicit compact nine-edge box. -/
 theorem d02BalancedEdgeIntegrand_integrable (p q : Fin 5 → ℝ)
     (ρ : Fin 4 → ℝ → ℝ) (a : Fin 4 → ℝ) (hρc : ∀ i, Continuous (ρ i))
     (hρcap : ∀ i t, ρ i t≠0 → t∈Icc 0 (a i)) :
@@ -325,9 +319,6 @@ theorem d02BalancedEdgeIntegrand_interior_integral (p q : Fin 5 → ℝ)
   simp_rw [← d02BalancedHalves_eq_inner]
   exact d02BalancedHalves_eq_kernel p q (a 0) (a 1) (a 2) (a 3)
 
-/-- The original nine-edge diagonal geometry, the sharp logarithmic cut,
-both reflected halves and the four literal profiles give the independently
-defined original balanced profile kernel. -/
 theorem d02BalancedEdgeIntegral_eq_profileKernel (p q : Fin 5 → ℝ)
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
     (hA : (∑ i, A i)<1) (hρc : ∀ i, Continuous (ρ i))

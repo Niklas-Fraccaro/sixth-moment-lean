@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Convolution.Factorization
 
-/-! Euler coefficients with finitely many distinguished primes; their constant terms need not be one. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option maxHeartbeats 2000000
@@ -57,7 +56,6 @@ theorem fixedEuler_quotient_box (A : Nat.Primes → ℕ → R) (D : Finset Nat.P
     ← Finset.prod_coe_sort]
   exact Finset.prod_congr rfl (fun p _ => by rw [quotient_box_factor S n hn f p])
 
-/-- Finite divisor convolution, even when the distinguished local constant terms vanish. -/
 theorem fixedEuler_convolution (A B : Nat.Primes → ℕ → R) (D : Finset Nat.Primes)
     (hA : ∀ p ∉ D, A p 0 = 1) (hB : ∀ p ∉ D, B p 0 = 1) (n : ℕ) :
     fixedEuler (scalarConvolution A B) D n =

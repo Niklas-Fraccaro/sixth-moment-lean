@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.Residues.Arithmetic
 import Sechstmoment.Numerator.V.Arithmetic.Residues.Normalization
 
-/-! The residue at scale q*X has exactly the arithmetic coefficient
-whose divisor trace was evaluated independently. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real ZMod NoDPGlobalRest

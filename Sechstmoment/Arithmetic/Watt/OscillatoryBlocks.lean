@@ -1,8 +1,6 @@
 import Sechstmoment.Arithmetic.Watt.CurveWeights
 import Sechstmoment.Arithmetic.Watt.WeightBounds
 
-/-! Complete uniform weight data for all three smooth inner blocks.
-The only extra derivative cost is absorbed by delta / E, with E >= 1. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -79,7 +77,6 @@ theorem oscillatoryBlock_derivative_data (a : ℕ → ℝ) (ha : ∀ j, 0 ≤ a 
 def blockScales (p : WattScales) (A : ℝ) (i j k : ℕ) : Scales :=
   ⟨blockScale p.H i,blockScale p.C j,blockScale A k,p.P,p.R,p.S⟩
 
-/-- Uniform constants and full inner-weight data, chosen before all parameters. -/
 theorem completedBlock_inner_data (b : ℕ → ℝ) (hb : ∀ j, 0 ≤ b j) :
     ∃ B : ℕ → ℝ, (∀ j, 0 ≤ B j) ∧
       ∀ (g : ℕ → ℕ → ℝ) (p : WattScales) (Δ E A y : ℝ) (a bc : ℕ → ℂ)

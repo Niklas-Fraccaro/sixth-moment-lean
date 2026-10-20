@@ -1,7 +1,5 @@
 import Sechstmoment.Zeta.Bounds.ZetaTripleLaurent
 
-/-! Three uniformly bounded leading factors and three inverse-scale errors
-give one inverse-scale product error. -/
 
 namespace Sechstmoment.Source
 open Complex Real

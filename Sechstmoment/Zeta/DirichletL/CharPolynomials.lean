@@ -5,13 +5,6 @@ import Mathlib.NumberTheory.MulChar.Lemmas
 import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
 import Mathlib.Tactic
 
-/-!
-# Finite character estimates for the smoothed V replacement
-
-This module proves Lemma 3.1 of the supplied plan, including Parseval and
-the residue-class cardinality estimate. It does not assert the analytic
-Dirichlet-L fourth moment or the asymptotic formula for the V generator.
--/
 
 open Complex Finset
 open scoped BigOperators ComplexConjugate Classical
@@ -150,7 +143,6 @@ theorem charResidueFibre_card_le (q : ℕ) [NeZero q] (N : ℕ)
     rw [hmod, hdiv] at hn
     omega
 
-/-- Natural-length version of Lemma 3.1 of the replacement plan. -/
 theorem charPolynomial_l2_bound_nat (q : ℕ) [NeZero q] (N : ℕ) (c : ℕ → ℂ) :
     ∑ χ : DirichletCharacter ℂ q, ‖∑ n ∈ Finset.Icc 1 N, c n * χ n‖ ^ 2 ≤
       (q.totient : ℝ) * (1 + (N : ℝ) / q) *
@@ -163,7 +155,6 @@ theorem charPolynomial_l2_bound_nat (q : ℕ) [NeZero q] (N : ℕ) (c : ℕ → 
     by exact_mod_cast h
   exact hc.trans (by have hdiv := Nat.cast_div_le (α := ℝ) (m := N) (n := q); linarith)
 
-/-- Real-length version, with exactly the factor stated in the plan. -/
 theorem charPolynomial_l2_bound (q : ℕ) [NeZero q] (X : ℝ) (hX : 0 ≤ X)
     (c : ℕ → ℂ) :
     ∑ χ : DirichletCharacter ℂ q, ‖∑ n ∈ Finset.Icc 1 ⌊X⌋₊, c n * χ n‖ ^ 2 ≤

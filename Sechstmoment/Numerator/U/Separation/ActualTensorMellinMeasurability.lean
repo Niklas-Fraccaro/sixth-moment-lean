@@ -2,8 +2,6 @@ import Mathlib.Analysis.Normed.Lp.MeasurableSpace
 import Sechstmoment.Numerator.U.Separation.TimeFarContourBudget
 import Sechstmoment.Numerator.U.Sources.PhysicalBound
 
-/-! Mellin-frequency measurability of the literal actual tensor kernels
-and of their physical finite sums and native sorted GCD zero modes. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology FourierTransform

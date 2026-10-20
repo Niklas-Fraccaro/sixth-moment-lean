@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.V.Asymptotic.AmplifiedProfileJoin
 import Sechstmoment.Numerator.V.Asymptotic.NormalizedPowerErrors
 import Sechstmoment.Numerator.V.Asymptotic.SeparatedMainLeading
 
-/-! The literal critical-line chi moment has the independently evaluated
-separated main term, with a common normalized error for all bounded shifts. -/
 
 namespace Sechstmoment.Source
 open NoDPGlobalLFactorization NoDPHarmonic Complex Real Set MeasureTheory Polynomial

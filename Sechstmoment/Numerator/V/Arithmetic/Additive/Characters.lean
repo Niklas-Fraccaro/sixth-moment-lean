@@ -2,11 +2,6 @@ import Mathlib.Analysis.Fourier.ZMod
 import Mathlib.NumberTheory.DirichletCharacter.Bounds
 import Sechstmoment.Zeta.DirichletL.CharPolynomials
 
-/-!
-Finite additive-to-multiplicative Fourier analysis for the smoothed
-replacement. All characters, including imprimitive characters and modulus
-one, are included. No primitivity or analytic moment input occurs here.
--/
 
 namespace Sechstmoment.Source
 open Complex Real ZMod Finset ComplexConjugate
@@ -57,7 +52,6 @@ theorem all_gaussSum_fourier_energy (q : ℕ) [NeZero q]
   simpa only [gaussSum,AddChar.mulShift_apply,mul_comm,
     dirichlet_character_norm_sq_sum] using additive_fourier_parseval q (fun a => χ a)
 
-/-- The square-root bound also holds for imprimitive Gauss sums. -/
 theorem all_gaussSum_norm_sq_le (q : ℕ) [NeZero q]
     (χ : DirichletCharacter ℂ q) :
     ‖gaussSum χ stdAddChar‖^2 ≤ (q : ℝ) := by
@@ -85,8 +79,6 @@ theorem all_gaussSum_norm_le_sqrt (q : ℕ) [NeZero q]
   exact (Real.le_sqrt (norm_nonneg _) (Nat.cast_nonneg _)).mpr
     (all_gaussSum_norm_sq_le q χ)
 
-/-- Multiplicative character inversion of an additive character, on units.
-The inverse character in the Gauss sum fixes the orientation exactly. -/
 theorem additive_character_expansion (q : ℕ) [NeZero q]
     (a : ZMod q) (ha : IsUnit a) :
     stdAddChar a = (q.totient : ℂ)⁻¹ *

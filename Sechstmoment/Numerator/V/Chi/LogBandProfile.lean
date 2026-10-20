@@ -5,9 +5,6 @@ import Sechstmoment.Analysis.Mellin.FourierCutoff
 import Sechstmoment.Analysis.Mellin.FourierScaling
 import Sechstmoment.Numerator.V.Chi.CosineScaling
 
-/-! The concrete positive logarithmic profile whose Mellin transform is
-the band-limited time weight. The frequency cutoff becomes a fixed smooth
-factor, and every scaling constant is retained. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Metric

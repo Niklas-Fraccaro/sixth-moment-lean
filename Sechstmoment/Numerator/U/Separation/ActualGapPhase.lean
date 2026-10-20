@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Reconstruction.RectangularQuadraticReindex
 import Sechstmoment.Numerator.U.Separation.LogarithmicPhaseTruncation
 
-/-! The exact phase after multiplying by the two actual amplifier powers.
-Both signed natural gaps are retained, and no linearized phase is substituted. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology

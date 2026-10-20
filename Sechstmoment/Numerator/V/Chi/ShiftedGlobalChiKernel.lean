@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.V.Chi.GlobalChiKernel
 
-/-! The all-frequency error for the literal complex-shifted chi kernel.
-The constant is shared by all logarithmically bounded shifts. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

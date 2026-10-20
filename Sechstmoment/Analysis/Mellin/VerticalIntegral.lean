@@ -29,14 +29,6 @@ import Mathlib.Topology.Algebra.InfiniteSum.Basic
 import Mathlib.Topology.Instances.EReal.Lemmas
 import Std
 
-/-!
-# The actual six source main terms
-
-`bblrVStar` is the vertical integral in BBLR (8), parametrized with
-`ds = i dv`. `bblrDiagonalTerm` is the actual constrained fourfold Dirichlet
-sum in Theorem 1.2. No free function stands in for a main term.
-This file defines the target of the still-open AFE/dyadic reconstruction.
--/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Filter

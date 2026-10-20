@@ -14,9 +14,6 @@ import Mathlib.Tactic.Ring
 import Sechstmoment.Analysis.Simplex.Exponential
 import Std
 
-/-! The actual four-by-four exponential determinant of (3.5).
-Its expansion along the first two columns contains six signed two-by-two
-minor products. The Vandermonde factor is the manuscript's convention. -/
 
 namespace Sechstmoment
 open scoped BigOperators
@@ -27,7 +24,6 @@ def matrixMinorTwo {R : Type*} [CommRing R]
     (M : Matrix (Fin 4) (Fin 4) R) (i j k l : Fin 4) : R :=
   M i k * M j l - M i l * M j k
 
-/-- Laplace expansion along columns zero and one, with all six signs. -/
 theorem determinant_four_six_minors {R : Type*} [CommRing R]
     (M : Matrix (Fin 4) (Fin 4) R) :
     M.det =
@@ -57,7 +53,6 @@ noncomputable def expAlternantMatrix (x rho : Fin 4 → ℂ) : Matrix (Fin 4) (F
 noncomputable def exponentialAlternant (x rho : Fin 4 → ℂ) : ℂ :=
   Complex.exp (x 0+x 1) * (expAlternantMatrix x rho).det / fourVandermonde x
 
-/-- The six products of actual exponential minors, including the outer factor. -/
 theorem exponentialAlternant_six_minors (x rho : Fin 4 → ℂ) :
     exponentialAlternant x rho = Complex.exp (x 0+x 1) *
       (matrixMinorTwo (expAlternantMatrix x rho) 0 1 0 1 *

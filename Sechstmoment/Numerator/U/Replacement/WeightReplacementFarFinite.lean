@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.TimeGammaErrorFourier
 import Sechstmoment.Numerator.U.Separation.TimeFarFiniteBudget
 
-/-! Global genuine far-frequency weight replacement error. The real amplifier
-ranges, smooth AFE product-scale grid and all four AFE variables are summed.
-No moment-error or cardinality bound is assumed. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter
 open scoped BigOperators Topology
@@ -87,8 +84,6 @@ def a03ActualWeightReplacementFarFiniteMellinGrid (positive : Bool)
           rectangularWeightReplacementMellinKernel (polarPoleKiller T σ) α t n ((c:ℂ)+(v:ℂ)*I))
       else 0
 
-/-- Every prescribed negative power holds after summing all actual finite
-far blocks and both actual amplifier ranges. -/
 theorem a03_actual_weight_replacement_far_finite_grid_uniform_rapid
     {a b c η κ θ ρ : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)

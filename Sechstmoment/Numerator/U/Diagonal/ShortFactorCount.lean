@@ -1,10 +1,5 @@
 import Mathlib.Tactic
 
-/-!
-An elementary, unconditional count of actual positive factor pairs in a
-short product interval. This is a counting component for the central BBLR
-near-resonant error; it does not assert a moment or reconstruction bound.
--/
 
 namespace Sechstmoment
 open scoped BigOperators

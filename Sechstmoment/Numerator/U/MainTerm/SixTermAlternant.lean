@@ -4,10 +4,6 @@ import Sechstmoment.Numerator.Kernels.Nodes
 import Sechstmoment.Numerator.Polar.General.Source
 import Sechstmoment.Zeta.Moments.SixTerms
 
-/-! Exact algebraic identification of the six BBLR convolution pole terms
-with the four-by-four exponential alternant. The first profile mass pairs
-with the lower source shifts and the second with the upper source shifts.
-No DP four-residue generator or analytical asymptotic input is used. -/
 
 namespace Sechstmoment
 open Complex Source
@@ -16,8 +12,6 @@ noncomputable section
 set_option maxHeartbeats 0
 set_option maxRecDepth 20000
 
-/-- One of the six literal inverse polar factors, before integration over
-the common positive convolution variable. -/
 def bblrExponentialConvolutionPoleTerm (σ : MomentShifts) (A B t : ℝ)
     (m : Fin 6) : ℂ :=
   Complex.exp (bblrSixPhaseExponents σ m)*
@@ -214,8 +208,6 @@ private theorem bblrExponentialConvolutionPoleTerm_eq_minor
     norm_num [fourVandermonde, polarSourceKnots]
     ring
 
-/-- The six signed BBLR convolution terms are exactly the genuine
-exponential determinant, with its original Vandermonde convention. -/
 theorem bblrSixExponentialConvolution_eq_alternant
     (σ : MomentShifts) (hσ : Function.Injective (polarSourceKnots σ))
     (A B t : ℝ) :

@@ -1,10 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Residues.TailEstimates
 
-/-!
-# Absolute convergence of the double residue series
-The six-denominator rest has the correct constant and quadratic-order linear error.
-This is a local theorem; no infinite product over primes is asserted.
--/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPResidues

@@ -1,14 +1,12 @@
 import Sechstmoment.Numerator.Polar.PoleKiller
 import Sechstmoment.Numerator.U.ZeroModes.Contour.Chambers
 
-/-! The same literal auxiliary weight in all four factor chambers. -/
 namespace Sechstmoment
 open Complex Source
 open scoped BigOperators
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- The quadratic killing factor depends only on the squared root. -/
 def a03SquarePoleFactor (q z : ℂ) : ℂ := if q=0 then 1 else 1-z^2/q
 
 theorem polarPoleKillingFactor_eq_square (ρ z : ℂ) :
@@ -17,7 +15,6 @@ theorem polarPoleKillingFactor_eq_square (ρ z : ℂ) :
   · simp [polarPoleKillingFactor,a03SquarePoleFactor,hρ]
   · simp [polarPoleKillingFactor,a03SquarePoleFactor,hρ,pow_ne_zero 2 hρ]
 
-/-- Six different squared roots, each with its actual multiplicity four. -/
 theorem a03PolarPoleKiller_six_factors (T : ℝ) (σ : MomentShifts) (z : ℂ) :
     polarPoleKiller T σ z=Complex.exp (z^2)*
       (a03SquarePoleFactor (((rawMomentShifts T σ 0+rawMomentShifts T σ 2)/2)^2) z*
@@ -32,14 +29,12 @@ theorem a03PolarPoleKiller_six_factors (T : ℝ) (σ : MomentShifts) (z : ℂ) :
   norm_num [purePolarRoot,purePolarLeft,purePolarRight,bblrSixShifts]
   ring_nf
 
-/-- Raw normalization commutes with exchanging either original pair. -/
 theorem a03_raw_shifts_chamber (T : ℝ) (m n : Bool) (σ : MomentShifts) :
     rawMomentShifts T (a03ZeroModeChamberShifts m n σ)=
       a03ZeroModeChamberShifts m n (rawMomentShifts T σ) := by
   funext j
   rfl
 
-/-- No additional root-separation condition is needed for this identity. -/
 theorem a03PolarPoleKiller_chamber (T : ℝ) (m n : Bool) (σ : MomentShifts) (z : ℂ) :
     polarPoleKiller T (a03ZeroModeChamberShifts m n σ) z=polarPoleKiller T σ z := by
   rw [a03PolarPoleKiller_six_factors,a03PolarPoleKiller_six_factors,a03_raw_shifts_chamber]
@@ -47,13 +42,11 @@ theorem a03PolarPoleKiller_chamber (T : ℝ) (m n : Bool) (σ : MomentShifts) (z
     norm_num [a03ZeroModeChamberShifts,a03ZeroModePairPermutation]
     <;> ring_nf
 
-/-- Raw normalization commutes with all six literal shift tuples. -/
 theorem a03_raw_shifts_six (T : ℝ) (σ : MomentShifts) (j : Fin 6) :
     rawMomentShifts T (bblrSixShifts σ j)=bblrSixShifts (rawMomentShifts T σ) j := by
   funext k
   fin_cases j <;> fin_cases k <;> simp [rawMomentShifts,bblrSixShifts] <;> ring
 
-/-- Each literal BBLR shift tuple preserves the same six squared roots. -/
 theorem a03PolarPoleKiller_six (T : ℝ) (σ : MomentShifts) (j : Fin 6) (z : ℂ) :
     polarPoleKiller T (bblrSixShifts σ j) z=polarPoleKiller T σ z := by
   rw [a03PolarPoleKiller_six_factors,a03PolarPoleKiller_six_factors,a03_raw_shifts_six]
@@ -64,7 +57,6 @@ theorem a03_raw_shifts_reverseNegative (T : ℝ) (σ : MomentShifts) :
   funext j
   fin_cases j <;> simp [rawMomentShifts,a03ZeroModeReverseNegative] <;> ring
 
-/-- The reverse-negative original/dual pairing uses exactly the same weight. -/
 theorem a03PolarPoleKiller_reverseNegative (T : ℝ) (σ : MomentShifts) (z : ℂ) :
     polarPoleKiller T (a03ZeroModeReverseNegative σ) z=polarPoleKiller T σ z := by
   have he : a03ZeroModeReverseNegative σ=a03ZeroModeChamberShifts true true (bblrSixShifts σ 1) := by

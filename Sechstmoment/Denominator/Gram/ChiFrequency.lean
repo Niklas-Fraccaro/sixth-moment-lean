@@ -12,7 +12,6 @@ theorem d06ComplexChiFrequency_analyticAt_nonreal {s : ℂ} (hs : s.im ≠ 0) :
   exact ((zetaChi_analyticAt_nonreal hs).deriv.div
     (zetaChi_analyticAt_nonreal hs) (zetaChi_ne_zero_nonreal hs)).neg
 
-/-- Differentiating the normalized shift quotient identifies the actual frequency. -/
 theorem d06CenteringFactorAt_deriv_zero (T : ℝ) {s : ℂ} (hs : s.im ≠ 0) :
     deriv (centeringFactorAt T s) 0 =
       1 - d06ComplexChiFrequency s / (Real.log T : ℂ) := by
@@ -36,8 +35,6 @@ theorem d06ComplexHeightPoint_ofReal (T x : ℝ) :
   push_cast
   ring
 
-/-- The actual logarithmic frequency is `log T + O(1)` on a complex height
-window. This follows by differentiating the already proved shift bound. -/
 theorem d06ComplexChiFrequency_uniform_height_bound :
     ∀ᶠ T : ℝ in atTop, ∀ x : ℂ,
       x.re ∈ Icc (3/4 : ℝ) (9/4) → |x.im| ≤ 1/4 →

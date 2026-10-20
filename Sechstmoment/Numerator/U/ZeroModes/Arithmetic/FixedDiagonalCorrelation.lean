@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualSixPowers
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.PairShiftedBFactors
 
-/-! Literal regrouping of the four positive source diagonal variables for
-a fixed coprime amplifier pair, retaining the actual source Mellin kernel. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat Complex Source
@@ -208,8 +206,6 @@ theorem fixedPairHalfShift_product (α : MomentShifts) (z : ℂ) {a b : ℕ}
         (shiftedPowerArithmetic (1/2+z) n*shiftedPowerArithmetic (1/2+z) n)) := by ring
     _ = _ := by rw [hconstant,hn]
 
-/-- The precise constrained fourfold source sum becomes the fixed-amplifier
-correlation on its genuine initial Mellin line. -/
 theorem actualDiagonalQuadDirichletTerm_tsum_eq_correlation {a b : ℕ}
     (ha : a ≠ 0) (hb : b ≠ 0) (hab : a.Coprime b) (α : MomentShifts)
     (hα : ∀ j, -1/2 < (α j).re) (v : ℝ) :
@@ -267,8 +263,6 @@ theorem actualDiagonalMellinFactor_fixedNormalization {a b : ℕ}
       (((a*b:ℕ):ℂ)^(-(1/2:ℂ))*((a*b:ℕ):ℂ)^(-(1/2+z))) := by ring
     _ = _ := by rw [hbase,htpi]
 
-/-- The literal initial Mellin kernel (11), with every fixed amplifier
-power and all original shifted divisor coefficients visible. -/
 theorem bblrDiagonalTerm_eq_fixedCorrelationMellin_normalized {a b : ℕ}
     (ha : a ≠ 0) (hb : b ≠ 0) (hab : a.Coprime b) {t : ℝ} (ht : 0 < t)
     (G : ℂ → ℂ) (α : MomentShifts) (hG : BBLREntireWeight G α)

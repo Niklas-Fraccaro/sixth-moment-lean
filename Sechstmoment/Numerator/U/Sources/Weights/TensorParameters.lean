@@ -13,9 +13,6 @@ def phaseActualNearTensorData (T : ℝ) (σ α : MomentShifts) (v _A B H : ℝ)
   ⟨T,σ,α,v,H/(B*(rectangularAFESmoothScale (k 2)*rectangularAFESmoothScale (k 3))),
     rectangularGapSign positive⟩
 
-/-- Every actual retained power-near block supplies a valid physical
-parameter of the actual tensor family. Its relative-gap smallness is
-derived from the genuine supported near tuple. -/
 theorem phase_actual_near_tensor_parameters_valid {s : ℝ} (hs : s<1)
     (T0 θ κ : ℝ) (f g : ℝ → ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ A B H : ℝ, 0<A → 0<B → 0<H →
@@ -36,9 +33,6 @@ theorem phase_actual_near_tensor_parameters_valid {s : ℝ} (hs : s<1)
     cases positive <;> norm_num [rectangularGapSign]
   exact ⟨hT,hT0,hα,hσ,hv,hr0,hsmall A B H hA hB hH k hactive,hsign⟩
 
-/-- The physical raw shifts and every one of their six functional-equation
-permutations satisfy the actual tensor parameter bounds uniformly on the
-bounded normalized shift domain. -/
 theorem phase_actual_near_raw_tensor_parameters_valid {s R : ℝ} (hs : s<1)
     (hR : 0≤R) (T0 θ κ : ℝ) (f g : ℝ → ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ A B H : ℝ, 0<A → 0<B → 0<H →

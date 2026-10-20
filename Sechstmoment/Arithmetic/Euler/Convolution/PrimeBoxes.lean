@@ -1,7 +1,6 @@
 import Mathlib.NumberTheory.Divisors
 import Sechstmoment.Arithmetic.Euler.Remainder.Factorization
 
-/-! Finite prime exponent boxes, independently identified with ordinary integer divisors. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalConvolution

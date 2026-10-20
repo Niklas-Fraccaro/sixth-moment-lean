@@ -1,9 +1,6 @@
 import Mathlib.Analysis.Calculus.ContDiff.Bounds
 import Sechstmoment.Analysis.Mellin.FourierCutoffUniform
 
-/-! Concrete derivative growth of the logarithmic Schwartz factor on the
-fixed positive profile interval. The bound is proved by the chain rule;
-no derivative estimate for the transformed kernel is an input. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

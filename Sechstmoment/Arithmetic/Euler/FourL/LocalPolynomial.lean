@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.FourL.FourCoefficients
 
-/-! The actual cubic numerator coefficients, recovered as four causal Euler differences. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalLFactorization

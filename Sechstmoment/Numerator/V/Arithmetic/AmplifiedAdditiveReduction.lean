@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.Additive.DirichletReduction
 import Sechstmoment.Numerator.V.Arithmetic.AmplifierLengthPowers
 
-/-! Summation of the actual four-zeta additive reduction over both finite
-amplifiers. The logarithmic displacement costs a constant independent of T. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

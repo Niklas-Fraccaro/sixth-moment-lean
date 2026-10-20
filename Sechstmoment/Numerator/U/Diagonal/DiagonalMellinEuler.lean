@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.Polar.EulerMellinKernel
 import Sechstmoment.Numerator.U.Diagonal.DiagonalEulerProduct
 
-/-! Actual initial-half-plane Euler factorization with the literal source Mellin triples. -/
 
 namespace Sechstmoment
 open Complex

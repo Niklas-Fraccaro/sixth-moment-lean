@@ -3,9 +3,6 @@ import Mathlib.Tactic.ComputeDegree
 import Sechstmoment.Certificate.Exact.GramEntries
 import Sechstmoment.Certificate.Tests
 
-/-! Exact regrouping of the original 250 zeta tests into the 178 certified
-features.  This is finite algebra with the original integer coefficients.
-No asymptotic or reconstruction identity is a premise. -/
 namespace Sechstmoment
 open Complex Polynomial
 open scoped BigOperators
@@ -13,17 +10,14 @@ noncomputable section
 set_option maxHeartbeats 2000000
 set_option maxRecDepth 100000
 
-/-- Rows with precisely the feature's original type and endpoints. -/
 def certificateFeatureRows (x : Finite.Feature) : List TestDatum :=
   certificate.filter fun d => decide (d.typ = x.typ ∧ d.A = x.A ∧ d.B = x.B)
 
 set_option maxHeartbeats 0 in
-/-- Every original row occurs exactly once, with the same coefficient. -/
 theorem certificateFeatureRows_permutation :
     (Finite.features.flatMap certificateFeatureRows).Perm certificate := by
   decide +kernel
 
-/-- The polynomial attached to a feature has the original integer vector. -/
 def featureTestPolynomial (x : Finite.Feature) : ℝ[X] :=
   Polynomial.ofFn 5 (fun r : Fin 5 => (Finite.coef x.poly r.val : ℝ))
 
@@ -37,13 +31,11 @@ theorem featureTestPolynomial_natDegree (x : Finite.Feature) :
     (fun r : Fin 5 => (Finite.coef x.poly r.val : ℝ))
   exact Nat.le_of_lt_succ h
 
-/-- Literal raw feature zeta test at any supplied common profile family. -/
 def featureRawZetaTest (profiles : TestType → ℝ → ℝ → ℝ)
     (T t : ℝ) (x : Finite.Feature) : ℂ :=
   rawZetaTest x.typ T t (featureTestPolynomial x)
     (profiles x.typ ((x.A : ℝ)/base)) (profiles x.typ ((x.B : ℝ)/base))
 
-/-- Literal phase-projected feature zeta test. -/
 def featureZetaTest (profiles : TestType → ℝ → ℝ → ℝ)
     (T t : ℝ) (x : Finite.Feature) : ℂ :=
   phaseProjection (criticalChi t) (featureRawZetaTest profiles T t x)
@@ -126,7 +118,6 @@ private theorem rawZetaTest_finite_polynomial (τ : TestType) (T t : ℝ)
   cases τ <;> simp only [rawZetaTest,hc,hm,Finset.sum_mul,Finset.mul_sum]
   all_goals apply Finset.sum_congr rfl; intro r _; ring
 
-/-- One feature is exactly the sum of all its original certificate rows. -/
 theorem featureRawZetaTest_eq_original_rows
     (profiles : TestType → ℝ → ℝ → ℝ) (T t : ℝ)
     {x : Finite.Feature} (hx : x ∈ Finite.features) :
@@ -172,7 +163,6 @@ theorem featureRawZetaTest_eq_original_rows
   rw [hc,featureTestPolynomial_coeff]
   norm_cast
 
-/-- Exact 250-to-178 regrouping of the actual raw certificate test. -/
 theorem certificateRawZetaTest_eq_feature_sum
     (profiles : TestType → ℝ → ℝ → ℝ) (T t : ℝ) :
     certificateRawZetaTest profiles T t =
@@ -191,7 +181,6 @@ private theorem grouping_phaseProjection_sum (χ : ℂ) (l : List ℂ) :
   | nil => simp [phaseProjection]
   | cons a l ih => simp only [List.sum_cons,List.map_cons,phaseProjection_add,ih]
 
-/-- Exact 178-feature identity for the complete actual projected test. -/
 theorem certificateZetaTest_eq_feature_sum
     (profiles : TestType → ℝ → ℝ → ℝ) (T t : ℝ) :
     certificateZetaTest profiles T t =

@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.RatioTimeFourierContour
 
-/-! The literal ratio/time Fourier mode equals its genuine positive-line
-Mellin contour, including power profiles for the actual dual branch. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

@@ -2,7 +2,6 @@ import Mathlib.MeasureTheory.Function.LpSpace.Indicator
 import Sechstmoment.Analysis.Integration.CauchySchwarz
 import Sechstmoment.Denominator.Unbalanced.Conjugation
 
-/-! Abstract weighted L2 facts for D06, kept independent of numerator contracts. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Polynomial
 open scoped Topology ComplexConjugate
@@ -36,7 +35,6 @@ theorem d06_zetaCp_continuous (T : ℝ) (p : ℝ[X]) :
   intro m _
   exact continuous_const.mul (d06_centeredZetaDerivative_criticalLine_continuous T m)
 
-/-- Passing through `L²` uses its actual almost-everywhere representatives. -/
 theorem d06_integral_cauchy_schwarz_of_memLp (F G : ℝ → ℂ)
     (hF : MemLp F 2) (hG : MemLp G 2) :
     ‖∫ t : ℝ, star (G t)*F t‖^2 ≤
@@ -105,7 +103,6 @@ theorem d06_weighted_norm_sq_integrable {T : ℝ} (hT : 0<T)
   have hi := (memLp_two_iff_integrable_sq_norm hm.aestronglyMeasurable).mp hm
   simpa only [d06_dyadicWeightedL2Amplitude_norm_sq T Φ F hΦpos] using hi
 
-/-- Weighted Cauchy--Schwarz with all analytic side conditions discharged. -/
 theorem d06_dyadic_weighted_cauchy_schwarz {T : ℝ} (hT : 0<T)
     (Φ : ℝ → ℝ) (F G : ℝ → ℂ) (hΦ : SmoothDyadicWeight Φ)
     (hΦpos : ∀ x, 0≤Φ x) (hF : Continuous F) (hG : Continuous G) :

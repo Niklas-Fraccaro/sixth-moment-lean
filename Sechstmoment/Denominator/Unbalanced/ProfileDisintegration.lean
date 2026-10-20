@@ -3,8 +3,6 @@ import Sechstmoment.Certificate.Kernels.Balanced.RegionIntegral
 import Sechstmoment.Denominator.Unbalanced.CoordinateMeasure
 import Sechstmoment.Denominator.Unbalanced.MomentDefinitions
 
-/-! Fubini disintegration of the actual unbalanced edge polynomial. Every
-change of variables preserves the literal product Lebesgue measure. -/
 namespace Sechstmoment
 open MeasureTheory Set
 open scoped BigOperators Classical
@@ -224,8 +222,6 @@ theorem d04UnbalancedEdgePolynomial_centered (p q : Fin 5 → ℝ)
     ring
   rw [hc]
 
-/-- Three translations preserve the independent interval volume even when
-one or more residual lengths vanish. No division by a residual occurs. -/
 theorem d04TripleInterval_translate (r s t : ℝ) (f : ℝ → ℝ → ℝ → ℝ) :
     (∫ x in (0:ℝ)..r, ∫ y in (0:ℝ)..s, ∫ z in (0:ℝ)..t,
       f (x-r/2) (y-s/2) (z-t/2)) = boxIntegral r s t f := by

@@ -1,7 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Pow.Deriv
 import Sechstmoment.Arithmetic.Euler.Residues.ResidueBounds
 
-/-! The actual finite local corrections are entire functions of the Mellin variable. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option linter.unusedSectionVars false

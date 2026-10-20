@@ -4,11 +4,6 @@ import Mathlib.Tactic
 import Sechstmoment.Analysis.Asymptotics.PowerLog
 import Sechstmoment.Analysis.Complex.FiniteSum
 
-/-!
-Elementary asymptotic consequences of the rectangular exponent range.
-The finite-block statements are transfer lemmas: they assume explicit uniform
-block bounds, rather than the analytic estimate which would supply those bounds.
--/
 
 namespace Sechstmoment
 
@@ -22,7 +17,6 @@ noncomputable def rectangularFirstExponent (a b δ : ℝ) : ℝ := 1 / 2 + a + b
 noncomputable def rectangularSecondExponent (a b δ : ℝ) : ℝ :=
   3 / 4 + 3 * a / 8 + 5 * b / 8 + δ
 
-/-- The explicit slack leaves an additional positive reserve for logarithmic losses. -/
 theorem rectangular_slack_bounds {a b : ℝ} (hab : a ≤ b) (h : 3 * a + 5 * b < 2) :
     0 < rectangularSlack a b ∧
       rectangularFirstExponent a b (rectangularSlack a b) + rectangularSlack a b < 1 ∧
@@ -32,7 +26,6 @@ theorem rectangular_slack_bounds {a b : ℝ} (hab : a ≤ b) (h : 3 * a + 5 * b 
   · linarith
   constructor <;> linarith
 
-/-- Admissibility supplies an explicit positive slack and positive subunit exponents. -/
 theorem rectangular_exponents_exist {a b : ℝ} (ha : 0 < a) (hab : a ≤ b)
     (h : 3 * a + 5 * b < 2) :
     ∃ δ : ℝ, 0 < δ ∧
@@ -47,7 +40,6 @@ theorem rectangular_exponents_exist {a b : ℝ} (ha : 0 < a) (hab : a ≤ b)
     linarith
   · linarith
 
-/-- The two powers appearing in the rectangular error bound are genuinely `o(T)`. -/
 theorem rectangular_power_sum_isLittleO {a b : ℝ} (hab : a ≤ b)
     (h : 3 * a + 5 * b < 2) :
     (fun T : ℝ => T ^ rectangularFirstExponent a b (rectangularSlack a b) +
@@ -59,7 +51,6 @@ theorem rectangular_power_sum_isLittleO {a b : ℝ} (hab : a ≤ b)
     (rpow_isLittleO_id_of_lt_one (by linarith :
       rectangularSecondExponent a b (rectangularSlack a b) < 1))
 
-/-- Both rectangular errors remain `o(T)` after logarithmically many blocks. -/
 theorem polylog_weighted_power_sum_isLittleO {a b : ℝ} (hab : a ≤ b)
     (h : 3 * a + 5 * b < 2) (n : ℕ) :
     (fun T : ℝ => (Real.log T) ^ n *
@@ -73,8 +64,6 @@ theorem polylog_weighted_power_sum_isLittleO {a b : ℝ} (hab : a ≤ b)
     (polylog_mul_rpow_isLittleO_id n (by linarith :
       rectangularSecondExponent a b (rectangularSlack a b) < 1))
 
-/-- Uniform rectangular bounds and a logarithmic cardinality bound imply a
-sublinear complex aggregate, even when the selected finite set varies with `T`. -/
 theorem rectangular_finset_sum_isLittleO {ι : Type*} {a b C D : ℝ}
     (hab : a ≤ b) (h : 3 * a + 5 * b < 2) (hC : 0 ≤ C) (hD : 0 ≤ D)
     (n : ℕ) (s : ℝ → Finset ι) (F : ι → ℝ → ℂ)

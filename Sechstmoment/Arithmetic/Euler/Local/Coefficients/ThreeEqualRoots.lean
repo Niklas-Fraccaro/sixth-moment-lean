@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.TwoEqualRoots
 
-/-! The exact repeated-root formula for three geometric factors. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

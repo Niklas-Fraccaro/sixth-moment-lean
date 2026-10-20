@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualDiagonalMellin
 
-/-! The source half-powers on an actual positive six-index diagonal. -/
 
 namespace Sechstmoment
 open Complex

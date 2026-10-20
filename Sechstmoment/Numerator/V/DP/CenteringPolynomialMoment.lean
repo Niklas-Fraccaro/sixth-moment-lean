@@ -63,8 +63,6 @@ import Sechstmoment.Numerator.V.DP.DPAllPositiveBilinearDerivatives
 import Sechstmoment.Numerator.V.ReflectedKernel
 import Std
 
-/-! Actual lower functional-equation centering correction for polynomial V moments.
-The only external input is the sharp DP-v2 source statement. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial
 open scoped Topology BigOperators ComplexConjugate Interval
@@ -81,7 +79,6 @@ private theorem v_imCLM_norm_le_one : ‖Complex.imCLM‖ ≤ 1 := by
   intro v
   simpa using Complex.abs_im_le_norm v
 
-/-- The literal lower multiplier has unit value at the unshifted point. -/
 theorem lowerCenteringFactor_zero_real (T x : ℝ) :
     lowerCenteringFactor T (x : ℂ) 0 = 1 := by
   have hs : 0 < (1-complexHeightPoint T (x : ℂ)).re ∧
@@ -90,7 +87,6 @@ theorem lowerCenteringFactor_zero_real (T x : ℝ) :
     norm_num
   simp [lowerCenteringFactor,centeringFactorAt,zetaChi_ne_zero_strip hs.1 hs.2]
 
-/-- Actual lower centering correction against the all-positive DP moment. -/
 def vLowerCenteringRemainderMoment (T η : ℝ) (P Q : ℝ[X])
     (Φ : ℝ → ℝ) (z : ℂ) : ℂ :=
   ∫ t : ℝ, (lowerCenteringFactor T ((t/T : ℝ):ℂ) z-1)*
@@ -126,7 +122,6 @@ private theorem vLowerIntegrand_eq_real_weights {T : ℝ} (hT : 1<T)
       profileDirichletSum T (zeroExtendedPolynomialProfile η P) (1-criticalLinePoint t)*
       profileDirichletSum T (zeroExtendedPolynomialProfile η Q) (1-criticalLinePoint t))*hh
 
-/-- The correction is an integral of two genuine smooth real DP weights. -/
 theorem vLowerCenteringRemainderMoment_eq_real_weights {T : ℝ} (hT : 1<T)
     (η : ℝ) (P Q : ℝ[X]) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ)
     (z : ℂ) (hz : 2*‖z‖ < Real.log T) :
@@ -171,7 +166,6 @@ theorem vLowerCenteringRemainderMoment_eq_real_weights {T : ℝ} (hT : 1<T)
   unfold dpAllPositiveBilinearMoment
   ring
 
-/-- Integrability of the actual correction is proved through its real weights. -/
 theorem vLowerCenteringRemainderIntegrand_integrable {T : ℝ} (hT : 1<T)
     (η : ℝ) (P Q : ℝ[X]) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ)
     (z : ℂ) (hz : 2*‖z‖<Real.log T) :
@@ -202,8 +196,6 @@ theorem vLowerCenteringRemainderIntegrand_integrable {T : ℝ} (hT : 1<T)
     (Real.log T:ℂ)⁻¹).congr (Filter.Eventually.of_forall
       (fun t => (vLowerIntegrand_eq_real_weights hT η P Q Φ z t).symm))
 
-/-- Exact functional-equation orientation of the genuine mixed V integrand.
-The reflected tuple is forced by the literal minus signs in the DP product. -/
 theorem vPolynomialMixedIntegrand_functional_equation {T : ℝ} (hT : 1<T)
     (f g Φ : ℝ→ℝ) (z : ℂ) (hz : 2*‖z‖<Real.log T) (t : ℝ) :
     vPolynomialMixedAmplitude T f g Φ t*zetaCMinus T t z =
@@ -247,8 +239,6 @@ theorem vPolynomialMixedIntegrand_functional_equation {T : ℝ} (hT : 1<T)
       zetaChi (1-criticalLinePoint t+z/(Real.log T:ℂ))*
       riemannZeta (criticalLinePoint t-z/(Real.log T:ℂ)))*hexp
 
-/-- Exact source-to-allpositive-to-V moment identity retaining the literal
-lower centering remainder. No asymptotic phase is assumed. -/
 theorem vPolynomialMixedGenerator_eq_allPositive_and_error {T : ℝ} (hT : 1<T)
     (η : ℝ) (P Q : ℝ[X]) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ)
     (z : ℂ) (hz : 2*‖z‖<Real.log T) :
@@ -432,8 +422,6 @@ private theorem v_bilinear_actual_uniform_norm_bound (hsource : DPv2SharpInput)
       · exact hm z hz Φ hΦ hΦB
     _ = _ := by ring
 
-/-- The literal lower correction is uniformly one logarithm smaller than the
-actual DP moment, even through every knot collision. -/
 theorem vLowerCenteringRemainderMoment_uniform_bound (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0<η) (hηu : η<1/4) (P Q : ℝ[X]) (B : ℝ) (hB : 0≤B) :
     ∃ C : ℝ, 0≤C ∧ ∀ᶠ T : ℝ in atTop,
@@ -483,8 +471,6 @@ theorem vLowerCenteringRemainderMoment_uniform_bound (hsource : DPv2SharpInput)
         (hMoment Complex.imCLM v_imCLM_norm_le_one)) hLp.le
     _ = _ := by field_simp; ring
 
-/-- Every actual derivative of the lower correction retains the proved
-`T log^8 T` majorant on the compact disk. -/
 theorem vLowerCenteringRemainderMoment_uniform_derivative_bound (n : ℕ)
     (hsource : DPv2SharpInput) (η : ℝ) (hη : 0<η) (hηu : η<1/4)
     (P Q : ℝ[X]) (B : ℝ) (hB : 0≤B) :
@@ -520,7 +506,6 @@ theorem vLowerCenteringRemainderMoment_uniform_derivative_bound (n : ℕ)
   simp only [one_pow,div_one] at hh
   convert hh using 1; ring
 
-/-- Normalization annihilates every actual lower-centering derivative. -/
 theorem vLowerCenteringRemainderMoment_derivative_normalized_tendsto (n : ℕ)
     (hsource : DPv2SharpInput) (η : ℝ) (hη : 0<η) (hηu : η<1/4)
     (P Q : ℝ[X]) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ)
@@ -533,8 +518,6 @@ theorem vLowerCenteringRemainderMoment_derivative_normalized_tendsto (n : ℕ)
   exact logNormalizedRemainder_tendsto _ C
     (hbound.mono (fun T h => h Φ hΦ hΦB z hz))
 
-/-- Every finite polynomial operator also annihilates the actual centering
-correction under the sixth-moment normalization. -/
 theorem vLowerCenteringRemainderMoment_operator_normalized_tendsto
     (N : ℕ) (q : Fin (N+1)→ℂ) (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0<η) (hηu : η<1/4) (P Q : ℝ[X])
@@ -617,16 +600,12 @@ private theorem v_bilinear_polar_error_uniform_bound (hsource : DPv2SharpInput)
     _ ≤ (1/4)*(A*T*(Real.log T)^8+D*T*(Real.log T)^8) := by gcongr
     _ = _ := by ring
 
-/-- Error of the actual V mixed generator against its exact reflected
-polynomial polar main term. -/
 def vPolynomialMomentError (T η : ℝ) (P Q : ℝ[X]) (Φ : ℝ→ℝ) (z : ℂ) : ℂ :=
   vPolynomialMixedGenerator T (zeroExtendedPolynomialProfile η P)
     (zeroExtendedPolynomialProfile η Q) Φ z-
     ((T:ℂ)*(∫ x : ℝ, (Φ x:ℂ))*(arithmeticFactor:ℂ)*(Real.log T:ℂ)^9)*
       vReflectedPolynomialJ η P Q z
 
-/-- Genuine moment error bound for the literal V generator, with the lower
-and inverse functional-equation corrections already proved. -/
 theorem vPolynomialMomentError_uniform_bound (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0<η) (hηu : η<1/4) (P Q : ℝ[X]) (B : ℝ) (hB : 0≤B) :
     ∃ C : ℝ, 0≤C ∧ ∀ᶠ T : ℝ in atTop,
@@ -675,8 +654,6 @@ private theorem v_moment_error_analyticAt {T : ℝ} (hT : 1<T)
     (zeroExtendedPolynomialProfile_zero_above η Q) hΦ z hz).sub
     (analyticAt_const.mul (v_reflected_J_analyticAt η hη P Q z hz))
 
-/-- All fixed complex derivative orders of the actual V moment error obey
-its proved `T log^8 T` bound, uniformly on the compact disk. -/
 theorem vPolynomialMomentError_uniform_derivative_bound (n : ℕ)
     (hsource : DPv2SharpInput) (η : ℝ) (hη : 0<η) (hηu : η<1/4)
     (P Q : ℝ[X]) (B : ℝ) (hB : 0≤B) :
@@ -709,8 +686,6 @@ theorem vPolynomialMomentError_uniform_derivative_bound (n : ℕ)
   simp only [one_pow,div_one] at hh
   convert hh using 1; ring
 
-/-- Genuine derivative convergence of the actual V mixed generator to its
-reflected polynomial main term. The sole source input is DP-v2 sharp. -/
 theorem vPolynomialMixedGenerator_derivative_tendsto (n : ℕ)
     (hsource : DPv2SharpInput) (η : ℝ) (hη : 0<η) (hηu : η<1/4)
     (P Q : ℝ[X]) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) (z : ℂ) (hz : ‖z‖≤2) :
@@ -748,8 +723,6 @@ theorem vPolynomialMixedGenerator_derivative_tendsto (n : ℕ)
   field_simp
   ring
 
-/-- Every finite polynomial operator of the literal V mixed moment has the
-same operator applied to its actual reflected cross-profile J generator. -/
 theorem vPolynomialMixedGenerator_operator_tendsto (N : ℕ) (q : Fin (N+1)→ℂ)
     (hsource : DPv2SharpInput) (η : ℝ) (hη : 0<η) (hηu : η<1/4)
     (P Q : ℝ[X]) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) (z : ℂ) (hz : ‖z‖≤2) :

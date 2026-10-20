@@ -1,8 +1,5 @@
 import Sechstmoment.Denominator.Unbalanced.ActualCircleFubini
 
-/-! Compact regularity of the actual unbalanced shifted integrand on every
-fixed shift box. Both nonpole conditions follow from its imaginary part and
-the growing log-height; no zeta bound or moment limit is assumed. -/
 namespace Sechstmoment
 open MeasureTheory Set Complex Polynomial Filter Metric
 open scoped BigOperators Topology ContDiff
@@ -100,7 +97,6 @@ theorem d04UnbalancedShiftedIntegrand_integrable_of_norm_bound {T : ℝ}
     rw [hzero]
     simp
 
-/-- The same height threshold works simultaneously for every shift in the box. -/
 theorem d04UnbalancedShiftedIntegrand_eventually_integrable_on_shiftBox
     (R : ℝ) (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ)
     (hρsupport : ∀ i, tsupport (ρ i) ⊆ Icc 0 (A i))

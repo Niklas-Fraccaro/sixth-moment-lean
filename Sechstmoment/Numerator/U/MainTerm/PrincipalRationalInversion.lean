@@ -7,9 +7,6 @@ import Sechstmoment.Numerator.V.DP.Input
 import Sechstmoment.Zeta.Moments.SixTerms
 import Sechstmoment.Zeta.Regularized
 
-/-! Actual inverse transform of all five profile-dependent rational factors.
-Both vertical profile integrals and the common positive translation variable
-are retained, with absolute Fubini supplied by an exponential product bound. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Source

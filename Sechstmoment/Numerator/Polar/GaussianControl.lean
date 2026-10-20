@@ -2,15 +2,6 @@ import Mathlib.Tactic
 import Sechstmoment.Analysis.Gaussian.Integrability
 import Sechstmoment.Numerator.Polar.PoleKiller
 
-/-!
-# Actual Gaussian pole-killer control on a vertical line
-
-Repeated roots are kept. Zero roots have the prescribed constant factor.
-The literal finite product has degree at most 48, and its norm is bounded by
-an actual polynomial times a Gaussian. Its vertical integral is consequently
-absolutely convergent, with arbitrary extra polynomial or linear-exponential
-growth absorbed by the Gaussian.
--/
 
 namespace Sechstmoment
 

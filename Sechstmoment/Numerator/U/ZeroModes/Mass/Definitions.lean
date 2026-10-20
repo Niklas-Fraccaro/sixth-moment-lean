@@ -2,8 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 import Mathlib.NumberTheory.Harmonic.Bounds
 import Sechstmoment.Numerator.U.ZeroModes.SixTensorZeroMode
 
-/-! Literal GCD-coordinate denominator and reduced-gap mass. The counting
-factor cancels the GCD from the continuous inverse-square-root density. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -94,7 +92,6 @@ theorem a03ZeroModeGapWeightSum_le {d H : ℝ} (hd : 0<d) (hH : 0<H) :
     _=(⌊2*H/d⌋₊:ℝ) := by simp
     _≤2*H/d := Nat.floor_le (by positivity)
 
-/-- Exact source-gap density envelope in one genuine dyadic continuous band. -/
 def a03ZeroModeDyadicGapMass (a b m n d H L : ℝ) : ℝ :=
   a03ZeroModeGapWeightSum d H*
     ∫ x : ℝ in Icc L (2*L),a03ZeroModeSixDensity a b m n d x
@@ -120,8 +117,6 @@ theorem a03ZeroModeSixDensity_dyadic_integral {a b m n d L : ℝ}
       ring
     _=_ := by rw [integral_const_mul,a03ZeroMode_dyadic_inverse_integral hL]
 
-/-- The literal reduced-gap count cancels the GCD in the continuous
-sixfold denominator; no mass budget is postulated. -/
 theorem a03ZeroModeDyadicGapMass_le {a b m n d H L : ℝ}
     (ha : 0<a) (hb : 0<b) (hm : 0<m) (hn : 0<n) (hd : 0<d) (hH : 0<H) (hL : 0<L) :
     a03ZeroModeDyadicGapMass a b m n d H L≤2*H*Real.log 2/(a*b*m*n) := by

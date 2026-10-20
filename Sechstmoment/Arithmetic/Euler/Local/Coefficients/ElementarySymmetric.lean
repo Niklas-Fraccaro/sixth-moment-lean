@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.LowCoefficients
 
-/-! The four elementary symmetric denominator coefficients. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

@@ -2,8 +2,6 @@ import Mathlib.MeasureTheory.Function.SpecialFunctions.Basic
 import Sechstmoment.Numerator.U.Replacement.WeightReplacementFarFinite
 import Sechstmoment.Numerator.U.Separation.TimeFarContourBudget
 
-/-! Genuine frequency measurability, finite near/far decomposition and Mellin
-integration for the actual amplified weight replacement error. -/
 namespace Sechstmoment
 open Complex Source Real MeasureTheory Set Filter
 open scoped BigOperators Topology ENNReal
@@ -156,7 +154,6 @@ theorem a03ActualWeightReplacementFiniteMellinGrid_frequency_stronglyMeasurable
     weight_replacement_selected_grid_frequency_stronglyMeasurable hc T a b η f g Φ hΦ σ α hα
       (fun _ _ _ => True)
 
-/-- Complete far Mellin contour, including actual finite arithmetic sums. -/
 theorem a03_actual_weight_replacement_far_finite_contour_uniform_rapid
     {a b c η κ θ ρ : ℝ} {f g Φ : ℝ→ℝ}
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g)
@@ -207,8 +204,6 @@ theorem a03_actual_weight_replacement_far_finite_contour_uniform_rapid
         ring
 
 
-/-- The inclusive near region and the two restricted far signs partition
-every actual AFE tuple, including the exact diagonal. -/
 theorem a03_weight_replacement_near_far_indicator_partition {T : ℝ} (hT : 0<T)
     (ρ : ℝ) (u w : ℕ) (n : Fin 4→ℕ) (e : ℂ) :
     e=(if a03ActualWeightReplacementNearSelection T ρ u w n then e else 0)+
@@ -255,7 +250,6 @@ theorem a03_weight_replacement_near_far_indicator_partition {T : ℝ} (hT : 0<T)
         exact hnegative hp.2.1
       simp [hn,hf,hp]
 
-/-- Exact full finite Mellin-grid reconstruction. -/
 theorem a03ActualWeightReplacementFiniteMellinGrid_near_add_far {T : ℝ} (hT : 0<T)
     (c a b η ρ v : ℝ) (f g Φ : ℝ→ℝ) (σ α : MomentShifts) :
     a03ActualWeightReplacementFiniteMellinGrid c T a b η v f g Φ σ α=

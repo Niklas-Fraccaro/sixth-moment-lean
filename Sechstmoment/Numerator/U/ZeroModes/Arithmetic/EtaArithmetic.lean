@@ -1,9 +1,6 @@
 import Mathlib.NumberTheory.ArithmeticFunction.Misc
 import Sechstmoment.Numerator.U.Diagonal.DiagonalEulerCoefficients
 
-/-! The finite arithmetic function in BBLR (23), defined by its divisor sum.
-Its multiplicativity and prime-power evaluation are proved, rather than assumed
-as a reconstruction contract. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat
@@ -25,7 +22,6 @@ theorem bblrEtaArithmetic_multiplicative (α β γ δ u v s : ℂ) :
   (shiftedPowerArithmetic_multiplicative _).mul
     (ArithmeticFunction.IsMultiplicative.prodPrimeFactors _)
 
-/-- Literal divisor-sum definition (23), including the primes dividing `a / l`. -/
 theorem bblrEtaArithmetic_apply (α β γ δ u v s : ℂ) {a : ℕ} (ha : a ≠ 0) :
     bblrEtaArithmetic α β γ δ u v s a =
       ∑ l ∈ a.divisors, (l:ℂ)^(-(γ-δ+2*v+s))*
@@ -54,7 +50,6 @@ theorem prodPrimeFactors_primePower {p : ℕ} (hp : p.Prime) (c : ℕ → ℂ) (
       Nat.primeFactors_prime_pow hk hp]
     simp [hk]
 
-/-- The geometric polynomial appearing in the prime-power specialization of (23). -/
 def bblrEtaPrimePolynomial (r c : ℂ) (ν : ℕ) : ℂ :=
   r^ν + (∑ j ∈ Finset.range ν, r^j)*c
 
@@ -96,8 +91,6 @@ theorem bblrEtaPrimePolynomial_reflection (r c c' : ℂ) (hr : r ≠ 0)
   have h := geom_sum_mul r ν
   linear_combination -h + (∑ j ∈ Finset.range ν, r^j)*hc
 
-/-- A polynomial verification of the local reflection, with the common Euler
-denominator explicit.  No equality of main terms appears among its premises. -/
 theorem bblrEtaCorrection_reflection_algebra (r X Y Z X' Y' : ℂ)
     (hZ : 1-Z ≠ 0) (hX : r*X'=Y) (hY : r*Y'=X)
     (hXY : X*Y=r*Z) (hZ' : r*X'*Y'=Z) :
@@ -150,7 +143,6 @@ theorem bblrNormalizedEtaArithmetic_apply (α β γ δ s : ℂ) {n : ℕ} (hn : 
   simp only [bblrNormalizedEtaArithmetic, ArithmeticFunction.coe_mk,
     shiftedPowerArithmetic_apply _ hn, neg_neg]
 
-/-- Normalization of the finite prime polynomial in exactly the form (9) uses. -/
 theorem bblrEtaPrimePolynomial_normalized (B C c : ℂ) (hB : B ≠ 0) (ν : ℕ) :
     B^ν*bblrEtaPrimePolynomial (C/B) c ν =
       C^ν+B*(∑ j ∈ Finset.range ν, C^j*B^(ν-1-j))*c := by
@@ -180,7 +172,6 @@ theorem bblrNormalizedEtaArithmetic_primePower {p : ℕ} (hp : p.Prime)
   have h₂ : α-β+γ-δ+(β+δ+2*s)=α+γ+2*s := by ring
   rw [h₁,h₂]
 
-/-- The all-`s` finite arithmetic reflection required for the main-term involution. -/
 theorem bblrNormalizedEtaArithmetic_reflection (α β γ δ s : ℂ)
     (hden : ∀ p : ℕ, p.Prime → 1-(p:ℂ)^(-(2+(α-β+γ-δ))) ≠ 0) :
     bblrNormalizedEtaArithmetic α β γ δ s =

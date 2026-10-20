@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.MainTerm.RegularProfileGenerator
 import Sechstmoment.Numerator.U.MainTerm.SixTermAlternant
 
-/-! Compact integral identification of the literal six convolution terms with the regular,
-collision-safe profile generator. All finite-sum interchanges are proved from continuity. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Source
@@ -33,8 +31,6 @@ theorem bblrExponentialConvolutionIntegral_continuous
     (s := fun p : ℝ × ℝ => min p.1 p.2)
     hjoint (continuous_fst.min continuous_snd)
 
-/-- The regularized alternant equals the finite sum of compact positive-convolution terms
-on the separated locus. -/
 theorem actualRegularProfileKernel_eq_six_integrals
     (σ : MomentShifts) (hσ : Function.Injective (polarSourceKnots σ)) (A B : ℝ) :
     actualRegularProfileKernel σ A B =
@@ -47,8 +43,6 @@ theorem actualRegularProfileKernel_eq_six_integrals
     ((bblrExponentialConvolutionPoleTerm_continuous σ m).comp
       (by fun_prop : Continuous (fun t : ℝ => (A,B,t)))).intervalIntegrable _ _)
 
-/-- Integrated six-term identity.  It identifies the actual finite sum, retaining the
-arithmetic and weight factors, with the entire regular profile generator. -/
 theorem actualRegularProfileGenerator_eq_compact_six
     (a b : ℝ) (f g : ℝ → ℂ) (Φ : ℝ → ℝ)
     (hf : Continuous f) (hg : Continuous g)
@@ -81,8 +75,6 @@ theorem actualRegularProfileGenerator_eq_compact_six
   exact ((hf.comp continuous_fst).mul (hg.comp continuous_snd)).mul
     (bblrExponentialConvolutionIntegral_continuous σ m)
 
-/-- Pulling out the source phase and the four pure poles produces exactly the usual
-compact two-profile expression. -/
 theorem bblrExponentialConvolution_compact_integral_factored
     (a b : ℝ) (f g : ℝ → ℂ) (σ : MomentShifts) (m : Fin 6) :
     (∫ A in (0:ℝ)..a, ∫ B in (0:ℝ)..b,
@@ -113,8 +105,6 @@ theorem bblrExponentialConvolution_compact_integral_factored
   dsimp only [c]
   ring
 
-/-- The fully factored compact six-term main limit equals the regular entire generator.
-Pole separation is required only for the algebraic comparison. -/
 theorem actualRegularProfileGenerator_eq_compact_six_factored
     (a b : ℝ) (f g : ℝ → ℂ) (Φ : ℝ → ℝ)
     (hf : Continuous f) (hg : Continuous g)

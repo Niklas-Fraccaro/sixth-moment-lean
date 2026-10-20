@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.GCDContinuousUnitRatioTail
 
-/-! Completing the actual nonunit dyadic partition requires the whole
-real interval up to 4/3. Its genuine ratio tail has a fixed factor 9/16. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology
@@ -37,8 +35,6 @@ theorem a03CommonX_integrated_bounded_polynomial_ratio {T A m X a s L : ℝ}
   convert hscale using 1
   ring
 
-/-- The exact integrated-unit dyadic interval is covered by an arbitrary
-uniform actual ratio power tail. -/
 theorem a03CommonX_integrated_dyadic_unit_actualRatio_uniform_rapid {κ a s : ℝ}
     (hκ : 0<κ) (hmargin : 0<1-s-a) (M : ℕ) :
     ∃ C : ℝ,0≤C ∧ ∀ᶠ T : ℝ in atTop,∀ σ : MomentShifts,

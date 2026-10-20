@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.SoftMaskGeometry
 
-/-! Exact passive completion of the literal finite seven dyadic weights
-on the interior region. Its complement consists of actual spatial/gap,
-soft-ratio and integrated-unit boundary regions. -/
 namespace Sechstmoment
 open Complex Real Source Set
 open scoped BigOperators Topology
@@ -114,8 +111,6 @@ theorem a03_native_GCD_interior_weight_passive_good
     exact (not_lt_of_ge h) hN₂
   exact ⟨⟨p⟩,hM,hN,hkM,hkN⟩
 
-/-- The actual passive seven-grid mask equals one wherever the actual
-point caps, near-gap bound, nonunit real scales and small-ratio conditions hold. -/
 theorem a03_native_GCD_passive_mask_partition
     {T : ℝ} (hT : 0<T) (a b s u ε : ℝ) (hε : 0≤ε) (f g : ℝ→ℝ)
     (w : Fin 5→ℕ) (hw : ∀ j,1≤w j) (X : ℝ) (hX : 0<X)
@@ -145,8 +140,6 @@ theorem a03_native_GCD_passive_mask_partition
     simp only [hgood,and_self,ite_true]
 
 
-/-- Failure of the literal passive mask belongs to an actual omitted
-spatial/gap, real-unit or large-ratio region. -/
 theorem a03_native_GCD_passive_mask_complement
     {T : ℝ} (hT : 0<T) (a b s u ε : ℝ) (hε : 0≤ε) (f g : ℝ→ℝ)
     (w : Fin 5→ℕ) (hw : ∀ j,1≤w j) (X : ℝ) (hX : 0<X)

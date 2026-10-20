@@ -17,15 +17,6 @@ import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 import Std
 
-/-!
-# The manuscript's actual U/V tests
-
-These definitions use the Riemann zeta function and its complex derivatives.
-They instantiate the exact phase projection of §1.1, and also assemble the 250
-rows of Appendix A with their unscaled integer coefficients. They introduce no
-asymptotic moment formula. The profile sum is indexed by `n+1` to exclude zero;
-for the supported profiles and `T > 1` it is proved to be a finite Dirichlet sum.
--/
 
 namespace Sechstmoment
 
@@ -34,13 +25,9 @@ open scoped ComplexConjugate
 
 noncomputable section
 
-/-- `A_f(s) = ∑_{n≥1} f(log n/log T) n⁻ˢ`. The sum is finite for the
-supported profiles used below when `T > 1`. -/
 def profileDirichletSum (T : ℝ) (f : ℝ → ℝ) (s : ℂ) : ℂ :=
   ∑' n : ℕ, (f (Real.log (n + 1 : ℝ) / Real.log T) : ℂ) / (n + 1 : ℂ) ^ s
 
-/-- Compact support above `a` makes the displayed Dirichlet series a literal
-finite sum of length `⌊Tᵃ⌋`. -/
 theorem profileDirichletSum_eq_finite {T : ℝ} (hT : 1 < T) (a : ℝ)
     (f : ℝ → ℝ) (hf : ∀ x : ℝ, a < x → f x = 0) (s : ℂ) :
     profileDirichletSum T f s =

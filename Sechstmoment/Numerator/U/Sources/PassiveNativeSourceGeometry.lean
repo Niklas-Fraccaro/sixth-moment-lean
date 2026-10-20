@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Sources.PassiveNativeSourceWitness
 
-/-! Source geometry from actual continuous native-zero support and a low
-integer gap. No discrete active-near witness is required. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

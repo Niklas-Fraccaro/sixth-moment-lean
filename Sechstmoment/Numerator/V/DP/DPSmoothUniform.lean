@@ -2,13 +2,6 @@ import Mathlib.Analysis.Normed.Group.Bounded
 import Mathlib.MeasureTheory.Measure.Lebesgue.Integral
 import Sechstmoment.Numerator.V.DP.DPPhaseControl
 
-/-!
-# Own uniform smoothing of DP's actual sharp moment
-
-The external input is only `DPv2SharpInput`. Endpoint phase replacement and
-partial summation are own proofs; the resulting constant is uniform in a
-bounded family of smooth weights and on compact separated shift sets.
--/
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Polynomial Filter
 open scoped Topology

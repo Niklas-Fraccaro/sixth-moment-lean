@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.FourEqualRoots
 
-/-! An explicit polynomial times geometric majorant for the actual coefficients. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

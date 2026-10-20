@@ -2,8 +2,6 @@ import Sechstmoment.Denominator.Unbalanced.ActualMomentComparison
 import Sechstmoment.Denominator.Unbalanced.CauchyKernel
 import Sechstmoment.Denominator.Unbalanced.Statement
 
-/-! Both original unbalanced denominator phases are derived from the actual
-shifted one-sided expansion, physical time averaging and original kernel. -/
 namespace Sechstmoment
 open Complex Real Filter Set MeasureTheory Polynomial
 open scoped Topology BigOperators ContDiff

@@ -4,8 +4,6 @@ import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalPowers
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.SmoothedCosineGamma
 import Sechstmoment.Numerator.U.ZeroModes.VStarMellin
 
-/-! Literal time-smoothed cosine and VStar functions in BBLR (22).
-The amplifier coefficients remain evaluated at the original common multiples. -/
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Filter
 open scoped BigOperators Topology ContDiff

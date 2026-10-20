@@ -1,13 +1,5 @@
 import Sechstmoment.Zeta.Bounds.UniformStrip
 
-/-!
-# Uniform bounds on the finite fourfold AFE rectangle
-
-The exponential Gamma factors cancel exactly, because the four original
-heights have two positive and two negative signs.  This module proves the
-cancellation, including the global inequality outside the finite rectangle.
-It does not assume an approximate functional equation.
--/
 
 namespace Sechstmoment.Source
 
@@ -16,8 +8,6 @@ open scoped BigOperators Topology
 
 noncomputable section
 
-/-- A balanced collection of two positive and two negative heights minimizes
-its sum of absolute values under a common translation at translation zero. -/
 theorem four_heights_abs_sum_le (x : Fin 4 → ℝ) (v : ℝ)
     (h0 : 0 ≤ x 0) (h1 : 0 ≤ x 1) (h2 : x 2 ≤ 0) (h3 : x 3 ≤ 0) :
     (∑ j : Fin 4, |x j|) ≤ ∑ j : Fin 4, |x j + v| := by
@@ -26,8 +16,6 @@ theorem four_heights_abs_sum_le (x : Fin 4 → ℝ) (v : ℝ)
   linarith [le_abs_self (x 0+v), le_abs_self (x 1+v),
     neg_le_abs (x 2+v), neg_le_abs (x 3+v)]
 
-/-- On an interval where the four signs remain unchanged, the preceding
-inequality is an exact equality. -/
 theorem four_heights_abs_sum_eq (x : Fin 4 → ℝ) (v : ℝ)
     (h0 : 0 ≤ x 0) (h1 : 0 ≤ x 1) (h2 : x 2 ≤ 0) (h3 : x 3 ≤ 0)
     (hv0 : 0 ≤ x 0+v) (hv1 : 0 ≤ x 1+v)
@@ -57,8 +45,6 @@ private theorem bblr_shifted_height_signs (t v : ℝ) (ht : 1 ≤ t)
   · linarith
   constructor <;> linarith
 
-/-- The global Gamma exponential factor is at most one; there is no
-exponential loss even on the two infinite tails. -/
 theorem bblr_gamma_imaginary_abs_sum_le (t v : ℝ) (ht : 1 ≤ t)
     (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ 1/4) (c : ℝ) :
     (∑ j : Fin 4, |((sourceZetaPoints t j+α j)/2).im|) ≤
@@ -73,7 +59,6 @@ theorem bblr_gamma_imaginary_abs_sum_le (t v : ℝ) (ht : 1 ≤ t)
   simpa only [← Finset.sum_div, Complex.add_im] using
     (div_le_div_of_nonneg_right h (by norm_num : (0 : ℝ) ≤ 2))
 
-/-- Exact cancellation throughout the finite AFE rectangle. -/
 theorem bblr_gamma_imaginary_abs_sum_eq (t v : ℝ) (ht : 1 ≤ t)
     (hv : |v| ≤ t/2) (α : MomentShifts) (hα : ∀ j, ‖α j‖ ≤ 1/4) (c : ℝ) :
     (∑ j : Fin 4, |((sourceZetaPoints t j+α j+((c : ℂ)+(v : ℂ)*I))/2).im|) =
@@ -89,9 +74,6 @@ theorem bblr_gamma_imaginary_abs_sum_eq (t v : ℝ) (ht : 1 ≤ t)
     mul_one, mul_zero, add_zero, zero_add, abs_div, abs_of_pos (by norm_num : (0 : ℝ)<2)]
   simpa only [← Finset.sum_div, Complex.add_im] using congrArg (fun x : ℝ => x/2) h
 
-/-- A coarse bound on the actual fourfold Gamma quotient, uniform on the
-whole finite rectangle.  In particular it applies on both horizontal edges.
-The degree 24 is four numerator degrees five plus four denominator degrees one. -/
 theorem bblrGammaQuotient_polynomial_rectangle_bound :
     ∃ C : ℝ, 0 < C ∧ ∀ t c v : ℝ, 16 ≤ t → |c| ≤ 1 → |v| ≤ t/2 →
       ∀ α : MomentShifts, (∀ j, ‖α j‖ ≤ 1/4) →
@@ -182,8 +164,6 @@ theorem bblrGammaQuotient_polynomial_rectangle_bound :
       simp
     _ = (D*E)^4*(1+t)^24 := by rw [hsum, Real.exp_zero]; dsimp [P]; ring
 
-/-- Uniform polynomial control of the product of the four zeta factors on
-the finite rectangle.  All four points stay a fixed distance from the pole. -/
 theorem bblrZetaProduct_polynomial_rectangle_bound :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t c v : ℝ, 16 ≤ t → |c| ≤ 1 → |v| ≤ t/2 →
       ∀ α : MomentShifts, (∀ j, ‖α j‖ ≤ 1/4) →
@@ -243,8 +223,6 @@ theorem bblrZetaProduct_polynomial_rectangle_bound :
       Finset.prod_le_prod₀ (fun _ _ => norm_nonneg _) (fun j _ => hFactor j)
     _ = (D*2^6)^4*(1+t)^24 := by simp; ring
 
-/-- The polynomial degree budget before inserting the rapidly decreasing
-weight: 24 from zeta and 24 from the Gamma quotient. -/
 theorem bblrGammaZetaProduct_polynomial_rectangle_bound :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t c v : ℝ, 16 ≤ t → |c| ≤ 1 → |v| ≤ t/2 →
       ∀ α : MomentShifts, (∀ j, ‖α j‖ ≤ 1/4) →
@@ -262,17 +240,11 @@ theorem bblrGammaZetaProduct_polynomial_rectangle_bound :
         (norm_nonneg _) (by positivity)
     _ = _ := by ring
 
-/-- The explicit Gamma/zeta form of the Mellin integrand, including its
-simple pole at zero.  Its identification with the completed kernel is a
-separate algebraic functional-equation step. -/
 def bblrExplicitAFEIntegrand (G : ℂ → ℂ) (α : MomentShifts) (t : ℝ) (z : ℂ) : ℂ :=
   G z/z * (bblrGammaQuotient t α z *
     ∏ j : Fin 4, riemannZeta (sourceZetaPoints t j+α j+z)) *
       (Real.pi : ℂ)^(-2*z)
 
-/-- A weighted horizontal estimate that retains natural powers only.
-Taking `N = A+47` yields an error of arbitrary inverse-polynomial
-order.  Both horizontal edges are covered by the single condition `|v|=t/2`. -/
 theorem bblrExplicitAFEIntegrand_horizontal_weighted_bound
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0)) (N : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t c v : ℝ, 16 ≤ t → |c| ≤ 1 → |v| = t/2 →
@@ -319,8 +291,6 @@ theorem bblrExplicitAFEIntegrand_horizontal_weighted_bound
     _ ≤ (2*D*Real.pi^2*(1+t)^48/t)*E := by gcongr
     _ = _ := by ring
 
-/-- Elementary conversion of the horizontal polynomial budget to an
-arbitrary inverse power; the weight order `A+47` absorbs degree 48 and `1/t`. -/
 theorem horizontal_weighted_budget_to_inverse_power
     (A : ℕ) (q D t : ℝ) (hq : 0 ≤ q) (hD : 0 ≤ D) (ht : 1 ≤ t)
     (h : q*(1+t/2)^(A+47) ≤ D*(1+t)^48/t) :
@@ -349,8 +319,6 @@ theorem horizontal_weighted_budget_to_inverse_power
   have hfinal := (le_div_iff₀ (pow_pos ht0 A)).mpr hcancel
   simpa [Real.rpow_neg ht0.le, Real.rpow_natCast, div_eq_mul_inv] using hfinal
 
-/-- Uniform arbitrary-order decay on both horizontal edges of the finite
-AFE rectangle, obtained directly from the admissible weight condition. -/
 theorem bblrExplicitAFEIntegrand_horizontal_inverse_power_bound
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0)) (A : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t c v : ℝ, 16 ≤ t → |c| ≤ 1 → |v| = t/2 →
@@ -362,9 +330,6 @@ theorem bblrExplicitAFEIntegrand_horizontal_inverse_power_bound
   exact horizontal_weighted_budget_to_inverse_power A _ D t
     (norm_nonneg _) hD (by linarith) (hbound t c v ht hc hv α hα)
 
-/-- A polynomial envelope for the archimedean functional-equation factor,
-uniform in the central closed substrip.  The Gamma exponential factors
-cancel already for this single quotient. -/
 theorem zetaChi_central_strip_polynomial_bound :
     ∃ C : ℝ, 0 < C ∧ ∀ s : ℂ, s.re ∈ Icc (1/4 : ℝ) (3/4) →
       ‖zetaChi s‖ ≤ C*(1+|s.im|/2)^2 := by
@@ -415,8 +380,6 @@ theorem zetaChi_central_strip_polynomial_bound :
       mul_le_mul hπ hratio (norm_nonneg _) Real.pi_pos.le
     _ = _ := by ring
 
-/-- The actual fourfold dual multiplier has fixed polynomial growth,
-uniform in all four shifts in the quarter-unit box. -/
 theorem bblrDualMultiplier_polynomial_bound :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t : ℝ, 16 ≤ t → ∀ α : MomentShifts,
       (∀ j, ‖α j‖ ≤ 1/4) →

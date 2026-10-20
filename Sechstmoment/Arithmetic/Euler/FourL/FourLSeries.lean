@@ -1,7 +1,6 @@
 import Mathlib.NumberTheory.LSeries.DirichletContinuation
 import Sechstmoment.Arithmetic.Euler.FourL.CoefficientFactorization
 
-/-! The independent fourfold coefficients sum to four actual analytically continued Dirichlet L-functions. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalLFactorization

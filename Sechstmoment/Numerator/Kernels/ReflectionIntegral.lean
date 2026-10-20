@@ -11,11 +11,9 @@ noncomputable def reflectionNumerator (a b : ℝ) (z : ℂ) : ℂ :=
   z^3/2*((a:ℂ)^2*reflectionE b z+(b:ℂ)^2*reflectionE a z) +
   (a:ℂ)^2*(b:ℂ)^2*z^4/4*(Complex.exp z-1)
 
-/-- The reflected, centered polar generator in (3.9). -/
 noncomputable def reflectedPolarGenerator (a b : ℝ) (z : ℂ) : ℂ :=
   Complex.exp (-z/2) * polarJ a b (-z)
 
-/-- The four terms under the real interval integral in (3.11). -/
 noncomputable def reflectionDividedIntegrand (a b t : ℝ) (z : ℂ) : ℂ :=
   -(((b-a+2*t)*(1-a+t)*(1-b-t):ℝ):ℂ) +
   Complex.exp (z*((a-t:ℝ):ℂ))*(((b+t)*(1-b-t):ℝ):ℂ) -
@@ -58,7 +56,6 @@ theorem reflection_polynomial_integral_right (a b : ℝ) :
     ring
   · ring
 
-/-- All four interval integrals in (3.11), checked by polynomial integration and FTC. -/
 theorem reflectionDividedIntegral_formula (a b : ℝ) (z : ℂ) (hz : z ≠ 0) :
     z^4 * (∫ t in (0:ℝ)..a, reflectionDividedIntegrand a b t z) =
       2 * reflectionNumerator a b z := by
@@ -116,7 +113,6 @@ theorem reflectionDividedIntegral_formula (a b : ℝ) (z : ℂ) (hz : z ≠ 0) :
   field_simp [Complex.exp_ne_zero]
   ring
 
-/-- Equation (3.10), with the centering and sign change checked exactly. -/
 theorem reflectedPolarGenerator_formula (a b : ℝ) (z : ℂ) (hz : z ≠ 0) :
     z^7 * Complex.exp (z/2) * reflectedPolarGenerator a b z = reflectionNumerator a b z := by
   have h := polarJ_residue_formula a b (-z) (neg_ne_zero.mpr hz)

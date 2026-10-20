@@ -1,9 +1,6 @@
 import Mathlib.MeasureTheory.Integral.IntegralEqImproper
 import Sechstmoment.Numerator.U.ZeroModes.Linearization.Fubini
 
-/-! Actual positive-real change of coordinate in the native GCD integral.
-The BBLR product variable is X=abmn*x/d; no integer factor is identified
-with a continuous coordinate. Every native dyadic mask is retained. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -56,8 +53,6 @@ theorem a03NativeGCDCoordinateQuad_ratio (w : Fin 5→ℕ) (hw : ∀ j,1≤w j)
   constructor <;> simp [a03NativeGCDCoordinateQuad]
   all_goals field_simp [hp 0,hp 1,hp 2,hp 3,hX.ne']
 
-/-- Genuine Jacobian substitution for each native term, including all
-five AFE/gap masks and the full tensor. -/
 theorem a03_native_zero_term_eq_GCD_coordinate (F : A03SixTensorSpace→ℂ)
     (m n : Bool) (q : QuadraticScales) (w : Fin 5→ℕ) (hw : ∀ j,1≤w j) :
     (∫ x : ℝ in Ioi 0,a03PhysicalZeroSmoothMask m n q w x*

@@ -1,6 +1,5 @@
 import Sechstmoment.Analysis.Asymptotics.LogPowers
 
-/-! Uniform weighted near- and far-frequency budgets at the common split T^(5/4). -/
 
 namespace Sechstmoment.Source
 open Real

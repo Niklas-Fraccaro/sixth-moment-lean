@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.GlobalMellin
 import Sechstmoment.Numerator.U.ZeroModes.Mass.Summed
 
-/-! The native physical zero mode carries the genuine continuous
-four-variable Mellin density. Actual amplifier square-root weights are
-retained all the way through its finite mass sum. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -53,8 +50,6 @@ theorem a03ZeroMode_density_sqrt_product (q : QuadraticScales) (v : Fin 5→ℕ)
   exact (a03ZeroModeSixDensity_gcd_eq (by have := hv 0; omega) (by have := hv 1; omega)
     (by have := hv 2; omega) (by have := hv 3; omega) hx).symm
 
-/-- A genuine physical kernel bound is integrated against the literal five
-smooth factors and actual two-amplifier weights; its mass is a conclusion. -/
 theorem a03SixTensorPhysicalZeroMode_norm_le_literal_mass
     (F : A03SixTensorSpace→ℂ) (S : ℂ) (m n : Bool) (q : QuadraticScales)
     (hM₂ : 0<q.M₂) (α β : ℕ→ℂ) {C D K : ℝ} (hC : 0≤C) (hD : 0≤D) (_hK : 0≤K)

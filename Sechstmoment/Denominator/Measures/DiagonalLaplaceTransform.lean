@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Measures.DiagonalMeasureDefinitions
 import Sechstmoment.Denominator.Measures.EulerLaplace
 
-/-! The Laplace transform of the actual logarithmic atomic diagonal measure,
-with integrability and the arithmetic transform limit proved. -/
 
 namespace Sechstmoment
 open Complex Real Filter MeasureTheory

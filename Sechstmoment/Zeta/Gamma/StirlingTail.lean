@@ -2,8 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Gamma.Beta
 import Mathlib.Analysis.SpecialFunctions.Stirling
 import Sechstmoment.Zeta.Gamma.StirlingRecurrence
 
-/-! Euler's Gamma sequence and the real factorial normalization determine the
-constant in the complex Stirling recurrence. -/
 
 namespace Sechstmoment.Source
 open Complex Real Filter

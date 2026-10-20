@@ -1,8 +1,6 @@
 import Mathlib.Algebra.BigOperators.Intervals
 import Sechstmoment.Certificate.Gram.Grouping
 
-/-! Exact bilinear and triangular norm expansions of the actual certificate.
-All 15931 pairs and their diagonal/off-diagonal multiplicities are retained. -/
 namespace Sechstmoment
 open Complex
 open scoped BigOperators
@@ -22,11 +20,9 @@ private theorem groupingNorm_sum_range {R : Type} [AddCommMonoid R] (n : ℕ) (f
   | zero => simp
   | succ n ih => rw [List.sum_range_succ,Finset.sum_range_succ,ih]
 
-/-- Indexed enumeration is exactly the original ordered feature list. -/
 theorem certificateFeatures_indexed :
     (List.range 178).map Finite.feature = Finite.features := by decide +kernel
 
-/-- Complete exact bilinear expansion, before passing to real parts. -/
 theorem certificateZetaTest_bilinear_feature_sum
     (profiles profiles' : TestType → ℝ → ℝ → ℝ) (T t : ℝ) :
     certificateZetaTest profiles T t * star (certificateZetaTest profiles' T t) =
@@ -85,9 +81,6 @@ private theorem groupingNorm_square_to_triangle (n : ℕ) (a : ℕ → ℕ → �
     omega
   rw [hset,Finset.sum_Ico_eq_sum_range]
 
-/-- Pointwise norm of the actual projected certificate, over the literal
-triangular pair enumeration with multiplicity one on its diagonal and two
-elsewhere.  The integer certificate scale is unchanged. -/
 theorem certificateZetaTest_norm_sq_pair_sum
     (profiles : TestType → ℝ → ℝ → ℝ) (T t : ℝ) :
     ‖certificateZetaTest profiles T t‖^2 =

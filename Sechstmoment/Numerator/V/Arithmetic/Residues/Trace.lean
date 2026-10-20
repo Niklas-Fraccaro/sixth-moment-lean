@@ -2,8 +2,6 @@ import Mathlib.NumberTheory.ArithmeticFunction.Moebius
 import Sechstmoment.Arithmetic.Euler.Residues.DivisorEulerTrace
 import Sechstmoment.Numerator.V.Arithmetic.Residues.Local
 
-/-! Finite global trace of the two local principal-residue terms. The
-right side is the independently defined original coefficient. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open NoDPLocal NoDPResidues NoDPLocalClosure NoDPGlobalRest NoDPGlobalConvolution

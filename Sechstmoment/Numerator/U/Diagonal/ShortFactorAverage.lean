@@ -1,13 +1,6 @@
 import Mathlib.NumberTheory.Harmonic.Bounds
 import Sechstmoment.Numerator.U.Diagonal.ShortFactorCount
 
-/-!
-# Averaged short-product interval count
-
-The actual quotient H/n is retained in each positive first-factor fiber.
-The two small-factor orientations therefore give H log Q rather than
-H sqrt Q in the main count. These are unconditional finite counts.
--/
 namespace Sechstmoment
 open scoped BigOperators
 open Classical
@@ -44,8 +37,6 @@ theorem positiveFactorSlice_card_le_quotient {n : ℕ} (hn : 0 < n) (Q L H : ℕ
   · have hempty := Finset.not_nonempty_iff_eq_empty.mp hne
     simp [hempty]
 
-/-- The finite quotient sum in the small-first-factor orientation is
-bounded by the exact harmonic sum, with the endpoint cost K retained. -/
 theorem positiveFactorSlice_small_factor_sum_le_harmonic (K Q L H : ℕ) :
     (∑ n ∈ Finset.Icc 1 K, ((positiveFactorSlice n Q L H).card : ℝ)) ≤
       (H : ℝ)*(harmonic K : ℝ) + K := by
@@ -73,8 +64,6 @@ theorem positiveFactorSlice_small_factor_sum_le_harmonic (K Q L H : ℕ) :
       rw [← Finset.mul_sum, hH]
       simp only [one_div]
 
-/-- The actual short factor-pair set has a harmonic averaged bound after
-covering the two possible small-factor orientations. -/
 theorem positiveShortFactorPairs_card_le_harmonic {Q L H K : ℕ} (hQ : Q ≤ K^2) :
     ((positiveShortFactorPairs Q L H).card : ℝ) ≤
       2*(H : ℝ)*(harmonic K : ℝ) + 2*K := by
@@ -119,7 +108,6 @@ theorem positiveShortFactorPairs_card_le_harmonic {Q L H K : ℕ} (hQ : Q ≤ K^
     exact_mod_cast hc
   nlinarith
 
-/-- A quantitative short-product interval bound with a logarithmic H-term. -/
 theorem positiveShortFactorPairs_card_le_log {Q L H K : ℕ} (hQ : Q ≤ K^2) :
     ((positiveShortFactorPairs Q L H).card : ℝ) ≤
       2*(H : ℝ)*(1+Real.log (K : ℝ)) + 2*K := by

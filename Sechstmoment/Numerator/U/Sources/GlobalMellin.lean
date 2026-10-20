@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Diagonal.RawShiftFactorMass
 import Sechstmoment.Numerator.U.Sources.GlobalSupport
 
-/-! The actual scale-only Mellin factor preserves the four reciprocal
-square-root AFE lengths uniformly on bounded normalized shifts. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter
 open scoped BigOperators Topology
@@ -37,8 +35,6 @@ theorem a03_source_scaled_real_power_bound {x r R c : ℝ}
       (by positivity) (by positivity)
     _=_ := by ring
 
-/-- The displayed scale factor has exactly the reciprocal square-root
-AFE length.  Integer-one scale blocks are included in the fixed constant. -/
 theorem a03SourceMellinScaleFactor_raw_norm_le
     {T R c u : ℝ} (hT : 0<T) (hlog : 1≤Real.log T) (hR : 0≤R)
     (hc : 0≤c) (hc1 : c≤1) (σ : MomentShifts) (hσ : ∀ j, ‖σ j‖≤R)

@@ -2,9 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 import Mathlib.MeasureTheory.Integral.Prod
 import Sechstmoment.Analysis.Mellin.ProfileInversion
 
-/-! The actual factor `1/(u+v)` is inverted on the positive ray.
-The two unbounded profile coordinates are interchanged only after proving
-an integrable product majorant. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Remainder.AbsoluteCoefficients
 
-/-! Identification of the absolutely convergent coefficient series with the remainder Euler product. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalRest

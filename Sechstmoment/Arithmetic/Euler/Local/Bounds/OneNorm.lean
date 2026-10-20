@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Geometric.StepNorm
 
-/-! The onefold coefficient has the expected geometric majorant. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

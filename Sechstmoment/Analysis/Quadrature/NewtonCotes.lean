@@ -18,12 +18,10 @@ noncomputable def ncWeight (j : Fin 13) : ℝ := (ncNumerator j : ℝ) / 6306300
 set_option maxRecDepth 10000
 set_option maxHeartbeats 0
 
-/-- These are the thirteen moment identities used by the denominator evaluator. -/
 theorem nc_moments (k : Fin 13) :
     ∑ j : Fin 13, ncWeight j * ((j.val : ℝ)/12)^k.val = 1/(k.val+1) := by
   fin_cases k <;> norm_num [ncWeight, ncNumerator, Fin.sum_univ_succ]
 
-/-- Exactness on arbitrary coefficients, without a numerical integration assumption. -/
 theorem nc_polynomial_exact (c : Fin 13 → ℝ) :
     ∑ j : Fin 13, ncWeight j * (∑ k : Fin 13, c k * ((j.val : ℝ)/12)^k.val) =
       ∑ k : Fin 13, c k / (k.val+1) := by
@@ -40,7 +38,6 @@ theorem nc_polynomial_exact (c : Fin 13 → ℝ) :
       ring
     _ = c k / (k.val+1) := by rw [nc_moments]; ring
 
-/-- A genuine real integral is linked to the exact rational quadrature. -/
 theorem nc_integral_exact (c : Fin 13 → ℝ) :
     (∫ x in (0 : ℝ)..1, ∑ k : Fin 13, c k * x^k.val) =
       ∑ j : Fin 13, ncWeight j * (∑ k : Fin 13, c k * ((j.val : ℝ)/12)^k.val) := by

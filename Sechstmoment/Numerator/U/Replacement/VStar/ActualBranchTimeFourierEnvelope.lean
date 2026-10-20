@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Replacement.VStar.PowerTimeFourierEnvelope
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.SpatialMass
 import Sechstmoment.Numerator.U.ZeroModes.RatioLeadingBranchSmooth
 
-/-! Uniform native arithmetic-frequency and spatial envelopes for the
-literal leading original/dual VStar time integral. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -55,8 +53,6 @@ theorem a03VStarActualBranchTimeFourier_uniform_log_envelope {Φ : ℝ→ℂ}
       mul_le_mul (hs σ hσ dual) hp (by positivity) hE
     _=_ := by ring
 
-/-- Degree ten spatial decay with arbitrary native arithmetic-frequency
-saving, for both actual leading branches and the original pure-root domain. -/
 theorem a03VStarActualBranchTimeFourier_uniform_degreeTen_log_envelope {Φ : ℝ→ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hSupp : tsupport Φ⊆Icc (1:ℝ) 2)
     (K : Set MomentShifts) (hK : IsCompact K) {κ : ℝ} (hκ : 0<κ) (N : ℕ) :

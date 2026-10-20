@@ -54,20 +54,16 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.Basic
 import Std
 
-/-! ## Poisson Arithmetic -/
 
-/-! Exact arithmetic reduction behind the residue-class Poisson step in §4.3. -/
 namespace DivisorProof
 noncomputable section
 
-/- `inverseRepresentative` is imported, unchanged, from `EstermannBridge`. -/
 theorem inverseRepresentative_mul {r c : ℕ} (hc : c ≠ 0) (hcop : r.Coprime c) :
     (inverseRepresentative r c : ZMod c)*(r : ZMod c) = 1 := by
   let _ : NeZero c := ⟨hc⟩
   unfold inverseRepresentative
   rw [ZMod.natCast_zmod_val, mul_comm, ZMod.coe_mul_inv_eq_one _ hcop]
 
-/-- Multiplication by the reduced leading coefficient can be inverted exactly. -/
 theorem reduced_congruence_iff {r c : ℕ} (hc : c ≠ 0) (hcop : r.Coprime c)
     (m k : ℤ) :
     ((r : ℤ)*m ≡ k [ZMOD c]) ↔
@@ -85,7 +81,6 @@ theorem reduced_congruence_iff {r c : ℕ} (hc : c ≠ 0) (hcop : r.Coprime c)
         ((inverseRepresentative r c : ZMod c)*(r : ZMod c))*k := by ring
       _ = _ := by rw [hinv, one_mul]
 
-/-- Integral solutions to the reduced equation are exactly the stated residue class. -/
 theorem reduced_equation_iff {r c : ℕ} (hc : c ≠ 0) (hcop : r.Coprime c)
     (m k : ℤ) :
     (∃ n : ℤ, (r : ℤ)*m - (c : ℤ)*n = k) ↔
@@ -99,17 +94,14 @@ theorem reduced_equation_iff {r c : ℕ} (hc : c ≠ 0) (hcop : r.Coprime c)
     refine ⟨-n, ?_⟩
     nlinarith
 
-/-- The reduced positive modulus is nonzero, without excluding modulus one. -/
 theorem reduced_modulus_pos (A B : ℕ) (hB : 0 < B) : 0 < B / Nat.gcd A B := by
   exact Nat.div_pos (Nat.le_of_dvd hB (Nat.gcd_dvd_right A B))
     (Nat.gcd_pos_of_pos_right A hB)
 
-/-- The reduced coefficients are coprime, as required by the inverse phase. -/
 theorem reduced_coefficients_coprime (A B : ℕ) (hB : 0 < B) :
     (A / Nat.gcd A B).Coprime (B / Nat.gcd A B) :=
   Nat.gcd_div_gcd_div_gcd_of_pos_right hB
 
-/-- Removing the common gcd preserves the integral equation exactly. -/
 theorem divide_gcd_equation_iff (A B : ℕ) (hB : 0 < B) (m n k : ℤ) :
     (A : ℤ)*m - (B : ℤ)*n = (Nat.gcd A B : ℤ)*k ↔
       ((A / Nat.gcd A B : ℕ) : ℤ)*m - ((B / Nat.gcd A B : ℕ) : ℤ)*n = k := by
@@ -125,7 +117,6 @@ theorem divide_gcd_equation_iff (A B : ℕ) (hB : 0 < B) (m n k : ℤ) :
     (mul_left_cancel_iff_of_pos (show (0 : ℤ) < d by exact_mod_cast Nat.gcd_pos_of_pos_right A hB)
       : (d : ℤ)*((A/d : ℕ)*m-(B/d : ℕ)*n) = d*k ↔ _)
 
-/-- The full residue class after removal of the gcd. -/
 theorem original_equation_iff (A B : ℕ) (hB : 0 < B) (m k : ℤ) :
     (∃ n : ℤ, (A : ℤ)*m - (B : ℤ)*n = (Nat.gcd A B : ℤ)*k) ↔
       (m ≡ k*(inverseRepresentative (A/Nat.gcd A B) (B/Nat.gcd A B) : ℤ)
@@ -134,7 +125,6 @@ theorem original_equation_iff (A B : ℕ) (hB : 0 < B) (m k : ℤ) :
   exact reduced_equation_iff (reduced_modulus_pos A B hB).ne'
     (reduced_coefficients_coprime A B hB) m k
 
-/-- The gcd divisibility of the shift follows from the original signed equation. -/
 theorem gcd_dvd_signed_shift (A B h : ℕ) (m n : ℤ) (positive : Bool)
     (heq : (A : ℤ)*m-(B : ℤ)*n = if positive then (h : ℤ) else -(h : ℤ)) :
     Nat.gcd A B ∣ h := by
@@ -145,7 +135,6 @@ theorem gcd_dvd_signed_shift (A B h : ℕ) (m n : ℤ) (positive : Bool)
   cases positive <;> simp only [Bool.false_eq_true, ite_false, ite_true, dvd_neg] at hh
   all_goals exact_mod_cast hh
 
-/-- Every representative in the residue class has a unique progression parameter. -/
 theorem residue_progression_iff (c : ℕ) (m s : ℤ) :
     (m ≡ s [ZMOD c]) ↔ ∃ j : ℤ, m = s+(c : ℤ)*j := by
   rw [Int.modEq_iff_dvd]
@@ -164,20 +153,13 @@ end
 end DivisorProof
 
 
-/-! ## Poisson Core -/
 
-/-!
-Poisson summation for the actual two-weight profile in equation (19).
-Only smoothness, dyadic support and positive scales are hypotheses.
-No Poisson identity or Fourier summability is assumed.
--/
 namespace DivisorProof
 open MeasureTheory Set
 open scoped BigOperators FourierTransform SchwartzMap ContDiff
 noncomputable section
 set_option maxHeartbeats 800000
 
-/- `ePhase` is imported, unchanged, from `EstermannBridge`. -/
 @[simp] theorem ePhase_zero : ePhase 0 = 1 := by simp [ePhase]
 
 theorem norm_ePhase (t : ℝ) : ‖ePhase t‖ = 1 := by
@@ -195,7 +177,6 @@ theorem fourier_eq_ePhase (l : ℤ) (t : ℝ) :
   congr 1
   ring
 
-/-- The two-variable arithmetic parameters enter only through two positive slopes. -/
 def poissonProfile (W₂ W₄ : ℝ → ℝ) (a b : ℝ) (x : ℝ) : ℂ :=
   (W₂ (a*x) : ℂ)*(W₄ (b*x) : ℂ)
 
@@ -219,14 +200,12 @@ theorem poissonProfile_contDiff {W₂ W₄ : ℝ → ℝ} (a b : ℝ)
   · exact Complex.ofRealCLM.contDiff.comp (h₂.1.comp (contDiff_const.mul contDiff_id))
   · exact Complex.ofRealCLM.contDiff.comp (h₄.1.comp (contDiff_const.mul contDiff_id))
 
-/-- The profile is a genuine Schwartz function, with its smoothness and decay proved. -/
 def poissonSchwartz {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄) (ha : a ≠ 0) :
     𝓢(ℝ, ℂ) :=
   (poissonProfile_hasCompactSupport (W₄ := W₄) (b := b) h₂ ha).toSchwartzMap
     (poissonProfile_contDiff a b h₂ h₄)
 
-/-- Positive-frequency convention in (19). -/
 def poissonCoefficient (W₂ W₄ : ℝ → ℝ) (a b : ℝ) (l : ℤ) : ℂ :=
   ∫ x : ℝ, poissonProfile W₂ W₄ a b x * ePhase ((l : ℝ)*x)
 
@@ -239,7 +218,6 @@ theorem poissonCoefficient_eq_fourier (W₂ W₄ : ℝ → ℝ) (a b : ℝ) (l :
   push_cast
   ring_nf
 
-/-- Poisson summation, retaining the actual phase before any Fourier truncation. -/
 theorem poisson_profile_identity {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄) (ha : a ≠ 0) (t : ℝ) :
     (∑' n : ℤ, poissonProfile W₂ W₄ a b (t+n)) =
@@ -266,7 +244,6 @@ theorem poissonProfile_zero_of_nonpos {W₂ W₄ : ℝ → ℝ} {a b x : ℝ}
     linarith [hs.1]
   simp only [poissonProfile, hz, Complex.ofReal_zero, zero_mul]
 
-/-- Equation (19) is genuinely the integral over the positive half-line. -/
 theorem poissonCoefficient_eq_positive_integral {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
     (h₂ : SmoothDyadicWeight W₂) (ha : 0 < a) (l : ℤ) :
     poissonCoefficient W₂ W₄ a b l =
@@ -276,7 +253,6 @@ theorem poissonCoefficient_eq_positive_integral {W₂ W₄ : ℝ → ℝ} {a b :
   intro x hx
   rw [poissonProfile_zero_of_nonpos h₂ ha (le_of_not_gt hx), zero_mul]
 
-/-- The zero coefficient is exactly the original zero-mode integrand. -/
 theorem poissonCoefficient_zero {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
     (h₂ : SmoothDyadicWeight W₂) (ha : 0 < a) :
     poissonCoefficient W₂ W₄ a b 0 =
@@ -292,7 +268,6 @@ theorem poissonCoefficient_integrable {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
       (continuous_ePhase.comp (continuous_const.mul continuous_id))
   · exact (poissonProfile_hasCompactSupport (b := b) h₂ ha).mul_right
 
-/-- Absolute Fourier summability is derived from smooth compact support. -/
 theorem poissonCoefficient_summable {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄) (ha : a ≠ 0) :
     Summable (poissonCoefficient W₂ W₄ a b) := by
@@ -319,7 +294,6 @@ theorem poissonSeries_summable {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
   apply summable_norm_iff.mp
   simpa only [norm_mul, norm_ePhase, mul_one] using poissonCoefficient_norm_summable h₂ h₄ ha
 
-/-- Exact separation of the original zero mode from the nonzero frequencies. -/
 theorem poisson_profile_nonzero_identity {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄) (ha : 0 < a) (t : ℝ) :
     (∑' n : ℤ, poissonProfile W₂ W₄ a b (t+n)) -
@@ -336,16 +310,13 @@ end
 end DivisorProof
 
 
-/-! ## Profile Bounds -/
 
-/-! Uniform, explicit derivative bounds for the actual two-weight Poisson profile. -/
 namespace DivisorProof
 open MeasureTheory Set Finset
 open scoped BigOperators ContDiff FourierTransform SchwartzMap
 noncomputable section
 set_option maxHeartbeats 800000
 
-/-- A fixed derivative envelope depending only on the derivative data and slope bound. -/
 def profileDerivativeBound (bounds : ℕ → ℝ) (K : ℝ) (j : ℕ) : ℝ :=
   ∑ i ∈ range (j+1), (j.choose i : ℝ)*(K^i*bounds i)*(K^(j-i)*bounds (j-i))
 
@@ -359,7 +330,6 @@ theorem profileDerivativeBound_nonneg {bounds : ℕ → ℝ} {K : ℝ}
   have hji0 := hb (j-i)
   positivity
 
-/-- The real product underlying the complex Poisson integrand. -/
 def realPoissonProfile (W₂ W₄ : ℝ → ℝ) (a b : ℝ) : ℝ → ℝ :=
   fun x => W₂ (a*x)*W₄ (b*x)
 
@@ -379,7 +349,6 @@ theorem scaled_weight_derivative_bound {W : ℝ → ℝ} {a K : ℝ} {bounds : �
   exact mul_le_mul (pow_le_pow_left₀ ha haK j) (hb j (a*x))
     (norm_nonneg _) (pow_nonneg (ha.trans haK) j)
 
-/-- Full Leibniz bound with constants independent of the varying weights and slopes. -/
 theorem realPoissonProfile_derivative_bound {W₂ W₄ : ℝ → ℝ} {a b K : ℝ}
     {bounds : ℕ → ℝ} (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (ha : 0 ≤ a) (hb : 0 ≤ b) (haK : a ≤ K) (hbK : b ≤ K)
@@ -404,7 +373,6 @@ theorem realPoissonProfile_derivative_bound {W₂ W₄ : ℝ → ℝ} {a b K : �
     (scaled_weight_derivative_bound h₄ hb hbK hder₄ (j-i) x)
     (norm_nonneg _) (by positivity)
 
-/-- The complex coercion preserves the norm of every iterated derivative. -/
 theorem poissonProfile_norm_iteratedFDeriv {W₂ W₄ : ℝ → ℝ} (a b : ℝ)
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄) (j : ℕ) (x : ℝ) :
     ‖iteratedFDeriv ℝ j (poissonProfile W₂ W₄ a b) x‖ =
@@ -417,7 +385,6 @@ theorem poissonProfile_norm_iteratedFDeriv {W₂ W₄ : ℝ → ℝ} (a b : ℝ)
     (realPoissonProfile_contDiff a b h₂ h₄).contDiffAt (by exact_mod_cast le_top)]
   exact norm_iteratedFDeriv_eq_norm_iteratedDeriv
 
-/-- A normalized first slope at least one gives a common compact support `[0,2]`. -/
 theorem poissonProfile_tsupport_subset {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
     (h₂ : SmoothDyadicWeight W₂) (ha : 1 ≤ a) :
     tsupport (poissonProfile W₂ W₄ a b) ⊆ Icc 0 2 := by
@@ -432,15 +399,12 @@ theorem poissonProfile_tsupport_subset {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
   have hxp : 0 ≤ x := by nlinarith [hs.1]
   exact ⟨hxp, by nlinarith [hs.2]⟩
 
-/-- Integrability of every derivative is proved from smooth compact support. -/
 theorem poissonProfile_derivative_integrable {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄) (ha : a ≠ 0) (j : ℕ) :
     Integrable (iteratedFDeriv ℝ j (poissonProfile W₂ W₄ a b)) :=
   ((poissonProfile_contDiff a b h₂ h₄).continuous_iteratedFDeriv (by exact_mod_cast le_top)).integrable_of_hasCompactSupport
     ((poissonProfile_hasCompactSupport (W₄ := W₄) (b := b) h₂ ha).iteratedFDeriv j)
 
-/-- Uniform L¹ derivative bounds on the normalized profiles.
-The right side depends only on the fixed derivative sequence and slope bound. -/
 theorem poissonProfile_derivative_integral_le {W₂ W₄ : ℝ → ℝ} {a b K : ℝ}
     {bounds : ℕ → ℝ} (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (ha : 1 ≤ a) (hb : 0 ≤ b) (haK : a ≤ K) (hbK : b ≤ K)
@@ -470,7 +434,6 @@ theorem poissonProfile_derivative_integral_le {W₂ W₄ : ℝ → ℝ} {a b K :
         measurableSet_Icc (fun x _ => hbound x)
     _ = 2*profileDerivativeBound bounds K j := by simp [mul_comm]
 
-/-- Polynomially weighted Fourier bounds, with no weight-dependent hidden constant. -/
 theorem poissonProfile_fourier_moment_le {W₂ W₄ : ℝ → ℝ} {a b K : ℝ}
     {bounds : ℕ → ℝ} (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (ha : 1 ≤ a) (hb : 0 ≤ b) (haK : a ≤ K) (hbK : b ≤ K)
@@ -496,7 +459,6 @@ theorem poissonProfile_fourier_moment_le {W₂ W₄ : ℝ → ℝ} {a b K : ℝ}
   exact sum_le_sum fun j _ =>
     poissonProfile_derivative_integral_le h₂ h₄ ha hb haK hbK hder₂ hder₄ j
 
-/-- An explicit common decay constant for all normalized profiles. -/
 def profileFourierBound (bounds : ℕ → ℝ) (K : ℝ) (J : ℕ) : ℝ :=
   2^J * (2*profileDerivativeBound bounds K 0 +
     2^J * ∑ j ∈ range (J+1), 2*profileDerivativeBound bounds K j)
@@ -510,7 +472,6 @@ theorem profileFourierBound_nonneg {bounds : ℕ → ℝ} {K : ℝ}
     sum_nonneg fun j _ => mul_nonneg (by norm_num) (profileDerivativeBound_nonneg hb hK j)
   positivity
 
-/-- Uniform rapid Fourier decay, including frequency zero. -/
 theorem poissonProfile_fourier_decay {W₂ W₄ : ℝ → ℝ} {a b K : ℝ}
     {bounds : ℕ → ℝ} (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (ha : 1 ≤ a) (hb : 0 ≤ b) (haK : a ≤ K) (hbK : b ≤ K)
@@ -551,7 +512,6 @@ theorem poissonProfile_fourier_decay {W₂ W₄ : ℝ → ℝ} {a b K : ℝ}
         exact mul_le_mul_of_nonneg_left
           (le_add_of_nonneg_left (mul_nonneg (by norm_num) hz)) (by positivity)
 
-/-- Change of scale in the literal coefficient integral. -/
 theorem poissonCoefficient_rescale (W₂ W₄ : ℝ → ℝ) (a b : ℝ)
     {r : ℝ} (hr : 0 < r) (l : ℤ) :
     poissonCoefficient W₂ W₄ a b l =
@@ -581,7 +541,6 @@ theorem poissonCoefficient_rescale (W₂ W₄ : ℝ → ℝ) (a b : ℝ)
     (r : ℂ)*(((r⁻¹ : ℝ) : ℂ)*poissonCoefficient W₂ W₄ a b l)
   rw [Complex.ofReal_inv, ← mul_assoc, mul_inv_cancel₀ hrc, one_mul]
 
-/-- The decay estimate (21), after restoring the actual profile scale. -/
 theorem poissonCoefficient_decay {W₂ W₄ : ℝ → ℝ} {a b r K : ℝ}
     {bounds : ℕ → ℝ} (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (hr : 0 < r) (ha : 1 ≤ a*r) (hb : 0 ≤ b*r) (haK : a*r ≤ K) (hbK : b*r ≤ K)
@@ -599,16 +558,13 @@ end
 end DivisorProof
 
 
-/-! ## Poisson Progression -/
 
-/-! The Poisson identity on the actual reduced arithmetic progression. -/
 namespace DivisorProof
 open MeasureTheory Set Classical
 open scoped BigOperators FourierTransform
 noncomputable section
 set_option maxHeartbeats 800000
 
-/-- Exact reindexing of a residue-class sum, including modulus one. -/
 theorem residue_tsum_eq_progression (f : ℤ → ℂ) {c : ℕ} (hc : c ≠ 0) (s : ℤ) :
     (∑' m : ℤ, if m ≡ s [ZMOD c] then f m else 0) =
       ∑' j : ℤ, f (s+(c : ℤ)*j) := by
@@ -628,7 +584,6 @@ theorem residue_tsum_eq_progression (f : ℤ → ℂ) {c : ℕ} (hc : c ≠ 0) (
   intro j
   exact ite_eq_left ((residue_progression_iff c (s+(c : ℤ)*j) s).mpr ⟨j, rfl⟩)
 
-/-- The finite-modulus Poisson identity with the literal inverse phase. -/
 theorem poisson_residue_identity {W₂ W₄ : ℝ → ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (r c : ℕ) (hc : 0 < c) {M N : ℝ} (hM : 0 < M) (_hN : 0 < N) (k : ℤ) :
@@ -650,8 +605,6 @@ theorem poisson_residue_identity {W₂ W₄ : ℝ → ℝ}
   simp_rw [heq]
   exact poisson_profile_identity h₂ h₄ (div_pos hcp hM).ne' _
 
-/-- The same identity stated with the original Diophantine equation.
-The gcd, coprimality and inverse are all derived, not supplied as analytic inputs. -/
 theorem poisson_original_equation_identity {W₂ W₄ : ℝ → ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (A B : ℕ) (hB : 0 < B) {M N : ℝ} (hM : 0 < M) (hN : 0 < N) (k : ℤ) :
@@ -671,12 +624,7 @@ end
 end DivisorProof
 
 
-/-! ## Fourier Truncation -/
 
-/-!
-Absolute and quantitative truncation of the Fourier series.  The harmless
-inverse-square constant is a proved convergent numerical series.
--/
 namespace DivisorProof
 open MeasureTheory Set Finset
 open scoped BigOperators ContDiff FourierTransform
@@ -691,7 +639,6 @@ theorem inverseSquare_summable : Summable (fun l : ℤ => 1/(l : ℝ)^2) :=
 theorem inverseSquareMass_nonneg : 0 ≤ inverseSquareMass :=
   tsum_nonneg fun _ => div_nonneg zero_le_one (sq_nonneg _)
 
-/-- A scale-sensitive pointwise estimate for the high-frequency tail. -/
 theorem scaled_decay_tail_le {C r L : ℝ} (hC : 0 ≤ C) (hr : 0 < r) (hL : 0 ≤ L)
     (J : ℕ) (l : ℤ) (hl : L < |(l : ℝ)|) :
     r*C/(1+|(l : ℝ)| * r)^(J+2) ≤
@@ -713,8 +660,6 @@ theorem scaled_decay_tail_le {C r L : ℝ} (hC : 0 ≤ C) (hr : 0 < r) (hL : 0 �
       rw [mul_pow, sq_abs]
       field_simp
 
-/-- Absolute convergence and an explicit bound for any Fourier tail with the
-proved rapid-decay envelope. -/
 theorem fourier_tail_bound {f : ℤ → ℂ} {C r L : ℝ}
     (hC : 0 ≤ C) (hr : 0 < r) (hL : 0 ≤ L) (J : ℕ)
     (hdecay : ∀ l, ‖f l‖ ≤ r*C/(1+|(l : ℝ)| * r)^(J+2)) :
@@ -735,7 +680,6 @@ theorem fourier_tail_bound {f : ℤ → ℂ} {C r L : ℝ}
       hn.tsum_le_tsum hp hm
     _ = (C/(r*(1+L*r)^J))*inverseSquareMass := by rw [tsum_mul_left]; rfl
 
-/-- The actual finite integer frequencies, allowing a cutoff smaller than one. -/
 def frequencySet (L : ℝ) : Finset ℤ := Icc (-⌊L⌋) ⌊L⌋
 
 theorem mem_frequencySet (L : ℝ) (l : ℤ) :
@@ -744,8 +688,6 @@ theorem mem_frequencySet (L : ℝ) (l : ℤ) :
   simp only [frequencySet, Finset.mem_Icc, hn, Int.le_floor, Int.cast_neg, abs_le]
   constructor <;> rintro ⟨h₁, h₂⟩ <;> constructor <;> linarith
 
-/-- Exact finite/infinite splitting.  All later rearrangements can take place
-in the finite sum on the right. -/
 theorem fourier_split_finite {f : ℤ → ℂ} (hf : Summable f) (L : ℝ) :
     (∑' l : ℤ, f l) - (∑ l ∈ frequencySet L, f l) =
       ∑' l : ℤ, if L < |(l : ℝ)| then f l else 0 := by
@@ -777,7 +719,6 @@ theorem fourier_split_finite {f : ℤ → ℂ} (hf : Summable f) (L : ℝ) :
           exact hs.tsum_add ht
     _ = _ := by rw [hlow]; abel
 
-/-- Quantitative finite truncation, obtained from the proved summable tail. -/
 theorem fourier_truncation_bound {f : ℤ → ℂ} {C r L : ℝ}
     (hf : Summable f) (hC : 0 ≤ C) (hr : 0 < r) (hL : 0 ≤ L) (J : ℕ)
     (hdecay : ∀ l, ‖f l‖ ≤ r*C/(1+|(l : ℝ)| * r)^(J+2)) :
@@ -786,8 +727,6 @@ theorem fourier_truncation_bound {f : ℤ → ℂ} {C r L : ℝ}
   rw [fourier_split_finite hf]
   exact (fourier_tail_bound hC hr hL J hdecay).2
 
-/-- Compact support of the source's smooth Fourier cutoff is used before
-interchanging a sum and an integral. -/
 theorem cutoff_summable (χ : ℝ → ℝ) (f : ℤ → ℂ) {L : ℝ} (hL : 0 < L)
     (hχzero : ∀ x, 2 ≤ |x| → χ x = 0) :
     Summable (fun l : ℤ => (χ ((l : ℝ)/L) : ℂ)*f l) := by
@@ -799,7 +738,6 @@ theorem cutoff_summable (χ : ℝ → ℝ) (f : ℤ → ℂ) {L : ℝ} (hL : 0 <
     exact (le_div_iff₀ hL).mpr hlarge.le
   rw [hχzero _ hx, Complex.ofReal_zero, zero_mul]
 
-/-- The cutoff series is literally a finite sum over `|l| ≤ 2L`. -/
 theorem cutoff_tsum_eq_sum (χ : ℝ → ℝ) (f : ℤ → ℂ) {L : ℝ} (hL : 0 < L)
     (hχzero : ∀ x, 2 ≤ |x| → χ x = 0) :
     (∑' l : ℤ, (χ ((l : ℝ)/L) : ℂ)*f l) =
@@ -812,8 +750,6 @@ theorem cutoff_tsum_eq_sum (χ : ℝ → ℝ) (f : ℤ → ℂ) {L : ℝ} (hL : 
     exact (le_div_iff₀ hL).mpr hlarge.le
   rw [hχzero _ hx, Complex.ofReal_zero, zero_mul]
 
-/-- Quantitative truncation with precisely the kind of cutoff used in (23).
-Smoothness and evenness are irrelevant to the truncation error itself. -/
 theorem smooth_cutoff_error_bound {f : ℤ → ℂ} {C r L : ℝ}
     (hf : Summable f) (hC : 0 ≤ C) (hr : 0 < r) (hL : 0 < L) (J : ℕ)
     (hdecay : ∀ l, ‖f l‖ ≤ r*C/(1+|(l : ℝ)| * r)^(J+2))
@@ -849,9 +785,7 @@ end
 end DivisorProof
 
 
-/-! ## Poisson Geometry -/
 
-/-! The actual radius and Fourier length in (20), with uniform slope bounds. -/
 namespace DivisorProof
 open MeasureTheory Set
 open scoped BigOperators ContDiff
@@ -904,7 +838,6 @@ theorem poissonRadius_pos (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)
   have hN₁ : 0 < q.N₁ := lt_of_lt_of_le (by norm_num) (h 4)
   exact div_pos (mul_pos hd hM₂) (mul_pos hB hN₁)
 
-/-- A polynomial lower bound suffices for the quantitative Fourier tail. -/
 theorem poissonRadius_lower (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)
     {d : ℝ} (hd : 1 ≤ d) : 1/q.mass ≤ poissonRadius q d := by
   obtain ⟨hQ, hBN, hBNQ, _, _⟩ := poisson_scale_bounds q h
@@ -927,7 +860,6 @@ theorem poissonRadius_upper (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)
         mul_div_cancel_right₀ _ (by linarith : q.B*q.N₁ ≠ 0)]
     _ ≤ 4*q.mass := mul_le_mul_of_nonneg_left hM₂Q (by norm_num)
 
-/-- The product in (21) is independent of the varying gcd. -/
 theorem poissonLength_mul_radius (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)
     (ρ : ℝ) {d : ℝ} (hd : 0 < d) :
     poissonLength q ρ d * poissonRadius q d =
@@ -939,7 +871,6 @@ theorem poissonLength_mul_radius (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size 
   unfold poissonLength poissonRadius QuadraticScales.N
   field_simp
 
-/-- Uniform normalized slopes for the products `X=am₁`, `Y=bn₁`. -/
 theorem normalized_poisson_slopes (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)
     {X Y d K : ℝ} (hK : 1 ≤ K) (hd : 0 < d)
     (hX : 0 ≤ X) (hXupper : X ≤ 4*q.A*q.M₁)
@@ -978,7 +909,6 @@ theorem poissonLength_pos (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)
   have hN₂ : 0 < q.N₂ := lt_of_lt_of_le (by norm_num) (h 5)
   exact mul_pos (div_pos (Real.sqrt_pos.mpr hQ) (by positivity)) (Real.rpow_pos_of_pos hQ _)
 
-/-- A convenient weaker form of the balanced square-root comparison. -/
 theorem balanced_sqrt_ratio_lower {u v K : ℝ} (hu : 0 < u) (hv : 0 < v)
     (hK : 1 ≤ K) (hbalance : v ≤ K*u) :
     1/K ≤ Real.sqrt (u*v)/v := by
@@ -1018,9 +948,7 @@ end
 end DivisorProof
 
 
-/-! ## Fourier Cutoff -/
 
-/-! Construction, rather than assumption, of the fixed even smooth cutoff in §4.3. -/
 namespace DivisorProof
 open MeasureTheory Set
 open scoped BigOperators ContDiff
@@ -1051,7 +979,6 @@ theorem sourceCutoff_norm (x : ℝ) : |sourceCutoff x| ≤ 1 := by
   rw [abs_of_nonneg (sourceCutoff_nonneg x)]
   exact sourceBump.le_one
 
-/-- The low-length range produces no nonzero Fourier frequencies. -/
 theorem sourceCutoff_zero_of_short {L : ℝ} (hL : 0 < L) (hshort : L ≤ 1/2)
     {l : ℤ} (hl : l ≠ 0) : sourceCutoff ((l : ℝ)/L) = 0 := by
   have hli : (1 : ℤ) ≤ |l| := by
@@ -1066,12 +993,7 @@ end
 end DivisorProof
 
 
-/-! ## Finite Poisson -/
 
-/-!
-Finite Poisson summation with the constructed source cutoff.  The exchange
-with the integral is justified only for a literal finite sum.
--/
 namespace DivisorProof
 open MeasureTheory Set Classical
 open scoped BigOperators ContDiff
@@ -1082,7 +1004,6 @@ def finitePoissonKernel (L t x : ℝ) : ℂ :=
   ∑ l ∈ frequencySet (2*L), if l = 0 then 0 else
     (sourceCutoff ((l : ℝ)/L) : ℂ)*ePhase (-(l : ℝ)*t)*ePhase ((l : ℝ)*x)
 
-/-- Finite sum/integral exchange, with integrability proved term by term. -/
 theorem finite_poisson_integral {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄) (ha : 0 < a)
     (L t : ℝ) :
@@ -1122,8 +1043,6 @@ theorem finite_poisson_integral {W₂ W₄ : ℝ → ℝ} {a b : ℝ}
   intro x hx
   rw [poissonProfile_zero_of_nonpos h₂ ha (not_lt.mp hx), zero_mul]
 
-/-- A fully quantified finite Poisson formula for one outer tuple, including
-the exact original zero mode and an explicit uniform remainder. -/
 theorem finite_poisson_profile {W₂ W₄ : ℝ → ℝ} {a b r K L : ℝ}
     {bounds : ℕ → ℝ} (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (hr : 0 < r) (hL : 0 < L) (ha : 1 ≤ a*r) (hb : 0 ≤ b*r)
@@ -1161,16 +1080,13 @@ end
 end DivisorProof
 
 
-/-! ## Truncation Budget -/
 
-/-! The explicit choice of derivative order and polynomial truncation budget. -/
 namespace DivisorProof
 open MeasureTheory Set Finset
 open scoped BigOperators
 noncomputable section
 set_option maxHeartbeats 800000
 
-/-- The source uses two additional derivatives beyond this order. -/
 def truncationOrder (ρ : ℝ) : ℕ := ⌈1/ρ⌉₊
 
 theorem truncationOrder_reserve {ρ : ℝ} (hρ : 0 < ρ) :
@@ -1179,7 +1095,6 @@ theorem truncationOrder_reserve {ρ : ℝ} (hρ : 0 < ρ) :
   have hm := (div_le_iff₀ hρ).mp h
   simpa only [truncationOrder, mul_comm] using hm
 
-/-- The cutoff in (20) supplies at least ten powers of the total mass. -/
 theorem cutoff_power_reserve {Q K L r ρ : ℝ} (hQ : 1 ≤ Q) (hK : 0 < K)
     (hρ : 0 < ρ) (hprod : Q^(10*ρ)/K ≤ L*r) :
     Q^10 ≤ (K*(1+L*r))^(truncationOrder ρ) := by
@@ -1194,7 +1109,6 @@ theorem cutoff_power_reserve {Q K L r ρ : ℝ} (hQ : 1 ≤ Q) (hK : 0 < K)
     _ = (Q^(10*ρ))^(truncationOrder ρ) := (Real.rpow_mul_natCast hQp.le _ _)
     _ ≤ _ := pow_le_pow_left₀ (Real.rpow_nonneg hQp.le _) hbase _
 
-/-- A useful polynomial form of the tail estimate; all constants are explicit. -/
 theorem truncation_budget {Q K L r C Z : ℝ} (hQ : 1 ≤ Q) (_hK : 0 < K)
     (hr : 0 < r) (hL : 0 ≤ L) (hC : 0 ≤ C) (hZ : 0 ≤ Z)
     (hrlower : 1/Q ≤ r) (J : ℕ) (hcut : Q^10 ≤ (K*(1+L*r))^J) :
@@ -1214,8 +1128,6 @@ theorem truncation_budget {Q K L r C Z : ℝ} (hQ : 1 ≤ Q) (_hK : 0 < K)
   calc _ ≤ (C*K^J/Q^9)*Z := mul_le_mul_of_nonneg_right hmain hZ
     _ = _ := by ring
 
-/-- Summing over `O(Q²)` outer tuples preserves a power-saving error.
-This finite lemma needs no interchange of an infinite series and an integral. -/
 theorem sum_truncation_budget {ι : Type*} (s : Finset ι) (error : ι → ℂ)
     {Q E C : ℝ} (hQ : 1 ≤ Q) (_hE : 0 ≤ E) (hC : 0 ≤ C)
     (hcard : (s.card : ℝ) ≤ E*Q^2)
@@ -1228,8 +1140,6 @@ theorem sum_truncation_budget {ι : Type*} (s : Finset ι) (error : ι → ℂ)
     _ ≤ (E*Q^2)*(C/Q^9) := mul_le_mul_of_nonneg_right hcard (by positivity)
     _ = E*C/Q^7 := by field_simp
 
-/-- The uniform remainder for the source's actual dyadic products and its
-chosen Fourier length.  No unspecified Poisson-error premise is used. -/
 theorem finite_poisson_dyadic_remainder {W₂ W₄ : ℝ → ℝ} {bounds : ℕ → ℝ}
     (h₂ : SmoothDyadicWeight W₂) (h₄ : SmoothDyadicWeight W₄)
     (q : QuadraticScales) (h : ∀ j, 1 ≤ q.size j)

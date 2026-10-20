@@ -1,6 +1,5 @@
 import Sechstmoment.Analysis.Harmonic.Quadrature
 
-/-! Uniform weighted harmonic quadrature on the literal log(n)/L grid. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set

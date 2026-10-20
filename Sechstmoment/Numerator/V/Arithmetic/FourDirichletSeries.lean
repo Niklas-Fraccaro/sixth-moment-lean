@@ -1,7 +1,6 @@
 import Mathlib.Topology.Algebra.InfiniteSum.NatInt
 import Sechstmoment.Numerator.V.Arithmetic.FourDirichletMass
 
-/-! The literal four-zeta Dirichlet series with positive natural indices. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

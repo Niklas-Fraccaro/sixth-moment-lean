@@ -1,20 +1,16 @@
 import Sechstmoment.Denominator.Unbalanced.Conjugation
 import Sechstmoment.Zeta.Tests
 
-/-! Exact Gram decomposition for the actual phase-projected tests.
-Every functional-equation reflection error remains explicit. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Polynomial
 open scoped ComplexConjugate BigOperators
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- Literal discrepancy from the main-term reflection rule. -/
 def d06PolynomialReflectionError (T t : ℝ) (q : ℝ[X]) : ℂ :=
   (criticalChi t)⁻¹ * zetaCp T t q -
     zetaPolynomialDerivative T (reflectedTestPolynomial q) (1-criticalLinePoint t)
 
-/-- No exact polynomial parity has been substituted here. -/
 theorem d06PolynomialReflectionError_identity (T t : ℝ) (q : ℝ[X]) :
     (criticalChi t)⁻¹ * zetaCp T t q =
       zetaPolynomialDerivative T (reflectedTestPolynomial q) (1-criticalLinePoint t) +
@@ -22,15 +18,12 @@ theorem d06PolynomialReflectionError_identity (T t : ℝ) (q : ℝ[X]) :
   unfold d06PolynomialReflectionError
   ring
 
-/-- Balanced arrangement for the first UU term. -/
 def d06UUConjugateProfiles (ρ : Fin 4 → ℝ → ℝ) : Fin 4 → ℝ → ℝ :=
   ![ρ 0,ρ 3,ρ 1,ρ 2]
 
-/-- Balanced arrangement for the reflected UU term. -/
 def d06UUReflectedProfiles (ρ : Fin 4 → ℝ → ℝ) : Fin 4 → ℝ → ℝ :=
   ![ρ 0,ρ 2,ρ 1,ρ 3]
 
-/-- Three-positive arrangement for the reflected UV term. -/
 def d06UVReflectedProfiles (ρ : Fin 4 → ℝ → ℝ) : Fin 4 → ℝ → ℝ :=
   ![ρ 0,ρ 2,ρ 3,ρ 1]
 
@@ -51,7 +44,6 @@ def d06UnbalancedMinusPolynomialIntegrand (T t : ℝ) (p q : ℝ[X])
     zetaPolynomialDerivative T q (1-criticalLinePoint t) *
       d04UnbalancedAmplifier T t ρ
 
-/-- The anomalous VV term, kept as its actual chi-phase -3 integrand. -/
 def d06VVExtremePolynomialIntegrand (T t : ℝ) (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) : ℂ :=
   ((criticalChi t)⁻¹)^3 * zetaCp T t p * zetaCp T t q *
@@ -83,7 +75,6 @@ private theorem d06_profile_star_minus (T t : ℝ) (f : ℝ → ℝ) :
   change conj (profileDirichletSum T f (conj (criticalLinePoint t))) = _
   rw [profileDirichletSum_conj,conj_conj]
 
-/-- Actual UU Gram identity with its literal FE discrepancy retained. -/
 theorem d06ProjectedGram_UU (T t : ℝ) (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) :
     projectedZetaTest .U T t p (ρ 0) (ρ 1) *
@@ -104,7 +95,6 @@ theorem d06ProjectedGram_UU (T t : ℝ) (p q : ℝ[X])
   field_simp [criticalChi_ne_zero t]
   ring
 
-/-- Actual VV Gram identity: the second summand is precisely the extreme phase. -/
 theorem d06ProjectedGram_VV (T t : ℝ) (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) :
     projectedZetaTest .V T t p (ρ 0) (ρ 1) *
@@ -120,7 +110,6 @@ theorem d06ProjectedGram_VV (T t : ℝ) (p q : ℝ[X])
     d06VVExtremePolynomialIntegrand
   ring
 
-/-- Actual UV Gram identity with both original minus-kernel orientations. -/
 theorem d06ProjectedGram_UV (T t : ℝ) (p q : ℝ[X])
     (ρ : Fin 4 → ℝ → ℝ) :
     projectedZetaTest .U T t p (ρ 0) (ρ 1) *

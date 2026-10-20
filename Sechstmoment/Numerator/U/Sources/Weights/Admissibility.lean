@@ -51,9 +51,6 @@ theorem phase_logarithmic_gap_power_near {s τ : ℝ} (hs : 0<s) (hτ : 0≤τ) 
   have hn := phase_signed_relative_gap_near positive n hQ hr hr2 hrel hgap
   exact hn.trans (mul_le_mul_of_nonneg_right hwidth (Real.sqrt_nonneg _))
 
-/-- Every retained actual active logarithmic near block, including all
-unit cases, satisfies every displayed source hypothesis after exact
-normalization. The constants and derivative sequence precede T. -/
 theorem phase_actual_logarithmic_source_admissibility {a b ε κ θ τ : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)
     (hε : 0<ε) (hκ : 0≤κ) (hθ : 0≤θ) (hτ : 0≤τ)

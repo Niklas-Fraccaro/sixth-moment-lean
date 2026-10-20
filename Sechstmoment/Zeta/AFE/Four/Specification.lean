@@ -3,15 +3,6 @@ import Mathlib.Topology.Algebra.InfiniteSum.Constructions
 import Mathlib.Topology.Algebra.InfiniteSum.Ring
 import Sechstmoment.Zeta.AFE.Four.Definitions
 
-/-!
-# Fixed auxiliary functions at the BBLR AFE boundary
-
-The source Lemma 2.1, pp.6–7 of arXiv:1609.02539v1, states its rapidly
-decaying remainder for a fixed admissible auxiliary function. Moving Gaussian
-polynomials can be assembled from a fixed finite basis by the own linearity
-proofs below. Actual vertical integrability and series summability are explicit
-receipts, rather than implicit analytical assumptions.
--/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set Filter
@@ -20,7 +11,6 @@ open Classical
 
 noncomputable section
 
-/-- Fixed-G source boundary. No moving auxiliary family is a source premise. -/
 def BBLRv1FixedApproximateFEInput : Prop :=
   ∀ G : ℂ → ℂ, BBLREntireWeight G (fun _ => 0) →
   ∀ K : Set MomentShifts, IsCompact K → ∀ A : ℕ,
@@ -34,7 +24,6 @@ def bblrVerticalIntegrand (G : ℂ → ℂ) (α : MomentShifts) (x t v : ℝ) : 
 def finiteAuxiliaryCombination {m : ℕ} (w : Fin m → ℂ)
     (G : Fin m → ℂ → ℂ) : ℂ → ℂ := fun z => ∑ i, w i*G i z
 
-/-- The actual Gamma-based vertical integral is linear in the finite basis. -/
 theorem bblrV_finite_combination {m : ℕ} (w : Fin m → ℂ)
     (G : Fin m → ℂ → ℂ) (α : MomentShifts) (x t : ℝ)
     (hI : ∀ i, Integrable (bblrVerticalIntegrand (G i) α x t)) :
@@ -71,7 +60,6 @@ theorem bblrAFESummand_finite_combination {m : ℕ} (w : Fin m → ℂ)
   intro i hi
   ring
 
-/-- Infinite AFE summation is linear once each actual basis series is summable. -/
 theorem bblrAFESum_finite_combination {m : ℕ} (w : Fin m → ℂ)
     (G : Fin m → ℂ → ℂ) (α : MomentShifts) (t : ℝ)
     (hI : ∀ i n, Integrable
@@ -84,8 +72,6 @@ theorem bblrAFESum_finite_combination {m : ℕ} (w : Fin m → ℂ)
   rw [Summable.tsum_finsetSum (fun i _ => (hS i).mul_left (w i))]
   simp_rw [tsum_mul_left]
 
-/-- Discrepancies are affine in G; the weights must sum to one. Both actual
-AFE series and both Gamma-weighted vertical integrals are retained. -/
 theorem bblrAFEDiscrepancy_finite_combination {m : ℕ} (w : Fin m → ℂ)
     (G : Fin m → ℂ → ℂ) (α : MomentShifts) (t : ℝ) (hw : ∑ i, w i = 1)
     (hI : ∀ i n, Integrable
@@ -108,9 +94,6 @@ theorem bblrAFEDiscrepancy_finite_combination {m : ℕ} (w : Fin m → ℂ)
   intro i hi
   ring
 
-/-- Precisely the analytical receipts needed for finite-span linearity.
-These concern the actual Gamma integrals and actual original and dual series;
-they are not a free asymptotic statement about the desired moment. -/
 def BBLRFiniteBasisAnalyticReceipt {m : ℕ} (G : Fin m → ℂ → ℂ)
     (w : ℝ → MomentShifts → Fin m → ℂ) (K : Set MomentShifts) : Prop :=
   ∀ᶠ T : ℝ in atTop, ∀ σ ∈ K, ∀ t ∈ Icc T (2*T),
@@ -123,10 +106,6 @@ def BBLRFiniteBasisAnalyticReceipt {m : ℕ} (G : Fin m → ℂ → ℂ)
     (∀ i, Summable (bblrAFESummand (G i)
       (bblrSixShifts (rawMomentShifts T σ) 1) t))
 
-/-- Own transfer from finitely many fixed source inputs to the actual moving
-finite-span auxiliary function. Polynomial-log coefficient bounds can be
-inserted through their elementary eventual polynomial bound. This theorem
-does not extend the source to arbitrary moving entire families. -/
 theorem bblrAFE_fixed_basis_uniform_remainder {m : ℕ}
     (hsource : BBLRv1FixedApproximateFEInput) (G : Fin m → ℂ → ℂ)
     (hG : ∀ i, BBLREntireWeight (G i) (fun _ => 0))

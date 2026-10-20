@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Reconstruction.RectangularNearUnitExclusion
 import Sechstmoment.Numerator.U.Separation.Frequency.LogFrequency
 
-/-! All far gaps, including noncomparable products, have a uniformly
-nonzero exact logarithmic frequency. -/
 namespace Sechstmoment
 open Complex Real Source Set
 open scoped BigOperators

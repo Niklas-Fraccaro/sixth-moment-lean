@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.HigherCancellation
 
-/-! The quadratic fourfold coefficient and the second numerator at h=0. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

@@ -1,7 +1,6 @@
 import Mathlib.Analysis.SpecificLimits.Normed
 import Sechstmoment.Numerator.U.Diagonal.DiagonalEulerCoefficients
 
-/-! Genuine two-shift coefficients and their shifted local series. -/
 
 namespace Sechstmoment
 open scoped BigOperators
@@ -10,7 +9,6 @@ open ArithmeticFunction
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- Complete homogeneous coefficient of the two actual prime weights. -/
 def pairPrimePowerCoefficient (a b : ℂ) (n : ℕ) : ℂ :=
   ∑ i ∈ Finset.range (n+1), a^i*b^(n-i)
 
@@ -18,7 +16,6 @@ def pairPrimePowerCoefficient (a b : ℂ) (n : ℕ) : ℂ :=
     pairPrimePowerCoefficient a b 0 = 1 := by
   simp [pairPrimePowerCoefficient]
 
-/-- This coefficient is the convolution of the two shifted Dirichlet powers. -/
 def shiftedPairArithmetic (a b : ℂ) : ArithmeticFunction ℂ :=
   shiftedPowerArithmetic a * shiftedPowerArithmetic b
 
@@ -48,8 +45,6 @@ theorem pairPrimePowerCoefficient_succ (a b : ℂ) (n : ℕ) :
   rw [pow_succ]
   ring
 
-/-- The shift recurrence involves a finite geometric coefficient; it is
-valid also when the two weights coincide or vanish. -/
 theorem pairPrimePowerCoefficient_add (a b : ℂ) (j ν : ℕ) :
     pairPrimePowerCoefficient a b (j+ν) =
       a^ν*pairPrimePowerCoefficient a b j+
@@ -73,7 +68,6 @@ theorem pairPrimePowerCoefficient_add (a b : ℂ) (j ν : ℕ) :
       rw [show j+ν+1=(j+1)+ν by omega, pow_add]
       ring
 
-/-- A direct bound on the finite two-weight coefficient. -/
 theorem pairPrimePowerCoefficient_norm_le {a b : ℂ} {M : ℝ}
     (hM : 0 ≤ M) (ha : ‖a‖ ≤ M) (hb : ‖b‖ ≤ M) (n : ℕ) :
     ‖pairPrimePowerCoefficient a b n‖ ≤ (n+1:ℝ)*M^n := by
@@ -100,8 +94,6 @@ private theorem pairPolynomialGeometric_summable {q : ℝ} (hq₀ : 0 ≤ q) (hq
   simp only [pow_one]
   ring
 
-/-- Absolute convergence of all shifted numerator series in the genuine
-four-weight geometric domain. -/
 theorem pairShiftedPrimeSeries_norm_summable {A D C B r : ℂ} {M : ℝ}
     (hM : 0 ≤ M) (hA : ‖A‖ ≤ M) (hD : ‖D‖ ≤ M)
     (hC : ‖C‖ ≤ M) (hB : ‖B‖ ≤ M) (hr : M^2*‖r‖ < 1) (ν : ℕ) :
@@ -126,7 +118,6 @@ theorem pairShiftedPrimeSeries_norm_summable {A D C B r : ℂ} {M : ℝ}
       rw [show (M^2)^j = (M^j)^2 by rw [← pow_mul, ← pow_mul, Nat.mul_comm]]
       ring
 
-/-- The auxiliary series has the same geometric domain. -/
 theorem pairPrimeGeneratingSeries_norm_summable {A D x : ℂ} {M : ℝ}
     (hM : 0 ≤ M) (hA : ‖A‖ ≤ M) (hD : ‖D‖ ≤ M) (hx : M*‖x‖ < 1) :
     Summable (fun j : ℕ => ‖pairPrimePowerCoefficient A D j*x^j‖) := by
@@ -166,7 +157,6 @@ private theorem pairGeneratingRationalAlgebra (a d G : ℂ)
   field_simp [hd] at h
   linear_combination h
 
-/-- Solve the generating series from its proved coefficient recurrence. -/
 theorem pairPrimeGeneratingSeries_closed (A D x : ℂ)
     (hs : Summable (fun j : ℕ => ‖pairPrimePowerCoefficient A D j*x^j‖))
     (hA : 1-A*x ≠ 0) (hD : ‖D*x‖ < 1) :
@@ -214,8 +204,6 @@ private theorem pairDiagonalRationalAlgebra (x y z w S : ℂ)
   field_simp [hy, hz, hw] at h
   linear_combination h
 
-/-- The diagonal rational formula is derived from the actual infinite
-series. No closed local factor is an input. -/
 theorem pairDiagonalPrimeSeries_closed {A D C B r : ℂ} {M : ℝ}
     (hM : 0 ≤ M) (hA : ‖A‖ ≤ M) (hD : ‖D‖ ≤ M)
     (hC : ‖C‖ ≤ M) (hB : ‖B‖ ≤ M) (hr : M^2*‖r‖ < 1) :
@@ -286,9 +274,6 @@ theorem pairDiagonalPrimeSeries_closed {A D C B r : ℂ} {M : ℝ}
     (pairDiagonalPrimeSeries A D C B r) hACn hABn hCDn hBDn halg
   convert hclosed using 1; congr 1; ring
 
-/-- The genuine numerator has the exact shift recurrence after summation.
-The hypotheses are absolute convergence of its diagonal and auxiliary
-series, rather than a presumed closed formula for either series. -/
 theorem pairShiftedPrimeSeries_recurrence (A D C B r : ℂ) (ν : ℕ)
     (hdiag : Summable (fun j : ℕ => ‖pairPrimePowerCoefficient A D j*
       pairPrimePowerCoefficient C B j*r^j‖))
@@ -327,9 +312,6 @@ private theorem pairShiftedRatioAlgebra (x y z w c k S G N : ℂ)
     _ = c+k*(G/S) := by field_simp [hSn]
     _ = _ := by rw [hGS]; ring
 
-/-- The genuine shifted local ratio has the finite numerator underlying
-the eta factor. Absolute convergence and every nonzero denominator follow
-from the four prime-weight norm bounds. -/
 theorem pairShiftedPrimeSeries_ratio {A D C B r : ℂ} {M : ℝ}
     (hM : 0 ≤ M) (hA : ‖A‖ ≤ M) (hD : ‖D‖ ≤ M)
     (hC : ‖C‖ ≤ M) (hB : ‖B‖ ≤ M) (hr : M^2*‖r‖ < 1) (ν : ℕ) :
@@ -382,7 +364,6 @@ theorem pairShiftedPrimeSeries_ratio {A D C B r : ℂ} {M : ℝ}
   congr 2
   ring
 
-/-- The genuine diagonal denominator cannot vanish in its proved domain. -/
 theorem pairDiagonalPrimeSeries_ne_zero {A D C B r : ℂ} {M : ℝ}
     (hM : 0 ≤ M) (hA : ‖A‖ ≤ M) (hD : ‖D‖ ≤ M)
     (hC : ‖C‖ ≤ M) (hB : ‖B‖ ≤ M) (hr : M^2*‖r‖ < 1) :

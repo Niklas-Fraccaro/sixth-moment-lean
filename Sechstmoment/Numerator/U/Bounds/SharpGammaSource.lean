@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Bounds.SharpGammaSourceBudget
 
-/-! The full original/dual four-chamber source/Gamma replacement has the
-two literal Lemma-2 powers with an arbitrarily prescribed positive loss.
-All source factories and auxiliary exponents precede the T limit. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

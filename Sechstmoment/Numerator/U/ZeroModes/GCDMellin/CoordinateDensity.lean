@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.GCDVStarCoordinates
 
-/-! Exact positive-real power density in the BBLR GCD coordinate.
-The factor d precedes the true h-Mellin weight d^(-s), producing d^(1-s). -/
 namespace Sechstmoment
 open Complex Real Source
 open scoped BigOperators
@@ -33,8 +31,6 @@ theorem a03GCDCoordinateQuad_denominator_inv (α : MomentShifts)
   congr 1
   ring
 
-/-- The actual two reciprocal-square-root amplifier powers and the real
-Jacobian combine with the shifted native quad denominator exactly. -/
 theorem a03GCDCoordinate_full_density (α : MomentShifts)
     {a b m n X : ℝ} (ha : 0<a) (hb : 0<b) (hm : 0<m) (hn : 0<n) (hX : 0<X) (d : ℝ) :
     ((d/(a*b*m*n):ℝ):ℂ)*(a:ℂ)^(-(1/2:ℂ))*(b:ℂ)^(-(1/2:ℂ))*

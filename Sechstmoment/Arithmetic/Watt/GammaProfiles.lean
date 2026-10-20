@@ -1,7 +1,5 @@
 import Sechstmoment.Arithmetic.Watt.Fourier
 
-/-! Normalisation and uniform Fourier control of the actual gamma slices.
-The constants are explicit functions of the fixed mixed derivative bounds. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -91,7 +89,6 @@ theorem gamma_normalized_data {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
       _ ≤ g j 0*(2 : ℝ)^j := mul_le_mul_of_nonneg_left hp (hg j 0)
       _ = gammaProfileBounds g j := by unfold gammaProfileBounds; ring
 
-/-- Uniform rapid decay at the correct scale V/c, for every arithmetic slice. -/
 theorem gamma_fourier_decay {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)

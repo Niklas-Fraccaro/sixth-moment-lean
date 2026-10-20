@@ -2,9 +2,6 @@ import Mathlib.NumberTheory.LSeries.DirichletContinuation
 import Mathlib.Tactic
 import Sechstmoment.Zeta.CompletedBounds
 
-/-! Actual Dirichlet-L completions and their vertical-strip bounds.
-The constants in this module may depend on the fixed character and modulus.
-No moment bound or approximate functional equation is a hypothesis. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
@@ -104,8 +101,6 @@ theorem completedDirichletL_strip_bound {N : ℕ} [NeZero N]
   rw [he]
   exact hbound s hsu hsv
 
-/-- The conductor-normalized completion, so the functional equation has a
-constant root number and no moving conductor power. -/
 def conductorCompletedL {N : ℕ} [NeZero N] (χ : DirichletCharacter ℂ N) (s : ℂ) : ℂ :=
   (N : ℂ)^(s/2) * χ.completedLFunction s
 

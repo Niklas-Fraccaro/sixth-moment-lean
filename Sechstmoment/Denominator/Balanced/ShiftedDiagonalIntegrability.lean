@@ -1,9 +1,6 @@
 import Sechstmoment.Denominator.Balanced.ProfileDisintegration
 import Sechstmoment.Denominator.Balanced.SharpLogCutoff
 
-/-! Uniform shift-contour envelopes on the literal positive sharp cut.
-The direct and dual exponentials are integrated against the actual four
-profiles on the proved compact nine-edge support. -/
 
 namespace Sechstmoment
 open MeasureTheory Set Complex
@@ -15,8 +12,6 @@ def d02BalancedWeightedEdgeIntegrand (ρ : Fin 4 → ℝ → ℝ) (w : D01LogSpa
     D01EdgeSpace → ℂ :=
   d02BalancedEdgeCut.indicator (fun x => (d02BalancedEdgeProfile ρ x : ℂ)*w (d01RowColumnSums x))
 
-/-- Integrability on the actual sharp cut is proved for every continuous
-complex shift weight; the unamplified coordinates need no assumed support. -/
 theorem d02BalancedWeightedEdgeIntegrand_integrable
     (ρ : Fin 4 → ℝ → ℝ) (A : Fin 4 → ℝ) (w : D01LogSpace → ℂ)
     (hρc : ∀ i, Continuous (ρ i))
@@ -71,8 +66,6 @@ theorem d02CenteredExponent_norm_le (σ : Fin 2 → ℂ) {R u v : ℝ}
   rw [Complex.norm_exp]
   exact Real.exp_le_exp.mpr ((Complex.re_le_norm _).trans hz)
 
-/-- The two centered exponentials are uniformly bounded on every bounded
-complex shift contour, using only the actual logarithmic product cutoff. -/
 theorem d02BalancedLogExponentialWeight_norm_le (σ : Fin 2 → ℂ) {R : ℝ}
     (hR : 0≤R) (hσ : ∀ j, ‖σ j‖≤R) {y : D01LogSpace}
     (hy : y∈d01PositiveOrthant) (hcut : y∈d02SharpLogRegion) :
@@ -115,8 +108,6 @@ theorem d02BalancedShiftedEdgeIntegrand_uniform_norm_le
   · simp only [d02BalancedWeightedEdgeIntegrand,indicator_of_notMem hx,norm_zero]
     exact mul_nonneg (abs_nonneg _) (by positivity)
 
-/-- The Cauchy-contour envelope retains the sharp-cut localization, so it
-is an actual integrable dominator on the full nine-edge space. -/
 theorem d02BalancedShiftedEdgeIntegrand_localized_norm_le
     (ρ : Fin 4 → ℝ → ℝ) (σ : Fin 2 → ℂ) {R : ℝ}
     (hR : 0≤R) (hσ : ∀ j, ‖σ j‖≤R) (x : D01EdgeSpace) :

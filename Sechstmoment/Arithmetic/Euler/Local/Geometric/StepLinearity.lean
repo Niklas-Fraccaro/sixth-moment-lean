@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Geometric.GeometricStep
 
-/-! Linearity of geometric convolution in its input sequence. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

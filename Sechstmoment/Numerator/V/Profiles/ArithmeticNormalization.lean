@@ -1,7 +1,6 @@
 import Sechstmoment.Arithmetic.Factor.Convergence
 import Sechstmoment.Numerator.V.Profiles.OriginalProfile
 
-/-! Exact identification with the arithmetic factor used by the original goal. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex Polynomial NoDPGlobalRest

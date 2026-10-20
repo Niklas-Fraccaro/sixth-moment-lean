@@ -2,12 +2,6 @@ import Mathlib.Analysis.Convolution
 import Sechstmoment.Numerator.U.Separation.ShapeNormalization
 import Sechstmoment.Numerator.U.Separation.SixTermOrientation
 
-/-!
-The four factor chambers in the zero-mode evaluation of BBLR v1 §2.4.
-The chamber bits exchange the shifts together with the factors; no invariance
-of the unsorted quadratic zero mode is asserted. The reverse-negative tuple is
-the tuple in the source identity `M α s = M (reverseNegative α) (-s)`.
--/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory
@@ -15,7 +9,6 @@ open scoped BigOperators
 open Classical
 noncomputable section
 
-/-- Exchange the first and/or the second factor pair. -/
 def a03ZeroModePairPermutation (m n : Bool) (j : Fin 4) : Fin 4 :=
   ![if m then 1 else 0, if m then 0 else 1,
     if n then 3 else 2, if n then 2 else 3] j
@@ -24,7 +17,6 @@ def a03ZeroModePairPermutation (m n : Bool) (j : Fin 4) : Fin 4 :=
     a03ZeroModePairPermutation m n (a03ZeroModePairPermutation m n j) = j := by
   cases m <;> cases n <;> fin_cases j <;> norm_num [a03ZeroModePairPermutation]
 
-/-- The shift tuple carried by a factor chamber. -/
 def a03ZeroModeChamberShifts (m n : Bool) (α : MomentShifts) : MomentShifts :=
   fun j => α (a03ZeroModePairPermutation m n j)
 
@@ -33,7 +25,6 @@ def a03ZeroModeChamberShifts (m n : Bool) (α : MomentShifts) : MomentShifts :=
   funext j
   simp [a03ZeroModeChamberShifts]
 
-/-- The source contour involution reverses all four shifts and negates them. -/
 def a03ZeroModeReverseNegative (α : MomentShifts) : MomentShifts :=
   ![-α 3, -α 2, -α 1, -α 0]
 
@@ -42,7 +33,6 @@ def a03ZeroModeReverseNegative (α : MomentShifts) : MomentShifts :=
   funext j
   fin_cases j <;> simp [a03ZeroModeReverseNegative]
 
-/-- Original chamber `(m,n)` pairs with dual chamber `(!n,!m)`. -/
 theorem a03ZeroMode_chamber_dual_partner (m n : Bool) (α : MomentShifts) :
     a03ZeroModeReverseNegative (a03ZeroModeChamberShifts m n α) =
       a03ZeroModeChamberShifts (!n) (!m) (bblrSixShifts α 1) := by
@@ -51,7 +41,6 @@ theorem a03ZeroMode_chamber_dual_partner (m n : Bool) (α : MomentShifts) :
     simp [a03ZeroModeReverseNegative, a03ZeroModeChamberShifts,
       a03ZeroModePairPermutation, bblrSixShifts]
 
-/-- The zeta quotient multiplying the source M-contour. -/
 def a03ZeroModeContourPrefactor (α : MomentShifts) : ℂ :=
   riemannZeta (1+α 0-α 1)*riemannZeta (1+α 2-α 3)/
     riemannZeta (2+α 0-α 1+α 2-α 3)
@@ -76,8 +65,6 @@ theorem a03ZeroMode_chamber_phase_dual_partner (m n : Bool) (α : MomentShifts) 
     simp [a03ZeroModeChamberShifts, a03ZeroModePairPermutation,
       bblrSixShifts, bblrSixPhaseExponents] <;> ring
 
-/-- Reflection of a parametrized vertical integral includes reversing the
-real integration variable. This is valid for the total Bochner integral. -/
 theorem a03ZeroMode_verticalIntegral_reflection (c : ℝ) (F : ℂ → ℂ) :
     verticalIntegral c (fun z => F (-z)) = verticalIntegral (-c) F := by
   unfold verticalIntegral
@@ -93,7 +80,6 @@ theorem a03ZeroMode_verticalIntegral_reflection (c : ℝ) (F : ℂ → ℂ) :
     _ = _ := MeasureTheory.integral_neg_eq_self
       (fun v : ℝ => F (((-c:ℝ):ℂ)+(v:ℂ)*I)) volume
 
-/-- The factor `1/s` supplies the minus sign in paired source contours. -/
 theorem a03ZeroMode_verticalIntegral_reflection_div (c : ℝ) (F : ℂ → ℂ) :
     verticalIntegral c (fun z => F (-z)/z) =
       -verticalIntegral (-c) (fun z => F z/z) := by

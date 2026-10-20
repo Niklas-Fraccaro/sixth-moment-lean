@@ -2,18 +2,11 @@ import Mathlib.Tactic
 import Sechstmoment.Arithmetic.QuadraticDivisor.Estimates.Errors
 import Sechstmoment.Arithmetic.QuadraticDivisor.Input
 
-/-!
-The finer source contract is applied to its literal signed quadratic divisor
-sum, rather than to an arbitrary error function. Its second `d` range and its
-Poisson error are retained in the adapter.
--/
 
 namespace Sechstmoment
 
 open Source
 
-/-- Both `d` ranges of the oriented source calculation fit the maximum-length
-majorant, at the cost of an explicit factor two. -/
 theorem rectangular_source_majorant_le (q : Source.QuadraticScales) {X : ℝ}
     (hA : 0 ≤ q.A) (hB : 0 ≤ q.B) (_hX : 0 ≤ X) (hH : 0 ≤ q.H)
     (hmass : q.mass = q.A*q.B*X^2) :
@@ -37,7 +30,6 @@ theorem rectangular_source_majorant_le (q : Source.QuadraticScales) {X : ℝ}
         (add_le_add_right (mul_le_mul_of_nonneg_left hc hp) _) hpref
     _ = _ := by ring
 
-/-- A polynomial bound on the source mass makes the source `mass^ε` loss explicit. -/
 theorem rectangular_source_mass_power_le {mass D T r ε : ℝ}
     (hmass : 0 ≤ mass) (hD : 0 ≤ D) (hT : 0 ≤ T) (hε : 0 ≤ ε)
     (hgrowth : mass ≤ D*T^r) : mass^ε ≤ D^ε*T^(r*ε) := by
@@ -45,8 +37,6 @@ theorem rectangular_source_mass_power_le {mass D T r ε : ℝ}
   rw [Real.mul_rpow hD (Real.rpow_nonneg hT r), ← Real.rpow_mul hT] at hp
   exact hp
 
-/-- Literal source discrepancy with both source power losses, the two `d`
-ranges and the Poisson remainder transferred to an explicit `T` majorant. -/
 theorem rectangular_signed_source_discrepancy_bound
     (positive : Bool) (q : Source.QuadraticScales) (α β : ℕ → ℂ)
     (W : Fin 5 → ℝ → ℝ) {X C D T r ε : ℝ}
@@ -69,7 +59,6 @@ theorem rectangular_signed_source_discrepancy_bound
             (mul_le_mul_of_nonneg_right hp₂ (sq_nonneg _))) hC)
     _ = _ := by ring
 
-/-- Apply the cited primitive input first; the rectangular reduction is an own theorem. -/
 theorem rectangular_BBLRv1_source_adapter (hinput : Source.SeparatedQuadraticInput)
     {ε δ K : ℝ} (hε : 0 < ε) (hδ : 0 < δ) (hK : 1 ≤ K)
     (bounds : ℕ → ℝ) (hbounds : ∀ j, 0 ≤ bounds j) :
@@ -89,8 +78,6 @@ theorem rectangular_BBLRv1_source_adapter (hinput : Source.SeparatedQuadraticInp
   exact rectangular_signed_source_discrepancy_bound positive q α β W hA hB hX hH hC hD hT
     hε.le hmass hgrowth hgrowthH (hc q α β W hq positive)
 
-/-- The actual signed source discrepancy is reconstructed with its Poisson
-remainder; the remainder is not silently dropped from the source estimate. -/
 theorem rectangular_actual_signed_transfer
     (positive : Bool) (q : Source.QuadraticScales) (α β : ℕ → ℂ)
     (W : Fin 5 → ℝ → ℝ) {X C D T r ε K : ℝ}

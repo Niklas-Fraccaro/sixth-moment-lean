@@ -5,7 +5,6 @@ namespace DivisorProof
 
 noncomputable section
 
-/-- Input exponent from Corollary 1.3; the output exponent is `ε`. -/
 def inputExponent (ε δ : ℝ) : ℝ :=
   min (ε / 2000) (δ / (2000 * (1 + δ)))
 
@@ -48,7 +47,6 @@ theorem rho_reserve {ρ δ : ℝ} (hδ : 0 < δ) (hρ : 0 < ρ)
   · have hδρ := mul_pos hδ hρ
     nlinarith
 
-/-- Strict power reserve in the first Watt size condition, equation (27). -/
 theorem watt_first_size_exponent {ρ δ : ℝ} (hδ : 0 < δ) (hρ : 0 < ρ)
     (hbound : ρ ≤ δ / (1000 * (1 + δ))) :
     ρ < δ / (4 * (1 + δ)) - ρ / (2 * (1 + δ)) - 5 * ρ := by
@@ -58,7 +56,6 @@ theorem watt_first_size_exponent {ρ δ : ℝ} (hδ : 0 < δ) (hρ : 0 < ρ)
     nlinarith
   linarith
 
-/-- Literal loss accounting in §6.4; the loss `20ρ` is retained. -/
 theorem watt_loss_budget :
     (35 + 60 + 6 + 1 + 2 + 10 : ℕ) = 114 ∧ (114 : ℕ) < 200 := by
   norm_num
@@ -66,7 +63,6 @@ theorem watt_loss_budget :
 theorem final_loss_budget : (220 + 6 : ℕ) = 226 ∧ (226 : ℕ) ≤ 1000 := by
   norm_num
 
-/-- The explicit positive margin in §8.3. -/
 def sourceGap (a b : ℝ) : ℝ := min (1 / 2 - a - b) ((2 - 3*a - 5*b) / 8)
 
 theorem sourceGap_pos {a b : ℝ} (_ha : 0 ≤ a) (hab : a ≤ b)
@@ -80,7 +76,6 @@ theorem sourceGap_le_quarter {a b : ℝ} (ha : 0 ≤ a) (hab : a ≤ b) :
   have h := min_le_right (1 / 2 - a - b) ((2 - 3*a - 5*b) / 8)
   linarith
 
-/-- Both source orientations use `AB`, with `max(A,B)` handled separately. -/
 theorem source_exponents_with_margin {a b s u : ℝ}
     (ha : 0 ≤ a) (hab : a ≤ b) (hrange : 3*a + 5*b < 2)
     (_hs : 0 ≤ s) (hs' : s ≤ sourceGap a b / 64)
@@ -103,7 +98,6 @@ theorem source_loss_reserve {γ s u : ℝ} (hγ : 0 < γ)
     4*(γ/64) + 2*s + u/2 + γ/64 ≤ 15*γ/128 ∧ 15*γ/128 < γ/2 := by
   constructor <;> linarith
 
-/-- The fixed mass exponent `r = 4` is valid for the actual source scales. -/
 theorem source_mass_exponents_lt_four {a b s u : ℝ}
     (_ha : 0 ≤ a) (hab : a ≤ b) (hrange : 3*a + 5*b < 2)
     (hs : s ≤ 1/8) (hu : u ≤ 1/8) :

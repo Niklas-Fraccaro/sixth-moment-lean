@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Reconstruction.RectangularSignedMoment
 
-/-! Exact reindexing of the genuine finite AFE boxes by the literal signed
-integer gap of the quadratic source. This does not estimate the resulting
-weight or assume that hard dyadic indicators are smooth source weights. -/
 
 namespace Sechstmoment
 open Complex Source MeasureTheory Set
@@ -17,7 +14,6 @@ def rectangularAFEGap (positive : Bool) (a b : ℕ) (n : Fin 4 → ℕ) : ℕ :=
 def rectangularAFESourceTuple (a b : ℕ) (n : Fin 4 → ℕ) (h : ℕ) : Fin 7 → ℕ :=
   ![a, b, n 0+1, n 1+1, n 2+1, n 3+1, h]
 
-/-- Every genuine positive off-diagonal term has a positive natural gap. -/
 theorem rectangular_AFE_gap_pos (positive : Bool) (a b : ℕ) (n : Fin 4 → ℕ)
     (hn : if positive then rectangularPositiveQuadGap a b n
       else rectangularNegativeQuadGap a b n) : 0 < rectangularAFEGap positive a b n := by
@@ -25,8 +21,6 @@ theorem rectangular_AFE_gap_pos (positive : Bool) (a b : ℕ) (n : Fin 4 → ℕ
   · exact Nat.sub_pos_of_lt hn
   · exact Nat.sub_pos_of_lt hn
 
-/-- The actual off-diagonal selection is exactly the oriented integer
-relation appearing in the quadratic divisor source. -/
 theorem rectangular_AFE_gap_source_relation (positive : Bool) (a b : ℕ) (n : Fin 4 → ℕ)
     (hn : if positive then rectangularPositiveQuadGap a b n
       else rectangularNegativeQuadGap a b n) :
@@ -40,8 +34,6 @@ theorem rectangular_AFE_gap_source_relation (positive : Bool) (a b : ℕ) (n : F
     simp [signedQuadraticRelation, rectangularAFESourceTuple, rectangularAFEGap,
       Nat.cast_sub hle]
 
-/-- The source relation determines the gap uniquely on each selected AFE
-term; no spurious zero gap enters either signed off-diagonal. -/
 theorem rectangular_AFE_gap_source_unique (positive : Bool) (a b : ℕ) (n : Fin 4 → ℕ)
     (hn : if positive then rectangularPositiveQuadGap a b n
       else rectangularNegativeQuadGap a b n) (h : ℕ) :
@@ -64,9 +56,6 @@ theorem rectangular_AFE_gaps_positive (positive : Bool) (a b : ℕ) (k : Fin 4 �
   obtain ⟨n, hn, rfl⟩ := Finset.mem_image.mp hh
   exact rectangular_AFE_gap_pos positive a b n (Finset.mem_filter.mp hn).2
 
-/-- A finite actual AFE box is exactly a finite sum over its actual positive
-gaps and the literal source relation. The coefficient `F` can be the actual
-time integral or the actual Mellin kernel. -/
 theorem rectangular_AFE_box_gap_reindex (positive : Bool) (a b : ℕ) (k : Fin 4 → ℕ)
     (F : (Fin 4 → ℕ) → ℂ) :
     (∑ n ∈ rectangularAFEDyadicBox k,
@@ -94,8 +83,6 @@ theorem rectangular_AFE_box_gap_reindex (positive : Bool) (a b : ℕ) (k : Fin 4
   · simp [heq]
   · simp [heq, Ne.symm heq]
 
-/-- The selected actual integrated blocks are literally indexed by the
-source's positive gaps and signed quadratic relations. -/
 theorem rectangular_actual_signed_AFE_blocks_gap_reindex (positive : Bool) (a b : ℕ)
     (G : ℂ → ℂ) (α : MomentShifts) (w : ℝ → ℂ) :
     rectangularAFESelectedBlocks G α w (fun n =>

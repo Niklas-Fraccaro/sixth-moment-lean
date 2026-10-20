@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.ActualAmplifierCoefficients
 import Sechstmoment.Numerator.U.Separation.Tensor.SixFourier
 
-/-! The sixth Fourier character belongs to the amplifier coefficient β.
-It preserves its literal dyadic support and coefficient norm. -/
 namespace Sechstmoment
 open Complex Real Source Set
 open scoped BigOperators FourierTransform RealInnerProductSpace

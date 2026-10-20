@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.GCDCoprimeZeta
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.GCDDirichletBijection
 
-/-! Primitive-pair decomposition of the genuinely restricted GCD series (22).
-The common factor is itself restricted at the exceptional amplifier primes. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat Complex
@@ -140,8 +138,6 @@ theorem a03GCDScale_power_tsum (A B : ℕ) (t : ℂ) :
   change (d.val:ℂ)^(-t)=if d.val.Coprime (A*B) then shiftedPowerArithmetic t d.val else 0
   rw [ite_eq_left d.property.2,shiftedPowerArithmetic_apply _ (Nat.ne_of_gt d.property.1)]
 
-/-- The genuine restricted GCD series factors into its common-factor
-Dirichlet sum and its primitive pair sum, via the proved bijection. -/
 theorem a03RestrictedGCDSeries_eq_coprimeZeta_mul_primitive
     (A B : ℕ) {w z s : ℂ} (hw : 0<w.re) (hz : 0<z.re)
     (ht : 1<(1+w+z+s).re) :
@@ -223,8 +219,6 @@ theorem a03RestrictedGCDSeries_one (A B : ℕ) {w z : ℂ}
   rw [←a03CoprimePositive_power_tsum B (1+w),←a03CoprimePositive_power_tsum A (1+z)]
   exact (hm.of_norm.tsum_mul_tsum hn.of_norm hnorm.of_norm).symm
 
-/-- Complete evaluation of the restricted GCD series in terms of actual
-coprime Dirichlet sums.  Both factorizations arise from proved bijections. -/
 theorem a03RestrictedGCDSeries_eq_coprimeZeta_quotient {A B : ℕ}
     (hA : A≠0) (hB : B≠0) {w z s : ℂ} (hw : 0<w.re) (hz : 0<z.re)
     (ht : 1<(1+w+z+s).re) :

@@ -1,7 +1,5 @@
 import Sechstmoment.Zeta.Bounds.ZetaLaurent
 
-/-! Uniform three-factor Laurent control, retaining a positive separation
-from the three actual zeta poles. -/
 
 namespace Sechstmoment.Source
 open Complex Real

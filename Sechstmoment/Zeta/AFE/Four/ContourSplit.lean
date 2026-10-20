@@ -2,13 +2,6 @@ import Sechstmoment.Zeta.AFE.Four.FiniteRectangle
 import Sechstmoment.Zeta.AFE.Four.FourDirichlet
 import Sechstmoment.Zeta.AFE.Four.Geometry
 
-/-!
-# Exact finite splitting of the literal BBLR discrepancy
-
-The only terms remaining after the finite residue calculation are the two
-horizontal edges and the two tails of the original and dual right lines.
-No estimate of the discrepancy is an input.
--/
 
 namespace Sechstmoment.Source
 open Complex MeasureTheory Set
@@ -66,7 +59,6 @@ theorem fixedAFE_truncated_left_eq_dual (G : ℂ → ℂ) (α : MomentShifts)
   rw [hneg]
   simp only [neg_neg]
 
-/-- The exact three-error decomposition used by the quantitative proof. -/
 theorem fixedAFE_discrepancy_eq_three_errors
     (G : ℂ → ℂ) (hG : BBLREntireWeight G (fun _ => 0))
     (t : ℝ) (ht : 16 ≤ t) (α : MomentShifts)

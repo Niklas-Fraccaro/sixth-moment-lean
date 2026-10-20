@@ -105,8 +105,6 @@ theorem phase_source_mass_ge_one (q : QuadraticScales) (hq : ∀ j, 1≤q.size j
     (1:ℝ) = 1*1*(1*1)*(1*1) := by norm_num
     _ ≤ _ := by gcongr
 
-/-- Full source admissibility after the exact supported-variable
-normalization, for every real/imaginary component of the complex weights. -/
 theorem phase_normalized_source_admissible {ε K : ℝ} (hε : 0≤ε)
     (q : QuadraticScales) (hq : ∀ j, 1≤q.size j)
     (hH : q.H≤K*(q.A*q.B)^(1/2+ε)) (hδ : q.A*q.B≤K*q.M*q.N)

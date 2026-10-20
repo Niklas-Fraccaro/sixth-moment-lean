@@ -4,8 +4,6 @@ import Sechstmoment.Certificate.Kernels.Balanced.PolytopeDensityBridge
 import Sechstmoment.Zeta.Amplifiers
 import Sechstmoment.Zeta.Generators
 
-/-! The literal balanced height moment and its independently defined geometric
-endpoint.  These are definitions of the D02 target, not additional inputs. -/
 namespace Sechstmoment
 open Complex Real Polynomial MeasureTheory Filter Set
 open scoped BigOperators Topology ContDiff
@@ -32,8 +30,6 @@ def d02BalancedProfileKernel (p q : Fin 5 → ℝ) (ρ : Fin 4 → ℝ → ℝ) 
   ∫ a : Fin 4 → ℝ, (∏ i, ρ i (a i)) *
     denominatorZeroKernel p q (a 0) (a 1) (a 2) (a 3)
 
-/-- D02's polynomial moment assertion.  In particular, no assumed AFE,
-off-diagonal negligibility or target limit occurs in its hypotheses. -/
 def D02BalancedDenominatorAsymptotic : Prop :=
   ∀ (a : Fin 4 → ℝ), (∀ i, 0 < a i) → (∑ i, a i) < 1 →
   ∀ (ρ : Fin 4 → ℝ → ℝ), (∀ i, Continuous (ρ i)) →

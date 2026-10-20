@@ -2,8 +2,6 @@ import Mathlib.Analysis.Calculus.MeanValue
 import Mathlib.Analysis.Complex.CauchyIntegral
 import Sechstmoment.Analysis.Mellin.SmoothMellinEntire
 
-/-! The leading time mass and a quantitative local Mellin error for the
-actual compact dyadic weight. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set Metric MeasureTheory

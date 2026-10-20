@@ -39,9 +39,6 @@ theorem density_inner_integral {m v : ℝ} (hmv : m ≤ v) (t r : ℝ) :
   simp only [smul_eq_mul]
   ring
 
-/-- The cubic corner formula, proved as an equality of two real integrals.
-The change from the four-dimensional polytope to these coordinates is not
-asserted by this theorem. -/
 theorem denominator_density_cubic {l u m v : ℝ} (hlu : l ≤ u) (hmv : m ≤ v)
     (t : ℝ) :
     6*(∫ r in l..u, ∫ s in m..v, min r s-max (s-(t-r)) 0) =

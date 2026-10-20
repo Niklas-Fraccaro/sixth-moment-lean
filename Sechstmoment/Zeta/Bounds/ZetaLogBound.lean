@@ -1,7 +1,5 @@
 import Sechstmoment.Zeta.Bounds.MellinZetaDirichletBounds
 
-/-! Uniform logarithmic zeta bounds on the absolutely convergent starting line.
-The pole constant comes from the proved entire regularization on [1,2]. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

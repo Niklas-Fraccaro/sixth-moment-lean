@@ -1,15 +1,6 @@
 import Sechstmoment.Numerator.U.Diagonal.PrincipalArithmeticLines
 import Sechstmoment.Numerator.U.Diagonal.ProfileContourShift
 
-/-!
-# A04: the actual two principal profile contours
-
-Both amplifier contours of the genuine principal Mellin kernel can move
-from a fixed positive line to any smaller positive line on which the raw
-shifts satisfy the explicit bound. All joint integrability and horizontal
-boundary decay follow from the actual profiles and arithmetic kernel.
-This module does not assert the subsequent polar limit or A04 completion.
--/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
@@ -154,8 +145,6 @@ theorem actualPrincipalProfileIntegral_right_shift
   rw [hinner d,hinner c,actualPrincipalProfile_single_right_line_shift T σ m hg hgs
     hL hε hε1 hα hc hcd (by simpa using he)]
 
-/-- The two actual principal contours move together, with no poles crossed
-and no additional integrability or horizontal-boundary assumptions. -/
 theorem actualPrincipalProfileIntegral_double_shift
     (T : ℝ) (σ : MomentShifts) (m : Fin 6)
     {f g : ℝ → ℂ} (hf : HasCompactSupport f) (hfs : ContDiff ℝ ∞ f)

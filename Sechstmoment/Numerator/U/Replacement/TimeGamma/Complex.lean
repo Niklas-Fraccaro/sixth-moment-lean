@@ -3,7 +3,6 @@ import Sechstmoment.Analysis.Complex.RealDerivatives
 import Sechstmoment.Analysis.Gaussian.Integrability
 import Sechstmoment.Zeta.AFE.Four.GammaComparison
 
-/-! Actual Gamma ratios on a complex normalized-time window. -/
 namespace Sechstmoment.Source
 open Complex Set Metric
 open scoped BigOperators Topology

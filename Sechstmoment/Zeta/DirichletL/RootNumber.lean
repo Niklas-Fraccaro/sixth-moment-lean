@@ -1,10 +1,6 @@
 import Mathlib.Analysis.Fourier.ZMod
 import Sechstmoment.Zeta.DirichletL.Weights.Definitions
 
-/-! The modulus of the actual primitive root number, obtained from finite
-Fourier inversion and Gauss-sum conjugation, without a Gauss-sum estimate
-being assumed.
--/
 
 namespace Sechstmoment.Source
 open Complex Real ZMod ComplexConjugate

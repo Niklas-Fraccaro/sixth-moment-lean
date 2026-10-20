@@ -1,17 +1,12 @@
 import Sechstmoment.Analysis.Fourier.UniformDecay
 import Sechstmoment.Arithmetic.Divisors.LogFrequency
 
-/-! Repeated integration by parts for finite balanced denominator sums.
-The hypotheses give time regularity and absolute coefficient mass; no
-off-diagonal error estimate or moment asymptotic is assumed. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- Integration by parts can be summed with the actual derivative and
-coefficient budgets retained, even for varying time amplitudes. -/
 theorem d02_finite_offDiagonal_fourier_bound {ι : Type*} (s : Finset ι)
     (c : ι → ℂ) (f : ι → ℝ → ℂ) (ξ B : ι → ℝ) (N : ℕ)
     (hS : ∀ i ∈ s, ContDiff ℝ ∞ (f i))
@@ -43,7 +38,6 @@ theorem d02_finite_offDiagonal_fourier_bound {ι : Type*} (s : Finset ι)
           simpa only [mul_assoc, mul_left_comm, mul_comm] using mul_le_mul_of_nonneg_left hh (norm_nonneg (c i))
         _ ≤ ‖c i‖ * B i := mul_le_mul_of_nonneg_left hd (norm_nonneg (c i))
 
-/-- Exact rescaling of the literal negative logarithmic denominator phase. -/
 theorem d02_balanced_time_sum_rescaling {ι : Type*} (s : Finset ι)
     {T : ℝ} (hT : 0 < T) (H K m n : ι → ℕ) (c : ι → ℂ) (f : ι → ℝ → ℂ) :
     (∑ i ∈ s, c i * a03ProfileTimeFourier (f i) T
@@ -59,8 +53,6 @@ theorem d02_balanced_time_sum_rescaling {ι : Type*} (s : Finset ι)
       -T * Real.log (((H i * m i : ℕ) : ℝ) / ((K i * n i : ℕ) : ℝ)) by ring]
   ring
 
-/-- After restoring t = T y, an arbitrary finite truncation of the literal
-balanced off-diagonal has the expected power saving per integration by parts. -/
 theorem d02_balanced_offDiagonal_integral_bound {ι : Type*} (s : Finset ι)
     {T S δ P C : ℝ} (hT : 0 < T) (hC : 0 ≤ C)
     (H K m n : ι → ℕ) (c : ι → ℂ) (f : ι → ℝ → ℂ) (B : ι → ℝ) (N : ℕ)
@@ -104,8 +96,6 @@ theorem d02_balanced_offDiagonal_integral_bound {ι : Type*} (s : Finset ι)
       ring
     _ = _ := rfl
 
-/-- Once the integration-by-parts order exceeds the polynomial budget,
-the bound is any prescribed negative power of T. -/
 theorem d02_balanced_offDiagonal_power_bound {T S δ P C A : ℝ}
     (hT : 1 ≤ T) (hC : 0 ≤ C) (N : ℕ)
     (horder : 1 + P - ((1 - S - δ) / 2) * (N : ℝ) ≤ -A)
@@ -115,7 +105,6 @@ theorem d02_balanced_offDiagonal_power_bound {T S δ P C A : ℝ}
   exact hz.trans (mul_le_mul_of_nonneg_left
     (Real.rpow_le_rpow_of_exponent_le hT horder) (mul_nonneg (by positivity) hC))
 
-/-- A positive frequency exponent always permits enough integrations by parts. -/
 theorem d02_balanced_offDiagonal_exists_order {S δ : ℝ} (hδ : δ < 1 - S)
     (P A : ℝ) :
     ∃ N : ℕ, 1 + P - ((1 - S - δ) / 2) * (N : ℝ) ≤ -A := by
@@ -125,9 +114,6 @@ theorem d02_balanced_offDiagonal_exists_order {S δ : ℝ} (hδ : δ < 1 - S)
   have hh := (div_lt_iff₀ hκ).1 hN
   linarith
 
-/-- Polynomial coefficient mass and polynomial derivative envelopes, together
-with the literal arithmetic cutoffs, imply every negative-power time-sum bound.
-The finite set and every amplitude may vary with the height. -/
 theorem d02_balanced_offDiagonal_arbitrary_power_decay {ι : Type*}
     (s : ℝ → Finset ι) (H K m n : ℝ → ι → ℕ)
     (c : ℝ → ι → ℂ) (f : ℝ → ι → ℝ → ℂ)

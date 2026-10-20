@@ -4,8 +4,6 @@ import Sechstmoment.Numerator.U.ZeroModes.Ratio.PhysicalXMass
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.PrimitiveAmplifierMass
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ResidualChambers
 
-/-! The literal three-contour remainder, integrated over the full
-positive x-axis and the full outer s-line, with the original amplifier grid. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology ContDiff

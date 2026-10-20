@@ -47,8 +47,6 @@ theorem denominator_integrand_polynomial (p q : Fin 5 → ℝ) (delta x : ℝ) :
   rw [hp, hq]
   exact polynomialProduct_exact _ _ x
 
-/-- Exact evaluation of the inner integral in equation (4.2).
-No asymptotic relation to zeta moments is asserted by this theorem. -/
 theorem denominator_inner_integral (p q : Fin 5 → ℝ) (delta h : ℝ) :
     (∫ x in -h..h, evalDegreeFour p (delta-x) * evalDegreeFour q (-delta-x)) =
       2*innerCoefficient p q delta 0*h +

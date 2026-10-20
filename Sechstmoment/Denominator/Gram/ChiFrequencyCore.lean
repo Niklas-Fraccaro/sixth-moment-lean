@@ -2,17 +2,14 @@ import Mathlib.Analysis.Calculus.Deriv.Star
 import Sechstmoment.Analysis.Complex.RealDerivatives
 import Sechstmoment.Zeta.Chi.Basic
 
-/-! The genuine logarithmic frequency of the inverse critical-line chi factor. -/
 namespace Sechstmoment
 open Complex Filter Metric Set
 open scoped ComplexConjugate Topology
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- Holomorphic extension of the real inverse-chi frequency. -/
 def d06ComplexChiFrequency (s : ℂ) : ℂ := - (deriv zetaChi s / zetaChi s)
 
-/-- The actual real frequency, defined from the actual archimedean quotient. -/
 def d06ChiFrequency (t : ℝ) : ℝ := (d06ComplexChiFrequency (criticalLinePoint t)).re
 
 theorem d06CriticalChi_hasDerivAt (t : ℝ) :

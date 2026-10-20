@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.AFE
 
-/-! Arbitrarily rapid spatial truncation of the literal full VStar AFE.
-The four-index cutoff is actual, and rightward Mellin movement is proved. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
 open scoped BigOperators Topology

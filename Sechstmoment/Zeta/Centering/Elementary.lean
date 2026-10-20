@@ -4,14 +4,6 @@ import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.FunProp
 import Sechstmoment.Analysis.Complex.CauchyBounds
 
-/-!
-# The actual elementary centering phase
-
-The deterministic factor `exp z * (T*x/(2*pi))^(-z/log T)` reduces exactly to
-`exp (-z*log(x/(2*pi))/log T)` for positive `T` and `x`. An explicit bound
-uniform for `x` in `[1,2]` and `z` in a fixed complex disk proves its
-inverse-logarithmic remainder. No Gamma-factor asymptotic is used here.
--/
 
 namespace Sechstmoment
 
@@ -19,12 +11,10 @@ open Filter Metric Asymptotics
 
 noncomputable section
 
-/-- The genuine elementary factor left after the leading Gamma asymptotic. -/
 def elementaryCenteredPhase (T x : ℝ) (z : ℂ) : ℂ :=
   Complex.exp z * ((T * x / (2 * Real.pi) : ℝ) : ℂ) ^
     (-z / (Real.log T : ℂ))
 
-/-- One fixed explicit bound for `|log (x/(2*pi))|`, uniformly on `[1,2]`. -/
 def elementaryPhaseLogBound : ℝ := Real.log 2 + |Real.log (2 * Real.pi)|
 
 theorem elementaryPhaseLogBound_pos : 0 < elementaryPhaseLogBound := by
@@ -46,7 +36,6 @@ theorem elementaryPhase_log_bound {x : ℝ} (hx : x ∈ Set.Icc (1 : ℝ) 2) :
       linarith [Real.log_le_log hx0 hx.2]
     _ = elementaryPhaseLogBound := rfl
 
-/-- The exact centering cancellation for the actual complex-power factor. -/
 theorem elementaryCenteredPhase_eq_exp {T x : ℝ} (z : ℂ)
     (hT : 0 < T) (hx : 0 < x) (hlog : Real.log T ≠ 0) :
     elementaryCenteredPhase T x z =
@@ -65,7 +54,6 @@ theorem elementaryCenteredPhase_eq_exp {T x : ℝ} (z : ℂ)
   field_simp [Complex.ofReal_ne_zero.mpr hlog]
   ring
 
-/-- The phase and its remainder are entire functions of the complex shift. -/
 theorem elementaryCenteredPhase_differentiable {T x : ℝ}
     (hT : 0 < T) (hx : 0 < x) (hlog : Real.log T ≠ 0) :
     Differentiable ℂ (elementaryCenteredPhase T x) := by
@@ -75,7 +63,6 @@ theorem elementaryCenteredPhase_differentiable {T x : ℝ}
   rw [heq]
   fun_prop
 
-/-- Explicit disk estimate once `log T` dominates both `1` and the exponent bound. -/
 theorem elementaryCenteredPhase_error_bound {T x R : ℝ} {z : ℂ}
     (hT : 0 < T) (hx : x ∈ Set.Icc (1 : ℝ) 2) (hz : ‖z‖ ≤ R)
     (hlog : max 1 (R * elementaryPhaseLogBound) ≤ Real.log T) :
@@ -101,7 +88,6 @@ theorem elementaryCenteredPhase_error_bound {T x R : ℝ} {z : ℂ}
       mul_le_mul_of_nonneg_left hexponent (by norm_num)
     _ = _ := by ring
 
-/-- A single eventual bound controls the full spatial interval and the full shift disk. -/
 theorem elementaryCenteredPhase_uniform_error_bound (R : ℝ) :
     ∀ᶠ T : ℝ in atTop, ∀ x ∈ Set.Icc (1 : ℝ) 2, ∀ z : ℂ, ‖z‖ ≤ R →
       ‖elementaryCenteredPhase T x z - 1‖ ≤
@@ -112,7 +98,6 @@ theorem elementaryCenteredPhase_uniform_error_bound (R : ℝ) :
   intro x hx z hz
   exact elementaryCenteredPhase_error_bound hT hx hz hLT
 
-/-- Time-dependent selections of `x` and the complex shift retain the same inverse-log remainder. -/
 theorem elementaryCenteredPhase_error_invLog_isBigO (R : ℝ)
     (x : ℝ → ℝ) (z : ℝ → ℂ)
     (hx : ∀ᶠ T in atTop, x T ∈ Set.Icc (1 : ℝ) 2)
@@ -125,7 +110,6 @@ theorem elementaryCenteredPhase_error_invLog_isBigO (R : ℝ)
   rw [Real.norm_of_nonneg (inv_nonneg.mpr (Real.log_pos hT1).le)]
   simpa only [div_eq_mul_inv] using hT (x T) hTx (z T) hTz
 
-/-- Applying the proved Cauchy transfer to the actual elementary phase remainder. -/
 theorem elementaryCenteredPhase_remainder_iteratedDeriv_invLog_isBigO (n : ℕ)
     {R : ℝ} (hR : 0 < R) (x : ℝ → Set.Icc (1 : ℝ) 2) :
     (fun T => iteratedDeriv n (fun z => elementaryCenteredPhase T (x T) z - 1) 0)

@@ -1,17 +1,6 @@
 import Sechstmoment.Numerator.U.MainTerm.DyadicSixPhaseLimit
 import Sechstmoment.Numerator.U.MainTerm.PrincipalDominatedLimit
 
-/-!
-# A04: the actual principal six-term time moment at separated fixed shifts
-
-Both principal profile contours move and rescale exactly. The nine literal
-zeta factors converge by the proved integrable majorant, and the actual dyadic
-complex-power weights converge under their own time integral. Their finite
-six-term sum has the explicit rational-profile limit below.
-
-Identifying this sum with the manuscript's regular alternant/simplex
-expression and extending the moment limit across collisions are not asserted.
--/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
@@ -61,8 +50,6 @@ theorem actualSixPrincipalMoment_eq_time_products {T : ℝ} (hT : 0 < T)
   intro m _
   exact integral_mul_const _ _
 
-/-- The actual principal time moment on fixed initial contours is exactly
-its counterpart on the normalized moving contours for all sufficiently large T. -/
 theorem actualSixPrincipalMoment_eventually_rescaled {R c δ : ℝ}
     (hR : 0 ≤ R) (hc : 4*R+1 ≤ c) (hδ : 0 < δ)
     (σ : MomentShifts) (hσ : ∀ j : Fin 4, ‖σ j‖ ≤ R)
@@ -97,8 +84,6 @@ theorem actualSixPrincipalMoment_eventually_rescaled {R c δ : ℝ}
   rw [actualPrincipalProfileIntegral_double_shift T σ m hf hfs hg hgs hLp hεp hε1 hraw hεδ,
     actualPrincipalProfileIntegral_log_rescaling T σ m hf hfs hg hgs hLp hεp hε1 hraw le_rfl le_rfl]
 
-/-- The true normalized dyadic principal six-term moment converges to the
-explicit six rational profile integrals, at every fixed separated tuple. -/
 theorem actualSixPrincipalMoment_polar_limit {R c δ : ℝ}
     (hR : 0 ≤ R) (hc : 4*R+1 ≤ c) (hδ : 0 < δ)
     (σ : MomentShifts) (hσ : ∀ j : Fin 4, ‖σ j‖ ≤ R)

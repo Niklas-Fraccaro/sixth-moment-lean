@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.V.Asymptotic.CriticalCollision
 import Sechstmoment.Numerator.V.Asymptotic.VSingleChi
 import Sechstmoment.Numerator.V.ReflectedKernel
 
-/-! Exact specialization of the regular four-shift contour to the genuine
-reflected V generator. No singular residue is evaluated at a collision. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Filter NoDPHarmonic

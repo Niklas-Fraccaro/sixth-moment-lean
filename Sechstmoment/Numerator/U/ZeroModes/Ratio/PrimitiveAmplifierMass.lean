@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.FiniteAmplifierGCDReindex
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.AmplifierBudget
 
-/-! The exact equality between the common-gcd amplifier grid in BBLR
-(22) and the full original two amplifier ranges in the residual budget. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology

@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Reconstruction.RectangularActualMoment
 
-/-! Exact diagonal and signed off-diagonal grouping of the actual integrated
-AFE. All series convergence and Bochner interchange follow from the genuine
-auxiliary class, rather than being assumed as block expansion receipts. -/
 
 namespace Sechstmoment
 open Complex Source MeasureTheory Set
@@ -20,8 +17,6 @@ private theorem filtered_summable (f : (Fin 4 → ℕ) → ℂ) (hf : Summable f
   intro n
   by_cases hn : P n <;> simp [hn]
 
-/-- A genuine selection of actual AFE terms can be interchanged with the
-actual compact time integral, retaining the same fourfold majorant. -/
 theorem rectangular_actual_AFE_selected_weighted_hasSum
     (G : ℂ → ℂ) (α : MomentShifts) (hG : BBLREntireWeight G α)
     (hα : ∀ j, -1/2 < (α j).re) (P : (Fin 4 → ℕ) → Prop)
@@ -73,7 +68,6 @@ theorem rectangular_actual_AFE_selected_weighted_hasSum
   · filter_upwards [] with t
     exact (filtered_summable _ (rectangular_actual_AFE_summable G α hG t hα) P).hasSum.mul_left (w t)
 
-/-- The selected time integral is the sum of finite actual dyadic boxes. -/
 theorem rectangular_actual_AFE_selected_dyadic_integral
     (G : ℂ → ℂ) (α : MomentShifts) (hG : BBLREntireWeight G α)
     (hα : ∀ j, -1/2 < (α j).re) (P : (Fin 4 → ℕ) → Prop)
@@ -90,7 +84,6 @@ def rectangularAFESelectedBlocks (G : ℂ → ℂ) (α : MomentShifts)
   ∑' k : Fin 4 → ℕ, ∑ n ∈ rectangularAFEDyadicBox k,
     if P n then ∫ t : ℝ, w t*bblrAFESummand G α t n else 0
 
-/-- The selected block representation is tied to the actual AFE function. -/
 theorem rectangular_actual_selected_integral_eq_blocks
     (G : ℂ → ℂ) (α : MomentShifts) (hG : BBLREntireWeight G α)
     (hα : ∀ j, -1/2 < (α j).re) (P : (Fin 4 → ℕ) → Prop)
@@ -104,8 +97,6 @@ theorem rectangular_actual_selected_integral_eq_blocks
   intro n hn
   by_cases hp : P n <;> simp [hp]
 
-/-- Actual diagonal and both signed errors, after the actual time integral,
-exhaust the fourfold AFE series. -/
 theorem rectangular_actual_AFE_integrated_diagonal_offDiagonal
     (G : ℂ → ℂ) (α : MomentShifts) (hG : BBLREntireWeight G α)
     (hα : ∀ j, -1/2 < (α j).re) (a b : ℕ)
@@ -135,8 +126,6 @@ theorem rectangular_actual_AFE_integrated_diagonal_offDiagonal
   · simp [diagonalQuadRelation, rectangularPositiveQuadGap, rectangularNegativeQuadGap,
       h, h.ne', not_lt_of_gt h]
 
-/-- The actual original AFE block integral splits according to the exact
-amplifier-dependent diagonal relation. -/
 theorem rectangular_original_AFE_blocks_signed {T : ℝ} (hT : 1 < T)
     (f g Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (u v : ℕ)
     (G : ℂ → ℂ) (α : MomentShifts) (hG : BBLREntireWeight G α)
@@ -156,8 +145,6 @@ theorem rectangular_original_AFE_blocks_signed {T : ℝ} (hT : 1 < T)
   rw [← rectangular_actual_AFE_dyadic_integral G α hG hα _ hw hs]
   exact rectangular_actual_AFE_integrated_diagonal_offDiagonal G α hG hα (u+1) (v+1) _ hw hs
 
-/-- The literal dual multiplier remains inside each of the three dual
-integrals; no Gamma or large-height phase approximation is assumed. -/
 theorem rectangular_dual_AFE_blocks_signed {T : ℝ} (hT : 1 < T)
     (f g Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (u v : ℕ)
     (G : ℂ → ℂ) (α : MomentShifts) (hG : BBLREntireWeight G α)
@@ -207,7 +194,6 @@ def rectangularActualSignedAFEBlocks (T a b : ℝ) (α : MomentShifts) (G : ℂ 
         (fun t => rectangularMomentPairWeight T f g Φ u v t*bblrDualMultiplier t α)
         (rectangularNegativeQuadGap (u+1) (v+1))))
 
-/-- Both finite amplifiers are retained in the literal six-piece block sum. -/
 theorem rectangular_actual_AFE_blocks_signed {T : ℝ} (hT : 1 < T) (a b : ℝ)
     (f g Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (G : ℂ → ℂ) (α : MomentShifts)
     (hG : BBLREntireWeight G α) (hα : ∀ j, |(α j).re| < 1/2) :
@@ -225,8 +211,6 @@ theorem rectangular_actual_AFE_blocks_signed {T : ℝ} (hT : 1 < T) (a b : ℝ)
   rw [rectangular_original_AFE_blocks_signed hT f g Φ hΦ u v G α hG ha,
     rectangular_dual_AFE_blocks_signed hT f g Φ hΦ u v G α hG hα]
 
-/-- The actual moment discrepancy now contains six literal integrated
-diagonal/signed AFE pieces and the actual primitive AFE remainder. -/
 theorem rectangular_actual_moment_discrepancy_signed_AFE {T : ℝ} (hT : 1 < T)
     (a b : ℝ) (f g Φ : ℝ → ℝ) (hf : ∀ x, a < x → f x = 0)
     (hg : ∀ x, b < x → g x = 0) (hΦ : SmoothDyadicWeight Φ)

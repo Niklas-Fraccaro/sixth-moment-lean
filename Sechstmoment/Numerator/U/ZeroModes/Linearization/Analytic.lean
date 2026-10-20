@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.U.Separation.DualLeadingRegularity
 import Sechstmoment.Numerator.U.ZeroModes.LeadingFubini
 import Sechstmoment.Numerator.U.ZeroModes.Linearization.Kernels
 
-/-! Genuine small-gap logarithm error and the uniform Lipschitz bound of
-the actual leading VStar Fourier profile, also with the leading dual chi. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Metric
 open scoped BigOperators Topology ContDiff

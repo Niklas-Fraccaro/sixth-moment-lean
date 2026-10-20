@@ -3,17 +3,6 @@ import Sechstmoment.Numerator.U.HolomorphicTransfer
 import Sechstmoment.Numerator.U.MainTerm.MomentRegularLimit
 import Sechstmoment.Numerator.U.MainTerm.RegularProfileConjugateSwap
 
-/-!
-# Actual U generator and numerator limits under the original BBLR inputs
-
-The actual normalized source moment is first continued across collisions.
-Its exact conjugate swap supplies the amplifier orientation needed by the
-literal U test. The exact centering identity then gives its regular compact
-numerator generator on a fixed disk. Cauchy/Weierstrass transfers every
-fixed ordinary derivative and the degree-four polynomial moment operator.
-
-No generator-limit or main-term identity is assumed here.
--/
 
 namespace Sechstmoment
 open Complex Real Set Filter Source Metric Polynomial
@@ -38,9 +27,6 @@ private theorem uBBLRShifts_mem_swapped_polydisc {z : ℂ}
   fin_cases j <;> simp [uBBLRShifts, twistedConjugateSwapRadii, dpCauchyRadii]
   linarith
 
-/-- The actual normalized U generator converges uniformly to the literal
-centered compact numerator profile generator on `|z|≤1/2`. Only the two
-original BBLR paper inputs and the fixed admissible smooth data are assumed. -/
 theorem uPolynomialNormalizedMixedGenerator_uniform_regular
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput)
     {a b : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)
@@ -110,8 +96,6 @@ theorem uPolynomialNormalizedMixedGenerator_uniform_regular
       exact mul_lt_mul_of_pos_left (by simpa only [dist_eq_norm] using hh) hpos
     _ = ε := by field_simp
 
-/-- The ordinary collision-point derivatives required by the U polynomial
-tests converge through degree four to the independently defined generator. -/
 theorem uPolynomialNormalizedMixedGenerator_derivatives_regular_through_four
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput)
     {a b : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)
@@ -128,8 +112,6 @@ theorem uPolynomialNormalizedMixedGenerator_derivatives_regular_through_four
       (smoothInteriorProfile_zero_above hg) hΦ)
     (uPolynomialNormalizedMixedGenerator_uniform_regular hAFE hSource ha hab hlen f g Φ hf hg hΦ)
 
-/-- The genuine finite degree-four differential operator inherits the actual
-regular limit for every fixed coefficient vector. -/
 theorem uPolynomialNormalizedMixedGenerator_finiteDifferentialOperator_four_regular_limit
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput)
     {a b : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)
@@ -147,8 +129,6 @@ theorem uPolynomialNormalizedMixedGenerator_finiteDifferentialOperator_four_regu
     (uPolynomialNormalizedMixedGenerator_uniform_regular hAFE hSource ha hab hlen f g Φ hf hg hΦ)
     4 q
 
-/-- The normalized literal raw U numerator moment has its actual regular
-profile-generator limit for every polynomial of degree at most four. -/
 theorem uPolynomialRawMixedMoment_normalized_regular_limit
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput)
     {a b : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)

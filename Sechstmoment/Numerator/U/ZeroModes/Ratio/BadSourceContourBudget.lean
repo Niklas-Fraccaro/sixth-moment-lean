@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.BadSourceFiniteBudget
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.BadSourceGeometry
 
-/-! Broad bounds for the literal ratio source complement, including the
-actual finite coefficient grids and the full logarithmic Mellin interval. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff
@@ -129,9 +127,6 @@ theorem a03_actual_ratio_bad_source_moment_uniform_rapid_of_ratio_lower
           _=T^(-M) := by congr 1; ring
       rw [show C*T^(-(M+1))*(2*θ*T)=(2*θ*C)*(T^(-(M+1))*T) by ring,hp]
 
-/-- The genuine discarded unit and soft-order blocks have an arbitrary
-power saving after the actual time integral, scale sums and Mellin contour.
-Every ratio threshold is proved from the actual supported near witness. -/
 theorem a03_actual_ratio_bad_source_moment_uniform_rapid
     {a b s u εsource c κ θ R : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)
     (hs0 : 0≤s) (hs : s≤1/2) (hu : 0<u) (hεsource : 0<εsource)

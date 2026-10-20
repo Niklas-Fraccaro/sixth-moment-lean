@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualMellinContourAdapter
 
-/-! The literal six source main terms after the genuine z contour movement. -/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter

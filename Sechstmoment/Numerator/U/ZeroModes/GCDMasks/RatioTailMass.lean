@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.TripleAbsoluteMass
 import Sechstmoment.Numerator.U.ZeroModes.RatioWeightedPolynomialTail
 
-/-! The true countable native gcd mass on a polynomial ratio tail has an
-arbitrary power saving. One inverse-ratio factor is retained in each
-Dirichlet variable, so both infinite arithmetic sums remain convergent. -/
 namespace Sechstmoment.Source
 open Complex Real Set Filter MeasureTheory
 open scoped BigOperators Topology

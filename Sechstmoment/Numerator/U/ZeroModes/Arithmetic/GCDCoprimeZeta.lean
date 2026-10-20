@@ -1,8 +1,6 @@
 import Mathlib.NumberTheory.EulerProduct.DirichletLSeries
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.GCDDirichlet
 
-/-! Euler evaluation of the actual Dirichlet sum restricted to integers
-coprime to a fixed positive modulus. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat Complex
@@ -66,7 +64,6 @@ theorem a03CoprimeZeta_euler_hasProd (q : ℕ) {t : ℂ} (ht : 1<t.re) :
   intro p
   exact (a03CoprimePowerArithmetic_primeSeries p.property q ht).symm
 
-/-- The exceptional primes are removed by an actual finite Euler product. -/
 theorem a03CoprimeZeta_eq_zeta_mul_primeProduct {q : ℕ} (hq : q≠0)
     {t : ℂ} (ht : 1<t.re) :
     a03CoprimeZeta q t=riemannZeta t*(∏ p∈q.primeFactors, (1-(p:ℂ)^(-t))) := by

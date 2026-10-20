@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Replacement.GaussianAdmissible
 
-/-! The auxiliary entire weight for the §4 ratio partition. It uses only
-the two same-side difference roots; no new cross-difference separation is
-introduced. Its Gaussian polynomial has degree four. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set
@@ -99,8 +96,6 @@ theorem a03ZeroModeRatioRoot_one_eq_pure (T : ℝ) (σ : MomentShifts) :
   simp [a03ZeroModeRatioRoot,purePolarRoot,purePolarLeft,purePolarRight,bblrSixShifts]
   ring
 
-/-- The ratio construction uses separation already supplied by the
-original pure roots, without a new shift-separation domain. -/
 theorem a03ZeroModeRatioRoot_norm_lower_bound (T : ℝ) (σ : MomentShifts)
     {κ : ℝ} (hκ : ∀ k : PurePolarIndex, κ≤‖purePolarRoot T σ k‖) (j : Fin 2) :
     κ≤‖a03ZeroModeRatioRoot (rawMomentShifts T σ) j‖ := by

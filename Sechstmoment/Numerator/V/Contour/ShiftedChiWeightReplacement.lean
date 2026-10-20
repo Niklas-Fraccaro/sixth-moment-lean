@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.V.Contour.ShiftedChiPolynomial
 import Sechstmoment.Numerator.V.Contour.ShiftedChiStartingLine
 import Sechstmoment.Numerator.V.Contour.WeightReplacement
 
-/-! Integrated Taylor-weight replacement for the actual shifted-chi
-polynomial moment on the absolute starting line. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory Polynomial

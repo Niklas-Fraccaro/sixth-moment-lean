@@ -1,14 +1,11 @@
 import Sechstmoment.Numerator.V.DP.DPAllPositiveCoincidence
 import Sechstmoment.Numerator.V.DP.ShiftLine
 
-/-! Genuine all-order complex z differentiation of the literal DP moment and
-its actual polynomial polar main term, through the closed collision point. -/
 namespace Sechstmoment.Source
 open Complex Set Metric Filter MeasureTheory Polynomial
 open scoped Topology
 noncomputable section
 
-/-- Actual all-positive moment error along a genuine normalized complex line. -/
 def dpAllPositiveShiftLineError (T η : ℝ) (P : ℝ[X]) (Φ : ℝ → ℝ)
     (v : MomentShifts) (z : ℂ) : ℂ :=
   dpAllPositiveMoment T η P (momentShiftLine v z) Φ-
@@ -40,7 +37,6 @@ theorem dpAllPositiveMoment_shiftLine_uniform_derivative_bound (n : ℕ)
   change ‖iteratedDeriv n (dpAllPositiveShiftLineError T η P Φ v) 0‖ ≤ _ at hh
   convert hh using 1; ring
 
-/-- Literal moment minus its actual polynomial polar main term. -/
 def dpPolarMomentError (T η : ℝ) (P : ℝ[X]) (Φ : ℝ → ℝ) (z : ℂ) : ℂ :=
   dpAllPositiveMoment T η P (dpCoincidentShifts z) Φ-
     ((T : ℂ)*(∫ x : ℝ, (Φ x : ℂ))*(arithmeticFactor : ℂ)*(Real.log T : ℂ)^9)*
@@ -64,8 +60,6 @@ private theorem dpPolarMomentError_eventuallyEq (T η : ℝ) (P : ℝ[X]) (Φ : 
   rw [dpAllPositiveRegularKernel_coincident η P z hz16]
   ring
 
-/-- The actual polar error and every fixed complex z derivative satisfy the
-same genuine `T log^8 T` scale. -/
 theorem dpPolarMoment_uniform_derivative_bound (n : ℕ)
     (hsource : DPv2SharpInput) (η : ℝ) (hη : 0 < η) (hηu : η < 1/4)
     (P : ℝ[X]) (B : ℝ) (hB : 0 ≤ B) :
@@ -115,8 +109,6 @@ private theorem dpPolarMoment_analyticAt {T : ℝ} (hT : 1 < T)
   exact hd.analyticAt (isOpen_ball.mem_nhds
     (by simpa only [mem_ball,dist_zero_right] using hz))
 
-/-- Every fixed complex derivative of the actual normalized coincident moment
-converges to the corresponding derivative of the actual polynomial generator. -/
 theorem dpAllPositiveMoment_polarPolynomialJ_derivative_tendsto (n : ℕ)
     (hsource : DPv2SharpInput) (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P : ℝ[X])
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -151,8 +143,6 @@ theorem dpAllPositiveMoment_polarPolynomialJ_derivative_tendsto (n : ℕ)
   field_simp
   ring
 
-/-- Uniform actual z-derivative control on a fixed compact disk, including the
-collision point and all nonzero centers in that disk. -/
 theorem dpPolarMoment_uniform_derivative_bound_on_disk (n : ℕ)
     (hsource : DPv2SharpInput) (η : ℝ) (hη : 0 < η) (hηu : η < 1/4)
     (P : ℝ[X]) (B : ℝ) (hB : 0 ≤ B) :
@@ -196,8 +186,6 @@ theorem dpPolarMoment_uniform_derivative_bound_on_disk (n : ℕ)
   simp only [one_pow,div_one] at hh
   convert hh using 1; ring
 
-/-- Genuine normalized moment-derivative convergence at every fixed z in the
-compact disk; the target is the corresponding derivative of the actual J. -/
 theorem dpAllPositiveMoment_polarPolynomialJ_derivative_tendsto_at (n : ℕ)
     (hsource : DPv2SharpInput) (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P : ℝ[X])
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (z : ℂ) (hz : ‖z‖≤2) :
@@ -233,8 +221,6 @@ theorem dpAllPositiveMoment_polarPolynomialJ_derivative_tendsto_at (n : ℕ)
   field_simp
   ring
 
-/-- The actual DP moment also admits every finite polynomial differential
-operator: the same operator acts on the genuine polynomial generator J. -/
 theorem dpAllPositiveMoment_polarPolynomialJ_operator_tendsto (N : ℕ)
     (q : Fin (N+1) → ℂ) (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P : ℝ[X])

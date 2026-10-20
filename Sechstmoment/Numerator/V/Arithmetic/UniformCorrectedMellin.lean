@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.TimeWeightMellinMass
 import Sechstmoment.Numerator.V.EulerTransfer.CorrectedMellin
 
-/-! The corrected Mellin integral with an explicit weight budget.
-This exposes the common constant needed for the actual time-weight family. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory Filter

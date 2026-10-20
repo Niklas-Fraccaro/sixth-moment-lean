@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Bounds.SymmetricBounds
 
-/-! The concrete quadratic polynomial in the zero-shift principal factor. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

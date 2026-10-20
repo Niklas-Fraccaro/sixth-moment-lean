@@ -2,14 +2,6 @@ import Mathlib.Tactic
 import Sechstmoment.Numerator.Polar.Mellin.Holomorphic
 import Sechstmoment.Numerator.Polar.RemainderMajorant
 
-/-!
-# The weighted sides of the literal Mellin contour
-
-The actual factor `1/z * x^(2z)` is retained. Its horizontal bound follows
-from the exact positive-real complex-power norm, and the right line is
-absolutely integrable by the true Dirichlet-series bounds for all nine zeta
-factors and the actual Gaussian pole killer.
--/
 
 namespace Sechstmoment
 

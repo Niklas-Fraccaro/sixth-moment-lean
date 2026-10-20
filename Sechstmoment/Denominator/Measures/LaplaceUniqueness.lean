@@ -1,9 +1,6 @@
 import Sechstmoment.Analysis.Measures.Levy
 import Sechstmoment.Denominator.Measures.EuclideanLaplace
 
-/-! Uniqueness of the logarithmic diagonal limit from its actual complex
-Laplace transform. Finiteness is required only after the fixed positive
-exponential weighting. -/
 namespace Sechstmoment
 open MeasureTheory
 noncomputable section

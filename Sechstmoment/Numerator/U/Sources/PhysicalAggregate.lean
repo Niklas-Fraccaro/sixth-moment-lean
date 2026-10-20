@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.ErrorAggregate
 import Sechstmoment.Numerator.U.Sources.PhysicalBound
 
-/-! The unchanged oriented source input bounds the literal restored physical
-error aggregate, with no error-budget or reconstruction hypothesis. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff
@@ -43,9 +41,6 @@ theorem a03_actual_tensor_source_physical_bound (dual : Bool)
       a03_actual_dual_tensor_source_physical_bound hinput ha hab hlen hεsource
         f g hf hg hΦ hΦs hc hc1 hεkernel hκ hθ hR hloss
 
-/-- All seven actual dyadic scales, every retained gap scale, both signs,
-and the whole Mellin interval are included. The tensor restoration power
-is covered by the positive rectangular slack. -/
 theorem a03_actual_source_physical_error_aggregate (dual : Bool)
     (hinput : SeparatedQuadraticInput) {a b εsource εkernel c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)

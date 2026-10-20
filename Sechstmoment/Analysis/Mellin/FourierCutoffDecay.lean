@@ -1,8 +1,6 @@
 import Mathlib.Analysis.Fourier.FourierTransformDeriv
 import Sechstmoment.Analysis.Mellin.FourierCutoffUniform
 
-/-! Uniform physical-space decay of the truncated Fourier profiles.
-The constants do not grow with the frequency cutoff H>=1. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory

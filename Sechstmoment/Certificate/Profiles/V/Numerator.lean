@@ -6,9 +6,6 @@ import Sechstmoment.Certificate.TestPolynomials
 import Sechstmoment.Numerator.Kernels.WeightedIntegral
 import Sechstmoment.Numerator.U.Reconstruction.RectangularBetaNumeratorConvergence
 
-/-! The actual V-only part of the original 250-row certificate.
-The type filter retains the original unscaled coefficients and row order.
-No claim concerning the U rows or the full finite numerator is made here. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial
 open scoped Topology BigOperators ComplexConjugate
@@ -16,21 +13,17 @@ noncomputable section
 set_option maxHeartbeats 2000000
 set_option maxRecDepth 10000
 
-/-- Literal V rows selected from the original Appendix A certificate. -/
 def vCertificateRows : List TestDatum := certificate.filter (fun d => decide (d.typ=.V))
 
 theorem mem_vCertificateRows (d : TestDatum) :
     d∈vCertificateRows ↔ d∈certificate ∧ d.typ=.V := by simp [vCertificateRows]
 
-/-- The filter selects exactly 30 of the original 250 rows. -/
 theorem vCertificateRows_length : vCertificateRows.length=30 := by decide +kernel
 
-/-- Exact original integer endpoint and degree bounds, checked in the kernel. -/
 theorem vCertificate_integer_geometry : ∀ d∈vCertificateRows,
     2106419≤d.A ∧ d.A≤24997500 ∧ 2106419≤d.B ∧ d.B≤24997500 ∧ d.degree≤4 :=
   by decide +kernel
 
-/-- The one shared sharp-DP profile length is the existing `eta=19999/80000`. -/
 theorem vCertificate_endpoint_geometry {d : TestDatum} (hd : d∈vCertificateRows) :
     0<(d.A:ℝ)/base ∧ (d.A:ℝ)/base<eta ∧
       0<(d.B:ℝ)/base ∧ (d.B:ℝ)/base<eta ∧ d.degree≤4 := by
@@ -48,8 +41,6 @@ theorem vCertificate_endpoint_geometry {d : TestDatum} (hd : d∈vCertificateRow
     div_pos (by linarith) hbase,
     (div_le_div_of_nonneg_right hBu' hbase.le).trans_lt hmax,hdeg⟩
 
-/-- Stage 12 is a common stage after which both literal beta endpoint values
-vanish for every original V row, including the smallest endpoint. -/
 theorem vCertificate_common_beta_stage {n : ℕ} (hn : 12≤n)
     {d : TestDatum} (hd : d∈vCertificateRows) :
     (betaScaledProfile eta n (betaProfileIndex eta ((d.A:ℝ)/base) n) 0=0 ∧
@@ -73,29 +64,23 @@ theorem vCertificate_common_beta_stage {n : ℕ} (hn : 12≤n)
   exact ⟨betaProfile_endpoints eta_pos ha.le haη hn0 htA,
     betaProfile_endpoints eta_pos hb.le hbη hn0 htB⟩
 
-/-- All five manuscript polynomials obey the same degree-four bound; the
-assigned zero value at unsupported indices does too. -/
 theorem manuscriptTestPolynomial_natDegree_le_four (m : ℕ) :
     (manuscriptTestPolynomial m).natDegree≤4 := by
   unfold manuscriptTestPolynomial
   split <;> compute_degree!
 
-/-- Exact coefficient agreement between actual zeta-test polynomials and
-original integer numerator coefficient lists. -/
 theorem manuscriptTestPolynomial_coeff_eq_cheb (m : ℕ) (hm : m≤4) (r : Fin 5) :
     (manuscriptTestPolynomial m).coeff r.val=(Finite.coef (Finite.cheb m) r.val:ℝ) := by
   interval_cases m <;> fin_cases r <;>
     norm_num [manuscriptTestPolynomial,Finite.coef,Finite.cheb,Polynomial.coeff_add,
       Polynomial.coeff_sub,Polynomial.coeff_mul,Polynomial.coeff_X_pow,Polynomial.coeff_one,Polynomial.coeff_X]
 
-/-- The literal raw partial certificate test, retaining its original coefficients. -/
 def vCertificateRawZetaTest (n : ℕ) (T t : ℝ) : ℂ :=
   (vCertificateRows.map fun d => (d.coefficient:ℂ)*
     rawZetaTest .V T t (manuscriptTestPolynomial d.degree)
       (vEndpointProfile eta ((d.A:ℝ)/base) n)
       (vEndpointProfile eta ((d.B:ℝ)/base) n)).sum
 
-/-- Actual phase projection of the V-only partial certificate. -/
 def vCertificateZetaTest (n : ℕ) (T t : ℝ) : ℂ :=
   phaseProjection (criticalChi t) (vCertificateRawZetaTest n T t)
 
@@ -105,7 +90,6 @@ private theorem v_phaseProjection_list_sum (χ : ℂ) (l : List ℂ) :
   | nil => simp [phaseProjection]
   | cons x xs ih => simp only [List.sum_cons,List.map_cons,phaseProjection_add,ih]
 
-/-- The actual partial test is exactly the original-row sum of projected V tests. -/
 theorem vCertificateZetaTest_eq_sum (n : ℕ) (T t : ℝ) :
     vCertificateZetaTest n T t=(vCertificateRows.map fun d => (d.coefficient:ℂ)*
       projectedZetaTest .V T t (manuscriptTestPolynomial d.degree)
@@ -149,17 +133,14 @@ private theorem v_integral_list_sum (l : List TestDatum) (f : TestDatum→ℝ→
       (v_list_integrable ds f (fun e he => hi e (List.mem_cons_of_mem _ he)))]
     rw [ih (fun e he => hi e (List.mem_cons_of_mem _ he))]
 
-/-- Literal actual mixed integral of the V-only raw partial certificate. -/
 def vCertificateRawMixedMoment (n : ℕ) (T : ℝ) (Φ : ℝ→ℝ) : ℂ :=
   ∫ t : ℝ, (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
     star (vCertificateRawZetaTest n T t)
 
-/-- Literal actual mixed integral of the V-only projected partial certificate. -/
 def vCertificateProjectedMixedMoment (n : ℕ) (T : ℝ) (Φ : ℝ→ℝ) : ℂ :=
   ∫ t : ℝ, (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
     star (vCertificateZetaTest n T t)
 
-/-- The actual finite raw test integrand is integrable, proved row by row. -/
 theorem vCertificateRawMixedIntegrand_integrable (n : ℕ) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     Integrable (fun t : ℝ => (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
@@ -175,7 +156,6 @@ theorem vCertificateRawMixedIntegrand_integrable (n : ℕ) {T : ℝ} (hT : 1<T)
   exact (v_list_integrable vCertificateRows _ (fun d _ => hi d)).congr
     (Eventually.of_forall (fun t => (v_mixed_list_sum vCertificateRows _ _).symm))
 
-/-- Exact finite-sum/integral interchange for the literal original V test. -/
 theorem vCertificateRawMixedMoment_eq_sum (n : ℕ) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     vCertificateRawMixedMoment n T Φ=(vCertificateRows.map fun d => (d.coefficient:ℂ)*
@@ -206,7 +186,6 @@ private theorem vCertificateProjectedMixedIntegrand_eq_real (n : ℕ) (T t : ℝ
     ring
   · simp [Complex.mul_re,Complex.mul_im]
 
-/-- Integrability of the actual projected partial certificate integrand. -/
 theorem vCertificateProjectedMixedIntegrand_integrable (n : ℕ) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     Integrable (fun t : ℝ => (Φ (t/T):ℂ)*riemannZeta (criticalLinePoint t)^3*
@@ -214,7 +193,6 @@ theorem vCertificateProjectedMixedIntegrand_integrable (n : ℕ) {T : ℝ} (hT :
   ((vCertificateRawMixedIntegrand_integrable n hT hL Φ hΦ).re.ofReal).congr
     (Eventually.of_forall (fun t => (vCertificateProjectedMixedIntegrand_eq_real n T t Φ).symm))
 
-/-- Exact real-part relation for the actual phase-projected V-only moment. -/
 theorem vCertificateProjectedMixedMoment_eq_real (n : ℕ) {T : ℝ} (hT : 1<T)
     (hL : 16<Real.log T) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     vCertificateProjectedMixedMoment n T Φ=Complex.ofReal ((vCertificateRawMixedMoment n T Φ).re) := by
@@ -224,17 +202,14 @@ theorem vCertificateProjectedMixedMoment_eq_real (n : ℕ) {T : ℝ} (hT : 1<T)
   exact (integral_ofReal (𝕜 := ℂ)).trans
     (congrArg Complex.ofReal (integral_re (vCertificateRawMixedIntegrand_integrable n hT hL Φ hΦ)))
 
-/-- The actual coefficient vector of each original certificate polynomial. -/
 def vCertificatePolynomialCoefficients (d : TestDatum) : Fin 5→ℝ :=
   fun r => (manuscriptTestPolynomial d.degree).coeff r.val
 
-/-- The V-only original-row endpoint numerator; the U contribution is separate. -/
 def vCertificateNumeratorKernel : ℝ :=
   (vCertificateRows.map fun d => (d.coefficient:ℝ)*
     numeratorPointKernel (vCertificatePolynomialCoefficients d)
       ((d.A:ℝ)/base) (1-(d.B:ℝ)/base)).sum
 
-/-- The actual common-stage double beta kernel for the original V rows. -/
 def vCertificateBetaKernel (n : ℕ) : ℝ :=
   (vCertificateRows.map fun d => (d.coefficient:ℝ)*
     (∫ x in (0:ℝ)..eta, ∫ y in (0:ℝ)..eta,
@@ -242,8 +217,6 @@ def vCertificateBetaKernel (n : ℕ) : ℝ :=
       betaScaledProfile eta n (betaProfileIndex eta ((d.B:ℝ)/base) n) y*
       numeratorPointKernel (vCertificatePolynomialCoefficients d) x (1-y))).sum
 
-/-- Literal identification of the partial test with the V-filtered original
-250-row expression, retaining the supplied row types. -/
 theorem vCertificateRawZetaTest_eq_original_filtered (n : ℕ) (T t : ℝ) :
     vCertificateRawZetaTest n T t=(vCertificateRows.map fun d => (d.coefficient:ℂ)*
       rawZetaTest d.typ T t (manuscriptTestPolynomial d.degree)
@@ -255,8 +228,6 @@ theorem vCertificateRawZetaTest_eq_original_filtered (n : ℕ) (T t : ℝ) :
   intro d hd
   rw [(mem_vCertificateRows d).mp hd |>.2]
 
-/-- The terminal V kernel is precisely the original finite evaluator's V
-subsum, not the complete original numerator. -/
 theorem vCertificateNumeratorKernel_eq_original_V_feature_subsum :
     vCertificateNumeratorKernel=(vCertificateRows.map fun d =>
       numeratorFeatureKernel (datumFeature d)).sum := by
@@ -279,7 +250,6 @@ theorem vCertificateNumeratorKernel_eq_original_V_feature_subsum :
   rw [hcoeff,hfrac,datumFeatureKernel_weighted hmem.1]
   simp [numeratorSecondMass,datumFeature,hmem.2,base,Finite.base]
 
-/-- Actual two-beta concentration of the finite original V-row weighted kernel. -/
 theorem vCertificateBetaKernel_tendsto :
     Tendsto vCertificateBetaKernel atTop (𝓝 vCertificateNumeratorKernel) := by
   unfold vCertificateBetaKernel vCertificateNumeratorKernel
@@ -343,8 +313,6 @@ private theorem v_certificate_row_fixed_stage_tendsto (hsource : DPv2SharpInput)
     v_beta_weightedPointKernel_eq] at ht
   exact ht
 
-/-- Actual T→∞ limit of the entire original V-only raw test at every fixed
-common positive beta stage, with no target test-moment hypothesis. -/
 theorem vCertificateRawMixedMoment_fixed_stage_tendsto (hsource : DPv2SharpInput)
     (n : ℕ) (hn : 0<n) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     Tendsto (fun T : ℝ => vCertificateRawMixedMoment n T Φ/((T:ℂ)*(Real.log T:ℂ)^9))
@@ -363,7 +331,6 @@ theorem vCertificateRawMixedMoment_fixed_stage_tendsto (hsource : DPv2SharpInput
   intro d _
   ring
 
-/-- Exact normalization/projection identity for the actual finite V-only test. -/
 theorem vCertificateProjectedMixedMoment_normalized_eq_real (n : ℕ)
     {T : ℝ} (hT : 1<T) (hL : 16<Real.log T) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     vCertificateProjectedMixedMoment n T Φ/((T:ℂ)*(Real.log T:ℂ)^9)=
@@ -374,8 +341,6 @@ theorem vCertificateProjectedMixedMoment_normalized_eq_real (n : ℕ)
     rfl
   rw [hden,Complex.div_ofReal_re,Complex.ofReal_div]
 
-/-- Fixed-stage height limit of the actual projected original V-only test.
-The main term is real because both the source weight and kernel are real. -/
 theorem vCertificateProjectedMixedMoment_fixed_stage_tendsto (hsource : DPv2SharpInput)
     (n : ℕ) (hn : 0<n) (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     Tendsto (fun T : ℝ => vCertificateProjectedMixedMoment n T Φ/((T:ℂ)*(Real.log T:ℂ)^9))
@@ -395,10 +360,6 @@ theorem vCertificateProjectedMixedMoment_fixed_stage_tendsto (hsource : DPv2Shar
     Real.tendsto_log_atTop.eventually (eventually_gt_atTop (16:ℝ))] with T hT hL
   exact (vCertificateProjectedMixedMoment_normalized_eq_real n hT hL Φ hΦ).symm
 
-/-- The literal original V subcertificate numerator is closed in the
-manuscript's order: height tends to infinity at each fixed common beta stage,
-then beta concentration yields only the original finite V contribution.
-The U rows and the complete finite numerator are outside this statement. -/
 theorem vCertificate_two_stage_numerator_limit (hsource : DPv2SharpInput)
     (Φ : ℝ→ℝ) (hΦ : SmoothDyadicWeight Φ) :
     (∀ n : ℕ, 12≤n → Tendsto

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Prime.PrincipalCorrection
 
-/-! Initial values of the principal local correction. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

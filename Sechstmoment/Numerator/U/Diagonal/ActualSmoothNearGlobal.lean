@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.Diagonal.ActualSmoothNearMass
 
-/-! The full retained actual near mass, summed over both amplifier ranges
-and every smooth product-grid block, has a proved sublinear power budget. -/
 
 namespace Sechstmoment
 open Real Source Filter Asymptotics
@@ -10,8 +8,6 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- The literal full retained near mass. Amplifier indices are zero based;
-the actual smooth weights and the actual near selection are retained. -/
 def actualSmoothNearGlobalMass (T a b η ρ : ℝ) : ℝ :=
   ∑ u∈Finset.range ⌊T^a⌋₊, ∑ v∈Finset.range ⌊T^b⌋₊,
     ∑ k∈rectangularAFEProductScaleGrid (T^(2+η)),
@@ -33,8 +29,6 @@ theorem actualSmoothNearGlobalMass_nonneg (T a b η ρ : ℝ) :
   exact Finset.sum_nonneg (fun u _ => Finset.sum_nonneg (fun v _ =>
     Finset.sum_nonneg (fun k _ => actualSmoothNearWeightedMass_nonneg T ρ u v k)))
 
-/-- Before simplifying powers, the full sum is bounded by its actual two
-amplifier range lengths and logarithmic product-grid cardinality. -/
 theorem actualSmoothNearGlobalMass_le_card {T η ρ : ℝ}
     (hT : 1≤T) (hη : 0≤η) (a b : ℝ) :
     actualSmoothNearGlobalMass T a b η ρ≤
@@ -57,8 +51,6 @@ theorem actualSmoothNearGlobalMass_le_card {T η ρ : ℝ}
         (actualSmoothNearMass_le_power hT hη u v k hk)
     _ = _ := by simp; ring
 
-/-- Genuine complete near mass has a fixed polylogarithmic power budget.
-No mass or arithmetic counting hypothesis is an input. -/
 theorem actualSmoothNearGlobalMass_uniform_power_budget {η : ℝ} (hη : 0<η)
     (a b ρ : ℝ) :
     ∃ C : ℝ, 0≤C ∧ ∀ᶠ T : ℝ in atTop,
@@ -94,7 +86,6 @@ theorem actualSmoothNearGlobalMass_uniform_power_budget {η : ℝ} (hη : 0<η)
         Real.rpow_add ht a b]
       ring
 
-/-- Any fixed logarithmic degree preserves sublinearity for a sum of two powers. -/
 theorem one_add_log_pow_weighted_power_sum_isLittleO (n : ℕ) {e₁ e₂ : ℝ}
     (he₁ : e₁<1) (he₂ : e₂<1) :
     (fun T : ℝ => (1+Real.log T)^n*(T^e₁+T^e₂)) =o[atTop] (fun T : ℝ => T) := by
@@ -120,7 +111,6 @@ theorem one_add_log_pow_weighted_power_sum_isLittleO (n : ℕ) {e₁ e₂ : ℝ}
       _ = _ := by ring
   exact hbound.isBigO.trans_isLittleO (hbase.const_mul_left ((2:ℝ)^n))
 
-/-- Fixed logarithmic losses preserve sublinearity for a sum of two powers. -/
 theorem one_add_log_weighted_power_sum_isLittleO {e₁ e₂ : ℝ}
     (he₁ : e₁<1) (he₂ : e₂<1) :
     (fun T : ℝ => (1+Real.log T)^6*(T^e₁+T^e₂)) =o[atTop] (fun T : ℝ => T) := by
@@ -143,8 +133,6 @@ theorem one_add_log_weighted_power_sum_isLittleO {e₁ e₂ : ℝ}
     nlinarith
   exact hbound.isBigO.trans_isLittleO (hbase.const_mul_left 64)
 
-/-- The actual full retained near mass is uniformly sublinear whenever
-both explicit exponents are below one. -/
 theorem actualSmoothNearGlobalMass_isLittleO {η a b ρ : ℝ} (hη : 0<η)
     (he₁ : a+b+ρ+η/2<1) (he₂ : 1/2+a+b+η/4<1) :
     (fun T : ℝ => actualSmoothNearGlobalMass T a b η ρ) =o[atTop] (fun T : ℝ => T) := by
@@ -158,8 +146,6 @@ theorem actualSmoothNearGlobalMass_isLittleO {η a b ρ : ℝ} (hη : 0<η)
   exact hb.isBigO.trans_isLittleO
     ((one_add_log_weighted_power_sum_isLittleO he₁ he₂).const_mul_left C)
 
-/-- The fully summed actual near mass still gives `o(T)` after fixed
-Mellin logarithmic losses and a small time-integration power loss. -/
 theorem actualSmoothNearGlobalMass_scaled_isLittleO {η a b ρ ε : ℝ} (hη : 0<η)
     (m : ℕ) (he₁ : a+b+ρ+η/2+ε<1) (he₂ : 1/2+a+b+η/4+ε<1) :
     (fun T : ℝ => (1+Real.log T)^m*T^ε*actualSmoothNearGlobalMass T a b η ρ)
@@ -185,8 +171,6 @@ theorem actualSmoothNearGlobalMass_scaled_isLittleO {η a b ρ ε : ℝ} (hη : 
   exact hb.isBigO.trans_isLittleO
     ((one_add_log_pow_weighted_power_sum_isLittleO (m+6) he₁ he₂).const_mul_left C)
 
-/-- The rectangular source range leaves positive choices of the product
-cutoff loss, near width and time power loss with both exponents below one. -/
 theorem actualSmoothNear_rectangle_parameters_exist {a b : ℝ}
     (hab : a≤b) (hrect : 3*a+5*b<2) :
     ∃ η ρ ε : ℝ, 0<η ∧ 0<ρ ∧ 0<ε ∧

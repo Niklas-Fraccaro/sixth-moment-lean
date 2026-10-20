@@ -4,16 +4,12 @@ import Sechstmoment.Analysis.Gaussian.Decay
 import Sechstmoment.Analysis.Gaussian.MellinContours
 import Sechstmoment.Zeta.AFE.Two.Gamma
 
-/-! Concrete full-line error for the pole-corrected two-Gamma Gaussian kernel.
-The original and displaced contours are connected by actual holomorphy and
-Gaussian decay. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- The exact moving-root correction has a uniform full-line polynomial bound. -/
 theorem secondPoleCorrection_vertical_norm_le {t c : ℝ} (ht : 10 ≤ t)
     (hc : 0 < c) (hc1 : c ≤ 1) (α : SecondMomentShifts)
     (hα : ∀ j, ‖α j‖ ≤ 1/4) (v : ℝ) :
@@ -53,7 +49,6 @@ def secondPoleCorrectedGaussianKernel (t : ℝ) (α : SecondMomentShifts)
   let z : ℂ := (c:ℂ)+(v:ℂ)*I
   Complex.exp (z^2)/z*secondPoleCorrectedGammaQuotient t α z
 
-/-- The global estimate covers the entire exterior of the Euler-ratio disk. -/
 theorem secondPoleCorrectedGaussianKernel_global_majorant :
     ∃ C : ℝ, 0 < C ∧ ∀ t c : ℝ, 10 ≤ t → 0 < c → c ≤ 1 →
       ∀ α : SecondMomentShifts, (∀ j, ‖α j‖ ≤ 1/4) → ∀ v : ℝ,
@@ -74,7 +69,6 @@ theorem secondPoleCorrectedGaussianKernel_global_majorant :
   have hq := hb t c (by linarith) hc hc1 α hα v
   exact (mul_le_mul hp hq (norm_nonneg _) (by positivity)).trans_eq (by ring)
 
-/-- Literal corrected weight kernel with the two real Mellin powers retained. -/
 def secondCorrectedWeightKernel (t : ℝ) (α : SecondMomentShifts) (x : ℝ) (z : ℂ) : ℂ :=
   Complex.exp (z^2)/z*secondPoleCorrectedGammaQuotient t α z*
     (Real.pi:ℂ)^(-z)*(x:ℂ)^(-z)
@@ -121,7 +115,6 @@ theorem secondCorrectedWeightKernel_differentiableOn (t : ℝ)
     · fun_prop
     · exact Or.inl (Complex.ofReal_ne_zero.mpr hx.ne')
 
-/-- The two real Mellin powers have height-independent norms. -/
 theorem secondCorrectedWeightKernel_vertical_norm (t : ℝ) (α : SecondMomentShifts)
     {x : ℝ} (hx : 0 < x) (c v : ℝ) :
     ‖secondCorrectedWeightKernel t α x ((c:ℂ)+(v:ℂ)*I)‖ =
@@ -132,7 +125,6 @@ theorem secondCorrectedWeightKernel_vertical_norm (t : ℝ) (α : SecondMomentSh
     Complex.norm_cpow_eq_rpow_re_of_pos hx]
   simp
 
-/-- Whole-line integrability of the actual corrected kernel. -/
 theorem secondCorrectedWeightKernel_integrable {t c x : ℝ}
     (ht : 10 ≤ t) (hc : 0 < c) (hc1 : c ≤ 1) (hx : 0 < x)
     (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ 1/4) :
@@ -161,7 +153,6 @@ theorem secondCorrectedWeightKernel_integrable {t c x : ℝ}
     (mul_le_mul_of_nonneg_right (hb t c ht hc hc1 α hα v) (by positivity))
     (by positivity)).trans_eq (by dsimp [B]; ring)
 
-/-- The original Re z=1 weight equals its actual positive-c displacement. -/
 theorem secondCorrectedWeightOnLine_eq_one {t c x : ℝ}
     (ht : 10 ≤ t) (hc : 0 < c) (hc1 : c ≤ 1) (hx : 0 < x)
     (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ 1/4) :
@@ -268,7 +259,6 @@ theorem secondLeadingWeightKernel_integrable {t c x : ℝ} (ht : 0 < t)
   exact (Sechstmoment.d02GaussianMellinIntegrandOnLine_integrable hc _).congr
     (Eventually.of_forall (fun v => (he v).symm))
 
-/-- The exact Gaussian leading term on the same displaced line. -/
 theorem secondLeadingWeightKernel_integral_eq {t c x : ℝ} (ht : 0 < t)
     (hc : 0 < c) (hx : 0 < x) :
     (1/(2*Real.pi):ℂ)*(∫ v : ℝ,
@@ -329,8 +319,6 @@ theorem secondLeadingWeightKernel_vertical_majorant {t c x : ℝ}
     _ = Real.exp 1*(2+t)^4/c*Real.pi^(-c)*x^(-c)*
         ((1+|v|)^12*Real.exp (-v^2)) := by ring
 
-/-- Both actual and leading kernels are globally integrable with one
-polynomial Gaussian budget for their difference. -/
 theorem secondCorrectedWeightErrorKernel_global_majorant :
     ∃ C : ℝ, 0 < C ∧ ∀ t c x : ℝ, 10 ≤ t → 0 < c → c ≤ 1 → 0 < x →
       ∀ α : SecondMomentShifts, (∀ j, ‖α j‖ ≤ 1/4) → ∀ v : ℝ,
@@ -355,8 +343,6 @@ theorem secondCorrectedWeightErrorKernel_integrable {t c x : ℝ}
   (secondCorrectedWeightKernel_integrable ht hc hc1 hx α hα).sub
     (secondLeadingWeightKernel_integrable (by linarith) hc hx)
 
-/-- The actual moving pole correction and Gamma replacement retain t⁻¹
-on every admissible central vertical point. -/
 theorem secondCorrectedWeightErrorKernel_central_point {t c x : ℝ}
     (ht : 10 ≤ t) (hc : 0 < c) (hc1 : c ≤ 1) (hx : 0 < x)
     (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ 1/4) (v : ℝ)
@@ -424,7 +410,6 @@ theorem secondCorrectedWeightErrorKernel_central_point {t c x : ℝ}
       gcongr
     _ = _ := by rw [Real.rpow_sub htp, Real.rpow_one]; dsimp [W]; ring
 
-/-- The growing central segment is contained in the proved Euler-ratio cone. -/
 theorem secondCorrectedWeight_sqrt_cut_admissible {t c : ℝ}
     (ht : 10000 ≤ t) (hc : 0 < c) (hc1 : c ≤ 1) {v : ℝ}
     (hv : v ∈ Icc (-Real.sqrt t/100) (Real.sqrt t/100)) :
@@ -446,7 +431,6 @@ theorem secondCorrectedWeight_sqrt_cut_admissible {t c : ℝ}
     nlinarith [norm_nonneg ((c:ℂ)+(v:ℂ)*I)]
   nlinarith [norm_nonneg ((c:ℂ)+(v:ℂ)*I)]
 
-/-- Central integration of the actual corrected kernel error. -/
 theorem secondCorrectedWeightErrorKernel_central_integral_norm_le {t c x : ℝ}
     (ht : 10000 ≤ t) (hc : 0 < c) (hc1 : c ≤ 1) (hx : 0 < x)
     (α : SecondMomentShifts) (hα : ∀ j, ‖α j‖ ≤ 1/4) :
@@ -469,8 +453,6 @@ theorem secondCorrectedWeightErrorKernel_central_integral_norm_le {t c x : ℝ}
       setIntegral_le_integral hgi (Eventually.of_forall (fun _ => by dsimp [B]; positivity))
     _ = _ := by rw [integral_const_mul]; rfl
 
-/-- An explicit exponential-versus-power estimate, used only for the
-actual exterior error kernel. -/
 theorem secondCorrectedWeight_exponential_absorption {t : ℝ} (ht : 0 < t) :
     t^4*Real.exp (-t/20000) ≤ ((Nat.factorial 5:ℝ)*20000^5)/t := by
   have hh := Real.pow_div_factorial_le_exp (t/20000) (by positivity : 0 ≤ t/20000) 5
@@ -484,8 +466,6 @@ theorem secondCorrectedWeight_exponential_absorption {t : ℝ} (ht : 0 < t) :
     div_le_div_iff₀ (Real.exp_pos _) ht]
   simpa only [pow_succ, mul_assoc, mul_comm, mul_left_comm] using hs
 
-/-- The genuine Gaussian exterior has the same t^(c-1) saving as the
-central Euler-ratio replacement; its estimate is unconditional. -/
 theorem secondCorrectedWeightErrorKernel_tail_norm_le {c : ℝ}
     (hc : 0 < c) (hc1 : c ≤ 1) :
     ∃ D : ℝ, 0 ≤ D ∧ ∀ t x : ℝ, 10000 ≤ t → 0 < x →
@@ -536,8 +516,6 @@ theorem secondCorrectedWeightErrorKernel_tail_norm_le {c : ℝ}
       exact mul_nonneg (mul_nonneg (by dsimp [D]; positivity) (by positivity)) (by positivity)
     _ = _ := by ring
 
-/-- Full-line control joins the independently justified central and exterior
-pieces of the literal corrected kernel. -/
 theorem secondCorrectedWeightErrorKernel_full_integral_norm_le {c : ℝ}
     (hc : 0 < c) (hc1 : c ≤ 1) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t x : ℝ, 10000 ≤ t → 0 < x →
@@ -574,9 +552,6 @@ theorem secondCorrectedWeightErrorKernel_full_integral_norm_le {c : ℝ}
     _ = ((1164*Real.exp 1/c)*secondGaussianQuadraticMass+D)*
         t^(c-1)*Real.pi^(-c)*x^(-c) := by ring
 
-/-- The actual original-line weight has the complete Gamma/pole-killer error
-O(t^(c-1) x^(-c)). Both contour movement and the full vertical integral are
-proved, rather than supplied as hypotheses. -/
 theorem secondCorrectedWeightOnLine_one_gaussian_error {c : ℝ}
     (hc : 0 < c) (hc1 : c ≤ 1) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ t x : ℝ, 10000 ≤ t → 0 < x →

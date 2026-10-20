@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.GCDRestrictedEuler
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.EtaAnalytic
 
-/-! Identification of the actual original GCD Dirichlet sum with the eta
-divisor sums (23), by the genuine divisor and primitive-pair bijections. -/
 
 namespace Sechstmoment
 open ArithmeticFunction Nat Complex
@@ -40,8 +38,6 @@ theorem a03GCDDivisorSigmaEquiv_term {a b : ℕ} (ha : a≠0) (hb : b≠0)
     a03GCDDivisorDirichletTerm,a03RestrictedGCDTerm]
   ring
 
-/-- Original GCD series expressed as its actual finite divisor sum of (22)
-Dirichlet series; no Euler identity is supplied as a premise. -/
 theorem a03GCDDirichlet_eq_restrictedDivisorSum {a b : ℕ}
     (ha : 0<a) (hb : 0<b) (hab : a.Coprime b)
     {w z s : ℂ} (hw : 0<w.re) (hz : 0<z.re) (hs : 1<s.re) :
@@ -73,9 +69,6 @@ theorem bblrEtaArithmetic_eq_divisorSubtype (w z s : ℂ) {a : ℕ} (ha : a≠0)
   rw [←Finset.sum_attach]
   rfl
 
-/-- Genuine global equality from the original GCD sum to the two literal
-eta factors (23).  The starting-line convergence is proved, and the second
-eta carries the required interchange of the two ratio variables. -/
 theorem a03GCDDirichlet_eq_zeta_mul_eta {a b : ℕ}
     (ha : 0<a) (hb : 0<b) (hab : a.Coprime b)
     {w z s : ℂ} (hw : 0<w.re) (hz : 0<z.re) (hs : 1<s.re) :
@@ -112,8 +105,6 @@ theorem bblrEtaArithmetic_reparametrize (α β γ δ u v s : ℂ) :
 
 namespace Source
 
-/-- The literal GCD Dirichlet coefficient on the original u/v starting
-lines equals exactly the arithmetic eta pair used by the ratio contours. -/
 theorem a03_source_gcdDirichlet_eq_ratioEta {a b : ℕ}
     (ha : 0<a) (hb : 0<b) (hab : a.Coprime b)
     (α : MomentShifts) (u v s : ℂ)
@@ -127,8 +118,6 @@ theorem a03_source_gcdDirichlet_eq_ratioEta {a b : ℕ}
     bblrEtaArithmetic_reparametrize (α 2) (α 3) (α 0) (α 1) v u s]
   ring
 
-/-- The same genuine source arithmetic identity for arbitrary amplifier
-integers, with their common gcd and coprime residual amplifiers retained. -/
 theorem a03_source_gcdDirichlet_eq_commonAmplifier_ratioEta {a b : ℕ}
     (ha : 0<a) (hb : 0<b) (α : MomentShifts) (u v s : ℂ)
     (hu : 0<(α 0-α 1+2*u).re) (hv : 0<(α 2-α 3+2*v).re) (hs : 1<s.re) :

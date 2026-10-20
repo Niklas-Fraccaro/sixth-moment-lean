@@ -3,8 +3,6 @@ import Sechstmoment.Analysis.Integration.ComplexParameter
 import Sechstmoment.Numerator.Kernels.Integral
 import Sechstmoment.Numerator.Kernels.ReflectionGenerator
 
-/-! Actual differentiation of the centered numerator generator. Every
-derivative is obtained under its four genuine compact interval integrals. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric
@@ -37,8 +35,6 @@ private theorem complexInterval_hasDerivAt_ordered
   simpa only [ContinuousLinearMap.intervalIntegral_apply hi,
     ContinuousLinearMap.toSpanSingleton_apply,one_smul] using h.hasDerivAt
 
-/-- True complex differentiation on any oriented compact interval. Joint
-continuity supplies domination; the actual integrand derivative is proved. -/
 theorem complexInterval_hasDerivAt_of_joint_continuity
     (F F' : ℂ → ℝ → ℂ) (z : ℂ) (a b : ℝ)
     (hF : Continuous (Function.uncurry F))
@@ -138,8 +134,6 @@ theorem numeratorExpMomentDerivative_hasDerivAt (n : ℕ) (a b : ℝ) (z : ℂ) 
     exact (simplexExpMomentDerivative_hasDerivAt n (numeratorExpNodes a b t) z).const_mul
       (numeratorP (b-t) (a-t):ℂ)
 
-/-- All derivatives of the literal centered numerator come from its genuine
-four interval integrations, including every coincident-node case. -/
 theorem numeratorExpGenerator_iteratedDeriv (n : ℕ) (a b : ℝ) (z : ℂ) :
     iteratedDeriv n (numeratorExpGenerator a b) z = numeratorExpMomentDerivative n a b z := by
   induction n generalizing z with
@@ -172,8 +166,6 @@ theorem numeratorExpNodes_dot (a b t x y w : ℝ) :
   push_cast
   ring
 
-/-- At zero, each actual derivative is the real centered simplex monomial
-under the original t integral; no numerical coefficient identity is assumed. -/
 theorem numeratorExpGenerator_iteratedDeriv_zero (n : ℕ) (a b : ℝ) :
     iteratedDeriv n (numeratorExpGenerator a b) 0 =
       Complex.ofReal (∫ t in (0:ℝ)..min a b, numeratorP (b-t) (a-t)*
@@ -203,7 +195,6 @@ theorem numeratorExpGenerator_iteratedDeriv_le_four (r : Fin 5) (a b : ℝ) :
   simp_rw [dirichlet_moment_le_four]
   rfl
 
-/-- The exact polynomial expansion, retaining the original min endpoint. -/
 theorem numeratorPointKernel_polynomial_min (p : Fin 5 → ℝ) (a b : ℝ) :
     numeratorPointKernel p a b =
       ∑ r : Fin 5, p r*(∫ t in (0:ℝ)..min a b, numeratorIntegrand r.val a b t) := by
@@ -225,8 +216,6 @@ theorem numeratorPointKernel_polynomial_min (p : Fin 5 → ℝ) (a b : ℝ) :
     unfold numeratorIntegrand numeratorP simplexMonomialAverage homogeneousFour
     fun_prop
 
-/-- The actual degree-four differential operator is precisely the real
-numerical numerator point kernel, for all endpoints without an ordering hypothesis. -/
 theorem numeratorExpGenerator_operator_eq_pointKernel (p : Fin 5 → ℝ) (a b : ℝ) :
     finiteDifferentialOperator 4 (fun r => (p r:ℂ)) (numeratorExpGenerator a b) 0 =
       (numeratorPointKernel p a b:ℂ) := by
@@ -236,8 +225,6 @@ theorem numeratorExpGenerator_operator_eq_pointKernel (p : Fin 5 → ℝ) (a b :
   push_cast
   rfl
 
-/-- Reflection joins the actual polar generator to the exact numerical
-numerator kernel through genuine derivatives at the removable point. -/
 theorem reflectedPolarGenerator_operator_eq_pointKernel (p : Fin 5 → ℝ) (a b : ℝ)
     (ha : 0 < a) (hb : 0 < b) (hab : a+b < 1) :
     finiteDifferentialOperator 4 (fun r => (p r:ℂ)) (reflectedPolarGenerator a b) 0 =
@@ -245,8 +232,6 @@ theorem reflectedPolarGenerator_operator_eq_pointKernel (p : Fin 5 → ℝ) (a b
   rw [← numeratorExpGenerator_reflection a b ha hb hab]
   exact numeratorExpGenerator_operator_eq_pointKernel p a (1-b)
 
-/-- The same exact numerical kernel comes from the actual polar circle,
-including all confluent poles and its removable evaluation point. -/
 theorem reflectedPolarContour_operator_eq_pointKernel (p : Fin 5 → ℝ) (a b R : ℝ)
     (ha : 0 < a) (hb : 0 < b) (hab : a+b < 1) (hR : 0 < R) :
     finiteDifferentialOperator 4 (fun r => (p r:ℂ))

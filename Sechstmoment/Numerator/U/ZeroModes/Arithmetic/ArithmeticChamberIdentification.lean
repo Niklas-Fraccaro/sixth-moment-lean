@@ -1,8 +1,5 @@
 import Sechstmoment.Numerator.U.Sources.FiniteAmplifierGCDReindex
 
-/-! Literal four chamber labels and their original amplifier gcd factors.
-The arithmetic terms are the ones already bounded against the source six
-VStar diagonal terms. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

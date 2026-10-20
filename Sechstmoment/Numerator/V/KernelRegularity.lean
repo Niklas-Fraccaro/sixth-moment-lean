@@ -62,8 +62,6 @@ import Sechstmoment.Numerator.V.DP.DPAllPositiveBilinear
 import Sechstmoment.Numerator.V.DP.PolarDerivatives
 import Std
 
-/-! All actual complex derivatives and finite differential operators of
-the cross-polynomial DP moment converge to the genuine bilinear J generator. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter

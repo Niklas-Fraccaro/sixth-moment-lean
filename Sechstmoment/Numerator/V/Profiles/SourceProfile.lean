@@ -2,7 +2,6 @@ import Sechstmoment.Analysis.Harmonic.LiteralSimplex
 import Sechstmoment.Analysis.Profiles.Classes
 import Sechstmoment.Numerator.V.Profiles.GammaConvolution
 
-/-! Exact identification with the production half-open polynomial profiles. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set Polynomial NoDPGlobalRest

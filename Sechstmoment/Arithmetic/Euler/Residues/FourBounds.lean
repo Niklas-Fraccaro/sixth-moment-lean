@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Residues.WeightedResidue
 
-/-! Uniform polynomial bounds for the finite correction in PDF §5.2. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 

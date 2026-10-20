@@ -1,9 +1,5 @@
 import Sechstmoment.Numerator.U.Separation.ShapeActualPowerNear
 
-/-! Actual power-near blocks cannot contain a double-unit zeta pair.
-The coefficient length and the lowest-block singleton restriction are read
-from the literal amplifier/profile and smooth AFE weights. This does not
-assert any invariance or reconstruction of the transformed zero mode. -/
 
 namespace Sechstmoment
 open Complex Real Source Set Filter
@@ -71,8 +67,6 @@ theorem phase_actual_double_n_unit_near_block_excluded
   · simp [rectangularAFESourceTuple,hn₂]
   · simp [rectangularAFESourceTuple,hn₃]
 
-/-- The same fixed positive near exponent works for both actual profile
-lengths whenever s+a<1 and s+b<1. All block variables remain quantified. -/
 theorem phase_actual_power_near_double_unit_blocks_excluded
     {a b s : ℝ} (hs : s < 1) (hsa : s+a < 1) (hsb : s+b < 1)
     (f g : ℝ → ℝ) (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) :
@@ -109,8 +103,6 @@ theorem phase_actual_power_near_double_unit_blocks_excluded
     exact phase_actual_double_n_unit_near_block_excluded hT hA hB hH
       (Real.rpow_nonneg hTp.le _) hη.le hmb f g hg k hk₂ hk₃ hactive
 
-/-- The exponents supplied by the actual A03 source factory satisfy the
-smallness conditions automatically in the manuscript's rectangular range. -/
 theorem phase_actual_source_near_double_unit_blocks_excluded
     {a b s : ℝ} (ha : 0 ≤ a) (hab : a ≤ b) (hlen : 3*a+5*b < 2)
     (hs : s < 1/2) (f g : ℝ → ℝ)

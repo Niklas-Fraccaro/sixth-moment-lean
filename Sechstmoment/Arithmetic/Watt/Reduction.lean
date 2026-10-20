@@ -2,8 +2,6 @@ import Sechstmoment.Arithmetic.Watt.MainGlobal
 import Sechstmoment.Arithmetic.Watt.TailGlobal
 import Sechstmoment.Arithmetic.Watt.ZeroGlobal
 
-/-! Complete reduction of the original weighted Watt theorem to the exact
-Proposition 4.1. No additional analytic input is assumed. -/
 
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical

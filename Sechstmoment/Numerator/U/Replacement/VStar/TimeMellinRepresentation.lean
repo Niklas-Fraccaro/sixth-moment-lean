@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.Replacement.VStar.LogTimeFubini
 import Sechstmoment.Numerator.U.ZeroModes.ForwardMellin
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.XEnvelopeMass
 
-/-! Exact positive and reflected vertical representations of the actual
-VStar-weighted compact time Mellin transform. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators Topology ContDiff

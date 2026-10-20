@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.Definitions
 import Sechstmoment.Numerator.U.ZeroModes.Linearization.Fubini
 
-/-! Genuine small-positive-line reconstruction of the full V* factor on
-positive real physical quad variables. The real variables are never relabelled
-as integers. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -43,7 +40,6 @@ theorem a03ZeroModeRealQuadDenominator_inv_shift (α : MomentShifts) (Q : Fin 4�
       (a03ZeroModeRealQuadDenominator α 0 Q)⁻¹*(a03PhysicalQuadProduct Q:ℂ)^(-z) := by
   rw [a03ZeroModeRealQuadDenominator_shift α Q hQ z,mul_inv_rev,Complex.cpow_neg,mul_comm]
 
-/-- Literal time amplitude of the actual leading tensor, with G preserved. -/
 def a03PhysicalLeadingTimeAmplitude (T : ℝ) (σ α : MomentShifts) (Q : Fin 4→ℝ)
     (z : ℂ) (t : ℝ) : ℂ :=
   (a03ZeroModeRealQuadDenominator α z Q)⁻¹*
@@ -88,8 +84,6 @@ theorem a03PhysicalLeadingTimeAmplitude_eq_VStarKernel
       ((a03PhysicalQuadProduct Q:ℂ)^(-z)*(T*t/2:ℂ)^(2*z)*(Real.pi:ℂ)^(-2*z)) := by ring
     _=_ := by rw [he']; push_cast; ring
 
-/-- The full leading weight is reconstructed on any genuine positive line,
-including the source's small c-line. -/
 theorem a03PhysicalLeadingTimeAmplitude_vertical_eq_VStar
     {T t c : ℝ} (hT : 0<T) (ht : 0<t) (hc : 0<c) (σ α : MomentShifts)
     (Q : Fin 4→ℝ) (hQ : ∀ j,0<Q j) :
@@ -147,7 +141,6 @@ theorem a03PhysicalLeadingVerticalTail_eq {T t : ℝ} (hT : 0<T) (ht : 0<t)
   rw [integral_const_mul]
   ring
 
-/-- Literal finite-window core plus the actual Gaussian frequency tail. -/
 theorem a03PhysicalLeadingVerticalCore_add_tail {T t c : ℝ}
     (hT : 0<T) (ht : 0<t) (hc : 0<c) (σ α : MomentShifts)
     (Q : Fin 4→ℝ) (hQ : ∀ j,0<Q j) (L : ℝ) :

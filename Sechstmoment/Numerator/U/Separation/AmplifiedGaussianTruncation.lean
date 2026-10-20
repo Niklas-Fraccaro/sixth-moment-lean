@@ -4,12 +4,6 @@ import Sechstmoment.Numerator.U.Separation.LogarithmicGaussianTail
 import Sechstmoment.Zeta.AFE.Four.DualBound
 import Sechstmoment.Zeta.Moments.AnalyticMomentLinearity
 
-/-!
-The genuine Gaussian Mellin tail is multiplied by both unequal amplifiers
-and the original dyadic weight, including the exact dual multiplier. Genuine
-measurability and integrability are proved before using integral linearity.
-This does not control the untruncated spatial scale sum or its zero modes.
--/
 
 namespace Sechstmoment
 open Complex Source MeasureTheory Set Filter Asymptotics
@@ -67,8 +61,6 @@ theorem rectangular_moment_weight_norm_le {T F Gc P : ℝ} (hT : 1 < T)
     _ = (P*F*Gc)*(T^a*T^b) := by ring
     _ = _ := by rw [← Real.rpow_add (zero_lt_one.trans hT)]
 
-/-- Integrability from the actual amplifier bounds and a finite-interval
-bound; no integrability receipt is a hypothesis. -/
 theorem rectangular_amplified_error_integrable {T F Gc P C e : ℝ} (hT : 1 < T)
     (hF : 0 ≤ F) (hGc : 0 ≤ Gc) (hP : 0 ≤ P) (_hC : 0 ≤ C)
     (a b : ℝ) (f g Φ : ℝ → ℝ) (E : ℝ → ℂ)
@@ -134,7 +126,6 @@ theorem rectangular_amplified_error_norm_le {T F Gc P C e : ℝ} (hT : 1 < T)
     _ = (P*F*Gc*C)*(T^(a+b+e)*T^(1 : ℝ)) := by rw [Real.rpow_one]; ring
     _ = _ := by rw [← Real.rpow_add ht]; congr 1; ring
 
-/-- Equality with the preexisting actual primitive AFE error. -/
 theorem rectangular_AFE_integrated_error_eq_amplified (T : ℝ) (α : MomentShifts)
     (G : ℂ → ℂ) (f g Φ : ℝ → ℝ) :
     rectangularAFEIntegratedError T α G f g Φ =
@@ -195,7 +186,6 @@ theorem rectangularGaussianCombinedTail_stronglyMeasurable (T : ℝ) (σ : Momen
     ((rectangular_dual_multiplier_continuous _ hr).stronglyMeasurable.mul
       (bblrGaussianAFETail_time_stronglyMeasurable T σ _ hd R))
 
-/-- Actual combined original/dual Gaussian tails, before amplifier insertion. -/
 theorem rectangularGaussianCombinedTail_uniform_logarithmic_bound
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0 < δ)
     (hρ : ∀ σ ∈ K, ∀ k : PurePolarIndex, δ ≤ ‖normalizedPurePolarRoot σ k‖)
@@ -222,8 +212,6 @@ theorem rectangularGaussianCombinedTail_uniform_logarithmic_bound
       · exact hb σ hσ 1 t ht
     _ = _ := by ring
 
-/-- The actual combined tail is genuinely integrable after inserting both
-amplifiers, and has a quantitative bound on the moment scale. -/
 theorem rectangularGaussianTailMoment_uniform_logarithmic_bound
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0 < δ)
     (hρ : ∀ σ ∈ K, ∀ k : PurePolarIndex, δ ≤ ‖normalizedPurePolarRoot σ k‖)
@@ -253,8 +241,6 @@ theorem rectangularGaussianTailMoment_uniform_logarithmic_bound
   · exact rectangular_amplified_error_norm_le hT hF hGc hP hC a b f g Φ
       _ hfs hgs hfb hgb hΦ hΦb (hb σ hσ)
 
-/-- The genuine amplified frequency tail is smaller than every fixed power
-T^(-N), not merely o(T). No BBLR source assumption is used here. -/
 theorem rectangularGaussianTailMoment_uniform_rapid_decay
     (K : Set MomentShifts) (hK : IsCompact K) (δ : ℝ) (hδ : 0 < δ)
     (hρ : ∀ σ ∈ K, ∀ k : PurePolarIndex, δ ≤ ‖normalizedPurePolarRoot σ k‖)

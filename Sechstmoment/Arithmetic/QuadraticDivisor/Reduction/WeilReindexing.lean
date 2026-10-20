@@ -56,12 +56,6 @@ import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.WattProfiles
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.WeilBounds
 import Std
 
-/-! ## Gcd Inner Reindex
-
-Exact reindexing of the original inner gcd condition by the shortened
-positive variable. The upper scale is divided by `d₂`; it is not enlarged
-to the original inner scale.
--/
 namespace DivisorProof
 open Real Set Finset Classical
 open scoped BigOperators
@@ -88,8 +82,6 @@ theorem gcd_split_inner_iff (a w : ℕ) {d : ℕ} (hd : 0 < d) (hdw : d ∣ w) (
   · intro h
     rw [h.gcd_eq_one,mul_one]
 
-/-- The actual one-variable gcd filter equals a finite coprime shortened
-sum, with the exact upper range `2M/d₂`. -/
 theorem finite_gcd_inner_reindex {E : Type*} [AddCommMonoid E]
     (a w : ℕ) {d : ℕ} (hd : 0 < d) (hdw : d ∣ w)
     {M : ℝ} (hM : 0 ≤ M) (f : ℕ → E) :
@@ -141,11 +133,6 @@ end DivisorProof
 
 
 
-/-! ## Gcd Weil Estimate
-
-The original `m₁` gcd-filtered smooth sum is bounded directly from (W).
-The shortened scale `M₁/d₂`, inverse phase and gcd factor are all preserved.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -193,8 +180,6 @@ theorem gcdWeilInnerSum_eq_shortened {W₁ W₄ : ℝ → ℝ} (a w : ℕ) {d : 
     rw [he₁,he₄]
   · rw [ite_eq_right hv,ite_eq_right hv]
 
-/-- The smooth original `m₁`-sum estimate used in Lemma 5.1. No
-incomplete-sum hypothesis is assumed; the proved Estermann factor is retained. -/
 theorem Estermann.original_gcd_inner_bound
     {W₁ W₄ : ℝ → ℝ} (h₁ : SmoothDyadicWeight W₁) (h₄ : SmoothDyadicWeight W₄)
     (a w : ℕ) (hw : 0 < w) {d : ℕ} (hd : 0 < d) (hdw : d ∣ w)
@@ -223,11 +208,6 @@ end DivisorProof
 
 
 
-/-! ## Coefficient Counting
-
-The exact `A/d₁` saving in the outer coefficient count. Grouping by gcd is
-performed before estimating the number of coefficients in each fiber.
--/
 namespace DivisorProof
 open Real Set Finset Classical
 open scoped BigOperators
@@ -250,8 +230,6 @@ theorem gcd_coefficient_fiber_card_le {A : ℝ} (hA : 0 ≤ A)
   exact (show (({a ∈ Finset.Icc 1 ⌊2*A⌋₊ | Nat.gcd a d = e}).card:ℝ)*e ≤ (⌊2*A⌋₊:ℝ)
     by exact_mod_cast hprod).trans (Nat.floor_le (by positivity))
 
-/-- An arbitrary nonnegative cost depending on `gcd(a,d)` keeps the
-full shortened coefficient count `2A/e` in every divisor fiber. -/
 theorem sum_gcd_coefficient_cost_le {A : ℝ} (hA : 0 ≤ A) {d : ℕ} (hd : 0 < d)
     (F : ℕ → ℝ) (hF : ∀ e ∈ d.divisors, 0 ≤ F e) :
     (∑ a ∈ Finset.Icc 1 ⌊2*A⌋₊, F (Nat.gcd a d)) ≤
@@ -266,8 +244,6 @@ theorem sum_gcd_coefficient_cost_le {A : ℝ} (hA : 0 ≤ A) {d : ℕ} (hd : 0 <
   exact mul_le_mul_of_nonneg_right
     (gcd_coefficient_fiber_card_le hA d (Nat.pos_of_mem_divisors he)) (hF e he)
 
-/-- The two terms in the Weil completion factor are summed together,
-with the `1/e` saving retained before the final divisor count. -/
 theorem sum_weil_coefficient_factor_le {A M w : ℝ}
     (hA : 0 ≤ A) (hM : 0 ≤ M) (hw : 0 < w) {d : ℕ} (hd : 0 < d) :
     (∑ a ∈ Finset.Icc 1 ⌊2*A⌋₊, (1+(Nat.gcd a d:ℝ)*M/w)) ≤
@@ -292,11 +268,6 @@ end DivisorProof
 
 
 
-/-! ## Frequency Average
-
-The finite signed-frequency gcd average, including empty frequency ranges.
-The factor two for positive and negative frequencies is explicit.
--/
 namespace DivisorProof
 open Real Set Finset Classical
 open scoped BigOperators
@@ -336,8 +307,6 @@ theorem nonzero_frequency_abs_sum_le {L : ℝ} (hL : 0 ≤ L)
   rw [Finset.sum_const,nsmul_eq_mul]
   exact mul_le_mul_of_nonneg_right (by exact_mod_cast hcard n) (hF n)
 
-/-- The literal finite analogue of the double average, with signed
-Poisson frequencies rather than an unspecified positive frequency range. -/
 theorem signed_frequency_sqrt_gcd_average {L U : ℝ} (hL : 0 ≤ L) (hU : 0 ≤ U)
     (c : ℕ) (hc : c ≠ 0) :
     (∑ l ∈ frequencySet L, if l = 0 then 0 else
@@ -354,11 +323,6 @@ end DivisorProof
 
 
 
-/-! ## Weil Outer Decomposition
-
-The concrete finite Fourier block is expressed in terms of the original
-gcd-filtered inner sum to which the complete Weil input has been applied.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -414,11 +378,6 @@ end DivisorProof
 
 
 
-/-! ## Product Grouping
-
-Finite factorization multiplicities and the positive-multiple sum used
-after grouping the actual product `b n₁` in the large-gcd estimate.
--/
 namespace DivisorProof
 open Real Set Finset Classical
 open scoped BigOperators
@@ -451,7 +410,6 @@ theorem positive_multiple_card_real_le {W : ℝ} (hW : 0 ≤ W)
   exact (show (({w ∈ Finset.Icc 1 ⌊4*W⌋₊ | d ∣ w}).card:ℝ)*d ≤ (⌊4*W⌋₊:ℝ)
     by exact_mod_cast hp).trans (Nat.floor_le (by positivity))
 
-/-- The weighted multiple sum of §5.1, retaining the exact `1/d` saving. -/
 theorem weil_product_multiple_sum_le {W M : ℝ} (hW : 0 < W) (hM : 0 ≤ M)
     {d : ℕ} (hd : 0 < d) :
     (∑ w ∈ (Finset.Icc 1 ⌊4*W⌋₊).filter (fun w : ℕ => W ≤ (w:ℝ) ∧ d ∣ w),
@@ -487,12 +445,6 @@ end DivisorProof
 
 
 
-/-! ## Actual Weil Inner
-
-The shortened Weil estimate is instantiated with the literal scales and
-the original uniform normalized weight data. No separate profile-shape
-hypothesis remains in this actual inner-sum theorem.
--/
 namespace DivisorProof
 open Real MeasureTheory Set Finset Classical
 open scoped BigOperators
@@ -515,8 +467,6 @@ theorem divisor_completion_factor {d e f w M : ℝ}
   rw [← hef]
   field_simp
 
-/-- The proved Estermann theorem applied to the actual `m₁` inner sum. The
-completion factor is exactly `1+d₁ M₁/(b n₁)`, before coefficient counting. -/
 theorem Estermann.actual_inner_bound
     {ρ K : ℝ} {bounds : ℕ → ℝ} {q : QuadraticScales}
     {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}

@@ -54,14 +54,6 @@ import Mathlib.Topology.UniformSpace.UniformConvergence
 import Sechstmoment.Analysis.Mellin.VerticalIntegral
 import Std
 
-/-!
-# Rectangle contour movement with the literal simple pole at zero
-
-The rectangle calculation uses the holomorphic divided difference `dslope`.
-The simple-pole contribution is computed from the actual truncated inverse
-vertical integral, using the explicit rational primitives and arctangent
-limits. No contour-displacement identity is supplied as an assumption.
--/
 
 namespace Sechstmoment
 
@@ -237,9 +229,6 @@ theorem mellinDslope_horizontal_integral_tendsto_zero
   exact (mellinDslope_horizontal_integral_eq H hH hab
     (by intro he; norm_num [he] at hy) hstrip).symm
 
-/-- A genuine simple-pole rectangle displacement. Its inputs are ordinary
-holomorphy, proved boundary integrability, and independently proved edge
-limits; no displaced-integral identity occurs among the hypotheses. -/
 theorem mellinRectangle_simplePole_shift
     (H : ℂ → ℂ) {U : Set ℂ} (hU : IsOpen U) (hH : DifferentiableOn ℂ H U)
     {a b : ℝ} (ha : a < 0) (hb : 0 < b)

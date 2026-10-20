@@ -2,14 +2,6 @@ import Mathlib.Tactic
 import Sechstmoment.Numerator.Polar.EulerMellinKernel
 import Sechstmoment.Numerator.Polar.GaussianLogGrowth
 
-/-!
-# Quantitative domination of the actual left Mellin remainder
-
-On the literal left contour the actual nine-zeta Euler kernel is dominated
-uniformly in both amplifier heights. The true Gaussian coefficients cost
-at most log(T)^48 on a normalized nonzero-root gap. The positive scale power
-then contributes exactly x^(-δ), and the factor 1/z is uniformly bounded.
--/
 
 namespace Sechstmoment
 

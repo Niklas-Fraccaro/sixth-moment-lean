@@ -54,7 +54,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.WattProfiles
 import Std
 
-/-! ## Watt Frequency -/
 
 
 namespace DivisorProof
@@ -93,8 +92,6 @@ theorem positiveFrequencyTransition_derivative_zero {j : ℕ} (hj : j ≠ 0)
       exact positiveFrequencyTransition_one hy.le
     simpa only [iteratedDeriv_const,hj,ite_false] using he.iteratedDeriv_eq j
 
-/-- A single fixed smooth positive-frequency factor, with constants for
-all derivative orders chosen before any varying arithmetic parameters. -/
 theorem positiveFrequencyTransition_derivative_bounds :
     ∃ b : ℕ → ℝ, (∀ j, 0 ≤ b j) ∧ ∀ j t, 0 < t →
       ‖iteratedDeriv j positiveFrequencyTransition t‖ ≤ b j*t^(-(j:ℝ)) := by
@@ -137,8 +134,6 @@ theorem smooth_real_weight_scaled_derivative {f : ℝ → ℝ}
   dsimp only
   rw [norm_smul,Real.norm_of_nonneg (pow_nonneg ha.le _),norm_iteratedDeriv_ofReal hf]
 
-/-- Scaling a fixed compact profile preserves multiplicative derivative
-bounds; no lower bound on the sampling length is needed. -/
 theorem smooth_real_weight_multiplicative_derivative {f : ℝ → ℝ}
     (hf : ContDiff ℝ ∞ f) {R a : ℝ} (hR : 0 < R) (ha : 0 < a)
     (hs : tsupport f ⊆ Icc (-R) R) {b : ℕ → ℝ}
@@ -301,8 +296,6 @@ theorem positiveFrequencyProfile_derivative_bounds :
 def oscillatoryDerivativeBound (a : ℕ → ℝ) (K : ℝ) : ℕ → ℝ :=
   derivativeProductBound a (fun j => (4*Real.pi*K)^j)
 
-/-- The `Λ^(10j)` frequency derivative cost, without further dyadic
-decomposition. The spatial oscillation is controlled by `L*|x| ≤ K*E`. -/
 theorem oscillatory_profile_derivative {f : ℝ → ℂ}
     (hf : ContDiff ℝ ∞ f) {L K E x : ℝ}
     (_hL : 0 < L) (hK : 0 ≤ K) (hE : 1 ≤ E) (hx : L*|x| ≤ K*E)
@@ -409,8 +402,6 @@ theorem inverse_scale_derivative_identity {E t : ℝ} (hE : 0 < E) (ht : 0 < t) 
   simp only [mul_inv_rev,inv_pow,inv_inv]
   ring
 
-/-- Uniform Watt frequency-weight data, with exactly `Δ = Q^(-10ρ)`.
-The derivative sequence depends only on the original bounds and fixed K. -/
 theorem actualWatt_frequency_weight_bounds {ρ K : ℝ} (hρ : 0 < ρ) (hK : 1 ≤ K)
     (bounds : ℕ → ℝ) (hb : ∀ j, 0 ≤ bounds j) :
     ∃ b : ℕ → ℝ, (∀ j, 0 ≤ b j) ∧
@@ -475,7 +466,6 @@ end
 end DivisorProof
 
 
-/-! ## Watt Weights -/
 
 
 namespace DivisorProof
@@ -591,8 +581,6 @@ theorem actualWattGamma_derivatives {ρ K : ℝ} {q : QuadraticScales}
   · simp only [iteratedDeriv_fun_const_zero,norm_zero]
     positivity
 
-/-- The concrete profiles provide every weight hypothesis of the open
-Watt theorem, including the uniform quantifier order. -/
 theorem actualWatt_weight_data {ρ K : ℝ} (hρ : 0 < ρ) (hK : 1 ≤ K)
     (bounds : ℕ → ℝ) (hb : ∀ j, 0 ≤ bounds j) :
     ∃ b : ℕ → ℝ, (∀ j, 0 ≤ b j) ∧
@@ -654,7 +642,6 @@ end
 end DivisorProof
 
 
-/-! ## Watt Reindex -/
 
 
 namespace DivisorProof
@@ -935,8 +922,6 @@ theorem wattProject_coprime {n : Fin 5 → ℕ} {d : ℕ} (hg : outerGCD n = d)
   rw [show Nat.gcd (n 0*n 2) (n 1*n 3) = d from hg] at hc
   exact hc
 
-/-- The exact six-variable Watt sum for one pair of divisor fibers.
-The equality uses the original summands, not a separately postulated sum. -/
 theorem originalWattFibre_sum_eq {bounds : ℕ → ℝ} {q : QuadraticScales}
     {α β : ℕ → ℂ} {W : Fin 5 → ℝ → ℝ}
     (hq : ∀ j, 1 ≤ q.size j) (hw : NormalizedWeightData bounds q α β W)
@@ -1022,7 +1007,6 @@ end
 end DivisorProof
 
 
-/-! ## Normalized Input -/
 
 
 namespace DivisorProof

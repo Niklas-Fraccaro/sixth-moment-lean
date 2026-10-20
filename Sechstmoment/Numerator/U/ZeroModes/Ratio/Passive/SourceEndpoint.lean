@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.PassiveActualTensorParameters
 import Sechstmoment.Numerator.U.Sources.PassiveSoftSourceFactory
 
-/-! The actual weighted Gamma tensor is compared with its literal native zero
-on genuine continuous supported passive blocks. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

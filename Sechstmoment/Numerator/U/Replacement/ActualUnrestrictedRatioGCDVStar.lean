@@ -1,9 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.GCDVStarDensity
 
-/-! The literal unrestricted positive-integer common-X GCD V* expression.
-Only the actual finite amplifier supports remain; both zeta factors and
-all positive gaps are genuinely countable sums. Convergence and mask
-completion are proved in the following modules. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators Topology

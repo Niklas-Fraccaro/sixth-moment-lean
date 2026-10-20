@@ -54,7 +54,6 @@ import Mathlib.Topology.Instances.EReal.Lemmas
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.WeilReindexing
 import Std
 
-/-! ## Weil Assembly -/
 
 
 namespace DivisorProof
@@ -387,8 +386,6 @@ theorem uniform_divisor_cost {ρ : ℝ} (hρ : 0 < ρ) :
     _ ≤ C*(4*Q)^ρ := by gcongr
     _ = _ := by rw [Real.mul_rpow (by norm_num : (0:ℝ) ≤ 4) (by linarith : 0 ≤ Q)]; ring
 
-/-- Lemma 5.1, uniformly in every varying scale and weight. Its only
-number-theoretic input is SALT's proved Estermann theorem, averaged over the modulus. -/
 theorem Estermann.actual_pointwise_weil_bound
     {ρ K : ℝ} (hρ : 0 < ρ) (hK : 1 ≤ K)
     (bounds : ℕ → ℝ) (hbounds : ∀ j, 0 ≤ bounds j) :

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Remainder.Configurations
 
-/-! Weighted absolute convergence of the actual global bivariate coefficients, PDF (6.5). -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPGlobalRest

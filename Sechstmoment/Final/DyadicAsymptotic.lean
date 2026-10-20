@@ -2,8 +2,6 @@ import Mathlib.Analysis.SpecificLimits.Basic
 import Sechstmoment.Final.CertificateLimit
 import Sechstmoment.Final.DyadicLowerBound
 
-/-! Finite dyadic assembly with the original T log(T)^9 normalization.
-Every scaled logarithm is accounted for before the height limit is taken. -/
 
 namespace Sechstmoment
 open Filter MeasureTheory
@@ -16,7 +14,6 @@ def f01FiniteDyadicLowerBound (n J : ℕ) (T : ℝ) (Φ : ℝ → ℝ) : ℝ :=
     (‖actual250ProjectedMixedMoment n (T/(2 : ℝ)^(j+1)) Φ‖^2/
       actual250ProjectedGramMoment n (T/(2 : ℝ)^(j+1)) Φ)/f01SixthMomentScale T
 
-/-- Each fixed finite dyadic sum has its exact scalar certificate limit. -/
 theorem f01FiniteDyadicLowerBound_tendsto
     (hSource : DivisorProof.Watt41)
     (n : ℕ) (hn : 12 ≤ n) (J : ℕ)
@@ -46,7 +43,6 @@ theorem f01FiniteDyadicLowerBound_tendsto
   rw [he] at h
   exact h
 
-/-- Eventually the actual finite certificate sum bounds the original moment. -/
 theorem f01FiniteDyadicLowerBound_eventually_le (n : ℕ) (hn : 12 ≤ n) (J : ℕ)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (hΦpos : ∀ x, 0 ≤ Φ x)
     (hΦle : ∀ x, Φ x ≤ 1) (hI : 0 < ∫ x : ℝ, Φ x)

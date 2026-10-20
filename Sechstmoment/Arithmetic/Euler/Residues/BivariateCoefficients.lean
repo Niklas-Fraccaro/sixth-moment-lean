@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Residues.BackwardEuler
 
-/-! Extraction of the six zeta denominators from the double local series, PDF §6.2. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 set_option linter.unreachableTactic false

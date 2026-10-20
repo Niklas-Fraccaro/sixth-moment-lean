@@ -3,8 +3,6 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 import Sechstmoment.Denominator.Balanced.MomentErrorBudget
 import Sechstmoment.Denominator.Balanced.ZetaGaussianPair
 
-/-! The full proved zeta-pair replacement error after multiplication by
-the four actual profiles and integration over the physical height window. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Filter Set
 open scoped BigOperators Topology ContDiff
@@ -24,8 +22,6 @@ theorem d02Continuous_supported_norm_bound {f : ℝ → ℝ} {a b : ℝ}
   have hx : |f x|≤M := by simpa only [Real.norm_eq_abs] using hM x
   exact hx.trans (le_max_right _ _)
 
-/-- The actual Gamma and chi errors have a strictly smaller-than-height
-power whenever `1/2+2ε+S/2<1`.  No error or negligibility assertion is input. -/
 theorem d02ZetaGaussianMomentError_uniform_bound {R ε : ℝ}
     (hR : 0≤R) (hε : 0<ε) (hε1 : ε≤1/4)
     (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)
@@ -56,8 +52,6 @@ theorem d02ZetaGaussianMomentError_uniform_bound {R ε : ℝ}
   · intro t ht
     simpa only [show (1/2:ℝ)+2*ε-1=-1/2+2*ε by ring] using hp t ht σ hσ
 
-/-- The proved complete pair error disappears in the actual denominator
-normalization.  The only exponent condition is the profile-length saving. -/
 theorem d02ZetaGaussianMomentError_normalized_tendsto {R ε : ℝ}
     (hR : 0≤R) (hε : 0<ε) (hε1 : ε≤1/4)
     (a : Fin 4 → ℝ) (hsaving : 1/2+2*ε+(∑ i,a i)/2<1)

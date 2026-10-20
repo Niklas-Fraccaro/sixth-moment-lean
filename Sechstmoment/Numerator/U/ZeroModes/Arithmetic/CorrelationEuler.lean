@@ -1,9 +1,6 @@
 import Mathlib.NumberTheory.EulerProduct.Basic
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.PairShiftedBFactors
 
-/-! Division-free Euler reconstruction for correlations with finitely many
-exceptional prime coefficients. The local constant coefficients need not be
-one and may vanish. -/
 
 namespace Sechstmoment
 open scoped BigOperators
@@ -12,8 +9,6 @@ open ArithmeticFunction Nat
 noncomputable section
 set_option maxHeartbeats 50000
 
-/-- A finite-prime coefficient, including the constant local coefficient at
-every prime of the selected set. -/
 def finitePrimeCoefficient (c : ℕ → ℕ → ℂ) (S : Finset ℕ) (n : ℕ) : ℂ :=
   ∏ p ∈ S, c p (n.factorization p)
 
@@ -35,9 +30,6 @@ theorem finitePrimeCoefficient_pow_mul (c : ℕ → ℕ → ℂ)
   have hqp : q ≠ p := by intro h; exact hpS (h ▸ hq)
   rw [hp.factorization_pow, Finsupp.single_apply, ite_eq_right hqp.symm, zero_add]
 
-/-- A finite Euler product for arbitrary genuine local coefficients. In
-particular this has no multiplicativity or nonvanishing assumption on the
-function being reconstructed. -/
 theorem finitePrimeCoefficient_hasSum (c : ℕ → ℕ → ℂ)
     (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime)
     (hc : ∀ p ∈ S, Summable (fun e : ℕ => ‖c p e‖)) :
@@ -80,8 +72,6 @@ theorem finitePrimeCoefficient_hasSum (c : ℕ → ℕ → ℂ)
           (∑' e : ℕ, c p e) (∏ q ∈ S, ∑' e : ℕ, c q e)
           hcp.of_norm.hasSum ih'.2 hnorm.of_norm
 
-/-- The value of a multiplicative arithmetic function over any finite set
-containing every prime divisor. Extra factors are its proved value at one. -/
 theorem multiplicative_eq_finitePrimeCoefficient (f : ArithmeticFunction ℂ)
     (hf : f.IsMultiplicative) {S : Finset ℕ} {n : ℕ}
     (hn : n ≠ 0) (hnS : n.primeFactors ⊆ S) :
@@ -94,8 +84,6 @@ theorem multiplicative_eq_finitePrimeCoefficient (f : ArithmeticFunction ℂ)
     have he : n.factorization p = 0 := Finsupp.notMem_support_iff.mp hp
     simp only [he, pow_zero, hf.map_one]
 
-/-- Correlation reconstruction is a consequence of genuine prime
-factorization, with every exponent of the two amplifier integers retained. -/
 theorem arithmeticCorrelation_eq_finitePrimeCoefficient
     (f g w : ArithmeticFunction ℂ)
     (hf : f.IsMultiplicative) (hg : g.IsMultiplicative) (hw : w.IsMultiplicative)
@@ -113,9 +101,6 @@ theorem arithmeticCorrelation_eq_finitePrimeCoefficient
   simp only [finitePrimeCoefficient, Nat.factorization_mul hb hn,
     Nat.factorization_mul ha hn, Finsupp.add_apply, Finset.prod_mul_distrib]
 
-/-- A global Euler product whose finitely many exceptional local constants
-can be arbitrary, including zero. The finite reconstruction hypothesis is
-intended to be discharged by prime factorization, as above. -/
 theorem finiteExceptionalEuler_hasProd (F : ℕ → ℂ) (c : ℕ → ℕ → ℂ)
     (E : Finset ℕ) (hE : ∀ p ∈ E, p.Prime)
     (hc : ∀ p, p.Prime → Summable (fun e : ℕ => ‖c p e‖))
@@ -155,8 +140,6 @@ theorem finiteExceptionalEuler_hasProd (F : ℕ → ℂ) (c : ℕ → ℕ → �
     ⟨hS (Finset.mem_union_left _ (Finset.mem_range.mpr (Nat.lt_of_mem_primesBelow hp))),
       Nat.prime_of_mem_primesBelow hp⟩
 
-/-- The global product for a fixed pair of amplifier integers is proved
-without dividing by the initial correlation coefficient. -/
 theorem arithmeticCorrelation_euler_hasProd
     (f g w : ArithmeticFunction ℂ)
     (hf : f.IsMultiplicative) (hg : g.IsMultiplicative) (hw : w.IsMultiplicative)
@@ -180,7 +163,6 @@ theorem arithmeticCorrelation_euler_hasProd
     (fun p hp => hES (Finset.mem_union_right _ hp))
     (Nat.primeFactors_subset_of_mem_factoredNumbers n.property)
 
-/-- The actual fixed-amplifier local coefficient series. -/
 def shiftedPairCorrelationLocalSeries (p : ℕ) (α β γ δ : ℂ) (a b : ℕ) : ℂ :=
   ∑' j : ℕ, shiftedPairArithmetic α β (p^(b.factorization p+j))*
     shiftedPairArithmetic γ δ (p^(a.factorization p+j))*(1/(p:ℂ))^j
@@ -233,9 +215,6 @@ private theorem positiveShift_primeRadius {e : ℝ} (he : 0 < e) (p : Nat.Primes
   exact Real.rpow_lt_one_of_one_lt_of_neg
     (by exact_mod_cast p.property.one_lt) (by linarith)
 
-/-- Euler reconstruction of the genuine translated two-shift coefficients
-in a positive real-shift half-plane. Both global and local absolute
-convergence are established from coefficient bounds. -/
 theorem shiftedPairCorrelation_euler_hasProd {e : ℝ} (he : 0 < e)
     (α β γ δ : ℂ) (hα : e ≤ α.re) (hβ : e ≤ β.re)
     (hγ : e ≤ γ.re) (hδ : e ≤ δ.re)
@@ -267,9 +246,6 @@ theorem bblrBPrimeFactor_zero {p : ℕ} (hp : p.Prime)
   change pairDiagonalPrimeSeries _ _ _ _ _ / pairDiagonalPrimeSeries _ _ _ _ _ = 1
   exact div_self (pairDiagonalPrimeSeries_ne_zero hM hα hβ hγ hδ hr)
 
-/-- At a coprime amplifier pair the genuine local correlation has one
-shifted prime exponent and one unshifted exponent. The resulting identity
-does not require either numerator or either finite correction to be nonzero. -/
 theorem shiftedPairCorrelationLocalSeries_eq_diagonal_mul_B
     {p a b : ℕ} (hp : p.Prime) (hab : a.Coprime b)
     (α β γ δ : ℂ) {M : ℝ} (hM : 0 ≤ M)
@@ -350,9 +326,6 @@ theorem bblrBFactor_positiveShift_hasProd {e : ℝ} (he : 0 < e)
     simp only [bblrBFactor, Finsupp.prod, Nat.support_factorization]
   exact hprod ▸ h
 
-/-- The fixed coprime amplifier correlation equals the four-zeta diagonal
-times its two literal finite `B` products. This is derived from the actual
-Dirichlet coefficients and convergent products. -/
 theorem shiftedPairCorrelation_eq_fourZeta_mul_B {e : ℝ} (he : 0 < e)
     (α β γ δ : ℂ) (hα : e ≤ α.re) (hβ : e ≤ β.re)
     (hγ : e ≤ γ.re) (hδ : e ≤ δ.re)
@@ -377,8 +350,6 @@ theorem shiftedPairCorrelation_eq_fourZeta_mul_B {e : ℝ} (he : 0 < e)
       (positiveShift_primeRadius he p)
   exact (shiftedPairCorrelation_euler_hasProd he α β γ δ hα hβ hγ hδ ha hb hab).unique h'
 
-/-- The literal `s`-dependent fixed-correlation identity. The two finite
-products use the original coefficients and the power `p^{-j(1+2s)}`. -/
 theorem shiftedPairCorrelationAt_eq_fourZeta_mul_B {e : ℝ} (he : 0 < e)
     (α β γ δ s : ℂ) (hα : e ≤ (α+s).re) (hβ : e ≤ (β+s).re)
     (hγ : e ≤ (γ+s).re) (hδ : e ≤ (δ+s).re)
@@ -399,8 +370,6 @@ theorem shiftedPairCorrelationAt_eq_fourZeta_mul_B {e : ℝ} (he : 0 < e)
   rw [H, Nat.cast_mul, Complex.natCast_mul_natCast_cpow]
   ring
 
-/-- BBLR's original compact shift domain and its initial integration
-half-plane imply the literal fixed-correlation Euler identity. -/
 theorem shiftedPairCorrelation_initial_eq_fourZeta_mul_BAt {α : MomentShifts}
     (hα : ∀ j : Fin 4, ‖α j‖ ≤ 1/8) {s : ℂ} (hs : 1/4 ≤ s.re)
     {a b : ℕ} (ha : a ≠ 0) (hb : b ≠ 0) (hab : a.Coprime b) :

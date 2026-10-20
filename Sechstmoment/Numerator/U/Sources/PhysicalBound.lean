@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.FactoryRestriction
 import Sechstmoment.Numerator.U.ZeroModes.SixTensorZeroMode
 
-/-! Genuine main and dual source bounds expressed entirely through the
-physical tensor sum and its uncut native sorted zero mode. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators ContDiff Topology FourierTransform
@@ -10,8 +8,6 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 3000000
 
-/-- The genuine main source estimate with both rectangular loss budgets,
-after physical reconstruction of the native GCD zero mode. -/
 theorem a03_actual_main_tensor_source_physical_bound
     (hinput : SeparatedQuadraticInput) {a b εsource εkernel c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)
@@ -62,8 +58,6 @@ theorem a03_actual_main_tensor_source_physical_bound
   rw [←heq]
   exact hbound
 
-/-- The genuine dual source estimate with both rectangular loss budgets,
-after physical reconstruction of the native GCD zero mode. -/
 theorem a03_actual_dual_tensor_source_physical_bound
     (hinput : SeparatedQuadraticInput) {a b εsource εkernel c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)

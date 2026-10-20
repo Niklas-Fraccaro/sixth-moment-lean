@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.U.Separation.Frequency.GammaProfile
 import Sechstmoment.Numerator.U.Separation.Frequency.LogSymbol
 import Sechstmoment.Numerator.U.Separation.Tensor.SixFourier
 
-/-! All-order cancellation of the actual logarithmic-gap frequency after
-the genuine six-variable linear substitution. No Tr cutoff is required. -/
 namespace Sechstmoment
 open Complex Real Source Set MeasureTheory
 open scoped BigOperators ContDiff Topology

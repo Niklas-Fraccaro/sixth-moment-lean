@@ -1,9 +1,5 @@
 import Sechstmoment.Numerator.V.Arithmetic.Additive.GCD
 
-/-! The genuinely infinite additive character identity. Absolute
-summability is recorded before the finite/infinite sums are exchanged.
-The gcd fibres are reindexed by literal multiplication by the divisor.
--/
 
 namespace Sechstmoment.Source
 open Complex Real ZMod Finset
@@ -105,8 +101,6 @@ theorem gcdCharacterContribution_summable (N : ℕ) [NeZero N]
   intro χ _
   exact (gcd_character_terms_summable N d c hc χ).mul_left _
 
-/-- Infinite gcd/character decomposition for arbitrary absolutely summable
-coefficients. In applications the coefficient at zero is set to zero. -/
 theorem additive_series_character_decomposition (N : ℕ) [NeZero N]
     (c : ℕ → ℂ) (hc : Summable c) :
     (∑' m : ℕ, c m*naturalAdditivePhase N m) =
@@ -126,9 +120,6 @@ def additiveDirichletSeriesBlock (N d : ℕ) (c : ℕ → ℂ) : ℂ :=
     ((N/d).totient : ℂ)⁻¹ * ∑ χ : DirichletCharacter ℂ (N/d),
       gaussSum χ⁻¹ stdAddChar * χ (-1) * (∑' n : ℕ, c (d*n)*χ n)
 
-/-- The additive series written entirely in terms of the genuine
-reindexed character series. This is the absolute-convergence form of
-the arithmetic identity (5.2). -/
 theorem additive_series_character_decomposition_reindexed (N : ℕ) [NeZero N]
     (c : ℕ → ℂ) (hc : Summable c) :
     (∑' m : ℕ, c m*naturalAdditivePhase N m) =

@@ -6,8 +6,6 @@ open scoped BigOperators Topology
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- The gap restriction required by the source is derived from the retained
-product cutoff and a genuine positive amplifier lower length. -/
 theorem phase_near_H_from_product_cutoff {T ρ ε s u : ℝ} (hT : 1 ≤ T)
     (hε : 0 ≤ ε) (hexp : s+u/2 ≤ ρ*ε) (q : QuadraticScales)
     (hq : ∀ j, 0 ≤ q.size j) (hAB : T^ρ ≤ q.A*q.B)
@@ -53,8 +51,6 @@ theorem phase_near_H_from_product_cutoff {T ρ ε s u : ℝ} (hT : 1 ≤ T)
       mul_le_mul_of_nonneg_left he (by positivity)
     _ = _ := by rw [Real.sqrt_eq_rpow, mul_assoc, ← Real.rpow_add hABp]
 
-/-- The source's nontrivial range follows uniformly from the actual
-amplifier upper lengths and a small auxiliary near exponent. -/
 theorem phase_near_nontrivial_uniform {d s : ℝ} (hexp : d+s < 1) :
     ∀ᶠ T : ℝ in atTop, ∀ q : QuadraticScales, (∀ j, 0 ≤ q.size j) →
       0 < q.A*q.B → q.A*q.B ≤ T^d → ∀ n : Fin 7 → ℕ,
@@ -73,8 +69,6 @@ theorem phase_near_nontrivial_uniform {d s : ℝ} (hexp : d+s < 1) :
   rw [he] at hs
   nlinarith
 
-/-- Concrete auxiliary choices respecting both the fixed interior lower
-length and the source derivative epsilon. -/
 theorem phase_source_auxiliary_exponents {a b ρ ε : ℝ}
     (_ha : 0 ≤ a) (hab : a ≤ b) (hlen : 3*a+5*b < 2)
     (hρ : 0 < ρ) (hε : 0 < ε) :

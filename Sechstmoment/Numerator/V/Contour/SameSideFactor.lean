@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.V.Arithmetic.ProfileContourBounds
 import Sechstmoment.Zeta.Bounds.ZetaPolynomialBound
 
-/-! The literal unweighted holomorphic integrand in Section 4.1. All
-zeta/chi growth estimates below concern the actual functions and are proved.
--/
 
 namespace Sechstmoment.Source
 open Complex Real Set

@@ -1,14 +1,6 @@
 import Sechstmoment.Numerator.U.TwistedMomentHolomorphy
 import Sechstmoment.Numerator.V.DP.DPPolydiscBoundary
 
-/-!
-# Exact conjugate orientation of normalized actual fourth moments
-
-Swapping amplifier profiles also conjugates and swaps the two pairs of
-shifts. A uniform limit therefore transfers to the correspondingly swapped
-polydisc. This is an exact orientation and uniform-convergence statement;
-it does not identify or prove holomorphy of the proposed regular limit.
--/
 
 namespace Sechstmoment
 open Complex Metric Set Filter Source
@@ -52,8 +44,6 @@ theorem rawMomentShifts_conjugate_swap (T : ℝ) (σ : MomentShifts) :
   ext j
   fin_cases j <;> simp [twistedConjugateSwapShifts, rawMomentShifts]
 
-/-- The actual moment normalization is real, so it commutes exactly with
-the conjugate amplifier swap. No integrability input is added. -/
 theorem normalized_twistedFourthMoment_conjugate_swap (T : ℝ) (σ : MomentShifts)
     (f g Φ : ℝ → ℝ) :
     conj (twistedFourthMoment T (rawMomentShifts T σ) f g Φ /
@@ -64,9 +54,6 @@ theorem normalized_twistedFourthMoment_conjugate_swap (T : ℝ) (σ : MomentShif
   congr 1
   simp
 
-/-- A uniform actual normalized moment limit for one amplifier orientation
-gives the uniform actual limit for the swapped orientation on the swapped
-polydisc. The new target is exactly `conj (G (conjugateSwap σ))`. -/
 theorem normalized_twistedFourthMoment_uniform_polydisc_conjugate_swap
     (R : Fin 4 → ℝ) (f g Φ : ℝ → ℝ) (G : MomentShifts → ℂ)
     (hlimit : TendstoUniformlyOn

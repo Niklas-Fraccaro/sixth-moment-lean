@@ -1,14 +1,6 @@
 import Sechstmoment.Zeta.AFE.Four.Geometry
 import Sechstmoment.Zeta.AFE.Four.HorizontalDecay
 
-/-!
-# Exact expansion of the completed kernel on the finite contour
-
-The shifted Gamma factors must be nonzero.  Excluding only the two poles
-of completed zeta would be insufficient at the totalized Gamma poles.
-The geometric hypotheses below exclude those points by their nonzero
-imaginary parts.
--/
 
 namespace Sechstmoment.Source
 open Complex
@@ -64,8 +56,6 @@ theorem fixedAFECompletedKernel_div_eq_explicit
   unfold bblrExplicitAFEIntegrand
   ring
 
-/-- Exact identity on the open finite-contour neighborhood, including both
-horizontal edges of the rectangle. -/
 theorem fixedAFECompletedKernel_div_eq_explicit_on_neighborhood
     (G : ℂ → ℂ) (t : ℝ) (ht : 16 ≤ t) (α : MomentShifts)
     (hα : ∀ j : Fin 4, ‖α j‖ ≤ (1 / 4 : ℝ))
@@ -84,8 +74,6 @@ theorem fixedAFECompletedKernel_div_eq_explicit_on_rectangle
   exact fixedAFECompletedKernel_div_eq_explicit_on_neighborhood G t ht α hα
     (fixedAFERectangle_subset_neighborhood t hz)
 
-/-- The same exact identity on the whole original AFE line, including its
-two infinite tails.  No lower bound on the height is needed here. -/
 theorem fixedAFECompletedKernel_div_eq_explicit_rightLine
     (G : ℂ → ℂ) (t : ℝ) (α : MomentShifts)
     (hα : ∀ j : Fin 4, ‖α j‖ ≤ (1 / 4 : ℝ)) (v : ℝ) :

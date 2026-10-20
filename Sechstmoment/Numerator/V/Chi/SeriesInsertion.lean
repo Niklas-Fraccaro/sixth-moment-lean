@@ -1,7 +1,6 @@
 import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Sechstmoment.Numerator.V.Chi.ShiftedKernel
 
-/-! Absolute insertion of a Dirichlet series into the literal chi time integral. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory

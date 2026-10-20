@@ -3,9 +3,6 @@ import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 import Mathlib.MeasureTheory.Integral.IntegralEqImproper
 import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 
-/-! Quantitative repeated integration by parts for a genuinely varying phase.
-The hypotheses concern derivatives of the amplitude and reciprocal frequency,
-not the oscillatory integral. The interval is the rescaled dyadic interval [1,2]. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set
@@ -223,7 +220,6 @@ theorem d06_nonstationary_repeated_integral_bound {A r E w : ℝ → ℂ} {T : �
     _ ≤ (T⁻¹) ^ k * K := mul_le_mul_of_nonneg_left hJ (by positivity)
     _ = K / T ^ k := by rw [inv_pow]; ring
 
-/-- Restoring the time scale costs exactly the Jacobian T. -/
 theorem d06_nonstationary_time_integral_bound {A r E w : ℝ → ℂ} {T : ℝ}
     (hT : 0 < T) (hA : ContDiff ℝ ∞ A) (hs : tsupport A ⊆ Icc (1 : ℝ) 2)
     (hr : ∀ x ∈ tsupport A, ContDiffAt ℝ ∞ r x)

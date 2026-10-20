@@ -3,15 +3,6 @@ import Mathlib.Tactic.FieldSimp
 import Mathlib.Tactic.Linarith
 import Sechstmoment.Analysis.Complex.PhaseProjection
 
-/-!
-# The actual zeta phase on the critical line
-
-The phase is the quotient of the two archimedean factors in the completed
-functional equation. Its unit norm and the conjugation identity for the actual
-Riemann zeta function are proved here, rather than supplied as hypotheses.
-This discharges the analytic inputs to the exact projection algebra in §1.1.
-It does not assert any asymptotic formula for moments.
--/
 
 namespace Sechstmoment
 
@@ -20,7 +11,6 @@ open scoped ComplexConjugate
 
 noncomputable section
 
-/-- The point `1/2 + it` used in the original moment. -/
 def criticalLinePoint (t : ℝ) : ℂ := (1 / 2 : ℂ) + (t : ℂ) * I
 
 @[simp] theorem criticalLinePoint_re (t : ℝ) : (criticalLinePoint t).re = 1 / 2 := by
@@ -62,7 +52,6 @@ private theorem mellin_conj_of_real (f : ℝ → ℂ)
   simp only [smul_eq_mul, map_mul, hf]
   rw [← real_cpow_conj hx, map_sub, map_one]
 
-/-- The pole-removed completion respects complex conjugation. -/
 theorem completedRiemannZeta₀_conj (s : ℂ) :
     completedRiemannZeta₀ (conj s) = conj (completedRiemannZeta₀ s) := by
   have hf : ∀ x : ℝ, conj ((HurwitzZeta.hurwitzEvenFEPair 0).f_modif x) =
@@ -79,20 +68,15 @@ theorem completedRiemannZeta₀_conj (s : ℂ) :
   rw [← hdiv]
   exact mellin_conj_of_real _ hf _
 
-/-- The completed zeta function respects conjugation, including its assigned
-values at the poles. -/
 theorem completedRiemannZeta_conj (s : ℂ) :
     completedRiemannZeta (conj s) = conj (completedRiemannZeta s) := by
   simp only [completedRiemannZeta_eq, completedRiemannZeta₀_conj,
     map_sub, map_div₀, map_one]
 
-/-- Conjugation for the real archimedean gamma factor. -/
 theorem gammaReal_conj (s : ℂ) : Gammaℝ (conj s) = conj (Gammaℝ s) := by
   simp only [Gammaℝ_def, map_mul, map_div₀, map_ofNat, ← Gamma_conj]
   rw [← real_cpow_conj Real.pi_pos, map_div₀, map_neg, map_ofNat]
 
-/-- Conjugation for the actual Riemann zeta function, proved from its
-real Mellin kernel and the completed definition. -/
 theorem riemannZeta_conj (s : ℂ) : riemannZeta (conj s) = conj (riemannZeta s) := by
   by_cases hs : s = 0
   · subst s
@@ -101,11 +85,9 @@ theorem riemannZeta_conj (s : ℂ) : riemannZeta (conj s) = conj (riemannZeta s)
     rw [riemannZeta_def_of_ne_zero hs, riemannZeta_def_of_ne_zero hc,
       completedRiemannZeta_conj, gammaReal_conj, map_div₀]
 
-/-- The multiplier in `ζ(s) = χ(s) ζ(1-s)` on the critical line. -/
 def criticalChi (t : ℝ) : ℂ :=
   Gammaℝ (1 - criticalLinePoint t) / Gammaℝ (criticalLinePoint t)
 
-/-- The quotient phase agrees with the usual sine--gamma expression for `χ`. -/
 theorem criticalChi_gamma_formula (t : ℝ) :
     criticalChi t = 2 * (2 * Real.pi : ℂ) ^ (criticalLinePoint t - 1) *
       Gamma (1 - criticalLinePoint t) * sin (Real.pi * criticalLinePoint t / 2) := by
@@ -136,7 +118,6 @@ theorem criticalChi_eq_conj_div (t : ℝ) :
   exact congrArg (fun z : ℂ => z / Gammaℝ (criticalLinePoint t))
     (gammaReal_conj (criticalLinePoint t))
 
-/-- The phase has unit modulus even at critical-line zeroes of zeta. -/
 theorem criticalChi_mul_star (t : ℝ) : criticalChi t * star (criticalChi t) = 1 := by
   rw [criticalChi_eq_conj_div]
   simp only [star_div₀, star_star]
@@ -149,7 +130,6 @@ theorem criticalChi_norm (t : ℝ) : ‖criticalChi t‖ = 1 := by
   simp only [norm_mul, norm_star, norm_one] at h
   nlinarith [norm_nonneg (criticalChi t)]
 
-/-- The completed functional equation specialized to the actual zeta value. -/
 theorem riemannZeta_critical_functional_equation (t : ℝ) :
     riemannZeta (criticalLinePoint t) =
       criticalChi t * riemannZeta (1 - criticalLinePoint t) := by
@@ -167,8 +147,6 @@ theorem riemannZeta_critical_functional_equation (t : ℝ) :
     completedRiemannZeta_one_sub]
   field_simp
 
-/-- The real structure needed by the projection lemmas now has no phase or
-zeta hypotheses: both follow for every real `t`. -/
 theorem riemannZeta_critical_real_structure (t : ℝ) :
     riemannZeta (criticalLinePoint t) =
       criticalChi t * star (riemannZeta (criticalLinePoint t)) := by
@@ -181,13 +159,11 @@ theorem riemannZeta_critical_real_structure (t : ℝ) :
       rw [criticalLinePoint_one_sub]
       exact riemannZeta_conj (criticalLinePoint t)
 
-/-- Exact identity (1.2) in the manuscript, for the actual zeta function. -/
 theorem zeta_phaseProjection_mixed_re (t : ℝ) (F : ℂ) :
     riemannZeta (criticalLinePoint t) ^ 3 * star (phaseProjection (criticalChi t) F) =
       ((riemannZeta (criticalLinePoint t) ^ 3 * star F).re : ℂ) :=
   phaseProjection_mixed_re (criticalChi_mul_star t) (riemannZeta_critical_real_structure t)
 
-/-- Exact identity (1.3) in the manuscript, with the actual zeta phase. -/
 theorem zeta_phaseProjection_gram (t : ℝ) (F G : ℂ) :
     phaseProjection (criticalChi t) F * star (phaseProjection (criticalChi t) G) =
       (1 / 2 : ℂ) * ((F * star G + (star (criticalChi t)) ^ 3 * F * G).re : ℂ) :=

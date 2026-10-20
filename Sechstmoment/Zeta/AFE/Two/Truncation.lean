@@ -2,8 +2,6 @@ import Mathlib.Analysis.Normed.Ring.InfiniteSum
 import Mathlib.Analysis.PSeries
 import Sechstmoment.Analysis.Gaussian.Weight
 
-/-! Absolute two-index Gaussian tails.  The coefficient hypothesis is a
-pointwise power envelope; it is not a truncation or asymptotic premise. -/
 namespace Sechstmoment
 open Real Complex Filter
 open scoped BigOperators
@@ -38,8 +36,6 @@ def d02GaussianLongTail (a : ℕ × ℕ → ℂ) (X Y : ℝ) (n : ℕ × ℕ) : 
     ‖a n‖ * d02GaussianV0 (d02PositivePairProduct n/Y)
   else 0
 
-/-- Every sufficiently high power of the Gaussian controls the entire
-infinite long sum, including both unrestricted Dirichlet indices. -/
 theorem d02GaussianLongTail_term_bound
     (a : ℕ × ℕ → ℂ) {X Y A b : ℝ} (hY : 0 < Y) (hX : Y ≤ X)
     (hA : 2 ≤ A+b) (ha : ∀ n, ‖a n‖ ≤ (d02PositivePairProduct n)^(-b))

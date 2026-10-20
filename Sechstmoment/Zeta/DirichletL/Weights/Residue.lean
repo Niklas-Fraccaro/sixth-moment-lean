@@ -1,9 +1,5 @@
 import Sechstmoment.Zeta.DirichletL.Weights.Shift
 
-/-! The literal residue at zero for the canonical square weight. The left
-line stays to the right of every Gamma pole, so only the factor `1/w`
-contributes a pole, with residue exactly one.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

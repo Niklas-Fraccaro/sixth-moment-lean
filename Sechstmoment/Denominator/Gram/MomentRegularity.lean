@@ -1,7 +1,6 @@
 import Sechstmoment.Denominator.Gram.Algebra
 import Sechstmoment.Denominator.Gram.Analytic
 
-/-! Exact weighted integration of the actual Gram identities. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Polynomial Filter
 open scoped BigOperators Topology ComplexConjugate

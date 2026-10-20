@@ -3,7 +3,6 @@ import Mathlib.Analysis.Complex.RealDeriv
 import Mathlib.Analysis.Fourier.FourierTransformDeriv
 import Sechstmoment.Numerator.U.Diagonal.ProfileHolomorphy
 
-/-! Actual uniform horizontal decay of the profile transform on finite real strips. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Filter

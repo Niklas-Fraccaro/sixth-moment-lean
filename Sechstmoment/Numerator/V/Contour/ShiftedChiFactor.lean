@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Chi.ShiftedIntegrability
 import Sechstmoment.Numerator.V.Contour.SameSideFactor
 
-/-! Holomorphy and proved polynomial growth of the actual single-shift chi
-moment factor, before displacement to the absolute Dirichlet line. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

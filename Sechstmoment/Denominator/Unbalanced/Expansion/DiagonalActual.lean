@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Unbalanced.Expansion.Diagonal
 import Sechstmoment.Denominator.Unbalanced.MomentDefinitions
 
-/-! Exact normalization of the original arithmetic six-index diagonal and
-identification of its limit with the literal D04 shifted edge integral. -/
 namespace Sechstmoment
 open MeasureTheory Filter Set
 open scoped BigOperators Topology
@@ -66,8 +64,6 @@ def d04OneSidedLiteralDiagonalTerm (T : ℝ) (ρ : Fin 4 → ℝ → ℝ)
     d04OneSidedProfileProduct (fun i t => (ρ i t : ℂ)) (d01LogPoint (Real.log T) x)*
     (Real.exp (-((d01RightIndices x 0 : ℝ)*(d01RightIndices x 1 : ℝ))/(T^3)) : ℂ)
 
-/-- The literal shifted arithmetic six-index sum divided by log(T)^9 is
-the original D01 atomic integral with the actual smoothing e^(-mn/T^3). -/
 theorem d04OneSidedLiteralDiagonal_measure_identity {T : ℝ} (hT : 1<T)
     (ρ : Fin 4 → ℝ → ℝ) (σ : Fin 2 → ℂ) :
     (∑' x : DiagonalSixIndices,d04OneSidedLiteralDiagonalTerm T ρ σ x)/

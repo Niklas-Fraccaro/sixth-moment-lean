@@ -5,20 +5,11 @@ import Sechstmoment.Numerator.U.Replacement.GaussianTailUniform
 
 set_option maxRecDepth 4000
 
-/-!
-# Quantitative error of the actual BBLR weight replacement
-
-The original V minus the literal VStar is first moved to a positive contour
-by the proved exact contour identity. The actual shifted integral is then
-split into its central part and its genuine Gaussian tail. No V-error bound
-or analytic moment estimate is assumed.
--/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology
 noncomputable section
 
-/-- A global quantitative Gaussian majorant on a prescribed positive line. -/
 theorem bblrCentralWeightDifference_gaussian_majorant :
     ∃ D : ℝ, 0 < D ∧ ∀ t x c : ℝ, 0 < t → 0 < x → 0 < c → c ≤ 1 →
       ∀ T : ℝ, ∀ σ α : MomentShifts, (∀ j, ‖α j‖ ≤ 1/4) → ∀ v : ℝ,
@@ -77,7 +68,6 @@ def bblrShiftedGaussianDifferenceTail (T : ℝ) (σ α : MomentShifts)
   (1/(2*Real.pi):ℂ)*∫ v in {v : ℝ | R < |v|},
     bblrCentralWeightDifference (polarPoleKiller T σ) t α x ((c:ℂ)+(v:ℂ)*I)
 
-/-- A true tail of the shifted actual V-minus-VStar integral. -/
 theorem bblrShiftedGaussianDifferenceTail_norm_le :
     ∃ D : ℝ, 0 < D ∧ ∀ t x c R : ℝ, 0<t → 0<x → 0<c → c≤1 → 0≤R →
       ∀ T : ℝ, ∀ σ α : MomentShifts, (∀ j, ‖α j‖≤1/4) →
@@ -107,7 +97,6 @@ theorem bblrShiftedGaussianDifferenceTail_norm_le :
       mul_le_mul_of_nonneg_left htail (by positivity)
     _ = _ := by ring
 
-/-- Exact central-plus-tail decomposition of the actual original difference. -/
 theorem bblrGaussianV_sub_bblrVStar_core_add_tail {t x c R : ℝ}
     (ht : 0<t) (hx : 0<x) (hc : 0<c) (hc1 : c≤1)
     (T : ℝ) (σ α : MomentShifts) (hα : ∀ j, ‖α j‖≤1/4) :
@@ -142,8 +131,6 @@ private theorem eventually_positive_mul_rpow_lt_id (C : ℝ) (hC : 0<C)
   have hh := mul_lt_mul_of_pos_left ht hC
   simpa [mul_assoc,hC.ne'] using hh
 
-/-- The explicit central hypotheses hold on every genuinely sub-square-root
-Gaussian cutoff; the statement is numerical and independent of the shifts. -/
 theorem bblrCentralGaussian_cutoff_conditions {ε : ℝ} (hε : 0<ε) (hεhalf : ε<1/2) :
     ∀ᶠ t : ℝ in atTop,
       10≤t ∧ 0≤t^ε ∧ 192*((1+t^ε)+(1+t^ε)^2)<t ∧ 6*(1+t^ε)≤t := by
@@ -163,9 +150,6 @@ theorem bblrCentralGaussian_cutoff_conditions {ε : ℝ} (hε : 0<ε) (hεhalf :
     nlinarith
   · linarith
 
-/-- An unconditional pointwise replacement estimate for the actual V and
-literal VStar, uniform in all small raw shifts. The moving auxiliary weight
-is retained through its explicit Gaussian coefficient constant. -/
 theorem bblrGaussianV_sub_bblrVStar_uniform_error {c ε : ℝ}
     (hc : 0<c) (hc1 : c≤1) (hε : 0<ε) (hεhalf : ε<1/2) :
     ∃ E : ℝ, 0<E ∧ ∀ᶠ t : ℝ in atTop, ∀ T : ℝ, ∀ σ α : MomentShifts,
@@ -237,9 +221,6 @@ theorem bblrGaussianV_sub_bblrVStar_uniform_error {c ε : ℝ}
       nlinarith [mul_nonneg hK (by linarith : 0≤P)]
     _ = _ := by dsimp [K,P]; ring
 
-/-- The natural scaled version of the true pointwise estimate. Every fixed
-positive c at most one is permitted; no relation to the cutoff exponent is
-required. The coefficient of the actual moving Gaussian is explicit. -/
 theorem bblrGaussianV_sub_bblrVStar_scaled_uniform_error {c : ℝ}
     (hc : 0<c) (hc1 : c≤1) :
     ∃ C : ℝ, 0<C ∧ ∀ᶠ t : ℝ in atTop, ∀ T : ℝ, ∀ σ α : MomentShifts,
@@ -269,9 +250,6 @@ theorem bblrGaussianV_sub_bblrVStar_scaled_uniform_error {c : ℝ}
     _ = E*polarGaussianConstant T σ c/t*((t/2)^(2*c)*Real.pi^(-2*c)*x^(-c)) := by ring
     _ = _ := by rw [hidentity]; ring
 
-/-- The actual moving pole-killer family on a compact separated normalized
-shift set has the required uniform pointwise error with its proved log^48
-coefficient cost. This is an analytic theorem, not a source hypothesis. -/
 theorem bblrGaussianV_sub_bblrVStar_uniform_raw_error (K : Set MomentShifts)
     (hK : IsCompact K) {δ c : ℝ} (hδ : 0<δ) (hc : 0<c) (hc1 : c≤1)
     (hρ : ∀ σ ∈ K, ∀ k : PurePolarIndex, δ≤‖normalizedPurePolarRoot σ k‖) :

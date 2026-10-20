@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.ComplexRepeatedRoots
 
-/-! The shifted binomial tail has an explicit cubic numerator. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

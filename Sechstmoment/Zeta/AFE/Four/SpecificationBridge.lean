@@ -4,21 +4,12 @@ import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Sechstmoment.Zeta.AFE.Four.Specification
 
-/-!
-# Conditional reduction from a uniform small-shift estimate
-
-This module proves the compact-parameter reduction only.  Its input is the
-explicit uniform remainder estimate; it does not prove or postulate that
-estimate and does not define `bblrFixedAFE_proved`.
--/
 
 namespace Sechstmoment.Source
 open Complex Set Filter
 open scoped Topology
 noncomputable section
 
-/-- Every compact set of normalized shifts eventually gives raw shifts in
-the fixed quarter-unit box. -/
 theorem eventually_rawMomentShifts_norm_le_quarter
     (K : Set MomentShifts) (hK : IsCompact K) :
     ∀ᶠ T : ℝ in atTop, ∀ σ ∈ K, ∀ j : Fin 4,
@@ -34,8 +25,6 @@ theorem eventually_rawMomentShifts_norm_le_quarter
   apply (div_le_iff₀ hlogpos).mpr
   linarith
 
-/-- The stronger uniform small-shift estimate implies the literal source
-proposition.  The analytical estimate remains an explicit hypothesis. -/
 theorem bblrFixedAFE_of_uniform_smallShifts
     (hsmall : ∀ G : ℂ → ℂ, BBLREntireWeight G (fun _ => 0) →
       ∀ A : ℕ, ∃ C : ℝ, 0 ≤ C ∧

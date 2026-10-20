@@ -5,10 +5,6 @@ import Mathlib.Tactic.Tauto
 import Sechstmoment.Certificate.Kernels.Balanced.RegionCoordinates
 import Sechstmoment.Denominator.Measures.LimitMeasureDefinitions
 
-/-! Exact nine-edge slice geometry for the balanced second AFE.  The four
-profile vertices have prescribed row/column sums.  The remaining free
-zeta--zeta edge is cut by the literal sum of the two zeta coordinates.
-No approximate functional equation or height asymptotic is assumed here. -/
 
 namespace Sechstmoment
 open Set
@@ -24,8 +20,6 @@ def d02InteriorSum (R : Fin 4 → ℝ) : ℝ := R 0+R 1+R 2+R 3
 def d02BalancedWidth (a b c d : ℝ) (R : Fin 4 → ℝ) : ℝ :=
   1-d02ProfileSum a b c d+2*d02InteriorSum R
 
-/-- All nine original nonnegative edge coordinates, rather than a free
-limiting kernel.  The side edges are determined by the four profile sums. -/
 def d02BalancedEdges (a b c d : ℝ) (R : Fin 4 → ℝ) (u : ℝ) : D01EdgeSpace :=
   fun ij =>
     (![![u, c-R 0-R 2, d-R 1-R 3],
@@ -58,8 +52,6 @@ theorem d02BalancedEdges_rowColumnSums (a b c d : ℝ) (R : Fin 4 → ℝ) (u : 
 @[simp] theorem d02BalancedEdges_origin (a b c d : ℝ) (R : Fin 4 → ℝ) (u : ℝ) :
     d02BalancedEdges a b c d R u (0,0) = u := rfl
 
-/-- Every original nine-edge point is recovered from its four profile sums,
-four interior edges and free zeta--zeta edge. -/
 theorem d02BalancedEdges_reconstruct (x : D01EdgeSpace) :
     d02BalancedEdges ((d01RowColumnSums x).1 1) ((d01RowColumnSums x).1 2)
       ((d01RowColumnSums x).2 1) ((d01RowColumnSums x).2 2)
@@ -97,7 +89,6 @@ theorem d02BalancedEdges_logSum (a b c d : ℝ) (R : Fin 4 → ℝ) (u : ℝ) :
   simp [d02ZetaLogSum,d02ProfileSum]
   ring
 
-/-- The logarithmic cut `q₀≤1` is exactly the free-edge interval cut. -/
 theorem d02BalancedEdges_cutoff_iff (a b c d : ℝ) (R : Fin 4 → ℝ) (u : ℝ) :
     d02ZetaLogSum (d01RowColumnSums (d02BalancedEdges a b c d R u)) ≤ 1 ↔
       u≤d02BalancedWidth a b c d R/2 := by
@@ -120,7 +111,6 @@ theorem d02BalancedEdges_slice_iff (a b c d : ℝ) (R : Fin 4 → ℝ) (u : ℝ)
   simp only [mem_Icc]
   tauto
 
-/-- Original centered Dirichlet coordinates in the direct AFE half. -/
 theorem d02BalancedEdges_centered_arguments (a b c d : ℝ) (R : Fin 4 → ℝ) (u : ℝ) :
     (1/2-(d01RowColumnSums (d02BalancedEdges a b c d R u)).1 0,
      1/2-(d01RowColumnSums (d02BalancedEdges a b c d R u)).2 0) =
@@ -131,8 +121,6 @@ theorem d02BalancedEdges_centered_arguments (a b c d : ℝ) (R : Fin 4 → ℝ) 
     d02InteriorSum]
   constructor <;> ring
 
-/-- The dual AFE reverses the two zeta indices as well as the shifts.
-Keeping that reversal gives the positive half with the same `delta`. -/
 theorem d02BalancedEdges_dual_arguments (a b c d : ℝ) (R : Fin 4 → ℝ) (u : ℝ) :
     ((d01RowColumnSums (d02BalancedEdges a b c d R u)).2 0-1/2,
      (d01RowColumnSums (d02BalancedEdges a b c d R u)).1 0-1/2) =

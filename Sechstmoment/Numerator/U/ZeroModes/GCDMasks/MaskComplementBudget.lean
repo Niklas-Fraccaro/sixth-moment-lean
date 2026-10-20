@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.AbsoluteConvergence
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.HighFrequencyEnvelope
 import Sechstmoment.Numerator.U.ZeroModes.GCDMasks.RatioTailMass
 
-/-! Absolute aggregation of the genuine continuous native mask boundary.
-The three geometrical alternatives are estimated separately before the
-countable arithmetic sums and full positive-X integration. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

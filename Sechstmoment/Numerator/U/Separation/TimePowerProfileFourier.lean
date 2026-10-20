@@ -1,8 +1,6 @@
 import Sechstmoment.Analysis.Complex.PositivePowers
 import Sechstmoment.Analysis.Fourier.ProfileProduct
 
-/-! Uniform arbitrary Fourier decay of the true positive-time power profile.
-The power may have arbitrary imaginary height; its cost is explicitly polynomial. -/
 namespace Sechstmoment
 open Complex Real Set MeasureTheory
 open scoped BigOperators Topology ContDiff

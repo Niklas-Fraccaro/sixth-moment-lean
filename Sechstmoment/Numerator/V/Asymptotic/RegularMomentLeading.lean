@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.Polar.General.BilinearDP
 import Sechstmoment.Numerator.V.Asymptotic.CriticalHolomorphy
 import Sechstmoment.Numerator.V.DP.DPPolydiscBoundary
 
-/-! The independently computed separated main term is the restriction of
-a genuine holomorphic contour expression, including colliding shifts. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

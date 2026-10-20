@@ -3,14 +3,11 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 import Mathlib.Tactic
 import Sechstmoment.Numerator.U.Reconstruction.RectangularAFEReconstruction
 
-/-! An actual approximate-functional-equation discrepancy is multiplied by
-both unequal amplifiers and integrated. The primitive source bound is explicit. -/
 
 namespace Sechstmoment
 open Complex Source MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology
 
-/-- A supported profile has a literal uniform coefficient bound. -/
 theorem rectangular_supported_profile_bounded {a : ℝ} (f : ℝ → ℝ)
     (hf : SmoothInteriorProfile a f) : ∃ M : ℝ, 0 ≤ M ∧ ∀ x, ‖f x‖ ≤ M := by
   obtain ⟨M, hM⟩ := hf.2.1.exists_bound_of_continuous hf.1.continuous
@@ -18,8 +15,6 @@ theorem rectangular_supported_profile_bounded {a : ℝ} (f : ℝ → ℝ)
   intro x
   exact (hM x).trans (le_max_left _ _)
 
-/-- The support condition used in the finite amplifier expansion follows from
-the actual smooth-profile class. -/
 theorem rectangular_supported_profile_zero_above {a : ℝ} (f : ℝ → ℝ)
     (hf : SmoothInteriorProfile a f) : ∀ x, a < x → f x = 0 := by
   intro x hx
@@ -28,8 +23,6 @@ theorem rectangular_supported_profile_zero_above {a : ℝ} (f : ℝ → ℝ)
   have := (hf.2.2 hm).2
   linarith
 
-/-- A deliberately coarse amplifier bound suffices for the rapidly decaying
-AFE remainder, and it is proved from the actual Dirichlet sum. -/
 theorem rectangular_profileDirichletSum_norm_le {T M : ℝ} (hT : 1 < T) (hM : 0 ≤ M)
     (a : ℝ) (f : ℝ → ℝ) (hf : ∀ x, a < x → f x = 0) (hb : ∀ x, ‖f x‖ ≤ M)
     (s : ℂ) (hs : 0 ≤ s.re) : ‖profileDirichletSum T f s‖ ≤ M*T^a := by
@@ -63,7 +56,6 @@ noncomputable def rectangularAFEIntegratedError (T : ℝ) (α : MomentShifts)
     (G : ℂ → ℂ) (f g Φ : ℝ → ℝ) : ℂ :=
   ∫ t : ℝ, rectangularAFEErrorIntegrand T α G f g Φ t
 
-/-- The literal dyadic weight localizes every AFE remainder to `[T,2T]`. -/
 theorem rectangular_AFE_error_zero_outside {T : ℝ} (hT : 0 < T)
     (α : MomentShifts) (G : ℂ → ℂ) (f g Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ)
     (t : ℝ) (ht : t ∉ Icc T (2*T)) : rectangularAFEErrorIntegrand T α G f g Φ t = 0 := by
@@ -75,8 +67,6 @@ theorem rectangular_AFE_error_zero_outside {T : ℝ} (hT : 0 < T)
     exact ⟨by nlinarith [(le_div_iff₀ hT).mp hl], by nlinarith [(div_le_iff₀ hT).mp hu]⟩
   simp [rectangularAFEErrorIntegrand, hz]
 
-/-- A uniform primitive source bound remains negligible after multiplying the
-two actual unequal-length amplifiers and integrating the dyadic weight. -/
 theorem rectangular_AFE_integrated_error_bound {T F Gc P C A : ℝ}
     (hT : 1 < T) (hF : 0 ≤ F) (hGc : 0 ≤ Gc) (hP : 0 ≤ P) (_hC : 0 ≤ C)
     (a b : ℝ) (f g Φ : ℝ → ℝ) (α : MomentShifts) (G : ℂ → ℂ)

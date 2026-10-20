@@ -2,9 +2,6 @@ import Sechstmoment.Analysis.Integration.BoxUniformMoments
 import Sechstmoment.Certificate.Kernels.Balanced.Inner
 import Sechstmoment.Certificate.Kernels.Unbalanced.InclusionExclusion
 
-/-! The actual unbalanced denominator from (4.7), with slice measure dx₁ dx₂.
-Changing to residual masses rᵢ=aᵢ−xᵢ preserves exactly this measure.
-Degenerate uniform intervals are handled by the weighted box integral. -/
 
 namespace Sechstmoment
 open MeasureTheory
@@ -23,8 +20,6 @@ noncomputable def minusKernelUniform (p q : Fin 5 → ℝ) (t0 r s t : ℝ) : �
   r*s*t*uniformBoxExpectation r s t (fun x y z =>
     evalDegreeFour p (x+y+z-t0)*evalDegreeFour q (x+y+z+t0))
 
-/-- The original x-coordinate slice in (4.7), with the three independent
-uniform intervals of lengths a−x₁, b−x₂ and c−x₃. -/
 noncomputable def denominatorMinusKernel (p q : Fin 5 → ℝ) (a b c d : ℝ) : ℝ :=
   ∫ x, (boundedSimplexSlice a b c d).indicator
     (fun x => minusKernelUniform p q (minusKernelT0 a b c d)
@@ -45,7 +40,6 @@ theorem boxIntegral_zero_second (r t : ℝ) (f : ℝ → ℝ → ℝ → ℝ) :
 theorem boxIntegral_zero_third (r s : ℝ) (f : ℝ → ℝ → ℝ → ℝ) :
     boxIntegral r s 0 f = 0 := by simp [boxIntegral]
 
-/-- Weighted expectation remains the box integral on the degenerate faces. -/
 theorem minusKernelUniform_eq_box {r s t : ℝ}
     (hr : 0 ≤ r) (hs : 0 ≤ s) (ht : 0 ≤ t) (p q : Fin 5 → ℝ) (t0 : ℝ) :
     minusKernelUniform p q t0 r s t = minusKernelBox p q t0 r s t := by
@@ -83,7 +77,6 @@ theorem minusKernelComplement_residuals (a b c d : ℝ) (r : Fin 2 → ℝ) :
   repeat' constructor
   all_goals ring
 
-/-- No Jacobian factor occurs: r₁=a−x₁ and r₂=b−x₂ preserve dx₁ dx₂. -/
 theorem denominatorMinusKernel_eq_residual (p q : Fin 5 → ℝ) (a b c d : ℝ) :
     denominatorMinusKernel p q a b c d = denominatorMinusResidualKernel p q a b c d := by
   classical

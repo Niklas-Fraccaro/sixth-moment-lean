@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.VStar.TimeMellinRepresentation
 import Sechstmoment.Numerator.U.ZeroModes.RatioTimeFourierFubini
 
-/-! Exact VStar/power-profile Fourier reconstruction at every real arithmetic
-frequency, on arbitrary positive spatial lines and on the reflected line. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

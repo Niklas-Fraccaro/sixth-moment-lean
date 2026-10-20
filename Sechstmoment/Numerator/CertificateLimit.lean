@@ -4,11 +4,6 @@ import Sechstmoment.Numerator.U.CertificateLimit
 import Sechstmoment.Numerator.V.CertificateLimit
 import Sechstmoment.Zeta.AFE.Four.Identity
 
-/-! The actual original 250-row numerator consumer uses only Watt Proposition 4.1;
-the V contribution is proved independently and
-the fixed-weight AFE is proved internally. First height tends to infinity at a fixed
-profile stage; subsequently concentration recovers the exact certificate.
-This does not assert the denominator asymptotic or the final sixth moment. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Filter Source
@@ -16,7 +11,6 @@ open scoped Topology
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- Actual raw full-certificate height limit: all 220 U rows and 30 V rows. -/
 theorem actual250RawMixedMoment_fixed_stage_tendsto
     (hSource : DivisorProof.Watt41)
     (n : ℕ) (hn : 0<n)
@@ -37,7 +31,6 @@ theorem actual250RawMixedMoment_fixed_stage_tendsto
     Real.tendsto_log_atTop.eventually (eventually_gt_atTop (16:ℝ))] with T hT hL
   rw [actual250RawMixedMoment_eq_U_add_V n hn hT hL Φ hΦ,add_div]
 
-/-- The literal phase-projected full250 moment has the same real height limit. -/
 theorem actual250ProjectedMixedMoment_fixed_stage_tendsto
     (hSource : DivisorProof.Watt41)
     (n : ℕ) (hn : 0<n)
@@ -62,7 +55,6 @@ theorem actual250ProjectedMixedMoment_fixed_stage_tendsto
     Real.tendsto_log_atTop.eventually (eventually_gt_atTop (16:ℝ))] with T hT hL
   exact (actual250ProjectedMixedMoment_normalized_eq_real n hn hT hL Φ hΦ).symm
 
-/-- Complete actual numerator chain, in the prescribed order of limits. -/
 theorem actual250_two_stage_numerator_limit
     (hSource : DivisorProof.Watt41)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -81,8 +73,6 @@ theorem actual250_two_stage_numerator_limit
       (by omega) Φ hΦ,
     actual250MainTerm_profile_tendsto Φ⟩
 
-/-- Kernel-checked witness of the pre-existing exact actual-250-row target.
-No extra asymptotic, contour receipt or desired conclusion is a hypothesis. -/
 theorem firstRowNumeratorConsumer : FirstRowNumeratorConsumer := by
   intro hSource Φ hΦ
   exact actual250_two_stage_numerator_limit hSource Φ hΦ

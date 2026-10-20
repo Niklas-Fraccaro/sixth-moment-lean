@@ -21,14 +21,6 @@ import Sechstmoment.Zeta.FunctionalEquation
 import Sechstmoment.Zeta.Gamma.Ratios
 import Std
 
-/-!
-# Exact shifted functional equation before asymptotic centering
-
-`centeringFactor` is the literal ratio in (1.4), built from the actual
-archimedean Gamma factors. The functional equation below is exact on the
-critical strip and on every fixed shift disk once its radius is smaller than
-`log T / 2`. No Stirling estimate or moment estimate is assumed or asserted.
--/
 
 namespace Sechstmoment
 open Complex Filter Set
@@ -36,7 +28,6 @@ open scoped Topology
 
 noncomputable section
 
-/-- The actual archimedean multiplier away from the critical line. -/
 def zetaChi (s : ℂ) : ℂ := Gammaℝ (1-s) / Gammaℝ s
 
 @[simp] theorem zetaChi_criticalLinePoint (t : ℝ) :
@@ -53,7 +44,6 @@ private theorem ne_zero_of_re_pos {s : ℂ} (hs : 0 < s.re) : s ≠ 0 := by
   simp only [h, zero_re] at hs
   exact (lt_irrefl 0) hs
 
-/-- The actual zeta functional equation at every point of the critical strip. -/
 theorem riemannZeta_strip_functional_equation {s : ℂ}
     (hlo : 0 < s.re) (hhi : s.re < 1) :
     riemannZeta s = zetaChi s * riemannZeta (1-s) := by
@@ -72,7 +62,6 @@ theorem zetaChi_ne_zero_strip {s : ℂ} (hlo : 0 < s.re) (hhi : s.re < 1) :
     (Gammaℝ_ne_zero_of_re_pos (by simp only [sub_re, one_re]; linarith))
     (Gammaℝ_ne_zero_of_re_pos hlo)
 
-/-- Reciprocal symmetry of the literal archimedean multiplier. -/
 theorem zetaChi_one_sub_mul {s : ℂ} (hlo : 0 < s.re) (hhi : s.re < 1) :
     zetaChi (1-s) * zetaChi s = 1 := by
   have hg := Gammaℝ_ne_zero_of_re_pos hlo
@@ -81,7 +70,6 @@ theorem zetaChi_one_sub_mul {s : ℂ} (hlo : 0 < s.re) (hhi : s.re < 1) :
   simp only [zetaChi, sub_sub_cancel]
   field_simp
 
-/-- Holomorphy of the actual multiplier on the open critical strip. -/
 theorem zetaChi_analyticOnNhd_strip :
     AnalyticOnNhd ℂ zetaChi {s : ℂ | 0 < s.re ∧ s.re < 1} := by
   apply DifferentiableOn.analyticOnNhd
@@ -96,8 +84,6 @@ theorem zetaChi_analyticOnNhd_strip :
   · exact (isOpen_lt continuous_const continuous_re).inter
       (isOpen_lt continuous_re continuous_const)
 
-/-- The exact two-Gamma ratio whose vertical asymptotics are required by
-Stirling. This identity makes that remaining analytic input explicit. -/
 theorem zetaChi_shift_ratio (s u : ℂ) :
     zetaChi (s+u)/zetaChi s = (Real.pi : ℂ)^u *
       (Gamma ((1-s-u)/2)/Gamma ((1-s)/2)) *

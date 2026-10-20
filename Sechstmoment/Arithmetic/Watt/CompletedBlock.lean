@@ -1,7 +1,5 @@
 import Sechstmoment.Arithmetic.Watt.BlockIntegral
 
-/-! Identification and bound for the literal finite completed block.
-Both signs of the original inverse phase and both Fourier signs are covered. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -121,7 +119,6 @@ theorem rawBlockPairIntegrand_integral {b : ℕ → ℝ} {g : ℕ → ℕ → �
     completedIntegrand_integrable hw hV hP hS positive h c r hs t (τ*l))]
   simp only [completedTerm_eq_integral]
 
-/-- The finite completed block equals the integral that Watt bounds. -/
 theorem completedBlockSum_eq_integral {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)
@@ -147,9 +144,6 @@ end Watt41
 
 noncomputable section
 
-/-- A bound for the literal finite completed block, using exactly Watt 4.1.
-Every composition, support, summation interchange, sign and scale check in
-this block is proved in the imported modules. -/
 theorem Watt41.completedFiniteBlock_bound (hWatt : Watt41) {ε : ℝ} (hε : 0 < ε)
     (b : ℕ → ℝ) (hb : ∀ j, 0 ≤ b j) (g : ℕ → ℕ → ℝ) (hg : ∀ i j, 0 ≤ g i j) :
     ∃ C F : ℝ, 0 ≤ C ∧ 1 ≤ F ∧

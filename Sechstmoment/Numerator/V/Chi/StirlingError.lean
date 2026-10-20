@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.V.Chi.Gamma
 import Sechstmoment.Numerator.V.Chi.StirlingPhase
 
-/-! Uniform absolute main phase for the actual chi transform. -/
 
 namespace Sechstmoment.Source
 open Complex Real

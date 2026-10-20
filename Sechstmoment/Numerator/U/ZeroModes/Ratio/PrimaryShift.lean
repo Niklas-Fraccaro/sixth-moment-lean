@@ -3,10 +3,6 @@ import Sechstmoment.Analysis.Gaussian.Decay
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ContourIntegrability
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SideSwap
 
-/-! Actual first ratio-u contour movement across its simple pole at zero.
-The coupled zeta quotient and both genuine eta factors remain in the
-kernel. Holomorphy, integrability and horizontal edge limits are conclusions
-of the concrete arithmetic bounds, not contour-shift contracts. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
@@ -87,8 +83,6 @@ theorem a03ZeroModeRatioArithmeticKernel_primary_horizontal_tendsto_zero
         ring
   exact (intervalIntegral.norm_integral_le_of_norm_le_const hnorm).trans_eq (by ring)
 
-/-- Actual coupled ratio-u shift to `-1/4+ε/2`; its residue is the literal
-same arithmetic numerator evaluated at u=0. -/
 theorem a03ZeroModeRatioArithmeticKernel_primary_left_shift
     {ε δ d : ℝ} (hε : 0<ε) (hε1 : ε<1/8) (hδ : 0<δ)
     (α : MomentShifts) (hα : ∀ j : Fin 4,‖α j‖≤ε/8)
@@ -152,8 +146,6 @@ theorem a03ZeroModeRatioArithmeticKernel_primary_left_shift
   have hπ : (2*Real.pi:ℂ)≠0 := by exact_mod_cast (show 2*Real.pi≠0 by positivity)
   rw [←mul_assoc,one_div,inv_mul_cancel₀ hπ,one_mul]
 
-/-- The second primary line movement is derived by the exact arithmetic
-side interchange, retaining the v/u interchange in eta. -/
 theorem a03ZeroModeRatioArithmeticKernel_primary_right_shift
     {ε δ c : ℝ} (hε : 0<ε) (hε1 : ε<1/8) (hδ : 0<δ)
     (α : MomentShifts) (hα : ∀ j : Fin 4,‖α j‖≤ε/8)

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Residues.ArithmeticCorrections
 
-/-! Causal Euler difference operators acting on actual Taylor coefficients. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 namespace Sechstmoment.Source.NoDPResidues

@@ -1,9 +1,6 @@
 import Sechstmoment.Certificate.Exact.DenominatorBound
 import Sechstmoment.Certificate.Profiles.Denominator
 
-/-! The literal endpoint Gram sum is exactly the existing certified rational
-denominator.  This uses the original triangular pairs and multiplicities,
-the proved kernel/integer bridges, and the proved complete block aggregation. -/
 
 namespace Sechstmoment
 noncomputable section
@@ -54,8 +51,6 @@ theorem certificateGramMinusSum_eq_integer :
   simp only [Function.comp_def, div_eq_mul_inv]
   rw [List.sum_map_mul_right]
 
-/-- The terminal scalar profile-denominator target is the original exact
-certified denominator, with its factor 1/2 and scale unchanged. -/
 theorem certificatePointDenominator_eq_finite :
     certificatePointDenominator = (Finite.finiteDenominator : ℝ) := by
   unfold certificatePointDenominator

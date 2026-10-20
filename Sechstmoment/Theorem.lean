@@ -3,11 +3,6 @@ import Sechstmoment.Certificate.Profiles.CommonIndex
 import Sechstmoment.Final.DyadicAsymptotic
 import Sechstmoment.LiteratureAssumption
 
-/-! The original sixth-moment theorem from Watt Proposition 4.1.
-The fixed-weight approximate functional equation and the required V limits
-are proved internally.
-No moment asymptotic, positive Gram condition, or desired conclusion is
-an additional premise. The original certificate and main goal are unchanged. -/
 
 namespace Sechstmoment
 open Filter MeasureTheory
@@ -15,7 +10,6 @@ open scoped Topology
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- F01 closes with a fixed stage, a fixed weight and a finite dyadic sum. -/
 theorem f01NormalizedSixthMoment_eventually_gt_declared
     (hSource : DivisorProof.Watt41) :
     ∀ᶠ T : ℝ in atTop, (declaredBound : ℝ) < normalizedSixthMoment T := by
@@ -45,14 +39,12 @@ theorem f01NormalizedSixthMoment_eventually_gt_declared
       with T hlt hle
   exact hlt.trans_le hle
 
-/-- The requested original EReal liminf conclusion. -/
 theorem f01MainClaim
     (hSource : DivisorProof.Watt41) : MainClaim := by
   refine le_liminf_of_le (h := ?_)
   filter_upwards [f01NormalizedSixthMoment_eventually_gt_declared hSource] with T hT
   exact EReal.coe_le_coe_iff.mpr hT.le
 
-/-- Complete original theorem, with only Watt Proposition 4.1. -/
 theorem fullProof : LiteratureRelativeGoal := by
   intro hSource
   exact ⟨arithmeticFactor_wellDefined, f01MainClaim hSource⟩

@@ -2,8 +2,6 @@ import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.CountableJoint
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.FrontHeightFubini
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.InitialEtaJoin
 
-/-! Actual countable GCD convergence transferred through the proved
-common-amplifier eta identity, including the complete outer Mellin height. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff

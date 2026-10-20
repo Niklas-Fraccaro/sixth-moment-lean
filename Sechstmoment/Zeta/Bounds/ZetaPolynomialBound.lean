@@ -1,10 +1,6 @@
 import Mathlib.Analysis.Complex.PhragmenLindelof
 import Sechstmoment.Zeta.Bounds.ZetaStripGrowth
 
-/-! Polynomial growth of the actual zeta function, proved by
-Phragmen-Lindelof after removing its pole. The boundary estimates come from
-the functional equation and the absolutely convergent Dirichlet series.
--/
 
 namespace Sechstmoment.Source
 open Complex Real Filter Set

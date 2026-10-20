@@ -1,9 +1,6 @@
 import Sechstmoment.Certificate.Gram.GroupingNorm
 import Sechstmoment.Final.CauchySchwarz
 
-/-! The finite grouping is transferred to the literal weighted norm moment
-of the original actual 250-row certificate.  Continuity and integrability
-are proved from its genuine finite zeta tests and compact dyadic weight. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set
 open scoped Topology BigOperators
@@ -11,7 +8,6 @@ noncomputable section
 set_option maxHeartbeats 2000000
 set_option maxRecDepth 100000
 
-/-- Every actual feature test is continuous at a fixed positive stage. -/
 theorem certificateFeatureZetaTest_continuous (n : ℕ) (hn : 0 < n)
     {T : ℝ} (hT : 1 < T) (x : Finite.Feature) :
     Continuous (fun t : ℝ => featureZetaTest (certificateActualProfiles n) T t x) := by
@@ -36,7 +32,6 @@ private theorem certificateGram_weighted_continuous_integrable
     (hΦ.1.continuous.comp (continuous_id.div_const T)).mul hK
   exact hc.integrable_of_hasCompactSupport hss.mul_right
 
-/-- A genuine real pair moment of the same projected feature tests. -/
 def certificateFeatureProjectedGramMoment (n : ℕ) (T : ℝ) (Φ : ℝ → ℝ)
     (x y : Finite.Feature) : ℝ :=
   ∫ t : ℝ, Φ (t/T)*
@@ -54,8 +49,6 @@ theorem certificateFeatureProjectedGramIntegrand_integrable (n : ℕ) (hn : 0 < 
     (Complex.continuous_re.comp ((certificateFeatureZetaTest_continuous n hn hT x).mul
       (certificateFeatureZetaTest_continuous n hn hT y).star))
 
-/-- The whole weighted norm is integrable for every smooth dyadic weight,
-including signed weights; positivity is needed only by Cauchy--Schwarz. -/
 theorem actual250ProjectedGramMomentIntegrand_integrable (n : ℕ) (hn : 0 < n)
     {T : ℝ} (hT : 1 < T) (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :
     Integrable (fun t : ℝ => Φ (t/T)*
@@ -85,8 +78,6 @@ private theorem certificateGram_integral_list_sum {α : Type} (l : List α) (f :
       (certificateGram_list_integrable l f (fun b hb => hi b (List.mem_cons_of_mem a hb)))]
     rw [ih (fun b hb => hi b (List.mem_cons_of_mem a hb))]
 
-/-- Exact finite15931-pair formula for the norm moment appearing in the
-actual sixth-moment Cauchy--Schwarz inequality. -/
 theorem actual250ProjectedGramMoment_eq_certificate_pair_sum
     (n : ℕ) (hn : 0 < n) {T : ℝ} (hT : 1 < T)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.TimeGamma.LogStrip
 import Sechstmoment.Numerator.U.Separation.Frequency.FourierDerivatives
 
-/-! Uniform arbitrary-order Fourier seminorms of the literal localized
-Gamma amplitude, retaining the actual pure-polar Gaussian auxiliary. -/
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set
 open scoped ContDiff BigOperators Topology

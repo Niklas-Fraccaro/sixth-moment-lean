@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.CoefficientMaps
 
-/-! The complex zero-shift divisor coefficients are the expected cubics. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

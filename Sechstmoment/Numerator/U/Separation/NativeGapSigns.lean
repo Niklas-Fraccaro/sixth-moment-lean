@@ -1,7 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.ActualGapPhase
 import Sechstmoment.Numerator.U.ZeroModes.GapMellinReconstruction
 
-/-! Exact two-orientation gap sum and its separate absolute convergence. -/
 namespace Sechstmoment
 open Complex Real Set Filter MeasureTheory Source
 open scoped Topology ContDiff BigOperators

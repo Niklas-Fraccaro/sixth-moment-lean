@@ -2,17 +2,11 @@ import Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic
 import Sechstmoment.Certificate.Kernels.Balanced.PolytopeDensityBridge
 import Sechstmoment.Denominator.Balanced.Geometry
 
-/-! Genuine interval changes of variables for the balanced direct and dual
-halves.  The free-edge interval from the sharp logarithmic cut becomes the
-negative and positive halves of the original symmetric interval in (4.2).
-This algebraic and measure-theoretic identity does not assert an AFE. -/
 
 namespace Sechstmoment
 open MeasureTheory
 noncomputable section
 
-/-- The same reflection identity applies to complex shifted generators,
-before any polynomial differentiation. -/
 theorem d02_reflected_halves_integral {E : Type*} [NormedAddCommGroup E]
     [NormedSpace ℝ E] [CompleteSpace E] (f : ℝ → E) (hf : Continuous f) (h : ℝ) :
     (∫ u in (0:ℝ)..h, f (u-h))+(∫ u in (0:ℝ)..h, f (h-u)) =
@@ -47,8 +41,6 @@ theorem d02BalancedDualHalf_eq (p q : Fin 5 → ℝ) (delta h : ℝ) :
     (fun x => evalDegreeFour p (delta-x)*evalDegreeFour q (-delta-x))
     (a := (0:ℝ)) (b := h) h
 
-/-- Reflection of the literal free edge fills the whole symmetric interval,
-with its original Lebesgue normalization and polynomial signs. -/
 theorem d02BalancedHalves_eq_inner (p q : Fin 5 → ℝ) (delta h : ℝ) :
     d02BalancedDirectHalf p q delta h+d02BalancedDualHalf p q delta h =
       denominatorRealInner p q delta h := by
@@ -96,15 +88,12 @@ theorem d02BalancedDualSlice_eq (p q : Fin 5 → ℝ) (a b c d : ℝ) (R : Fin 4
   dsimp only
   rw [h1,h2]
 
-/-- Both original slice integrands use the actual row/column sum map. -/
 theorem d02BalancedSlices_eq_inner (p q : Fin 5 → ℝ) (a b c d : ℝ) (R : Fin 4 → ℝ) :
     d02BalancedDirectSlice p q a b c d R+d02BalancedDualSlice p q a b c d R =
       denominatorRealInner p q (d02ProfileDelta a b c d)
         (d02BalancedWidth a b c d R/2) := by
   rw [d02BalancedDirectSlice_eq,d02BalancedDualSlice_eq,d02BalancedHalves_eq_inner]
 
-/-- The slice geometry uses the same width as the independently defined
-original denominator kernel. -/
 theorem d02BalancedHalves_eq_kernel (p q : Fin 5 → ℝ) (a b c d : ℝ) :
     (∫ R in denominatorRegion a b c d,
       d02BalancedDirectHalf p q (d02ProfileDelta a b c d)

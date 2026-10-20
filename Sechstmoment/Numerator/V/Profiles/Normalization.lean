@@ -41,7 +41,6 @@ import Sechstmoment.Analysis.Harmonic.Scaling
 import Sechstmoment.Numerator.V.DP.DPNormalization
 import Std
 
-/-! Exact Jacobian and signs of the existing normalized DP triple integral. -/
 
 namespace Sechstmoment.Source.NoDPHarmonic
 open Real Complex MeasureTheory Set Polynomial

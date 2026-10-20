@@ -1,7 +1,5 @@
 import Sechstmoment.Denominator.Unbalanced.Expansion.Expansion
 
-/-! Uniform height and pole-separation bounds for the actual normalized
-complex shifts in the one-sided Mellin rectangle. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Filter Set
 open scoped Topology

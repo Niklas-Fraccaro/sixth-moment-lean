@@ -2,7 +2,6 @@ import Mathlib.Analysis.Calculus.ParametricIntegral
 import Mathlib.Analysis.Normed.Group.Bounded
 import Mathlib.MeasureTheory.Function.LocallyIntegrable
 
-/-! Complex Fréchet differentiation of actual compact interval integrals. -/
 
 namespace Sechstmoment
 open Complex Metric MeasureTheory Set Filter
@@ -10,9 +9,6 @@ open scoped Topology
 
 set_option maxHeartbeats 1000000
 
-/-- Compact joint continuity supplies the domination needed for genuine
-complex differentiation under the integral. The pointwise derivative is
-proved by the caller; no derivative of the resulting integral is assumed. -/
 theorem complexIntervalIntegral_hasFDerivAt
     {H : Type*} [NormedAddCommGroup H] [NormedSpace ℂ H] [ProperSpace H]
     (F : H → ℝ → ℂ) (F' : H → ℝ → H →L[ℂ] ℂ)
@@ -47,8 +43,6 @@ theorem complexIntervalIntegral_hasFDerivAt
     hb ((continuous_const : Continuous (fun _ : ℝ => C)).integrableOn_Icc) hd
   simpa only [intervalIntegral.integral_of_le hab, ← integral_Icc_eq_integral_Ioc] using h
 
-/-- A jointly continuous family together with its actual continuous complex
-Fréchet derivative. This is a bookkeeping structure, not an analytic input. -/
 structure ComplexIntegralFamily
     {H : Type*} [NormedAddCommGroup H] [NormedSpace ℂ H]
     (U : Set H) (X : Type*) [TopologicalSpace X] where
@@ -89,8 +83,6 @@ noncomputable def mul (F G : ComplexIntegralFamily U X) : ComplexIntegralFamily 
     (G.continuous_value.smul F.continuous_derivative)
   hasFDerivAt q hq x := (F.hasFDerivAt q hq x).mul (G.hasFDerivAt q hq x)
 
-/-- Actual compact integration preserves the family and integrates its
-proved derivative. -/
 noncomputable def intervalIntegral (F : ComplexIntegralFamily U (X × ℝ))
     (hU : IsOpen U) (a b : ℝ) (hab : a ≤ b) : ComplexIntegralFamily U X where
   value q x := ∫ t in a..b, F.value q (x,t)

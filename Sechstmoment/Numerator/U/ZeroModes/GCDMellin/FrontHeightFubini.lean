@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.FrontFubini
 
-/-! The outer s-height of the actual eta front is integrable as a consequence
-of its genuine s/x/u/v product integrability. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set
 open scoped BigOperators Topology

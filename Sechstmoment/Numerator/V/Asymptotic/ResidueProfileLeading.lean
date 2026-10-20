@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.DP.DPResidueContinuity
 import Sechstmoment.Numerator.V.Profiles.ArithmeticNormalization
 
-/-! The original harmonic profile, after division by log^6, has a
-uniform inverse-log error and a bounded continuous leading coefficient. -/
 
 namespace Sechstmoment.Source
 open NoDPHarmonic Complex Real Polynomial Metric

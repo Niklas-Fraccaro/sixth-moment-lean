@@ -1,9 +1,6 @@
 import Sechstmoment.Analysis.Mellin.SmoothMellinEntire
 import Sechstmoment.Arithmetic.Euler.FourL.Continuation
 
-/-! An entire numerator for the actual principal-character Mellin integrand.
-The four actual L-functions are retained, with their poles removed by the
-standard regularized trivial-character L-function. -/
 
 namespace Sechstmoment.Source.NoDPGlobalLFactorization
 open Complex Real Set MeasureTheory

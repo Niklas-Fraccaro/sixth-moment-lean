@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.PhysicalReplacement
 
-/-! The literal linear gap character used in the two-sign cosine zero mode. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff

@@ -1,10 +1,6 @@
 import Sechstmoment.Numerator.V.Contour.AlmostHolomorphicContour
 import Sechstmoment.Numerator.V.Contour.ShiftedChiFactor
 
-/-! Application of the smooth contour shift to the literal single-shift
-zeta/chi/profile integrand. Holomorphy and polynomial growth of that
-integrand are proved, not supplied as new analytic inputs.
--/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

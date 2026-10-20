@@ -1,7 +1,5 @@
 import Sechstmoment.Certificate.Profiles.Denominator
 
-/-! A common compact support and one-dimensional concentration for the
-literal endpoint families on all 178 certified groups. -/
 
 namespace Sechstmoment
 open MeasureTheory Filter Set
@@ -10,8 +8,6 @@ noncomputable section
 set_option maxHeartbeats 2000000
 set_option maxRecDepth 10000
 
-/-- All endpoint and type-dependent beta bounds are verified against the
-unchanged feature list. Its polynomials are the checked original row sums. -/
 theorem certificateFeatures_integer_geometry : ∀ x ∈ Finite.features,
     0 < x.A ∧ 0 < x.B ∧ x.A ≤ Finite.base ∧ x.B ≤ Finite.base ∧
       (x.typ = .V → x.A ≤ 24997500 ∧ x.B ≤ 24997500) := by decide +kernel
@@ -24,7 +20,6 @@ theorem certificateFeature_mem {i : ℕ} (hi : i < 178) :
   simp only [Option.getD_some]
   exact List.mem_of_getElem rfl
 
-/-- Admissibility needed for scalar concentration. -/
 def CertificateProfileEndpoint (typ : TestType) (a : ℝ) : Prop :=
   uCertificateHstar < a ∧ a ≤ 1 ∧ (typ = .V → a ≤ eta)
 
@@ -84,8 +79,6 @@ theorem certificateEndpointProfile_support (typ : TestType) {a : ℝ}
     have h := vEndpointProfile_support eta a n ht
     exact ⟨h.1,h.2.trans (by norm_num [eta])⟩
 
-/-- Scalar weak limits hold against every continuous test on the same
-compact interval; no moving profile parameter depends on the height T. -/
 theorem certificateEndpointProfile_test_tendsto (typ : TestType) {a : ℝ}
     (ha : CertificateProfileEndpoint typ a) (g : ℝ → ℝ)
     (hg : ContinuousOn g (Icc (0:ℝ) 1)) :

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.FirstOrderUniqueness
 
-/-! Four initial coefficients determine the entire local sequence. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

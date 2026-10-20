@@ -2,7 +2,6 @@ import Mathlib.Analysis.Calculus.MeanValue
 import Mathlib.Analysis.Complex.CauchyIntegral
 import Sechstmoment.Zeta.Regularized
 
-/-! Quantitative Laurent control for the actual zeta function near its pole. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set Metric

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.SourceErrorAggregate
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.Passive.TensorMellinIntegrability
 
-/-! Separately defined, convergent genuine ratio source and native Gamma
-zero moments, with exact restoration of their literal source error. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory Asymptotics
 open scoped BigOperators Topology ContDiff

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.BaseNumerator
 
-/-! The top numerator coefficient is a single boundary coefficient. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

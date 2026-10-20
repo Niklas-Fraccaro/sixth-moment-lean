@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.MainTerm.CompactSixGenerator
 import Sechstmoment.Numerator.U.MainTerm.PrincipalProfileKernelInversion
 import Sechstmoment.Numerator.U.MainTerm.SixPrincipalLimit
 
-/-! Genuine identification of the actual six principal Mellin limits with the entire
-regular profile generator.  The proof evaluates all six contour kernels and uses the
-literal six-term alternant identity; it introduces no analytical target premise. -/
 
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Source
@@ -50,9 +47,6 @@ private theorem bblrSixShifts_pairs_distinct
       linear_combination -hz
     · simpa [bblrSixShifts] using h12.symm
 
-/-- The actual normalized principal limit is the regular source-profile generator.
-The separated-shift hypothesis is used to evaluate the six literal rational terms;
-the right side is already entire and therefore supplies the collision continuation. -/
 theorem actualSixPrincipalPolarLimit_eq_regularProfileGenerator
     (σ : MomentShifts) (hσ : Function.Injective (polarSourceKnots σ))
     (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b)

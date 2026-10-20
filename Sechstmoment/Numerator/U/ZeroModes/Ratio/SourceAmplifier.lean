@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.TensorFamily
 import Sechstmoment.Numerator.U.ZeroModes.SoftNativeReconstruction
 
-/-! Literal source control with the reciprocal amplifier square roots on
-soft ordered pairs, using only side orientation. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -63,9 +61,6 @@ def a03SoftScaledSixFourierSourceClasses (ε K : ℝ) (bounds : ℕ → ℝ)
       (a03SoftSourceOrientedBeta q (a03EndpointScaledAlpha T A f k) (a03EndpointScaledBeta T B g k ν))
       (rectangularRealComponent (a03SoftSourceOrientedWeights q (a03SixTensorWeight normalizer ν)) component)
 
-/-- A source-admissible physical block retains its source class after the
-two actual amplifier square-root factors are extracted.  The enlarged
-constant depends only on the original class and the two profile bounds. -/
 theorem a03SoftScaledSixFourierSourceClasses_of_actual
     {ε K F G : ℝ} (hε : 0≤ε) (hK : 1≤K) (hF : 0≤F) (hG : 0≤G)
     (T A B H : ℝ) (f g : ℝ → ℝ) (k : Fin 4 → ℕ)

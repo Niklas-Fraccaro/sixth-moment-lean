@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.GCDMellin.ResidualVertical
 
-/-! Genuine full x/s/time and original finite amplifier aggregation of
-the literal three ratio-contour remainders. -/
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter Asymptotics
 open scoped BigOperators Topology ContDiff

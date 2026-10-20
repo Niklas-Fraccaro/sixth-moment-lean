@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.V.Chi.ShiftedKernel
 import Sechstmoment.Numerator.V.Chi.TranslatedWeight
 
-/-! The actual shifted chi kernel differs from the fixed-weight kernel by
-an integrated O(r^(-c) sqrt(T) |Im u|) error. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set MeasureTheory

@@ -1,9 +1,6 @@
 import Mathlib.MeasureTheory.Integral.DominatedConvergence
 import Sechstmoment.Analysis.Mellin.SmoothMellinInversion
 
-/-! Absolutely convergent series may be inserted into the literal smooth
-Mellin inversion formula. The only series hypothesis is its ordinary absolute
-convergence on the starting line. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set

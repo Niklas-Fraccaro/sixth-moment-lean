@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.NumeratorShift
 
-/-! At a ramified prime the zero geometric parameter does not change a sequence. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

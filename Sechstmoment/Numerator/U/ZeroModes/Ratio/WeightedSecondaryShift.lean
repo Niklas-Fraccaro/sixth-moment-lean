@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.WeightedPrimaryShift
 
-/-! Actual secondary single-residue ratio contour movements with the
-positive-real x/(ga),x/(gb) powers retained. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter

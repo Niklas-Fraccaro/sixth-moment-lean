@@ -1,9 +1,5 @@
 import Sechstmoment.Zeta.DirichletL.SmoothDivisorSeriesBound
 
-/-! The uniform fixed-modulus mean square of the canonical smoothed divisor
-transform. This theorem is unconditional and includes the convergence of
-the actual coefficients entering the square AFE.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set

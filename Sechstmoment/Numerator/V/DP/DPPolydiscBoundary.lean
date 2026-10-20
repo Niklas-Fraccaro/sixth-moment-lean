@@ -1,7 +1,6 @@
 import Sechstmoment.Analysis.Complex.Polydisc
 import Sechstmoment.Numerator.V.DP.DPSmoothUniform
 
-/-! # A genuine compact separated boundary enclosing coincident DP shifts -/
 namespace Sechstmoment.Source
 open Complex Set Metric
 open scoped Topology

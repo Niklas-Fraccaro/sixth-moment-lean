@@ -51,7 +51,6 @@ private theorem general_boundary_ne (q : Fin 4 → ℂ) (R : ℝ) (hR : ∀ j, �
   rw [heq] at hnorm
   exact (ne_of_lt (hR j)) hnorm
 
-/-- Four-pole Cauchy evaluation for an actually holomorphic numerator. -/
 theorem polarFourPole_contour (q : Fin 4 → ℂ) (F : ℂ → ℂ) (R : ℝ)
     (hq : Function.Injective q) (hR : ∀ j, ‖q j‖ < R) (hF : Differentiable ℂ F) :
     (2*(Real.pi:ℂ)*Complex.I)⁻¹ *
@@ -89,7 +88,6 @@ theorem polarFourPole_contour (q : Fin 4 → ℂ) (F : ℂ → ℂ) (R : ℝ)
         (F (q j)/polarPoleDenominator q j) := by ring
     _ = _ := by rw [inv_mul_cancel₀ hpi,one_mul]
 
-/-- The four residues of the actual general-shift profile contour in (3.6). -/
 theorem polarGeneralGeneratorContour_residues (η : ℝ) (P : Polynomial ℝ) (q : Fin 4 → ℂ)
     (innerR outerR : ℝ) (hq : Function.Injective q)
     (hinner : ∀ j, ‖q j‖ < innerR) (houter : ∀ j, ‖q j‖ < outerR) :
@@ -106,7 +104,6 @@ theorem polarGeneralGeneratorContour_residues (η : ℝ) (P : Polynomial ℝ) (q
       (fun ω : ℂ => F ω/(∏ j : Fin 4, (ω-q j))) := by funext ω; dsimp [F]; ring
   rw [heq,polarFourPole_contour q F outerR hq houter hF]
 
-/-- The inner cancellation at each pole leaves precisely the three-node profile convolution. -/
 theorem polarGeneralGeneratorContour_triple_residues (η : ℝ) (P : Polynomial ℝ) (q : Fin 4 → ℂ)
     (innerR outerR : ℝ) (hq : Function.Injective q)
     (hinner : ∀ j, ‖q j‖ < innerR) (houter : ∀ j, ‖q j‖ < outerR) :

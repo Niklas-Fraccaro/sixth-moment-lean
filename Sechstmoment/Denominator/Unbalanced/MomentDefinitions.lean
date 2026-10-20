@@ -2,9 +2,6 @@ import Mathlib.MeasureTheory.Integral.Prod
 import Sechstmoment.Certificate.Kernels.Unbalanced.Kernel
 import Sechstmoment.Denominator.Measures.DiagonalMeasureLimit
 
-/-! Literal unbalanced denominator moments, with the original chi phase,
-three positive profiles, one negative profile and the original minus kernel.
-These definitions introduce no analytic hypotheses. -/
 namespace Sechstmoment
 open Complex Real Polynomial MeasureTheory Filter Set
 open scoped BigOperators Topology ContDiff
@@ -54,8 +51,6 @@ def d04OneSidedCenteredPair (T t : ℝ) (σ : Fin 2 → ℂ) : ℂ :=
   Complex.exp ((-σ 0+σ 1)/2) * d04OneSidedRawSeries (T^3)
     (d04NegativeZetaArguments T t σ 0) (d04NegativeZetaArguments T t σ 1)
 
-/-- The pure time power must remain in the leading moment until its
-physical time mean is evaluated; the Gamma correction is estimated separately. -/
 def d04CenteringPurePower (T t : ℝ) (z : ℂ) : ℂ :=
   Complex.exp (z*(1-(Real.log (t/(2*Real.pi)) : ℂ)/(Real.log T : ℂ)))
 

@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.Polar.General.BilinearDP
 import Sechstmoment.Numerator.V.DP.DPAllPositiveCoincidence
 
-/-! Actual two-profile all-positive DP moments, their genuine bilinear
-polar circle, and the coincident polynomial polar generator. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Set Filter
@@ -151,7 +149,6 @@ theorem polarPolynomialC_sub (η : ℝ) (P Q : Polynomial ℝ) (z : ℂ) :
   exact intervalIntegral.integral_sub ((hc P).intervalIntegrable _ _)
     ((hc Q).intervalIntegrable _ _)
 
-/-- Actual cross-profile polar generator, with both mixed B/C terms. -/
 def polarPolynomialBilinearJ (η : ℝ) (P Q : Polynomial ℝ) (z : ℂ) : ℂ :=
   polarPolynomialB η P z*polarPolynomialB η Q z*polarH 2 z+
     (polarPolynomialB η P z*polarPolynomialC η Q z+
@@ -193,8 +190,6 @@ theorem dpAllPositiveBilinearRegularKernel_coincident (η : ℝ)
     dpAllPositiveRegularKernel_coincident η (P-Q) z hz,
     ← polarPolynomialBilinearJ_polarization]
 
-/-- The literal two-polynomial moment has the genuine bilinear circle
-limit throughout the coincident-shift polydisc, with only the sharp source input. -/
 theorem dpAllPositiveBilinearMoment_normalized_tendsto (hsource : DPv2SharpInput)
     (η : ℝ) (hη : 0 < η) (hηu : η < 1/4) (P Q : Polynomial ℝ)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) (σ : MomentShifts)
@@ -226,7 +221,6 @@ theorem dpAllPositiveBilinearMoment_normalized_tendsto (hsource : DPv2SharpInput
     (closedPolydisc_subset_momentNormalizedShiftDomain hT dpCauchyRadii hR hσ) hΦ]
   ring
 
-/-- Genuine cross-polynomial J limit, including z=0 and all knot collisions. -/
 theorem dpAllPositiveBilinearMoment_polarPolynomialBilinearJ_tendsto
     (hsource : DPv2SharpInput) (η : ℝ) (hη : 0 < η) (hηu : η < 1/4)
     (P Q : Polynomial ℝ) (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ)

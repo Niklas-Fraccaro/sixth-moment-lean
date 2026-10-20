@@ -1,8 +1,6 @@
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.BlockSums
 import Sechstmoment.Arithmetic.Watt.Statement
 
-/-! Elementary adapters for the exact Proposition 4.1 input.
-Every theorem here is proved; no bridge to `WeightedWattBound` is assumed. -/
 
 namespace DivisorProof
 open Real Set Finset Classical
@@ -16,7 +14,6 @@ def weightedSum (q : Scales) (σ : ℤ) (a b : ℕ → ℂ)
     (α β w : ℝ → ℂ) (f : ℕ → ℕ → ℝ → ℝ) : ℂ :=
   ∑ rs ∈ pairRange q, a rs.1*b rs.2*innerSum q σ α β w f rs.1 rs.2
 
-/-- Arbitrary bounded coefficients are removed only outside the inner norm. -/
 theorem norm_weightedSum_le_U (q : Scales) (σ : ℤ) (a b : ℕ → ℂ)
     (α β w : ℝ → ℂ) (f : ℕ → ℕ → ℝ → ℝ)
     (ha : ∀ r, ‖a r‖ ≤ 1) (hb : ∀ s, ‖b s‖ ≤ 1) :
@@ -39,14 +36,12 @@ theorem Scales.X_sq {q : Scales}
   rw [mul_pow, mul_pow, Real.sq_sqrt (by positivity)]
   ring
 
-/-- Exact parameter substitution after completion of the v-sum. -/
 def completedScales (p : WattScales) (L : ℝ) : Scales :=
   ⟨p.H,p.C,L,p.P,p.R,p.S⟩
 
 theorem completedScales_Q (p : WattScales) (L : ℝ) :
     (completedScales p L).Q = p.R*p.S := rfl
 
-/-- The completed X differs from the fraction-sum X by the dual length. -/
 theorem completedScales_X_sq {p : WattScales} {L : ℝ}
     (hH : 0 < p.H) (hC : 0 < p.C) (hR : 0 ≤ p.R) (hV : 0 < p.V) (hL : 0 < L)
     (hprod : 0 ≤ p.product) :
@@ -75,7 +70,6 @@ theorem completedScales_size_conditions {p : WattScales} {L : ℝ}
     max ((completedScales p L).H^2*(completedScales p L).K) L ≤
       (completedScales p L).Q^2 := max_le hfirst hsecond
 
-/-- The last bracket becomes precisely the last bracket of `wattMajorant`. -/
 theorem completedScales_last_ratio {p : WattScales} {L : ℝ}
     (hH : 0 < p.H) (hC : 0 < p.C) (hR : 0 < p.R) (hS : 0 < p.S)
     (hV : 0 < p.V) (hP : 0 < p.P) (hL : 0 < L) :
@@ -97,8 +91,6 @@ theorem positiveRange_eq_empty_of_lt_one {A : ℝ} (hA : A < 1) :
 
 end Watt41
 
-/-- Direct consequence of 4.1 with bounded arbitrary coefficients in r and s.
-The constant and threshold retain exactly the quantifier order of `Watt41`. -/
 theorem Watt41.weighted (hWatt : Watt41) {ε : ℝ} (hε : 0 < ε)
     (b fbound : ℕ → ℝ) (hb : ∀ j, 0 ≤ b j) (hf : ∀ j, 0 ≤ fbound j) :
     ∃ C X₀ : ℝ, 0 ≤ C ∧ 1 ≤ X₀ ∧

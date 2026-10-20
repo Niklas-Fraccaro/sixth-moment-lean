@@ -98,8 +98,6 @@ theorem a03_actual_ratio_source_error_moment_bound
   unfold a03ActualSoftSourceGlobalMajorant
   ring
 
-/-- Uniform sublinear bound for the literal restored weighted source errors,
-including all seven scale sums, both signs, and the Mellin integration. -/
 theorem a03_actual_ratio_source_physical_error_aggregate (dual : Bool)
     (hinput : SeparatedQuadraticInput) {a b εsource e c κ θ R : ℝ}
     (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2) (hεsource : 0<εsource)

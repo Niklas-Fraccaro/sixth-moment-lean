@@ -1,8 +1,6 @@
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Sechstmoment.Numerator.U.Replacement.GaussianBasis
 
-/-! Actual coefficient growth of the Gaussian pole killer away from pure
-shift collisions. -/
 
 namespace Sechstmoment.Source
 open Complex
@@ -40,8 +38,6 @@ theorem purePolarRoot_inverse_sq_norm {T δ : ℝ} (hT : 1 < T) (hδ : 0 < δ)
       apply div_le_div_of_nonneg_left (by positivity) (by positivity)
       nlinarith
 
-/-- The actual fixed-basis coefficient sum grows at most as log(T)^48,
-uniformly on any normalized shift set with a common nonzero-root gap. -/
 theorem polarPoleBasisWeights_log_growth {T δ : ℝ} (hT : 1 < T)
     (hL : 1 ≤ Real.log T) (hδ : 0 < δ) (σ : MomentShifts)
     (hρ : ∀ k : PurePolarIndex, δ ≤ ‖normalizedPurePolarRoot σ k‖) :

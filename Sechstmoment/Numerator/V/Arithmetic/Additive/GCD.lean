@@ -1,10 +1,5 @@
 import Sechstmoment.Numerator.V.Arithmetic.Additive.Characters
 
-/-!
-Exact finite gcd grouping of the additive transform. The coefficients are
-arbitrary: shifted divisor coefficients and smooth weights may therefore
-be substituted literally. There is no asymptotic premise in these identities.
--/
 
 namespace Sechstmoment.Source
 open Complex Real ZMod Finset
@@ -68,8 +63,6 @@ def gcdCharacterTransform (N d : ℕ) (s : Finset ℕ) (c : ℕ → ℂ)
     (χ : DirichletCharacter ℂ (N/d)) : ℂ :=
   ∑ m ∈ additiveGCDFibre N d s, c m*χ (m/d)
 
-/-- The exact inner character expansion of a gcd fibre, with the sign
-factor outside the transformed coefficients. -/
 theorem additive_gcd_fibre_character_expansion (N : ℕ) [NeZero N]
     (s : Finset ℕ) (c : ℕ → ℂ) {d : ℕ} (_hd : d ∈ N.divisors)
     [NeZero (N/d)] :
@@ -109,8 +102,6 @@ def gcdCharacterContribution (N d : ℕ) (s : Finset ℕ) (c : ℕ → ℂ) : �
       ∑ χ : DirichletCharacter ℂ (N/d), gaussSum χ⁻¹ stdAddChar * χ (-1) *
         gcdCharacterTransform N d s c χ
 
-/-- Complete finite additive character decomposition, uniformly including
-the divisor `d = N`, hence modulus one. -/
 theorem additive_sum_character_decomposition (N : ℕ) [NeZero N]
     (s : Finset ℕ) (c : ℕ → ℂ) :
     (∑ m ∈ s, c m*naturalAdditivePhase N m) =
@@ -126,8 +117,6 @@ theorem additive_sum_character_decomposition (N : ℕ) [NeZero N]
   simp only [gcdCharacterContribution,dite_eq_right hqpos.ne']
   exact additive_gcd_fibre_character_expansion N s c hd
 
-/-- Reindexing a gcd fibre gives precisely the reduced coprime progression.
-There is no loss of endpoint terms in the quotient `M / d`. -/
 theorem gcdCharacterTransform_interval (N : ℕ) [NeZero N]
     (M : ℕ) (c : ℕ → ℂ) {d : ℕ} (hd : d ∈ N.divisors)
     (χ : DirichletCharacter ℂ (N/d)) :
@@ -165,8 +154,6 @@ theorem gcdCharacterTransform_interval (N : ℕ) [NeZero N]
     have hdm : d ∣ m := (Finset.mem_filter.mp hm).2 ▸ Nat.gcd_dvd_left m N
     rw [Nat.mul_div_cancel' hdm]
 
-/-- A character kills the noncoprime terms, so the reduced transform has
-the exact unrestricted Dirichlet-polynomial shape used in (5.2). -/
 theorem gcdCharacterTransform_interval_unrestricted (N : ℕ) [NeZero N]
     (M : ℕ) (c : ℕ → ℂ) {d : ℕ} (hd : d ∈ N.divisors)
     (χ : DirichletCharacter ℂ (N/d)) :
@@ -189,8 +176,6 @@ def additiveDirichletBlock (N d M : ℕ) (c : ℕ → ℂ) : ℂ :=
       gaussSum χ⁻¹ stdAddChar * χ (-1) *
         (∑ n ∈ Finset.Icc 1 (M/d), c (d*n)*χ n)
 
-/-- Finite version of the additive Dirichlet-series identity (5.2), with
-arbitrary complex coefficients and exact quotient cutoffs. -/
 theorem additive_interval_character_decomposition (N : ℕ) [NeZero N]
     (M : ℕ) (c : ℕ → ℂ) :
     (∑ m ∈ Finset.Icc 1 M, c m*naturalAdditivePhase N m) =

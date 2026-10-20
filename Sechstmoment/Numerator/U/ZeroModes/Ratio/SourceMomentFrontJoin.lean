@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.U.Separation.TimeFarContourBudget
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.DiscreteFrontJoin
 
-/-! Genuine Mellin integrability and the literal four-chamber time-source
-formula. Integrability follows from compact time support and joint Gamma
-continuity, rather than from an assumed reconstruction identity. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -76,8 +73,6 @@ def a03ActualRatioTimeMoment (m n dual : Bool) (G : ℂ→ℂ)
   ∫ v in Icc (-θ*Real.log T) (θ*Real.log T),
     a03ActualRatioTimeFinite m n dual G c T a b s u v σ α f g Φ
 
-/-- The actual retained seven-dyadic source moment is exactly four ratio
-Mellin source integrals, all with the original primary weight. -/
 theorem a03_actual_source_moment_four_chambers
     {a b c T : ℝ} (hc : 0<c) (hT : 1<T) (dual : Bool) (f g Φ : ℝ→ℝ)
     (hf : SmoothInteriorProfile a f) (hg : SmoothInteriorProfile b g) (hΦ : SmoothDyadicWeight Φ)

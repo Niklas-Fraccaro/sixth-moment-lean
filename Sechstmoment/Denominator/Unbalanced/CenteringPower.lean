@@ -1,8 +1,6 @@
 import Sechstmoment.Denominator.Balanced.GaussianMomentRegularity
 import Sechstmoment.Denominator.Unbalanced.MomentDefinitions
 
-/-! The actual chi correction is O(T⁻¹). Its pure time power is retained
-until the physical time mean, where it tends uniformly to one. -/
 namespace Sechstmoment
 open Complex Real Filter Set MeasureTheory Source
 open scoped Topology BigOperators

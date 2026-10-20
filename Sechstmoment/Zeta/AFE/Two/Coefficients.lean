@@ -10,9 +10,6 @@ import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Positivity
 import Mathlib.Tactic.Ring
 
-/-! Concrete reciprocal-square-root coefficient budgets for the six
-positive indices of the balanced denominator. The elementary bounds remain
-valid after imposing the actual product cutoff and off-diagonal restriction. -/
 namespace Sechstmoment
 open Real Set
 open scoped BigOperators
@@ -28,7 +25,6 @@ theorem d02_reciprocal_sqrt_step (n : ℕ) :
   apply (div_le_iff₀ ha).2
   nlinarith [sq_nonneg (Real.sqrt (n + 1 : ℝ) - Real.sqrt (n : ℝ))]
 
-/-- Sharp elementary one-index mass, including the empty range. -/
 theorem d02_reciprocal_sqrt_sum_le (N : ℕ) :
     (∑ n ∈ Finset.range N, 1 / Real.sqrt (n + 1 : ℝ)) ≤ 2 * Real.sqrt (N : ℝ) := by
   induction N with
@@ -39,14 +35,12 @@ theorem d02_reciprocal_sqrt_sum_le (N : ℕ) :
     push_cast
     linarith
 
-/-- Positive indices are encoded by `q j + 1`. -/
 def d02PositiveBox {k : ℕ} (N : Fin k → ℕ) : Finset (Fin k → ℕ) :=
   Fintype.piFinset (fun j => Finset.range (N j))
 
 def d02ReciprocalSqrtWeight {k : ℕ} (q : Fin k → ℕ) : ℝ :=
   ∏ j : Fin k, 1 / Real.sqrt (q j + 1 : ℝ)
 
-/-- The finite product budget keeps all reciprocal square-root savings. -/
 theorem d02_reciprocal_sqrt_box_mass_le {k : ℕ} (N : Fin k → ℕ) :
     (∑ q ∈ d02PositiveBox N, d02ReciprocalSqrtWeight q) ≤
       ∏ j : Fin k, 2 * Real.sqrt (N j : ℝ) := by
@@ -57,8 +51,6 @@ theorem d02_reciprocal_sqrt_box_mass_le {k : ℕ} (N : Fin k → ℕ) :
     (fun _ _ => Finset.sum_nonneg (fun _ _ => by positivity))
     (fun j _ => d02_reciprocal_sqrt_sum_le (N j))
 
-/-- On height-dependent boxes the full k-index mass has exponent half the
-sum of the lengths, with an explicit factor 2^k. -/
 theorem d02_reciprocal_sqrt_height_box_mass_le {k : ℕ} {T : ℝ} (hT : 0 < T)
     (a : Fin k → ℝ) :
     (∑ q ∈ d02PositiveBox (fun j => ⌊T ^ (a j)⌋₊), d02ReciprocalSqrtWeight q) ≤
@@ -82,8 +74,6 @@ theorem d02_reciprocal_sqrt_height_box_mass_le {k : ℕ} {T : ℝ} (hT : 0 < T)
       congr 2
       rw [Finset.sum_div]
 
-/-- Any further literal product or off-diagonal restriction only decreases
-the positive absolute mass. A pointwise coefficient majorant is sufficient. -/
 theorem d02_restricted_height_coefficient_mass_le {k : ℕ} {T F : ℝ}
     (hT : 0 < T) (hF : 0 ≤ F) (a : Fin k → ℝ)
     (s : Finset (Fin k → ℕ)) (c : (Fin k → ℕ) → ℂ)
@@ -102,13 +92,10 @@ theorem d02_restricted_height_coefficient_mass_le {k : ℕ} {T F : ℝ}
       mul_le_mul_of_nonneg_left (d02_reciprocal_sqrt_height_box_mass_le hT a) hF
     _ = _ := by ring
 
-/-- The literal normalized complex shifts of the positive Dirichlet indices. -/
 def d02ShiftedSqrtCoefficient {k : ℕ} (T : ℝ) (σ : Fin k → ℂ)
     (q : Fin k → ℕ) : ℂ :=
   ∏ j : Fin k, (q j + 1 : ℂ) ^ (-(1 / 2 : ℂ) - σ j / (Real.log T : ℂ))
 
-/-- On a finite length cutoff the normalized shifts cost a fixed exponential
-constant while retaining every reciprocal square-root denominator. -/
 theorem d02_shifted_sqrt_coefficient_norm_le {k : ℕ} {T R : ℝ}
     (hT : 0 < T) (hlog : 1 ≤ Real.log T) (hR : 0 ≤ R)
     (a : Fin k → ℝ) (σ : Fin k → ℂ) (hσ : ∀ j, ‖σ j‖ ≤ R)
@@ -163,8 +150,6 @@ theorem d02_shifted_sqrt_coefficient_norm_le {k : ℕ} {T R : ℝ}
     _ = _ := by
       rw [Finset.prod_mul_distrib, ← Real.exp_sum, ← Finset.mul_sum]
 
-/-- Four profile factors or polynomial generators enter through their literal
-bounded coefficient multiplier; normalized zeta shifts retain the sharp mass. -/
 theorem d02_shifted_height_coefficient_mass_le {k : ℕ} {T R F : ℝ}
     (hT : 0 < T) (hlog : 1 ≤ Real.log T) (hR : 0 ≤ R) (hF : 0 ≤ F)
     (a : Fin k → ℝ) (σ : Fin k → ℂ) (hσ : ∀ j, ‖σ j‖ ≤ R)

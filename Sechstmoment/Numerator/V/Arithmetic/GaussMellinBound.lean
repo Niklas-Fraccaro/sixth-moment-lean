@@ -1,10 +1,6 @@
 import Sechstmoment.Analysis.Mellin.SmoothMellin
 import Sechstmoment.Numerator.V.Arithmetic.GaussFourLBound
 
-/-! Absolute convergence and the square-root modulus bound for the actual
-Gauss-weighted four-L Mellin integral on the displaced line. The only
-weight hypotheses are smoothness and the stated dyadic support.
--/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Filter Set ZMod
@@ -51,10 +47,6 @@ theorem gaussMellinIntegrand_continuous {w : ℝ → ℂ} (hw : ContDiff ℝ ∞
     · exact Or.inl hxC
   exact (hM.mul hP).mul hG
 
-/-- The fixed smooth weight itself supplies enough Mellin decay to
-absorb the height exponent 20. Neither a fourth-moment hypothesis nor
-a Mellin-decay hypothesis occurs in this statement. The principal
-character is retained on the displaced line, as required in Section 5.3. -/
 theorem smooth_gauss_fourL_mellin_bound {w : ℝ → ℂ}
     (hw : ContDiff ℝ ∞ w) (hws : tsupport w ⊆ Icc (1 : ℝ) 2)
     (κ : ℝ) {R ε : ℝ} (hR : 0 ≤ R) (hε : 0 < ε) :

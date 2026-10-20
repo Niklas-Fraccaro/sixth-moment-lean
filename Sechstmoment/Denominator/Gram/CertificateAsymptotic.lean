@@ -4,32 +4,23 @@ import Sechstmoment.Denominator.Gram.CertificateStatement
 import Sechstmoment.Denominator.Gram.KernelTransport
 import Sechstmoment.Denominator.Gram.MomentAsymptotic
 
-/-! The complete D06 consumer for the unchanged original certificate.
-Every upper-triangular entry is the actual projected zeta Gram moment;
-its independently defined P02 kernel is obtained by exact coordinate transport.
-The original 250-row test is summed through exactly 178 groups and 15931 pairs.
-The two limits remain in their original order: height first, profile stage second. -/
 namespace Sechstmoment
 open Filter MeasureTheory Set
 open scoped Topology BigOperators
 noncomputable section
 set_option maxHeartbeats 1000000
 
-/-- The height and scalar profile consumers use exactly the same U/V family. -/
 theorem d06CertificateActualProfiles_eq (n : ℕ) :
     certificateActualProfiles n = fun τ a => certificateEndpointProfile τ a n := by
   funext τ a
   cases τ <;> rfl
 
-/-- The literal four support caps for one original feature pair. -/
 def d06CertificatePairCaps (x y : Finite.Feature) : Fin 4 → ℝ :=
   ![d06CertificateProfileCap x.typ (realEndpoint x.A),
     d06CertificateProfileCap x.typ (realEndpoint x.B),
     d06CertificateProfileCap y.typ (realEndpoint y.A),
     d06CertificateProfileCap y.typ (realEndpoint y.B)]
 
-/-- Every actual original Gram entry has the independently defined profile
-kernel limit, including its exact factor one half. -/
 theorem certificateFeatureProjectedGramMoment_normalized_tendsto
     {x y : Finite.Feature} (hx : x ∈ Finite.features) (hy : y ∈ Finite.features)
     (horder : x.typ = .V → y.typ = .V) {n : ℕ} (hn : 12 ≤ n)
@@ -102,8 +93,6 @@ private theorem d06_pair_sum_limit_identity (n : ℕ) (K : ℝ) :
       ring
   simpa only [certificateProfileDenominator,mul_div_assoc] using h Finite.pairs
 
-/-- Literal original 250-row Gram-height asymptotic at each fixed common
-stage n≥12, without an additional asymptotic or reconstruction hypothesis. -/
 theorem d06ActualCertificateGramAsymptotic_closed : D06ActualCertificateGramAsymptotic := by
   intro Φ hΦ hΦpos n hn
   let K : ℝ := arithmeticFactor*(∫ t : ℝ, Φ t)
@@ -131,13 +120,10 @@ theorem d06ActualCertificateGramAsymptotic_closed : D06ActualCertificateGramAsym
   rw [List.map_map] at hd
   simpa only [mul_div_assoc,Function.comp_def] using hd
 
-/-- Both actual extreme phases and the full original Gram consumer are closed. -/
 theorem d06PhaseGramIdentification_closed : D06PhaseGramIdentification :=
   ⟨d06ExtremeMinusVanishing_closed,d06ExtremePlusVanishing_closed,
     d06ActualCertificateGramAsymptotic_closed⟩
 
-/-- The subsequent scalar profile limit is the unchanged independent endpoint
-certificate denominator; no simultaneous height/profile limit is substituted. -/
 theorem d06CertificateGramProfileLimit (Φ : ℝ → ℝ) :
     Tendsto (fun n : ℕ => arithmeticFactor*(∫ t : ℝ, Φ t)*certificateProfileDenominator n)
       atTop (𝓝 (arithmeticFactor*(∫ t : ℝ, Φ t)*certificatePointDenominator)) :=

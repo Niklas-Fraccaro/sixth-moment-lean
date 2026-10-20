@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Replacement.GaussianTailUniform
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.ResidualBounds
 
-/-! Uniform raw-shift bounds for all three genuine ratio-contour
-remainders, on the original compact normalized shift and pure-root domain. -/
 
 namespace Sechstmoment.Source
 open Complex Real MeasureTheory Set Filter
@@ -92,8 +90,6 @@ def a03ZeroModeRatioResidual (L M : ℝ) (ε : ℝ) (α : MomentShifts)
   verticalIntegral (a03ZeroModeRatioSecondaryLine ε) (a03ZeroModeRatioWeightedLeftResidue L M α a b s)+
   verticalIntegral (a03ZeroModeRatioSecondaryLine ε) (a03ZeroModeRatioWeightedRightResidue L M α a b s)
 
-/-- Uniform cost of the actual three residual integrals. The exact power
-gains from their contour real parts are retained. -/
 theorem a03ZeroModeRatioResidual_uniform_log_bound (K : Set MomentShifts) (hK : IsCompact K)
     {κ ε δ : ℝ} (hκ : 0<κ) (hε : 0<ε) (hε1 : ε<1/8) (hδ : 0<δ)
     (hρ : ∀ σ∈K,∀ k : PurePolarIndex,κ≤‖normalizedPurePolarRoot σ k‖) :

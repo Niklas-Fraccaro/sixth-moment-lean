@@ -55,7 +55,6 @@ import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.WattWeights
 import Sechstmoment.Arithmetic.QuadraticDivisor.Reduction.WeilAssembly
 import Std
 
-/-! ## Watt Evaluation -/
 
 
 namespace DivisorProof
@@ -81,8 +80,6 @@ theorem one_add_product_quarter_le {t z : ℝ} (ht : 0 ≤ t) (hz : 0 ≤ z) :
     apply Real.rpow_le_rpow (by positivity) _ (by norm_num)
     nlinarith
 
-/-- The two divisor coefficients in (30) are absorbed together, without
-discarding a factor `1/d₁`. -/
 theorem watt_divisor_absorption {d e e' f M Z : ℝ}
     (hd : 1 ≤ d) (he : 1 ≤ e) (he' : 0 < e') (hf : 1 ≤ f)
     (heprod : e*e' = d) (hed : e ≤ d) (hfd : f ≤ d)
@@ -310,7 +307,6 @@ end
 end DivisorProof
 
 
-/-! ## Watt Application -/
 
 
 namespace DivisorProof
@@ -344,8 +340,6 @@ theorem wattMajorant_nonneg {p : WattScales} {Δ η : ℝ} (hΔ : 0 ≤ Δ)
   unfold wattMajorant
   positivity
 
-/-- The primitive Watt proposition applied to the actual arithmetic
-coefficient and weight families. No remaining weight-data hypothesis. -/
 theorem WeightedWattBound.actual_fibre_bound (hWatt : WeightedWattBound)
     {ρ δ K : ℝ} (hρ : 0 < ρ) (hδ : 0 < δ)
     (hbound : ρ ≤ δ/(1000*(1+δ))) (hK : 1 ≤ K)
@@ -418,7 +412,6 @@ end
 end DivisorProof
 
 
-/-! ## Watt Blocks -/
 
 
 namespace DivisorProof
@@ -575,7 +568,6 @@ end
 end DivisorProof
 
 
-/-! ## Watt Majorant -/
 
 
 namespace DivisorProof
@@ -702,8 +694,6 @@ def wattEvaluationConstant (ρ K : ℝ) : ℝ :=
 theorem wattEvaluationConstant_nonneg {ρ K : ℝ} (hK : 0 ≤ K) :
     0 ≤ wattEvaluationConstant ρ K := by unfold wattEvaluationConstant; positivity
 
-/-- The complete dilated Watt majorant, with its full `20ρ` loss.
-The exponent before divisor summation and spatial integration is `102ρ`. -/
 theorem actual_watt_majorant_bound {ρ K : ℝ} {q : QuadraticScales}
     (h : ScaleGeometry ρ K q) (hK : 1 ≤ K) (hρ : 0 ≤ ρ) (hρsmall : ρ ≤ 1/100)
     {d d₁ d₂ d₃ d₄ : ℝ} (hd : 1 ≤ d)
@@ -816,7 +806,6 @@ end
 end DivisorProof
 
 
-/-! ## Watt Closure -/
 
 
 namespace DivisorProof
@@ -938,8 +927,6 @@ theorem WeightedWattBound.actual_pointwise_watt_bound (hWatt : WeightedWattBound
   · rw [gcdBlockIntegrand_eq_zero_off_support h.scales hw positive ρ d hx,norm_zero]
     positivity
 
-/-- Equation (31), including both frequency signs, both divisor sums,
-the actual spatial integral, and all boundary cases. -/
 theorem WeightedWattBound.actual_integrated_watt_bound (hWatt : WeightedWattBound)
     {ρ δ K : ℝ} (hρ : 0 < ρ) (hδ : 0 < δ)
     (hbound : ρ ≤ δ/(1000*(1+δ))) (hK : 1 ≤ K)
@@ -995,7 +982,6 @@ end
 end DivisorProof
 
 
-/-! ## Main From Primitives -/
 
 
 namespace DivisorProof
@@ -1004,8 +990,6 @@ open scoped BigOperators Topology
 noncomputable section
 set_option maxHeartbeats 1200000
 
-/-- Both intermediate analytic estimates are now theorems derived from
-the proved SALT bound and the sole remaining primitive Watt input. -/
 theorem analyticApplicationEstimates_of_watt
     (hWatt : WeightedWattBound) : AnalyticApplicationEstimates := by
   intro δ hδ ρ hρ hbound K hK bounds hb
@@ -1020,15 +1004,11 @@ theorem analyticApplicationEstimates_of_watt
     exact hweil q α β W h hw positive d hdp x
   · exact hwatt q α β W h hsize hw hmass positive
 
-/-- Theorem 1.2. The sole remaining deep analytic hypothesis is the unchanged
-weighted Watt theorem. The complete-sum estimate is proved through SALT. -/
 theorem quantifiedDivisorBound_of_watt
     (hWatt : WeightedWattBound) : QuantifiedDivisorBound :=
   quantifiedDivisorBound_of_analytic_applications
     (analyticApplicationEstimates_of_watt hWatt)
 
-/-- Corollary 1.3, with `inputExponent ε δ` in the hypotheses and ε in
-the conclusion. No same-exponent input contract is used. -/
 theorem separatedDivisorBound_of_watt
     (hWatt : WeightedWattBound) : SeparatedDivisorBound :=
   separatedDivisorBound_of_quantified (quantifiedDivisorBound_of_watt hWatt)

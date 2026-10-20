@@ -2,8 +2,6 @@ import Sechstmoment.Arithmetic.Euler.FourL.FourCoefficients
 import Sechstmoment.Numerator.V.Arithmetic.StartingLine
 import Sechstmoment.Zeta.DirichletL.AbsoluteMass
 
-/-! Absolute mass of the actual fourfold shifted Dirichlet coefficients.
-All triangle inequalities precede summation. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

@@ -1,8 +1,6 @@
 import Sechstmoment.Arithmetic.Watt.CompletedBlock
 import Sechstmoment.Arithmetic.Watt.Ramanujan
 
-/-! Explicit zero-frequency and high-frequency bounds for the actual
-completed terms.  These use only proved Fourier and Ramanujan estimates. -/
 
 namespace DivisorProof
 namespace Watt41
@@ -52,7 +50,6 @@ theorem sum_sum_gcd_real_le {H K : ℝ} (hH : 0 ≤ H) (hK : 0 ≤ K)
   exact mul_le_mul_of_nonneg_right
     (mul_le_mul (Nat.floor_le hH) (Nat.floor_le hK) (Nat.cast_nonneg _) hH) (sq_nonneg _)
 
-/-- The double gcd average is applied to the actual zero-frequency fibre. -/
 theorem zero_frequency_fibre_bound {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)
@@ -112,7 +109,6 @@ theorem completedTerm_decay {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
       (pow_nonneg (by positivity) J))).trans_eq
   ring
 
-/-- Absolute convergence and an explicit high-frequency error envelope. -/
 theorem completedTerm_tail_bound {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)
@@ -142,8 +138,6 @@ theorem dualLength_frequency_scale {p : WattScales} {E : ℝ}
   apply (le_div_iff₀ hcp).mpr
   nlinarith [mul_le_mul_of_nonneg_right hcc hE]
 
-/-- The high-frequency envelope at the smooth cutoff is O(E^(-J)), with
-all constants and the factor 2^J explicit. -/
 theorem completedTerm_tail_at_dualCutoff {b : ℕ → ℝ} {g : ℕ → ℕ → ℝ}
     {p : WattScales} {Δ E : ℝ} {a bc : ℕ → ℂ} {u₀ u₁ : ℝ → ℂ}
     {γ : ℕ → ℕ → ℝ → ℝ → ℂ} (hw : WattWeightData b g p Δ a bc u₀ u₁ γ)

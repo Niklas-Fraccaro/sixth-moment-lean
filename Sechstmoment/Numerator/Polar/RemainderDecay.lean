@@ -2,13 +2,6 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 import Mathlib.Tactic
 import Sechstmoment.Numerator.Polar.RemainderMajorant
 
-/-!
-# Uniform power decay of the actual left Mellin remainder
-
-Bounded normalized shifts are eventually small in the genuine raw variables.
-The actual log(T)^48 contour bound is absorbed by T^(δ/2), leaving a genuine
-negative power uniformly for t≥T and all amplifier contour heights.
--/
 
 namespace Sechstmoment
 

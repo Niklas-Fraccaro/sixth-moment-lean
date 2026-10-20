@@ -2,9 +2,6 @@ import Sechstmoment.Numerator.U.CertificateMoments
 import Sechstmoment.Numerator.U.MomentLimit
 import Sechstmoment.Numerator.U.RegularProfileOperator
 
-/-! Actual U numerator limits for all 220 original certificate rows.  The
-genuine regular-generator limit is evaluated by the proved profile operator
-identity.  No U-limit, reconstruction or target proposition is assumed. -/
 
 namespace Sechstmoment
 open Complex MeasureTheory Filter Polynomial Source
@@ -12,8 +9,6 @@ open scoped Topology
 noncomputable section
 set_option maxHeartbeats 2000000
 
-/-- Actual fixed-smooth-profile U limit, with its independently defined real
-numerical kernel.  The only analytic premises are the original BBLR inputs. -/
 theorem uPolynomialRawMixedMoment_normalized_profile_limit
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput)
     {a b : ℝ} (ha : 0≤a) (hab : a≤b) (hlen : 3*a+5*b<2)
@@ -31,8 +26,6 @@ theorem uPolynomialRawMixedMoment_normalized_profile_limit
     (fun r => p.coeff r.val) a b f g Φ hf hg] at h
   exact h
 
-/-- Every original U row has the true height limit at every fixed positive
-profile stage, retaining the supplied degree and integer coefficients. -/
 theorem uCertificate_row_fixed_stage_tendsto
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput)
     (d : TestDatum) (hd : d∈uCertificateRows) (n : ℕ) (hn : 0<n)
@@ -72,8 +65,6 @@ private theorem u_numerator_weighted_complex_list_sum
     rw [hc]
     ring
 
-/-- Height limit of the actual original 220-row U test at a fixed stage.
-The finite sum is over the supplied rows, with no replacement coefficients. -/
 theorem uCertificateRawMixedMoment_fixed_stage_tendsto
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput)
     (n : ℕ) (hn : 0<n) (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -96,7 +87,6 @@ theorem uCertificateRawMixedMoment_fixed_stage_tendsto
   intro d _
   ring
 
-/-- Exact normalized real projection for the actual U-only test. -/
 theorem uCertificateProjectedMixedMoment_normalized_eq_real
     (n : ℕ) (hn : 0<n) {T : ℝ} (hT : 1<T) (hL : 16<Real.log T)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -109,7 +99,6 @@ theorem uCertificateProjectedMixedMoment_normalized_eq_real
     rfl
   rw [hden,Complex.div_ofReal_re,Complex.ofReal_div]
 
-/-- The actual projected U numerator has the same real fixed-stage limit. -/
 theorem uCertificateProjectedMixedMoment_fixed_stage_tendsto
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput)
     (n : ℕ) (hn : 0<n) (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :
@@ -133,8 +122,6 @@ theorem uCertificateProjectedMixedMoment_fixed_stage_tendsto
     Real.tendsto_log_atTop.eventually (eventually_gt_atTop (16:ℝ))] with T hT hL
   exact (uCertificateProjectedMixedMoment_normalized_eq_real n hn hT hL Φ hΦ).symm
 
-/-- Actual U220 numerator, in the manuscript's two-stage order: first height
-at each fixed profile stage, then concentration to the exact endpoint sum. -/
 theorem uCertificate_two_stage_numerator_limit
     (hAFE : BBLRv1FixedApproximateFEInput) (hSource : SeparatedQuadraticInput)
     (Φ : ℝ → ℝ) (hΦ : SmoothDyadicWeight Φ) :

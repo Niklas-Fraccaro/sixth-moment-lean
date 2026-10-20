@@ -1,14 +1,5 @@
 import Sechstmoment.Numerator.U.Reconstruction.RectangularUnitEmbedding
 
-/-!
-# Exact zero modes of the discrete singleton boundary blocks
-
-The signed source sum was already invariant under the integer dilation of
-unit variables. For units in the discrete m₁/n₁ positions the *whole actual
-zero mode* is invariant as well. The larger reduced-gap range is removed by
-the genuine support of W₀ and gcd ≥ 1; it is not assumed to cancel.
-This covers f₁ = f₃ = false. Double-unit pairs remain a separate obligation.
--/
 namespace Sechstmoment
 open Complex Source Set MeasureTheory
 open scoped BigOperators Topology
@@ -58,8 +49,6 @@ private theorem main_index_coordinate (q : QuadraticScales) (n : Fin 5 → ℕ)
     n j ∈ Finset.Icc 1 ⌊2*(![q.A,q.B,q.M₁,q.N₁,q.H] : Fin 5 → ℝ) j⌋₊ :=
   (Fintype.mem_piFinset.mp hn) j
 
-/-- Every nonzero transformed zero-mode summand has the four required
-integer divisibilities. The reduced-gap coordinate is unchanged. -/
 theorem rectangular_unit_main_nonzero_divisible (f : Fin 4 → Bool)
     (q : QuadraticScales) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ)
     (hW : ∀ i, SmoothDyadicWeight (W i))
@@ -95,8 +84,6 @@ theorem rectangular_unit_main_nonzero_divisible (f : Fin 4 → Bool)
   · simpa [rectangularUnitMainFactors] using hdn
   · simp [rectangularUnitMainFactors]
 
-/-- The actual zero-mode support controls its reduced-gap index directly.
-The hypothesis concerns a concrete nonzero summand, not a bound on an error. -/
 theorem rectangular_zero_mode_reduced_gap_mem (q : QuadraticScales)
     (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ) (hW₀ : SmoothDyadicWeight (W 0))
     (hH : 0 < q.H) (n : Fin 5 → ℕ) (ha : 0 < n 0) (hm : 0 < n 2)
@@ -117,9 +104,6 @@ theorem rectangular_zero_mode_reduced_gap_mem (q : QuadraticScales)
   have hn4 : (0 : ℝ) ≤ n 4 := Nat.cast_nonneg _
   nlinarith
 
-/-- The complete finite literal source zero mode is invariant for singleton
-units put on their discrete sides. All extra transformed gap indices vanish
-by the proved support bound above. -/
 theorem rectangular_unit_discrete_quadratic_zero_mode (f : Fin 4 → Bool)
     (hm : f 1 = false) (hn : f 3 = false) (q : QuadraticScales)
     (hq : ∀ j, 0 < q.size j) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ)
@@ -215,8 +199,6 @@ theorem rectangular_unit_discrete_quadratic_zero_mode (f : Fin 4 → Bool)
   · intro n _ _
     exact (rectangular_unit_discrete_zero_summand f hm hn q α β W n).symm
 
-/- The two source terms are transferred separately before taking their
-actual difference. Thus this is an exact source discrepancy identity. -/
 theorem rectangular_unit_discrete_signed_discrepancy (f : Fin 4 → Bool)
     (hm : f 1 = false) (hn : f 3 = false) (positive : Bool) (q : QuadraticScales)
     (hq : ∀ j, 0 < q.size j) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℝ)
@@ -237,8 +219,6 @@ theorem rectangular_unit_discrete_signed_discrepancy (f : Fin 4 → Bool)
   rw [rectangular_unit_signed_quadratic_sum f positive q hq α β W hW hunit,
     rectangular_unit_discrete_quadratic_zero_mode f hm hn q hq α β W hW hm₁ hn₁]
 
-/-- Complex Mellin weights inherit the full singleton zero-mode identity
-through the genuine integrable 32-component expansion. -/
 theorem rectangular_unit_discrete_complex_zero_mode (f : Fin 4 → Bool)
     (hm : f 1 = false) (hn : f 3 = false) (q : QuadraticScales)
     (hq : ∀ j, 0 < q.size j) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℂ)
@@ -260,8 +240,6 @@ theorem rectangular_unit_discrete_complex_zero_mode (f : Fin 4 → Bool)
   rw [rectangular_unit_discrete_quadratic_zero_mode f hm hn q hq α β
     (rectangularRealComponent W c) (rectangular_component_smooth W hW c) hm₁ hn₁]
 
-/-- The whole complex source discrepancy, including its literal zero mode,
-is preserved for these singleton boundary blocks. -/
 theorem rectangular_unit_discrete_complex_discrepancy (f : Fin 4 → Bool)
     (hm : f 1 = false) (hn : f 3 = false) (positive : Bool) (q : QuadraticScales)
     (hq : ∀ j, 0 < q.size j) (α β : ℕ → ℂ) (W : Fin 5 → ℝ → ℂ)

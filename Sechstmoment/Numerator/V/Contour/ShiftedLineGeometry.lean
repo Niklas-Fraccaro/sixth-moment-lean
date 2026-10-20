@@ -1,6 +1,5 @@
 import Sechstmoment.Numerator.V.Chi.ShiftedIntegrability
 
-/-! A common logarithmic starting line for all bounded normalized shifts. -/
 
 namespace Sechstmoment.Source
 open Complex Real Set

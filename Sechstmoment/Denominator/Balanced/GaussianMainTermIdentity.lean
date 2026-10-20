@@ -3,9 +3,6 @@ import Sechstmoment.Denominator.Balanced.MomentDefinitions
 import Sechstmoment.Denominator.Measures.DiagonalLaplaceTransform
 import Sechstmoment.Zeta.AFE.Two.AbsoluteMass
 
-/-! Exact finite expansion of the literal four-profile Gaussian main term,
-its diagonal/off-diagonal partition, and its original D01 atomic measure.
-These are identities of actual Dirichlet sums, without asymptotic premises. -/
 namespace Sechstmoment
 open Complex Real MeasureTheory Set Filter
 open scoped BigOperators Topology ContDiff
@@ -92,9 +89,6 @@ theorem d02SixMainDomain_mem_iff (N : Fin 4 → ℕ) (P : Finset (ℕ × ℕ))
 def d02SixLengthExponents (a : Fin 4 → ℝ) (δ : ℝ) : Fin 6 → ℝ :=
   ![a 0, a 1, a 2, a 3, 1 + δ, 1 + δ]
 
-/-- The literal two-index product cutoff supplies both remaining individual
-cutoffs, so the four-profile Gaussian expansion lies in the coefficient box
-used in the proved integration-by-parts bound. -/
 theorem d02SixMainDomain_subset_height_box {T δ : ℝ} (hT : 0 < T)
     (a : Fin 4 → ℝ) (P : Finset (ℕ × ℕ))
     (hP : ∀ p ∈ P, d02PositivePairProduct p ≤ T ^ (1 + δ)) :
@@ -159,8 +153,6 @@ theorem d02SixRawGaussianTerm_join (T t : ℝ) (ρ : Fin 4 → ℝ → ℝ) (α 
   simp only [hj]
   simp [d02SixJoin]
 
-/-- The four literal finite profiles times the truncated Gaussian pair series
-are exactly the six-index sum, with every original factor retained. -/
 theorem d02_four_profiles_gaussian_pair_finite_identity {T : ℝ} (hT : 1 < T)
     (t : ℝ) (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)
     (hcap : ∀ j x, a j < x → ρ j x = 0) (α : Fin 2 → ℂ) (P : Finset (ℕ × ℕ)) :
@@ -196,8 +188,6 @@ theorem d02FourProfileProduct_zero_outside_box {T : ℝ} (hT : 1 < T)
   apply Finset.prod_eq_zero (Finset.mem_univ j)
   simp [d02FourProfileFactor, hcap j _ ha]
 
-/-- The Gaussian pair series is absolutely summable for every complex pair
-of shifts at each positive time, by a positive Gaussian Mellin power. -/
 theorem d02GaussianPairTerm_norm_summable (α : Fin 2 → ℂ) {t : ℝ} (ht : 0 < t) :
     Summable (fun p : ℕ × ℕ => ‖d02GaussianPairTerm α t p‖) := by
   let b : ℝ := 1 / 2 + min (α 0).re (α 1).re
@@ -228,9 +218,6 @@ theorem d02GaussianPairTerm_norm_summable (α : Fin 2 → ℂ) {t : ℝ} (ht : 0
   congr 2
   field_simp [ht.ne', Real.pi_ne_zero]
 
-/-- The unrestricted literal Gaussian pair multiplied by the four finite
-profiles is exactly the full six-index series. Absolute summability follows
-from finite profile support and the derived Gaussian pair majorant. -/
 theorem d02_four_profiles_gaussian_pair_full_identity {T : ℝ} (hT : 1 < T)
     {t : ℝ} (ht : 0 < t) (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)
     (hcap : ∀ j x, a j < x → ρ j x = 0) (α : Fin 2 → ℂ) :
@@ -326,8 +313,6 @@ theorem d02SixZetaShifts_norm_le (σ : Fin 2 → ℂ) {R : ℝ} (hR : 0 ≤ R)
   · simpa [d02SixZetaShifts] using hσ 0
   · simpa [d02SixZetaShifts] using hσ 1
 
-/-- The raw six-factor Gaussian summand has exactly the integer logarithmic
-frequency and coefficients used by the proved D02 integration-by-parts model. -/
 theorem d02SixRawGaussianTerm_eq_phase_model (T t : ℝ) (ρ : Fin 4 → ℝ → ℝ)
     (σ : Fin 2 → ℂ) (q : Fin 6 → ℕ) :
     d02SixRawGaussianTerm T t ρ (fun j => σ j / (Real.log T : ℂ)) q =
@@ -374,8 +359,6 @@ theorem d02SixRawGaussianTerm_eq_phase_model (T t : ℝ) (ρ : Fin 4 → ℝ →
   push_cast
   ring
 
-/-- Integrability of the literal compact time-profile Fourier integrand is
-derived before interchanging any finite arithmetic sum and time integral. -/
 theorem d02_profile_time_fourier_integrable {f : ℝ → ℂ}
     (hf : ContDiff ℝ ∞ f) (hs : tsupport f ⊆ Icc (1 : ℝ) 2)
     {T : ℝ} (hT : 0 < T) (ℓ : ℝ) :
@@ -408,8 +391,6 @@ def d02SixGaussianFrequency (q : Fin 6 → ℕ) : ℝ :=
   -Real.log (((d02SixIndexH q * d02SixIndexM q : ℕ) : ℝ) /
     ((d02SixIndexK q * d02SixIndexN q : ℕ) : ℝ))
 
-/-- The physical erfc summand, including an arbitrary complex power of
-normalized time, is exactly the proved smooth Fourier integrand. -/
 theorem d02SixRawGaussianTerm_time_phase_identity {T : ℝ} (hT : 0 < T)
     {Φ : ℝ → ℂ} (hs : tsupport Φ ⊆ Icc (1 : ℝ) 2)
     (ρ : Fin 4 → ℝ → ℝ) (σ : Fin 2 → ℂ) (τ : ℂ)
@@ -475,9 +456,6 @@ theorem d02SixRawGaussianTerm_finite_time_integrable {T : ℝ} (hT : 0 < T)
   funext t
   rw [Finset.mul_sum]
 
-/-- Exact time integration of the finite physical six-index Gaussian sum.
-Smoothness and compact time support establish every required integrability
-fact; no assumed cancellation or replacement estimate occurs. -/
 theorem d02SixRawGaussianTerm_finite_time_integral {T : ℝ} (hT : 0 < T)
     {Φ : ℝ → ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hs : tsupport Φ ⊆ Icc (1 : ℝ) 2)
     (ρ : Fin 4 → ℝ → ℝ) (σ : Fin 2 → ℂ) (τ : ℂ)
@@ -515,8 +493,6 @@ theorem d02SixRawGaussianTerm_finite_time_integral {T : ℝ} (hT : 0 < T)
   intro q hq
   exact integral_const_mul _ _
 
-/-- The four actual compactly supported profiles have a single coefficient
-budget valid for every height and every positive arithmetic index. -/
 theorem d02SixProfileMultiplier_uniform_bound (ρ : Fin 4 → ℝ → ℝ)
     (hc : ∀ j, Continuous (ρ j)) (hK : ∀ j, HasCompactSupport (ρ j)) :
     ∃ F : ℝ, 0 ≤ F ∧ ∀ T q, ‖d02SixProfileMultiplier T ρ q‖ ≤ F := by
@@ -530,8 +506,6 @@ theorem d02SixProfileMultiplier_uniform_bound (ρ : Fin 4 → ℝ → ℝ)
   rw [Complex.norm_real]
   exact hb j _
 
-/-- One power-saving constant is uniform over both actual normalized zeta
-shifts and complex time powers, with the literal four profiles retained. -/
 theorem d02_raw_gaussian_offDiagonal_time_integral_uniform_power_bound
     {Φ : ℝ → ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ ⊆ Icc (1 : ℝ) 2)
     (ρ : Fin 4 → ℝ → ℝ) (hρc : ∀ j, Continuous (ρ j))
@@ -560,9 +534,6 @@ theorem d02_raw_gaussian_offDiagonal_time_integral_uniform_power_bound
   rw [d02SixRawGaussianTerm_finite_time_integral (zero_lt_one.trans_le hT) hΦ hΦs]
   simpa only [d02SixGaussianTimeProfile, d02SixGaussianFrequency] using hb
 
-/-- The actual four-profile finite Gaussian expansion has a uniform power
-saving on its arithmetic off-diagonal. Its full six-coordinate cutoff and
-frequency hypotheses are consequences of the literal pair-product cutoff. -/
 theorem d02_four_profile_gaussian_finite_offDiagonal_uniform_power_bound
     {Φ : ℝ → ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ ⊆ Icc (1 : ℝ) 2)
     (ρ : Fin 4 → ℝ → ℝ) (hρc : ∀ j, Continuous (ρ j))
@@ -594,9 +565,6 @@ theorem d02_four_profile_gaussian_finite_offDiagonal_uniform_power_bound
     have hmem := Finset.mem_filter.1 hq
     exact ⟨hmem.2, d02SixMainDomain_pair_product_bound _ P hP q hmem.1⟩
 
-/-- The literal physical Gaussian six-index off-diagonal, rather than a
-postulated oscillatory error, enjoys arbitrary power saving. Both normalized
-zeta shifts and complex normalized-time powers vary in quantified norm boxes. -/
 theorem d02_raw_gaussian_offDiagonal_time_integral_arbitrary_power_decay
     {Φ : ℝ → ℂ} (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ ⊆ Icc (1 : ℝ) 2)
     (ρ : Fin 4 → ℝ → ℝ) (hρc : ∀ j, Continuous (ρ j))
@@ -628,15 +596,12 @@ theorem d02_raw_gaussian_offDiagonal_time_integral_arbitrary_power_decay
   rw [d02SixRawGaussianTerm_finite_time_integral hT hΦ hΦs]
   simpa only [d02SixGaussianTimeProfile, d02SixGaussianFrequency] using hb
 
-/-- The physical arithmetic diagonal is selected by exactly Hm=Kn. -/
 theorem d02SixMain_diagonal_add_offDiagonal (s : Finset (Fin 6 → ℕ)) (F : (Fin 6 → ℕ) → ℂ) :
     (∑ q ∈ s.filter d02SixIsDiagonal, F q) +
       (∑ q ∈ s.filter (fun q => ¬d02SixIsDiagonal q), F q) = ∑ q ∈ s, F q := by
   classical
   exact Finset.sum_filter_add_sum_filter_not _ _ _
 
-/-- The absolutely summable full six-index Gaussian series partitions at
-exactly Hm=Kn, before any cutoff or time-asymptotic estimate is applied. -/
 theorem d02SixMain_full_diagonal_add_offDiagonal {T : ℝ} (hT : 1 < T)
     {t : ℝ} (ht : 0 < t) (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)
     (hcap : ∀ j x, a j < x → ρ j x = 0) (α : Fin 2 → ℂ) :
@@ -649,9 +614,6 @@ theorem d02SixMain_full_diagonal_add_offDiagonal {T : ℝ} (hT : 1 < T)
       hs.tsum_subtype_add_tsum_subtype_compl {q | d02SixIsDiagonal q}
     _ = _ := (d02_four_profiles_gaussian_pair_full_identity hT ht a ρ hcap α).symm
 
-/-- Localization to the actual positive dyadic time window makes the full
-arithmetic partition an identity at every real time, including the exterior
-where the Gaussian pair by itself need not be summable. -/
 theorem d02SixMain_full_diagonal_add_offDiagonal_time_identity {T : ℝ} (hT : 1 < T)
     {Φ : ℝ → ℂ} (hΦs : tsupport Φ ⊆ Icc (1 : ℝ) 2)
     (t : ℝ) (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)
@@ -673,8 +635,6 @@ theorem d02SixMain_full_diagonal_add_offDiagonal_time_identity {T : ℝ} (hT : 1
 
 abbrev D02PositiveDiagonal := {q : Fin 6 → ℕ // d02SixIsDiagonal q}
 
-/-- Finite profile support removes the profile-box mask from the arithmetic
-diagonal, retaining precisely the literal finite Gaussian pair cutoff. -/
 theorem d02SixRawGaussianTerm_finite_diagonal_tsum_identity {T : ℝ} (hT : 1 < T)
     (t : ℝ) (a : Fin 4 → ℝ) (ρ : Fin 4 → ℝ → ℝ)
     (hcap : ∀ j x, a j < x → ρ j x = 0) (α : Fin 2 → ℂ) (P : Finset (ℕ × ℕ)) :
@@ -733,8 +693,6 @@ def d02DiagonalFromD01 (x : DiagonalSixIndices) : D02PositiveDiagonal :=
     simp_rw [hl, hr]
     simpa [d01LeftIndices, d01RightIndices, mul_comm, mul_left_comm, mul_assoc] using x.property.1⟩
 
-/-- An explicit bijection preserves the original position of the zeta index
-as row/column zero and the four amplifier positions as rows/columns one and two. -/
 def d02PositiveDiagonalEquiv : D02PositiveDiagonal ≃ DiagonalSixIndices where
   toFun := d02DiagonalToD01
   invFun := d02DiagonalFromD01
@@ -759,8 +717,6 @@ theorem d02_positive_diagonal_tsum_reindex (F : (Fin 6 → ℕ) → ℂ) :
   simpa only [d02PositiveDiagonalEquiv, Equiv.coe_fn_symm_mk] using
     (d02PositiveDiagonalEquiv.symm.tsum_eq (fun q : D02PositiveDiagonal => F q.val)).symm
 
-/-- The six half-powers on the arithmetic diagonal combine to the original
-common-product denominator. -/
 theorem d02_diagonal_half_coefficient (q : D02PositiveDiagonal) :
     (∏ j : Fin 6, (q.val j + 1 : ℂ) ^ (-(1 / 2 : ℂ))) =
       (d01CommonProduct (d02DiagonalToD01 q) : ℂ) ^ (-1 : ℂ) := by
@@ -808,15 +764,11 @@ theorem d02_diagonal_half_coefficient (q : D02PositiveDiagonal) :
       (Complex.cpow_add _ _ hn).symm
     _ = _ := by norm_num [N]
 
-/-- The unshifted diagonal coefficient is literally 1/N for the common
-positive product N used in the original D01 arithmetic measure. -/
 theorem d02_diagonal_half_coefficient_eq_one_div (q : D02PositiveDiagonal) :
     (∏ j : Fin 6, (q.val j + 1 : ℂ) ^ (-(1 / 2 : ℂ))) =
       1 / (d01CommonProduct (d02DiagonalToD01 q) : ℂ) := by
   rw [d02_diagonal_half_coefficient, Complex.cpow_neg_one, one_div]
 
-/-- The literal six-index coefficient on Hm=Kn is the original D01 shifted
-arithmetic coefficient, including its common-product denominator. -/
 theorem d02_diagonal_shifted_coefficient (T : ℝ) (σ : Fin 2 → ℂ)
     (q : D02PositiveDiagonal) :
     d02ShiftedSqrtCoefficient T (d02SixZetaShifts σ) q.val =
@@ -840,8 +792,6 @@ theorem d02_diagonal_shifted_coefficient (T : ℝ) (σ : Fin 2 → ℂ)
   rw [hs 4, hs 5]
   ring
 
-/-- On the literal Hm=Kn diagonal the entire oscillatory factor is one,
-leaving exactly the original D01 shifted arithmetic term and four profiles. -/
 theorem d02SixRawGaussianTerm_diagonal_identity (T t : ℝ)
     (ρ : Fin 4 → ℝ → ℝ) (σ : Fin 2 → ℂ) (q : D02PositiveDiagonal) :
     d02SixRawGaussianTerm T t ρ (fun j => σ j / (Real.log T : ℂ)) q.val =
@@ -917,8 +867,6 @@ theorem d02GaussianDiagonalTest_logPoint {L : ℝ} (hL : 0 < L) (t : ℝ)
   rw [he, Real.exp_add, Real.exp_log (by exact_mod_cast d01LeftIndices_pos x 0),
     Real.exp_log (by exact_mod_cast d01RightIndices_pos x 0)]
 
-/-- The literal Gaussian arithmetic diagonal has the original D01 mass
-normalization L^-9/N, with no assumed measure or moment limit. -/
 theorem d02GaussianDiagonal_measure_identity {L : ℝ} (hL : 0 < L) (t : ℝ)
     (ρ : Fin 4 → ℝ → ℂ) (w : D01LogSpace → ℂ) :
     (∫ y, d02GaussianDiagonalTest L t ρ w y ∂d01DiagonalMeasure L) =
@@ -933,8 +881,6 @@ theorem d02GaussianDiagonal_measure_identity {L : ℝ} (hL : 0 < L) (t : ℝ)
   intro x
   rw [d02GaussianDiagonalTest_logPoint hL]
 
-/-- The original shifted arithmetic six-index term, rather than an abstract
-weight, is the Gaussian diagonal divided by L^9. -/
 theorem d02GaussianDiagonal_shifted_measure_identity {L : ℝ} (hL : 0 < L) (t : ℝ)
     (ρ : Fin 4 → ℝ → ℂ) (a b : Fin 3 → ℂ) :
     (∫ y, d02GaussianDiagonalTest L t ρ (d01ComplexLaplaceWeight (a, b)) y
@@ -984,9 +930,6 @@ theorem d02GaussianDiagonal_masked_shifted_measure_identity {L : ℝ}
             ((d01LeftIndices x 0 : ℝ) * (d01RightIndices x 0 : ℝ)) / t) : ℂ)) := by ring
     _ = _ := by rw [ha]; ring
 
-/-- Exact passage from the original six-factor physical diagonal to the D01
-atomic measure. The explicit index bijection and coefficient denominator are
-used here, so the measure limit can be applied to this actual arithmetic sum. -/
 theorem d02SixRawGaussianDiagonal_measure_identity {T : ℝ} (hT : 1 < T)
     (t : ℝ) (ρ : Fin 4 → ℝ → ℝ) (σ : Fin 2 → ℂ) :
     (∑' q : D02PositiveDiagonal,
@@ -1022,10 +965,6 @@ theorem d02SixRawGaussianDiagonal_measure_identity {T : ℝ} (hT : 1 < T)
       (d01RightIndices x 0 : ℝ) =
       2 * Real.pi * ((d01LeftIndices x 0 : ℝ) * (d01RightIndices x 0 : ℝ)) by ring]
 
-/-- The normalized full physical-height arithmetic diagonal is the time
-mean of its actual D01 Gaussian measure, for any time weight. This is the
-exact identity needed before applying the independently proved temporal
-Gaussian-to-sharp limit. -/
 theorem d02SixRawGaussianDiagonal_time_mean_identity {T : ℝ} (hT : 1 < T)
     (ρ : Fin 4 → ℝ → ℝ) (σ : Fin 2 → ℂ) (Ψ : ℝ → ℂ) :
     (∫ t : ℝ, Ψ (t / T) *

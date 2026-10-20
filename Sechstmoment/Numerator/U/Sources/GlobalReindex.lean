@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.BlockReindex
 import Sechstmoment.Numerator.U.Sources.FarResidual
 
-/-! The actual seven-scale physical source is the original finite AFE
-offdiagonal with its proved amplifier/gap near-block partition inserted. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology

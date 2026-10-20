@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.ZeroModes.Arithmetic.FixedDiagonalEulerMellin
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.EtaBounds
 
-/-! A finite analytic continuation of the literal B(s) prime series on the
-left diagonal strip, derived from convergent original series. -/
 namespace Sechstmoment
 open Complex Real Source Set
 open scoped BigOperators
@@ -18,7 +16,6 @@ def a03DiagonalBPrimeRational (p : ℕ) (α β γ δ s : ℂ) (ν : ℕ) : ℂ :
     (∑ k∈Finset.range ν,((p:ℂ)^(-γ))^k*((p:ℂ)^(-δ))^(ν-1-k))*
       a03DiagonalBPrimeCorrection p α β γ δ s
 
-/-- Convergence of the original B(s) ratio holds across the desired left line. -/
 theorem a03DiagonalBPrime_geometric {p : ℕ} (hp : p.Prime) (s : ℂ)
     (hs : -(1/8:ℝ)≤s.re) :
     ((p:ℝ)^(1/64:ℝ))^2*‖(p:ℂ)^(-(1+2*s))‖<1 := by
@@ -32,7 +29,6 @@ theorem a03DiagonalBPrime_geometric {p : ℕ} (hp : p.Prime) (s : ℂ)
   rw [hm,←Real.rpow_add hp0]
   exact Real.rpow_lt_one_of_one_lt_of_neg (by exact_mod_cast hp.one_lt) (by linarith)
 
-/-- Exact rational continuation, retaining the actual coefficient series. -/
 theorem bblrBPrimeFactorAt_eq_rational {p : ℕ} (hp : p.Prime)
     (α β γ δ s : ℂ) (hα : ‖α‖≤1/64) (hβ : ‖β‖≤1/64)
     (hγ : ‖γ‖≤1/64) (hδ : ‖δ‖≤1/64) (hs : -(1/8:ℝ)≤s.re) (ν : ℕ) :
@@ -72,7 +68,6 @@ theorem bblrBPrimeFactorAt_eq_rational {p : ℕ} (hp : p.Prime)
   rw [h₁,h₂,h₃]
   ring
 
-/-- The continued denominator has a fixed norm gap, uniformly in height. -/
 theorem a03DiagonalBPrimeCorrection_norm_le {p : ℕ} (hp : p.Prime)
     (α β γ δ s : ℂ) (hα : ‖α‖≤1/64) (hβ : ‖β‖≤1/64)
     (hγ : ‖γ‖≤1/64) (hδ : ‖δ‖≤1/64) (hs : -(1/8:ℝ)≤s.re) :
@@ -83,7 +78,6 @@ theorem a03DiagonalBPrimeCorrection_norm_le {p : ℕ} (hp : p.Prime)
   all_goals norm_num [add_re,one_re,mul_re]
   all_goals linarith [hr α hα,hr β hβ,hr γ hγ,hr δ hδ]
 
-/-- Local finite factors cost only a divisor count and a tiny real power. -/
 theorem a03DiagonalBPrimeRational_norm_le {p : ℕ} (hp : p.Prime)
     (α β γ δ s : ℂ) (hα : ‖α‖≤1/64) (hβ : ‖β‖≤1/64)
     (hγ : ‖γ‖≤1/64) (hδ : ‖δ‖≤1/64) (hs : -(1/8:ℝ)≤s.re) (ν : ℕ) :

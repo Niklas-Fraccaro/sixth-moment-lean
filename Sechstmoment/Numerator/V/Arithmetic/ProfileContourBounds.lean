@@ -1,9 +1,6 @@
 import Sechstmoment.Numerator.V.Chi.PolynomialBound
 import Sechstmoment.Zeta.Amplifiers
 
-/-! Entire continuation and elementary contour bounds for the actual
-profile Dirichlet sums used by the V-generator.
--/
 
 namespace Sechstmoment.Source
 open Complex Real Set

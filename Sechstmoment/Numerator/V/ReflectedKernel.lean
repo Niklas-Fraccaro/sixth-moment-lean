@@ -63,15 +63,12 @@ import Sechstmoment.Numerator.V.DP.DPAllPositiveBilinear
 import Sechstmoment.Numerator.V.PolynomialDefinitions
 import Std
 
-/-! Actual lower functional-equation centering correction for polynomial V moments.
-The only external input is the sharp DP-v2 source statement. -/
 namespace Sechstmoment
 open Complex MeasureTheory Set Metric Filter Polynomial
 open scoped Topology BigOperators ComplexConjugate Interval
 noncomputable section
 set_option maxHeartbeats 1600000
 
-/-- The exact reflected cross-profile generator selected by the V orientation. -/
 def vReflectedPolynomialJ (η : ℝ) (P Q : ℝ[X]) (z : ℂ) : ℂ :=
   Complex.exp (-z/2)*polarPolynomialBilinearJ η P Q (-z)
 

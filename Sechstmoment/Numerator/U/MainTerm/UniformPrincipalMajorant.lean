@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.MainTerm.MovingPolarFactors
 import Sechstmoment.Numerator.U.MainTerm.PrincipalDominatedLimit
 
-/-! A common integrable principal-profile majorant for bounded normalized
-shifts a positive distance from the pure polar hyperplanes. -/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
@@ -63,8 +61,6 @@ theorem normalizedPurePolarRoot_norm_eq (σ : MomentShifts) (m : Fin 6)
     norm_div, norm_neg]
   norm_num
 
-/-- The same constant and height threshold work for every shift in the
-bounded separated set and every point of both unbounded profile contours. -/
 theorem actualPrincipalProfileRescaledKernel_uniform_eventually_dominated
     {R c κ : ℝ} (hR : 0 ≤ R) (hc : 4*R+1 ≤ c) (hκ : 0 < κ)
     (f g : ℝ → ℂ) :

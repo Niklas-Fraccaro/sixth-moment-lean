@@ -1,7 +1,5 @@
 import Sechstmoment.Numerator.U.ZeroModes.Mass.Definitions
 
-/-! The actual two continuous smooth factors retain a logarithmic dyadic
-band. Their literal physical GCD mass is bounded without a mass hypothesis. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology
@@ -126,8 +124,6 @@ theorem a03ZeroModeContinuousSmoothMass_le {a b m n d M₂ N₂ : ℝ}
   rw [he]
   exact mul_le_mul_of_nonneg_left hweight (by positivity)
 
-/-- The full literal five smooth zero-mode weights for fixed amplifier and
-discrete factor variables, with the reduced gap summed in its source range. -/
 def a03ZeroModeLiteralPairMass (a b m n d H M₁ M₂ N₁ N₂ : ℝ) : ℝ :=
   a03ZeroModeGapWeightSum d H*rectangularSmoothBlockWeight (m/M₁)*
     rectangularSmoothBlockWeight (n/N₁)*a03ZeroModeContinuousSmoothMass a b m n d M₂ N₂

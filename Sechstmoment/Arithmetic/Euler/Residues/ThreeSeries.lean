@@ -1,7 +1,6 @@
 import Sechstmoment.Arithmetic.Euler.Local.Rational.Factorization
 import Sechstmoment.Arithmetic.Euler.Residues.ThreeNumerator
 
-/-! Actual convergent three-root tails; no convergence premise is hidden in their evaluation. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 

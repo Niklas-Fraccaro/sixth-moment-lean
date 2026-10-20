@@ -2,14 +2,6 @@ import Sechstmoment.Numerator.U.Diagonal.ActualSixMainContour
 import Sechstmoment.Numerator.U.MainTerm.IntegratedProfileRemainder
 import Sechstmoment.Numerator.U.MainTerm.SixPrincipalLimit
 
-/-!
-# A04: literal BBLR six main terms, with principal and remainder separated
-
-The actual finite-amplifier six-term source expression is connected to the
-new principal time moment and the actual integrated left remainder. The
-remaining polar-generator identification and collision continuation are not
-replaced by an assumed asymptotic.
--/
 
 namespace Sechstmoment
 open Complex Real Source MeasureTheory Set Filter
@@ -18,8 +10,6 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- The literal source main term splits into two independently integrable
-pieces after the genuine profile Mellin contour shift. -/
 theorem bblrSixMainTerms_eq_principal_add_actualRemainder {T a b δ : ℝ}
     (hT : 1 < T) (hδ : 0 < δ) (hδ1 : δ < 1/4) (σ : MomentShifts)
     (hα : ∀ j : Fin 4, ‖rawMomentShifts T σ j‖ ≤ δ/4)
@@ -68,8 +58,6 @@ theorem bblrSixMainTerms_eq_principal_add_actualRemainder {T a b δ : ℝ}
       linarith
     simp only [hz,Complex.ofReal_zero,zero_mul,Finset.sum_const_zero,zero_add]
 
-/-- The actual outer six-term remainder disappears under the genuine
-`T log(T)^9` normalization; no error function is supplied as a hypothesis. -/
 theorem actualSmoothSixProfileRemainderMoment_normalized_tendsto
     {R δ κ a b : ℝ} (hR : 0 ≤ R) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hκ : 0 < κ)
     (hab : a+b < 1) (σ : MomentShifts) (hσ : ∀ j : Fin 4, ‖σ j‖ ≤ R)
@@ -89,9 +77,6 @@ theorem actualSmoothSixProfileRemainderMoment_normalized_tendsto
     _ ≤ T := by simpa only [one_mul] using hb σ hσ hgap
     _ ≤ 1*T*(Real.log T)^8 := by nlinarith
 
-/-- The literal six finite-amplifier source terms have the explicit separated
-polar-profile limit. This statement does not identify that sum with the
-regular manuscript generator or extend the limit through collisions. -/
 theorem bblrSixMainTerms_fixed_separated_polar_limit {R c δ κ a b : ℝ}
     (hR : 0 ≤ R) (hc : 4*R+1 ≤ c) (hδ : 0 < δ) (hδ1 : δ < 1/4) (hκ : 0 < κ)
     (hab : a+b < 1) (σ : MomentShifts) (hσ : ∀ j : Fin 4, ‖σ j‖ ≤ R)

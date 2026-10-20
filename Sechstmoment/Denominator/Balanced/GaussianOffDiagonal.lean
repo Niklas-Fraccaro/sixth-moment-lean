@@ -2,9 +2,6 @@ import Sechstmoment.Denominator.Balanced.GaussianTimeAmplitude
 import Sechstmoment.Denominator.Balanced.OffDiagonalIntegration
 import Sechstmoment.Zeta.AFE.Two.Coefficients
 
-/-! Actual six-index Gaussian denominator off-diagonals vanish by arbitrary
-powers. Neither a time-derivative budget nor an absolute-mass estimate is a
-premise: both are derived from the literal Gaussian and Dirichlet coefficients. -/
 namespace Sechstmoment
 open Complex Real Set Filter Source
 open scoped BigOperators Topology ContDiff
@@ -39,9 +36,6 @@ theorem d02_six_index_amplifier_cutoff {T : ℝ} (hT : 0 < T)
       congr 1
       ring
 
-/-- A single arbitrary-power constant works for every normalized shift and
-complex time-power in the stated boxes, at every sufficiently large height.
-The derivative and coefficient budgets are derived uniformly here. -/
 theorem d02_gaussian_six_index_offDiagonal_uniform_power_bound {Φ : ℝ → ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ ⊆ Icc (1 : ℝ) 2)
     (a : Fin 6 → ℝ) {δ R R' F : ℝ}
@@ -99,9 +93,6 @@ theorem d02_gaussian_six_index_offDiagonal_uniform_power_bound {Φ : ℝ → ℂ
     (fun q hq x => (hreg q hq).2.2 N x) hmass
   exact d02_balanced_offDiagonal_power_bound hT hCB N hN hz
 
-/-- The displayed sum uses the actual erfc weight `V0(2*pi*mn/t)`, represented
-by its already identified Mellin contour, and the exact phase `log(Hm/(Kn))`.
-Bounded polynomial/profile multipliers and bounded normalized shifts are enough. -/
 theorem d02_gaussian_six_index_offDiagonal_arbitrary_power_decay {Φ : ℝ → ℂ}
     (hΦ : ContDiff ℝ ∞ Φ) (hΦs : tsupport Φ ⊆ Icc (1 : ℝ) 2)
     (a : Fin 6 → ℝ) {δ R R' F : ℝ}

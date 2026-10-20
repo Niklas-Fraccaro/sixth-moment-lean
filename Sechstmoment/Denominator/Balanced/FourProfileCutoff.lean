@@ -1,11 +1,6 @@
 import Mathlib.Analysis.Normed.Group.Bounded
 import Sechstmoment.Denominator.Balanced.SharpLogCutoff
 
-/-! The four amplifier profiles do not have compact support on the full
-six-coordinate logarithmic space.  The positive orthant and sharp product
-cutoff bound the two remaining coordinates.  An explicit continuous compact
-localization is therefore equal to the original test on both actual measures.
--/
 
 namespace Sechstmoment
 open MeasureTheory Filter Set
@@ -59,8 +54,6 @@ theorem d02LocalizedFourProfile_continuous (ρ : Fin 4 → ℝ → ℂ)
   exact ((Complex.continuous_ofReal.comp hleft).mul
     (Complex.continuous_ofReal.comp hright)).mul (d02FourProfileProduct_continuous ρ hρ)
 
-/-- Four profile caps and the two explicit zeta localizations produce a
-compact test on the actual six-coordinate space. -/
 theorem d02LocalizedFourProfile_compact_support
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ)
     (hρ : ∀ k t, ρ k t ≠ 0 → t ∈ Icc 0 (a k)) :
@@ -116,9 +109,6 @@ theorem d02SharpLogTest_localizedFourProfile_eq
       d02ZetaLocalization_eq_one h₁, d02ZetaLocalization_eq_one h₂]
   · simp [d02SharpLogTest, indicator_of_notMem hcut]
 
-/-- The sharp logarithmic limit for the literal four-profile product, with
-arbitrary complex continuous shift weights.  Compact support in the two
-unamplified coordinates is proved by localization, not assumed. -/
 theorem d02DiagonalMeasure_four_profile_sharp_log_limit
     (ρ : Fin 4 → ℝ → ℂ) (a : Fin 4 → ℝ) (w : D01LogSpace → ℂ)
     (hρc : ∀ k, Continuous (ρ k))
@@ -167,8 +157,6 @@ theorem d02DiagonalMeasure_four_profile_shifted_sharp_log_height_limit
   (d02DiagonalMeasure_four_profile_sharp_log_limit ρ a (d01ComplexLaplaceWeight ab)
     hρc hρcap (d01ComplexLaplaceWeight_continuous ab)).comp Real.tendsto_log_atTop
 
-/-- The measure integral is the literal arithmetic diagonal sum, including
-the product-length cutoff on the two unamplified indices. -/
 theorem d02FourProfile_sharp_diagonal_tsum (ρ : Fin 4 → ℝ → ℂ)
     (w : D01LogSpace → ℂ) {L : ℝ} (hL : 0 < L) :
     (∫ y, w y * d02SharpLogTest (d02FourProfileProduct ρ) y

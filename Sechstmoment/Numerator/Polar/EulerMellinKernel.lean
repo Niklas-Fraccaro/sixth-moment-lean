@@ -3,14 +3,6 @@ import Sechstmoment.Arithmetic.Euler.Shifted.Bounded
 import Sechstmoment.Arithmetic.Euler.Shifted.Holomorphic
 import Sechstmoment.Numerator.Polar.PureHorizontal
 
-/-!
-# The literal arithmetic and five entangled factors on the Mellin strip
-
-The triples retain the actual amplifier variables and the four source shifts.
-Both the genuine Euler rest and all five entangled zeta factors have bounds
-independent of every imaginary contour coordinate. The four remaining pure
-factors are controlled separately by the actual pole-killing Gaussian.
--/
 
 namespace Sechstmoment
 

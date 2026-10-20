@@ -30,8 +30,6 @@ import Sechstmoment.Analysis.Alternants.Regularity
 import Sechstmoment.Analysis.Integration.ParameterFamily
 import Std
 
-/-! Holomorphic continuation of the exponential alternant through all source
-collisions.  Its derivatives are obtained from the defining compact integrals. -/
 
 namespace Sechstmoment
 open Filter MeasureTheory Set
@@ -146,8 +144,6 @@ private theorem simplexDotIntegralFamily_value (p : (Fin 4 → ℂ) × ℂ) :
 
 attribute [irreducible] simplexDotIntegralFamily
 
-/-- The simplex generator is entire jointly in all four nodes and in z,
-including every coincidence of nodes. -/
 theorem simplexExpGenerator_contDiff_joint :
     ContDiff ℂ 1 (fun p : (Fin 4 → ℂ) × ℂ => simplexExpGenerator p.1 p.2) := by
   have h := (contDiff_const (c := (6:ℂ))).mul
@@ -179,8 +175,6 @@ theorem expNewtonMatrix_contDiff_joint (i j : Fin 4) :
 
 attribute [local irreducible] expNewtonMatrix
 
-/-- The regularized determinant has actual joint complex derivatives, even
-where the unregularized Vandermonde denominator vanishes. -/
 theorem exponentialAlternantRegularized_contDiff_joint :
     ContDiff ℂ 1 (fun p : (Fin 4 → ℂ) × (Fin 4 → ℂ) =>
       exponentialAlternantRegularized p.1 p.2) := by
@@ -201,8 +195,6 @@ theorem exponentialAlternantRegularized_differentiable (q : Fin 4 → ℂ) :
     (by fun_prop : ContDiff ℂ 1 (fun x : Fin 4 → ℂ => (x,q)))).differentiable
       (by norm_num)
 
-/-- Distinct source shifts are dense; consequently their collision limits
-determine the value of the continuous regularization uniquely. -/
 theorem fourSourceShifts_injective_dense :
     Dense {x : Fin 4 → ℂ | Function.Injective x} := by
   classical
@@ -235,8 +227,6 @@ theorem fourSourceShifts_injective_dense :
     by_contra hne
     exact hx ⟨(i,j),hne⟩ hij
 
-/-- Exact continuation at the colliding U shifts, including z=0 and every
-possible collision among the four polar nodes. -/
 theorem exponentialAlternantRegularized_u_slice (q : Fin 4 → ℂ) (z : ℂ) :
     exponentialAlternantRegularized (![0,0,z,0]) q =
       fourVandermonde q/12*simplexExpGenerator q z := by

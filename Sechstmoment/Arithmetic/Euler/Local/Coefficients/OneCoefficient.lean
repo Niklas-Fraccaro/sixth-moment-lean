@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Recurrence.DifferenceCommutation
 
-/-! Coefficients of one geometric series. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

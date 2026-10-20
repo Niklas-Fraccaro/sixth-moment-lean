@@ -1,7 +1,6 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.Scaling
 import Sechstmoment.Arithmetic.Euler.Residues.ThreeAlgebra
 
-/-! The quadratic numerator after the residue removes one Euler denominator. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 

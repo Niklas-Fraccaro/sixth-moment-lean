@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.U.ZeroModes.LeadingFubini
 import Sechstmoment.Numerator.U.ZeroModes.Linearization.Kernels
 import Sechstmoment.Numerator.U.ZeroModes.Transforms.SmoothedCosineGamma
 
-/-! Absolute physical/time reconstruction with a genuine measurable phase.
-The concrete linear gap characters are supplied below without phase receipts. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
@@ -12,7 +10,6 @@ open Classical
 noncomputable section
 set_option maxHeartbeats 0
 
-/-- The literal fixed-frequency physical time integrand. -/
 def a03PhaseZeroTimeIntegrand (F : ℝ→ℂ) (P : A03SixTensorSpace→ℝ) (α : MomentShifts) (z : ℂ)
     (m n : Bool) (q : QuadraticScales) (v : Fin 5→ℕ) (x t : ℝ) : ℂ :=
   let y := a03SixTensorLogPoint (a03SixZeroSourceArguments m n q v x)
@@ -62,8 +59,6 @@ theorem a03PhaseZeroTimeIntegrand_joint_integrable
     unfold Function.uncurry a03PhaseZeroTimeIntegrand
     simp only [hzero p.1 hx,zero_mul,norm_zero,le_refl]
 
-/-- Both orders of the actual continuous physical/time integrals converge,
-and their equality follows from the proved absolute joint majorant. -/
 theorem a03PhaseZeroTimeIntegrand_fubini
     (F : ℝ→ℂ) (hFm : Measurable F) (hFi : Integrable F)
     (P : A03SixTensorSpace→ℝ) (hPm : Measurable P) {α : MomentShifts} (hα : ∀ j,‖α j‖≤1/4) {z : ℂ} (hz : 0≤z.re)
@@ -79,8 +74,6 @@ def a03PhasePhysicalZeroTimeMode (F : ℝ→ℂ) (P : A03SixTensorSpace→ℝ) (
   ∑ v∈quadraticMainIndexSet q,a (v 0)*b (v 1)*
     ∫ x : ℝ in Ioi 0,a03PhaseZeroTimeIntegrand F P α z m n q v x t
 
-/-- The physical leading tensor is genuinely a time integral of the full
-finite GCD expression. No physical/time interchange is a premise. -/
 theorem a03PhasePhysicalZeroTimeMode_integrable_eq
     (F : ℝ→ℂ) (hFm : Measurable F) (hFi : Integrable F)
     (P : A03SixTensorSpace→ℝ) (hPm : Measurable P) {α : MomentShifts} (hα : ∀ j,‖α j‖≤1/4) {z : ℂ} (hz : 0≤z.re)

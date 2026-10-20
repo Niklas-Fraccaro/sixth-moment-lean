@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Local.Coefficients.SecondLowCoefficient
 
-/-! The cubic fourfold coefficient and the third numerator at h=0. -/
 
 namespace Sechstmoment.Source.NoDPLocal
 

@@ -1,6 +1,5 @@
 import Sechstmoment.Arithmetic.Euler.Residues.ResidueCancellation
 
-/-! Polynomial residue factors, their finite tails, and the existing principal factor. -/
 set_option linter.unusedSimpArgs false
 set_option linter.unnecessarySeqFocus false
 

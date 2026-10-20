@@ -1,9 +1,6 @@
 import Sechstmoment.Arithmetic.Divisors.Subpower
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.EtaAnalytic
 
-/-! Genuine uniform subpower bounds for both ratio-contour eta factors.
-All imaginary parts are unrestricted. The bound is proved from the actual
-divisor sum and a fixed cost at each distinct prime. -/
 
 namespace Sechstmoment.Source
 open Complex Real Nat Set
@@ -93,8 +90,6 @@ theorem bblrEtaArithmetic_norm_le_divisor_prime_cost (α β γ δ u v s : ℂ)
       exact (mul_le_mul hln hp (norm_nonneg _) (by norm_num)).trans_eq (one_mul _)
     _ = _ := by simp
 
-/-- Uniform eta subpower decay, in the genuine domain visited by the
-initial, jointly shifted, and single-residue secondary u/v lines. -/
 theorem bblrEtaArithmetic_ratio_subpower_bound {ε : ℝ} (hε : 0<ε) :
     ∃ D : ℝ,0≤D ∧ ∀ α β γ δ u v s : ℂ, ∀ n : ℕ,n≠0 →
       1≤s.re → 0≤(1+γ-δ+2*v).re →

@@ -3,8 +3,6 @@ import Sechstmoment.Numerator.U.Diagonal.NearMassPowers
 import Sechstmoment.Numerator.U.Replacement.WeightReplacementFarFinite
 import Sechstmoment.Numerator.U.Separation.UnitActualScales
 
-/-! Genuine retained smooth AFE near mass. All caps below are constructed
-from the actual four product scales; no mass or counting receipt is assumed. -/
 namespace Sechstmoment
 open Real Source Set Filter Asymptotics
 open scoped BigOperators Topology
@@ -178,7 +176,6 @@ theorem actualSmoothNearIndices_support {T ρ : ℝ} (hT : 0<T) (u v : ℕ)
       ⟨by omega,by omega,hs.2.2.2⟩,by simpa [Nat.mul_assoc] using hfloor.1,
       by simpa [Nat.mul_assoc] using hfloor.2⟩
 
-/-- The actual integer caps inherit the retained four-scale product cutoff. -/
 theorem actualSmoothNearCaps_product_cutoff {T η : ℝ} (k : Fin 4→ℕ)
     (hk : k∈rectangularAFEProductScaleGrid (T^(2+η))) :
     (nearSmoothUpperCap (nearSmoothLeftScale k):ℝ)*
@@ -196,8 +193,6 @@ def actualSmoothNearMass (T ρ : ℝ) (u v : ℕ) (k : Fin 4→ℕ) : ℝ :=
   ∑ n∈actualSmoothNearIndices T ρ u v k,
     positiveNearFactorWeight (u+1) (v+1) (bblrAFEFactorPairs n)
 
-/-- A genuine near-block estimate, uniform in both literal amplifier indices.
-The integer-one blocks and zero gaps are retained. -/
 theorem actualSmoothNearMass_le_power {T η ρ : ℝ} (hT : 1≤T) (hη : 0≤η)
     (u v : ℕ) (k : Fin 4→ℕ) (hk : k∈rectangularAFEProductScaleGrid (T^(2+η))) :
     actualSmoothNearMass T ρ u v k≤

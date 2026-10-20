@@ -2,8 +2,6 @@ import Sechstmoment.Certificate.Profiles.Definitions
 import Sechstmoment.Certificate.Profiles.KernelContinuity
 import Sechstmoment.Certificate.Profiles.ProductLimit
 
-/-! Joint concentration of the actual four endpoint profiles on every
-certified balanced and unbalanced Gram entry. -/
 
 namespace Sechstmoment
 open MeasureTheory Filter Set
@@ -55,9 +53,6 @@ private theorem certificateFeatureProfileIntegral_eq_average (n : ℕ) (x y : Fi
       F ![z.1.1,z.1.2,z.2.1,z.2.2]
   ring
 
-/-- A genuine four-profile concentration theorem for any kernel continuous
-on the closed nonnegative orthant. The four one-dimensional limits, masses,
-supports and integrability are proved for the literal certificate families. -/
 theorem certificateFeatureProfileIntegral_tendsto {x y : Finite.Feature}
     (hx : x ∈ Finite.features) (hy : y ∈ Finite.features)
     (F : (Fin 4 → ℝ) → ℝ) (hF : ContinuousOn F {z | ∀ i, 0 ≤ z i}) :
@@ -117,7 +112,6 @@ theorem certificateFeatureProfileIntegral_tendsto {x y : Finite.Feature}
   apply (tendsto_add_atTop_iff_nat 1).1
   simpa only [certificateFeatureProfileIntegral_eq_average,profileProductAverage4] using h
 
-/-- Every actual balanced Gram entry has its four-profile endpoint limit. -/
 theorem certificateProfileGramZero_tendsto {x y : Finite.Feature}
     (hx : x ∈ Finite.features) (hy : y ∈ Finite.features) :
     Tendsto (fun n => certificateProfileGramZero n x y) atTop
@@ -125,7 +119,6 @@ theorem certificateProfileGramZero_tendsto {x y : Finite.Feature}
   certificateFeatureProfileIntegral_tendsto hx hy _
     (certificateGramZeroKernel_continuousOn_nonneg x y)
 
-/-- Every actual unbalanced Gram entry has the same common-stage limit. -/
 theorem certificateProfileGramMinus_tendsto {x y : Finite.Feature}
     (hx : x ∈ Finite.features) (hy : y ∈ Finite.features) :
     Tendsto (fun n => certificateProfileGramMinus n x y) atTop
@@ -133,8 +126,6 @@ theorem certificateProfileGramMinus_tendsto {x y : Finite.Feature}
   certificateFeatureProfileIntegral_tendsto hx hy _
     (certificateGramMinusKernel_continuousOn_nonneg x y)
 
-/-- The full 15931-pair denominator concentrates to its literal integral
-endpoint sum; there are no extra convergence hypotheses. -/
 theorem certificateProfileDenominator_tendsto_point :
     Tendsto certificateProfileDenominator atTop (𝓝 certificatePointDenominator) := by
   have hzero : Tendsto (fun n : ℕ => (Finite.pairs.map fun ij =>

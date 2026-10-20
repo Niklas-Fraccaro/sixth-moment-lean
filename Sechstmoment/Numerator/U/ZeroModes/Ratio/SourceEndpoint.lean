@@ -1,8 +1,6 @@
 import Sechstmoment.Numerator.U.Sources.FactoryRestriction
 import Sechstmoment.Numerator.U.ZeroModes.Ratio.SourceAmplifier
 
-/-! Source-oriented input controls the genuine weighted tensor against its
-uncut unsorted native GCD zero mode, uniformly in both ratio offsets. -/
 namespace Sechstmoment
 open Complex Real Source Set Filter MeasureTheory
 open scoped BigOperators Topology ContDiff
