@@ -1,4 +1,4 @@
-# Sixth moment
+# Sixth Moment
 
 This repository contains my Lean formalization of a lower bound for the sixth moment of the Riemann zeta function:
 
@@ -35,11 +35,11 @@ See [CONTENTS.md](CONTENTS.md) for further results and the source layout.
 
 Requires Git and elan. Lean 4.34.0 and the Mathlib commit are pinned in the repository.
 
-The full build of this experimental reorganization is still pending.
+The full build is still pending.
 
 ```sh
-git clone https://github.com/NiklasFrac/sechstmoment-lean-experimental.git
-cd sechstmoment-lean-experimental
+git clone https://github.com/NiklasFrac/sixth-moment-lean.git
+cd sixth-moment-lean
 lake exe cache get
 lake build
 lake env lean Sechstmoment/Verification/Final.lean
