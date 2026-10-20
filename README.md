@@ -13,7 +13,11 @@ Here $a_3$ is the [arithmetic Euler product](Sechstmoment/Arithmetic/Factor/Defi
 
 ## Assumption
 
-The sole literature input is Watt's Proposition 4.1, stated as [`DivisorProof.Watt41`](Sechstmoment/Arithmetic/Watt/Statement.lean). The final theorem, [`Sechstmoment.fullProof`](Sechstmoment/Theorem.lean), has type:
+The sole literature input, [`DivisorProof.Watt41`](Sechstmoment/Arithmetic/Watt/Statement.lean), comes from Proposition 4.1 (p. 201) of N. Watt, [*Kloosterman Sums and a Mean Value for Dirichlet Polynomials*](https://doi.org/10.1006/jnth.1995.1086), *Journal of Number Theory* **53** (1995), 179–210.
+
+The Lean assumption uses globally smooth weights and makes the uniform derivative bounds and the sufficiently-large-`X` condition explicit. Under the paper's uniform interpretation of its implicit constants, Proposition 4.1 implies this formulation. The source file records the summation and regularity conventions used in this comparison.
+
+The final theorem, [`Sechstmoment.fullProof`](Sechstmoment/Theorem.lean), has type:
 
 ```lean
 DivisorProof.Watt41 → Sechstmoment.FullGoal
