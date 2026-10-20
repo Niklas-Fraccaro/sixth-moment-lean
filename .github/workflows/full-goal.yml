@@ -71,7 +71,7 @@ jobs:
           lean --version
           lake --version
           mapfile -t imports < <(
-            grep -Rh --include='*.lean' '^import Mathlib' Sechstmoment.lean Sechstmoment Salt |
+            grep -Rh --include='*.lean' '^import Mathlib' SixthMoment.lean SixthMoment Salt |
               awk '{for (i=2; i<=NF; i++) if ($i ~ /^Mathlib(\.|$)/) print $i}' | sort -u
           )
           ((${#imports[@]} > 0))
@@ -141,7 +141,7 @@ jobs:
         id: final
         if: steps.build.outputs.exit_code == '0'
         timeout-minutes: 20
-        run: lake env lean Sechstmoment/Verification/Final.lean
+        run: lake env lean SixthMoment/Verification/Final.lean
 
       - name: Report the result
         if: always()

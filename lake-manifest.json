@@ -111,7 +111,7 @@
       "configFile": "lakefile.toml"
     }
   ],
-  "name": "sechstmoment",
+  "name": "sixthmoment",
   "lakeDir": ".lake",
   "fixedToolchain": false
 }

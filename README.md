@@ -9,18 +9,18 @@ $$
 \mathrel{>} 41.007.
 $$
 
-Here $a_3$ is the [arithmetic Euler product](Sechstmoment/Arithmetic/Factor/Definitions.lean).
+Here $a_3$ is the [arithmetic Euler product](SixthMoment/Arithmetic/Factor/Definitions.lean).
 
 ## Assumption
 
-The sole literature input, [`DivisorProof.Watt41`](Sechstmoment/Arithmetic/Watt/Statement.lean), comes from Proposition 4.1 (p. 201) of N. Watt, [*Kloosterman Sums and a Mean Value for Dirichlet Polynomials*](https://doi.org/10.1006/jnth.1995.1086), *Journal of Number Theory* **53** (1995), 179–210.
+The sole literature input, [`DivisorProof.Watt41`](SixthMoment/Arithmetic/Watt/Statement.lean), comes from Proposition 4.1 (p. 201) of N. Watt, [*Kloosterman Sums and a Mean Value for Dirichlet Polynomials*](https://doi.org/10.1006/jnth.1995.1086), *Journal of Number Theory* **53** (1995), 179–210.
 
 The Lean assumption uses globally smooth weights and makes the uniform derivative bounds and the sufficiently-large-`X` condition explicit. Under the paper's uniform interpretation of its implicit constants, Proposition 4.1 implies this formulation. The source file records the summation and regularity conventions used in this comparison.
 
-The final theorem, [`Sechstmoment.fullProof`](Sechstmoment/Theorem.lean), has type:
+The final theorem, [`SixthMoment.fullProof`](SixthMoment/Theorem.lean), has type:
 
 ```lean
-DivisorProof.Watt41 → Sechstmoment.FullGoal
+DivisorProof.Watt41 → SixthMoment.FullGoal
 ```
 
 ## Reusable results
@@ -29,9 +29,9 @@ For example:
 
 | Result | Module |
 |---|---|
-| Subpower bounds for divisor counts with a fixed cost per prime | [Divisors/Subpower](Sechstmoment/Arithmetic/Divisors/Subpower.lean) |
-| Concentration of beta profiles against continuous functions | [Beta/WeakConvergence](Sechstmoment/Analysis/Beta/WeakConvergence.lean) |
-| Complex differentiation under compact interval integrals | [Integration/ComplexParameter](Sechstmoment/Analysis/Integration/ComplexParameter.lean) |
+| Subpower bounds for divisor counts with a fixed cost per prime | [Divisors/Subpower](SixthMoment/Arithmetic/Divisors/Subpower.lean) |
+| Concentration of beta profiles against continuous functions | [Beta/WeakConvergence](SixthMoment/Analysis/Beta/WeakConvergence.lean) |
+| Complex differentiation under compact interval integrals | [Integration/ComplexParameter](SixthMoment/Analysis/Integration/ComplexParameter.lean) |
 
 See [CONTENTS.md](CONTENTS.md) for further results and the source layout.
 
@@ -46,7 +46,7 @@ git clone https://github.com/NiklasFrac/sixth-moment-lean.git
 cd sixth-moment-lean
 lake exe cache get
 lake build
-lake env lean Sechstmoment/Verification/Final.lean
+lake env lean SixthMoment/Verification/Final.lean
 ```
 
 `lake build` compiles all project modules. The final command checks the exact conclusion and prints its axioms; the check accepts only `propext`, `Classical.choice` and `Quot.sound`. Watt's proposition is an explicit hypothesis.
