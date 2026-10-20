@@ -17,7 +17,8 @@ def a03ActualRatioSourceGoodBlock (T s ε : ℝ) (f g : ℝ→ℝ)
   let H := rectangularAFESmoothScale (i.1 2)
   let q := boundaryEmbeddedScales (boundaryActualFlags i.2) (phaseActualScales A B H i.2)
   phaseActualActiveNearBlock T A B H (T^(s-1)) f g i.2 ∧
-    q.M₁≤q.M₂*q.mass^ε ∧ q.N₁≤q.N₂*q.mass^ε ∧ i.2 1≠0 ∧ i.2 3≠0
+    q.M₁≤q.M₂*q.mass^(DivisorProof.inputExponent ε 1) ∧
+    q.N₁≤q.N₂*q.mass^(DivisorProof.inputExponent ε 1) ∧ i.2 1≠0 ∧ i.2 3≠0
 
 def a03ActualRatioSourceBlockError (dual positive : Bool) (Φ : ℝ→ℂ)
     (c e T s εsource v : ℝ) (σ α : MomentShifts) (f g : ℝ→ℝ)

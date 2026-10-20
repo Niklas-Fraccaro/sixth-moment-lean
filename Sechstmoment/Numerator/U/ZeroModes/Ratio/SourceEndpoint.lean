@@ -48,7 +48,8 @@ theorem a03_actual_ratio_tensor_soft_source_physical_bound
         ∀ k : Fin 4→ℕ,k∈rectangularAFEProductScaleGrid (T^(2+u)) →
         phaseActualActiveNearBlock T A B H (T^(s-1)) f g k →
         let q := boundaryEmbeddedScales (boundaryActualFlags k) (phaseActualScales A B H k)
-        q.M₁≤q.M₂*q.mass^εsource → q.N₁≤q.N₂*q.mass^εsource → k 1≠0 → k 3≠0 →
+        q.M₁≤q.M₂*q.mass^(DivisorProof.inputExponent εsource 1) →
+        q.N₁≤q.N₂*q.mass^(DivisorProof.inputExponent εsource 1) → k 1≠0 → k 3≠0 →
         ∀ σ α : MomentShifts,(∀ j,‖σ j‖≤R) → (∀ j,‖α j‖≤1/4) →
         (∀ j : PurePolarIndex,κ≤‖normalizedPurePolarRoot σ j‖) →
         ∀ v : ℝ,|v|≤θ*Real.log T → ∀ positive : Bool,∀ tM tN : ℝ,

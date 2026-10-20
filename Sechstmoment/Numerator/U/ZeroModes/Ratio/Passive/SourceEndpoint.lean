@@ -25,7 +25,8 @@ theorem a03_actual_ratio_tensor_passive_soft_source_physical_bound
         ∀ k : Fin 4→ℕ,k∈rectangularAFEProductScaleGrid (T^(2+u)) →
         A03ActualPassiveNearZeroBlock T A B H (T^(s-1)) f g k →
         let q := boundaryEmbeddedScales (boundaryActualFlags k) (phaseActualScales A B H k)
-        q.M₁≤q.M₂*q.mass^εsource → q.N₁≤q.N₂*q.mass^εsource → k 1≠0 → k 3≠0 →
+        q.M₁≤q.M₂*q.mass^(DivisorProof.inputExponent εsource 1) →
+        q.N₁≤q.N₂*q.mass^(DivisorProof.inputExponent εsource 1) → k 1≠0 → k 3≠0 →
         ∀ σ α : MomentShifts,(∀ j,‖σ j‖≤R) → (∀ j,‖α j‖≤1/4) →
         (∀ j : PurePolarIndex,κ≤‖normalizedPurePolarRoot σ j‖) →
         ∀ v : ℝ,|v|≤θ*Real.log T → ∀ positive : Bool,∀ tM tN : ℝ,
@@ -38,7 +39,8 @@ theorem a03_actual_ratio_tensor_passive_soft_source_physical_bound
   obtain ⟨T0,kernels,hgraph,hseminorm⟩ :=
     a03_actual_ratio_tensor_bounded_schwartz_family dual hΦ hΦs hc hc1 hεkernel hκ hθ hR
   obtain ⟨s,u,K,Ccoef,normalizer,bounds,hs,hs2,hu,hK,hCcoef,hm,hn,hbounds,hW,hd,hcoef,_hexact,hfuture⟩ :=
-    a03Six_actual_passive_power_near_soft_source_admissibility ha hab hlen hεsource f g hf hg kernels hseminorm
+    a03Six_actual_passive_power_near_soft_source_admissibility ha hab hlen
+      (DivisorProof.inputExponent_pos hεsource (by norm_num : (0:ℝ)<1)) f g hf hg kernels hseminorm
   obtain ⟨F,hF,hfb⟩ := rectangular_supported_profile_bounded f hf
   obtain ⟨G,hG,hgb⟩ := rectangular_supported_profile_bounded g hg
   obtain ⟨Csource,hCsource,hsource⟩ := a03_actual_soft_source_sqrt_superposition
@@ -68,7 +70,7 @@ theorem a03_actual_ratio_tensor_passive_soft_source_physical_bound
   have hBp : 0<B := by linarith
   have hHp : 0<H := by linarith
   obtain ⟨hk',hactive'⟩ := a03_actual_passive_source_restricted_domain hT hss huu f g k hk hactive
-  have hadm : a03SoftSixFourierSourceClasses εsource K bounds normalizer T A B H f g k :=
+  have hadm : a03SoftSixFourierSourceClasses (DivisorProof.inputExponent εsource 1) K bounds normalizer T A B H f g k :=
     hactual A B H hA hB hH k hk' hactive' hmsoft hnsoft
   have hpvalid : A03RatioTensorValid T0 θ κ R
       ⟨phaseActualNearTensorData T σ α v A B H k positive,tM,tN⟩ :=

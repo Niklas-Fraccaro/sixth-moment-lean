@@ -1,4 +1,5 @@
 import Sechstmoment.Arithmetic.Watt.Statement
+import Sechstmoment.Arithmetic.Kloosterman.Estermann
 
 /-! The zero frequency in Poisson completion is bounded arithmetically.
 The proof uses prime-power descent and CRT, not an unproved Weil estimate. -/
