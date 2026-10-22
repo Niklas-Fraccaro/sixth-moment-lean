@@ -105,30 +105,34 @@ theorem a03_native_GCD_passive_mask_complement_classified
     (hmask : a03NativeGCDSelectedDyadicMask (fun _ => True) T a b s u ε f g w X≠1) :
     T^(2+u)<X^2/((w 0:ℝ)*w 1) ∨
       T^s≤T*a03NativeGCDCoordinateGap w/X ∨
-      a03NativeGCDMaskTailConstant ε*T^(a03NativeGCDMaskTailExponent a b s ε)≤
+      a03NativeGCDMaskTailConstant (DivisorProof.inputExponent ε 1)*T^(a03NativeGCDMaskTailExponent a b s (DivisorProof.inputExponent ε 1))≤
         (w 0:ℝ)*(w 2:ℝ)^2/X ∨
-      a03NativeGCDMaskTailConstant ε*T^(a03NativeGCDMaskTailExponent a b s ε)≤
+      a03NativeGCDMaskTailConstant (DivisorProof.inputExponent ε 1)*T^(a03NativeGCDMaskTailExponent a b s (DivisorProof.inputExponent ε 1))≤
         (w 1:ℝ)*(w 3:ℝ)^2/X := by
   by_contra h
   push Not at h
   obtain ⟨hprod,hfreq,hrM,hrN⟩ := h
   have hTp : 0<T := zero_lt_one.trans_le hT
+  have hρ : 0≤DivisorProof.inputExponent ε 1 := by
+    unfold DivisorProof.inputExponent
+    exact le_min (div_nonneg hε (by norm_num)) (by norm_num)
   have hp (j : Fin 5) : (0:ℝ)<w j := by
     exact_mod_cast (show 0<w j by have := hw j; omega)
   have hlow := a03CommonX_low_frequency_gap hTp hX hfreq.le
   have hLow := a03CommonX_low_gap_spatial_lower hTp (a03NativeGCDCoordinateGap_one_le w hw) hlow
   have hgap := a03CommonX_point_gap_cap hTp hX (hp 0) (hp 1) ha hb hprod hlow
-  have hsoft := a03NativeGCDMaskTailThreshold_soft (a:=a) (b:=b) hT hX hs hε hLow
+  have hsoft := a03NativeGCDMaskTailThreshold_soft (a:=a) (b:=b)
+    (ε:=DivisorProof.inputExponent ε 1) hT hX hs hρ hLow
   have hM₂ : 4/3<X/((w 0:ℝ)*w 2) := by
     by_contra hu
-    have hh := a03NativeGCDMaskTailThreshold_unit (a:=a) (b:=b) (ε:=ε)
+    have hh := a03NativeGCDMaskTailThreshold_unit (a:=a) (b:=b) (ε:=DivisorProof.inputExponent ε 1)
       hT (hp 0) (hp 2) hX ha hLow (le_of_not_gt hu)
     exact (not_lt_of_ge hh) hrM
   have hN₂ : 4/3<X/((w 1:ℝ)*w 3) := by
     by_contra hu
-    have hh := a03NativeGCDMaskTailThreshold_unit (a:=b) (b:=a) (ε:=ε)
+    have hh := a03NativeGCDMaskTailThreshold_unit (a:=b) (b:=a) (ε:=DivisorProof.inputExponent ε 1)
       hT (hp 1) (hp 3) hX hb hLow (le_of_not_gt hu)
-    have he : a03NativeGCDMaskTailExponent b a s ε=a03NativeGCDMaskTailExponent a b s ε := by
+    have he : a03NativeGCDMaskTailExponent b a s (DivisorProof.inputExponent ε 1)=a03NativeGCDMaskTailExponent a b s (DivisorProof.inputExponent ε 1) := by
       unfold a03NativeGCDMaskTailExponent
       rw [min_comm (1-s-b) (1-s-a)]
     rw [he] at hh

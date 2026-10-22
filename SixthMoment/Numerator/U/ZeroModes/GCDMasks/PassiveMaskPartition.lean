@@ -67,8 +67,8 @@ theorem a03_native_GCD_interior_weight_passive_good
     (hg : g (Real.log (w 1:ℝ)/Real.log T)≠0)
     (hlow : a03NativeGCDCoordinateGap w≤T^(s-1)*X)
     (hM₂ : 4/3<X/((w 0:ℝ)*w 2)) (hN₂ : 4/3<X/((w 1:ℝ)*w 3))
-    (hMratio : (w 0:ℝ)*(w 2:ℝ)^2/X<((X^2/64)^ε)/64)
-    (hNratio : (w 1:ℝ)*(w 3:ℝ)^2/X<((X^2/64)^ε)/64)
+    (hMratio : (w 0:ℝ)*(w 2:ℝ)^2/X<((X^2/64)^(DivisorProof.inputExponent ε 1))/64)
+    (hNratio : (w 1:ℝ)*(w 3:ℝ)^2/X<((X^2/64)^(DivisorProof.inputExponent ε 1))/64)
     (i : (Fin 3→ℕ)×(Fin 4→ℕ))
     (hi : a03NativeGCDAllDyadicWeight
       (phaseActualScales (rectangularAFESmoothScale (i.1 0)) (rectangularAFESmoothScale (i.1 1))
@@ -88,13 +88,16 @@ theorem a03_native_GCD_interior_weight_passive_good
   have hmass : X^2/64≤qe.mass := by
     have hn : 0≤q.mass := (a03_actual_scales_mass_pos hA hB i.2).le
     exact (by linarith only [hm] : X^2/64≤q.mass).trans (boundaryEmbedded_mass_le _ _ hn)
-  have hp : (X^2/64)^ε≤qe.mass^ε := Real.rpow_le_rpow (by positivity) hmass hε
-  have hM : qe.M₁≤qe.M₂*qe.mass^ε := by
+  have hρ : 0≤DivisorProof.inputExponent ε 1 := by
+    unfold DivisorProof.inputExponent
+    exact le_min (div_nonneg hε (by norm_num)) (by norm_num)
+  have hp : (X^2/64)^(DivisorProof.inputExponent ε 1)≤qe.mass^(DivisorProof.inputExponent ε 1) := Real.rpow_le_rpow (by positivity) hmass hρ
+  have hM : qe.M₁≤qe.M₂*qe.mass^(DivisorProof.inputExponent ε 1) := by
     by_contra hb
     have h := p.bad_soft_M_ratio hA hB hH hb
     rw [hpw,hpX] at h
     exact (not_lt_of_ge ((div_le_div_of_nonneg_right hp (by norm_num)).trans h)) hMratio
-  have hN : qe.N₁≤qe.N₂*qe.mass^ε := by
+  have hN : qe.N₁≤qe.N₂*qe.mass^(DivisorProof.inputExponent ε 1) := by
     by_contra hb
     have h := p.bad_soft_N_ratio hA hB hH hb
     rw [hpw,hpX] at h
@@ -121,8 +124,8 @@ theorem a03_native_GCD_passive_mask_partition
     (hprod : X^2/((w 0:ℝ)*w 1)≤T^(2+u))
     (hlow : a03NativeGCDCoordinateGap w≤T^(s-1)*X)
     (hM₂ : 4/3<X/((w 0:ℝ)*w 2)) (hN₂ : 4/3<X/((w 1:ℝ)*w 3))
-    (hMratio : (w 0:ℝ)*(w 2:ℝ)^2/X<((X^2/64)^ε)/64)
-    (hNratio : (w 1:ℝ)*(w 3:ℝ)^2/X<((X^2/64)^ε)/64) :
+    (hMratio : (w 0:ℝ)*(w 2:ℝ)^2/X<((X^2/64)^(DivisorProof.inputExponent ε 1))/64)
+    (hNratio : (w 1:ℝ)*(w 3:ℝ)^2/X<((X^2/64)^(DivisorProof.inputExponent ε 1))/64) :
     a03NativeGCDSelectedDyadicMask (fun _ => True) T a b s u ε f g w X=1 := by
   unfold a03NativeGCDSelectedDyadicMask
   have he := a03_native_GCD_actual_grid_partition
@@ -151,8 +154,8 @@ theorem a03_native_GCD_passive_mask_complement
       8*T^((a+b)/2+s+u/2)<a03NativeGCDCoordinateGap w ∨
       T^(s-1)*X<a03NativeGCDCoordinateGap w ∨
       X/((w 0:ℝ)*w 2)≤4/3 ∨ X/((w 1:ℝ)*w 3)≤4/3 ∨
-      ((X^2/64)^ε)/64≤(w 0:ℝ)*(w 2:ℝ)^2/X ∨
-      ((X^2/64)^ε)/64≤(w 1:ℝ)*(w 3:ℝ)^2/X := by
+      ((X^2/64)^(DivisorProof.inputExponent ε 1))/64≤(w 0:ℝ)*(w 2:ℝ)^2/X ∨
+      ((X^2/64)^(DivisorProof.inputExponent ε 1))/64≤(w 1:ℝ)*(w 3:ℝ)^2/X := by
   by_contra h
   push Not at h
   rcases h with ⟨hp,hh,hgap,hM₂,hN₂,hM,hN⟩

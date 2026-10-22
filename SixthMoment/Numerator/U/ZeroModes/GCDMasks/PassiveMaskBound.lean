@@ -77,10 +77,12 @@ theorem a03_actual_native_mask_complement_uniform_rapid {Φ : ℝ→ℂ}
       (∀ k : PurePolarIndex,κ≤‖normalizedPurePolarRoot σ k‖) →
       ∀ α : MomentShifts,(∀ j : Fin 4,‖α j‖≤1/4) →∀ dual : Bool,
       ‖a03ActualNativeMaskComplement dual Φ T a b s u ε σ α f g‖≤C*T^(-N) := by
-  let χ := a03NativeGCDMaskTailExponent a b s ε
-  let c := a03NativeGCDMaskTailConstant ε
-  have hχ : 0<χ := a03NativeGCDMaskTailExponent_pos hε hma hmb
-  have hc : 0<c := a03NativeGCDMaskTailConstant_pos ε
+  let ρ := DivisorProof.inputExponent ε 1
+  have hρ : 0<ρ := DivisorProof.inputExponent_pos hε (by norm_num)
+  let χ := a03NativeGCDMaskTailExponent a b s ρ
+  let c := a03NativeGCDMaskTailConstant ρ
+  have hχ : 0<χ := a03NativeGCDMaskTailExponent_pos hρ hma hmb
+  have hc : 0<c := a03NativeGCDMaskTailConstant_pos ρ
   obtain ⟨M,hM⟩ := exists_nat_gt (N+a03NativeGCDFullBudgetPower a b)
   obtain ⟨C,hC,hBudget⟩ := a03NativeGCD_mask_complement_absolute_budget
     hΦ hSupp K hK hκ hs (by linarith : 0<u/2) hχ hc M f g
@@ -133,8 +135,8 @@ theorem a03_actual_native_mask_complement_uniform_rapid {Φ : ℝ→ℂ}
             abs_of_nonneg (show (0:ℝ)≤Nat.gcd ((z+1)*(p.1.1+1)) ((v+1)*(p.1.2+1)) from Nat.cast_nonneg _),
             abs_of_pos (by positivity : 0<(p.2:ℝ)+1),abs_of_pos hX]
           cases positive <;> norm_num [rectangularGapSign] <;> exact hfr
-        · exact Or.inr (Or.inr (Or.inl (by simpa [a03NativeGCDNatTuple,χ,c] using hrM)))
-        · exact Or.inr (Or.inr (Or.inr (by simpa [a03NativeGCDNatTuple,χ,c] using hrN))))
+        · exact Or.inr (Or.inr (Or.inl (by simpa [a03NativeGCDNatTuple,χ,c,ρ] using hrM)))
+        · exact Or.inr (Or.inr (Or.inr (by simpa [a03NativeGCDNatTuple,χ,c,ρ] using hrN))))
     have hn : Summable (fun p : (ℕ×ℕ)×ℕ => ‖∫X : ℝ in Ioi 0,
         ((1-mask p X:ℝ):ℂ)*a03UnrestrictedRatioGCDVStarIntegrand dual positive Φ T σ α f g z v p.1.1 p.1.2 p.2 X‖) :=
       hm.1.of_nonneg_of_le (fun _ => norm_nonneg _) (fun _ => norm_integral_le_integral_norm _)

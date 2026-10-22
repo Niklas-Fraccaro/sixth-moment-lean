@@ -83,19 +83,28 @@ theorem a03_sharp_passive_physical_sub_linear_rectangular_budget_smaller
         a03ActualPassiveRatioSourceValueMoment select true dual Φ c T a b s u (η/1024) θ σ α f g‖≤
         (C0+C1)*(T^(η/8)*a03ActualPassiveSoftSourceGlobalMajorant T a b s u (η/1024) θ f g) := by
       cases dual
-      · exact ((hB0 σ α hσ hα hroot select).2.2).trans (by nlinarith only [mul_nonneg hC1 (mul_nonneg (Real.rpow_nonneg (zero_le_one.trans hT) _) hMT.1)])
-      · exact ((hB1 σ α hσ hα hroot select).2.2).trans (by nlinarith only [mul_nonneg hC0 (mul_nonneg (Real.rpow_nonneg (zero_le_one.trans hT) _) hMT.1)])
-    exact hb.trans ((mul_le_mul_of_nonneg_left hSB (add_nonneg hC0 hC1)).trans_eq (by dsimp [E]; ring))
+      · exact ((hB0 σ α hσ hα hroot select).2.2).trans (by nlinarith only [mul_nonneg hC1 (mul_nonneg (Real.rpow_nonneg (zero_le_one.trans hT) (η/8)) hMT.1)])
+      · exact ((hB1 σ α hσ hα hroot select).2.2).trans (by nlinarith only [mul_nonneg hC0 (mul_nonneg (Real.rpow_nonneg (zero_le_one.trans hT) (η/8)) hMT.1)])
+    calc
+      _≤(C0+C1)*(T^(η/8)*a03ActualPassiveSoftSourceGlobalMajorant T a b s u (η/1024) θ f g) := hb
+      _≤(C0+C1)*(Ds*E) := mul_le_mul_of_nonneg_left hSB (add_nonneg hC0 hC1)
+      _=((C0+C1)*Ds)*E := by ring
   have hGamma : ‖a03ActualPassiveRatioSourceValueMoment select true dual Φ c T a b s u (η/1024) θ σ α f g-
       a03ActualPassiveRatioSourceLinearZeroMoment select dual Φ c T a b s u (η/1024) θ σ α f g‖≤(CΓ*DΓ)*E := by
     have hg0 := (hΓ σ α hσ hαq hα hroot dual select).2
-    have hg1 := mul_le_mul_of_nonneg_left hGB hCΓ
-    exact hg0.trans (hg1.trans (by dsimp [E]; nlinarith only [mul_nonneg (mul_nonneg hCΓ hDΓ) (Real.rpow_nonneg (zero_le_one.trans hT) (rectangularSecondExponent a b ε))]))
+    calc
+      _≤CΓ*Real.log T^8*T^(2*s+η/16)*a03ActualPassiveUnsortedZeroModeGlobalMass T a b s u θ f g := hg0
+      _=CΓ*(Real.log T^8*T^(2*s+η/16)*a03ActualPassiveUnsortedZeroModeGlobalMass T a b s u θ f g) := by ring
+      _≤CΓ*(DΓ*T^rectangularFirstExponent a b ε) := mul_le_mul_of_nonneg_left hGB hCΓ
+      _=(CΓ*DΓ)*T^rectangularFirstExponent a b ε := by ring
+      _≤(CΓ*DΓ)*E := mul_le_mul_of_nonneg_left
+        (le_add_of_nonneg_right (Real.rpow_nonneg (zero_le_one.trans hT) (rectangularSecondExponent a b ε)))
+        (mul_nonneg hCΓ hDΓ)
   calc
     _≤‖a03ActualPassiveRatioSourceValueMoment select false dual Φ c T a b s u (η/1024) θ σ α f g-
         a03ActualPassiveRatioSourceValueMoment select true dual Φ c T a b s u (η/1024) θ σ α f g‖+
       ‖a03ActualPassiveRatioSourceValueMoment select true dual Φ c T a b s u (η/1024) θ σ α f g-
-        a03ActualPassiveRatioSourceLinearZeroMoment select dual Φ c T a b s u (η/1024) θ σ α f g‖ := norm_sub_le _ _ _
+        a03ActualPassiveRatioSourceLinearZeroMoment select dual Φ c T a b s u (η/1024) θ σ α f g‖ := norm_sub_le_norm_sub_add_norm_sub _ _ _
     _≤((C0+C1)*Ds)*E+(CΓ*DΓ)*E := add_le_add hSource hGamma
     _=C*E := by dsimp [C]; ring
 
