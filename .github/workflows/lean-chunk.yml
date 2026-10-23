@@ -55,6 +55,9 @@ jobs:
           test "$RUNNER_ENVIRONMENT" = github-hosted
           df -h .
           sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc
+          if [[ "$BUILD_MODE" == full ]]; then
+            sudo rm -rf /usr/local/.ghcup /opt/hostedtoolcache
+          fi
           swapfile="$RUNNER_TEMP/lean-extra.swap"
           sudo fallocate -l 8G "$swapfile"
           sudo chmod 600 "$swapfile"
@@ -63,7 +66,7 @@ jobs:
           free -h
           df -h .
       - name: Install pinned toolchain and dependency cache
-        run: python3 .github/scripts/lean-full.py setup
+        run: /usr/bin/python3 .github/scripts/lean-full.py setup
       - name: Download preceding segment checkpoint
         if: inputs.stage > 1
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
@@ -76,7 +79,7 @@ jobs:
         id: build
         env:
           CHECKPOINT_SHA256: ${{ inputs.previous_sha256 }}
-        run: python3 .github/scripts/lean-full.py build
+        run: /usr/bin/python3 .github/scripts/lean-full.py build
       - name: Upload checked checkpoint
         if: ${{ !cancelled() && steps.build.outcome != 'skipped' }}
         id: upload
@@ -92,7 +95,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           PREVIOUS_ARTIFACT: ${{ inputs.previous_artifact }}
-        run: python3 .github/scripts/lean-full.py prune
+        run: /usr/bin/python3 .github/scripts/lean-full.py prune
       - name: Preserve logs and verification evidence
         if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
