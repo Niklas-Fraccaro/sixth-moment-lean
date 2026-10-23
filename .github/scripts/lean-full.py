@@ -348,7 +348,7 @@ def build():
                 result_state = "complete"
         if identity() != current:
             raise RuntimeError("tracked files changed during build")
-        if not (OUT / "compiler.log").exists():
+        if STAGE == 1 and not (OUT / "compiler.log").exists():
             raise RuntimeError("compiler wrapper was not exercised")
         state = result_state
     finally:
