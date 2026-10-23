@@ -1,0 +1,120 @@
+name: Lean full verification
+run-name: Lean ${{ inputs.mode }} verification
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Full project or short checkpoint infrastructure test
+        type: choice
+        options: [full, smoke]
+        default: full
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: lean-full
+  cancel-in-progress: false
+
+# Standard Linux runners only. Eight sequential jobs, at most 330 minutes each.
+# No paid runner, automatic trigger, retry loop, or paid fallback.
+jobs:
+  part1:
+    if: github.repository == 'Niklas-Fraccaro/sixth-moment-lean'
+    uses: ./.github/workflows/lean-chunk.yml
+    with:
+      mode: ${{ inputs.mode }}
+      stage: 1
+  part2:
+    needs: part1
+    if: needs.part1.outputs.state == 'paused'
+    uses: ./.github/workflows/lean-chunk.yml
+    with:
+      mode: ${{ inputs.mode }}
+      stage: 2
+      previous_artifact: ${{ needs.part1.outputs.artifact }}
+      previous_sha256: ${{ needs.part1.outputs.sha256 }}
+  part3:
+    needs: part2
+    if: needs.part2.outputs.state == 'paused'
+    uses: ./.github/workflows/lean-chunk.yml
+    with:
+      mode: ${{ inputs.mode }}
+      stage: 3
+      previous_artifact: ${{ needs.part2.outputs.artifact }}
+      previous_sha256: ${{ needs.part2.outputs.sha256 }}
+  part4:
+    needs: part3
+    if: needs.part3.outputs.state == 'paused'
+    uses: ./.github/workflows/lean-chunk.yml
+    with:
+      mode: ${{ inputs.mode }}
+      stage: 4
+      previous_artifact: ${{ needs.part3.outputs.artifact }}
+      previous_sha256: ${{ needs.part3.outputs.sha256 }}
+  part5:
+    needs: part4
+    if: needs.part4.outputs.state == 'paused'
+    uses: ./.github/workflows/lean-chunk.yml
+    with:
+      mode: ${{ inputs.mode }}
+      stage: 5
+      previous_artifact: ${{ needs.part4.outputs.artifact }}
+      previous_sha256: ${{ needs.part4.outputs.sha256 }}
+  part6:
+    needs: part5
+    if: needs.part5.outputs.state == 'paused'
+    uses: ./.github/workflows/lean-chunk.yml
+    with:
+      mode: ${{ inputs.mode }}
+      stage: 6
+      previous_artifact: ${{ needs.part5.outputs.artifact }}
+      previous_sha256: ${{ needs.part5.outputs.sha256 }}
+  part7:
+    needs: part6
+    if: needs.part6.outputs.state == 'paused'
+    uses: ./.github/workflows/lean-chunk.yml
+    with:
+      mode: ${{ inputs.mode }}
+      stage: 7
+      previous_artifact: ${{ needs.part6.outputs.artifact }}
+      previous_sha256: ${{ needs.part6.outputs.sha256 }}
+  part8:
+    needs: part7
+    if: needs.part7.outputs.state == 'paused'
+    uses: ./.github/workflows/lean-chunk.yml
+    with:
+      mode: ${{ inputs.mode }}
+      stage: 8
+      previous_artifact: ${{ needs.part7.outputs.artifact }}
+      previous_sha256: ${{ needs.part7.outputs.sha256 }}
+  result:
+    name: Require completed verification
+    needs: [part1, part2, part3, part4, part5, part6, part7, part8]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      BUILD_MODE: ${{ inputs.mode }}
+      JOB_RESULTS: ${{ toJSON(needs.*.result) }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          pattern: full-evidence-${{ github.run_id }}-*
+          path: ${{ runner.temp }}/lean-full
+          digest-mismatch: error
+      - name: Require successful final check
+        run: python3 .github/scripts/lean-full.py report
+      - name: Preserve result
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: full-result-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lean-full/result.md
+          if-no-files-found: error
+          retention-days: 30

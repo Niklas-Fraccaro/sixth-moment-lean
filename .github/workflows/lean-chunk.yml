@@ -1,0 +1,107 @@
+name: Lean build segment
+
+on:
+  workflow_call:
+    inputs:
+      mode:
+        type: string
+        required: true
+      stage:
+        type: number
+        required: true
+      previous_artifact:
+        type: string
+        default: ''
+      previous_sha256:
+        type: string
+        default: ''
+    outputs:
+      state:
+        value: ${{ jobs.build.outputs.state }}
+      artifact:
+        value: ${{ jobs.build.outputs.artifact }}
+      sha256:
+        value: ${{ jobs.build.outputs.sha256 }}
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: ${{ inputs.mode == 'smoke' && 20 || 330 }}
+    outputs:
+      state: ${{ steps.build.outputs.state }}
+      artifact: ${{ steps.upload.outputs.artifact-id }}
+      sha256: ${{ steps.build.outputs.sha256 }}
+    env:
+      BUILD_MODE: ${{ inputs.mode }}
+      BUILD_STAGE: ${{ inputs.stage }}
+      LEAN_NUM_THREADS: '1'
+      LAKE_NO_CACHE: 'true'
+      LAKE_ARTIFACT_CACHE: 'false'
+      MATHLIB_NO_CACHE_ON_UPDATE: '1'
+      PYTHONUNBUFFERED: '1'
+    steps:
+      - name: Record job start
+        run: echo "JOB_STARTED=$(date +%s)" >> "$GITHUB_ENV"
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Make room on the disposable hosted runner
+        run: |
+          test "$RUNNER_ENVIRONMENT" = github-hosted
+          df -h .
+          sudo rm -rf /usr/local/lib/android /usr/share/dotnet /opt/ghc
+          swapfile="$RUNNER_TEMP/lean-extra.swap"
+          sudo fallocate -l 8G "$swapfile"
+          sudo chmod 600 "$swapfile"
+          sudo mkswap "$swapfile"
+          sudo swapon "$swapfile"
+          free -h
+          df -h .
+      - name: Install pinned toolchain and dependency cache
+        run: python3 .github/scripts/lean-full.py setup
+      - name: Download preceding segment checkpoint
+        if: inputs.stage > 1
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          artifact-ids: ${{ inputs.previous_artifact }}
+          path: ${{ runner.temp }}/lean-full
+          merge-multiple: true
+          digest-mismatch: error
+      - name: Verify checkpoint, build, and save progress
+        id: build
+        env:
+          CHECKPOINT_SHA256: ${{ inputs.previous_sha256 }}
+        run: python3 .github/scripts/lean-full.py build
+      - name: Upload checked checkpoint
+        if: ${{ !cancelled() && steps.build.outcome != 'skipped' }}
+        id: upload
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: full-checkpoint-${{ github.run_id }}-${{ inputs.stage }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lean-full/checkpoint.tar.zst
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 7
+      - name: Retire preceding checkpoint after successful replacement
+        if: steps.upload.outcome == 'success' && steps.build.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PREVIOUS_ARTIFACT: ${{ inputs.previous_artifact }}
+        run: python3 .github/scripts/lean-full.py prune
+      - name: Preserve logs and verification evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: full-evidence-${{ github.run_id }}-${{ inputs.stage }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/lean-full/*.log
+            ${{ runner.temp }}/lean-full/stage-*.json
+            ${{ runner.temp }}/lean-full/identity.json
+            ${{ runner.temp }}/lean-full/compiler.json
+          if-no-files-found: error
+          retention-days: 30
