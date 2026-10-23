@@ -1,0 +1,88 @@
+name: Lean mini infrastructure test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/lean-mini.yml
+      - .github/scripts/lean-mini.py
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lean-mini
+  cancel-in-progress: false
+
+env:
+  LEAN_NUM_THREADS: '2'
+  LAKE_NO_CACHE: 'true'
+  LAKE_ARTIFACT_CACHE: 'false'
+  MATHLIB_NO_CACHE_ON_UPDATE: '1'
+  PYTHONUNBUFFERED: '1'
+
+jobs:
+  checkpoint:
+    name: Build, negative controls, checkpoint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    outputs:
+      artifact: ${{ steps.upload.outputs.artifact-id }}
+      sha256: ${{ steps.build.outputs.sha256 }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Install pinned toolchain and fetch required Mathlib cache
+        run: python3 .github/scripts/lean-mini.py setup
+      - name: Build first module and test failure handling
+        id: build
+        run: python3 .github/scripts/lean-mini.py checkpoint
+      - name: Transfer checkpoint
+        id: upload
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: mini-checkpoint-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lean-mini/checkpoint.tar.gz
+          if-no-files-found: error
+          retention-days: 1
+      - name: Preserve diagnostics
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: mini-logs-first-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lean-mini/*.log
+          retention-days: 1
+
+  resume:
+    name: Restore, reuse, build second module
+    needs: checkpoint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Install pinned toolchain and fetch required Mathlib cache
+        run: python3 .github/scripts/lean-mini.py setup
+      - name: Download this run's checkpoint
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          artifact-ids: ${{ needs.checkpoint.outputs.artifact }}
+          path: ${{ runner.temp }}/lean-mini
+          merge-multiple: true
+          digest-mismatch: error
+      - name: Verify checkpoint and finish mini build
+        env:
+          CHECKPOINT_SHA256: ${{ needs.checkpoint.outputs.sha256 }}
+        run: python3 .github/scripts/lean-mini.py resume
+      - name: Preserve diagnostics
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: mini-logs-resume-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lean-mini/*.log
+          retention-days: 1
