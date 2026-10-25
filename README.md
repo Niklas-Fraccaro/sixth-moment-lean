@@ -51,6 +51,13 @@ lake env lean SixthMoment/Verification/Final.lean
 
 The final command checks the theorem and its axioms.
 
+## Verification
+
+[![Lean full verification](https://img.shields.io/badge/Lean%20full%20verification-passed-brightgreen)](https://github.com/Niklas-Fraccaro/sixth-moment-lean/actions/runs/39939330920)
+
+The complete Lean build and final verification passed for
+commit [`7d153d4`](https://github.com/Niklas-Fraccaro/sixth-moment-lean/commit/7d153d46f3bb2a533d5f5b894ba49493d23b7c4c).
+
 ## License
 
 This project is licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE).
