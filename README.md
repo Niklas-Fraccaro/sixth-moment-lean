@@ -23,8 +23,6 @@ The final theorem, [`SixthMoment.fullProof`](SixthMoment/Theorem.lean), has type
 DivisorProof.Watt41 → SixthMoment.FullGoal
 ```
 
-I am also working on a Lean proof of the Watt assumption (`DivisorProof.Watt41`). This is a substantial project, and I expect it to take several more weeks.
-
 ## Reusable results
 
 For example:
