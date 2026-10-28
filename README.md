@@ -40,7 +40,7 @@ See [CONTENTS.md](CONTENTS.md) for further results and the source layout.
 Requires Git and elan. Lean 4.34.0 and Mathlib are pinned.
 
 ```sh
-git clone https://github.com/NiklasFrac/sixth-moment-lean.git
+git clone https://github.com/Niklas-Fraccaro/sixth-moment-lean.git
 cd sixth-moment-lean
 lake exe cache get
 lake build
